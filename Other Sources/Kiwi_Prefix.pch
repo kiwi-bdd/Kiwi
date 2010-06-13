@@ -1,0 +1,13 @@
+//
+// Licensed under the terms in License.txt
+//
+// Copyright 2010 Allen Ding. All rights reserved.
+//
+
+//
+// Prefix header for all source files of the 'Kiwi' target in the 'Kiwi' project
+//
+
+#ifdef __OBJC__
+    #import <Foundation/Foundation.h>
+#endif

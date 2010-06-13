@@ -1,0 +1,10 @@
+*.DS_Store
+
+# Build directory
+build/
+ 
+# XCode user specific files
+*.mode1v3
+*.mode2v3
+*.perspectivev3
+*.pbxuser
