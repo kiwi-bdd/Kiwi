@@ -4,6 +4,11 @@ Kiwi
 Kiwi is open source software. You may freely distribute it under the terms of
 the license agreement found in License.txt.
 
+Simple BDD for the iPhone and iPad
+----------------------------------
+Kiwi is a Behavior Driven Development library for iPhone and iPad development.
+The goal is to provide a BDD library that is exquisitely simple to setup and use.
+
 Quick Setup
 -----------
 1. Add a Cocoa Touch 'Unit Test Bundle' target to your Xcode project. This is your spec target.
