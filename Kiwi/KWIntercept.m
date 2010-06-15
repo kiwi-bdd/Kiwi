@@ -38,8 +38,9 @@ IMP KWForwardingImplementationForMethodEncoding(const char* encoding) {
 #elif TARGET_CPU_X86
     const NSUInteger stretLengthThreshold = 8;
 #else
-    // TODO: Just make an assumption
-    const NSUInteger stretLengthThreshold = 4;
+    // TODO: This just makes an assumption right now. Expand to support all
+    // official architectures correctly.
+    const NSUInteger stretLengthThreshold = 8;
 #endif // #if TARGET_CPU_ARM
 
     NSMethodSignature *signature = [NSMethodSignature signatureWithObjCTypes:encoding];
