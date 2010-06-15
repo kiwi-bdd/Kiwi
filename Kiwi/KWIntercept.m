@@ -38,7 +38,8 @@ IMP KWForwardingImplementationForMethodEncoding(const char* encoding) {
 #elif TARGET_CPU_X86
     const NSUInteger stretLengthThreshold = 8;
 #else
-    #error Unsupported Kiwi Architecture
+    // TODO: Just make an assumption
+    const NSUInteger stretLengthThreshold = 4;
 #endif // #if TARGET_CPU_ARM
 
     NSMethodSignature *signature = [NSMethodSignature signatureWithObjCTypes:encoding];
