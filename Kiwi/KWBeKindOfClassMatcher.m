@@ -12,7 +12,7 @@
 #pragma mark -
 #pragma mark Properties
 
-@property (nonatomic, readwrite) Class targetClass;
+@property (nonatomic, readwrite, assign) Class targetClass;
 
 @end
 
