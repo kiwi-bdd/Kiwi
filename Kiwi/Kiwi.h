@@ -10,6 +10,7 @@
 
 #import "KWAfterAllNode.h"
 #import "KWAfterEachNode.h"
+#import "KWAsyncVerifier.h"
 #import "KWBeBetweenMatcher.h"
 #import "KWBeEmptyMatcher.h"
 #import "KWBeIdenticalToMatcher.h"
@@ -37,6 +38,7 @@
 #import "KWExpectationType.h"
 #import "KWFailure.h"
 #import "KWFormatter.h"
+#import "KWFutureObject.h"
 #import "KWHaveMatcher.h"
 #import "KWInequalityMatcher.h"
 #import "KWInvocationCapturer.h"

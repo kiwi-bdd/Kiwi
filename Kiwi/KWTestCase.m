@@ -12,6 +12,7 @@
 #import "KWIntercept.h"
 #import "KWMatcherFactory.h"
 #import "KWMatchVerifier.h"
+#import "KWAsyncVerifier.h"
 #import "KWObjCUtilities.h"
 #import "KWStringUtilities.h"
 #import "KWVerifying.h"
@@ -103,6 +104,12 @@
     id verifier = [KWMatchVerifier matchVerifierWithExpectationType:anExpectationType callSite:aCallSite matcherFactory:self.matcherFactory reporter:self];
     [self.verifiers addObject:verifier];
     return verifier;
+}
+
+- (id)addAsyncVerifierWithExpectationType:(KWExpectationType)anExpectationType callSite:(KWCallSite *)aCallSite {
+  id verifier = [KWAsyncVerifier matchVerifierWithExpectationType:anExpectationType callSite:aCallSite matcherFactory:self.matcherFactory reporter:self];
+  [self.verifiers addObject:verifier];
+  return verifier;
 }
 
 #pragma mark -

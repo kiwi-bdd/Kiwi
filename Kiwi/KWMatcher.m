@@ -6,6 +6,7 @@
 
 #import "KWMatcher.h"
 #import "KWFormatter.h"
+#import "KWFutureObject.h"
 
 @implementation KWMatcher
 
@@ -33,6 +34,14 @@
 #pragma mark Properties
 
 @synthesize subject;
+
+- (id)subject
+{
+  if ([subject isKindOfClass:[KWFutureObject class]]) {
+    return [(KWFutureObject *)subject object];
+  }
+  return subject;
+}
 
 #pragma mark -
 #pragma mark Getting Matcher Strings

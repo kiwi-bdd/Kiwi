@@ -18,6 +18,7 @@
 #import "KWIntercept.h"
 #import "KWItNode.h"
 #import "KWMatchVerifier.h"
+#import "KWAsyncVerifier.h"
 #import "KWMatcherFactory.h"
 #import "KWObjCUtilities.h"
 #import "KWRegisterMatchersNode.h"
@@ -92,13 +93,19 @@
 
 - (id)addExistVerifierWithExpectationType:(KWExpectationType)anExpectationType callSite:(KWCallSite *)aCallSite {
     id verifier = [KWExistVerifier existVerifierWithExpectationType:anExpectationType callSite:aCallSite reporter:self];
-    [self.verifiers addObject:verifier];
+    [self addVerifier:verifier];
     return verifier;
 }
 
 - (id)addMatchVerifierWithExpectationType:(KWExpectationType)anExpectationType callSite:(KWCallSite *)aCallSite {
     id verifier = [KWMatchVerifier matchVerifierWithExpectationType:anExpectationType callSite:aCallSite matcherFactory:self.matcherFactory reporter:self];
-    [self.verifiers addObject:verifier];
+    [self addVerifier:verifier];
+    return verifier;
+}
+
+- (id)addAsyncVerifierWithExpectationType:(KWExpectationType)anExpectationType callSite:(KWCallSite *)aCallSite {
+    id verifier = [KWAsyncVerifier matchVerifierWithExpectationType:anExpectationType callSite:aCallSite matcherFactory:self.matcherFactory reporter:self];
+    [self addVerifier:verifier];
     return verifier;
 }
 
