@@ -10,10 +10,17 @@
 #import "KWMatchVerifier.h"
 #import "KWProbe.h"
 
+#define kKW_DEFAULT_PROBE_TIMEOUT 1.0
+
 @class KWAsyncMatcherProbe;
 
 @interface KWAsyncVerifier : KWMatchVerifier 
-{}
+{
+  NSInteger timeout;
+}
+@property (nonatomic, assign) NSInteger timeout;
+
++ (id)asyncVerifierWithExpectationType:(KWExpectationType)anExpectationType callSite:(KWCallSite *)aCallSite matcherFactory:(KWMatcherFactory *)aMatcherFactory reporter:(id<KWReporting>)aReporter probeTimeout:(NSInteger)probeTimeout;
 - (void)verifyWithProbe:(KWAsyncMatcherProbe *)aProbe;
 @end
 

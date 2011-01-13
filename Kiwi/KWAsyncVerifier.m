@@ -14,9 +14,25 @@
 
 @implementation KWAsyncVerifier
 
+@synthesize timeout;
+
++ (id)asyncVerifierWithExpectationType:(KWExpectationType)anExpectationType callSite:(KWCallSite *)aCallSite matcherFactory:(KWMatcherFactory *)aMatcherFactory reporter:(id<KWReporting>)aReporter probeTimeout:(NSInteger)probeTimeout;
+{
+  KWAsyncVerifier *verifier = [[self alloc] initWithExpectationType:anExpectationType callSite:aCallSite matcherFactory:aMatcherFactory reporter:aReporter];
+  verifier.timeout = probeTimeout;
+  return [verifier autorelease];
+}
+
+- (id)initWithExpectationType:(KWExpectationType)anExpectationType callSite:(KWCallSite *)aCallSite matcherFactory:(KWMatcherFactory *)aMatcherFactory reporter:(id<KWReporting>)aReporter {
+  if ((self = [super initWithExpectationType:anExpectationType callSite:aCallSite matcherFactory:aMatcherFactory reporter:aReporter])) {
+    self.timeout = kKW_DEFAULT_PROBE_TIMEOUT;
+  }  
+  return self;
+}
+
 - (void)verifyWithProbe:(KWAsyncMatcherProbe *)aProbe {
   @try {
-    KWProbePoller *poller = [[KWProbePoller alloc] initWithTimeout:3.0 delay:kKW_DEFAULT_PROBE_DELAY];
+    KWProbePoller *poller = [[KWProbePoller alloc] initWithTimeout:self.timeout delay:kKW_DEFAULT_PROBE_DELAY];
 
     if (![poller check:aProbe]) {
       if (self.expectationType == KWExpectationTypeShould) {

@@ -107,9 +107,9 @@
 }
 
 - (id)addAsyncVerifierWithExpectationType:(KWExpectationType)anExpectationType callSite:(KWCallSite *)aCallSite {
-  id verifier = [KWAsyncVerifier matchVerifierWithExpectationType:anExpectationType callSite:aCallSite matcherFactory:self.matcherFactory reporter:self];
-  [self.verifiers addObject:verifier];
-  return verifier;
+    id verifier = [KWAsyncVerifier asyncVerifierWithExpectationType:anExpectationType callSite:aCallSite matcherFactory:self.matcherFactory reporter:self probeTimeout:kKW_DEFAULT_PROBE_TIMEOUT];
+    [self.verifiers addObject:verifier];
+    return verifier;
 }
 
 #pragma mark -
