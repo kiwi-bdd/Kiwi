@@ -66,7 +66,7 @@
 
 - (id)initWithMatcher:(id<KWMatching>)aMatcher;
 {
-  if (self = [super init]) {
+  if ((self = [super init])) {
     matcher = [aMatcher retain];
   }
   return self;

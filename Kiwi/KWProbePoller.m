@@ -20,7 +20,7 @@
 
 - (id)initWithTimeout:(NSTimeInterval)timeout
 {
-  if (self = [super init]) {
+  if ((self = [super init])) {
     timeoutDate = [[NSDate alloc] initWithTimeIntervalSinceNow:timeout];
   }
   return self;
@@ -45,7 +45,7 @@
 
 - (id)initWithTimeout:(NSTimeInterval)theTimeout delay:(NSTimeInterval)theDelay;
 {
-  if (self = [super init]) {
+  if ((self = [super init])) {
     timeoutInterval = theTimeout;
     delayInterval = theDelay;
   }
