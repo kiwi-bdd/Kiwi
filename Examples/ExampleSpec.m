@@ -53,6 +53,30 @@ describe(@"Cruiser", ^{
                 [cruiser raiseWithName:@"FooException" description:@"Foo"];
             }) should] raiseWithName:@"FooException"];
         });
+		
+		const float nanosecondToSeconds = 1e9;
+		
+		it(@"should verify asynchronous expectations that succeed in time", ^{
+			__block NSString *fetchedData = nil;
+			
+			dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 0.5 * nanosecondToSeconds), dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
+				fetchedData = @"expected response data";
+			});
+
+			// this will block until the matcher is satisfied or it times out (default: 1s)
+			[[theObject(&fetchedData) shouldEventually] equal:@"expected response data"];
+		});
+		
+		it(@"should verify asynchronous expectations that succeed with an explicit time", ^{
+			__block NSString *fetchedData = nil;
+						
+			dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 0.5 * nanosecondToSeconds), dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
+				fetchedData = @"expected response data";
+			});
+			
+			// this will block until the matcher is satisfied or it times out (default: 1s)
+			[[theObject(&fetchedData) shouldEventuallyBeforeTimingOutAfter(2.0)] equal:@"expected response data"];
+		});
     });
 });
 

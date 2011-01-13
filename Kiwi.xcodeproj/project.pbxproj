@@ -16,6 +16,13 @@
 		28AD733F0D9D9553002E5188 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28AD733E0D9D9553002E5188 /* MainWindow.xib */; };
 		28D7ACF80DDB3853001CB0EB /* KiwiViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28D7ACF70DDB3853001CB0EB /* KiwiViewController.m */; };
 		9F324E9212DFB17200A871F1 /* Contributors.txt in Resources */ = {isa = PBXBuildFile; fileRef = 9F324E9112DFB17200A871F1 /* Contributors.txt */; };
+		9F4E04C912DFB6CB00A3440B /* KWAsyncVerifier.h in Headers */ = {isa = PBXBuildFile; fileRef = 9F4E04C812DFB6CB00A3440B /* KWAsyncVerifier.h */; };
+		9F4E04DB12DFB71F00A3440B /* KWFutureObject.h in Headers */ = {isa = PBXBuildFile; fileRef = 9F4E04D612DFB71F00A3440B /* KWFutureObject.h */; };
+		9F4E04DC12DFB71F00A3440B /* KWFutureObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F4E04D712DFB71F00A3440B /* KWFutureObject.m */; };
+		9F4E04DD12DFB71F00A3440B /* KWProbe.h in Headers */ = {isa = PBXBuildFile; fileRef = 9F4E04D812DFB71F00A3440B /* KWProbe.h */; };
+		9F4E04DE12DFB71F00A3440B /* KWProbePoller.h in Headers */ = {isa = PBXBuildFile; fileRef = 9F4E04D912DFB71F00A3440B /* KWProbePoller.h */; };
+		9F4E04DF12DFB71F00A3440B /* KWProbePoller.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F4E04DA12DFB71F00A3440B /* KWProbePoller.m */; };
+		9FB1D28412DFB60400693E30 /* KWAsyncVerifier.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FB1D28312DFB60400693E30 /* KWAsyncVerifier.m */; };
 		F5015BB911583ABD002E9A98 /* KWCallSite.m in Sources */ = {isa = PBXBuildFile; fileRef = F5015B581158398E002E9A98 /* KWCallSite.m */; };
 		F5015BBA11583ABD002E9A98 /* KWContainMatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = F5015B5A1158398E002E9A98 /* KWContainMatcher.m */; };
 		F5015BBB11583ABD002E9A98 /* KWEqualMatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = F5015B5C1158398E002E9A98 /* KWEqualMatcher.m */; };
@@ -203,6 +210,13 @@
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		32CA4F630368D1EE00C91783 /* Kiwi_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Kiwi_Prefix.pch; sourceTree = "<group>"; };
 		9F324E9112DFB17200A871F1 /* Contributors.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Contributors.txt; sourceTree = "<group>"; };
+		9F4E04C812DFB6CB00A3440B /* KWAsyncVerifier.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KWAsyncVerifier.h; sourceTree = "<group>"; };
+		9F4E04D612DFB71F00A3440B /* KWFutureObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KWFutureObject.h; sourceTree = "<group>"; };
+		9F4E04D712DFB71F00A3440B /* KWFutureObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KWFutureObject.m; sourceTree = "<group>"; };
+		9F4E04D812DFB71F00A3440B /* KWProbe.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KWProbe.h; sourceTree = "<group>"; };
+		9F4E04D912DFB71F00A3440B /* KWProbePoller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KWProbePoller.h; sourceTree = "<group>"; };
+		9F4E04DA12DFB71F00A3440B /* KWProbePoller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KWProbePoller.m; sourceTree = "<group>"; };
+		9FB1D28312DFB60400693E30 /* KWAsyncVerifier.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KWAsyncVerifier.m; sourceTree = "<group>"; };
 		F5015B501158398E002E9A98 /* Kiwi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Kiwi.h; sourceTree = "<group>"; };
 		F5015B571158398E002E9A98 /* KWCallSite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KWCallSite.h; sourceTree = "<group>"; };
 		F5015B581158398E002E9A98 /* KWCallSite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KWCallSite.m; sourceTree = "<group>"; };
@@ -603,6 +617,8 @@
 		F57A685D115A39E000591C2A /* Verifiers */ = {
 			isa = PBXGroup;
 			children = (
+				9F4E04C812DFB6CB00A3440B /* KWAsyncVerifier.h */,
+				9FB1D28312DFB60400693E30 /* KWAsyncVerifier.m */,
 				F5DBB552116C2F7700583385 /* KWExistVerifier.h */,
 				F5DBB553116C2F7700583385 /* KWExistVerifier.m */,
 				F54DB6BC11A9782000E6EDB9 /* KWExpectationType.h */,
@@ -630,6 +646,8 @@
 				F5DBB661116C8B8500583385 /* KWFailure.m */,
 				F5015B5F1158398E002E9A98 /* KWFormatter.h */,
 				F5015B601158398E002E9A98 /* KWFormatter.m */,
+				9F4E04D612DFB71F00A3440B /* KWFutureObject.h */,
+				9F4E04D712DFB71F00A3440B /* KWFutureObject.m */,
 				F506073B117C2EC9008E66D5 /* KWInvocationCapturer.h */,
 				F506073C117C2EC9008E66D5 /* KWInvocationCapturer.m */,
 				F5DE049D118EFD3B00728D0C /* KWMessagePattern.h */,
@@ -638,6 +656,9 @@
 				F5665B1F11B49CD100D346F1 /* KWNull.m */,
 				F56B3FE8115F961600DA94AC /* KWObjCUtilities.h */,
 				F56B3FE9115F961600DA94AC /* KWObjCUtilities.m */,
+				9F4E04D812DFB71F00A3440B /* KWProbe.h */,
+				9F4E04D912DFB71F00A3440B /* KWProbePoller.h */,
+				9F4E04DA12DFB71F00A3440B /* KWProbePoller.m */,
 				F5FC83A511B1000500BF98A2 /* KWStringUtilities.h */,
 				F5FC83A611B1000500BF98A2 /* KWStringUtilities.m */,
 				F54A4C46117364AC002442C5 /* KWValue.h */,
@@ -843,6 +864,10 @@
 				F5BDB7A611C0C04200DD3474 /* KWWorkarounds.h in Headers */,
 				F5BDB86B11C0CA9A00DD3474 /* KWBeforeAllNode.h in Headers */,
 				F5BDB86F11C0CAA000DD3474 /* KWAfterAllNode.h in Headers */,
+				9F4E04C912DFB6CB00A3440B /* KWAsyncVerifier.h in Headers */,
+				9F4E04DB12DFB71F00A3440B /* KWFutureObject.h in Headers */,
+				9F4E04DD12DFB71F00A3440B /* KWProbe.h in Headers */,
+				9F4E04DE12DFB71F00A3440B /* KWProbePoller.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1044,6 +1069,9 @@
 				F5BDB7A711C0C04200DD3474 /* KWWorkarounds.m in Sources */,
 				F5BDB86C11C0CA9A00DD3474 /* KWBeforeAllNode.m in Sources */,
 				F5BDB87011C0CAA000DD3474 /* KWAfterAllNode.m in Sources */,
+				9FB1D28412DFB60400693E30 /* KWAsyncVerifier.m in Sources */,
+				9F4E04DC12DFB71F00A3440B /* KWFutureObject.m in Sources */,
+				9F4E04DF12DFB71F00A3440B /* KWProbePoller.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1124,7 +1152,7 @@
 				GCC_SYMBOLS_PRIVATE_EXTERN = YES;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				INFOPLIST_FILE = "Resources/KiwiDriver-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 3.1.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.1;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = KiwiDriver;
@@ -1148,7 +1176,7 @@
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				INFOPLIST_FILE = "Resources/KiwiDriver-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 3.1.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.1;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = KiwiDriver;
@@ -1219,7 +1247,7 @@
 				GCC_MODEL_TUNING = "";
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
-				IPHONEOS_DEPLOYMENT_TARGET = 3.1.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.1;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "";
 				PREBINDING = NO;
@@ -1243,13 +1271,13 @@
 				GCC_ENABLE_FIX_AND_CONTINUE = NO;
 				GCC_MODEL_TUNING = "";
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
-				IPHONEOS_DEPLOYMENT_TARGET = 3.1.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.1;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "";
 				PREBINDING = NO;
 				PRODUCT_NAME = Kiwi;
 				RUN_CLANG_STATIC_ANALYZER = YES;
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 				ZERO_LINK = NO;
 			};
 			name = Release;
@@ -1272,7 +1300,7 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				INFOPLIST_FILE = "Resources/KiwiTests-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 3.1.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.1;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = (
 					"-all_load",
@@ -1308,7 +1336,7 @@
 				GCC_MODEL_TUNING = "";
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				INFOPLIST_FILE = "Resources/KiwiTests-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 3.1.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.1;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = (
 					"-all_load",

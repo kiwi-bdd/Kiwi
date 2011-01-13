@@ -18,7 +18,7 @@
 
 - (id)initWithObjectPointer:(id *)pointer;
 {
-  if (self = [super init]) {
+  if ((self = [super init])) {
     objectPointer = pointer;
   }
   return self;
