@@ -27,6 +27,7 @@
 
 // used to wrap a pointer to an object that will change in the future (used with shouldEventually)
 #define theObject(objectPtr) [KWFutureObject objectWithObjectPointer:objectPtr]
+#define theReturnValueOfBlock(block) [KWFutureObject objectWithReturnValueOfBlock:block]
 
 #if KW_BLOCKS_ENABLED
     // Kiwi macros used in specs to create example groups. Because these macros
