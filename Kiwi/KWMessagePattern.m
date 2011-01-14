@@ -133,6 +133,8 @@
             if ([argumentFilter isEqual:[KWNull null]]) {
                 if (object != nil)
                     return NO;
+            } else if ([argumentFilter respondsToSelector:@selector(matches:)]) {
+              return (BOOL)[argumentFilter performSelector:@selector(matches:) withObject:object];
             } else if (![argumentFilter isEqual:object]) {
                 return NO;
             }
