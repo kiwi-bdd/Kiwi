@@ -14,3 +14,5 @@
 #import "TestReporter.h"
 #import "TestSpy.h"
 #import "TestVerifier.h"
+#import "Robot.h"
+#import "StringPrefixMatcher.h"

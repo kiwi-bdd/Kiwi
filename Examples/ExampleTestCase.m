@@ -160,6 +160,13 @@
     [[theValue(energyLevel) should] equal:theValue(1.01f)];
 }
 
+- (void)itShouldAllowExpectationsArgumentsToBeHamcrestMatchersForFuzzyMatching
+{
+    id subject = [Robot robot];
+    [[[subject should] receive] speak:hasPrefix(@"Hello")];
+    [subject speak:@"Hello world"];
+}
+
 - (void)itShouldMakeStubbedInstanceObjectsTransparent {
     id subject = [Cruiser cruiser];
     [subject stub:@selector(raiseShields) andReturn:theValue(YES)];

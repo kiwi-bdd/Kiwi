@@ -26,6 +26,8 @@
 		A3A1739C12E47068004DFD70 /* ExampleAsyncSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = A3A1739B12E47068004DFD70 /* ExampleAsyncSpec.m */; };
 		A3A1757412E498CD004DFD70 /* KWBeNilMatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = A3A1757312E498CD004DFD70 /* KWBeNilMatcher.m */; };
 		A3A1757712E49900004DFD70 /* KWBeNonNilMatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = A3A1757612E49900004DFD70 /* KWBeNonNilMatcher.m */; };
+		A3A1754112E4966F004DFD70 /* Robot.m in Sources */ = {isa = PBXBuildFile; fileRef = A3A1754012E4966F004DFD70 /* Robot.m */; };
+		A3A1754412E496CA004DFD70 /* StringPrefixMatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = A3A1754312E496CA004DFD70 /* StringPrefixMatcher.m */; };
 		F5015BB911583ABD002E9A98 /* KWCallSite.m in Sources */ = {isa = PBXBuildFile; fileRef = F5015B581158398E002E9A98 /* KWCallSite.m */; };
 		F5015BBA11583ABD002E9A98 /* KWContainMatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = F5015B5A1158398E002E9A98 /* KWContainMatcher.m */; };
 		F5015BBB11583ABD002E9A98 /* KWEqualMatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = F5015B5C1158398E002E9A98 /* KWEqualMatcher.m */; };
@@ -225,6 +227,11 @@
 		A3A1757312E498CD004DFD70 /* KWBeNilMatcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KWBeNilMatcher.m; sourceTree = "<group>"; };
 		A3A1757512E498D8004DFD70 /* KWBeNonNilMatcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KWBeNonNilMatcher.h; sourceTree = "<group>"; };
 		A3A1757612E49900004DFD70 /* KWBeNonNilMatcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KWBeNonNilMatcher.m; sourceTree = "<group>"; };
+		A3A1753E12E49505004DFD70 /* KWHCMatcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KWHCMatcher.h; sourceTree = "<group>"; };
+		A3A1753F12E4966F004DFD70 /* Robot.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Robot.h; sourceTree = "<group>"; };
+		A3A1754012E4966F004DFD70 /* Robot.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Robot.m; sourceTree = "<group>"; };
+		A3A1754212E496CA004DFD70 /* StringPrefixMatcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StringPrefixMatcher.h; sourceTree = "<group>"; };
+		A3A1754312E496CA004DFD70 /* StringPrefixMatcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StringPrefixMatcher.m; sourceTree = "<group>"; };
 		F5015B501158398E002E9A98 /* Kiwi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Kiwi.h; sourceTree = "<group>"; };
 		F5015B571158398E002E9A98 /* KWCallSite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KWCallSite.h; sourceTree = "<group>"; };
 		F5015B581158398E002E9A98 /* KWCallSite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KWCallSite.m; sourceTree = "<group>"; };
@@ -465,6 +472,10 @@
 				F5CC5B7911979A6600004E69 /* TestSpy.m */,
 				F511A03911AA487300B9BBF1 /* TestVerifier.h */,
 				F511A03A11AA487300B9BBF1 /* TestVerifier.m */,
+				A3A1753F12E4966F004DFD70 /* Robot.h */,
+				A3A1754012E4966F004DFD70 /* Robot.m */,
+				A3A1754212E496CA004DFD70 /* StringPrefixMatcher.h */,
+				A3A1754312E496CA004DFD70 /* StringPrefixMatcher.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -685,6 +696,7 @@
 				F5B3FDC51178B15E00ECF9E8 /* NSNumber+KiwiAdditions.m */,
 				F50922FB1165E43D00083EB1 /* NSValue+KiwiAdditions.h */,
 				F50922FC1165E43D00083EB1 /* NSValue+KiwiAdditions.m */,
+				A3A1753E12E49505004DFD70 /* KWHCMatcher.h */,
 			);
 			name = Support;
 			sourceTree = "<group>";
@@ -1133,6 +1145,8 @@
 				A3A1739C12E47068004DFD70 /* ExampleAsyncSpec.m in Sources */,
 				A3A1757412E498CD004DFD70 /* KWBeNilMatcher.m in Sources */,
 				A3A1757712E49900004DFD70 /* KWBeNonNilMatcher.m in Sources */,
+				A3A1754112E4966F004DFD70 /* Robot.m in Sources */,
+				A3A1754412E496CA004DFD70 /* StringPrefixMatcher.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
