@@ -11,6 +11,7 @@
 #import "KWValue.h"
 #import "NSInvocation+KiwiAdditions.h"
 #import "NSMethodSignature+KiwiAdditions.h"
+#import "KWHCMatcher.h"
 
 @implementation KWMessagePattern
 
@@ -134,7 +135,7 @@
                 if (object != nil)
                     return NO;
             } else if ([argumentFilter respondsToSelector:@selector(matches:)]) {
-              return (BOOL)[argumentFilter performSelector:@selector(matches:) withObject:object];
+              return [(id<HCMatcher>)argumentFilter matches:object];
             } else if (![argumentFilter isEqual:object]) {
                 return NO;
             }
