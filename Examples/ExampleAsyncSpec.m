@@ -16,7 +16,7 @@ SPEC_BEGIN(ExampleAsyncSpec)
 
 const float nanosecondToSeconds = 1e9;
 
-it(@"should verify asynchronous expectations that succeed in time", ^{
+it(@"should verify asynchronous expectations on a variable that starts as nil that succeed in time", ^{
   __block NSString *fetchedData = nil;
   
   dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 0.5 * nanosecondToSeconds), dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
@@ -27,7 +27,7 @@ it(@"should verify asynchronous expectations that succeed in time", ^{
   [[theObject(&fetchedData) shouldEventually] equal:@"expected response data"];
 });
 
-it(@"should verify asynchronous expectations that succeed with an explicit time", ^{
+it(@"should verify asynchronous expectations on a variable that starts as nil that succeed with an explicit time", ^{
   __block NSString *fetchedData = nil;
   
   dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 0.5 * nanosecondToSeconds), dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
@@ -38,6 +38,15 @@ it(@"should verify asynchronous expectations that succeed with an explicit time"
   [[theObject(&fetchedData) shouldEventuallyBeforeTimingOutAfter(2.0)] equal:@"expected response data"];
 });
 
+it(@"should verify asynchronous expectations on the return value of a block", ^{
+  __block NSString *fetchedData = nil;
+  
+  dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 0.5 * nanosecondToSeconds), dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
+    fetchedData = @"expected response data";
+  });
+  
+  [[theReturnValueOfBlock(^{ return [fetchedData uppercaseString]; }) shouldEventually] equal:@"EXPECTED RESPONSE DATA"];
+});
 
 SPEC_END
 
