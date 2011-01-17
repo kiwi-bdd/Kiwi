@@ -18,6 +18,7 @@
 #import "KWBeMemberOfClassMatcher.h"
 #import "KWBeTrueMatcher.h"
 #import "KWBeNilMatcher.h"
+#import "KWBeNonNilMatcher.h"
 #import "KWBeWithinMatcher.h"
 #import "KWBeZeroMatcher.h"
 #import "KWBeforeAllNode.h"

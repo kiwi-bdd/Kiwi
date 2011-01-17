@@ -68,6 +68,28 @@ it(@"should verify asynchronous mock expectations on an existing object set afte
   [[[mock shouldEventually] receive] uppercaseString];
 });
 
+it(@"should verify asynchronous expectations on a variable that starts as nil and becomes not-nil", ^{
+  __block NSString *fetchedData = nil;
+  
+  dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 0.5 * nanosecondToSeconds), dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
+    fetchedData = @"expected response data";
+  });
+  
+  // this will block until the matcher is satisfied or it times out (default: 1s)
+  [[theObject(&fetchedData) shouldEventually] beNonNil];
+});
+
+it(@"should verify asynchronous expectations on a variable that starts as non-nil and becomes nil", ^{
+  __block NSString *fetchedData = @"not nil";
+  
+  dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 0.5 * nanosecondToSeconds), dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
+    fetchedData = nil;
+  });
+  
+  // this will block until the matcher is satisfied or it times out (default: 1s)
+  [[theObject(&fetchedData) shouldEventually] beNil];
+});
+
 SPEC_END
 
 #endif // #if KW_TESTS_ENABLED && KW_BLOCKS_ENABLED

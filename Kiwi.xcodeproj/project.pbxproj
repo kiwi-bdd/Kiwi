@@ -24,6 +24,8 @@
 		9F4E04DF12DFB71F00A3440B /* KWProbePoller.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F4E04DA12DFB71F00A3440B /* KWProbePoller.m */; };
 		9FB1D28412DFB60400693E30 /* KWAsyncVerifier.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FB1D28312DFB60400693E30 /* KWAsyncVerifier.m */; };
 		A3A1739C12E47068004DFD70 /* ExampleAsyncSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = A3A1739B12E47068004DFD70 /* ExampleAsyncSpec.m */; };
+		A3A1757412E498CD004DFD70 /* KWBeNilMatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = A3A1757312E498CD004DFD70 /* KWBeNilMatcher.m */; };
+		A3A1757712E49900004DFD70 /* KWBeNonNilMatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = A3A1757612E49900004DFD70 /* KWBeNonNilMatcher.m */; };
 		F5015BB911583ABD002E9A98 /* KWCallSite.m in Sources */ = {isa = PBXBuildFile; fileRef = F5015B581158398E002E9A98 /* KWCallSite.m */; };
 		F5015BBA11583ABD002E9A98 /* KWContainMatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = F5015B5A1158398E002E9A98 /* KWContainMatcher.m */; };
 		F5015BBB11583ABD002E9A98 /* KWEqualMatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = F5015B5C1158398E002E9A98 /* KWEqualMatcher.m */; };
@@ -219,6 +221,10 @@
 		9F4E04DA12DFB71F00A3440B /* KWProbePoller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KWProbePoller.m; sourceTree = "<group>"; };
 		9FB1D28312DFB60400693E30 /* KWAsyncVerifier.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KWAsyncVerifier.m; sourceTree = "<group>"; };
 		A3A1739B12E47068004DFD70 /* ExampleAsyncSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExampleAsyncSpec.m; sourceTree = "<group>"; };
+		A3A1757212E498CD004DFD70 /* KWBeNilMatcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KWBeNilMatcher.h; sourceTree = "<group>"; };
+		A3A1757312E498CD004DFD70 /* KWBeNilMatcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KWBeNilMatcher.m; sourceTree = "<group>"; };
+		A3A1757512E498D8004DFD70 /* KWBeNonNilMatcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KWBeNonNilMatcher.h; sourceTree = "<group>"; };
+		A3A1757612E49900004DFD70 /* KWBeNonNilMatcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KWBeNonNilMatcher.m; sourceTree = "<group>"; };
 		F5015B501158398E002E9A98 /* Kiwi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Kiwi.h; sourceTree = "<group>"; };
 		F5015B571158398E002E9A98 /* KWCallSite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KWCallSite.h; sourceTree = "<group>"; };
 		F5015B581158398E002E9A98 /* KWCallSite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KWCallSite.m; sourceTree = "<group>"; };
@@ -573,6 +579,8 @@
 		F57A685A115A39B500591C2A /* Matchers */ = {
 			isa = PBXGroup;
 			children = (
+				A3A1757212E498CD004DFD70 /* KWBeNilMatcher.h */,
+				A3A1757312E498CD004DFD70 /* KWBeNilMatcher.m */,
 				F553B2D8117561C9004FCA2E /* KWBeBetweenMatcher.h */,
 				F553B2D9117561C9004FCA2E /* KWBeBetweenMatcher.m */,
 				F553B4531175A292004FCA2E /* KWBeEmptyMatcher.h */,
@@ -612,6 +620,8 @@
 				F57A6785115A2BC800591C2A /* KWReceiveMatcher.m */,
 				F553B6721175ED09004FCA2E /* KWRespondToSelectorMatcher.h */,
 				F553B6731175ED09004FCA2E /* KWRespondToSelectorMatcher.m */,
+				A3A1757512E498D8004DFD70 /* KWBeNonNilMatcher.h */,
+				A3A1757612E49900004DFD70 /* KWBeNonNilMatcher.m */,
 			);
 			name = Matchers;
 			sourceTree = "<group>";
@@ -1121,6 +1131,8 @@
 				F5B16B4E11BD56AE00200D1D /* KWContextNodeTest.m in Sources */,
 				F5CDEC4911C151120022A0BF /* SimpleSpec.m in Sources */,
 				A3A1739C12E47068004DFD70 /* ExampleAsyncSpec.m in Sources */,
+				A3A1757412E498CD004DFD70 /* KWBeNilMatcher.m in Sources */,
+				A3A1757712E49900004DFD70 /* KWBeNonNilMatcher.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
