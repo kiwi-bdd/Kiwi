@@ -267,7 +267,6 @@ static NSString * const StubValueKey = @"StubValueKey";
         [self.messageSpies setObject:messagePatternSpies forKey:aMessagePattern];
         [messagePatternSpies release];
     }
-
     NSValue *spyWrapper = [NSValue valueWithNonretainedObject:aSpy];
 
     if (![messagePatternSpies containsObject:spyWrapper])
@@ -334,7 +333,7 @@ static NSString * const StubValueKey = @"StubValueKey";
         return [NSString stringWithFormat:@"mock \"%@\"", self.name];
 }
 
-- (BOOL)processReceivedInvocation:(NSInvocation *)invocation {
+- (BOOL)processReceivedInvocation:(NSInvocation *)invocation {  
     for (KWMessagePattern *messagePattern in self.messageSpies) {
         if ([messagePattern matchesInvocation:invocation]) {
             NSArray *spies = [self.messageSpies objectForKey:messagePattern];

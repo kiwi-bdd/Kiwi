@@ -68,6 +68,11 @@
 {
   if ((self = [super init])) {
     matcher = [aMatcher retain];
+    
+    // make sure the matcher knows we are going to evaluate it multiple times
+    if ([aMatcher respondsToSelector:@selector(willEvaluateMultipleTimes)]) {
+      [aMatcher setWillEvaluateMultipleTimes:YES];
+    }
   }
   return self;
 }

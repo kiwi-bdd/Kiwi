@@ -48,6 +48,26 @@ it(@"should verify asynchronous expectations on the return value of a block", ^{
   [[theReturnValueOfBlock(^{ return [fetchedData uppercaseString]; }) shouldEventually] equal:@"EXPECTED RESPONSE DATA"];
 });
 
+it(@"should verify asynchronous mock expectations on an existing object set before the asynchronous call", ^{
+  __block id mock = [KWMock mockForClass:[NSString class]];
+  
+  [[[mock shouldEventually] receive] uppercaseString];
+  
+  dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 0.5 * nanosecondToSeconds), dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
+    [mock uppercaseString];
+  });
+});
+
+it(@"should verify asynchronous mock expectations on an existing object set after the asynchronous call", ^{
+  __block id mock = [KWMock mockForClass:[NSString class]];
+  
+  dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 0.5 * nanosecondToSeconds), dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
+    [mock uppercaseString];
+  });
+  
+  [[[mock shouldEventually] receive] uppercaseString];
+});
+
 SPEC_END
 
 #endif // #if KW_TESTS_ENABLED && KW_BLOCKS_ENABLED

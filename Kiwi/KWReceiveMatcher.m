@@ -33,6 +33,14 @@ static NSString * const StubValueKey = @"StubValueKey";
 #pragma mark -
 #pragma mark Initializing
 
+- (id)initWithSubject:(id)anObject {
+  if ((self = [super initWithSubject:anObject])) {
+    self.willEvaluateMultipleTimes = NO;
+  }
+  
+  return self;
+}
+
 - (void)dealloc {
     [messageTracker release];
     [super dealloc];
@@ -42,6 +50,7 @@ static NSString * const StubValueKey = @"StubValueKey";
 #pragma mark Properties
 
 @synthesize messageTracker;
+@synthesize willEvaluateMultipleTimes;
 
 #pragma mark -
 #pragma mark Getting Matcher Strings
@@ -68,7 +77,10 @@ static NSString * const StubValueKey = @"StubValueKey";
 
 - (BOOL)evaluate {
     BOOL succeeded = [self.messageTracker succeeded];
-    [self.messageTracker stopTracking];
+  
+    if (!self.willEvaluateMultipleTimes) {
+      [self.messageTracker stopTracking];
+    }
     return succeeded;
 }
 
@@ -135,7 +147,7 @@ static NSString * const StubValueKey = @"StubValueKey";
 #if KW_TARGET_HAS_INVOCATION_EXCEPTION_BUG
     @try {
 #endif // #if KW_TARGET_HAS_INVOCATION_EXCEPTION_BUG
-    
+
     self.messageTracker = [KWMessageTracker messageTrackerWithSubject:self.subject messagePattern:aMessagePattern countType:aCountType count:aCount];
     
 #if KW_TARGET_HAS_INVOCATION_EXCEPTION_BUG

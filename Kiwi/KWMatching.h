@@ -29,6 +29,8 @@
 @optional
 
 - (BOOL)shouldBeEvaluatedAtEndOfExample;
+- (BOOL)willEvaluateMultipleTimes;
+- (void)setWillEvaluateMultipleTimes:(BOOL)shouldEvaluateMultipleTimes;
 
 @required
 

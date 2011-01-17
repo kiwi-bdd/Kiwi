@@ -15,7 +15,9 @@
 @interface KWReceiveMatcher : KWMatcher {
 @private
     KWMessageTracker *messageTracker;
+    BOOL willEvaluateMultipleTimes;
 }
+@property (nonatomic, assign) BOOL willEvaluateMultipleTimes;
 
 #pragma mark -
 #pragma mark Configuring Matchers
