@@ -8,7 +8,8 @@
 
 enum {
     KWExpectationTypeShould,
-    KWExpectationTypeShouldNot
+    KWExpectationTypeShouldNot,
+    KWExpectationTypeMaybe
 };
 
 typedef NSUInteger KWExpectationType;

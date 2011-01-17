@@ -25,6 +25,9 @@
 #define shouldEventually attachToVerifier:KW_ADD_ASYNC_VERIFIER(KWExpectationTypeShould, kKW_DEFAULT_PROBE_TIMEOUT)
 #define shouldEventuallyBeforeTimingOutAfter(timeout) attachToVerifier:KW_ADD_ASYNC_VERIFIER(KWExpectationTypeShould, timeout)
 
+// wait for is like a shouldEventually but will not fail if it's never satisfied
+#define waitFor attachToVerifier:KW_ADD_ASYNC_VERIFIER(KWExpectationTypeMaybe, kKW_DEFAULT_PROBE_TIMEOUT)
+
 // used to wrap a pointer to an object that will change in the future (used with shouldEventually)
 #define theObject(objectPtr) [KWFutureObject objectWithObjectPointer:objectPtr]
 #define theReturnValueOfBlock(block) [KWFutureObject objectWithReturnValueOfBlock:block]
