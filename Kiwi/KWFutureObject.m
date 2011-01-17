@@ -31,7 +31,7 @@
 
 - (id)initWithBlock:(KWFutureObjectBlock)aBlock;
 {
-  if (self = [super init]) {
+  if ((self = [super init])) {
     block = [aBlock copy];
   }
   return self;
