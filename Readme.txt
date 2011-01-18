@@ -4,6 +4,13 @@ Kiwi
 Kiwi is open source software. You may freely distribute it under the terms of
 the license agreement found in License.txt.
 
+I would love to know if you are using Kiwi, and what you are using it for. Drop me an email (alding@gmail.com) or @alding.
+
+Contributing
+------------
+Pull requests are welcome and encouraged. Signigicant contributors to the project are listed in Contributors.txt.
+My time is more limited nowadays so if you want to contribute in some other way, let me know too!
+
 Simple BDD for the iPhone and iPad
 ----------------------------------
 Kiwi is a Behavior Driven Development library for iPhone and iPad development.
