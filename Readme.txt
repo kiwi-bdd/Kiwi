@@ -8,8 +8,7 @@ I would love to know if you are using Kiwi, and what you are using it for. Drop 
 
 Contributing
 ------------
-Pull requests are welcome and encouraged. Signigicant contributors to the project are listed in Contributors.txt.
-My time is more limited nowadays so if you want to contribute in some other way, let me know too!
+Pull requests are welcome and encouraged. Significant contributors to the project are listed in Contributors.txt.
 
 Simple BDD for the iPhone and iPad
 ----------------------------------
