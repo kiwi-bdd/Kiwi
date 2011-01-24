@@ -26,6 +26,8 @@
 		A352E9E812EDC30A0049C691 /* KWHaveValueMatcherTest.m in Sources */ = {isa = PBXBuildFile; fileRef = A352E9E712EDC30A0049C691 /* KWHaveValueMatcherTest.m */; };
 		A352E9EB12EDC33C0049C691 /* KWHaveValueMatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = A352E9EA12EDC33C0049C691 /* KWHaveValueMatcher.m */; };
 		A352EA0E12EDC6F20049C691 /* NSObject+KiwiAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = A352EA0D12EDC6F20049C691 /* NSObject+KiwiAdditions.m */; };
+		A352EA1912EDC8160049C691 /* KWHamcrestMatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = A352EA1812EDC8160049C691 /* KWHamcrestMatcher.m */; };
+		A352EA1B12EDC8380049C691 /* KWHamcrestMatcherTest.m in Sources */ = {isa = PBXBuildFile; fileRef = A352EA1A12EDC8380049C691 /* KWHamcrestMatcherTest.m */; };
 		A38083D612E4A3DA009CB99A /* KWHCMatcher.h in Headers */ = {isa = PBXBuildFile; fileRef = A3A1753E12E49505004DFD70 /* KWHCMatcher.h */; };
 		A3A1739C12E47068004DFD70 /* ExampleAsyncSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = A3A1739B12E47068004DFD70 /* ExampleAsyncSpec.m */; };
 		A3A1754112E4966F004DFD70 /* Robot.m in Sources */ = {isa = PBXBuildFile; fileRef = A3A1754012E4966F004DFD70 /* Robot.m */; };
@@ -231,6 +233,9 @@
 		A352E9EA12EDC33C0049C691 /* KWHaveValueMatcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KWHaveValueMatcher.m; sourceTree = "<group>"; };
 		A352EA0C12EDC6F20049C691 /* NSObject+KiwiAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+KiwiAdditions.h"; sourceTree = "<group>"; };
 		A352EA0D12EDC6F20049C691 /* NSObject+KiwiAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+KiwiAdditions.m"; sourceTree = "<group>"; };
+		A352EA1712EDC8160049C691 /* KWHamcrestMatcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KWHamcrestMatcher.h; sourceTree = "<group>"; };
+		A352EA1812EDC8160049C691 /* KWHamcrestMatcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KWHamcrestMatcher.m; sourceTree = "<group>"; };
+		A352EA1A12EDC8380049C691 /* KWHamcrestMatcherTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KWHamcrestMatcherTest.m; sourceTree = "<group>"; };
 		A3A1739B12E47068004DFD70 /* ExampleAsyncSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExampleAsyncSpec.m; sourceTree = "<group>"; };
 		A3A1753E12E49505004DFD70 /* KWHCMatcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KWHCMatcher.h; sourceTree = "<group>"; };
 		A3A1753F12E4966F004DFD70 /* Robot.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Robot.h; sourceTree = "<group>"; };
@@ -644,6 +649,8 @@
 				A3A1757612E49900004DFD70 /* KWBeNonNilMatcher.m */,
 				A352E9E912EDC33C0049C691 /* KWHaveValueMatcher.h */,
 				A352E9EA12EDC33C0049C691 /* KWHaveValueMatcher.m */,
+				A352EA1712EDC8160049C691 /* KWHamcrestMatcher.h */,
+				A352EA1812EDC8160049C691 /* KWHamcrestMatcher.m */,
 			);
 			name = Matchers;
 			sourceTree = "<group>";
@@ -775,6 +782,7 @@
 				F5C36E91115C9F0700425FDA /* KWReceiveMatcherTest.m */,
 				F553B6641175D48C004FCA2E /* KWRespondToSelectorMatcherTest.m */,
 				A352E9E712EDC30A0049C691 /* KWHaveValueMatcherTest.m */,
+				A352EA1A12EDC8380049C691 /* KWHamcrestMatcherTest.m */,
 			);
 			name = Matchers;
 			sourceTree = "<group>";
@@ -1165,6 +1173,8 @@
 				A352E9E812EDC30A0049C691 /* KWHaveValueMatcherTest.m in Sources */,
 				A352E9EB12EDC33C0049C691 /* KWHaveValueMatcher.m in Sources */,
 				A352EA0E12EDC6F20049C691 /* NSObject+KiwiAdditions.m in Sources */,
+				A352EA1912EDC8160049C691 /* KWHamcrestMatcher.m in Sources */,
+				A352EA1B12EDC8380049C691 /* KWHamcrestMatcherTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

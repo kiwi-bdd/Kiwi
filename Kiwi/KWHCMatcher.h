@@ -7,6 +7,6 @@
 
 #import <Foundation/Foundation.h>
 
-@protocol HCMatcher
+@protocol HCMatcher <NSObject>
 - (BOOL)matches:(id)item;
 @end
