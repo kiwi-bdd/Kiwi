@@ -7,7 +7,7 @@
 //
 
 #import "KWHaveValueMatcher.h"
-#import "NSObject+KiwiAdditions.h"
+#import "KWHamrestMatchingAdditions.h"
 
 @interface KWHaveValueMatcher()
 

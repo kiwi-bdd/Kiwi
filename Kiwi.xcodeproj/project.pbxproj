@@ -25,7 +25,7 @@
 		9FB1D28412DFB60400693E30 /* KWAsyncVerifier.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FB1D28312DFB60400693E30 /* KWAsyncVerifier.m */; };
 		A352E9E812EDC30A0049C691 /* KWHaveValueMatcherTest.m in Sources */ = {isa = PBXBuildFile; fileRef = A352E9E712EDC30A0049C691 /* KWHaveValueMatcherTest.m */; };
 		A352E9EB12EDC33C0049C691 /* KWHaveValueMatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = A352E9EA12EDC33C0049C691 /* KWHaveValueMatcher.m */; };
-		A352EA0E12EDC6F20049C691 /* NSObject+KiwiAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = A352EA0D12EDC6F20049C691 /* NSObject+KiwiAdditions.m */; };
+		A352EA0E12EDC6F20049C691 /* KWHamrestMatchingAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = A352EA0D12EDC6F20049C691 /* KWHamrestMatchingAdditions.m */; };
 		A352EA1912EDC8160049C691 /* KWHamcrestMatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = A352EA1812EDC8160049C691 /* KWHamcrestMatcher.m */; };
 		A352EA1B12EDC8380049C691 /* KWHamcrestMatcherTest.m in Sources */ = {isa = PBXBuildFile; fileRef = A352EA1A12EDC8380049C691 /* KWHamcrestMatcherTest.m */; };
 		A38083D612E4A3DA009CB99A /* KWHCMatcher.h in Headers */ = {isa = PBXBuildFile; fileRef = A3A1753E12E49505004DFD70 /* KWHCMatcher.h */; };
@@ -231,8 +231,8 @@
 		A352E9E712EDC30A0049C691 /* KWHaveValueMatcherTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KWHaveValueMatcherTest.m; sourceTree = "<group>"; };
 		A352E9E912EDC33C0049C691 /* KWHaveValueMatcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KWHaveValueMatcher.h; sourceTree = "<group>"; };
 		A352E9EA12EDC33C0049C691 /* KWHaveValueMatcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KWHaveValueMatcher.m; sourceTree = "<group>"; };
-		A352EA0C12EDC6F20049C691 /* NSObject+KiwiAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+KiwiAdditions.h"; sourceTree = "<group>"; };
-		A352EA0D12EDC6F20049C691 /* NSObject+KiwiAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+KiwiAdditions.m"; sourceTree = "<group>"; };
+		A352EA0C12EDC6F20049C691 /* KWHamrestMatchingAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KWHamrestMatchingAdditions.h; sourceTree = "<group>"; };
+		A352EA0D12EDC6F20049C691 /* KWHamrestMatchingAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KWHamrestMatchingAdditions.m; sourceTree = "<group>"; };
 		A352EA1712EDC8160049C691 /* KWHamcrestMatcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KWHamcrestMatcher.h; sourceTree = "<group>"; };
 		A352EA1812EDC8160049C691 /* KWHamcrestMatcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KWHamcrestMatcher.m; sourceTree = "<group>"; };
 		A352EA1A12EDC8380049C691 /* KWHamcrestMatcherTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KWHamcrestMatcherTest.m; sourceTree = "<group>"; };
@@ -715,8 +715,8 @@
 				F50922FB1165E43D00083EB1 /* NSValue+KiwiAdditions.h */,
 				F50922FC1165E43D00083EB1 /* NSValue+KiwiAdditions.m */,
 				A3A1753E12E49505004DFD70 /* KWHCMatcher.h */,
-				A352EA0C12EDC6F20049C691 /* NSObject+KiwiAdditions.h */,
-				A352EA0D12EDC6F20049C691 /* NSObject+KiwiAdditions.m */,
+				A352EA0C12EDC6F20049C691 /* KWHamrestMatchingAdditions.h */,
+				A352EA0D12EDC6F20049C691 /* KWHamrestMatchingAdditions.m */,
 			);
 			name = Support;
 			sourceTree = "<group>";
@@ -1172,7 +1172,7 @@
 				A3A1754412E496CA004DFD70 /* StringPrefixMatcher.m in Sources */,
 				A352E9E812EDC30A0049C691 /* KWHaveValueMatcherTest.m in Sources */,
 				A352E9EB12EDC33C0049C691 /* KWHaveValueMatcher.m in Sources */,
-				A352EA0E12EDC6F20049C691 /* NSObject+KiwiAdditions.m in Sources */,
+				A352EA0E12EDC6F20049C691 /* KWHamrestMatchingAdditions.m in Sources */,
 				A352EA1912EDC8160049C691 /* KWHamcrestMatcher.m in Sources */,
 				A352EA1B12EDC8380049C691 /* KWHamcrestMatcherTest.m in Sources */,
 			);

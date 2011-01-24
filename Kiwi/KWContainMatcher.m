@@ -6,6 +6,7 @@
 
 #import "KWContainMatcher.h"
 #import "KWFormatter.h"
+#import "KWHamrestMatchingAdditions.h"
 
 @interface KWContainMatcher()
 
@@ -46,8 +47,8 @@
         [NSException raise:@"KWMatcherException" format:@"subject does not respond to -containsObject:"];
  
     for (id object in self.objects) {
-        if (![self.subject containsObject:object])
-            return NO;
+        if (![self.subject containsObjectEqualToOrMatching:object])
+          return NO;
     }
     
     return YES;

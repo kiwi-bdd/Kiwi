@@ -61,6 +61,22 @@
     STAssertFalse([matcher evaluate], @"expected negative match");
 }
 
+- (void)testItShouldMatchContainedElementsWithHamcrestMatcher
+{
+    id subject = [NSArray arrayWithObjects:@"dog", @"cat", @"tiger", @"liger", nil];
+    id matcher = [KWContainMatcher matcherWithSubject:subject];
+    [matcher contain:hasPrefix(@"li")];
+    STAssertTrue([matcher evaluate], @"expected positive match");
+}
+
+- (void)testItShouldNotMatchContainedElementsWithHamcrestMatcher
+{
+    id subject = [NSArray arrayWithObjects:@"dog", @"cat", @"tiger", @"liger", nil];
+    id matcher = [KWContainMatcher matcherWithSubject:subject];
+    [matcher contain:hasPrefix(@"ele")];
+    STAssertFalse([matcher evaluate], @"expected negative match");
+}
+
 @end
 
 #endif // #if KW_TESTS_ENABLED
