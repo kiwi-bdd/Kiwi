@@ -50,7 +50,7 @@
       matched = YES;
       
       if (self.expectedValue) {
-        return [self.expectedValue isEqualOrMatches:value];
+        matched = [self.expectedValue isEqualOrMatches:value];
       }
     }
   }
