@@ -8,5 +8,5 @@
 #import <Foundation/Foundation.h>
 
 @protocol HCMatcher
-- (BOOL) matches:(id)item;
+- (BOOL)matches:(id)item;
 @end
