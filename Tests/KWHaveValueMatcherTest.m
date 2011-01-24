@@ -17,17 +17,33 @@
 
 @implementation KWHaveValueMatcherTest
 
-- (void)testItShouldMatchValuesMatchUsingKeyValueCoding {
+- (void)testItShouldMatchValuesUsingKeyValueCoding {
     id subject = [Cruiser cruiserWithCallsign:@"Alpha Bravo Zero"];
     id matcher = [KWHaveValueMatcher matcherWithSubject:subject];
     [matcher haveValue:@"Alpha Bravo Zero" forKey:@"callsign"];
     STAssertTrue([matcher evaluate], @"expected positive match");
 }
 
-- (void)testItShouldNotMatchValuesMatchUsingKeyValueCoding {
+- (void)testItShouldNotMatchValuesUsingKeyValueCoding {
     id subject = [Cruiser cruiserWithCallsign:@"Alpha Bravo Zero"];
     id matcher = [KWHaveValueMatcher matcherWithSubject:subject];
     [matcher haveValue:@"Alpha Bravo Charlie" forKey:@"callsign"];
+    STAssertFalse([matcher evaluate], @"expected negative match");
+}
+
+- (void)testItShouldMatchValuesUsingKeyPaths {
+    Cruiser *subject = [Cruiser cruiserWithCallsign:@"Alpha Bravo Zero"];
+    subject.engine = [Engine engineWithModel:@"Super Rocket Engine"];
+    id matcher = [KWHaveValueMatcher matcherWithSubject:subject];
+    [matcher haveValue:@"Super Rocket Engine" forKeyPath:@"engine.model"];
+    STAssertTrue([matcher evaluate], @"expected positive match");
+}
+
+- (void)testItShouldNotMatchValuesUsingKeyPaths {
+    Cruiser *subject = [Cruiser cruiserWithCallsign:@"Alpha Bravo Zero"];
+    subject.engine = [Engine engineWithModel:@"Super Rocket Engine"];
+    id matcher = [KWHaveValueMatcher matcherWithSubject:subject];
+    [matcher haveValue:@"Rubbish Rocket Engine" forKeyPath:@"engine.model"];
     STAssertFalse([matcher evaluate], @"expected negative match");
 }
 
@@ -56,6 +72,21 @@
     id subject = [Cruiser cruiserWithCallsign:nil];
     id matcher = [KWHaveValueMatcher matcherWithSubject:subject];
     [matcher haveValueForKey:@"callsign"];
+    STAssertFalse([matcher evaluate], @"expected negative match");
+}
+
+- (void)testItShouldMatchValuesThatExistUsingKeyValueCodingAndKeyPaths {
+    Cruiser *subject = [Cruiser cruiserWithCallsign:@"Alpha Bravo Zero"];
+    subject.engine = [Engine engineWithModel:@"Super Rocket Engine"];
+    id matcher = [KWHaveValueMatcher matcherWithSubject:subject];
+    [matcher haveValueForKeyPath:@"engine.model"];
+    STAssertTrue([matcher evaluate], @"expected positive match");
+}
+
+- (void)testItShouldNotMatchValuesThatExistUsingKeyValueCodingAndKeyPaths {
+    id subject = [Cruiser cruiserWithCallsign:nil];
+    id matcher = [KWHaveValueMatcher matcherWithSubject:subject];
+    [matcher haveValueForKeyPath:@"engine.model"];
     STAssertFalse([matcher evaluate], @"expected negative match");
 }
 

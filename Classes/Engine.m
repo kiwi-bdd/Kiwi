@@ -8,4 +8,13 @@
 
 @implementation Engine
 
+@synthesize model;
+
++ (id)engineWithModel:(NSString *)modelName;
+{
+  Engine *engine = [[[self class] alloc] init];
+  engine.model = modelName;
+  return [engine autorelease];
+}
+
 @end

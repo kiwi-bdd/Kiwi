@@ -7,5 +7,7 @@
 #import <Foundation/Foundation.h>
 
 @interface Engine : NSObject
+@property (nonatomic, copy) NSString *model;
 
++ (id)engineWithModel:(NSString *)modelName;
 @end

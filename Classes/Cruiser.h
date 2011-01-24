@@ -30,7 +30,7 @@
 #pragma mark Properties
 
 @property (nonatomic, readonly) NSString *callsign;
-@property (nonatomic, readonly) Engine *engine;
+@property (nonatomic, retain) Engine *engine;
 
 + (NSString *)classification;
 

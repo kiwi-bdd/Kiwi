@@ -35,6 +35,10 @@
     return [self.matcher matches:self.subject];
 }
 
+- (NSString *)failureMessageForShould {
+  return [NSString stringWithFormat:@"expected subject to match %@", self.matcher];
+}
+
 #pragma mark -
 #pragma mark Getting Matcher Strings
 
