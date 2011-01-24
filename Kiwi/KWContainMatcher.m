@@ -43,9 +43,9 @@
 #pragma mark Matching
 
 - (BOOL)evaluate {
-    if (![self.subject respondsToSelector:@selector(containsObject:)])
-        [NSException raise:@"KWMatcherException" format:@"subject does not respond to -containsObject:"];
- 
+    if (![self.subject respondsToSelector:@selector(containsObjectEqualToOrMatching:)])
+        [NSException raise:@"KWMatcherException" format:@"subject does not respond to -containsObjectEqualToOrMatching:"];
+    
     for (id object in self.objects) {
         if (![self.subject containsObjectEqualToOrMatching:object])
           return NO;
