@@ -8,6 +8,7 @@
 
 #import "KWHaveValueMatcher.h"
 #import "KWHamrestMatchingAdditions.h"
+#import "KWHCMatcher.h"
 
 @interface KWHaveValueMatcher()
 

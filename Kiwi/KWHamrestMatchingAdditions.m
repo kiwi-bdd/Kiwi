@@ -7,6 +7,7 @@
 //
 
 #import "KWHamrestMatchingAdditions.h"
+#import "KWHCMatcher.h"
 
 @implementation NSObject (KiwiHamcrestAdditions)
 

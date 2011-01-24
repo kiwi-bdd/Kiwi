@@ -8,7 +8,8 @@
 
 #import <Foundation/Foundation.h>
 #import "KWMatcher.h"
-#import "KWHCMatcher.h"
+
+@protocol HCMatcher;
 
 @interface KWHamcrestMatcher : KWMatcher {
   id<HCMatcher> hamcrestMatcher;

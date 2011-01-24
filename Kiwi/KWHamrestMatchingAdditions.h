@@ -7,13 +7,14 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "KWHCMatcher.h"
 
 @interface NSObject (KiwiHamcrestAdditions)
 
 - (BOOL)isEqualOrMatches:(id)object;
 
 @end
+
+@protocol HCMatcher;
 
 @interface NSArray (KiwiHamcrestAdditions)
 

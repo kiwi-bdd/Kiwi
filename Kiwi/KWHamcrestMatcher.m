@@ -7,6 +7,7 @@
 //
 
 #import "KWHamcrestMatcher.h"
+#import "KWHCMatcher.h"
 
 @interface KWHamcrestMatcher ()
 
