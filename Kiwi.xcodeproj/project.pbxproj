@@ -34,6 +34,19 @@
 		A3A1754412E496CA004DFD70 /* StringPrefixMatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = A3A1754312E496CA004DFD70 /* StringPrefixMatcher.m */; };
 		A3A1757412E498CD004DFD70 /* KWBeNilMatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = A3A1757312E498CD004DFD70 /* KWBeNilMatcher.m */; };
 		A3A1757712E49900004DFD70 /* KWBeNonNilMatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = A3A1757612E49900004DFD70 /* KWBeNonNilMatcher.m */; };
+		A3EB7FF0131EA218001860F5 /* KWBeNilMatcher.h in Headers */ = {isa = PBXBuildFile; fileRef = A3A1757212E498CD004DFD70 /* KWBeNilMatcher.h */; };
+		A3EB7FF1131EA219001860F5 /* KWBeNilMatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = A3A1757312E498CD004DFD70 /* KWBeNilMatcher.m */; };
+		A3EB7FF2131EA219001860F5 /* KWBeNonNilMatcher.h in Headers */ = {isa = PBXBuildFile; fileRef = A3A1757512E498D8004DFD70 /* KWBeNonNilMatcher.h */; };
+		A3EB7FF3131EA21A001860F5 /* KWBeNonNilMatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = A3A1757612E49900004DFD70 /* KWBeNonNilMatcher.m */; };
+		A3EB7FF4131EA220001860F5 /* KWContainMatcher.h in Headers */ = {isa = PBXBuildFile; fileRef = F5015B591158398E002E9A98 /* KWContainMatcher.h */; };
+		A3EB7FF5131EA221001860F5 /* KWEqualMatcher.h in Headers */ = {isa = PBXBuildFile; fileRef = F5015B5B1158398E002E9A98 /* KWEqualMatcher.h */; };
+		A3EB7FF6131EA223001860F5 /* KWHamcrestMatcher.h in Headers */ = {isa = PBXBuildFile; fileRef = A352EA1712EDC8160049C691 /* KWHamcrestMatcher.h */; };
+		A3EB7FF7131EA224001860F5 /* KWHamcrestMatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = A352EA1812EDC8160049C691 /* KWHamcrestMatcher.m */; };
+		A3EB7FF8131EA227001860F5 /* KWHaveValueMatcher.h in Headers */ = {isa = PBXBuildFile; fileRef = A352E9E912EDC33C0049C691 /* KWHaveValueMatcher.h */; };
+		A3EB7FF9131EA227001860F5 /* KWHaveValueMatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = A352E9EA12EDC33C0049C691 /* KWHaveValueMatcher.m */; };
+		A3EB7FFA131EA228001860F5 /* KWMatcher.h in Headers */ = {isa = PBXBuildFile; fileRef = F5015B631158398E002E9A98 /* KWMatcher.h */; };
+		A3EB7FFB131EA22B001860F5 /* KWMatcherFactory.h in Headers */ = {isa = PBXBuildFile; fileRef = F5015B651158398E002E9A98 /* KWMatcherFactory.h */; };
+		A3EB7FFC131EA22D001860F5 /* KWRaiseMatcher.h in Headers */ = {isa = PBXBuildFile; fileRef = F5015B671158398E002E9A98 /* KWRaiseMatcher.h */; };
 		F5015BB911583ABD002E9A98 /* KWCallSite.m in Sources */ = {isa = PBXBuildFile; fileRef = F5015B581158398E002E9A98 /* KWCallSite.m */; };
 		F5015BBA11583ABD002E9A98 /* KWContainMatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = F5015B5A1158398E002E9A98 /* KWContainMatcher.m */; };
 		F5015BBB11583ABD002E9A98 /* KWEqualMatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = F5015B5C1158398E002E9A98 /* KWEqualMatcher.m */; };
@@ -916,6 +929,15 @@
 				9F4E04DD12DFB71F00A3440B /* KWProbe.h in Headers */,
 				9F4E04DE12DFB71F00A3440B /* KWProbePoller.h in Headers */,
 				A38083D612E4A3DA009CB99A /* KWHCMatcher.h in Headers */,
+				A3EB7FF0131EA218001860F5 /* KWBeNilMatcher.h in Headers */,
+				A3EB7FF2131EA219001860F5 /* KWBeNonNilMatcher.h in Headers */,
+				A3EB7FF4131EA220001860F5 /* KWContainMatcher.h in Headers */,
+				A3EB7FF5131EA221001860F5 /* KWEqualMatcher.h in Headers */,
+				A3EB7FF6131EA223001860F5 /* KWHamcrestMatcher.h in Headers */,
+				A3EB7FF8131EA227001860F5 /* KWHaveValueMatcher.h in Headers */,
+				A3EB7FFA131EA228001860F5 /* KWMatcher.h in Headers */,
+				A3EB7FFB131EA22B001860F5 /* KWMatcherFactory.h in Headers */,
+				A3EB7FFC131EA22D001860F5 /* KWRaiseMatcher.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1120,6 +1142,10 @@
 				9FB1D28412DFB60400693E30 /* KWAsyncVerifier.m in Sources */,
 				9F4E04DC12DFB71F00A3440B /* KWFutureObject.m in Sources */,
 				9F4E04DF12DFB71F00A3440B /* KWProbePoller.m in Sources */,
+				A3EB7FF1131EA219001860F5 /* KWBeNilMatcher.m in Sources */,
+				A3EB7FF3131EA21A001860F5 /* KWBeNonNilMatcher.m in Sources */,
+				A3EB7FF7131EA224001860F5 /* KWHamcrestMatcher.m in Sources */,
+				A3EB7FF9131EA227001860F5 /* KWHaveValueMatcher.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
