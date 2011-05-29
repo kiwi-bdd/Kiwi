@@ -45,6 +45,7 @@
     #define afterEach(...) afterEachWithCallSite(KW_THIS_CALLSITE, __VA_ARGS__)
     #define it(...) itWithCallSite(KW_THIS_CALLSITE, __VA_ARGS__)
     #define pending(...) pendingWithCallSite(KW_THIS_CALLSITE, __VA_ARGS__)
+    #define xit(...) pendingWithCallSite(KW_THIS_CALLSITE, __VA_ARGS__)
 #endif // #if KW_BLOCKS_ENABLED
 
 // If a gcc compatible compiler is available, use the statement and
