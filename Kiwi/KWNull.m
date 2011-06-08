@@ -37,9 +37,6 @@ static KWNull *sharedNull = nil;
     return NSUIntegerMax;
 }
 
-- (void)release {
-}
-
 - (id)autorelease {
     return self;
 }

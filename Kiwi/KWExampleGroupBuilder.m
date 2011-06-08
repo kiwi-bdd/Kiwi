@@ -69,9 +69,6 @@ static KWExampleGroupBuilder *sharedExampleGroupBuilder = nil;
     return NSUIntegerMax;
 }
 
-- (void)release {
-}
-
 - (id)autorelease {
     return self;
 }
