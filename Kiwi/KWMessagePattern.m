@@ -83,7 +83,7 @@
         }
     }
 
-    return [self messagePatternWithSelector:[anInvocation selector] argumentFilters:argumentFilters];
+    return [self messagePatternWithSelector:[anInvocation selector] argumentFilters:[argumentFilters autorelease]];
 }
 
 - (void)dealloc {
