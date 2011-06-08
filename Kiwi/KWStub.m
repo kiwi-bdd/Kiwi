@@ -95,16 +95,20 @@
 - (void)writeObjectValueToInvocationReturnValue:(NSInvocation *)anInvocation {
     assert(self.value && "self.value must not be nil");
     [anInvocation setReturnValue:&value];
+    
+#ifndef __clang_analyzer__
     NSString *selectorString = NSStringFromSelector([anInvocation selector]);
     
     // To conform to memory management conventions, retain if writing a result
-    // that begins with alloc, new or contains copy.
+    // that begins with alloc, new or contains copy. This shows up as a false
+    // positive in clang due to the runtime conditional, so ignore it.
     if (KWStringHasWordPrefix(selectorString, @"alloc") ||
         KWStringHasWordPrefix(selectorString, @"new") ||
         KWStringHasWord(selectorString, @"copy") ||
         KWStringHasWord(selectorString, @"Copy")) {
         [self.value retain];
     }
+#endif
 }
 
 - (BOOL)processInvocation:(NSInvocation *)anInvocation {
