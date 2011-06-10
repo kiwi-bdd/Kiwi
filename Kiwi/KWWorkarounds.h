@@ -13,6 +13,6 @@
 
 // See KiwiConfiguration.h for notes.
 void KWSetExceptionFromAcrossInvocationBoundary(NSException *anException);
-NSException *KWGetAndClearExceptionFromAcrossInvocationBoundary();
+NSException *KWGetAndClearExceptionFromAcrossInvocationBoundary(void);
 
 #endif // #if KW_TARGET_HAS_INVOCATION_EXCEPTION_BUG
