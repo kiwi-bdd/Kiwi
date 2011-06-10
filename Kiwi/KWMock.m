@@ -179,7 +179,7 @@ static NSString * const StubValueKey = @"StubValueKey";
         [protocolQueue removeLastObject];
         
         unsigned int count = 0;
-        Protocol **protocols = protocol_copyProtocolList(protocol, &count);
+        Protocol **protocols = (Protocol **)protocol_copyProtocolList(protocol, &count);
         
         if (count == 0)
             continue;
