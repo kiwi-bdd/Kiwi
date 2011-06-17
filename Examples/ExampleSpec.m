@@ -10,7 +10,7 @@
 
 /**
  * Due to the way the compiler works, in order to call dynamically created
- * methods (like our custom mathcers) directly without using performSelector:,
+ * methods (like our custom matchers) directly without using performSelector:,
  * the compiler needs to know that the method exists.
  */
 @interface NSObject (UserDefinedMatchers)
