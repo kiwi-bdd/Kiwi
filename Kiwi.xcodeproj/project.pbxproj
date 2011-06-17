@@ -27,6 +27,10 @@
 		A352EA0E12EDC6F20049C691 /* KWHamrestMatchingAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = A352EA0D12EDC6F20049C691 /* KWHamrestMatchingAdditions.m */; };
 		A352EA1B12EDC8380049C691 /* KWHamcrestMatcherTest.m in Sources */ = {isa = PBXBuildFile; fileRef = A352EA1A12EDC8380049C691 /* KWHamcrestMatcherTest.m */; };
 		A38083D612E4A3DA009CB99A /* KWHCMatcher.h in Headers */ = {isa = PBXBuildFile; fileRef = A3A1753E12E49505004DFD70 /* KWHCMatcher.h */; };
+		A385CAE813AA7EA200DCA951 /* KWUserDefinedMatcherTest.m in Sources */ = {isa = PBXBuildFile; fileRef = A385CAE713AA7EA200DCA951 /* KWUserDefinedMatcherTest.m */; };
+		A385CAEC13AA7EDD00DCA951 /* KWUserDefinedMatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = A385CAEA13AA7ED800DCA951 /* KWUserDefinedMatcher.m */; };
+		A385CAEF13AAC9B800DCA951 /* KWMatchers.h in Headers */ = {isa = PBXBuildFile; fileRef = A385CAED13AAC9B600DCA951 /* KWMatchers.h */; };
+		A385CAF013AAC9B800DCA951 /* KWMatchers.m in Sources */ = {isa = PBXBuildFile; fileRef = A385CAEE13AAC9B700DCA951 /* KWMatchers.m */; };
 		A3A1754112E4966F004DFD70 /* Robot.m in Sources */ = {isa = PBXBuildFile; fileRef = A3A1754012E4966F004DFD70 /* Robot.m */; };
 		A3A1754412E496CA004DFD70 /* StringPrefixMatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = A3A1754312E496CA004DFD70 /* StringPrefixMatcher.m */; };
 		A3B16543139967B800E9CC6E /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
@@ -256,6 +260,11 @@
 		A352EA1712EDC8160049C691 /* KWHamcrestMatcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KWHamcrestMatcher.h; sourceTree = "<group>"; };
 		A352EA1812EDC8160049C691 /* KWHamcrestMatcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KWHamcrestMatcher.m; sourceTree = "<group>"; };
 		A352EA1A12EDC8380049C691 /* KWHamcrestMatcherTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KWHamcrestMatcherTest.m; sourceTree = "<group>"; };
+		A385CAE713AA7EA200DCA951 /* KWUserDefinedMatcherTest.m */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 4; lastKnownFileType = sourcecode.c.objc; path = KWUserDefinedMatcherTest.m; sourceTree = "<group>"; tabWidth = 4; };
+		A385CAE913AA7ED800DCA951 /* KWUserDefinedMatcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KWUserDefinedMatcher.h; sourceTree = "<group>"; };
+		A385CAEA13AA7ED800DCA951 /* KWUserDefinedMatcher.m */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 4; lastKnownFileType = sourcecode.c.objc; path = KWUserDefinedMatcher.m; sourceTree = "<group>"; tabWidth = 4; };
+		A385CAED13AAC9B600DCA951 /* KWMatchers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KWMatchers.h; sourceTree = "<group>"; };
+		A385CAEE13AAC9B700DCA951 /* KWMatchers.m */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 4; lastKnownFileType = sourcecode.c.objc; path = KWMatchers.m; sourceTree = "<group>"; tabWidth = 4; };
 		A3A1739B12E47068004DFD70 /* ExampleAsyncSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExampleAsyncSpec.m; sourceTree = "<group>"; };
 		A3A1753E12E49505004DFD70 /* KWHCMatcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KWHCMatcher.h; sourceTree = "<group>"; };
 		A3A1753F12E4966F004DFD70 /* Robot.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Robot.h; sourceTree = "<group>"; };
@@ -279,7 +288,7 @@
 		F5015B631158398E002E9A98 /* KWMatcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KWMatcher.h; sourceTree = "<group>"; };
 		F5015B641158398E002E9A98 /* KWMatcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KWMatcher.m; sourceTree = "<group>"; };
 		F5015B651158398E002E9A98 /* KWMatcherFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KWMatcherFactory.h; sourceTree = "<group>"; };
-		F5015B661158398E002E9A98 /* KWMatcherFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KWMatcherFactory.m; sourceTree = "<group>"; };
+		F5015B661158398E002E9A98 /* KWMatcherFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 4; lastKnownFileType = sourcecode.c.objc; path = KWMatcherFactory.m; sourceTree = "<group>"; tabWidth = 4; };
 		F5015B671158398E002E9A98 /* KWRaiseMatcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KWRaiseMatcher.h; sourceTree = "<group>"; };
 		F5015B681158398E002E9A98 /* KWRaiseMatcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KWRaiseMatcher.m; sourceTree = "<group>"; };
 		F5015B691158398E002E9A98 /* KWTestCase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KWTestCase.h; sourceTree = "<group>"; };
@@ -684,6 +693,10 @@
 				A352E9EA12EDC33C0049C691 /* KWHaveValueMatcher.m */,
 				A352EA1712EDC8160049C691 /* KWHamcrestMatcher.h */,
 				A352EA1812EDC8160049C691 /* KWHamcrestMatcher.m */,
+				A385CAE913AA7ED800DCA951 /* KWUserDefinedMatcher.h */,
+				A385CAEA13AA7ED800DCA951 /* KWUserDefinedMatcher.m */,
+				A385CAED13AAC9B600DCA951 /* KWMatchers.h */,
+				A385CAEE13AAC9B700DCA951 /* KWMatchers.m */,
 			);
 			name = Matchers;
 			sourceTree = "<group>";
@@ -816,6 +829,7 @@
 				F553B6641175D48C004FCA2E /* KWRespondToSelectorMatcherTest.m */,
 				A352E9E712EDC30A0049C691 /* KWHaveValueMatcherTest.m */,
 				A352EA1A12EDC8380049C691 /* KWHamcrestMatcherTest.m */,
+				A385CAE713AA7EA200DCA951 /* KWUserDefinedMatcherTest.m */,
 			);
 			name = Matchers;
 			sourceTree = "<group>";
@@ -957,6 +971,7 @@
 				A3EB7FFA131EA228001860F5 /* KWMatcher.h in Headers */,
 				A3EB7FFB131EA22B001860F5 /* KWMatcherFactory.h in Headers */,
 				A3EB7FFC131EA22D001860F5 /* KWRaiseMatcher.h in Headers */,
+				A385CAEF13AAC9B800DCA951 /* KWMatchers.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1225,6 +1240,8 @@
 				A3EB7FF9131EA227001860F5 /* KWHaveValueMatcher.m in Sources */,
 				A3EB8064131EA572001860F5 /* KWDeviceInfo.m in Sources */,
 				A3EB8065131EA574001860F5 /* KWHamrestMatchingAdditions.m in Sources */,
+				A385CAEC13AA7EDD00DCA951 /* KWUserDefinedMatcher.m in Sources */,
+				A385CAF013AAC9B800DCA951 /* KWMatchers.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1272,6 +1289,7 @@
 				A352E9E812EDC30A0049C691 /* KWHaveValueMatcherTest.m in Sources */,
 				A352EA0E12EDC6F20049C691 /* KWHamrestMatchingAdditions.m in Sources */,
 				A352EA1B12EDC8380049C691 /* KWHamcrestMatcherTest.m in Sources */,
+				A385CAE813AA7EA200DCA951 /* KWUserDefinedMatcherTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
