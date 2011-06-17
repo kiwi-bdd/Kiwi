@@ -86,6 +86,30 @@
 
 }
 
+- (void)testCanSetTheFailureMessageForShould
+{
+    KWUserDefinedMatcherBuilder *builder = [KWUserDefinedMatcherBuilder builder];
+    
+    [builder failureMessageForShould:^(id subject) {
+        return [NSString stringWithFormat:@"failure message containing subject %@", subject];
+    }];
+    
+    KWUserDefinedMatcher *matcher = [builder buildMatcherWithSubject:@"foo"];
+    STAssertEquals(@"failure message containing subject foo", [matcher failureMessageForShould], @"should set failure message for should");
+}
+
+- (void)testCanSetTheFailureMessageForShouldNot
+{
+    KWUserDefinedMatcherBuilder *builder = [KWUserDefinedMatcherBuilder builder];
+    
+    [builder failureMessageForShouldNot:^(id subject) {
+        return [NSString stringWithFormat:@"failure message containing subject %@", subject];
+    }];
+    
+    KWUserDefinedMatcher *matcher = [builder buildMatcherWithSubject:@"foo"];
+    STAssertEquals(@"failure message containing subject foo", [matcher failureMessageForShouldNot], @"should set failure message for should");
+}
+
 @end
 
 #endif

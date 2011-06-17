@@ -11,15 +11,18 @@
 @implementation KWUserDefinedMatcher
 
 @synthesize selector;
+@synthesize failureMessageForShould;
+@synthesize failureMessageForShouldNot;
+@synthesize matcherBlock;
 
-+ (id)matcherWithSubject:(id)subject block:(KWUserDefinedMatcherBlock)aBlock
++ (id)matcherWithSubject:(id)aSubject block:(KWUserDefinedMatcherBlock)aBlock
 {
-    return [[[self alloc] initWithSubject:subject block:aBlock] autorelease];
+    return [[[self alloc] initWithSubject:aSubject block:aBlock] autorelease];
 }
 
-- (id)initWithSubject:(id)subject block:(KWUserDefinedMatcherBlock)aBlock
+- (id)initWithSubject:(id)aSubject block:(KWUserDefinedMatcherBlock)aBlock
 {
-    if ((self = [super initWithSubject:subject])) {
+    if ((self = [super initWithSubject:aSubject])) {
         matcherBlock = [aBlock copy];
     }
     return self;
@@ -44,6 +47,13 @@
         result = matcherBlock(self.subject);
     }
     return result;
+}
+
+- (void)setSubject:(id)aSubject {
+    if (aSubject != subject) {
+        [subject release];
+        subject = [aSubject retain];
+    }
 }
 
 #pragma mark -
@@ -102,23 +112,54 @@
 
 - (id)initWithSelector:(SEL)aSelector {
     if ((self = [super init])) {
-        selector = aSelector;
+        matcher = [[KWUserDefinedMatcher alloc] init];
+        matcher.selector = aSelector;
     }
     return self;
 }
 
-- (NSString *)key {
-    return NSStringFromSelector(selector);
+- (void)dealloc
+{
+    [matcher release];
+    [failureMessageForShouldBlock release];
+    [super dealloc];
 }
+
+- (NSString *)key {
+    return NSStringFromSelector(matcher.selector);
+}
+
+#pragma mark -
+#pragma mark Configuring The Matcher
 
 - (void)match:(KWUserDefinedMatcherBlock)block {
-    Block_release(matcherBlock);
-    matcherBlock = Block_copy(block);
+    matcher.matcherBlock = block;
 }
 
+- (void)failureMessageForShould:(KWUserDefinedMatcherMessageBlock)block {
+    [failureMessageForShouldBlock release];
+    failureMessageForShouldBlock = [block copy];
+}
+
+- (void)failureMessageForShouldNot:(KWUserDefinedMatcherMessageBlock)block {
+    [failureMessageForShouldNotBlock release];
+    failureMessageForShouldNotBlock = [block copy];
+}
+
+#pragma mark -
+#pragma mark Buiding The Matcher
+
 - (KWUserDefinedMatcher *)buildMatcherWithSubject:(id)subject {
-    KWUserDefinedMatcher *matcher = [KWUserDefinedMatcher matcherWithSubject:subject block:matcherBlock];
-    matcher.selector = selector;
+    [matcher setSubject:subject];
+
+    if (failureMessageForShouldBlock) {
+        [matcher setFailureMessageForShould:failureMessageForShouldBlock(subject)];
+    }
+    
+    if (failureMessageForShouldNotBlock) {
+        [matcher setFailureMessageForShouldNot:failureMessageForShouldNotBlock(subject)];
+    }
+    
     return matcher;
 }
 
