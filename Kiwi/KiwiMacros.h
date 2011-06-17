@@ -46,6 +46,14 @@
     #define it(...) itWithCallSite(KW_THIS_CALLSITE, __VA_ARGS__)
     #define pending(...) pendingWithCallSite(KW_THIS_CALLSITE, __VA_ARGS__)
     #define xit(...) pendingWithCallSite(KW_THIS_CALLSITE, __VA_ARGS__)
+
+    // user defined matchers
+    #define registerMatcher(name) \
+        \
+        @interface NSObject (KWUserDefinedMatchersDefinitions) \
+          - (void)name; \
+        @end \
+
     #define defineMatcher(...) KWDefineMatchers(__VA_ARGS__)
 #endif // #if KW_BLOCKS_ENABLED
 

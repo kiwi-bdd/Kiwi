@@ -12,10 +12,13 @@
  * Due to the way the compiler works, in order to call dynamically created
  * methods (like our custom matchers) directly without using performSelector:,
  * the compiler needs to know that the method exists.
+ *
+ * We can encapsulate this requirement in a simple macro to forward-declare
+ * our custom matchers.
  */
-@interface NSObject (UserDefinedMatchers)
-- (void)haveFighters;
-@end
+
+registerMatcher(haveFighters)
+
 
 #if KW_TESTS_ENABLED && KW_BLOCKS_ENABLED
 
