@@ -117,7 +117,9 @@
 }
 
 - (KWUserDefinedMatcher *)buildMatcherWithSubject:(id)subject {
-    return [KWUserDefinedMatcher matcherWithSubject:subject block:matcherBlock];
+    KWUserDefinedMatcher *matcher = [KWUserDefinedMatcher matcherWithSubject:subject block:matcherBlock];
+    matcher.selector = selector;
+    return matcher;
 }
 
 @end

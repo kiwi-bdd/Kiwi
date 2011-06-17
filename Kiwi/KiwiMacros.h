@@ -46,6 +46,7 @@
     #define it(...) itWithCallSite(KW_THIS_CALLSITE, __VA_ARGS__)
     #define pending(...) pendingWithCallSite(KW_THIS_CALLSITE, __VA_ARGS__)
     #define xit(...) pendingWithCallSite(KW_THIS_CALLSITE, __VA_ARGS__)
+    #define defineMatcher(selectorString, block) [KWMatchers defineMatcher:selectorString as:block]
 #endif // #if KW_BLOCKS_ENABLED
 
 // If a gcc compatible compiler is available, use the statement and

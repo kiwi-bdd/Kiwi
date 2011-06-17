@@ -66,7 +66,7 @@
 
 @implementation KWUserDefinedMatcherBuilderTest
 
-- (void)testCanDefineTheBlockToEvaluate
+- (void)testShouldDefineTheBlockToEvaluate
 {
     KWUserDefinedMatcherBuilder *builder = [KWUserDefinedMatcherBuilder builder];
     
@@ -76,6 +76,14 @@
     
     KWUserDefinedMatcher *matcher = [builder buildMatcherWithSubject:@"foo"];
     STAssertTrue([matcher evaluate], @"expected positive match");
+}
+
+- (void)testShouldSetTheSelectorForTheMatcher
+{
+    KWUserDefinedMatcherBuilder *builder = [KWUserDefinedMatcherBuilder builderForSelector:NSSelectorFromString(@"dummySelector")];
+    KWUserDefinedMatcher *matcher = [builder buildMatcherWithSubject:@"foo"];
+    STAssertEquals(NSSelectorFromString(@"dummySelector"), matcher.selector, @"should set selector");
+
 }
 
 @end

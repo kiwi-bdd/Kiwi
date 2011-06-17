@@ -8,22 +8,18 @@
 #import "TestClasses.h"
 #import "Kiwi.h"
 
+/**
+ * Due to the way the compiler works, in order to call dynamically created
+ * methods (like our custom mathcers) directly without using performSelector:,
+ * the compiler needs to know that the method exists.
+ */
+@interface NSObject (UserDefinedMatchers)
+- (void)haveFighters;
+@end
+
 #if KW_TESTS_ENABLED && KW_BLOCKS_ENABLED
 
 SPEC_BEGIN(ExampleSpec)
-
-//[KWMatchers defineMatcher:@"beUppercaseString" as:^(KWMatcherBuilder *builder) {
-//  [builder match:^(id subject) {
-//    if ([subject isKindOfClass:[NSString class]]) {
-//      NSString *string = (NSString *)subject;
-//      return [[string uppercaseString] isEqualToString:string];
-//    } else {
-//      return NO;
-//    }
-//  }];
-//}];
-//
-// [[@"SOME_STRING" should] beUppercaseString]
 
 describe(@"Cruiser", ^{
     registerMatchers(@"KWT");
@@ -65,6 +61,20 @@ describe(@"Cruiser", ^{
             [[lambda(^{
                 [cruiser raiseWithName:@"FooException" description:@"Foo"];
             }) should] raiseWithName:@"FooException"];
+        });
+        
+        defineMatcher(@"haveFighters", ^(KWUserDefinedMatcherBuilder *builder) {
+            [builder match:^(id subject) {
+                if (![subject isKindOfClass:[Cruiser class]]) {
+                    return NO;
+                }
+                Cruiser *cruiser = subject;
+                return cruiser.fighters.count > 0; 
+            }];
+        });
+        
+        it(@"should have fighters (using custom matcher)", ^{
+            [[cruiser should] haveFighters];
         });
     });
 });
