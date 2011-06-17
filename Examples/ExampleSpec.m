@@ -71,6 +71,9 @@ describe(@"Cruiser", ^{
                 Cruiser *cruiser = subject;
                 return cruiser.fighters.count > 0; 
             }];
+            [builder failureMessageForShould:^(id subject) {
+                return [NSString stringWithFormat:@"%@ should have fighters", subject];
+            }];
         });
         
         it(@"should have fighters (using custom matcher)", ^{

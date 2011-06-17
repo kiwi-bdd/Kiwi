@@ -31,3 +31,5 @@ typedef void (^KWMatchersBuildingBlock)(KWUserDefinedMatcherBuilder *);
 
 - (KWUserDefinedMatcher *)matcherForSelector:(SEL)selector subject:(id)subject;
 @end
+
+void KWDefineMatchers(NSString *selectorString, KWMatchersBuildingBlock block);
