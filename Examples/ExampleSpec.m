@@ -12,6 +12,19 @@
 
 SPEC_BEGIN(ExampleSpec)
 
+//[KWMatchers defineMatcher:@"beUppercaseString" as:^(KWMatcherBuilder *builder) {
+//  [builder match:^(id subject) {
+//    if ([subject isKindOfClass:[NSString class]]) {
+//      NSString *string = (NSString *)subject;
+//      return [[string uppercaseString] isEqualToString:string];
+//    } else {
+//      return NO;
+//    }
+//  }];
+//}];
+//
+// [[@"SOME_STRING" should] beUppercaseString]
+
 describe(@"Cruiser", ^{
     registerMatchers(@"KWT");
     
