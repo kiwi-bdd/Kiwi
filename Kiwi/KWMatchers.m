@@ -7,17 +7,60 @@
 //
 
 #import "KWMatchers.h"
+#import "KWUserDefinedMatcher.h"
 
 @implementation KWMatchers
 
-- (id)init
-{
-    self = [super init];
-    if (self) {
-        // Initialization code here.
+#pragma mark -
+#pragma mark Singleton implementation
+
+static id sharedMatchers = nil;
+
++ (void)initialize {
+  if (self == [KWMatchers class]) {
+    sharedMatchers = [[self alloc] init];
+  }
+}
+
++ (id)matchers {
+  return sharedMatchers;
+}
+
+- (id)init {
+    if ((self = [super init])) {
+        userDefinedMatchers = [[NSMutableDictionary alloc] init];
     }
-    
     return self;
 }
+
+#pragma mark -
+#pragma mark Defining Matchers
+
++ (void)defineMatcher:(NSString *)selectorString as:(KWMatchersBuildingBlock)block {
+    [[self matchers] defineMatcher:selectorString as:block];
+}
+
+- (void)defineMatcher:(NSString *)selectorString as:(KWMatchersBuildingBlock)block {
+    KWUserDefinedMatcherBuilder *builder = [KWUserDefinedMatcherBuilder builderForSelector:NSSelectorFromString(selectorString)];
+    block(builder);
+    [userDefinedMatchers setObject:builder forKey:builder.key];
+}
+   
+- (void)addUserDefinedMatcherBuilder:(KWUserDefinedMatcherBuilder *)builder {
+    [userDefinedMatchers setObject:builder forKey:builder.key];
+}
+
+#pragma mark -
+#pragma mark Building Matchers
+
+- (KWUserDefinedMatcher *)matcherForSelector:(SEL)selector subject:(id)subject {
+    KWUserDefinedMatcherBuilder *builder = [userDefinedMatchers objectForKey:NSStringFromSelector(selector)];
+    
+    if (builder == nil)
+        return nil;
+    
+    return [builder buildMatcherWithSubject:subject];
+}
+                               
 
 @end

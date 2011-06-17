@@ -65,6 +65,7 @@
 #import "KWStringUtilities.h"
 #import "KWStub.h"
 #import "KWTestCase.h"
+#import "KWUserDefinedMatcher.h"
 #import "KWValue.h"
 #import "KWVerifying.h"
 

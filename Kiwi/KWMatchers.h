@@ -8,6 +8,26 @@
 
 #import <Foundation/Foundation.h>
 
-@interface KWMatchers : NSObject
+@class KWUserDefinedMatcherBuilder;
 
+typedef void (^KWMatchersBuildingBlock)(KWUserDefinedMatcherBuilder *);
+
+@class KWUserDefinedMatcher;
+
+@interface KWMatchers : NSObject {
+  NSMutableDictionary *userDefinedMatchers;
+}
++ (id)matchers;
+
+#pragma mark -
+#pragma mark Defining Matchers
+
++ (void)defineMatcher:(NSString *)selectorString as:(KWMatchersBuildingBlock)block;
+- (void)defineMatcher:(NSString *)selectorString as:(KWMatchersBuildingBlock)block;
+- (void)addUserDefinedMatcherBuilder:(KWUserDefinedMatcherBuilder *)builder;
+
+#pragma mark -
+#pragma mark Building Matchers
+
+- (KWUserDefinedMatcher *)matcherForSelector:(SEL)selector subject:(id)subject;
 @end
