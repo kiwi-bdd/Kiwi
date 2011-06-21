@@ -11,7 +11,9 @@
 // Blocks being unavailable cripples the usability of Kiwi, but is supported
 // because they are not available on anything less than a device running 3.2.
 #if defined(__BLOCKS__)
-    #define KW_BLOCKS_ENABLED 1
+    #ifndef KW_BLOCKS_ENABLED
+        #define KW_BLOCKS_ENABLED 1
+    #endif // #ifndef KW_BLOCKS_ENABLED
 #endif // #if defined(__BLOCKS__)
 
 // As of iPhone SDK 4 GM, exceptions thrown across an NSInvocation -invoke or
