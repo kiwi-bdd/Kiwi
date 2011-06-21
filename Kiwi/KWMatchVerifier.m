@@ -125,19 +125,14 @@
 #if KW_TARGET_HAS_INVOCATION_EXCEPTION_BUG
     @try {
 #endif // #if KW_TARGET_HAS_INVOCATION_EXCEPTION_BUG
+
+    id matcher = [self.matcherFactory matcherFromInvocation:anInvocation subject:self.subject];
     
-    SEL selector = [anInvocation selector];
-    Class matcherClass = [self.matcherFactory matcherClassForSelector:selector subject:self.subject];
-    
-    if (matcherClass == nil) {
-        KWFailure *failure = [KWFailure failureWithCallSite:self.callSite format:@"could not create matcher for -%@",
-                                                                                 NSStringFromSelector(selector)];
-        [self.reporter reportFailure:failure];
-        return;
+    if (matcher == nil) {
+      KWFailure *failure = [KWFailure failureWithCallSite:self.callSite format:@"could not create matcher for -%@",
+                 NSStringFromSelector(anInvocation.selector)];
+      [self.reporter reportFailure:failure];
     }
-    
-    // Create a matcher and pass it the message that came after 'should'.
-    id matcher = [[matcherClass alloc] initWithSubject:self.subject];
     [anInvocation invokeWithTarget:matcher];
 
 #if KW_TARGET_HAS_INVOCATION_EXCEPTION_BUG

@@ -8,6 +8,18 @@
 #import "TestClasses.h"
 #import "Kiwi.h"
 
+/**
+ * Due to the way the compiler works, in order to call dynamically created
+ * methods (like our custom matchers) directly without using performSelector:,
+ * the compiler needs to know that the method exists.
+ *
+ * We can encapsulate this requirement in a simple macro to forward-declare
+ * our custom matchers.
+ */
+
+registerMatcher(haveFighters)
+
+
 #if KW_TESTS_ENABLED && KW_BLOCKS_ENABLED
 
 SPEC_BEGIN(ExampleSpec)
@@ -52,6 +64,23 @@ describe(@"Cruiser", ^{
             [[lambda(^{
                 [cruiser raiseWithName:@"FooException" description:@"Foo"];
             }) should] raiseWithName:@"FooException"];
+        });
+        
+        defineMatcher(@"haveFighters", ^(KWUserDefinedMatcherBuilder *builder) {
+            [builder match:^(id subject) {
+                if (![subject isKindOfClass:[Cruiser class]]) {
+                    return NO;
+                }
+                Cruiser *cruiser = subject;
+                return cruiser.fighters.count > 0; 
+            }];
+            [builder failureMessageForShould:^(id subject) {
+                return [NSString stringWithFormat:@"%@ should have fighters", subject];
+            }];
+        });
+        
+        it(@"should have fighters (using custom matcher)", ^{
+            [[cruiser should] haveFighters];
         });
     });
 });

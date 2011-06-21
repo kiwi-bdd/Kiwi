@@ -49,6 +49,7 @@
 #import "KWItNode.h"
 #import "KWMatchVerifier.h"
 #import "KWMatcher.h"
+#import "KWMatchers.h"
 #import "KWMatcherFactory.h"
 #import "KWMatching.h"
 #import "KWMessagePattern.h"
@@ -65,6 +66,7 @@
 #import "KWStringUtilities.h"
 #import "KWStub.h"
 #import "KWTestCase.h"
+#import "KWUserDefinedMatcher.h"
 #import "KWValue.h"
 #import "KWVerifying.h"
 
