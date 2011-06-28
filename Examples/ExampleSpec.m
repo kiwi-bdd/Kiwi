@@ -42,6 +42,7 @@ describe(@"Cruiser", ^{
             [cruiser setFighters:[NSArray arrayWithObjects:[Fighter fighterWithCallsign:@"Viper 1"],
                                                            [Fighter fighterWithCallsign:@"Viper 2"],
                                                            [Fighter fighterWithCallsign:@"Viper 3"], nil]];
+            
         });
         
         pending(@"should be really big", nil);

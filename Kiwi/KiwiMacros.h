@@ -36,16 +36,16 @@
     // Kiwi macros used in specs to create example groups. Because these macros
     // hide functions of the same name, they can be undefined at the expense of
     // getting call site information injected into output messages.
-    #define describe(desc, blk) describeWithCallSite(KW_THIS_CALLSITE, desc, blk)
+    #define describe(...) describeWithCallSite(KW_THIS_CALLSITE, __VA_ARGS__)
     #define context(...) contextWithCallSite(KW_THIS_CALLSITE, __VA_ARGS__)
-    #define registerMatchers(prefix) registerMatchersWithCallSite(KW_THIS_CALLSITE, prefix)
+    #define registerMatchers(...) registerMatchersWithCallSite(KW_THIS_CALLSITE, __VA_ARGS__)
     #define beforeAll(...) beforeAllWithCallSite(KW_THIS_CALLSITE, __VA_ARGS__)
     #define afterAll(...) afterAllWithCallSite(KW_THIS_CALLSITE, __VA_ARGS__)
     #define beforeEach(...) beforeEachWithCallSite(KW_THIS_CALLSITE, __VA_ARGS__)
     #define afterEach(...) afterEachWithCallSite(KW_THIS_CALLSITE, __VA_ARGS__)
-    #define it(desc, blk) itWithCallSite(KW_THIS_CALLSITE, desc, blk)
-    #define pending(desc, blk) pendingWithCallSite(KW_THIS_CALLSITE, desc, blk)
-    #define xit(desc, blk) pendingWithCallSite(KW_THIS_CALLSITE, desc, blk)
+    #define it(...) itWithCallSite(KW_THIS_CALLSITE, __VA_ARGS__)
+    #define pending(...) pendingWithCallSite(KW_THIS_CALLSITE, __VA_ARGS__)
+    #define xit(...) pendingWithCallSite(KW_THIS_CALLSITE, __VA_ARGS__)
 
     // user defined matchers
     #define registerMatcher(name) \
