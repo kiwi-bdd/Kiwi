@@ -95,7 +95,7 @@
     }];
     
     KWUserDefinedMatcher *matcher = [builder buildMatcherWithSubject:@"foo"];
-    STAssertEquals(@"failure message containing subject foo", [matcher failureMessageForShould], @"should set failure message for should");
+    STAssertEqualObjects(@"failure message containing subject foo", [matcher failureMessageForShould], @"should set failure message for should");
 }
 
 - (void)testCanSetTheFailureMessageForShouldNot
@@ -107,7 +107,7 @@
     }];
     
     KWUserDefinedMatcher *matcher = [builder buildMatcherWithSubject:@"foo"];
-    STAssertEquals(@"failure message containing subject foo", [matcher failureMessageForShouldNot], @"should set failure message for should");
+    STAssertEqualObjects(@"failure message containing subject foo", [matcher failureMessageForShouldNot], @"should set failure message for should");
 }
 
 @end
