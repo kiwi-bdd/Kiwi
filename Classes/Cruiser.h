@@ -17,7 +17,6 @@
     Engine *engine;
     NSArray *fighters;
 }
-
 #pragma mark -
 #pragma mark Initializing
 
@@ -31,9 +30,9 @@
 
 @property (nonatomic, readonly) NSString *callsign;
 @property (nonatomic, retain) Engine *engine;
+@property (nonatomic, readonly) NSString *classification;
 
 + (NSString *)classification;
-
 - (NSUInteger)crewComplement;
 
 #pragma mark -

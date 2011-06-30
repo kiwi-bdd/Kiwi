@@ -83,6 +83,20 @@ describe(@"Cruiser", ^{
         it(@"should have fighters (using custom matcher)", ^{
             [[cruiser should] haveFighters];
         });
+        
+        it(@"should work with @dynamic properties", ^{
+            [[cruiser.classification should] equal:@"Capital Ship"];
+        });
+        
+        it(@"should allow @dynamic properties to be stubbed with message pattern", ^{
+            [[cruiser stubAndReturn:@"Galaxy Class Ship"] classification];
+            [[cruiser.classification should] equal:@"Galaxy Class Ship"];
+        });
+        
+        it(@"should allow @dynamic properties to be stubbed with API", ^{
+            [cruiser stub:@selector(classification) andReturn:@"Galaxy Class Ship"];
+            [[cruiser.classification should] equal:@"Galaxy Class Ship"];
+        });
     });
 });
 
