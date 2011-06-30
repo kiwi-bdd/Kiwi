@@ -23,6 +23,7 @@
 		9F4E04DE12DFB71F00A3440B /* KWProbePoller.h in Headers */ = {isa = PBXBuildFile; fileRef = 9F4E04D912DFB71F00A3440B /* KWProbePoller.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		9F4E04DF12DFB71F00A3440B /* KWProbePoller.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F4E04DA12DFB71F00A3440B /* KWProbePoller.m */; };
 		9FB1D28412DFB60400693E30 /* KWAsyncVerifier.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FB1D28312DFB60400693E30 /* KWAsyncVerifier.m */; };
+		A34FAD8C13BBF422003968B2 /* Kiwi.h in Headers */ = {isa = PBXBuildFile; fileRef = F5015B501158398E002E9A98 /* Kiwi.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A352E9E812EDC30A0049C691 /* KWHaveValueMatcherTest.m in Sources */ = {isa = PBXBuildFile; fileRef = A352E9E712EDC30A0049C691 /* KWHaveValueMatcherTest.m */; };
 		A352EA0E12EDC6F20049C691 /* KWHamrestMatchingAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = A352EA0D12EDC6F20049C691 /* KWHamrestMatchingAdditions.m */; };
 		A352EA1B12EDC8380049C691 /* KWHamcrestMatcherTest.m in Sources */ = {isa = PBXBuildFile; fileRef = A352EA1A12EDC8380049C691 /* KWHamcrestMatcherTest.m */; };
@@ -948,6 +949,7 @@
 				F5B1690F11BCDA4100200D1D /* KWContextNode.h in Headers */,
 				F5B16A8011BD350D00200D1D /* KWItNode.h in Headers */,
 				F57B2D1111BE273C00937FFA /* KWExampleNodeVisitor.h in Headers */,
+				A34FAD8C13BBF422003968B2 /* Kiwi.h in Headers */,
 				F57B2D2711BE2C1F00937FFA /* KWExampleNode.h in Headers */,
 				F508548511BE4AA5000EAD4E /* KWBeforeEachNode.h in Headers */,
 				F508549D11BE4BA0000EAD4E /* KWAfterEachNode.h in Headers */,
