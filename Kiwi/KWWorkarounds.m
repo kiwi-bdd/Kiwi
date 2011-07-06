@@ -17,7 +17,7 @@ void KWSetExceptionFromAcrossInvocationBoundary(NSException *anException) {
     KWExceptionAcrossInvokeBoundary = [anException retain];
 }
 
-NSException *KWGetAndClearExceptionFromAcrossInvocationBoundary() {
+NSException *KWGetAndClearExceptionFromAcrossInvocationBoundary(void) {
     NSException *exception = [KWExceptionAcrossInvokeBoundary autorelease];
     KWExceptionAcrossInvokeBoundary = nil;
     return exception;
