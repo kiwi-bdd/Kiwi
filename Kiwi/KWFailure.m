@@ -25,7 +25,7 @@
 - (id)initWithCallSite:(KWCallSite *)aCallSite format:(NSString *)format, ... {
     va_list argumentList;
     va_start(argumentList, format);
-    NSString *aMessage = [[NSString alloc] initWithFormat:format arguments:argumentList];
+    NSString *aMessage = [[[NSString alloc] initWithFormat:format arguments:argumentList] autorelease];
     return [self initWithCallSite:aCallSite message:aMessage];
 }
 

@@ -41,9 +41,14 @@
 
 @synthesize callsign;
 @synthesize engine;
+@dynamic classification;
 
 + (NSString *)classification {
     return @"Capital Ship";
+}
+
+- (NSString *)classification {
+  return [[self class] classification];
 }
 
 - (NSUInteger)crewComplement {

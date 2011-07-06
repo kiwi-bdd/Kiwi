@@ -7,6 +7,10 @@
 #import "KiwiConfiguration.h"
 #import "KWMatching.h"
 
+@class KWFailure;
+@class KWMatcher;
+@class KWUserDefinedMatcherBuilder;
+
 @interface KWMatcherFactory : NSObject {
 @private
     NSMutableArray *registeredMatcherClasses;
@@ -30,13 +34,18 @@
 - (void)registerMatcherClassesWithNamespacePrefix:(NSString *)aNamespacePrefix;
 
 #pragma mark -
+#pragma mark Registering User Defined Matchers
+
+//- (void)registerUserDefinedMatcherWithBuilder:(KWUserDefinedMatcherBuilder *)aBuilder;
+
+#pragma mark -
 #pragma mark Getting Method Signatures
 
 - (NSMethodSignature *)methodSignatureForMatcherSelector:(SEL)aSelector;
 
 #pragma mark -
-#pragma mark Getting Matcher Classes
+#pragma mark Getting Matchers
 
-- (Class)matcherClassForSelector:(SEL)aSelector subject:(id)anObject;
+- (KWMatcher *)matcherFromInvocation:(NSInvocation *)anInvocation subject:(id)subject;
 
 @end
