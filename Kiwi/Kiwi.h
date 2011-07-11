@@ -78,4 +78,8 @@
 // Some Foundation headers use Kiwi keywords (e.g. 'should') as identifiers for
 // parameter names. Including this last allows the use of Kiwi keywords without
 // conflicting with these headers (hopefully!).
-#import "KiwiMacros.h"
+#ifdef KIWI_USE_NEW_MACROS
+  #import "KiwiNewMacros.h"
+#else
+  #import "KiwiMacros.h"
+#endif
