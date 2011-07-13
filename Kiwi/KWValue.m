@@ -326,17 +326,24 @@
 }
 
 - (BOOL)isEqual:(id)object {
-    if (![object isKindOfClass:[KWValue class]])
-        return NO;
+    if ([object isKindOfClass:[KWValue class]])
+        return [self isEqualToKWValue:object];
     
-    return [self isEqualToKWValue:object];
+    if ([object isKindOfClass:[NSNumber class]])
+      return [self isEqualToNumber:object];
+    
+    return NO;
 }
 
 - (BOOL)isEqualToKWValue:(KWValue *)aValue {
     if (self.isNumeric && aValue.isNumeric)
-        return [[self numberValue] isEqualToNumber:[aValue numberValue]];
+        return [self isEqualToNumber:[aValue numberValue]];
     else
         return [self.value isEqual:aValue.value];
+}
+
+- (BOOL)isEqualToNumber:(NSNumber *)aValue {
+    return [[self numberValue] isEqualToNumber:aValue];
 }
 
 #pragma mark -

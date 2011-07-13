@@ -92,5 +92,6 @@
 - (NSComparisonResult)compare:(KWValue *)aValue;
 
 - (BOOL)isEqualToKWValue:(KWValue *)aValue;
+- (BOOL)isEqualToNumber:(NSNumber *)aValue;
 
 @end
