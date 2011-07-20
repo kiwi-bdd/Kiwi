@@ -40,6 +40,24 @@
     STAssertFalse([matcher evaluate], @"expected negative match");
 }
 
+- (void)testItShouldMatchKiwiBoxedValuesWithKiwiBoxedValues {
+  id matcher = [KWEqualMatcher matcherWithSubject:theValue(123)];
+  [matcher equal:theValue(123)];
+  STAssertTrue([matcher evaluate], @"expected positive match");
+}
+
+- (void)testItShouldMatchNumberBoxedValuesWithKiwiBoxedValues {
+  id matcher = [KWEqualMatcher matcherWithSubject:[NSNumber numberWithInteger:123]];
+  [matcher equal:theValue(123)];
+  STAssertTrue([matcher evaluate], @"expected positive match");
+}
+
+- (void)testItShouldMatchKiwiBoxedValuesWithNumberBoxedValues {
+  id matcher = [KWEqualMatcher matcherWithSubject:theValue(123)];
+  [matcher equal:[NSNumber numberWithInteger:123]];
+  STAssertTrue([matcher evaluate], @"expected positive match");
+}
+
 @end
 
 #endif // #if KW_TESTS_ENABLED
