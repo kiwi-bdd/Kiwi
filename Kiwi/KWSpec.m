@@ -5,7 +5,7 @@
 //
 
 #import "KWSpec.h"
-#import </usr/include/objc/runtime.h>
+#import <objc/runtime.h>
 #import "KWAfterAllNode.h"
 #import "KWAfterEachNode.h"
 #import "KWBeforeAllNode.h"

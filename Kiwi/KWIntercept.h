@@ -5,7 +5,7 @@
 //
 
 #import "KiwiConfiguration.h"
-#import </usr/include/objc/runtime.h>
+#import <objc/runtime.h>
 
 @class KWMessagePattern;
 @class KWStub;

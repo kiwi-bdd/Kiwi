@@ -5,7 +5,7 @@
 //
 
 #import "KWMock.h"
-#import </usr/include/objc/runtime.h>
+#import <objc/runtime.h>
 #import "KWFormatter.h"
 #import "KWMessagePattern.h"
 #import "KWMessageSpying.h"

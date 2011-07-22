@@ -5,7 +5,7 @@
 //
 
 #import "KWTestCase.h"
-#import </usr/include/objc/runtime.h>
+#import <objc/runtime.h>
 #import "KWDeviceInfo.h"
 #import "KWExistVerifier.h"
 #import "KWFailure.h"
