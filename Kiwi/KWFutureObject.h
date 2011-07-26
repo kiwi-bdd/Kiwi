@@ -11,7 +11,7 @@
 typedef id (^KWFutureObjectBlock)(void);
 
 @interface KWFutureObject : NSObject {
-  id *objectPointer;
+  __weak id *objectPointer;
   KWFutureObjectBlock block;
 }
 + (id)objectWithObjectPointer:(id *)pointer;
