@@ -8,6 +8,11 @@
 
 #import <Foundation/Foundation.h>
 
+#ifdef __weak
+#undef __weak
+#define __weak __unsafe_unretained
+#endif
+
 typedef id (^KWFutureObjectBlock)(void);
 
 @interface KWFutureObject : NSObject {
