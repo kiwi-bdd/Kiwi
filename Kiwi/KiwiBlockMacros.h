@@ -6,7 +6,7 @@
 //  Copyright 2011 Allen Ding. All rights reserved.
 //
 
-#if KW_BLOCKS_ENABLED
+#if KW_BLOCKS_ENABLED && KW_SHOW_CALLSITE_INFORMATION
 // Kiwi macros used in specs to create example groups. Because these macros
 // hide functions of the same name, they can be undefined at the expense of
 // getting call site information injected into output messages.
