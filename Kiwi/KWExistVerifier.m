@@ -31,7 +31,7 @@
         callSite = [aCallSite retain];
         reporter = aReporter;
     }
-    
+
     return self;
 }
 

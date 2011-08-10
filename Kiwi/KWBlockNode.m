@@ -17,21 +17,21 @@
     if ((self = [super init])) {
         callSite = [aCallSite retain];
         description = [aDescription copy];
-        
+
         if (aBlock != nil)
             block = Block_copy(aBlock);
     }
-    
+
     return self;
 }
 
 - (void)dealloc {
     [callSite release];
     [description release];
-    
+
     if (block != nil)
         Block_release(block);
-    
+
     [super dealloc];
 }
 

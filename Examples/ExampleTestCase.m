@@ -33,7 +33,7 @@
     id subject = @"foo";
     id otherSubject = @"foo";
     [[subject should] equal:otherSubject];
-    
+
     otherSubject = @"bar";
     [[subject shouldNot] equal:otherSubject];
 }
@@ -146,13 +146,13 @@
     id subject = [Cruiser cruiser];
     [[subject should] receive:@selector(raiseShields) withCountAtLeast:1];
     [subject raiseShields];
-    
+
     subject = [Cruiser cruiser];
-    [[[subject should] receiveAndReturn:theValue(42) withCountAtLeast:2] crewComplement];    
+    [[[subject should] receiveAndReturn:theValue(42) withCountAtLeast:2] crewComplement];
     [subject crewComplement];
     NSUInteger complement = [subject crewComplement];
     [[theValue(complement) should] equal:theValue(42)];
-    
+
     subject = [Cruiser cruiser];
     [[subject should] receive:@selector(energyLevelInWarpCore:) andReturn:theValue(1.01f) withCount:2 arguments:theValue(2)];
     [subject energyLevelInWarpCore:2];

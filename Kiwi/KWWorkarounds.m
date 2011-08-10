@@ -13,7 +13,7 @@ static NSException *KWExceptionAcrossInvokeBoundary = nil;
 void KWSetExceptionFromAcrossInvocationBoundary(NSException *anException) {
     if (KWExceptionAcrossInvokeBoundary != nil)
         return;
-    
+
     KWExceptionAcrossInvokeBoundary = [anException retain];
 }
 

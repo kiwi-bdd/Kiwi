@@ -40,8 +40,8 @@
         }
         return matches;
     }];
-    
-    return (indexSet.count > 0);  
+
+    return (indexSet.count > 0);
 }
 
 @end

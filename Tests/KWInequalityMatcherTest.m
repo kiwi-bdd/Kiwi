@@ -32,7 +32,7 @@
     id matcher = [KWInequalityMatcher matcherWithSubject:subject];
     [matcher beGreaterThan:[KWValue valueWithInt:40]];
     STAssertTrue([matcher evaluate], @"expected positive match");
-    
+
     matcher = [KWInequalityMatcher matcherWithSubject:subject];
     [matcher beGreaterThanOrEqualTo:[KWValue valueWithInt:40]];
     STAssertTrue([matcher evaluate], @"expected positive match");

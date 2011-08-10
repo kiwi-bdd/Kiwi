@@ -11,7 +11,7 @@
 #if defined(__cplusplus)
 extern "C" {
 #endif
-    
+
 #import "KWAfterAllNode.h"
 #import "KWAfterEachNode.h"
 #import "KWAsyncVerifier.h"
@@ -87,7 +87,7 @@ extern "C" {
 #ifndef KIWI_DISABLE_MACRO_API
   #import "KiwiBlockMacros.h"
 #endif
-    
+
 #if defined(__cplusplus)
 }
 #endif

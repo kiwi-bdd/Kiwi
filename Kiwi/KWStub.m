@@ -83,7 +83,7 @@
 
     // When the return type is not the same as the type of the wrapped value,
     // attempt to convert the wrapped value to the desired type.
-    
+
     if (KWObjCTypeEqualToObjCType([self.value objCType], returnType))
         data = [self.value dataValue];
     else
@@ -95,10 +95,10 @@
 - (void)writeObjectValueToInvocationReturnValue:(NSInvocation *)anInvocation {
     assert(self.value && "self.value must not be nil");
     [anInvocation setReturnValue:&value];
-    
+
 #ifndef __clang_analyzer__
     NSString *selectorString = NSStringFromSelector([anInvocation selector]);
-    
+
     // To conform to memory management conventions, retain if writing a result
     // that begins with alloc, new or contains copy. This shows up as a false
     // positive in clang due to the runtime conditional, so ignore it.

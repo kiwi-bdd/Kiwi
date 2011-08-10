@@ -52,21 +52,21 @@
 - (BOOL)evaluate {
     if (![self.subject isKindOfClass:[KWBlock class]])
         [NSException raise:@"KWMatcherException" format:@"subject must be a KWBlock"];
-    
+
     @try {
         [self.subject call];
     } @catch (NSException *anException) {
         self.actualException = anException;
-        
+
         if ([self.exception name] != nil && ![[self.exception name] isEqualToString:[anException name]])
             return NO;
-        
+
         if ([self.exception reason] != nil && ![[self.exception reason] isEqualToString:[anException reason]])
             return NO;
-        
+
         return YES;
     }
-    
+
     return NO;
 }
 
@@ -78,7 +78,7 @@
         return @"nothing";
 
     NSString *namePhrase = nil;
-    
+
     if ([anException name] == nil)
         namePhrase = @"exception";
     else
@@ -86,7 +86,7 @@
 
     if ([anException reason] == nil)
         return namePhrase;
-    
+
     return [NSString stringWithFormat:@"%@ \"%@\"", namePhrase, [anException reason]];
 }
 

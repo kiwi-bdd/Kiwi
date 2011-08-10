@@ -55,7 +55,7 @@
 - (BOOL)check:(id<KWProbe>)probe;
 {
   KWTimeout *timeout = [[KWTimeout alloc] initWithTimeout:timeoutInterval];
-  
+
   while (![probe isSatisfied]) {
     if ([timeout hasTimedOut]) {
       [timeout release];
@@ -65,7 +65,7 @@
     [probe sample];
   }
   [timeout release];
-  
+
   return YES;
 }
 

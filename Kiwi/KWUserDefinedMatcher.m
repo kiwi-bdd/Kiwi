@@ -38,7 +38,7 @@
 - (BOOL)evaluate
 {
     BOOL result;
-    
+
     if (invocation.methodSignature.numberOfArguments == 3) {
         id argument;
         [invocation getArgument:&argument atIndex:2];
@@ -77,7 +77,7 @@
 {
     if (aSelector == self.selector) {
         NSString *selectorString = NSStringFromSelector(self.selector);
-        
+
         /**
          *   TODO: find a way of doing this that:
          *   - doesn't require dummy methods (create the method signatures manually)
@@ -101,7 +101,7 @@
 
 @implementation KWUserDefinedMatcherBuilder
 
-+ (id)builder 
++ (id)builder
 {
     return [self builderForSelector:nil];
 }
@@ -155,11 +155,11 @@
     if (failureMessageForShouldBlock) {
         [matcher setFailureMessageForShould:failureMessageForShouldBlock(subject)];
     }
-    
+
     if (failureMessageForShouldNotBlock) {
         [matcher setFailureMessageForShouldNot:failureMessageForShouldNotBlock(subject)];
     }
-    
+
     return matcher;
 }
 

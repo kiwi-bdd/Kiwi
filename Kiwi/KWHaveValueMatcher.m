@@ -39,7 +39,7 @@
 #pragma mark Getting Matcher Strings
 
 + (NSArray *)matcherStrings {
-  return [NSArray arrayWithObjects:@"haveValue:forKey:", 
+  return [NSArray arrayWithObjects:@"haveValue:forKey:",
           @"haveValueForKey:",
           @"haveValue:forKeyPath:",
           @"haveValueForKeyPath:", nil];
@@ -50,26 +50,26 @@
 
 - (BOOL)evaluate {
   BOOL matched = NO;
-  
+
   @try {
     id value = [self subjectValue];
-    
+
     if (value) {
       matched = YES;
-      
+
       if (self.expectedValue) {
         matched = [self.expectedValue isEqualOrMatches:value];
       }
     }
   }
   @catch (NSException * e) {} // catch KVO non-existent key errors
-  
+
   return matched;
 }
 
 - (NSString *)failureMessageForShould {
     if (self.expectedValue == nil) {
-        return [NSString stringWithFormat:@"expected subject to have a value for key %@", self.expectedKey];  
+        return [NSString stringWithFormat:@"expected subject to have a value for key %@", self.expectedKey];
     }
     return [NSString stringWithFormat:@"expected subject to have value %@ for key %@", self.expectedValue, self.expectedKey];
 }
@@ -77,7 +77,7 @@
 - (id)subjectValue;
 {
   id value = nil;
-  
+
   if (self.expectedKey) {
     value = [self.subject valueForKey:self.expectedKey];
   } else

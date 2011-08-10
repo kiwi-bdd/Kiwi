@@ -34,7 +34,7 @@
 {
   if (![item respondsToSelector:@selector(hasPrefix:)])
     return NO;
-  
+
   return [item hasPrefix:prefix];
 }
 

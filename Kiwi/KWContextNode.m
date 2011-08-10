@@ -20,7 +20,7 @@
         description = [aDescription copy];
         nodes = [[NSMutableArray alloc] init];
     }
-    
+
     return self;
 }
 
@@ -67,21 +67,21 @@
 - (void)setRegisterMatchersNode:(KWRegisterMatchersNode *)aNode {
     if (self.registerMatchersNode != nil)
         [NSException raise:@"KWContextNodeException" format:@"a register matchers node already exists"];
-    
+
     registerMatchersNode = [aNode retain];
 }
 
 - (void)setBeforeEachNode:(KWBeforeEachNode *)aNode {
     if (self.beforeEachNode != nil)
         [NSException raise:@"KWContextNodeException" format:@"a before each node already exists"];
-    
+
     beforeEachNode = [aNode retain];
 }
 
 - (void)setAfterEachNode:(KWAfterEachNode *)aNode {
     if (self.afterEachNode != nil)
         [NSException raise:@"KWContextNodeException" format:@"an after each node already exists"];
-    
+
     afterEachNode = [aNode retain];
 }
 

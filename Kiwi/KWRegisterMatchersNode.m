@@ -19,7 +19,7 @@
         callSite = [aCallSite retain];
         namespacePrefix = [aNamespacePrefix copy];
     }
-    
+
     return self;
 }
 

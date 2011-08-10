@@ -47,11 +47,11 @@
     KWMessagePattern *messagePattern1 = [KWMessagePattern messagePatternWithSelector:@selector(energyLevelInWarpCore:)];
     NSArray *argumentFilters = [NSArray arrayWithObject:[KWValue valueWithUnsignedInt:2]];
     KWMessagePattern *messagePattern2 = [KWMessagePattern messagePatternWithSelector:@selector(energyLevelInWarpCore:) argumentFilters:argumentFilters];
-    
+
     [cruiser addMessageSpy:spy1 forMessagePattern:messagePattern1];
     [cruiser addMessageSpy:spy2 forMessagePattern:messagePattern2];
     [cruiser energyLevelInWarpCore:2];
-    
+
     STAssertTrue(spy1.wasNotified, @"expected object to notify spies");
     STAssertTrue(spy2.wasNotified, @"expected object to notify spies");
 }

@@ -88,7 +88,7 @@ Class KWInterceptClassForCanonicalClass(Class canonicalClass) {
 
     Class interceptMetaClass = object_getClass(interceptClass);
     class_addMethod(interceptMetaClass, @selector(forwardInvocation:), (IMP)KWInterceptedForwardInvocation, "v@:@");
-    
+
     return interceptClass;
 }
 

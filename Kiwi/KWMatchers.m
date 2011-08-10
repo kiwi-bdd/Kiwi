@@ -45,7 +45,7 @@ static id sharedMatchers = nil;
     block(builder);
     [userDefinedMatchers setObject:builder forKey:builder.key];
 }
-   
+
 - (void)addUserDefinedMatcherBuilder:(KWUserDefinedMatcherBuilder *)builder {
     [userDefinedMatchers setObject:builder forKey:builder.key];
 }
@@ -55,13 +55,13 @@ static id sharedMatchers = nil;
 
 - (KWUserDefinedMatcher *)matcherForSelector:(SEL)selector subject:(id)subject {
     KWUserDefinedMatcherBuilder *builder = [userDefinedMatchers objectForKey:NSStringFromSelector(selector)];
-    
+
     if (builder == nil)
         return nil;
-    
+
     return [builder buildMatcherWithSubject:subject];
 }
-                               
+
 
 @end
 
