@@ -87,19 +87,20 @@
 #pragma mark Verifying
 
 - (void)containObjects:(id)firstObject, ... {
-    NSMutableArray *objects = [[NSMutableArray alloc] init];
+    NSMutableArray *objectsTemp = [[NSMutableArray alloc] init];
 
     va_list argumentList;
     va_start(argumentList, firstObject);
     id object = firstObject;
 
     while (object != nil) {
-        [objects addObject:object];
+        [objectsTemp addObject:object];
         object = va_arg(argumentList, id);
     }
 
     va_end(argumentList);
-    [(id)self containObjectsInArray:objects];
+    [(id)self containObjectsInArray:objectsTemp];
+    [objectsTemp release];
 }
 
 @end
