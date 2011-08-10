@@ -25,7 +25,7 @@
     if ((self = [super init])) {
         failures = [[NSMutableArray alloc] init];
     }
-    
+
     return self;
 }
 
@@ -50,7 +50,7 @@
 - (void)reportFailure:(KWFailure *)aFailure {
     if (aFailure == nil)
         return;
-    
+
     self.hasUnmetExpectations = YES;
     [failures addObject:aFailure];
 }

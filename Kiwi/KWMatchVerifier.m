@@ -66,7 +66,7 @@
 - (NSString *)descriptionForAnonymousItNode
 {
   NSString *typeString = @"";
-  
+
   switch (self.expectationType) {
     case KWExpectationTypeShould:
       typeString = @"should";
@@ -94,7 +94,7 @@
 - (void)verifyWithMatcher:(id<KWMatching>)aMatcher {
     @try {
         BOOL matchResult = [aMatcher evaluate];
-        
+
         if (self.expectationType == KWExpectationTypeShould && !matchResult) {
             NSString *message = [aMatcher failureMessageForShould];
             KWFailure *failure = [KWFailure failureWithCallSite:self.callSite message:message];
@@ -106,7 +106,7 @@
         }
     } @catch (NSException *exception) {
         KWFailure *failure = [KWFailure failureWithCallSite:self.callSite message:[exception description]];
-        [self.reporter reportFailure:failure];        
+        [self.reporter reportFailure:failure];
     }
 }
 
@@ -116,7 +116,7 @@
 - (void)exampleWillEnd {
     if (self.endOfExampleMatcher == nil)
         return;
-    
+
     [self verifyWithMatcher:self.endOfExampleMatcher];
 }
 
@@ -146,7 +146,7 @@
 #endif // #if KW_TARGET_HAS_INVOCATION_EXCEPTION_BUG
 
     self.matcher = (id<KWMatching>)[self.matcherFactory matcherFromInvocation:anInvocation subject:self.subject];
-    
+
     if (self.matcher == nil) {
       KWFailure *failure = [KWFailure failureWithCallSite:self.callSite format:@"could not create matcher for -%@",
                  NSStringFromSelector(anInvocation.selector)];
@@ -159,8 +159,8 @@
     // raise if one was set.
     NSException *exception = KWGetAndClearExceptionFromAcrossInvocationBoundary();
     [exception raise];
-#endif // #if KW_TARGET_HAS_INVOCATION_EXCEPTION_BUG        
-        
+#endif // #if KW_TARGET_HAS_INVOCATION_EXCEPTION_BUG
+
     if ([self.matcher respondsToSelector:@selector(shouldBeEvaluatedAtEndOfExample)] && [self.matcher shouldBeEvaluatedAtEndOfExample]) {
         self.endOfExampleMatcher = self.matcher;
         self.matcher = nil;
@@ -168,7 +168,7 @@
     else {
         [self verifyWithMatcher:self.matcher];
     }
-    
+
 #if KW_TARGET_HAS_INVOCATION_EXCEPTION_BUG
     } @catch (NSException *exception) {
         KWFailure *failure = [KWFailure failureWithCallSite:self.callSite format:[exception reason]];

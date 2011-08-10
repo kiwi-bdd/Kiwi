@@ -18,17 +18,17 @@ Specs look like this:
 
 ```objective-c
 describe(@"Team", ^{
-	context(@"when newly created", ^{
-		it(@"should have a name", ^{
-			id team = [Team team];
-			[[team.name should] equal:@"Black Hawks"];
-		});
-		
-		it(@"should have 11 players", ^{
-			id team = [Team team];
-			[[[team should] have:11] players];
-		});
-	});
+    context(@"when newly created", ^{
+        it(@"should have a name", ^{
+            id team = [Team team];
+            [[team.name should] equal:@"Black Hawks"];
+        });
+
+        it(@"should have 11 players", ^{
+            id team = [Team team];
+            [[[team should] have:11] players];
+        });
+    });
 });
 ```
 
@@ -43,7 +43,7 @@ Kiwi is maintained by:
 
  * Allen Ding (@alding)
  * Luke Redpath (@lukeredpath)
- 
+
 Pull requests welcome. Significant contributors are listed in __Contributors.txt__.
 
 # Getting it #
@@ -74,7 +74,7 @@ Example scenarios are provided below for the simplest use cases.
   * This should result in a __Tests__ group in your new project.
   * You should also have a test target named something like __FoobarTests__.
 
-2. Remove the sample __FoobarTest.(h|m)__ files Xcode generated. 
+2. Remove the sample __FoobarTest.(h|m)__ files Xcode generated.
 
 3. Add all the Kiwi sources (.h and .m) to your test target.
   * The files are located in the __Kiwi/Kiwi__ directory you cloned with git.
@@ -98,16 +98,16 @@ Example scenarios are provided below for the simplest use cases.
 
 ## FoobarSpec.m ##
 
-```objective-c	
+```objective-c
 #import "Kiwi.h"
 
 SPEC_BEGIN(FoobarSpec)
 
 describe(@"Foobar", ^{
-	it(@"a simple test", ^{
-		NSString *greeting = [NSString stringWithFormat:@"%@ %@", @"Hello", @"world"];
-		[[greeting should] equal:@"Hello world"];
-	});
+    it(@"a simple test", ^{
+        NSString *greeting = [NSString stringWithFormat:@"%@ %@", @"Hello", @"world"];
+        [[greeting should] equal:@"Hello world"];
+    });
 });
 
 SPEC_END

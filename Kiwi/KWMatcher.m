@@ -17,7 +17,7 @@
     if ((self = [super init])) {
         subject = [anObject retain];
     }
-    
+
     return self;
 }
 
@@ -76,16 +76,16 @@
 - (NSString *)failureMessageForShouldNot {
     NSString *failureMessageForShould = [self failureMessageForShould];
     NSRange markerRange = [failureMessageForShould rangeOfString:@" to "];
-    
+
     if (markerRange.location == NSNotFound)
         return @"subject did not meet expectation";
-    
+
     NSRange replacementRange = NSMakeRange(0, markerRange.location + markerRange.length);
     NSString *message = [failureMessageForShould stringByReplacingOccurrencesOfString:@" to "
                                                                         withString:@" not to "
                                                                            options:0
                                                                              range:replacementRange];
-    return message;    
+    return message;
 }
 
 @end

@@ -37,7 +37,7 @@ static NSString * const StubValueKey = @"StubValueKey";
   if ((self = [super initWithSubject:anObject])) {
     self.willEvaluateMultipleTimes = NO;
   }
-  
+
   return self;
 }
 
@@ -77,7 +77,7 @@ static NSString * const StubValueKey = @"StubValueKey";
 
 - (BOOL)evaluate {
     BOOL succeeded = [self.messageTracker succeeded];
-  
+
     if (!self.willEvaluateMultipleTimes) {
       [self.messageTracker stopTracking];
     }
@@ -149,7 +149,7 @@ static NSString * const StubValueKey = @"StubValueKey";
 #endif // #if KW_TARGET_HAS_INVOCATION_EXCEPTION_BUG
 
     self.messageTracker = [KWMessageTracker messageTrackerWithSubject:self.subject messagePattern:aMessagePattern countType:aCountType count:aCount];
-    
+
 #if KW_TARGET_HAS_INVOCATION_EXCEPTION_BUG
     } @catch(NSException *exception) {
         KWSetExceptionFromAcrossInvocationBoundary(exception);
@@ -161,10 +161,10 @@ static NSString * const StubValueKey = @"StubValueKey";
 #if KW_TARGET_HAS_INVOCATION_EXCEPTION_BUG
     @try {
 #endif // #if KW_TARGET_HAS_INVOCATION_EXCEPTION_BUG
-    
+
     [self.subject stubMessagePattern:aMessagePattern andReturn:aValue];
     self.messageTracker = [KWMessageTracker messageTrackerWithSubject:self.subject messagePattern:aMessagePattern countType:aCountType count:aCount];
-    
+
 #if KW_TARGET_HAS_INVOCATION_EXCEPTION_BUG
     } @catch(NSException *exception) {
         KWSetExceptionFromAcrossInvocationBoundary(exception);
@@ -177,10 +177,10 @@ static NSString * const StubValueKey = @"StubValueKey";
 
 + (NSMethodSignature *)invocationCapturer:(KWInvocationCapturer *)anInvocationCapturer methodSignatureForSelector:(SEL)aSelector {
     KWMatchVerifier *verifier = [anInvocationCapturer.userInfo objectForKey:MatchVerifierKey];
-    
+
     if ([verifier.subject respondsToSelector:aSelector])
         return [verifier.subject methodSignatureForSelector:aSelector];
-    
+
     NSString *encoding = KWEncodingForVoidMethod();
     return [NSMethodSignature signatureWithObjCTypes:[encoding UTF8String]];
 }
@@ -192,7 +192,7 @@ static NSString * const StubValueKey = @"StubValueKey";
     NSUInteger count = [[userInfo objectForKey:CountKey] unsignedIntValue];
     NSValue *stubValue = [userInfo objectForKey:StubValueKey];
     KWMessagePattern *messagePattern = [KWMessagePattern messagePatternFromInvocation:anInvocation];
-    
+
     if (stubValue != nil)
         [verifier receiveMessagePattern:messagePattern andReturn:[stubValue nonretainedObjectValue] countType:countType count:count];
     else

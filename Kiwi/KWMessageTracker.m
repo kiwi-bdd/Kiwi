@@ -101,7 +101,7 @@
 
 - (NSString *)expectedCountPhrase {
     NSString *countPhrase = [self phraseForCount:self.count];
-    
+
     switch (self.countType) {
         case KWCountTypeExact:
             return [NSString stringWithFormat:@"exactly %@", countPhrase];

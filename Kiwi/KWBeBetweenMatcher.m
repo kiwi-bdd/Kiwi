@@ -47,7 +47,7 @@
 - (BOOL)evaluate {
     if (![self.subject respondsToSelector:@selector(compare:)])
         [NSException raise:@"KWMatcherException" format:@"subject does not respond to -compare:"];
-    
+
     NSComparisonResult lowerResult = [self.subject compare:self.lowerEndpoint];
     NSComparisonResult upperResult = [self.subject compare:self.upperEndpoint];
     return (lowerResult == NSOrderedDescending || lowerResult == NSOrderedSame) &&
