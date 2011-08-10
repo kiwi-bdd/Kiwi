@@ -22,7 +22,9 @@ void afterAll(KWVoidBlock aBlock);
 void beforeEach(KWVoidBlock aBlock);
 void afterEach(KWVoidBlock aBlock);
 void it(NSString *aDescription, KWVoidBlock aBlock);
+void specify(NSString *aDescription, KWVoidBlock aBlock);
 void pending(NSString *aDescription, KWVoidBlock ignoredBlock);
+void xit(NSString *aDescription, KWVoidBlock ignoredBlock);
 
 void describeWithCallSite(KWCallSite *aCallSite, NSString *aDescription, KWVoidBlock aBlock);
 void contextWithCallSite(KWCallSite *aCallSite, NSString *aDescription, KWVoidBlock aBlock);

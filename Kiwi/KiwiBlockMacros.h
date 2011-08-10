@@ -18,8 +18,9 @@
 #define beforeEach(...) beforeEachWithCallSite(KW_THIS_CALLSITE, __VA_ARGS__)
 #define afterEach(...) afterEachWithCallSite(KW_THIS_CALLSITE, __VA_ARGS__)
 #define it(...) itWithCallSite(KW_THIS_CALLSITE, __VA_ARGS__)
+#define specify(...) it(__VA_ARGS__)
 #define pending(...) pendingWithCallSite(KW_THIS_CALLSITE, __VA_ARGS__)
-#define xit(...) pendingWithCallSite(KW_THIS_CALLSITE, __VA_ARGS__)
+#define xit(...) pending(__VA_ARGS__)
 
 // user defined matchers
 #define registerMatcher(name) \

@@ -44,8 +44,16 @@ void it(NSString *aDescription, KWVoidBlock aBlock) {
     itWithCallSite(nil, aDescription, aBlock);
 }
 
+void specify(NSString *aDescription, KWVoidBlock aBlock) {
+    it(aDescription, aBlock);
+}
+
 void pending(NSString *aDescription, KWVoidBlock ignoredBlock) {
     pendingWithCallSite(nil, aDescription, ignoredBlock);
+}
+
+void xit(NSString *aDescription, KWVoidBlock ignoredBlock) {
+    pending(aDescription, ignoredBlock);
 }
 
 void describeWithCallSite(KWCallSite *aCallSite, NSString *aDescription, KWVoidBlock aBlock) {
