@@ -15,6 +15,8 @@ Simple BDD for the iPhone and iPad
 Kiwi is a Behavior Driven Development library for iPhone and iPad development.
 The goal is to provide a BDD library that is exquisitely simple to setup and use.
 
+*** The documentation below is out of date and will be updated within the next couple of days. This note is here so that no one gets confused - 8/23/2011 ***
+
 Quick Setup
 -----------
 1. Add a Cocoa Touch 'Unit Test Bundle' target to your Xcode project. This is your spec target.
