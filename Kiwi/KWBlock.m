@@ -6,8 +6,6 @@
 
 #import "KWBlock.h"
 
-#if KW_BLOCKS_ENABLED
-
 @interface KWBlock()
 
 #pragma mark -
@@ -63,5 +61,3 @@ KWBlock *theBlock(KWVoidBlock aBlock) {
 KWBlock *lambda(KWVoidBlock aBlock) {
     return [KWBlock blockWithBlock:aBlock];
 }
-
-#endif // #if KW_BLOCKS_ENABLED

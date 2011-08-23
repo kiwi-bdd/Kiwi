@@ -7,8 +7,6 @@
 #import "KWExampleGroup.h"
 #import "KWExampleGroupBuilder.h"
 
-#if KW_BLOCKS_ENABLED
-
 #pragma mark -
 #pragma mark Building Example Groups
 
@@ -85,5 +83,3 @@ void itWithCallSite(KWCallSite *aCallSite, NSString *aDescription, KWVoidBlock a
 void pendingWithCallSite(KWCallSite *aCallSite, NSString *aDescription, KWVoidBlock ignoredBlock) {
     [[KWExampleGroupBuilder sharedExampleGroupBuilder] addPendingNodeWithCallSite:aCallSite description:aDescription];
 }
-
-#endif // #if KW_BLOCKS_ENABLED

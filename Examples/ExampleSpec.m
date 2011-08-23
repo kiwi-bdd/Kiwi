@@ -20,7 +20,7 @@
 registerMatcher(haveFighters)
 
 
-#if KW_TESTS_ENABLED && KW_BLOCKS_ENABLED
+#if KW_TESTS_ENABLED
 
 SPEC_BEGIN(ExampleSpec)
 
@@ -102,4 +102,4 @@ describe(@"Cruiser", ^{
 
 SPEC_END
 
-#endif // #if KW_TESTS_ENABLED && KW_BLOCKS_ENABLED
+#endif // #if KW_TESTS_ENABLED

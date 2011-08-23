@@ -127,8 +127,6 @@
     [[subject should] raiseWithName:@"CruiserException" reason:@"-[Cruiser raise]" whenSent:@selector(raise)];
 }
 
-#if KW_BLOCKS_ENABLED
-
 - (void)itShouldVerifyBlockRaisedExceptions {
     id subject = [Cruiser cruiser];
     [[theBlock(^{ [subject raise]; }) should] raise];
@@ -139,8 +137,6 @@
     NSArray *foo = [NSArray array];
     [[theBlock(^{ [foo objectAtIndex:0]; }) should] raiseWithName:NSRangeException];
 }
-
-#endif // #if KW_BLOCKS_ENABLED
 
 - (void)itShouldVerifyReceivedMessages {
     id subject = [Cruiser cruiser];

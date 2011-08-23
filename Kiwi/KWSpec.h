@@ -11,8 +11,6 @@
 #import "KWExpectationType.h"
 #import "KWReporting.h"
 
-#if KW_BLOCKS_ENABLED
-
 @class KWCallSite;
 @class KWContextNode;
 @class KWMatcherFactory;
@@ -46,5 +44,3 @@
 - (void)buildExampleGroups;
 
 @end
-
-#endif // #if KW_BLOCKS_ENABLED

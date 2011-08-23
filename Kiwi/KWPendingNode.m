@@ -7,8 +7,6 @@
 #import "KWPendingNode.h"
 #import "KWExampleNodeVisitor.h"
 
-#if KW_BLOCKS_ENABLED
-
 @implementation KWPendingNode
 
 #pragma mark -
@@ -51,5 +49,3 @@
 }
 
 @end
-
-#endif // #if KW_BLOCKS_ENABLED

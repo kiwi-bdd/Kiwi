@@ -7,8 +7,6 @@
 #import "KiwiConfiguration.h"
 #import "KWMatcher.h"
 
-#if KW_BLOCKS_ENABLED
-
 @interface KWBlockRaiseMatcher : KWMatcher {
 @private
     NSException *exception;
@@ -24,5 +22,3 @@
 - (void)raiseWithName:(NSString *)aName reason:(NSString *)aReason;
 
 @end
-
-#endif // #if KW_BLOCKS_ENABLED

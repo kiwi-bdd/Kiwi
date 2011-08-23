@@ -14,8 +14,6 @@
 #import "KWPendingNode.h"
 #import "KWRegisterMatchersNode.h"
 
-#if KW_BLOCKS_ENABLED
-
 @interface KWExampleGroupBuilder()
 
 #pragma mark -
@@ -183,5 +181,3 @@ static KWExampleGroupBuilder *sharedExampleGroupBuilder = nil;
 }
 
 @end
-
-#endif // #if KW_BLOCKS_ENABLED

@@ -7,8 +7,6 @@
 #import "KiwiConfiguration.h"
 #import "KWBlock.h"
 
-#if KW_BLOCKS_ENABLED
-
 @class KWCallSite;
 
 @interface KWExampleGroupBuilder : NSObject {
@@ -40,5 +38,3 @@
 - (void)addPendingNodeWithCallSite:(KWCallSite *)aCallSite description:(NSString *)aDescription;
 
 @end
-
-#endif // #if KW_BLOCKS_ENABLED

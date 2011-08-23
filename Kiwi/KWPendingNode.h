@@ -7,8 +7,6 @@
 #import "KiwiConfiguration.h"
 #import "KWExampleNode.h"
 
-#if KW_BLOCKS_ENABLED
-
 @class KWCallSite;
 
 @interface KWPendingNode : NSObject<KWExampleNode> {
@@ -35,5 +33,3 @@
 @property (nonatomic, readonly) NSString *description;
 
 @end
-
-#endif // #if KW_BLOCKS_ENABLED

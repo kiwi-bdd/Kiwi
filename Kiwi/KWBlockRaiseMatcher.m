@@ -7,8 +7,6 @@
 #import "KWBlockRaiseMatcher.h"
 #import "KWBlock.h"
 
-#if KW_BLOCKS_ENABLED
-
 @interface KWBlockRaiseMatcher()
 
 #pragma mark -
@@ -121,5 +119,3 @@
 }
 
 @end
-
-#endif // #if KW_BLOCKS_ENABLED

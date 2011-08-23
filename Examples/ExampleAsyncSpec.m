@@ -10,7 +10,7 @@
 #import "TestClasses.h"
 #import "Kiwi.h"
 
-#if KW_TESTS_ENABLED && KW_BLOCKS_ENABLED
+#if KW_TESTS_ENABLED
 
 SPEC_BEGIN(ExampleAsyncSpec)
 
@@ -92,4 +92,4 @@ it(@"should verify asynchronous expectations on a variable that starts as non-ni
 
 SPEC_END
 
-#endif // #if KW_TESTS_ENABLED && KW_BLOCKS_ENABLED
+#endif // #if KW_TESTS_ENABLED

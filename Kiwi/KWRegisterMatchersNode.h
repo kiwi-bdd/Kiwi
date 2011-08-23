@@ -7,8 +7,6 @@
 #import "KiwiConfiguration.h"
 #import "KWExampleNode.h"
 
-#if KW_BLOCKS_ENABLED
-
 @class KWCallSite;
 
 @interface KWRegisterMatchersNode : NSObject<KWExampleNode> {
@@ -35,5 +33,3 @@
 @property (nonatomic, readonly) NSString *namespacePrefix;
 
 @end
-
-#endif // #if KW_BLOCKS_ENABLED

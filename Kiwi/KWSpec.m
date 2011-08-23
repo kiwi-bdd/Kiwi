@@ -27,8 +27,6 @@
 #import "KWWorkarounds.h"
 #import "NSMethodSignature+KiwiAdditions.h"
 
-#if KW_BLOCKS_ENABLED
-
 @interface KWSpec()
 
 #pragma mark -
@@ -324,5 +322,3 @@
 }
 
 @end
-
-#endif // #if KW_BLOCKS_ENABLED

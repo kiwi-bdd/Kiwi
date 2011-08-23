@@ -6,15 +6,13 @@
 
 #import <Foundation/Foundation.h>
 
-#define KW_VERSION 0.5
+#define KW_VERSION 0.9001
 
 // Blocks being unavailable cripples the usability of Kiwi, but is supported
 // because they are not available on anything less than a device running 3.2.
-#if defined(__BLOCKS__)
-    #ifndef KW_BLOCKS_ENABLED
-        #define KW_BLOCKS_ENABLED 1
-    #endif // #ifndef KW_BLOCKS_ENABLED
-#endif // #if defined(__BLOCKS__)
+#if !defined(__BLOCKS__)
+#error "Kiwi requires blocks support."
+#endif
 
 // As of iPhone SDK 4 GM, exceptions thrown across an NSInvocation -invoke or
 // forwardInvocation: boundary in the simulator will terminate the app instead
@@ -27,4 +25,4 @@
 // an exception.
 #if TARGET_IPHONE_SIMULATOR
     #define KW_TARGET_HAS_INVOCATION_EXCEPTION_BUG 1
-#endif // #if TARGET_IPHONE_SIMULATOR
+#endif

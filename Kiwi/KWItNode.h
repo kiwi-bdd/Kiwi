@@ -8,8 +8,6 @@
 #import "KWBlockNode.h"
 #import "KWExampleNode.h"
 
-#if KW_BLOCKS_ENABLED
-
 @class KWPendingNode;
 
 @interface KWItNode : KWBlockNode<KWExampleNode>
@@ -20,5 +18,3 @@
 + (id)itNodeWithCallSite:(KWCallSite *)aCallSite description:(NSString *)aDescription block:(KWVoidBlock)aBlock;
 
 @end
-
-#endif // #if KW_BLOCKS_ENABLED
