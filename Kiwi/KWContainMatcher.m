@@ -87,7 +87,7 @@
 #pragma mark Verifying
 
 - (void)containObjects:(id)firstObject, ... {
-    NSMutableArray *objects = [[NSMutableArray alloc] init];
+    NSMutableArray *objects = [NSMutableArray array];
     
     va_list argumentList;
     va_start(argumentList, firstObject);
