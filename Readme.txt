@@ -12,9 +12,7 @@ LLVM compiler recommended.
 
 Why?
 ----
-- I enjoy using RSpec.
-- I didn't enjoy the built in testing framework for Xcode as much.
-- I feel that tests/specs that look like this are more readable:
+The idea behind Kiwi is to have tests that are more readable that what is possible with the bundled test framework.
 
 describe(@"Team", ^{
     context(@"when newly created", ^{
@@ -30,7 +28,7 @@ describe(@"Team", ^{
     });
 });
 
-- I might be wrong :)
+To some of you, this might seem like an abomination. To the rest, read on...
 
 
 License
