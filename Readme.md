@@ -4,7 +4,7 @@ The goal is to provide a BDD library that is exquisitely simple to setup and use
 
 Ping me at @alding and let me know what you are using Kiwi for.
 
-Requirements
+Requirements:
 
 * Xcode 4.x
 * LLVM compiler recommended
@@ -48,8 +48,9 @@ Kiwi.xcodeproject has two runnable targets: __Kiwi__ and __KiwiExamples__. Both 
 * Running tests when KiwiExamples is the current target runs the example Kiwi specs meant to serve as sample Kiwi usage. The specs are located in the __Examples__ group in the Xcode project navigator.
 
 
-# Using it in your project #
+# Using Kiwi in Your Project #
 The essential point to understand about using Kiwi in your own project is that:
+
 * You have to have a test target.
 * The Kiwi library code has to be added to the test target.
 * Tests are run in the same way regular Xcode tests are run: Perform the 'Test' action on the test target.
