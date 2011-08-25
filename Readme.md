@@ -40,7 +40,7 @@ Pull requests welcome. Significant contributors are listed in __Contributors.txt
 # Getting it #
 The best way to get Kiwi is by cloning the git repository: `git clone git://github.com/allending/Kiwi.git`
 
-# Project structure #
+# Project file structure #
 __Kiwi.xcodeproject__ has two runnable targets: __Kiwi__ and __KiwiExamples__. Both of these targets are set up to be test targets.
 
 * To run tests in Xcode 4, run __Product->Test__, or use the __Cmd-U__ shortcut.
@@ -48,7 +48,7 @@ __Kiwi.xcodeproject__ has two runnable targets: __Kiwi__ and __KiwiExamples__. B
 * Running tests when __KiwiExamples__ is the current target runs the example Kiwi specs meant to serve as sample Kiwi usage. The specs are located in the __Examples__ group in the Xcode project navigator.
 
 
-# Using Kiwi in Your Project #
+# Using Kiwi in your project #
 The essential point to understand about using Kiwi in your own project is that:
 
 * You have to have a test target.
@@ -62,7 +62,7 @@ Example scenarios are provided below for the simplest use cases.
 
 ## For a new Xcode project ##
 1. Create a new iOS project (we will use __Foobar__ as a sample project name) and ensure that __"Include Unit Tests"__ is selected during the new project wizard process.
-  * This should result in a Tests group in your new project.
+  * This should result in a __Tests__ group in your new project.
   * You should also have a test target named something like __FoobarTests__.
 
 2. Remove the sample __FoobarTest.(h|m)__ files Xcode generated. 
@@ -74,7 +74,8 @@ Example scenarios are provided below for the simplest use cases.
 
 4. Add a new __FoobarSpec.m__ file to the test target, and make sure that it belongs to the __FoobarTests__ test target. You can use the contents of __FoobarSpec.m__ below.
 
-5. Run the __FoobarTests__ test target (__Product->Test__ or __Cmd-U__). The spec should run. Try changing `should` to `shouldNot` in the spec and rerun the test. You should now see a test failure.
+5. Run the __FoobarTests__ test target (__Product->Test__ or __Cmd-U__). The spec/tests should now run.
+  * Try changing `should` to `shouldNot` in the spec and rerun the test. You should now see a test failure.
 
 6. Start adding your own specs.
 
@@ -86,7 +87,7 @@ Example scenarios are provided below for the simplest use cases.
 
 2. Continue from step (3) in the instructions given in the __"For a new Xcode project"__ section above.
 
-### FoobarSpec.m ###
+## FoobarSpec.m ##
 
 ```objective-c	
 #import "Kiwi.h"
