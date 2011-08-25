@@ -84,10 +84,8 @@ extern "C" {
 // Some Foundation headers use Kiwi keywords (e.g. 'should') as identifiers for
 // parameter names. Including this last allows the use of Kiwi keywords without
 // conflicting with these headers (hopefully!).
-#ifndef KIWI_DISABLE_MACRO_API
-  #import "KiwiBlockMacros.h"
-#endif
-    
+#import "KiwiBlockMacros.h"
+
 #if defined(__cplusplus)
 }
 #endif

@@ -5,7 +5,7 @@
 //
 
 #import "KWSpec.h"
-#import </usr/include/objc/runtime.h>
+#import <objc/runtime.h>
 #import "KWAfterAllNode.h"
 #import "KWAfterEachNode.h"
 #import "KWBeforeAllNode.h"
@@ -26,8 +26,6 @@
 #import "KWVerifying.h"
 #import "KWWorkarounds.h"
 #import "NSMethodSignature+KiwiAdditions.h"
-
-#if KW_BLOCKS_ENABLED
 
 @interface KWSpec()
 
@@ -324,5 +322,3 @@
 }
 
 @end
-
-#endif // #if KW_BLOCKS_ENABLED

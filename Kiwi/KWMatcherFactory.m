@@ -5,7 +5,7 @@
 //
 
 #import "KWMatcherFactory.h"
-#import </usr/include/objc/runtime.h>
+#import <objc/runtime.h>
 #import "KWMatching.h"
 #import "KWStringUtilities.h"
 #import "KWUserDefinedMatcher.h"

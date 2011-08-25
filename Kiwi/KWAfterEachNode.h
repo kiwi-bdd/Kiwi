@@ -8,8 +8,6 @@
 #import "KWBlockNode.h"
 #import "KWExampleNode.h"
 
-#if KW_BLOCKS_ENABLED
-
 @interface KWAfterEachNode : KWBlockNode<KWExampleNode>
 
 #pragma mark -
@@ -18,5 +16,3 @@
 + (id)afterEachNodeWithCallSite:(KWCallSite *)aCallSite block:(KWVoidBlock)aBlock;
 
 @end
-
-#endif // #if KW_BLOCKS_ENABLED

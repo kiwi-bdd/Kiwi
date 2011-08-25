@@ -7,8 +7,6 @@
 #import "KiwiConfiguration.h"
 #import "KWExampleNode.h"
 
-#if KW_BLOCKS_ENABLED
-
 @class KWAfterAllNode;
 @class KWAfterEachNode;
 @class KWBeforeAllNode;
@@ -67,5 +65,3 @@
 - (void)acceptExampleNodeVisitor:(id<KWExampleNodeVisitor>)aVisitor;
 
 @end
-
-#endif // #if KW_BLOCKS_ENABLED

@@ -6,8 +6,6 @@
 
 #import "KWBlockNode.h"
 
-#if KW_BLOCKS_ENABLED
-
 @implementation KWBlockNode
 
 #pragma mark -
@@ -51,5 +49,3 @@
 @synthesize block;
 
 @end
-
-#endif // #if KW_BLOCKS_ENABLED

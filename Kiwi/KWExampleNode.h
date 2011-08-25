@@ -6,8 +6,6 @@
 
 #import "KiwiConfiguration.h"
 
-#if KW_BLOCKS_ENABLED
-
 @protocol KWExampleNodeVisitor;
 
 @protocol KWExampleNode<NSObject>
@@ -18,5 +16,3 @@
 - (void)acceptExampleNodeVisitor:(id<KWExampleNodeVisitor>)aVisitor;
 
 @end
-
-#endif

@@ -7,8 +7,6 @@
 #import "KiwiConfiguration.h"
 #import "KWBlock.h"
 
-#if KW_BLOCKS_ENABLED
-
 @class KWCallSite;
 
 #pragma mark -
@@ -33,5 +31,3 @@ void beforeEachWithCallSite(KWCallSite *aCallSite, KWVoidBlock aBlock);
 void afterEachWithCallSite(KWCallSite *aCallSite, KWVoidBlock aBlock);
 void itWithCallSite(KWCallSite *aCallSite, NSString *aDescription, KWVoidBlock aBlock);
 void pendingWithCallSite(KWCallSite *aCallSite, NSString *aDescription, KWVoidBlock ignoredBlock);
-
-#endif // #if KW_BLOCKS_ENABLED

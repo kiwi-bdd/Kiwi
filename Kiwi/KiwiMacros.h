@@ -43,20 +43,18 @@
         })
 #endif // #if defined(__GNUC__)
 
-#if KW_BLOCKS_ENABLED
 // Example group declarations.
-    #define SPEC_BEGIN(name) \
-        \
-        @interface name : KWSpec \
-        \
-        @end \
-        \
-        @implementation name \
-        \
-        - (void)buildExampleGroups { \
+#define SPEC_BEGIN(name) \
+    \
+    @interface name : KWSpec \
+    \
+    @end \
+    \
+    @implementation name \
+    \
+    - (void)buildExampleGroups { \
 
-    #define SPEC_END \
-        } \
-        \
-        @end
-#endif // #if KW_BLOCKS_ENABLED
+#define SPEC_END \
+    } \
+    \
+    @end

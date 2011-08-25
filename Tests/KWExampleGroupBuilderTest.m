@@ -8,7 +8,7 @@
 #import "KiwiTestConfiguration.h"
 #import "TestClasses.h"
 
-#if KW_TESTS_ENABLED && KW_BLOCKS_ENABLED
+#if KW_TESTS_ENABLED
 
 @interface KWExampleGroupBuilderTest : SenTestCase
 
@@ -59,4 +59,4 @@
 
 @end
 
-#endif // #if KW_TESTS_ENABLED && KW_BLOCKS_ENABLED
+#endif // #if KW_TESTS_ENABLED

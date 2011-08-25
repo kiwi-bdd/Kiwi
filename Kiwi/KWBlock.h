@@ -6,8 +6,6 @@
 
 #import "KiwiConfiguration.h"
 
-#if KW_BLOCKS_ENABLED
-
 typedef void (^KWVoidBlock)(void);
 
 @interface KWBlock : NSObject {
@@ -33,5 +31,3 @@ typedef void (^KWVoidBlock)(void);
 
 KWBlock *theBlock(KWVoidBlock aBlock);
 KWBlock *lambda(KWVoidBlock aBlock);
-
-#endif // #if KW_BLOCKS_ENABLED

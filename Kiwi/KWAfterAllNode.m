@@ -7,8 +7,6 @@
 #import "KWAfterAllNode.h"
 #import "KWExampleNodeVisitor.h"
 
-#if KW_BLOCKS_ENABLED
-
 @implementation KWAfterAllNode
 
 #pragma mark -
@@ -26,5 +24,3 @@
 }
 
 @end
-
-#endif // #if KW_BLOCKS_ENABLED
