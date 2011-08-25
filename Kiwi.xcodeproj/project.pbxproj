@@ -445,7 +445,7 @@
 		F5E9FC8B11AE6F050089BACE /* KWBlockRaiseMatcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KWBlockRaiseMatcher.m; sourceTree = "<group>"; };
 		F5ECAEE3116711D200B0BEEF /* ExampleTestCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExampleTestCase.m; sourceTree = "<group>"; };
 		F5F0B61111686CFD00550029 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
-		F5F5C69E117CAA8800C5F133 /* Readme.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Readme.txt; sourceTree = "<group>"; };
+		F5F5C69E117CAA8800C5F133 /* Readme.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Readme.md; sourceTree = "<group>"; };
 		F5F5C69F117CAA9900C5F133 /* License.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = License.txt; sourceTree = "<group>"; };
 		F5F746ED11B327EC000CA15C /* KWReporting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KWReporting.h; sourceTree = "<group>"; };
 		F5F7470E11B328F1000CA15C /* TestReporter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestReporter.h; sourceTree = "<group>"; };
@@ -876,7 +876,7 @@
 			children = (
 				9F324E9112DFB17200A871F1 /* Contributors.txt */,
 				F5F5C69F117CAA9900C5F133 /* License.txt */,
-				F5F5C69E117CAA8800C5F133 /* Readme.txt */,
+				F5F5C69E117CAA8800C5F133 /* Readme.md */,
 			);
 			name = Documentation;
 			sourceTree = "<group>";
