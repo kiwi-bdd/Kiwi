@@ -1463,7 +1463,7 @@
 					"-framework",
 					UIKit,
 				);
-				PRODUCT_NAME = KiwiBuildSpecs;
+				PRODUCT_NAME = KiwiTests;
 				RUN_CLANG_STATIC_ANALYZER = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = octest;
