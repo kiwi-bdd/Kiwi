@@ -13,20 +13,12 @@
 
 + (id)objectWithObjectPointer:(id *)pointer;
 {
-  return [[[self alloc] initWithObjectPointer:pointer] autorelease];
+  return [self futureObjectWithBlock:^{ return *pointer; }];
 }
 
-+ (id)objectWithReturnValueOfBlock:(KWFutureObjectBlock)block;
++ (id)futureObjectWithBlock:(KWFutureObjectBlock)block;
 {
   return [[[self alloc] initWithBlock:block] autorelease];
-}
-
-- (id)initWithObjectPointer:(id *)pointer;
-{
-  if ((self = [super init])) {
-    objectPointer = pointer;
-  }
-  return self;
 }
 
 - (id)initWithBlock:(KWFutureObjectBlock)aBlock;
@@ -39,10 +31,7 @@
 
 - (id)object;
 {
-  if (block) {
-    return block();
-  }
-  return *objectPointer;
+  return block();
 }
 
 - (void)dealloc
