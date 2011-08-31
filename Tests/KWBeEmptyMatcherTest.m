@@ -38,6 +38,13 @@
     STAssertFalse([matcher evaluate], @"expected negative match");
 }
 
+
+- (void)testItShouldHaveHumanReadableDescription
+{
+  id matcher = [KWBeEmptyMatcher matcherWithSubject:nil];
+  STAssertEqualObjects(@"be empty", [matcher description], @"description should match");
+}
+
 @end
 
 #endif // #if KW_TESTS_ENABLED

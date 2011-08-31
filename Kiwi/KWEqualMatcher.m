@@ -64,6 +64,11 @@
                                       [KWFormatter formatObject:self.otherSubject]];
 }
 
+- (NSString *)description
+{
+  return [NSString stringWithFormat:@"equal %@", [KWFormatter formatObject:self.otherSubject]];
+}
+
 #pragma mark -
 #pragma mark Configuring Matchers
 

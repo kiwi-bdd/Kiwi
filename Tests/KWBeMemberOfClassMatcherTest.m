@@ -38,6 +38,13 @@
     STAssertFalse([matcher evaluate], @"expected negative match");
 }
 
+- (void)testItShouldHaveHumanReadableDescription
+{
+  id matcher = [KWBeMemberOfClassMatcher matcherWithSubject:nil];
+  [matcher beMemberOfClass:[Cruiser class]];
+  STAssertEqualObjects(@"be member of Cruiser", [matcher description], @"description should match");
+}
+
 @end
 
 #endif // #if KW_TESTS_ENABLED

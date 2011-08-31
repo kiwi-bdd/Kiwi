@@ -61,11 +61,16 @@
     if ([self.objects count] == 1)
         return [KWFormatter formatObject:[self.objects objectAtIndex:0]];
 
-    return [KWFormatter formatObject:self.objects];
+    return [NSString stringWithFormat:@"all of %@", [KWFormatter formatObject:self.objects]];
 }
 
 - (NSString *)failureMessageForShould {
     return [NSString stringWithFormat:@"expected subject to contain %@", [self objectsPhrase]];
+}
+
+- (NSString *)description
+{
+  return [NSString stringWithFormat:@"contain %@", [self objectsPhrase]];
 }
 
 #pragma mark -

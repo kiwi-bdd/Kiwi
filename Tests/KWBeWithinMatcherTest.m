@@ -38,6 +38,13 @@
     STAssertFalse([matcher evaluate], @"expected negative match");
 }
 
+- (void)testItShouldHaveHumanReadableDescription
+{
+  id matcher = [KWBeWithinMatcher matcherWithSubject:nil];
+  [matcher beWithin:[KWValue valueWithInt:1] of:[KWValue valueWithInt:40]];
+  STAssertEqualObjects(@"be within 1 of 40", [matcher description], @"description should match");
+}
+
 @end
 
 #endif // #if KW_TESTS_ENABLED

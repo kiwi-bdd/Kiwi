@@ -98,6 +98,11 @@
                                       [[self class] exceptionPhraseWithException:self.actualException]];
 }
 
+- (NSString *)description
+{
+  return [NSString stringWithFormat:@"raise %@ when sent %@", [[self class] exceptionPhraseWithException:self.exception], NSStringFromSelector(self.selector)];
+}
+
 #pragma mark -
 #pragma mark Configuring Matchers
 

@@ -14,6 +14,7 @@
 @synthesize failureMessageForShould;
 @synthesize failureMessageForShouldNot;
 @synthesize matcherBlock;
+@synthesize description;
 
 + (id)matcherWithSubject:(id)aSubject block:(KWUserDefinedMatcherBlock)aBlock
 {
@@ -24,6 +25,7 @@
 {
     if ((self = [super initWithSubject:aSubject])) {
         matcherBlock = [aBlock copy];
+        self.description = @"match user defined matcher";
     }
     return self;
 }
@@ -146,6 +148,12 @@
     failureMessageForShouldNotBlock = [block copy];
 }
 
+- (void)description:(NSString *)aDescription
+{
+    [description release];
+    description = [aDescription copy];
+}
+
 #pragma mark -
 #pragma mark Buiding The Matcher
 
@@ -158,6 +166,10 @@
     
     if (failureMessageForShouldNotBlock) {
         [matcher setFailureMessageForShouldNot:failureMessageForShouldNotBlock(subject)];
+    }
+    
+    if (description) {
+        [matcher setDescription:description];
     }
     
     return matcher;

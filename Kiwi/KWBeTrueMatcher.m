@@ -47,6 +47,14 @@
                                        expectedValue ? @"true" : @"false"];
 }
 
+- (NSString *)description
+{
+  if (self.expectedValue == YES) {
+    return @"be true";
+  }
+  return @"be false";
+}
+
 #pragma mark -
 #pragma mark Configuring Matchers
 

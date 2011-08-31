@@ -23,6 +23,7 @@ typedef BOOL (^KWUserDefinedMatcherBlock)();
 @property (nonatomic, copy) NSString *failureMessageForShould;
 @property (nonatomic, copy) NSString *failureMessageForShouldNot;
 @property (nonatomic, assign) KWUserDefinedMatcherBlock matcherBlock;
+@property (nonatomic, copy) NSString *description;
 
 + (id)matcherWithSubject:(id)aSubject block:(KWUserDefinedMatcherBlock)aBlock;
 - (id)initWithSubject:(id)aSubject block:(KWUserDefinedMatcherBlock)aBlock;
@@ -38,6 +39,7 @@ typedef NSString * (^KWUserDefinedMatcherMessageBlock)(id);
     KWUserDefinedMatcher *matcher;
     KWUserDefinedMatcherMessageBlock failureMessageForShouldBlock;
     KWUserDefinedMatcherMessageBlock failureMessageForShouldNotBlock;
+    NSString *description;
 }
 @property (nonatomic, readonly) NSString *key;
 
@@ -51,6 +53,7 @@ typedef NSString * (^KWUserDefinedMatcherMessageBlock)(id);
 - (void)match:(KWUserDefinedMatcherBlock)block;
 - (void)failureMessageForShould:(KWUserDefinedMatcherMessageBlock)block;
 - (void)failureMessageForShouldNot:(KWUserDefinedMatcherMessageBlock)block;
+- (void)description:(NSString *)description;
 
 #pragma mark -
 #pragma mark Buiding The Matcher

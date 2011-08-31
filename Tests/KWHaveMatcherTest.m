@@ -107,6 +107,39 @@
     STAssertTrue([matcher evaluate], @"expected positive match");
 }
 
+- (void)testItShouldHaveHumanReadableDescription
+{
+    id matcher = [KWHaveMatcher matcherWithSubject:nil];
+    
+    // simple matchers
+
+    [matcher haveCountOf:3];
+    STAssertEqualObjects([matcher description], @"have 3 items", @"should have correct description");
+    
+    [matcher haveCountOfAtLeast:3];
+    STAssertEqualObjects([matcher description], @"have at least 3 items", @"should have correct description");
+    
+    [matcher haveCountOfAtMost:3];
+    STAssertEqualObjects([matcher description], @"have at most 3 items", @"should have correct description");
+    
+    // invocation matchers
+    
+    id subject = [Cruiser cruiser];
+    [subject setFighters:[NSArray arrayWithObjects:[Fighter fighterWithCallsign:@"Viper 1"],
+                          [Fighter fighterWithCallsign:@"Viper 2"],
+                          [Fighter fighterWithCallsign:@"Viper 3"], nil]];
+    NSInvocation *invocation = [NSInvocation invocationWithTarget:subject selector:@selector(fighters)];
+    
+    [matcher have:3 itemsForInvocation:invocation];
+    STAssertEqualObjects([matcher description], @"have 3 fighters", @"should have correct description");
+
+    [matcher haveAtLeast:3 itemsForInvocation:invocation];
+    STAssertEqualObjects([matcher description], @"have at least 3 fighters", @"should have correct description");
+    
+    [matcher haveAtMost:3 itemsForInvocation:invocation];
+    STAssertEqualObjects([matcher description], @"have at most 3 fighters", @"should have correct description");
+}
+
 @end
 
 #endif // #if KW_TESTS_ENABLED

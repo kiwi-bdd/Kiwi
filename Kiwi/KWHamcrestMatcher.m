@@ -39,6 +39,11 @@
   return [NSString stringWithFormat:@"expected subject to match %@", self.matcher];
 }
 
+- (NSString *)description
+{
+  return [NSString stringWithFormat:@"match %@", [self.matcher description]];
+}
+
 #pragma mark -
 #pragma mark Getting Matcher Strings
 

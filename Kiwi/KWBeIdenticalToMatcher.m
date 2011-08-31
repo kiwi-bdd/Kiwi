@@ -62,6 +62,11 @@
                                       self.otherSubject];
 }
 
+- (NSString *)description
+{
+  return [NSString stringWithFormat:@"be identical to %@", self.otherSubject];
+}
+
 #pragma mark -
 #pragma mark Configuring Matchers
 

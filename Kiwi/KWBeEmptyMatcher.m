@@ -65,6 +65,11 @@
     return @"expected subject not to be empty";
 }
 
+- (NSString *)description
+{
+  return @"be empty";
+}
+
 #pragma mark -
 #pragma mark Configuring Matchers
 

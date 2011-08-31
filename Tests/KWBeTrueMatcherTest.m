@@ -59,6 +59,15 @@
     STAssertTrue([matcher evaluate], @"expected positive match");
 }
 
+- (void)testItShouldHaveHumanReadableDescription
+{
+  id matcher = [KWBeTrueMatcher matcherWithSubject:nil];
+  [matcher beTrue];
+  STAssertEqualObjects(@"be true", [matcher description], @"description should match");
+  [matcher beFalse];
+  STAssertEqualObjects(@"be false", [matcher description], @"description should match");
+}
+
 @end
 
 #endif // #if KW_TESTS_ENABLED
