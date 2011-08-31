@@ -32,3 +32,5 @@ void beforeEachWithCallSite(KWCallSite *aCallSite, KWVoidBlock aBlock);
 void afterEachWithCallSite(KWCallSite *aCallSite, KWVoidBlock aBlock);
 void itWithCallSite(KWCallSite *aCallSite, NSString *aDescription, KWVoidBlock aBlock);
 void pendingWithCallSite(KWCallSite *aCallSite, NSString *aDescription, KWVoidBlock ignoredBlock);
+
+#define xit(...) pending(__VA_ARGS__)

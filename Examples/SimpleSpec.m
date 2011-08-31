@@ -31,6 +31,8 @@ describe(@"stack", ^{
             });
           
             specify(^{ [[arr should] haveCountOf:2]; });
+          
+            xit(@"has some funky behaviour", ^{});
         });
     });
 });
