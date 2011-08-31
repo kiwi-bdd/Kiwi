@@ -19,7 +19,7 @@ const float nanosecondToSeconds = 1e9;
 it(@"should verify asynchronous expectations on a variable that starts as nil that succeed in time", ^{
   __block NSString *fetchedData = nil;
   
-  dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 0.5 * nanosecondToSeconds), dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
+  dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 0.1 * nanosecondToSeconds), dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
     fetchedData = @"expected response data";
   });
   
@@ -30,7 +30,7 @@ it(@"should verify asynchronous expectations on a variable that starts as nil th
 it(@"should verify asynchronous expectations on a variable that starts as nil that succeed with an explicit time", ^{
   __block NSString *fetchedData = nil;
   
-  dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 0.5 * nanosecondToSeconds), dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
+  dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 0.1 * nanosecondToSeconds), dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
     fetchedData = @"expected response data";
   });
   
@@ -41,11 +41,11 @@ it(@"should verify asynchronous expectations on a variable that starts as nil th
 it(@"should verify asynchronous expectations on the return value of a block", ^{
   __block NSString *fetchedData = nil;
   
-  dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 0.5 * nanosecondToSeconds), dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
+  dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 0.1 * nanosecondToSeconds), dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
     fetchedData = @"expected response data";
   });
   
-  [[theReturnValueOfBlock(^{ return [fetchedData uppercaseString]; }) shouldEventually] equal:@"EXPECTED RESPONSE DATA"];
+  [[expectFutureValue([fetchedData uppercaseString]) shouldEventually] equal:@"EXPECTED RESPONSE DATA"];
 });
 
 it(@"should verify asynchronous mock expectations on an existing object set before the asynchronous call", ^{
@@ -53,7 +53,7 @@ it(@"should verify asynchronous mock expectations on an existing object set befo
   
   [[[mock shouldEventually] receive] uppercaseString];
   
-  dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 0.5 * nanosecondToSeconds), dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
+  dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 0.1 * nanosecondToSeconds), dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
     [mock uppercaseString];
   });
 });
@@ -61,7 +61,7 @@ it(@"should verify asynchronous mock expectations on an existing object set befo
 it(@"should verify asynchronous mock expectations on an existing object set after the asynchronous call", ^{
   __block id mock = [KWMock mockForClass:[NSString class]];
   
-  dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 0.5 * nanosecondToSeconds), dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
+  dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 0.1 * nanosecondToSeconds), dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
     [mock uppercaseString];
   });
   
@@ -71,7 +71,7 @@ it(@"should verify asynchronous mock expectations on an existing object set afte
 it(@"should verify asynchronous expectations on a variable that starts as nil and becomes not-nil", ^{
   __block NSString *fetchedData = nil;
   
-  dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 0.5 * nanosecondToSeconds), dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
+  dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 0.1 * nanosecondToSeconds), dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
     fetchedData = @"expected response data";
   });
   
@@ -82,7 +82,7 @@ it(@"should verify asynchronous expectations on a variable that starts as nil an
 it(@"should verify asynchronous expectations on a variable that starts as non-nil and becomes nil", ^{
   __block NSString *fetchedData = @"not nil";
   
-  dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 0.5 * nanosecondToSeconds), dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
+  dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 0.1 * nanosecondToSeconds), dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
     fetchedData = nil;
   });
   
