@@ -2,7 +2,7 @@
 Kiwi is a Behavior Driven Development library for iOS development.
 The goal is to provide a BDD library that is exquisitely simple to setup and use.
 
-Ping me at @alding and let me know what you are using Kiwi for.
+Ping us at @alding or @lukeredpath and let us know what you are using Kiwi for.
 
 Requirements:
 
