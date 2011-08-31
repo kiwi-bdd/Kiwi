@@ -39,6 +39,11 @@ Kiwi is open source software. You may freely distribute it under the terms of
 the license agreement found in __License.txt__.
 
 # Contributing #
+Kiwi is maintained by:
+
+ * Allen Ding (@alding)
+ * Luke Redpath (@lukeredpath)
+ 
 Pull requests welcome. Significant contributors are listed in __Contributors.txt__.
 
 # Getting it #
