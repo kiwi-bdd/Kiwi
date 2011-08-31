@@ -102,8 +102,6 @@ Class KWRealClassForClass(Class aClass) {
 #pragma mark -
 #pragma mark Enabling Intercepting
 
-extern Class *__CFRuntimeObjCClassTable;
-
 static BOOL IsTollFreeBridged(Class class, id obj)
 {
     // this is a naive check, but good enough for the purposes of failing fast
