@@ -40,7 +40,7 @@
 
 - (NSString *)description
 {
-  return [NSString stringWithFormat:@"<a string with prefix '%@'>", prefix];
+  return [NSString stringWithFormat:@"a string with prefix '%@'", prefix];
 }
 
 @end

@@ -9,6 +9,7 @@
 #import "KWHaveValueMatcher.h"
 #import "KWHamrestMatchingAdditions.h"
 #import "KWHCMatcher.h"
+#import "KWFormatter.h"
 
 @interface KWHaveValueMatcher()
 
@@ -85,6 +86,29 @@
     value = [self.subject valueForKeyPath:self.expectedKeyPath];
   }
   return value;
+}
+
+- (NSString *)description
+{
+  NSString *keyDescription = nil;
+  
+  if (self.expectedKey) {
+    keyDescription = [NSString stringWithFormat:@"key %@", [KWFormatter formatObject:self.expectedKey]];
+  }
+  else {
+    keyDescription = [NSString stringWithFormat:@"keypath %@", [KWFormatter formatObject:self.expectedKeyPath]];
+  }
+  
+  NSString *valueDescription = nil;
+  
+  if (self.expectedValue) {
+    valueDescription = [NSString stringWithFormat:@"value %@", [KWFormatter formatObject:self.expectedValue]];
+  }
+  else {
+    valueDescription = @"value"; 
+  }
+  
+  return [NSString stringWithFormat:@"have %@ for %@", valueDescription, keyDescription];
 }
 
 #pragma mark -

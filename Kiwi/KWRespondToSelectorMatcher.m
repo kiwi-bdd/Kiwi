@@ -41,8 +41,13 @@
 #pragma mark Getting Failure Messages
 
 - (NSString *)failureMessageForShould {
-    return [NSString stringWithFormat:@"expected subject to respond -%@",
+    return [NSString stringWithFormat:@"expected subject to respond to -%@",
                                       NSStringFromSelector(self.selector)];
+}
+
+- (NSString *)description
+{
+  return [NSString stringWithFormat:@"respond to -%@", NSStringFromSelector(self.selector)];
 }
 
 #pragma mark -

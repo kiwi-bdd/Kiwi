@@ -38,6 +38,13 @@
     STAssertFalse([matcher evaluate], @"expected negative match");
 }
 
+- (void)testItShouldHaveHumanReadableDescription
+{
+  id matcher = [KWRespondToSelectorMatcher matcherWithSubject:theValue(123)];
+  [matcher respondToSelector:@selector(setObject:forKey:)];
+  STAssertEqualObjects(@"respond to -setObject:forKey:", [matcher description], @"description should match");
+}
+
 @end
 
 #endif // #if KW_TESTS_ENABLED

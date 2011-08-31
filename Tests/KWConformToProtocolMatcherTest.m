@@ -38,6 +38,13 @@
     STAssertFalse([matcher evaluate], @"expected negative match");
 }
 
+- (void)testItShouldHaveHumanReadableDescription
+{
+    id matcher = [KWConformToProtocolMatcher matcherWithSubject:nil];
+    [matcher conformToProtocol:@protocol(JumpCapable)];
+    STAssertEqualObjects(@"conform to JumpCapable protocol", [matcher description], @"description should match");
+}
+
 @end
 
 #endif // #if KW_TESTS_ENABLED

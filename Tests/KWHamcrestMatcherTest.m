@@ -32,6 +32,13 @@
     STAssertFalse([matcher evaluate], @"expected negative match");
 }
 
+- (void)testItShouldHaveHumanReadableDescription
+{
+    id matcher = [KWHamcrestMatcher matcherWithSubject:nil];
+    [matcher match:hasPrefix(@"Alpha")];
+    STAssertEqualObjects(@"match a string with prefix 'Alpha'", [matcher description], @"description should match");
+}
+
 @end
 
 #endif

@@ -118,4 +118,9 @@
     self.exception = [NSException exceptionWithName:aName reason:aReason userInfo:nil];
 }
 
+- (NSString *)description
+{
+  return [NSString stringWithFormat:@"raise %@", [[self class] exceptionPhraseWithException:self.exception]];
+}
+
 @end

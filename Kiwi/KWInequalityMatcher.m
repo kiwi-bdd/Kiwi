@@ -91,6 +91,11 @@
                                       [KWFormatter formatObject:self.subject]];
 }
 
+- (NSString *)description
+{
+  return [NSString stringWithFormat:@"be %@ %@", [self comparisonPhrase], [KWFormatter formatObject:self.otherValue]];
+}
+
 #pragma mark -
 #pragma mark Configuring Matchers
 

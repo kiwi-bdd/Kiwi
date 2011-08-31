@@ -152,6 +152,14 @@ static NSString * const CountKey = @"CountKey";
 }
 
 #pragma mark -
+#pragma mark Description
+
+- (NSString *)description
+{
+  return [NSString stringWithFormat:@"%@ %u %@", [self verbPhrase], self.count, [self itemPhrase]];
+}
+
+#pragma mark -
 #pragma mark Configuring Matchers
 
 - (void)haveCountOf:(NSUInteger)aCount {

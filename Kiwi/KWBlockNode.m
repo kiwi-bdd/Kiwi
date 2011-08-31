@@ -41,7 +41,7 @@
 #pragma mark -
 #pragma mark Getting Descriptions
 
-@synthesize description;
+@synthesize description = _description;
 
 #pragma mark -
 #pragma mark Accepting Visitors

@@ -94,6 +94,11 @@
                                       [KWFormatter formatObject:self.subject]];
 }
 
+- (NSString *)description
+{
+  return [NSString stringWithFormat:@"be within %@ of %@", self.distance, self.otherValue];
+}
+
 #pragma mark -
 #pragma mark Configuring Matchers
 

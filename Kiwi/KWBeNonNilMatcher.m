@@ -38,6 +38,11 @@
           [KWFormatter formatObject:self.subject]];
 }
 
+- (NSString *)description
+{
+  return @"be non-nil";
+}
+
 - (void)beNonNil {}
 
 @end

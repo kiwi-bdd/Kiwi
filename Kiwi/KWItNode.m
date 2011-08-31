@@ -6,8 +6,12 @@
 
 #import "KWItNode.h"
 #import "KWExampleNodeVisitor.h"
+#import "KWSpec.h"
+#import "KWVerifying.h"
 
 @implementation KWItNode
+
+@synthesize spec;
 
 #pragma mark -
 #pragma mark Initializing
@@ -21,6 +25,18 @@
 
 - (void)acceptExampleNodeVisitor:(id<KWExampleNodeVisitor>)aVisitor {
     [aVisitor visitItNode:self];
+}
+
+#pragma mark -
+#pragma mark Runtime Description support
+
+- (NSString *)description
+{
+  NSString *description = [super description];
+  if (description == nil) {
+    description = [self.spec generateDescriptionForAnonymousItNode];
+  }
+  return description;
 }
 
 @end

@@ -29,8 +29,9 @@
 #define waitFor attachToVerifier:KW_ADD_ASYNC_VERIFIER(KWExpectationTypeMaybe, kKW_DEFAULT_PROBE_TIMEOUT)
 
 // used to wrap a pointer to an object that will change in the future (used with shouldEventually)
-#define theObject(objectPtr) [KWFutureObject objectWithObjectPointer:objectPtr]
-#define theReturnValueOfBlock(block) [KWFutureObject objectWithReturnValueOfBlock:block]
+#define theObject(objectPtr) [KWFutureObject objectWithObjectPointer:objectPtr] // DEPRECATED
+#define theReturnValueOfBlock(block) [KWFutureObject futureObjectWithBlock:block] // DEPRECATED
+#define expectFutureValue(futureValue) [KWFutureObject futureObjectWithBlock:^{ return futureValue; }]
 
 // If a gcc compatible compiler is available, use the statement and
 // declarations in expression extension to provide a convenient catch-all macro

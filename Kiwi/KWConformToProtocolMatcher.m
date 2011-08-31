@@ -41,8 +41,13 @@
 #pragma mark Getting Failure Messages
 
 - (NSString *)failureMessageForShould {
-    return [NSString stringWithFormat:@"expected subject to conform to %@",
+    return [NSString stringWithFormat:@"expected subject to conform to %@ protocol",
                                       NSStringFromProtocol(self.protocol)];
+}
+
+- (NSString *)description
+{
+  return [NSString stringWithFormat:@"conform to %@ protocol", NSStringFromProtocol(self.protocol)];
 }
 
 #pragma mark -

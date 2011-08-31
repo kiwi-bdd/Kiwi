@@ -45,6 +45,11 @@
                                       NSStringFromClass(self.targetClass)];
 }
 
+- (NSString *)description
+{
+  return [NSString stringWithFormat:@"be member of %@", self.targetClass];
+}
+
 #pragma mark -
 #pragma mark Configuring Matchers
 

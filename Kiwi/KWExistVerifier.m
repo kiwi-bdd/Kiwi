@@ -45,6 +45,14 @@
     [super dealloc];
 }
 
+- (NSString *)descriptionForAnonymousItNode
+{
+  if (self.expectationType == KWExpectationTypeShould) {
+    return @"should exist";
+  }
+  return @"should not exist";
+}
+
 #pragma mark -
 #pragma mark Properties
 

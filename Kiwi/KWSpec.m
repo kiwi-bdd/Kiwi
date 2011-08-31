@@ -234,6 +234,8 @@
 - (void)visitItNode:(KWItNode *)aNode {
     if (aNode.block == nil)
         return;
+  
+    aNode.spec = self;
     
     @try {
         for (KWContextNode *contextNode in self.exampleNodeStack) {
@@ -253,9 +255,16 @@
 #endif // #if KW_TARGET_HAS_INVOCATION_EXCEPTION_BUG 
             
             // Finish verifying and clear
-            for (id<KWVerifying> verifier in self.verifiers)
-                [verifier exampleWillEnd];    
+            for (id<KWVerifying> verifier in self.verifiers) {
+              [verifier exampleWillEnd];
+            }
+                
         } @catch (NSException *exception) {
+            if (aNode.description == nil) {
+              // anonymous specify blocks should only have one verifier, but use the first in any case
+              aNode.description = [[self.verifiers objectAtIndex:0] descriptionForAnonymousItNode];
+            }
+          
             KWFailure *failure = [KWFailure failureWithCallSite:aNode.callSite format:@"%@ \"%@\" raised",
                                                                                       [exception name],
                                                                                       [exception reason]];
@@ -287,6 +296,11 @@
     [self.exampleNodeStack addObject:aNode];
     NSLog(@"\"%@\" PENDING", [self descriptionForExampleContext]);
     [self.exampleNodeStack removeLastObject];
+}
+
+- (NSString *)generateDescriptionForAnonymousItNode
+{
+  return [[self.verifiers objectAtIndex:0] descriptionForAnonymousItNode];
 }
 
 #pragma mark -

@@ -79,6 +79,23 @@
     STAssertFalse([matcher evaluate], @"expected negative match");
 }
 
+- (void)testItShouldHaveHumanReadableDescription
+{
+  id matcher = [KWInequalityMatcher matcherWithSubject:theValue(123)];
+
+  [matcher beLessThan:[KWValue valueWithInt:10]];
+  STAssertEqualObjects(@"be < 10", [matcher description], @"description should match");
+  
+  [matcher beLessThanOrEqualTo:[KWValue valueWithInt:10]];
+  STAssertEqualObjects(@"be <= 10", [matcher description], @"description should match");
+  
+  [matcher beGreaterThan:[KWValue valueWithInt:10]];
+  STAssertEqualObjects(@"be > 10", [matcher description], @"description should match");
+  
+  [matcher beGreaterThanOrEqualTo:[KWValue valueWithInt:10]];
+  STAssertEqualObjects(@"be >= 10", [matcher description], @"description should match");
+}
+
 @end
 
 #endif // #if KW_TESTS_ENABLED

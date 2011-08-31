@@ -40,4 +40,9 @@
 
 - (void)beNil {}
 
+- (NSString *)description
+{
+  return @"be nil";
+}
+
 @end

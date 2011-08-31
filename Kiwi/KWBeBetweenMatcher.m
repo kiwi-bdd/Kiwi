@@ -64,6 +64,11 @@
                                       [KWFormatter formatObject:self.subject]];
 }
 
+- (NSString *)description
+{
+  return [NSString stringWithFormat:@"be between %@ and %@", self.lowerEndpoint, self.upperEndpoint];
+}
+
 #pragma mark -
 #pragma mark Configuring Matchers
 

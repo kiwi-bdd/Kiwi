@@ -43,4 +43,9 @@
 
 - (void)buildExampleGroups;
 
+#pragma mark - 
+#pragma mark Anonymous It Node Descriptions
+
+- (NSString *)generateDescriptionForAnonymousItNode;
+
 @end

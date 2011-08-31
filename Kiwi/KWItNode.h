@@ -9,8 +9,11 @@
 #import "KWExampleNode.h"
 
 @class KWPendingNode;
+@class KWSpec;
 
 @interface KWItNode : KWBlockNode<KWExampleNode>
+
+@property (nonatomic, assign) KWSpec *spec;
 
 #pragma mark -
 #pragma mark Initializing
