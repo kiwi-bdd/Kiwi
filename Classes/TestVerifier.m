@@ -35,4 +35,9 @@
     self.notifiedOfEndOfExample = YES;
 }
 
+- (NSString *)descriptionForAnonymousItNode
+{
+  return @"";
+}
+
 @end

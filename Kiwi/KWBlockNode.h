@@ -29,7 +29,7 @@
 #pragma mark -
 #pragma mark Getting Descriptions
 
-@property (nonatomic, readonly) NSString *description;
+@property (nonatomic, copy) NSString *description;
 
 #pragma mark -
 #pragma mark Getting Blocks

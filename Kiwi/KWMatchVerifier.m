@@ -21,10 +21,13 @@
 #pragma mark Properties
 
 @property (nonatomic, readwrite, retain) id<KWMatching> endOfExampleMatcher;
+@property (nonatomic, readwrite, retain) id<KWMatching> matcher;
 
 @end
 
 @implementation KWMatchVerifier
+
+@synthesize matcher;
 
 #pragma mark -
 #pragma mark Initializing
@@ -55,8 +58,24 @@
 - (void)dealloc {
     [subject release];
     [callSite release];
+    [matcher release];
     [endOfExampleMatcher release];
     [super dealloc];
+}
+
+- (NSString *)descriptionForAnonymousItNode
+{
+  NSString *typeString = @"";
+  
+  switch (self.expectationType) {
+    case KWExpectationTypeShould:
+      typeString = @"should";
+      break;
+    case KWExpectationTypeShouldNot:
+      typeString = @"should not";
+  }
+  id<KWMatching> actualMatcher = (self.endOfExampleMatcher == nil) ? self.matcher : self.endOfExampleMatcher;
+  return [NSString stringWithFormat:@"%@ %@", typeString, actualMatcher];
 }
 
 #pragma mark -
@@ -126,14 +145,14 @@
     @try {
 #endif // #if KW_TARGET_HAS_INVOCATION_EXCEPTION_BUG
 
-    id matcher = [self.matcherFactory matcherFromInvocation:anInvocation subject:self.subject];
+    self.matcher = (id<KWMatching>)[self.matcherFactory matcherFromInvocation:anInvocation subject:self.subject];
     
-    if (matcher == nil) {
+    if (self.matcher == nil) {
       KWFailure *failure = [KWFailure failureWithCallSite:self.callSite format:@"could not create matcher for -%@",
                  NSStringFromSelector(anInvocation.selector)];
       [self.reporter reportFailure:failure];
     }
-    [anInvocation invokeWithTarget:matcher];
+    [anInvocation invokeWithTarget:self.matcher];
 
 #if KW_TARGET_HAS_INVOCATION_EXCEPTION_BUG
     // A matcher might have set an exception within the -invokeWithTarget, so
@@ -142,10 +161,13 @@
     [exception raise];
 #endif // #if KW_TARGET_HAS_INVOCATION_EXCEPTION_BUG        
         
-    if ([matcher respondsToSelector:@selector(shouldBeEvaluatedAtEndOfExample)] && [matcher shouldBeEvaluatedAtEndOfExample])
-        self.endOfExampleMatcher = matcher;
-    else
-        [self verifyWithMatcher:matcher];
+    if ([self.matcher respondsToSelector:@selector(shouldBeEvaluatedAtEndOfExample)] && [self.matcher shouldBeEvaluatedAtEndOfExample]) {
+        self.endOfExampleMatcher = self.matcher;
+        self.matcher = nil;
+    }
+    else {
+        [self verifyWithMatcher:self.matcher];
+    }
     
 #if KW_TARGET_HAS_INVOCATION_EXCEPTION_BUG
     } @catch (NSException *exception) {

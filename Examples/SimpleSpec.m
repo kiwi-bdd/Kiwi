@@ -22,15 +22,15 @@ describe(@"stack", ^{
                 [arr addObject:@"dolphin"];
             });
             
-            it(@"has 2 items", ^{
-                [[arr should] contain:@"dolphin"];
-                arr = nil;
+            it(@"has the first item", ^{
+                [[arr should] contain:@"shark"];
             });
             
-            it(@"has 2 items", ^{
+            it(@"has the second item", ^{
                 [[arr should] contain:@"dolphin"];
-                arr = nil;
             });
+          
+            specify(^{ [[arr should] haveCountOf:2]; });
         });
     });
 });
