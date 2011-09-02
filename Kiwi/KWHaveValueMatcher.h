@@ -11,7 +11,7 @@
 
 @interface KWHaveValueMatcher : KWMatcher {
 @private
-  
+
   NSString *expectedKey;
   NSString *expectedKeyPath;
   id expectedValue;

@@ -96,15 +96,15 @@
 
   [matcher haveValueForKey:@"callsign"];
   STAssertEqualObjects(@"have value for key \"callsign\"", [matcher description], @"description should match");
-  
+
   [matcher haveValue:@"alpha" forKey:@"callsign"];
   STAssertEqualObjects(@"have value \"alpha\" for key \"callsign\"", [matcher description], @"description should match");
-  
+
   matcher = [KWHaveValueMatcher matcherWithSubject:nil];
-  
+
   [matcher haveValueForKeyPath:@"engine.model"];
   STAssertEqualObjects(@"have value for keypath \"engine.model\"", [matcher description], @"description should match");
-  
+
   [matcher haveValue:@"version-one" forKeyPath:@"engine.model"];
   STAssertEqualObjects(@"have value \"version-one\" for keypath \"engine.model\"", [matcher description], @"description should match");
 }

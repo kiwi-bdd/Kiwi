@@ -62,15 +62,15 @@ static NSString * const CountKey = @"CountKey";
 - (id)targetObject {
     if (self.invocation == nil)
         return self.subject;
-    
+
     SEL selector = [self.invocation selector];
-    
+
     if ([self.subject respondsToSelector:selector]) {
         NSMethodSignature *signature = [self.subject methodSignatureForSelector:selector];
-        
+
         if (!KWObjCTypeIsObject([signature methodReturnType]))
             [NSException raise:@"KWMatcherEception" format:@"a valid collection was not specified"];
-        
+
         id object = nil;
         [self.invocation invokeWithTarget:self.subject];
         [self.invocation getReturnValue:&object];
@@ -84,14 +84,14 @@ static NSString * const CountKey = @"CountKey";
 
 - (BOOL)evaluate {
     id targetObject = [self targetObject];
-    
+
     if ([targetObject respondsToSelector:@selector(count)])
         self.actualCount = [targetObject count];
     else if ([targetObject respondsToSelector:@selector(length)])
         self.actualCount = [targetObject length];
     else
         self.actualCount = 0;
-    
+
     switch (self.countType) {
     case KWCountTypeExact:
         return self.actualCount == self.count;
@@ -100,7 +100,7 @@ static NSString * const CountKey = @"CountKey";
     case KWCountTypeAtMost:
         return self.actualCount <= self.count;
     }
-    
+
     assert(0 && "should never reach here");
     return NO;
 }
@@ -117,7 +117,7 @@ static NSString * const CountKey = @"CountKey";
         case KWCountTypeAtMost:
             return @"have at most";
     }
-    
+
     assert(0 && "should never reach here");
     return nil;
 }
@@ -200,10 +200,10 @@ static NSString * const CountKey = @"CountKey";
 
 + (NSMethodSignature *)invocationCapturer:(KWInvocationCapturer *)anInvocationCapturer methodSignatureForSelector:(SEL)aSelector {
     KWMatchVerifier *verifier = [anInvocationCapturer.userInfo objectForKey:MatchVerifierKey];
-    
+
     if ([verifier.subject respondsToSelector:aSelector])
         return [verifier.subject methodSignatureForSelector:aSelector];
-    
+
     // Arbitrary selectors are allowed as expectation expression terminals when
     // the subject itself is a collection, so return a dummy method signature.
     NSString *encoding = KWEncodingForVoidMethod();
@@ -215,7 +215,7 @@ static NSString * const CountKey = @"CountKey";
     id verifier = [userInfo objectForKey:MatchVerifierKey];
     KWCountType countType = [[userInfo objectForKey:CountTypeKey] unsignedIntValue];
     KWCountType count = [[userInfo objectForKey:CountKey] unsignedIntValue];
-    
+
     switch (countType) {
         case KWCountTypeExact:
             [verifier have:count itemsForInvocation:anInvocation];

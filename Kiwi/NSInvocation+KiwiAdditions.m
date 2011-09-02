@@ -25,12 +25,12 @@
     }
 
     NSMethodSignature *signature = [anObject methodSignatureForSelector:aSelector];
-    
+
     if (signature == nil) {
         [NSException raise:NSInvalidArgumentException format:@"%@ - target returned nil for -methodSignatureForSelector",
                                                              NSStringFromSelector(_cmd)];
     }
-    
+
     NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:signature];
     [invocation setTarget:anObject];
     [invocation setSelector:aSelector];
@@ -42,7 +42,7 @@
     va_list argumentList;
     va_start(argumentList, firstBytes);
     const void *bytes = firstBytes;
-    
+
     for (NSUInteger i = 0; i < numberOfMessageArguments && bytes != nil; ++i) {
         [invocation setMessageArgument:bytes atIndex:i];
         bytes = va_arg(argumentList, const void *);
@@ -81,12 +81,12 @@
     va_list argumentList;
     va_start(argumentList, firstBytes);
     const void *bytes = firstBytes;
-    
+
     for (NSUInteger i = 0; i < numberOfMessageArguments && bytes != nil; ++i) {
         [self setMessageArgument:bytes atIndex:i];
         bytes = va_arg(argumentList, const void *);
     }
-    
+
     va_end(argumentList);
 }
 

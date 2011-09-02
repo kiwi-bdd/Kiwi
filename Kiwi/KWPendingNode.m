@@ -17,7 +17,7 @@
         callSite = [aCallSite retain];
         description = [aDescription copy];
     }
-    
+
     return self;
 }
 

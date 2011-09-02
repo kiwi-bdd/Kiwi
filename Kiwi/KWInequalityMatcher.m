@@ -49,9 +49,9 @@
 - (BOOL)evaluate {
     if (![self.subject respondsToSelector:@selector(compare:)])
         [NSException raise:@"KWMatcherException" format:@"subject does not respond to -compare:"];
-    
+
     NSComparisonResult result = [self.subject compare:self.otherValue];
-    
+
     switch (result) {
         case NSOrderedSame:
             return self.inequalityType == KWInequalityTypeLessThanOrEqualTo || self.inequalityType == KWInequalityTypeGreaterThanOrEqualTo;
@@ -60,7 +60,7 @@
         case NSOrderedDescending:
             return self.inequalityType == KWInequalityTypeGreaterThan || self.inequalityType == KWInequalityTypeGreaterThanOrEqualTo;
     }
-    
+
     assert(0 && "should never reach here");
     return NO;
 }
@@ -79,7 +79,7 @@
         case KWInequalityTypeGreaterThanOrEqualTo:
             return @">=";
     }
-    
+
     assert(0 && "should never reach here");
     return nil;
 }

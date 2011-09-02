@@ -92,6 +92,6 @@ NSUInteger KWSelectorParameterCount(SEL selector) {
         if ([selectorString characterAtIndex:i] == ':')
             ++parameterCount;
     }
-    
+
     return parameterCount;
 }

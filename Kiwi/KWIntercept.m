@@ -88,7 +88,7 @@ Class KWInterceptClassForCanonicalClass(Class canonicalClass) {
 
     Class interceptMetaClass = object_getClass(interceptClass);
     class_addMethod(interceptMetaClass, @selector(forwardInvocation:), (IMP)KWInterceptedForwardInvocation, "v@:@");
-    
+
     return interceptClass;
 }
 
@@ -116,7 +116,7 @@ static BOOL IsTollFreeBridged(Class class, id obj)
 
 Class KWSetupObjectInterceptSupport(id anObject) {
     Class objectClass = object_getClass(anObject);
-  
+
     if (IsTollFreeBridged(objectClass, anObject)) {
         [NSException raise:@"KWTollFreeBridgingInterceptException" format:@"Attempted to stub object of class %@. Kiwi does not support setting expectation or stubbing methods on toll-free bridged objects.", NSStringFromClass(objectClass)];
     }
@@ -130,7 +130,7 @@ Class KWSetupObjectInterceptSupport(id anObject) {
     Class interceptClass = objectIsClass ? object_getClass(canonicalInterceptClass) : canonicalInterceptClass;
 
     object_setClass(anObject, interceptClass);
-  
+
     return interceptClass;
 }
 

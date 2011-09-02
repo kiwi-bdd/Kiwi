@@ -51,7 +51,7 @@
         verifiers = [[NSMutableArray alloc] init];
         exampleNodeStack = [[NSMutableArray alloc] init];
     }
-    
+
     return self;
 }
 
@@ -85,7 +85,7 @@
 - (id)addVerifier:(id<KWVerifying>)aVerifier {
     if (![self.verifiers containsObject:aVerifier])
         [self.verifiers addObject:aVerifier];
-    
+
     return aVerifier;
 }
 
@@ -118,18 +118,18 @@
 
 - (NSString *)descriptionForExampleContext {
     NSMutableString *description = [NSMutableString string];
-    
+
     for (id<KWExampleNode> node in self.exampleNodeStack) {
         NSString *nodeDescription = [node description];
-        
+
         if (nodeDescription != nil)
             [description appendFormat:@"%@ ", nodeDescription];
     }
-    
+
     // Remove trailing space
     if ([description length] > 0)
         [description deleteCharactersInRange:NSMakeRange([description length] - 1, 1)];
-    
+
     return description;
 }
 
@@ -137,15 +137,15 @@
     NSString *annotatedFailureMessage = [NSString stringWithFormat:@"\"%@\" FAILED, %@",
                                                                    [self descriptionForExampleContext],
                                                                     aFailure.message];
-    
+
 #if TARGET_IPHONE_SIMULATOR
-    // \uff1a is the unicode for a fill width colon, as opposed to a regular 
+    // \uff1a is the unicode for a fill width colon, as opposed to a regular
     // colon character (':'). This escape is performed so that Xcode doesn't
     // truncate the error output in the build results window, which is running
     // build time specs.
     annotatedFailureMessage = [annotatedFailureMessage stringByReplacingOccurrencesOfString:@":" withString:@"\uff1a"];
 #endif // #if TARGET_IPHONE_SIMULATOR
-    
+
     return [KWFailure failureWithCallSite:aFailure.callSite message:annotatedFailureMessage];
 }
 
@@ -161,12 +161,12 @@
 // should be run on instances of test cases.
 + (NSArray *)testInvocations {
     SEL selector = @selector(buildExampleGroups);
-    
+
     // Only return invocation if the receiver is a concrete spec that has
     // overridden -buildExampleGroups.
     if ([self instanceMethodForSelector:selector] == [KWSpec instanceMethodForSelector:selector])
         return nil;
-    
+
     // Add a single invocation for -runSpec.
     NSString *encoding = KWEncodingForVoidMethod();
     NSMethodSignature *signature = [NSMethodSignature signatureWithObjCTypes:[encoding UTF8String]];
@@ -180,14 +180,14 @@
 
 - (void)visitContextNode:(KWContextNode *)aNode {
     [self.exampleNodeStack addObject:aNode];
-    
+
     @try {
         [aNode.registerMatchersNode acceptExampleNodeVisitor:self];
         [aNode.beforeAllNode acceptExampleNodeVisitor:self];
 
         for (id<KWExampleNode> node in aNode.nodes)
             [node acceptExampleNodeVisitor:self];
-        
+
         [aNode.afterAllNode acceptExampleNodeVisitor:self];
     } @catch (NSException *exception) {
         KWFailure *failure = [KWFailure failureWithCallSite:aNode.callSite format:@"%@ \"%@\" raised",
@@ -195,7 +195,7 @@
                                                                                   [exception reason]];
         [self reportFailure:failure];
     }
-    
+
     [self.exampleNodeStack removeLastObject];
 }
 
@@ -206,76 +206,76 @@
 - (void)visitBeforeAllNode:(KWBeforeAllNode *)aNode {
     if (aNode.block == nil)
         return;
-    
+
     aNode.block();
 }
 
 - (void)visitAfterAllNode:(KWAfterAllNode *)aNode {
     if (aNode.block == nil)
         return;
-    
+
     aNode.block();
 }
 
 - (void)visitBeforeEachNode:(KWBeforeEachNode *)aNode {
     if (aNode.block == nil)
         return;
-    
+
     aNode.block();
 }
 
 - (void)visitAfterEachNode:(KWAfterEachNode *)aNode {
     if (aNode.block == nil)
         return;
-    
+
     aNode.block();
 }
 
 - (void)visitItNode:(KWItNode *)aNode {
     if (aNode.block == nil)
         return;
-  
+
     aNode.spec = self;
-    
+
     @try {
         for (KWContextNode *contextNode in self.exampleNodeStack) {
             if (contextNode.beforeEachNode.block != nil)
                 contextNode.beforeEachNode.block();
         }
-        
+
         // Add it node to the stack
         [self.exampleNodeStack addObject:aNode];
 
         @try {
             aNode.block();
-        
+
 #if KW_TARGET_HAS_INVOCATION_EXCEPTION_BUG
             NSException *invocationException = KWGetAndClearExceptionFromAcrossInvocationBoundary();
             [invocationException raise];
-#endif // #if KW_TARGET_HAS_INVOCATION_EXCEPTION_BUG 
-            
+#endif // #if KW_TARGET_HAS_INVOCATION_EXCEPTION_BUG
+
             // Finish verifying and clear
             for (id<KWVerifying> verifier in self.verifiers) {
               [verifier exampleWillEnd];
             }
-                
+
         } @catch (NSException *exception) {
             if (aNode.description == nil) {
               // anonymous specify blocks should only have one verifier, but use the first in any case
               aNode.description = [[self.verifiers objectAtIndex:0] descriptionForAnonymousItNode];
             }
-          
+
             KWFailure *failure = [KWFailure failureWithCallSite:aNode.callSite format:@"%@ \"%@\" raised",
                                                                                       [exception name],
                                                                                       [exception reason]];
             [self reportFailure:failure];
         }
-        
+
         [self.verifiers removeAllObjects];
-        
+
         // Remove it node from the stack
         [self.exampleNodeStack removeLastObject];
-        
+
         for (KWContextNode *contextNode in self.exampleNodeStack) {
             if (contextNode.afterEachNode.block != nil)
                 contextNode.afterEachNode.block();
@@ -286,7 +286,7 @@
                                                                                   [exception reason]];
         [self reportFailure:failure];
     }
-    
+
     // Always clear stubs and spies at the end of it blocks
     KWClearAllMessageSpies();
     KWClearAllObjectStubs();
@@ -308,23 +308,23 @@
 
 - (void)runSpec {
     NSAutoreleasePool *subPool = [[NSAutoreleasePool alloc] init];
-    
+
     @try {
         [self configureEnvironment];
-        
+
         // Build example group
         [[KWExampleGroupBuilder sharedExampleGroupBuilder] startExampleGroups];
         [self buildExampleGroups];
         KWContextNode *exampleGroup = [[KWExampleGroupBuilder sharedExampleGroupBuilder] endExampleGroups];
-        
+
         // Interpret example group
         [exampleGroup acceptExampleNodeVisitor:self];
-        
+
         [self cleanupEnvironment];
     } @catch (NSException *exception) {
         [self failWithException:exception];
     }
-    
+
     [subPool release];
 }
 

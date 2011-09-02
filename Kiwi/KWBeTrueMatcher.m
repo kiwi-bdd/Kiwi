@@ -35,7 +35,7 @@
 - (BOOL)evaluate {
     if (![self.subject respondsToSelector:@selector(boolValue)])
         [NSException raise:@"KWMatcherException" format:@"subject does not respond to -boolValue"];
-    
+
     return [self.subject boolValue] == self.expectedValue;
 }
 
