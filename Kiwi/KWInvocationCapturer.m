@@ -60,9 +60,9 @@
 #if KW_TARGET_HAS_INVOCATION_EXCEPTION_BUG
     @try {
 #endif // #if KW_TARGET_HAS_INVOCATION_EXCEPTION_BUG
-    
+
     [self KW_captureInvocation:anInvocation];
-    
+
 #if KW_TARGET_HAS_INVOCATION_EXCEPTION_BUG
     } @catch (NSException *exception) {
         KWSetExceptionFromAcrossInvocationBoundary(exception);
@@ -91,7 +91,7 @@
 - (NSString *)description {
     NSInvocation *invocation = [NSInvocation invocationWithTarget:self selector:_cmd];
     [self KW_captureInvocation:invocation];
-    return [super description];    
+    return [super description];
 }
 
 @end

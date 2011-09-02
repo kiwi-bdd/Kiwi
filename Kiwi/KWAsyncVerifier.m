@@ -26,7 +26,7 @@
 - (id)initWithExpectationType:(KWExpectationType)anExpectationType callSite:(KWCallSite *)aCallSite matcherFactory:(KWMatcherFactory *)aMatcherFactory reporter:(id<KWReporting>)aReporter {
   if ((self = [super initWithExpectationType:anExpectationType callSite:aCallSite matcherFactory:aMatcherFactory reporter:aReporter])) {
     self.timeout = kKW_DEFAULT_PROBE_TIMEOUT;
-  }  
+  }
   return self;
 }
 
@@ -48,10 +48,10 @@
       }
     }
     [poller release];
-    
+
   } @catch (NSException *exception) {
     KWFailure *failure = [KWFailure failureWithCallSite:self.callSite message:[exception description]];
-    [self.reporter reportFailure:failure];        
+    [self.reporter reportFailure:failure];
   }
 }
 
@@ -70,7 +70,7 @@
 {
   if ((self = [super init])) {
     matcher = [aMatcher retain];
-    
+
     // make sure the matcher knows we are going to evaluate it multiple times
     if ([aMatcher respondsToSelector:@selector(willEvaluateMultipleTimes)]) {
       [aMatcher setWillEvaluateMultipleTimes:YES];

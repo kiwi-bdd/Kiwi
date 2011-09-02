@@ -19,14 +19,14 @@
     NSString *string = @"KWEqualMatcher";
     NSString *prefix = @"KW";
     STAssertTrue(KWStringHasStrictWordPrefix(string, prefix), @"expected string to pass test");
-    
+
     string = @"KWarElephant";
     STAssertFalse(KWStringHasStrictWordPrefix(string, prefix), @"expected string to fail test");
 
     string = @"itShouldOpenDoors";
     prefix = @"it";
     STAssertTrue(KWStringHasStrictWordPrefix(string, prefix), @"expected string to pass test");
-    
+
     string = @"itsyBitsy";
     STAssertFalse(KWStringHasStrictWordPrefix(string, prefix), @"expected string to fail test");
 }

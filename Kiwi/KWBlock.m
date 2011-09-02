@@ -24,7 +24,7 @@
     if ((self = [super init])) {
         block = Block_copy(aBlock);
     }
-    
+
     return self;
 }
 

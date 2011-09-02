@@ -72,16 +72,16 @@
 - (void)testItShouldHaveHumanReadableDescription
 {
     id matcher = [KWRaiseMatcher matcherWithSubject:theValue(123)];
-  
+
     [matcher raiseWhenSent:@selector(raise)];
     STAssertEqualObjects(@"raise exception when sent raise", [matcher description], @"description should match");
-    
+
     [matcher raiseWithName:@"CruiserException" whenSent:@selector(raise)];
     STAssertEqualObjects(@"raise CruiserException when sent raise", [matcher description], @"description should match");
-    
+
     [matcher raiseWithReason:@"just for testing" whenSent:@selector(raise)];
     STAssertEqualObjects(@"raise exception \"just for testing\" when sent raise", [matcher description], @"description should match");
-    
+
     [matcher raiseWithName:@"CruiserException" reason:@"just for testing" whenSent:@selector(raise)];
     STAssertEqualObjects(@"raise CruiserException \"just for testing\" when sent raise", [matcher description], @"description should match");
 }

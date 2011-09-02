@@ -21,7 +21,7 @@ static NSString * const StubValueKey = @"StubValueKey";
 
 - (NSMethodSignature *)invocationCapturer:(KWInvocationCapturer *)anInvocationCapturer methodSignatureForSelector:(SEL)aSelector {
     NSMethodSignature *signature = [self methodSignatureForSelector:aSelector];
-    
+
     if (signature != nil)
         return signature;
 
@@ -76,7 +76,7 @@ static NSString * const StubValueKey = @"StubValueKey";
         [NSException raise:@"KWStubException" format:@"cannot stub -%@ because no such method exists",
                                                      NSStringFromSelector(aMessagePattern.selector)];
     }
-    
+
     Class interceptClass = KWSetupObjectInterceptSupport(self);
     KWSetupMethodInterceptSupport(interceptClass, aMessagePattern.selector);
     KWStub *stub = [KWStub stubWithMessagePattern:aMessagePattern value:aValue];
@@ -95,7 +95,7 @@ static NSString * const StubValueKey = @"StubValueKey";
         [NSException raise:@"KWSpyException" format:@"cannot add spy for -%@ because no such method exists",
          NSStringFromSelector(aMessagePattern.selector)];
     }
-    
+
     Class interceptClass = KWSetupObjectInterceptSupport(self);
     KWSetupMethodInterceptSupport(interceptClass, aMessagePattern.selector);
     KWAssociateMessageSpy(self, aSpy, aMessagePattern);

@@ -20,13 +20,13 @@
 - (void)testShouldPassTheSubjectInAsTheFirstBlockArgument
 {
     __block id blockSubject = nil;
-    
+
     KWUserDefinedMatcher *matcher = [KWUserDefinedMatcher matcherWithSubject:@"subject" block:^(id subject) {
         blockSubject = subject;
         return YES;
     }];
     [matcher evaluate];
-    
+
     STAssertEquals(@"subject", blockSubject, @"expected subject to be passed into matcher block");
 }
 
@@ -53,7 +53,7 @@
     }];
     matcher.selector = NSSelectorFromString(@"matchTheString:");
     [matcher performSelector:matcher.selector withObject:@"string"];
-    
+
     STAssertTrue([matcher evaluate], @"expected subject to match yielded argument");
 }
 
@@ -69,11 +69,11 @@
 - (void)testShouldDefineTheBlockToEvaluate
 {
     KWUserDefinedMatcherBuilder *builder = [KWUserDefinedMatcherBuilder builder];
-    
+
     [builder match:^(id subject) {
-        return [subject isEqual:@"foo"];  
+        return [subject isEqual:@"foo"];
     }];
-    
+
     KWUserDefinedMatcher *matcher = [builder buildMatcherWithSubject:@"foo"];
     STAssertTrue([matcher evaluate], @"expected positive match");
 }
@@ -89,11 +89,11 @@
 - (void)testCanSetTheFailureMessageForShould
 {
     KWUserDefinedMatcherBuilder *builder = [KWUserDefinedMatcherBuilder builder];
-    
+
     [builder failureMessageForShould:^(id subject) {
         return [NSString stringWithFormat:@"failure message containing subject %@", subject];
     }];
-    
+
     KWUserDefinedMatcher *matcher = [builder buildMatcherWithSubject:@"foo"];
     STAssertEqualObjects(@"failure message containing subject foo", [matcher failureMessageForShould], @"should set failure message for should");
 }
@@ -101,11 +101,11 @@
 - (void)testCanSetTheFailureMessageForShouldNot
 {
     KWUserDefinedMatcherBuilder *builder = [KWUserDefinedMatcherBuilder builder];
-    
+
     [builder failureMessageForShouldNot:^(id subject) {
         return [NSString stringWithFormat:@"failure message containing subject %@", subject];
     }];
-    
+
     KWUserDefinedMatcher *matcher = [builder buildMatcherWithSubject:@"foo"];
     STAssertEqualObjects(@"failure message containing subject foo", [matcher failureMessageForShouldNot], @"should set failure message for should");
 }

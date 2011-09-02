@@ -17,7 +17,7 @@ static KWNull *sharedNull = nil;
     if (sharedNull == nil) {
         sharedNull = [[super allocWithZone:nil] init];
     }
-    
+
     return sharedNull;
 }
 

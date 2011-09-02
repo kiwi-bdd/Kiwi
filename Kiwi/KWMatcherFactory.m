@@ -90,10 +90,10 @@
 
         free(classes);
     }
-    
+
     for (Class matcherClass in matcherClasses) {
         NSString *className = NSStringFromClass(matcherClass);
-        
+
         if (KWStringHasStrictWordPrefix(className, aNamespacePrefix))
             [self registerMatcherClass:matcherClass];
     }
@@ -104,7 +104,7 @@
 
 //- (void)registerUserDefinedMatcherWithBuilder:(KWUserDefinedMatcherBuilder *)aBuilder
 //{
-//  
+//
 //}
 
 #pragma mark -
@@ -125,10 +125,10 @@
 
 - (KWMatcher *)matcherFromInvocation:(NSInvocation *)anInvocation subject:(id)subject {
     SEL selector = [anInvocation selector];
-  
+
     // try and match a built-in or registered matcher class
     Class matcherClass = [self matcherClassForSelector:selector subject:subject];
-  
+
     if (matcherClass == nil) {
         // see if we can match with a user-defined matcher instead
         return [[KWMatchers matchers] matcherForSelector:selector subject:subject];
@@ -141,12 +141,12 @@
 
 - (Class)matcherClassForSelector:(SEL)aSelector subject:(id)anObject {
     NSArray *matcherClassChain = [matcherClassChains objectForKey:NSStringFromSelector(aSelector)];
-    
+
     for (Class matcherClass in matcherClassChain) {
         if ([matcherClass canMatchSubject:anObject])
             return matcherClass;
     }
-    
+
     return nil;
 }
 

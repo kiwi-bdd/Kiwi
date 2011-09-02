@@ -14,7 +14,7 @@
 
 @class KWAsyncMatcherProbe;
 
-@interface KWAsyncVerifier : KWMatchVerifier 
+@interface KWAsyncVerifier : KWMatchVerifier
 {
   NSInteger timeout;
 }
@@ -30,6 +30,6 @@
   BOOL matchResult;
 }
 @property (nonatomic, readonly) id<KWMatching> matcher;
-           
+
 - (id)initWithMatcher:(id<KWMatching>)aMatcher;
 @end

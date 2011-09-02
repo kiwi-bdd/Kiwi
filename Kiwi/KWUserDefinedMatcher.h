@@ -34,7 +34,7 @@ typedef BOOL (^KWUserDefinedMatcherBlock)();
 
 typedef NSString * (^KWUserDefinedMatcherMessageBlock)(id);
 
-@interface KWUserDefinedMatcherBuilder : NSObject 
+@interface KWUserDefinedMatcherBuilder : NSObject
 {
     KWUserDefinedMatcher *matcher;
     KWUserDefinedMatcherMessageBlock failureMessageForShouldBlock;

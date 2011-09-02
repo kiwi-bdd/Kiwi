@@ -13,11 +13,11 @@ static NSException *KWExceptionAcrossInvokeBoundary = nil;
 void KWSetExceptionFromAcrossInvocationBoundary(NSException *anException) {
     if (KWExceptionAcrossInvokeBoundary != nil)
         return;
-    
+
     KWExceptionAcrossInvokeBoundary = [anException retain];
 }
 
-NSException *KWGetAndClearExceptionFromAcrossInvocationBoundary() {
+NSException *KWGetAndClearExceptionFromAcrossInvocationBoundary(void) {
     NSException *exception = [KWExceptionAcrossInvokeBoundary autorelease];
     KWExceptionAcrossInvokeBoundary = nil;
     return exception;

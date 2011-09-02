@@ -10,7 +10,7 @@
 #import "KWMatcher.h"
 
 @interface KWBeNonNilMatcher : KWMatcher {
-  
+
 }
 - (void)beNonNil;
 @end
