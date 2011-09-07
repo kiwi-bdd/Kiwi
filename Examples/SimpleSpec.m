@@ -24,6 +24,7 @@ describe(@"stack", ^{
 
             it(@"has the first item", ^{
                 [[arr should] contain:@"shark"];
+              NSLog(@"here");
             });
 
             it(@"has the second item", ^{

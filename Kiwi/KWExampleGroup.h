@@ -6,15 +6,32 @@
 
 #import "KiwiConfiguration.h"
 #import "KWBlock.h"
+#import "KWVerifying.h"
+#import "KWExpectationType.h"
 
 @class KWCallSite;
 @class KWContextNode;
 @class KWSpec;
+@class KWMatcherFactory;
 
 @interface KWExampleGroup : NSObject
 
+@property (nonatomic, readonly) NSMutableArray *verifiers;
+@property (nonatomic, readonly) KWMatcherFactory *matcherFactory;
+
 - (id)initWithRootContextNode:(KWContextNode *)node;
+
+#pragma mark - Adding Verifiers
+
+- (id)addVerifier:(id<KWVerifying>)aVerifier;
+- (id)addExistVerifierWithExpectationType:(KWExpectationType)anExpectationType callSite:(KWCallSite *)aCallSite;
+- (id)addMatchVerifierWithExpectationType:(KWExpectationType)anExpectationType callSite:(KWCallSite *)aCallSite;
+- (id)addAsyncVerifierWithExpectationType:(KWExpectationType)anExpectationType callSite:(KWCallSite *)aCallSite timeout:(NSInteger)timeout;
+
+#pragma mark - Running
+
 - (void)runInSpec:(KWSpec *)spec;
+
 @end
 
 #pragma mark -

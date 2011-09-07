@@ -18,25 +18,11 @@
 @protocol KWVerifying;
 
 @interface KWSpec : SenTestCase<KWExampleNodeVisitor, KWReporting> {
-@private
-    KWMatcherFactory *matcherFactory;
-    NSMutableArray *verifiers;
-    NSMutableArray *exampleNodeStack;
+
 }
 
 #pragma mark -
-#pragma mark Configuring Spec Environments
-
-- (void)configureEnvironment;
-- (void)cleanupEnvironment;
-
-#pragma mark -
 #pragma mark Adding Verifiers
-
-- (id)addVerifier:(id<KWVerifying>)aVerifier;
-- (id)addExistVerifierWithExpectationType:(KWExpectationType)anExpectationType callSite:(KWCallSite *)aCallSite;
-- (id)addMatchVerifierWithExpectationType:(KWExpectationType)anExpectationType callSite:(KWCallSite *)aCallSite;
-- (id)addAsyncVerifierWithExpectationType:(KWExpectationType)anExpectationType callSite:(KWCallSite *)aCallSite timeout:(NSInteger)timeout;
 
 + (id)addVerifier:(id<KWVerifying>)aVerifier;
 + (id)addExistVerifierWithExpectationType:(KWExpectationType)anExpectationType callSite:(KWCallSite *)aCallSite;
@@ -46,7 +32,6 @@
 #pragma mark -
 #pragma mark Building Example Groups
 
-- (void)buildExampleGroups;
 + (void)buildExampleGroups;
 
 #pragma mark -

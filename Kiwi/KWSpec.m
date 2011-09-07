@@ -33,85 +33,32 @@
 #pragma mark -
 #pragma mark Properties
 
-@property (nonatomic, readonly) KWMatcherFactory *matcherFactory;
-@property (nonatomic, readonly) NSMutableArray *verifiers;
+@property (nonatomic, retain) KWExampleGroup *exampleGroup;
 @property (nonatomic, readonly) NSMutableArray *exampleNodeStack;
 
 @end
 
 @implementation KWSpec
 
-#pragma mark -
-#pragma mark Initializing
+@synthesize exampleGroup;
+@synthesize exampleNodeStack;
 
-// Initializer used by the SenTestingKit test suite to initialize a test case
-// for each test invocation returned in +testInvocations.
-- (id)initWithInvocation:(NSInvocation *)anInvocation {
+- (id)initWithInvocation:(NSInvocation *)anInvocation
+{
     if ((self = [super initWithInvocation:anInvocation])) {
-        matcherFactory = [[KWMatcherFactory alloc] init];
-        verifiers = [[NSMutableArray alloc] init];
         exampleNodeStack = [[NSMutableArray alloc] init];
     }
-
     return self;
 }
 
-- (void)dealloc {
-    [matcherFactory release];
-    [verifiers release];
+#pragma mark -
+#pragma mark Initializing
+
+- (void)dealloc 
+{
     [exampleNodeStack release];
+    [exampleGroup release];
     [super dealloc];
-}
-
-#pragma mark -
-#pragma mark Properties
-
-@synthesize verifiers;
-@synthesize matcherFactory;
-@synthesize exampleNodeStack;
-
-#pragma mark -
-#pragma mark Configuring Spec Environments
-
-- (void)configureEnvironment {
-    [self.matcherFactory registerMatcherClassesWithNamespacePrefix:@"KW"];
-}
-
-- (void)cleanupEnvironment {
-}
-
-#pragma mark -
-#pragma mark Adding Verifiers
-
-- (id)addVerifier:(id<KWVerifying>)aVerifier {
-    if (![self.verifiers containsObject:aVerifier])
-        [self.verifiers addObject:aVerifier];
-
-    return aVerifier;
-}
-
-- (id)addExistVerifierWithExpectationType:(KWExpectationType)anExpectationType callSite:(KWCallSite *)aCallSite {
-    id verifier = [KWExistVerifier existVerifierWithExpectationType:anExpectationType callSite:aCallSite reporter:self];
-    [self addVerifier:verifier];
-    return verifier;
-}
-
-- (id)addMatchVerifierWithExpectationType:(KWExpectationType)anExpectationType callSite:(KWCallSite *)aCallSite {
-    id verifier = [KWMatchVerifier matchVerifierWithExpectationType:anExpectationType callSite:aCallSite matcherFactory:self.matcherFactory reporter:self];
-    [self addVerifier:verifier];
-    return verifier;
-}
-
-- (id)addAsyncVerifierWithExpectationType:(KWExpectationType)anExpectationType callSite:(KWCallSite *)aCallSite timeout:(NSInteger)timeout {
-    id verifier = [KWAsyncVerifier asyncVerifierWithExpectationType:anExpectationType callSite:aCallSite matcherFactory:self.matcherFactory reporter:self probeTimeout:timeout];
-    [self addVerifier:verifier];
-    return verifier;
-}
-
-#pragma mark -
-#pragma mark Building Example Groups
-
-- (void)buildExampleGroups {
 }
 
 + (void)buildExampleGroups {
@@ -211,7 +158,7 @@
 }
 
 - (void)visitRegisterMatchersNode:(KWRegisterMatchersNode *)aNode {
-    [self.matcherFactory registerMatcherClassesWithNamespacePrefix:aNode.namespacePrefix];
+    [self.exampleGroup.matcherFactory registerMatcherClassesWithNamespacePrefix:aNode.namespacePrefix];
 }
 
 - (void)visitBeforeAllNode:(KWBeforeAllNode *)aNode {
@@ -266,14 +213,14 @@
 #endif // #if KW_TARGET_HAS_INVOCATION_EXCEPTION_BUG
 
             // Finish verifying and clear
-            for (id<KWVerifying> verifier in self.verifiers) {
+            for (id<KWVerifying> verifier in self.exampleGroup.verifiers) {
               [verifier exampleWillEnd];
             }
 
         } @catch (NSException *exception) {
             if (aNode.description == nil) {
               // anonymous specify blocks should only have one verifier, but use the first in any case
-              aNode.description = [[self.verifiers objectAtIndex:0] descriptionForAnonymousItNode];
+              aNode.description = [[self.exampleGroup.verifiers objectAtIndex:0] descriptionForAnonymousItNode];
             }
 
             KWFailure *failure = [KWFailure failureWithCallSite:aNode.callSite format:@"%@ \"%@\" raised",
@@ -282,7 +229,7 @@
             [self reportFailure:failure];
         }
 
-        [self.verifiers removeAllObjects];
+        [self.exampleGroup.verifiers removeAllObjects];
 
         // Remove it node from the stack
         [self.exampleNodeStack removeLastObject];
@@ -311,47 +258,20 @@
 
 - (NSString *)generateDescriptionForAnonymousItNode
 {
-  return [[self.verifiers objectAtIndex:0] descriptionForAnonymousItNode];
+  return [[self.exampleGroup.verifiers objectAtIndex:0] descriptionForAnonymousItNode];
 }
 
 #pragma mark -
 #pragma mark Running Specs
 
-- (void)runSpec {
-    NSAutoreleasePool *subPool = [[NSAutoreleasePool alloc] init];
-
-    @try {
-        [self configureEnvironment];
-
-        // Build example group
-        [[KWExampleGroupBuilder sharedExampleGroupBuilder] startExampleGroups];
-        [self buildExampleGroups];
-        KWContextNode *exampleGroup = [[KWExampleGroupBuilder sharedExampleGroupBuilder] endExampleGroups];
-
-        // Interpret example group
-        [exampleGroup acceptExampleNodeVisitor:self];
-
-        [self cleanupEnvironment];
-    } @catch (NSException *exception) {
-        [self failWithException:exception];
-    }
-
-    [subPool release];
-}
-
-// Called by the SenTestingKit test suite when it is time to run the test.
-// We don't actually use the invocation the receiver was initialized with since
-// that just invokes -runSpec. Instead, we call it directly.
 - (void)invokeTest 
 {
-    KWExampleGroup *exampleGroup = objc_getAssociatedObject([self invocation], @"__KWExampleGroup");
+    self.exampleGroup = objc_getAssociatedObject([self invocation], @"__KWExampleGroup");
     
     NSAutoreleasePool *subPool = [[NSAutoreleasePool alloc] init];
     
     @try {
-        [self configureEnvironment];
-        [exampleGroup runInSpec:self];
-        [self cleanupEnvironment];
+        [self.exampleGroup runInSpec:self];
     } @catch (NSException *exception) {
         [self failWithException:exception];
     }
@@ -364,22 +284,22 @@
 
 + (id)addVerifier:(id<KWVerifying>)aVerifier
 {
-  return nil;
+  return [[[KWExampleGroupBuilder sharedExampleGroupBuilder] exampleGroup] addVerifier:aVerifier];
 }
 
 + (id)addExistVerifierWithExpectationType:(KWExpectationType)anExpectationType callSite:(KWCallSite *)aCallSite
 {
-  return nil;
+  return [[[KWExampleGroupBuilder sharedExampleGroupBuilder] exampleGroup] addExistVerifierWithExpectationType:anExpectationType callSite:aCallSite];
 }
 
 + (id)addMatchVerifierWithExpectationType:(KWExpectationType)anExpectationType callSite:(KWCallSite *)aCallSite
 {
-  return nil;
+  return [[[KWExampleGroupBuilder sharedExampleGroupBuilder] exampleGroup] addMatchVerifierWithExpectationType:anExpectationType callSite:aCallSite];
 }
 
 + (id)addAsyncVerifierWithExpectationType:(KWExpectationType)anExpectationType callSite:(KWCallSite *)aCallSite timeout:(NSInteger)timeout
 {
-  return nil;
+  return [[[KWExampleGroupBuilder sharedExampleGroupBuilder] exampleGroup] addAsyncVerifierWithExpectationType:anExpectationType callSite:aCallSite timeout:timeout];
 }
 
 @end

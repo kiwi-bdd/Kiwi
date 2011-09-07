@@ -8,27 +8,78 @@
 #import "KWExampleGroupBuilder.h"
 #import "KWContextNode.h"
 #import "KWSpec.h"
+#import "KWMatcherFactory.h"
+#import "KWExistVerifier.h"
+#import "KWMatchVerifier.h"
+#import "KWAsyncVerifier.h"
+
+@interface KWExampleGroup ()
+
+@property (nonatomic, retain) KWSpec *spec;
+
+@end
 
 @implementation KWExampleGroup {
   KWContextNode *rootNode;
 }
 
+@synthesize matcherFactory;
+@synthesize verifiers;
+@synthesize spec = _spec;
+
 - (id)initWithRootContextNode:(KWContextNode *)node
 {
   if ((self = [super init])) {
     rootNode = [node retain];
+    matcherFactory = [[KWMatcherFactory alloc] init];
+    verifiers = [[NSMutableArray alloc] init];
   }
   return self;
 }
 
 - (void)dealloc 
 {
+  [_spec release];
+  [matcherFactory release];
+  [verifiers release];
   [rootNode release];
   [super dealloc];
 }
 
+#pragma mark - Adding Verifiers
+
+- (id)addVerifier:(id<KWVerifying>)aVerifier {
+  if (![self.verifiers containsObject:aVerifier])
+    [self.verifiers addObject:aVerifier];
+  
+  return aVerifier;
+}
+
+- (id)addExistVerifierWithExpectationType:(KWExpectationType)anExpectationType callSite:(KWCallSite *)aCallSite {
+  id verifier = [KWExistVerifier existVerifierWithExpectationType:anExpectationType callSite:aCallSite reporter:self.spec];
+  [self addVerifier:verifier];
+  return verifier;
+}
+
+- (id)addMatchVerifierWithExpectationType:(KWExpectationType)anExpectationType callSite:(KWCallSite *)aCallSite {
+  id verifier = [KWMatchVerifier matchVerifierWithExpectationType:anExpectationType callSite:aCallSite matcherFactory:self.matcherFactory reporter:self.spec];
+  [self addVerifier:verifier];
+  return verifier;
+}
+
+- (id)addAsyncVerifierWithExpectationType:(KWExpectationType)anExpectationType callSite:(KWCallSite *)aCallSite timeout:(NSInteger)timeout {
+  id verifier = [KWAsyncVerifier asyncVerifierWithExpectationType:anExpectationType callSite:aCallSite matcherFactory:self.matcherFactory reporter:self.spec probeTimeout:timeout];
+  [self addVerifier:verifier];
+  return verifier;
+}
+
+#pragma mark - Running examples
+
 - (void)runInSpec:(KWSpec *)spec
 {
+  self.spec = spec;
+  
+  [self.matcherFactory registerMatcherClassesWithNamespacePrefix:@"KW"];
   [rootNode acceptExampleNodeVisitor:spec];
 }
 
