@@ -53,7 +53,7 @@
     \
     @implementation name \
     \
-    - (void)buildExampleGroups { \
+    + (void)buildExampleGroups { \
 
 #define SPEC_END \
     } \

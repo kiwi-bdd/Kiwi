@@ -5,6 +5,7 @@
 //
 
 #import "KWExampleGroupBuilder.h"
+#import "KWExampleGroup.h"
 #import "KWAfterAllNode.h"
 #import "KWAfterEachNode.h"
 #import "KWBeforeAllNode.h"
@@ -20,10 +21,13 @@
 #pragma mark Building Example Groups
 
 @property (nonatomic, readonly) NSMutableArray *contextNodeStack;
+@property (nonatomic, retain, readwrite) KWExampleGroup *exampleGroup;
 
 @end
 
 @implementation KWExampleGroupBuilder
+
+@synthesize exampleGroup;
 
 #pragma mark -
 #pragma mark Initializing
@@ -39,6 +43,7 @@ static KWExampleGroupBuilder *sharedExampleGroupBuilder = nil;
 }
 
 - (void)dealloc {
+    [exampleGroup release];
     [contextNodeStack release];
     [super dealloc];
 }
@@ -87,8 +92,9 @@ static KWExampleGroupBuilder *sharedExampleGroupBuilder = nil;
     if (self.isBuildingExampleGroup)
         [NSException raise:@"KWExampleGroupBuilderException" format:@"an example group has already been started"];
 
-    KWContextNode *exampleGroup = [KWContextNode contextNodeWithCallSite:nil description:nil];
-    [self.contextNodeStack addObject:exampleGroup];
+    KWContextNode *rootContextNode = [KWContextNode contextNodeWithCallSite:nil description:nil];
+    self.exampleGroup = [[[KWExampleGroup alloc] initWithRootContextNode:rootContextNode] autorelease];
+    [self.contextNodeStack addObject:rootContextNode];
 }
 
 - (id)endExampleGroups {

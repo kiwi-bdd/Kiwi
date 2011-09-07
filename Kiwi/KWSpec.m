@@ -11,6 +11,7 @@
 #import "KWBeforeAllNode.h"
 #import "KWBeforeEachNode.h"
 #import "KWContextNode.h"
+#import "KWExampleGroup.h"
 #import "KWExampleGroupBuilder.h"
 #import "KWExampleNode.h"
 #import "KWExistVerifier.h"
@@ -113,6 +114,9 @@
 - (void)buildExampleGroups {
 }
 
++ (void)buildExampleGroups {
+}
+
 #pragma mark -
 #pragma mark Reporting Failures
 
@@ -164,7 +168,7 @@
 
     // Only return invocation if the receiver is a concrete spec that has
     // overridden -buildExampleGroups.
-    if ([self instanceMethodForSelector:selector] == [KWSpec instanceMethodForSelector:selector])
+    if ([self methodForSelector:selector] == [KWSpec methodForSelector:selector])
         return nil;
 
     // Add a single invocation for -runSpec.
@@ -172,6 +176,13 @@
     NSMethodSignature *signature = [NSMethodSignature signatureWithObjCTypes:[encoding UTF8String]];
     NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:signature];
     [invocation setSelector:@selector(runSpec)];
+    
+    [[KWExampleGroupBuilder sharedExampleGroupBuilder] startExampleGroups];
+    [self buildExampleGroups];
+    [[KWExampleGroupBuilder sharedExampleGroupBuilder] endExampleGroups];
+    
+    objc_setAssociatedObject(invocation, @"__KWExampleGroup", [[KWExampleGroupBuilder sharedExampleGroupBuilder] exampleGroup], OBJC_ASSOCIATION_RETAIN);
+  
     return [NSArray arrayWithObject:invocation];
 }
 
@@ -331,8 +342,44 @@
 // Called by the SenTestingKit test suite when it is time to run the test.
 // We don't actually use the invocation the receiver was initialized with since
 // that just invokes -runSpec. Instead, we call it directly.
-- (void)invokeTest {
-    [self runSpec];
+- (void)invokeTest 
+{
+    KWExampleGroup *exampleGroup = objc_getAssociatedObject([self invocation], @"__KWExampleGroup");
+    
+    NSAutoreleasePool *subPool = [[NSAutoreleasePool alloc] init];
+    
+    @try {
+        [self configureEnvironment];
+        [exampleGroup runInSpec:self];
+        [self cleanupEnvironment];
+    } @catch (NSException *exception) {
+        [self failWithException:exception];
+    }
+    
+    [subPool release];
+}
+
+#pragma mark -
+#pragma mark Class-level definition
+
++ (id)addVerifier:(id<KWVerifying>)aVerifier
+{
+  return nil;
+}
+
++ (id)addExistVerifierWithExpectationType:(KWExpectationType)anExpectationType callSite:(KWCallSite *)aCallSite
+{
+  return nil;
+}
+
++ (id)addMatchVerifierWithExpectationType:(KWExpectationType)anExpectationType callSite:(KWCallSite *)aCallSite
+{
+  return nil;
+}
+
++ (id)addAsyncVerifierWithExpectationType:(KWExpectationType)anExpectationType callSite:(KWCallSite *)aCallSite timeout:(NSInteger)timeout
+{
+  return nil;
 }
 
 @end

@@ -8,6 +8,14 @@
 #import "KWBlock.h"
 
 @class KWCallSite;
+@class KWContextNode;
+@class KWSpec;
+
+@interface KWExampleGroup : NSObject
+
+- (id)initWithRootContextNode:(KWContextNode *)node;
+- (void)runInSpec:(KWSpec *)spec;
+@end
 
 #pragma mark -
 #pragma mark Building Example Groups

@@ -6,6 +6,33 @@
 
 #import "KWExampleGroup.h"
 #import "KWExampleGroupBuilder.h"
+#import "KWContextNode.h"
+#import "KWSpec.h"
+
+@implementation KWExampleGroup {
+  KWContextNode *rootNode;
+}
+
+- (id)initWithRootContextNode:(KWContextNode *)node
+{
+  if ((self = [super init])) {
+    rootNode = [node retain];
+  }
+  return self;
+}
+
+- (void)dealloc 
+{
+  [rootNode release];
+  [super dealloc];
+}
+
+- (void)runInSpec:(KWSpec *)spec
+{
+  [rootNode acceptExampleNodeVisitor:spec];
+}
+
+@end
 
 #pragma mark -
 #pragma mark Building Example Groups

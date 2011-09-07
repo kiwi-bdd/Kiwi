@@ -8,10 +8,12 @@
 #import "KWBlock.h"
 
 @class KWCallSite;
+@class KWExampleGroup;
 
 @interface KWExampleGroupBuilder : NSObject {
 @private
     NSMutableArray *contextNodeStack;
+    KWExampleGroup *exampleGroup;
 }
 
 #pragma mark -
@@ -23,6 +25,7 @@
 #pragma mark Building Example Groups
 
 @property (nonatomic, readonly) BOOL isBuildingExampleGroup;
+@property (nonatomic, retain, readonly) KWExampleGroup *exampleGroup;
 
 - (void)startExampleGroups;
 - (id)endExampleGroups;
