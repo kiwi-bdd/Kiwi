@@ -6,12 +6,12 @@
 
 #import "KWItNode.h"
 #import "KWExampleNodeVisitor.h"
-#import "KWSpec.h"
+#import "KWExampleGroup.h"
 #import "KWVerifying.h"
 
 @implementation KWItNode
 
-@synthesize spec;
+@synthesize exampleGroup;
 
 #pragma mark -
 #pragma mark Initializing
@@ -34,7 +34,7 @@
 {
   NSString *description = [super description];
   if (description == nil) {
-    description = [self.spec generateDescriptionForAnonymousItNode];
+    description = [self.exampleGroup generateDescriptionForAnonymousItNode];
   }
   return description;
 }

@@ -8,16 +8,15 @@
 #import "KWBlock.h"
 #import "KWVerifying.h"
 #import "KWExpectationType.h"
+#import "KWExampleNodeVisitor.h"
+#import "KWReporting.h"
 
 @class KWCallSite;
 @class KWContextNode;
 @class KWSpec;
 @class KWMatcherFactory;
 
-@interface KWExampleGroup : NSObject
-
-@property (nonatomic, readonly) NSMutableArray *verifiers;
-@property (nonatomic, readonly) KWMatcherFactory *matcherFactory;
+@interface KWExampleGroup : NSObject <KWExampleNodeVisitor, KWReporting>
 
 - (id)initWithRootContextNode:(KWContextNode *)node;
 
@@ -31,6 +30,11 @@
 #pragma mark - Running
 
 - (void)runInSpec:(KWSpec *)spec;
+
+#pragma mark -
+#pragma mark Anonymous It Node Descriptions
+
+- (NSString *)generateDescriptionForAnonymousItNode;
 
 @end
 

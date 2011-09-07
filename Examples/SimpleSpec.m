@@ -23,8 +23,7 @@ describe(@"stack", ^{
             });
 
             it(@"has the first item", ^{
-                [[arr should] contain:@"shark"];
-              NSLog(@"here");
+                [[arr should] contain:@"shasrk"];
             });
 
             it(@"has the second item", ^{

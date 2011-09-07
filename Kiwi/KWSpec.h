@@ -6,20 +6,13 @@
 
 #import "KiwiConfiguration.h"
 #import <SenTestingKit/SenTestingKit.h>
-#import "KWBlock.h"
-#import "KWExampleNodeVisitor.h"
 #import "KWExpectationType.h"
 #import "KWReporting.h"
+#import "KWVerifying.h"
 
 @class KWCallSite;
-@class KWContextNode;
-@class KWMatcherFactory;
 
-@protocol KWVerifying;
-
-@interface KWSpec : SenTestCase<KWExampleNodeVisitor, KWReporting> {
-
-}
+@interface KWSpec : SenTestCase<KWReporting>
 
 #pragma mark -
 #pragma mark Adding Verifiers
@@ -33,10 +26,5 @@
 #pragma mark Building Example Groups
 
 + (void)buildExampleGroups;
-
-#pragma mark -
-#pragma mark Anonymous It Node Descriptions
-
-- (NSString *)generateDescriptionForAnonymousItNode;
 
 @end
