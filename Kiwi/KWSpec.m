@@ -39,6 +39,11 @@
 + (void)buildExampleGroups {
 }
 
+- (NSString *)description
+{
+    return [NSString stringWithFormat:@"-[%@ example]", NSStringFromClass([self class])];
+}
+
 #pragma mark - Reporting Failure
 
 - (void)reportFailure:(KWFailure *)failure
@@ -68,9 +73,7 @@
     
     // Add a single dummy invocation for the example group
     NSMethodSignature *methodSignature = [NSMethodSignature signatureWithObjCTypes:[KWEncodingForVoidMethod() UTF8String]];
-    NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:methodSignature];
-    [invocation setSelector:@selector(runSpec)];
-    
+    NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:methodSignature];    
     
     // because SenTest will modify the invocation target, we'll have to store 
     // another reference to the example group so we can retrieve it later
