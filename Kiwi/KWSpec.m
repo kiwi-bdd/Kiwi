@@ -36,19 +36,13 @@
     [super dealloc];
 }
 
-+ (void)buildExampleGroups {
-}
+/* This method is only implemented by sub-classes */
+
++ (void)buildExampleGroups {}
 
 - (NSString *)description
 {
     return [NSString stringWithFormat:@"-[%@ example]", NSStringFromClass([self class])];
-}
-
-#pragma mark - Reporting Failure
-
-- (void)reportFailure:(KWFailure *)failure
-{
-    [self failWithException:[failure exceptionValue]];
 }
 
 #pragma mark -
@@ -112,7 +106,7 @@
 }
 
 #pragma mark -
-#pragma mark Class-level definition
+#pragma mark Verification proxies
 
 + (id)addVerifier:(id<KWVerifying>)aVerifier
 {

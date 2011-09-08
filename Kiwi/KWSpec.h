@@ -7,7 +7,6 @@
 #import "KiwiConfiguration.h"
 #import <SenTestingKit/SenTestingKit.h>
 #import "KWExpectationType.h"
-#import "KWReporting.h"
 #import "KWVerifying.h"
 #import "KWExampleGroupDelegate.h"
 
