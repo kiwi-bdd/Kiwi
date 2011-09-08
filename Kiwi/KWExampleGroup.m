@@ -230,12 +230,7 @@
         [verifier exampleWillEnd];
       }
       
-    } @catch (NSException *exception) {
-      if (aNode.description == nil) {
-        // anonymous specify blocks should only have one verifier, but use the first in any case
-        aNode.description = [[self.verifiers objectAtIndex:0] descriptionForAnonymousItNode];
-      }
-      
+    } @catch (NSException *exception) {      
       KWFailure *failure = [KWFailure failureWithCallSite:aNode.callSite format:@"%@ \"%@\" raised",
                             [exception name],
                             [exception reason]];
@@ -276,6 +271,7 @@
 
 - (NSString *)generateDescriptionForAnonymousItNode
 {
+  // anonymous specify blocks should only have one verifier, but use the first in any case
   return [[self.verifiers objectAtIndex:0] descriptionForAnonymousItNode];
 }
 

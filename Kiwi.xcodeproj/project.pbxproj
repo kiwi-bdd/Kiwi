@@ -93,7 +93,6 @@
 		A352E9E812EDC30A0049C691 /* KWHaveValueMatcherTest.m in Sources */ = {isa = PBXBuildFile; fileRef = A352E9E712EDC30A0049C691 /* KWHaveValueMatcherTest.m */; };
 		A352EA0E12EDC6F20049C691 /* KWHamrestMatchingAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = A352EA0D12EDC6F20049C691 /* KWHamrestMatchingAdditions.m */; };
 		A352EA1B12EDC8380049C691 /* KWHamcrestMatcherTest.m in Sources */ = {isa = PBXBuildFile; fileRef = A352EA1A12EDC8380049C691 /* KWHamcrestMatcherTest.m */; };
-		A35B033213CB30FF0045500C /* OneTestPerSpecExample.m in Sources */ = {isa = PBXBuildFile; fileRef = A35B033113CB30FF0045500C /* OneTestPerSpecExample.m */; };
 		A385CAE813AA7EA200DCA951 /* KWUserDefinedMatcherTest.m in Sources */ = {isa = PBXBuildFile; fileRef = A385CAE713AA7EA200DCA951 /* KWUserDefinedMatcherTest.m */; };
 		A385CAEC13AA7EDD00DCA951 /* KWUserDefinedMatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = A385CAEA13AA7ED800DCA951 /* KWUserDefinedMatcher.m */; };
 		A385CAF013AAC9B800DCA951 /* KWMatchers.m in Sources */ = {isa = PBXBuildFile; fileRef = A385CAEE13AAC9B700DCA951 /* KWMatchers.m */; };
@@ -260,7 +259,6 @@
 		A352EA1712EDC8160049C691 /* KWHamcrestMatcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KWHamcrestMatcher.h; sourceTree = "<group>"; };
 		A352EA1812EDC8160049C691 /* KWHamcrestMatcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KWHamcrestMatcher.m; sourceTree = "<group>"; };
 		A352EA1A12EDC8380049C691 /* KWHamcrestMatcherTest.m */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 4; lastKnownFileType = sourcecode.c.objc; path = KWHamcrestMatcherTest.m; sourceTree = "<group>"; tabWidth = 4; };
-		A35B033113CB30FF0045500C /* OneTestPerSpecExample.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OneTestPerSpecExample.m; sourceTree = "<group>"; };
 		A3758CDA1418CDC10051268A /* KWExampleGroupDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KWExampleGroupDelegate.h; sourceTree = "<group>"; };
 		A385CAE713AA7EA200DCA951 /* KWUserDefinedMatcherTest.m */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 4; lastKnownFileType = sourcecode.c.objc; path = KWUserDefinedMatcherTest.m; sourceTree = "<group>"; tabWidth = 4; };
 		A385CAE913AA7ED800DCA951 /* KWUserDefinedMatcher.h */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 4; lastKnownFileType = sourcecode.c.h; path = KWUserDefinedMatcher.h; sourceTree = "<group>"; tabWidth = 4; };
@@ -875,7 +873,6 @@
 				F5ECAEE3116711D200B0BEEF /* ExampleTestCase.m */,
 				F5CDEC4811C151120022A0BF /* SimpleSpec.m */,
 				A3A1739B12E47068004DFD70 /* ExampleAsyncSpec.m */,
-				A35B033113CB30FF0045500C /* OneTestPerSpecExample.m */,
 			);
 			path = Examples;
 			sourceTree = "<group>";
@@ -1135,7 +1132,6 @@
 				A3B1655D1399694900E9CC6E /* SpaceShip.m in Sources */,
 				A3B1655E1399694900E9CC6E /* Robot.m in Sources */,
 				A3B1655F1399695000E9CC6E /* StringPrefixMatcher.m in Sources */,
-				A35B033213CB30FF0045500C /* OneTestPerSpecExample.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
