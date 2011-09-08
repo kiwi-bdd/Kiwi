@@ -127,7 +127,7 @@
 }
 
 - (KWFailure *)outputReadyFailureWithFailure:(KWFailure *)aFailure {
-  NSString *annotatedFailureMessage = [NSString stringWithFormat:@"\"%@\" FAILED, %@",
+  NSString *annotatedFailureMessage = [NSString stringWithFormat:@"'%@' [FAILED], %@",
                                        [self descriptionForExampleContext],
                                        aFailure.message];
   
