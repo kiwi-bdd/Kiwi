@@ -89,26 +89,21 @@ static KWExampleGroupBuilder *sharedExampleGroupBuilder = nil;
     return [self.contextNodeStack count] > 0;
 }
 
-- (void)startExampleGroups {
-    if (self.isBuildingExampleGroup)
-        [NSException raise:@"KWExampleGroupBuilderException" format:@"an example group has already been started"];
-    
+- (NSArray *)buildExampleGroups:(void (^)(void))buildingBlock
+{
     self.exampleGroups = [NSMutableArray array];
+    
+    KWContextNode *rootNode = [KWContextNode contextNodeWithCallSite:nil description:nil];
 
-    KWContextNode *rootContextNode = [KWContextNode contextNodeWithCallSite:nil description:nil];
-    [self.contextNodeStack addObject:rootContextNode];
-}
-
-- (id)endExampleGroups {
-    if (!self.isBuildingExampleGroup)
-        [NSException raise:@"KWExampleGroupBuilderException" format:@"an example group has not been started"];
-
-    if ([self.contextNodeStack count] > 1)
-        [NSException raise:@"KWExampleGroupBuilderException" format:@"cannot end example group with open contexts"];
-
-    KWContextNode *rootContextNode = [[[self.contextNodeStack lastObject] retain] autorelease];
+    [self.contextNodeStack addObject:rootNode];
+    buildingBlock();
     [self.contextNodeStack removeAllObjects];
-    return rootContextNode;
+    
+    NSArray *_exampleGroups = [self.exampleGroups copy];
+    
+    self.exampleGroups = nil;
+    
+    return [_exampleGroups autorelease];
 }
 
 - (void)pushContextNodeWithCallSite:(KWCallSite *)aCallSite description:(NSString *)aDescription {

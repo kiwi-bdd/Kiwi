@@ -27,8 +27,7 @@
 @property (nonatomic, retain, readonly) NSMutableArray *exampleGroups;
 @property (nonatomic, retain) KWExampleGroup *currentExampleGroup;
 
-- (void)startExampleGroups;
-- (id)endExampleGroups;
+- (NSArray *)buildExampleGroups:(void (^)(void))buildingBlock;
 - (KWExampleGroup *)currentExampleGroup;
 
 - (void)pushContextNodeWithCallSite:(KWCallSite *)aCallSite description:(NSString *)aDescription;

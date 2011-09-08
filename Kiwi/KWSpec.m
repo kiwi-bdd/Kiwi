@@ -64,14 +64,14 @@
     // Only return invocation if the receiver is a concrete spec that has overridden -buildExampleGroups.
     if ([self methodForSelector:selector] == [KWSpec methodForSelector:selector])
         return nil;
-    
-    [[KWExampleGroupBuilder sharedExampleGroupBuilder] startExampleGroups];
-    [self buildExampleGroups];
-    [[KWExampleGroupBuilder sharedExampleGroupBuilder] endExampleGroups];
+
+    NSArray *exampleGroups = [[KWExampleGroupBuilder sharedExampleGroupBuilder] buildExampleGroups:^{
+        [self buildExampleGroups];
+    }];
     
     NSMutableArray *invocations = [NSMutableArray array];
     
-    for (KWExampleGroup *exampleGroup in [[KWExampleGroupBuilder sharedExampleGroupBuilder] exampleGroups]) {
+    for (KWExampleGroup *exampleGroup in exampleGroups) {
         // Add a single dummy invocation for each example group
         NSMethodSignature *methodSignature = [NSMethodSignature signatureWithObjCTypes:[KWEncodingForVoidMethod() UTF8String]];
         NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:methodSignature];
