@@ -11,6 +11,7 @@
 #import "KWExampleNode.h"
 #import "KWExampleNodeVisitor.h"
 #import "KWReporting.h"
+#import "KWExampleGroupDelegate.h"
 
 @class KWCallSite;
 @class KWContextNode;
@@ -30,7 +31,7 @@
 
 #pragma mark - Running
 
-- (void)runInSpec:(KWSpec *)spec;
+- (void)runWithDelegate:(id<KWExampleGroupDelegate>)delegate;
 
 #pragma mark -
 #pragma mark Anonymous It Node Descriptions

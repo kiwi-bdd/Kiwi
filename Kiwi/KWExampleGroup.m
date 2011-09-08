@@ -7,7 +7,6 @@
 #import "KWExampleGroup.h"
 #import "KWExampleGroupBuilder.h"
 #import "KWContextNode.h"
-#import "KWSpec.h"
 #import "KWMatcherFactory.h"
 #import "KWExistVerifier.h"
 #import "KWMatchVerifier.h"
@@ -28,10 +27,10 @@
 
 @interface KWExampleGroup ()
 
-@property (nonatomic, retain) KWSpec *spec;
 @property (nonatomic, readonly) NSMutableArray *verifiers;
 @property (nonatomic, readonly) KWMatcherFactory *matcherFactory;
 @property (nonatomic, readonly) NSMutableArray *exampleNodeStack;
+@property (nonatomic, assign) id<KWExampleGroupDelegate> delegate;
 
 @end
 
@@ -44,7 +43,7 @@
 @synthesize matcherFactory;
 @synthesize verifiers;
 @synthesize exampleNodeStack;
-@synthesize spec = _spec;
+@synthesize delegate = _delegate;
 
 - (id)initWithExampleNode:(id<KWExampleNode>)node contextNodeStack:(NSArray *)stack;
 {
@@ -61,7 +60,6 @@
 
 - (void)dealloc 
 {
-  [_spec release];
   [contextNodeStack release];
   [exampleNode release];
   [exampleNodeStack release];
@@ -99,9 +97,9 @@
 
 #pragma mark - Running examples
 
-- (void)runInSpec:(KWSpec *)spec
+- (void)runWithDelegate:(id<KWExampleGroupDelegate>)delegate;
 {
-  self.spec = spec;
+  self.delegate = delegate;
   [self.matcherFactory registerMatcherClassesWithNamespacePrefix:@"KW"];
   [[KWExampleGroupBuilder sharedExampleGroupBuilder] setCurrentExampleGroup:self];
   [[contextNodeStack objectAtIndex:0] acceptExampleNodeVisitor:self];
@@ -145,7 +143,7 @@
 - (void)reportFailure:(KWFailure *)failure
 {
   passed = NO;
-  [self.spec reportFailure:[self outputReadyFailureWithFailure:failure]];
+  [self.delegate exampleGroup:self didFailWithFailure:[self outputReadyFailureWithFailure:failure]];
 }
 
 #pragma mark - Visiting Nodes

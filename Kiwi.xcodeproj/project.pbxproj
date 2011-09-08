@@ -261,6 +261,7 @@
 		A352EA1812EDC8160049C691 /* KWHamcrestMatcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KWHamcrestMatcher.m; sourceTree = "<group>"; };
 		A352EA1A12EDC8380049C691 /* KWHamcrestMatcherTest.m */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 4; lastKnownFileType = sourcecode.c.objc; path = KWHamcrestMatcherTest.m; sourceTree = "<group>"; tabWidth = 4; };
 		A35B033113CB30FF0045500C /* OneTestPerSpecExample.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OneTestPerSpecExample.m; sourceTree = "<group>"; };
+		A3758CDA1418CDC10051268A /* KWExampleGroupDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KWExampleGroupDelegate.h; sourceTree = "<group>"; };
 		A385CAE713AA7EA200DCA951 /* KWUserDefinedMatcherTest.m */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 4; lastKnownFileType = sourcecode.c.objc; path = KWUserDefinedMatcherTest.m; sourceTree = "<group>"; tabWidth = 4; };
 		A385CAE913AA7ED800DCA951 /* KWUserDefinedMatcher.h */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 4; lastKnownFileType = sourcecode.c.h; path = KWUserDefinedMatcher.h; sourceTree = "<group>"; tabWidth = 4; };
 		A385CAEA13AA7ED800DCA951 /* KWUserDefinedMatcher.m */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 4; lastKnownFileType = sourcecode.c.objc; path = KWUserDefinedMatcher.m; sourceTree = "<group>"; tabWidth = 4; };
@@ -841,6 +842,7 @@
 				F508556211BE5A8A000EAD4E /* KWBlockNode.m */,
 				F5B1690D11BCDA4100200D1D /* KWContextNode.h */,
 				F5B1690E11BCDA4100200D1D /* KWContextNode.m */,
+				A3758CDA1418CDC10051268A /* KWExampleGroupDelegate.h */,
 				F58D05E611BE7C0F002A0456 /* KWExampleGroup.h */,
 				F58D05E711BE7C0F002A0456 /* KWExampleGroup.m */,
 				F5C5CB1911BCC45B0076529B /* KWExampleGroupBuilder.h */,

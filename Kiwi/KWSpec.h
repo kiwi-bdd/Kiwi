@@ -9,10 +9,12 @@
 #import "KWExpectationType.h"
 #import "KWReporting.h"
 #import "KWVerifying.h"
+#import "KWExampleGroupDelegate.h"
+
 
 @class KWCallSite;
 
-@interface KWSpec : SenTestCase<KWReporting>
+@interface KWSpec : SenTestCase<KWExampleGroupDelegate>
 
 #pragma mark -
 #pragma mark Adding Verifiers

@@ -96,12 +96,19 @@
     NSAutoreleasePool *subPool = [[NSAutoreleasePool alloc] init];
     
     @try {
-        [self.exampleGroup runInSpec:self];
+        [self.exampleGroup runWithDelegate:self];
     } @catch (NSException *exception) {
         [self failWithException:exception];
     }
     
     [subPool release];
+}
+
+#pragma mark - KWExampleGroupDelegate methods
+
+- (void)exampleGroup:(KWExampleGroup *)exampleGroup didFailWithFailure:(KWFailure *)failure
+{
+    [self failWithException:[failure exceptionValue]];
 }
 
 #pragma mark -
