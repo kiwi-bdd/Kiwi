@@ -69,17 +69,21 @@
     [self buildExampleGroups];
     [[KWExampleGroupBuilder sharedExampleGroupBuilder] endExampleGroups];
     
-    KWExampleGroup *exampleGroup = [[KWExampleGroupBuilder sharedExampleGroupBuilder] exampleGroup];
+    NSMutableArray *invocations = [NSMutableArray array];
     
-    // Add a single dummy invocation for the example group
-    NSMethodSignature *methodSignature = [NSMethodSignature signatureWithObjCTypes:[KWEncodingForVoidMethod() UTF8String]];
-    NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:methodSignature];    
-    
-    // because SenTest will modify the invocation target, we'll have to store 
-    // another reference to the example group so we can retrieve it later
-    objc_setAssociatedObject(invocation, kKWINVOCATION_EXAMPLE_GROUP_KEY, exampleGroup, OBJC_ASSOCIATION_RETAIN);
+    for (KWExampleGroup *exampleGroup in [[KWExampleGroupBuilder sharedExampleGroupBuilder] exampleGroups]) {
+        // Add a single dummy invocation for each example group
+        NSMethodSignature *methodSignature = [NSMethodSignature signatureWithObjCTypes:[KWEncodingForVoidMethod() UTF8String]];
+        NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:methodSignature];
+
+        [invocations addObject:invocation];
+        
+        // because SenTest will modify the invocation target, we'll have to store 
+        // another reference to the example group so we can retrieve it later
+        objc_setAssociatedObject(invocation, kKWINVOCATION_EXAMPLE_GROUP_KEY, exampleGroup, OBJC_ASSOCIATION_RETAIN);    
+    }
   
-    return [NSArray arrayWithObject:invocation];
+    return invocations;
 }
 
 #pragma mark -
@@ -105,22 +109,22 @@
 
 + (id)addVerifier:(id<KWVerifying>)aVerifier
 {
-  return [[[KWExampleGroupBuilder sharedExampleGroupBuilder] exampleGroup] addVerifier:aVerifier];
+  return [[[KWExampleGroupBuilder sharedExampleGroupBuilder] currentExampleGroup] addVerifier:aVerifier];
 }
 
 + (id)addExistVerifierWithExpectationType:(KWExpectationType)anExpectationType callSite:(KWCallSite *)aCallSite
 {
-  return [[[KWExampleGroupBuilder sharedExampleGroupBuilder] exampleGroup] addExistVerifierWithExpectationType:anExpectationType callSite:aCallSite];
+  return [[[KWExampleGroupBuilder sharedExampleGroupBuilder] currentExampleGroup] addExistVerifierWithExpectationType:anExpectationType callSite:aCallSite];
 }
 
 + (id)addMatchVerifierWithExpectationType:(KWExpectationType)anExpectationType callSite:(KWCallSite *)aCallSite
 {
-  return [[[KWExampleGroupBuilder sharedExampleGroupBuilder] exampleGroup] addMatchVerifierWithExpectationType:anExpectationType callSite:aCallSite];
+  return [[[KWExampleGroupBuilder sharedExampleGroupBuilder] currentExampleGroup] addMatchVerifierWithExpectationType:anExpectationType callSite:aCallSite];
 }
 
 + (id)addAsyncVerifierWithExpectationType:(KWExpectationType)anExpectationType callSite:(KWCallSite *)aCallSite timeout:(NSInteger)timeout
 {
-  return [[[KWExampleGroupBuilder sharedExampleGroupBuilder] exampleGroup] addAsyncVerifierWithExpectationType:anExpectationType callSite:aCallSite timeout:timeout];
+  return [[[KWExampleGroupBuilder sharedExampleGroupBuilder] currentExampleGroup] addAsyncVerifierWithExpectationType:anExpectationType callSite:aCallSite timeout:timeout];
 }
 
 @end

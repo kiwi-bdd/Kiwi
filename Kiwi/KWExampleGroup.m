@@ -23,6 +23,7 @@
 #import "KWRegisterMatchersNode.h"
 #import "KWWorkarounds.h"
 #import "KWIntercept.h"
+#import "KWExampleNode.h"
 
 
 @interface KWExampleGroup ()
@@ -35,7 +36,8 @@
 @end
 
 @implementation KWExampleGroup {
-  KWContextNode *rootNode;
+  NSArray *contextNodeStack;
+  id<KWExampleNode> exampleNode;
 }
 
 @synthesize matcherFactory;
@@ -43,10 +45,11 @@
 @synthesize exampleNodeStack;
 @synthesize spec = _spec;
 
-- (id)initWithRootContextNode:(KWContextNode *)node
+- (id)initWithExampleNode:(id<KWExampleNode>)node contextNodeStack:(NSArray *)stack;
 {
   if ((self = [super init])) {
-    rootNode = [node retain];
+    contextNodeStack = [stack copy];
+    exampleNode = [node retain];
     matcherFactory = [[KWMatcherFactory alloc] init];
     verifiers = [[NSMutableArray alloc] init];
     exampleNodeStack = [[NSMutableArray alloc] init];
@@ -57,10 +60,11 @@
 - (void)dealloc 
 {
   [_spec release];
+  [contextNodeStack release];
+  [exampleNode release];
   [exampleNodeStack release];
   [matcherFactory release];
   [verifiers release];
-  [rootNode release];
   [super dealloc];
 }
 
@@ -97,7 +101,8 @@
 {
   self.spec = spec;
   [self.matcherFactory registerMatcherClassesWithNamespacePrefix:@"KW"];
-  [rootNode acceptExampleNodeVisitor:self];
+  [[KWExampleGroupBuilder sharedExampleGroupBuilder] setCurrentExampleGroup:self];
+  [[contextNodeStack objectAtIndex:0] acceptExampleNodeVisitor:self];
 }
 
 #pragma mark - Reporting failure
@@ -197,7 +202,7 @@
 }
 
 - (void)visitItNode:(KWItNode *)aNode {
-  if (aNode.block == nil)
+  if (aNode.block == nil || aNode != exampleNode)
     return;
   
   aNode.exampleGroup = self;
@@ -258,6 +263,9 @@
 }
 
 - (void)visitPendingNode:(KWPendingNode *)aNode {
+  if (aNode != exampleNode)
+    return;
+  
   [self.exampleNodeStack addObject:aNode];
   NSLog(@"\"%@\" PENDING", [self descriptionForExampleContext]);
   [self.exampleNodeStack removeLastObject];

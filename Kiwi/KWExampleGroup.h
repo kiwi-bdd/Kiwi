@@ -8,6 +8,7 @@
 #import "KWBlock.h"
 #import "KWVerifying.h"
 #import "KWExpectationType.h"
+#import "KWExampleNode.h"
 #import "KWExampleNodeVisitor.h"
 #import "KWReporting.h"
 
@@ -18,7 +19,7 @@
 
 @interface KWExampleGroup : NSObject <KWExampleNodeVisitor, KWReporting>
 
-- (id)initWithRootContextNode:(KWContextNode *)node;
+- (id)initWithExampleNode:(id<KWExampleNode>)node contextNodeStack:(NSArray *)stack;
 
 #pragma mark - Adding Verifiers
 

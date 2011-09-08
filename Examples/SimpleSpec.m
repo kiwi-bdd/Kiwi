@@ -23,7 +23,7 @@ describe(@"stack", ^{
             });
 
             it(@"has the first item", ^{
-                [[arr should] contain:@"shasrk"];
+                [[arr should] contain:@"shark"];
             });
 
             it(@"has the second item", ^{

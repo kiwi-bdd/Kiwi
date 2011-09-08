@@ -21,13 +21,13 @@
 #pragma mark Building Example Groups
 
 @property (nonatomic, readonly) NSMutableArray *contextNodeStack;
-@property (nonatomic, retain, readwrite) KWExampleGroup *exampleGroup;
 
 @end
 
 @implementation KWExampleGroupBuilder
 
-@synthesize exampleGroup;
+@synthesize exampleGroups;
+@synthesize currentExampleGroup;
 
 #pragma mark -
 #pragma mark Initializing
@@ -37,13 +37,14 @@ static KWExampleGroupBuilder *sharedExampleGroupBuilder = nil;
 - (id)init {
     if ((self = [super init])) {
         contextNodeStack = [[NSMutableArray alloc] init];
+        exampleGroups = [[NSMutableArray alloc] init];
     }
 
     return self;
 }
 
 - (void)dealloc {
-    [exampleGroup release];
+    [exampleGroups release];
     [contextNodeStack release];
     [super dealloc];
 }
@@ -93,7 +94,6 @@ static KWExampleGroupBuilder *sharedExampleGroupBuilder = nil;
         [NSException raise:@"KWExampleGroupBuilderException" format:@"an example group has already been started"];
 
     KWContextNode *rootContextNode = [KWContextNode contextNodeWithCallSite:nil description:nil];
-    self.exampleGroup = [[[KWExampleGroup alloc] initWithRootContextNode:rootContextNode] autorelease];
     [self.contextNodeStack addObject:rootContextNode];
 }
 
@@ -175,6 +175,10 @@ static KWExampleGroupBuilder *sharedExampleGroupBuilder = nil;
     KWContextNode *contextNode = [self.contextNodeStack lastObject];
     KWItNode* itNode = [KWItNode itNodeWithCallSite:aCallSite description:aDescription block:aBlock];
     [contextNode addItNode:itNode];
+    
+    KWExampleGroup *exampleGroup = [[KWExampleGroup alloc] initWithExampleNode:itNode contextNodeStack:self.contextNodeStack];
+    [self.exampleGroups addObject:exampleGroup];
+    [exampleGroup release];
 }
 
 - (void)addPendingNodeWithCallSite:(KWCallSite *)aCallSite description:(NSString *)aDescription {
@@ -184,6 +188,10 @@ static KWExampleGroupBuilder *sharedExampleGroupBuilder = nil;
     KWContextNode *contextNode = [self.contextNodeStack lastObject];
     KWPendingNode *pendingNode = [KWPendingNode pendingNodeWithCallSite:aCallSite description:aDescription];
     [contextNode addPendingNode:pendingNode];
+    
+    KWExampleGroup *exampleGroup = [[KWExampleGroup alloc] initWithExampleNode:pendingNode contextNodeStack:self.contextNodeStack];
+    [self.exampleGroups addObject:exampleGroup];
+    [exampleGroup release];
 }
 
 @end
