@@ -20,6 +20,7 @@
 #pragma mark -
 #pragma mark Building Example Groups
 
+@property (nonatomic, retain, readwrite) NSMutableArray *exampleGroups;
 @property (nonatomic, readonly) NSMutableArray *contextNodeStack;
 
 @end
@@ -37,7 +38,6 @@ static KWExampleGroupBuilder *sharedExampleGroupBuilder = nil;
 - (id)init {
     if ((self = [super init])) {
         contextNodeStack = [[NSMutableArray alloc] init];
-        exampleGroups = [[NSMutableArray alloc] init];
     }
 
     return self;
@@ -92,6 +92,8 @@ static KWExampleGroupBuilder *sharedExampleGroupBuilder = nil;
 - (void)startExampleGroups {
     if (self.isBuildingExampleGroup)
         [NSException raise:@"KWExampleGroupBuilderException" format:@"an example group has already been started"];
+    
+    self.exampleGroups = [NSMutableArray array];
 
     KWContextNode *rootContextNode = [KWContextNode contextNodeWithCallSite:nil description:nil];
     [self.contextNodeStack addObject:rootContextNode];
