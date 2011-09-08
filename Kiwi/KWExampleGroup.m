@@ -243,9 +243,7 @@
                             [exception reason]];
       [self reportFailure:failure];
     }
-    
-    [self.verifiers removeAllObjects];
-    
+
     // Remove it node from the stack
     [self.exampleNodeStack removeLastObject];
     
@@ -261,7 +259,7 @@
   }
   
   if (passed) {
-    NSLog(@"+ \"%@\" PASSED", [self descriptionForExampleContext]);
+    NSLog(@"+ '%@ %@' [PASSED]", [self descriptionForExampleContext], [exampleNode description]);
   }
   
   // Always clear stubs and spies at the end of it blocks
@@ -274,7 +272,7 @@
     return;
   
   [self.exampleNodeStack addObject:aNode];
-  NSLog(@"+ \"%@\" PENDING", [self descriptionForExampleContext]);
+  NSLog(@"+ '%@' [PENDING]", [self descriptionForExampleContext]);
   [self.exampleNodeStack removeLastObject];
 }
 
