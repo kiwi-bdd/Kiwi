@@ -8,13 +8,15 @@
 
 @implementation KWBlockNode
 
+@synthesize description = _description;
+
 #pragma mark -
 #pragma mark Initializing
 
 - (id)initWithCallSite:(KWCallSite *)aCallSite description:(NSString *)aDescription block:(KWVoidBlock)aBlock{
     if ((self = [super init])) {
         callSite = [aCallSite retain];
-        description = [aDescription copy];
+        _description = [aDescription copy];
 
         if (aBlock != nil)
             block = Block_copy(aBlock);
@@ -37,11 +39,6 @@
 #pragma mark Getting Call Sites
 
 @synthesize callSite;
-
-#pragma mark -
-#pragma mark Getting Descriptions
-
-@synthesize description = _description;
 
 #pragma mark -
 #pragma mark Accepting Visitors
