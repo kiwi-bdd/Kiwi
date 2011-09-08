@@ -38,6 +38,7 @@
 @implementation KWExampleGroup {
   NSArray *contextNodeStack;
   id<KWExampleNode> exampleNode;
+  BOOL passed;
 }
 
 @synthesize matcherFactory;
@@ -53,6 +54,7 @@
     matcherFactory = [[KWMatcherFactory alloc] init];
     verifiers = [[NSMutableArray alloc] init];
     exampleNodeStack = [[NSMutableArray alloc] init];
+    passed = YES;
   }
   return self;
 }
@@ -142,6 +144,7 @@
 
 - (void)reportFailure:(KWFailure *)failure
 {
+  passed = NO;
   [self.spec reportFailure:[self outputReadyFailureWithFailure:failure]];
 }
 
@@ -218,7 +221,7 @@
     
     @try {
       aNode.block();
-      
+
 #if KW_TARGET_HAS_INVOCATION_EXCEPTION_BUG
       NSException *invocationException = KWGetAndClearExceptionFromAcrossInvocationBoundary();
       [invocationException raise];
@@ -257,6 +260,10 @@
     [self reportFailure:failure];
   }
   
+  if (passed) {
+    NSLog(@"+ \"%@\" PASSED", [self descriptionForExampleContext]);
+  }
+  
   // Always clear stubs and spies at the end of it blocks
   KWClearAllMessageSpies();
   KWClearAllObjectStubs();
@@ -267,7 +274,7 @@
     return;
   
   [self.exampleNodeStack addObject:aNode];
-  NSLog(@"\"%@\" PENDING", [self descriptionForExampleContext]);
+  NSLog(@"+ \"%@\" PENDING", [self descriptionForExampleContext]);
   [self.exampleNodeStack removeLastObject];
 }
 
