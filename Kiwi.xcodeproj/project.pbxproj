@@ -216,6 +216,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		A3758CD514184A170051268A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F5015B9E11583A77002E9A98;
+			remoteInfo = Kiwi;
+		};
 		F5015CBB1158404B002E9A98 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
@@ -987,6 +994,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				A3758CD614184A170051268A /* PBXTargetDependency */,
 			);
 			name = KiwiExamples;
 			productName = KiwiExamples;
@@ -1092,6 +1100,7 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
+			showEnvVarsInLog = 0;
 		};
 		F5015C9C11584017002E9A98 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -1253,6 +1262,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		A3758CD614184A170051268A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = F5015B9E11583A77002E9A98 /* Kiwi */;
+			targetProxy = A3758CD514184A170051268A /* PBXContainerItemProxy */;
+		};
 		F5015CBC1158404B002E9A98 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = F5015B9E11583A77002E9A98 /* Kiwi */;
