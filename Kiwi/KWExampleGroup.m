@@ -34,11 +34,7 @@
 
 @end
 
-@implementation KWExampleGroup {
-  NSArray *contextNodeStack;
-  id<KWExampleNode> exampleNode;
-  BOOL passed;
-}
+@implementation KWExampleGroup
 
 @synthesize matcherFactory;
 @synthesize verifiers;
