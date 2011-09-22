@@ -18,7 +18,12 @@
 @class KWSpec;
 @class KWMatcherFactory;
 
-@interface KWExampleGroup : NSObject <KWExampleNodeVisitor, KWReporting>
+@interface KWExampleGroup : NSObject <KWExampleNodeVisitor, KWReporting> {
+@private
+    NSArray *contextNodeStack;
+    id<KWExampleNode> exampleNode;
+    BOOL passed;
+}
 
 - (id)initWithExampleNode:(id<KWExampleNode>)node contextNodeStack:(NSArray *)stack;
 
