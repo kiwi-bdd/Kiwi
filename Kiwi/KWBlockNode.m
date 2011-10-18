@@ -35,6 +35,11 @@
     [super dealloc];
 }
 
+- (void)performBlock
+{
+  if (block != nil) { block(); }
+}
+
 #pragma mark -
 #pragma mark Getting Call Sites
 

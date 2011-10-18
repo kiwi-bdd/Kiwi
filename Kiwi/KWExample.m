@@ -35,11 +35,7 @@
 
 @end
 
-@implementation KWExample {
-  NSArray *contextNodeStack;
-  id<KWExampleNode> exampleNode;
-  BOOL passed;
-}
+@implementation KWExample
 
 @synthesize matcherFactory;
 @synthesize verifiers;
@@ -47,10 +43,9 @@
 @synthesize delegate = _delegate;
 @synthesize suite;
 
-- (id)initWithExampleNode:(id<KWExampleNode>)node contextNodeStack:(NSArray *)stack;
+- (id)initWithExampleNode:(id<KWExampleNode>)node
 {
   if ((self = [super init])) {
-    contextNodeStack = [stack copy];
     exampleNode = [node retain];
     matcherFactory = [[KWMatcherFactory alloc] init];
     verifiers = [[NSMutableArray alloc] init];
@@ -62,7 +57,6 @@
 
 - (void)dealloc 
 {
-  [contextNodeStack release];
   [exampleNode release];
   [exampleNodeStack release];
   [matcherFactory release];
@@ -104,7 +98,7 @@
   self.delegate = delegate;
   [self.matcherFactory registerMatcherClassesWithNamespacePrefix:@"KW"];
   [[KWExampleGroupBuilder sharedExampleGroupBuilder] setCurrentExample:self];
-  [[contextNodeStack objectAtIndex:0] acceptExampleNodeVisitor:self];
+  [exampleNode acceptExampleNodeVisitor:self]; 
 }
 
 #pragma mark - Reporting failure
@@ -150,30 +144,22 @@
 
 #pragma mark - Visiting Nodes
 
-- (void)visitContextNode:(KWContextNode *)aNode {
-  [self.exampleNodeStack addObject:aNode];
-  
-  @try {
-    [aNode.registerMatchersNode acceptExampleNodeVisitor:self];
-    [aNode.beforeAllNode acceptExampleNodeVisitor:self.suite];
-    
-    for (id<KWExampleNode> node in aNode.nodes)
-      [node acceptExampleNodeVisitor:self];
-    
-    [aNode.afterAllNode acceptExampleNodeVisitor:self.suite];
-  } @catch (NSException *exception) {
-    KWFailure *failure = [KWFailure failureWithCallSite:aNode.callSite format:@"%@ \"%@\" raised",
-                          [exception name],
-                          [exception reason]];
-
-    [self reportFailure:failure];
-  }
-  
-  [self.exampleNodeStack removeLastObject];
-}
-
 - (void)visitRegisterMatchersNode:(KWRegisterMatchersNode *)aNode {
   [self.matcherFactory registerMatcherClassesWithNamespacePrefix:aNode.namespacePrefix];
+}
+
+- (void)visitBeforeAllNode:(KWBeforeAllNode *)aNode {
+  if (aNode.block == nil)
+    return;
+  
+  aNode.block();
+}
+
+- (void)visitAfterAllNode:(KWAfterAllNode *)aNode {
+  if (aNode.block == nil)
+    return;
+  
+  aNode.block();
 }
 
 - (void)visitBeforeEachNode:(KWBeforeEachNode *)aNode {
@@ -196,65 +182,57 @@
   
   aNode.example = self;
   
-  @try {
-    for (KWContextNode *contextNode in self.exampleNodeStack) {
-      if (contextNode.beforeEachNode.block != nil)
-        contextNode.beforeEachNode.block();
-    }
-    
-    // Add it node to the stack
-    [self.exampleNodeStack addObject:aNode];
-    
-    @try {
-      aNode.block();
+  [aNode.context performExample:self withBlock:^{
+  
+    @try {      
+      // Add it node to the stack
+      [self.exampleNodeStack addObject:aNode];
+      
+      @try {
+        aNode.block();
 
-#if KW_TARGET_HAS_INVOCATION_EXCEPTION_BUG
-      NSException *invocationException = KWGetAndClearExceptionFromAcrossInvocationBoundary();
-      [invocationException raise];
-#endif // #if KW_TARGET_HAS_INVOCATION_EXCEPTION_BUG
-      
-      // Finish verifying and clear
-      for (id<KWVerifying> verifier in self.verifiers) {
-        [verifier exampleWillEnd];
+  #if KW_TARGET_HAS_INVOCATION_EXCEPTION_BUG
+        NSException *invocationException = KWGetAndClearExceptionFromAcrossInvocationBoundary();
+        [invocationException raise];
+  #endif // #if KW_TARGET_HAS_INVOCATION_EXCEPTION_BUG
+        
+        // Finish verifying and clear
+        for (id<KWVerifying> verifier in self.verifiers) {
+          [verifier exampleWillEnd];
+        }
+        
+      } @catch (NSException *exception) {      
+        KWFailure *failure = [KWFailure failureWithCallSite:aNode.callSite format:@"%@ \"%@\" raised",
+                              [exception name],
+                              [exception reason]];
+        [self reportFailure:failure];
       }
-      
-    } @catch (NSException *exception) {      
+
+      // Remove it node from the stack
+      [self.exampleNodeStack removeLastObject];
+
+    } @catch (NSException *exception) {
       KWFailure *failure = [KWFailure failureWithCallSite:aNode.callSite format:@"%@ \"%@\" raised",
                             [exception name],
                             [exception reason]];
       [self reportFailure:failure];
     }
-
-    // Remove it node from the stack
-    [self.exampleNodeStack removeLastObject];
     
-    for (KWContextNode *contextNode in self.exampleNodeStack) {
-      if (contextNode.afterEachNode.block != nil)
-        contextNode.afterEachNode.block();
+    if (passed) {
+      NSLog(@"+ '%@ %@' [PASSED]", [self descriptionForExampleContext], [exampleNode description]);
     }
-  } @catch (NSException *exception) {
-    KWFailure *failure = [KWFailure failureWithCallSite:aNode.callSite format:@"%@ \"%@\" raised",
-                          [exception name],
-                          [exception reason]];
-    [self reportFailure:failure];
-  }
-  
-  if (passed) {
-    NSLog(@"+ '%@ %@' [PASSED]", [self descriptionForExampleContext], [exampleNode description]);
-  }
-  
-  // Always clear stubs and spies at the end of it blocks
-  KWClearAllMessageSpies();
-  KWClearAllObjectStubs();
+    
+    // Always clear stubs and spies at the end of it blocks
+    KWClearAllMessageSpies();
+    KWClearAllObjectStubs();
+  }];
 }
 
 - (void)visitPendingNode:(KWPendingNode *)aNode {
   if (aNode != exampleNode)
     return;
   
-  [self.exampleNodeStack addObject:aNode];
   NSLog(@"+ '%@' [PENDING]", [self descriptionForExampleContext]);
-  [self.exampleNodeStack removeLastObject];
 }
 
 - (NSString *)generateDescriptionForAnonymousItNode

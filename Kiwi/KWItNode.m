@@ -9,15 +9,28 @@
 #import "KWExample.h"
 #import "KWVerifying.h"
 
+@interface KWItNode ()
+
+@property (nonatomic, retain, readwrite) KWContextNode *context;
+
+@end
+
 @implementation KWItNode
 
+@synthesize context;
 @synthesize example;
 
 #pragma mark -
 #pragma mark Initializing
 
-+ (id)itNodeWithCallSite:(KWCallSite *)aCallSite description:(NSString *)aDescription block:(KWVoidBlock)aBlock {
-    return [[[self alloc] initWithCallSite:aCallSite description:aDescription block:aBlock] autorelease];
++ (id)itNodeWithCallSite:(KWCallSite *)aCallSite 
+             description:(NSString *)aDescription 
+                 context:(KWContextNode *)context 
+                   block:(KWVoidBlock)aBlock;
+{
+    KWItNode *itNode = [[self alloc] initWithCallSite:aCallSite description:aDescription block:aBlock];
+    itNode.context = context;
+    return [itNode autorelease];
 }
 
 #pragma mark -

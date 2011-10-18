@@ -36,4 +36,9 @@
 
 @property (nonatomic, readonly) KWVoidBlock block;
 
+#pragma mark -
+#pragma mark Performing blocks
+
+- (void)performBlock;
+
 @end

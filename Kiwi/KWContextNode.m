@@ -6,27 +6,33 @@
 
 #import "KWContextNode.h"
 #import "KWExampleNodeVisitor.h"
+#import "KWExample.h"
+#import "KWFailure.h"
 
 @implementation KWContextNode
 
 #pragma mark -
 #pragma mark Initializing
 
-- (id)initWithCallSite:(KWCallSite *)aCallSite description:(NSString *)aDescription {
+- (id)initWithCallSite:(KWCallSite *)aCallSite parentContext:(KWContextNode *)node description:(NSString *)aDescription
+{
     if ((self = [super init])) {
+        parentContext = [node retain];
         callSite = [aCallSite retain];
         description = [aDescription copy];
         nodes = [[NSMutableArray alloc] init];
+        performedExampleCount = 0;
     }
 
     return self;
 }
 
-+ (id)contextNodeWithCallSite:(KWCallSite *)aCallSite description:(NSString *)aDescription {
-    return [[[self alloc] initWithCallSite:aCallSite description:aDescription] autorelease];
++ (id)contextNodeWithCallSite:(KWCallSite *)aCallSite parentContext:(KWContextNode *)contextNode description:(NSString *)aDescription {
+    return [[[self alloc] initWithCallSite:aCallSite parentContext:contextNode description:aDescription] autorelease];
 }
 
 - (void)dealloc {
+    [parentContext release];
     [callSite release];
     [description release];
     [registerMatchersNode release];
@@ -89,6 +95,39 @@
 
 - (void)addPendingNode:(KWPendingNode *)aNode {
     [(NSMutableArray *)self.nodes addObject:aNode];
+}
+
+- (void)performExample:(KWExample *)example withBlock:(void (^)(void))exampleBlock
+{
+    void (^innerExampleBlock)(void) = [exampleBlock copy];
+    
+    void (^outerExampleBlock)(void) = ^{
+        @try {
+            if (performedExampleCount == 0) {
+                [self.registerMatchersNode acceptExampleNodeVisitor:example];
+                [self.beforeAllNode acceptExampleNodeVisitor:example];
+            }
+            
+            [self.beforeEachNode acceptExampleNodeVisitor:example];
+            
+            innerExampleBlock();
+            
+            [self.afterEachNode acceptExampleNodeVisitor:example];
+            
+        } @catch (NSException *exception) {
+            KWFailure *failure = [KWFailure failureWithCallSite:self.callSite format:@"%@ \"%@\" raised", [exception name], [exception reason]];
+            [example reportFailure:failure];
+        }
+        
+        performedExampleCount++;
+    };
+    if (parentContext == nil) {
+        outerExampleBlock();
+    }
+    else {
+        [parentContext performExample:example withBlock:outerExampleBlock];
+    }
+    [innerExampleBlock release];
 }
 
 #pragma mark -

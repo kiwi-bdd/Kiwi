@@ -19,11 +19,14 @@
 @class KWSpec;
 @class KWMatcherFactory;
 
-@interface KWExample : NSObject <KWExampleNodeVisitor, KWReporting>
+@interface KWExample : NSObject <KWExampleNodeVisitor, KWReporting> {
+  id<KWExampleNode> exampleNode;
+  BOOL passed;
+}
 
 @property (nonatomic, assign) KWExampleSuite *suite;
 
-- (id)initWithExampleNode:(id<KWExampleNode>)node contextNodeStack:(NSArray *)stack;
+- (id)initWithExampleNode:(id<KWExampleNode>)node;
 
 #pragma mark - Adding Verifiers
 

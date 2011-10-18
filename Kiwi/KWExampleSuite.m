@@ -23,14 +23,12 @@
   if ((self = [super init])) {
     rootNode = [contextNode retain];
     examples = [[NSMutableSet alloc] init];
-    visitedNodes = [[NSMutableSet alloc] init];
   }
   return self;
 }
 
 - (void)dealloc 
 {
-  [visitedNodes release];
   [examples release];
   [rootNode release];
   [super dealloc];
@@ -56,26 +54,6 @@
   }
   
   return invocations;
-}
-
-#pragma mark - Node visiting
-
-- (void)visitBeforeAllNode:(KWBeforeAllNode *)aNode {
-  if (aNode.block == nil || [visitedNodes containsObject:aNode])
-    return;
-  
-  [visitedNodes addObject:aNode];
-  
-  aNode.block();
-}
-
-- (void)visitAfterAllNode:(KWAfterAllNode *)aNode {
-  if (aNode.block == nil || [visitedNodes containsObject:aNode])
-    return;
-  
-  [visitedNodes addObject:aNode];
-  
-  aNode.block();
 }
 
 @end
