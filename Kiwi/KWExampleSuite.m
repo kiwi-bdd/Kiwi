@@ -14,6 +14,7 @@
 #import "NSMethodSignature+KiwiAdditions.h"
 #import <objc/runtime.h>
 
+#define kKWINVOCATION_EXAMPLE_GROUP_KEY @"__KWExampleGroupKey"
 
 @implementation KWExampleSuite
 
@@ -45,16 +46,13 @@
 {
   NSMutableArray *invocations = [NSMutableArray array];
   
+  // Add a single dummy invocation for each example group
+  
   for (KWExampleGroup *exampleGroup in exampleGroups) {
-    // Add a single dummy invocation for each example group
     NSMethodSignature *methodSignature = [NSMethodSignature signatureWithObjCTypes:[KWEncodingForVoidMethod() UTF8String]];
     NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:methodSignature];
-    
     [invocations addObject:invocation];
-    
-    // because SenTest will modify the invocation target, we'll have to store 
-    // another reference to the example group so we can retrieve it later
-    objc_setAssociatedObject(invocation, kKWINVOCATION_EXAMPLE_GROUP_KEY, exampleGroup, OBJC_ASSOCIATION_RETAIN);    
+    [invocation kw_setExampleGroup:exampleGroup];
   }
   
   return invocations;
@@ -81,3 +79,23 @@
 }
 
 @end
+
+#pragma mark -
+
+// because SenTest will modify the invocation target, we'll have to store 
+// another reference to the example group so we can retrieve it later
+
+@implementation NSInvocation (KWExampleGroup)
+
+- (void)kw_setExampleGroup:(KWExampleGroup *)exampleGroup
+{
+  objc_setAssociatedObject(self, kKWINVOCATION_EXAMPLE_GROUP_KEY, exampleGroup, OBJC_ASSOCIATION_RETAIN);    
+}
+
+- (KWExampleGroup *)kw_exampleGroup
+{
+  return objc_getAssociatedObject(self, kKWINVOCATION_EXAMPLE_GROUP_KEY);
+}
+
+@end
+

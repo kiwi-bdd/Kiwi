@@ -70,10 +70,8 @@
 
 - (void)invokeTest 
 {
-    self.exampleGroup = objc_getAssociatedObject([self invocation], kKWINVOCATION_EXAMPLE_GROUP_KEY);
-    
-    objc_setAssociatedObject([self invocation], kKWINVOCATION_EXAMPLE_GROUP_KEY, nil, OBJC_ASSOCIATION_RETAIN);
-    
+    self.exampleGroup = [[self invocation] kw_exampleGroup];
+
     NSAutoreleasePool *subPool = [[NSAutoreleasePool alloc] init];
 
     @try {
@@ -81,6 +79,8 @@
     } @catch (NSException *exception) {
         [self failWithException:exception];
     }
+    
+    [[self invocation] kw_setExampleGroup:nil];
     
     [subPool release];
 }

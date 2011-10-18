@@ -13,8 +13,6 @@
 @class KWExampleGroup;
 @class SenTestCase;
 
-#define kKWINVOCATION_EXAMPLE_GROUP_KEY @"__KWExampleGroupKey"
-
 @interface KWExampleSuite : NSObject <KWExampleNodeVisitor> {
   KWContextNode *rootNode;
   NSMutableSet *exampleGroups;
@@ -23,4 +21,9 @@
 - (id)initWithRootNode:(KWContextNode *)contextNode;
 - (void)addExampleGroup:(KWExampleGroup *)exampleGroup;
 - (NSArray *)invocationsForTestCase;
+@end
+
+@interface NSInvocation (KWExampleGroup)
+- (void)kw_setExampleGroup:(KWExampleGroup *)exampleGroup;
+- (KWExampleGroup *)kw_exampleGroup;
 @end
