@@ -19,12 +19,7 @@
 @class KWSpec;
 @class KWMatcherFactory;
 
-@interface KWExampleGroup : NSObject <KWExampleNodeVisitor, KWReporting> {
-@private
-    NSArray *contextNodeStack;
-    id<KWExampleNode> exampleNode;
-    BOOL passed;
-}
+@interface KWExample : NSObject <KWExampleNodeVisitor, KWReporting>
 
 @property (nonatomic, assign) KWExampleSuite *suite;
 
@@ -39,7 +34,7 @@
 
 #pragma mark - Running
 
-- (void)runWithDelegate:(id<KWExampleGroupDelegate>)delegate;
+- (void)runWithDelegate:(id<KWExampleDelegate>)delegate;
 
 #pragma mark -
 #pragma mark Anonymous It Node Descriptions

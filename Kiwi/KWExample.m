@@ -4,7 +4,7 @@
 // Copyright 2010 Allen Ding. All rights reserved.
 //
 
-#import "KWExampleGroup.h"
+#import "KWExample.h"
 #import "KWExampleGroupBuilder.h"
 #import "KWContextNode.h"
 #import "KWMatcherFactory.h"
@@ -26,16 +26,20 @@
 #import "KWExampleSuite.h"
 
 
-@interface KWExampleGroup ()
+@interface KWExample ()
 
 @property (nonatomic, readonly) NSMutableArray *verifiers;
 @property (nonatomic, readonly) KWMatcherFactory *matcherFactory;
 @property (nonatomic, readonly) NSMutableArray *exampleNodeStack;
-@property (nonatomic, assign) id<KWExampleGroupDelegate> delegate;
+@property (nonatomic, assign) id<KWExampleDelegate> delegate;
 
 @end
 
-@implementation KWExampleGroup
+@implementation KWExample {
+  NSArray *contextNodeStack;
+  id<KWExampleNode> exampleNode;
+  BOOL passed;
+}
 
 @synthesize matcherFactory;
 @synthesize verifiers;
@@ -95,11 +99,11 @@
 
 #pragma mark - Running examples
 
-- (void)runWithDelegate:(id<KWExampleGroupDelegate>)delegate;
+- (void)runWithDelegate:(id<KWExampleDelegate>)delegate;
 {
   self.delegate = delegate;
   [self.matcherFactory registerMatcherClassesWithNamespacePrefix:@"KW"];
-  [[KWExampleGroupBuilder sharedExampleGroupBuilder] setCurrentExampleGroup:self];
+  [[KWExampleGroupBuilder sharedExampleGroupBuilder] setCurrentExample:self];
   [[contextNodeStack objectAtIndex:0] acceptExampleNodeVisitor:self];
 }
 
@@ -141,7 +145,7 @@
 - (void)reportFailure:(KWFailure *)failure
 {
   passed = NO;
-  [self.delegate exampleGroup:self didFailWithFailure:[self outputReadyFailureWithFailure:failure]];
+  [self.delegate example:self didFailWithFailure:[self outputReadyFailureWithFailure:failure]];
 }
 
 #pragma mark - Visiting Nodes
@@ -190,7 +194,7 @@
   if (aNode.block == nil || aNode != exampleNode)
     return;
   
-  aNode.exampleGroup = self;
+  aNode.example = self;
   
   @try {
     for (KWContextNode *contextNode in self.exampleNodeStack) {

@@ -8,7 +8,7 @@
 #import "KWBlock.h"
 
 @class KWCallSite;
-@class KWExampleGroup;
+@class KWExample;
 @class KWExampleSuite;
 
 @interface KWExampleGroupBuilder : NSObject {
@@ -27,10 +27,10 @@
 
 @property (nonatomic, readonly) BOOL isBuildingExampleGroup;
 @property (nonatomic, retain, readonly) KWExampleSuite *exampleSuite;
-@property (nonatomic, retain) KWExampleGroup *currentExampleGroup;
+@property (nonatomic, retain) KWExample *currentExample;
 
 - (KWExampleSuite *)buildExampleGroups:(void (^)(void))buildingBlock;
-- (KWExampleGroup *)currentExampleGroup;
+- (KWExample *)currentExample;
 
 - (void)pushContextNodeWithCallSite:(KWCallSite *)aCallSite description:(NSString *)aDescription;
 - (void)popContextNode;

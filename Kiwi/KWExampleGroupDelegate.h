@@ -8,11 +8,11 @@
 
 #import <Foundation/Foundation.h>
 
-@class KWExampleGroup;
+@class KWExample;
 @class KWFailure;
 
-@protocol KWExampleGroupDelegate <NSObject>
+@protocol KWExampleDelegate <NSObject>
 
-- (void)exampleGroup:(KWExampleGroup *)exampleGroup didFailWithFailure:(KWFailure *)failure;
+- (void)example:(KWExample *)example didFailWithFailure:(KWFailure *)failure;
 
 @end

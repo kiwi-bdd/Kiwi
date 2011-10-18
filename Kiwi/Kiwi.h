@@ -36,7 +36,7 @@ extern "C" {
 #import "KWContextNode.h"
 #import "KWDeviceInfo.h"
 #import "KWEqualMatcher.h"
-#import "KWExampleGroup.h"
+#import "KWExample.h"
 #import "KWExampleGroupBuilder.h"
 #import "KWExampleNode.h"
 #import "KWExampleNodeVisitor.h"

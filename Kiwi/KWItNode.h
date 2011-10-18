@@ -9,11 +9,11 @@
 #import "KWExampleNode.h"
 
 @class KWPendingNode;
-@class KWExampleGroup;
+@class KWExample;
 
 @interface KWItNode : KWBlockNode<KWExampleNode>
 
-@property (nonatomic, assign) KWExampleGroup *exampleGroup;
+@property (nonatomic, assign) KWExample *example;
 
 #pragma mark -
 #pragma mark Initializing

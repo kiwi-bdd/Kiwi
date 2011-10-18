@@ -5,7 +5,7 @@
 //
 
 #import "KWExampleGroupBuilder.h"
-#import "KWExampleGroup.h"
+#import "KWExample.h"
 #import "KWAfterAllNode.h"
 #import "KWAfterEachNode.h"
 #import "KWBeforeAllNode.h"
@@ -30,7 +30,7 @@
 @implementation KWExampleGroupBuilder
 
 @synthesize exampleSuite;
-@synthesize currentExampleGroup;
+@synthesize currentExample;
 
 #pragma mark -
 #pragma mark Initializing
@@ -185,9 +185,9 @@ static KWExampleGroupBuilder *sharedExampleGroupBuilder = nil;
     KWItNode* itNode = [KWItNode itNodeWithCallSite:aCallSite description:aDescription block:aBlock];
     [contextNode addItNode:itNode];
     
-    KWExampleGroup *exampleGroup = [[KWExampleGroup alloc] initWithExampleNode:itNode contextNodeStack:self.contextNodeStack];
-    [self.exampleSuite addExampleGroup:exampleGroup];
-    [exampleGroup release];
+    KWExample *example = [[KWExample alloc] initWithExampleNode:itNode contextNodeStack:self.contextNodeStack];
+    [self.exampleSuite addExample:example];
+    [example release];
 }
 
 - (void)addPendingNodeWithCallSite:(KWCallSite *)aCallSite description:(NSString *)aDescription {
@@ -198,9 +198,9 @@ static KWExampleGroupBuilder *sharedExampleGroupBuilder = nil;
     KWPendingNode *pendingNode = [KWPendingNode pendingNodeWithCallSite:aCallSite description:aDescription];
     [contextNode addPendingNode:pendingNode];
     
-    KWExampleGroup *exampleGroup = [[KWExampleGroup alloc] initWithExampleNode:pendingNode contextNodeStack:self.contextNodeStack];
-    [self.exampleSuite addExampleGroup:exampleGroup];
-    [exampleGroup release];
+    KWExample *example = [[KWExample alloc] initWithExampleNode:pendingNode contextNodeStack:self.contextNodeStack];
+    [self.exampleSuite addExample:example];
+    [example release];
 }
 
 @end

@@ -10,20 +10,20 @@
 #import "KWExampleNodeVisitor.h"
 
 @class KWContextNode;
-@class KWExampleGroup;
+@class KWExample;
 @class SenTestCase;
 
 @interface KWExampleSuite : NSObject <KWExampleNodeVisitor> {
   KWContextNode *rootNode;
-  NSMutableSet *exampleGroups;
+  NSMutableSet *examples;
   NSMutableSet *visitedNodes;
 }
 - (id)initWithRootNode:(KWContextNode *)contextNode;
-- (void)addExampleGroup:(KWExampleGroup *)exampleGroup;
+- (void)addExample:(KWExample *)example;
 - (NSArray *)invocationsForTestCase;
 @end
 
 @interface NSInvocation (KWExampleGroup)
-- (void)kw_setExampleGroup:(KWExampleGroup *)exampleGroup;
-- (KWExampleGroup *)kw_exampleGroup;
+- (void)kw_setExample:(KWExample *)exampleGroup;
+- (KWExample *)kw_example;
 @end

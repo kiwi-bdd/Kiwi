@@ -13,7 +13,7 @@
 
 @class KWCallSite;
 
-@interface KWSpec : SenTestCase<KWExampleGroupDelegate>
+@interface KWSpec : SenTestCase<KWExampleDelegate>
 
 #pragma mark -
 #pragma mark Adding Verifiers

@@ -6,7 +6,7 @@
 
 #import "KWSpec.h"
 #import <objc/runtime.h>
-#import "KWExampleGroup.h"
+#import "KWExample.h"
 #import "KWExampleGroupBuilder.h"
 #import "KWIntercept.h"
 #import "KWObjCUtilities.h"
@@ -21,17 +21,17 @@
 #pragma mark -
 #pragma mark Properties
 
-@property (nonatomic, retain) KWExampleGroup *exampleGroup;
+@property (nonatomic, retain) KWExample *example;
 
 @end
 
 @implementation KWSpec
 
-@synthesize exampleGroup;
+@synthesize example;
 
 - (void)dealloc 
 {
-    [exampleGroup release];
+    [example release];
     [super dealloc];
 }
 
@@ -70,24 +70,24 @@
 
 - (void)invokeTest 
 {
-    self.exampleGroup = [[self invocation] kw_exampleGroup];
+    self.example = [[self invocation] kw_example];
 
     NSAutoreleasePool *subPool = [[NSAutoreleasePool alloc] init];
 
     @try {
-        [self.exampleGroup runWithDelegate:self];
+        [self.example runWithDelegate:self];
     } @catch (NSException *exception) {
         [self failWithException:exception];
     }
     
-    [[self invocation] kw_setExampleGroup:nil];
+    [[self invocation] kw_setExample:nil];
     
     [subPool release];
 }
 
 #pragma mark - KWExampleGroupDelegate methods
 
-- (void)exampleGroup:(KWExampleGroup *)exampleGroup didFailWithFailure:(KWFailure *)failure
+- (void)example:(KWExample *)example didFailWithFailure:(KWFailure *)failure
 {
     [self failWithException:[failure exceptionValue]];
 }
@@ -97,22 +97,22 @@
 
 + (id)addVerifier:(id<KWVerifying>)aVerifier
 {
-  return [[[KWExampleGroupBuilder sharedExampleGroupBuilder] currentExampleGroup] addVerifier:aVerifier];
+  return [[[KWExampleGroupBuilder sharedExampleGroupBuilder] currentExample] addVerifier:aVerifier];
 }
 
 + (id)addExistVerifierWithExpectationType:(KWExpectationType)anExpectationType callSite:(KWCallSite *)aCallSite
 {
-  return [[[KWExampleGroupBuilder sharedExampleGroupBuilder] currentExampleGroup] addExistVerifierWithExpectationType:anExpectationType callSite:aCallSite];
+  return [[[KWExampleGroupBuilder sharedExampleGroupBuilder] currentExample] addExistVerifierWithExpectationType:anExpectationType callSite:aCallSite];
 }
 
 + (id)addMatchVerifierWithExpectationType:(KWExpectationType)anExpectationType callSite:(KWCallSite *)aCallSite
 {
-  return [[[KWExampleGroupBuilder sharedExampleGroupBuilder] currentExampleGroup] addMatchVerifierWithExpectationType:anExpectationType callSite:aCallSite];
+  return [[[KWExampleGroupBuilder sharedExampleGroupBuilder] currentExample] addMatchVerifierWithExpectationType:anExpectationType callSite:aCallSite];
 }
 
 + (id)addAsyncVerifierWithExpectationType:(KWExpectationType)anExpectationType callSite:(KWCallSite *)aCallSite timeout:(NSInteger)timeout
 {
-  return [[[KWExampleGroupBuilder sharedExampleGroupBuilder] currentExampleGroup] addAsyncVerifierWithExpectationType:anExpectationType callSite:aCallSite timeout:timeout];
+  return [[[KWExampleGroupBuilder sharedExampleGroupBuilder] currentExample] addAsyncVerifierWithExpectationType:anExpectationType callSite:aCallSite timeout:timeout];
 }
 
 @end

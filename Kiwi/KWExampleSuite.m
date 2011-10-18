@@ -7,7 +7,7 @@
 //
 
 #import "KWExampleSuite.h"
-#import "KWExampleGroup.h"
+#import "KWExample.h"
 #import "KWStringUtilities.h"
 #import "KWBeforeAllNode.h"
 #import "KWAfterAllNode.h"
@@ -22,7 +22,7 @@
 {
   if ((self = [super init])) {
     rootNode = [contextNode retain];
-    exampleGroups = [[NSMutableSet alloc] init];
+    examples = [[NSMutableSet alloc] init];
     visitedNodes = [[NSMutableSet alloc] init];
   }
   return self;
@@ -31,15 +31,15 @@
 - (void)dealloc 
 {
   [visitedNodes release];
-  [exampleGroups release];
+  [examples release];
   [rootNode release];
   [super dealloc];
 }
 
-- (void)addExampleGroup:(KWExampleGroup *)exampleGroup
+- (void)addExample:(KWExample *)example
 {
-  [exampleGroups addObject:exampleGroup];
-  [exampleGroup setSuite:self];
+  [examples addObject:example];
+  [example setSuite:self];
 }
 
 - (NSArray *)invocationsForTestCase;
@@ -48,11 +48,11 @@
   
   // Add a single dummy invocation for each example group
   
-  for (KWExampleGroup *exampleGroup in exampleGroups) {
+  for (KWExample *exampleGroup in examples) {
     NSMethodSignature *methodSignature = [NSMethodSignature signatureWithObjCTypes:[KWEncodingForVoidMethod() UTF8String]];
     NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:methodSignature];
     [invocations addObject:invocation];
-    [invocation kw_setExampleGroup:exampleGroup];
+    [invocation kw_setExample:exampleGroup];
   }
   
   return invocations;
@@ -87,12 +87,12 @@
 
 @implementation NSInvocation (KWExampleGroup)
 
-- (void)kw_setExampleGroup:(KWExampleGroup *)exampleGroup
+- (void)kw_setExample:(KWExample *)exampleGroup
 {
   objc_setAssociatedObject(self, kKWINVOCATION_EXAMPLE_GROUP_KEY, exampleGroup, OBJC_ASSOCIATION_RETAIN);    
 }
 
-- (KWExampleGroup *)kw_exampleGroup
+- (KWExample *)kw_example
 {
   return objc_getAssociatedObject(self, kKWINVOCATION_EXAMPLE_GROUP_KEY);
 }
