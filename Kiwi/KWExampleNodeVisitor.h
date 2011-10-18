@@ -20,6 +20,8 @@
 #pragma mark -
 #pragma mark Visiting Nodes
 
+@optional
+
 - (void)visitContextNode:(KWContextNode *)aNode;
 - (void)visitRegisterMatchersNode:(KWRegisterMatchersNode *)aNode;
 - (void)visitBeforeAllNode:(KWBeforeAllNode *)aNode;

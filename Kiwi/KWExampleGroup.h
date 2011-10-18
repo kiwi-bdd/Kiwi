@@ -14,6 +14,7 @@
 #import "KWExampleGroupDelegate.h"
 
 @class KWCallSite;
+@class KWExampleSuite;
 @class KWContextNode;
 @class KWSpec;
 @class KWMatcherFactory;
@@ -24,6 +25,8 @@
     id<KWExampleNode> exampleNode;
     BOOL passed;
 }
+
+@property (nonatomic, assign) KWExampleSuite *suite;
 
 - (id)initWithExampleNode:(id<KWExampleNode>)node contextNodeStack:(NSArray *)stack;
 

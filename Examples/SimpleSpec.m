@@ -37,4 +37,21 @@ describe(@"stack", ^{
     });
 });
 
+describe(@"beforeAll", ^{
+  __block NSInteger calls = 0;
+  
+  beforeAll(^{
+    calls++;
+  });
+  
+  it(@"will be called before this spec", ^{
+    [[theValue(calls) should] equal:theValue(1)];
+	});
+  
+  it(@"will not be called again before this spec", ^{
+    [[theValue(calls) should] equal:theValue(1)];
+  });
+  
+});
+
 SPEC_END

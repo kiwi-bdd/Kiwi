@@ -13,8 +13,8 @@
 #import "KWStringUtilities.h"
 #import "NSMethodSignature+KiwiAdditions.h"
 #import "KWFailure.h"
+#import "KWExampleSuite.h"
 
-#define kKWINVOCATION_EXAMPLE_GROUP_KEY @"__KWExampleGroupKey"
 
 @interface KWSpec()
 
@@ -31,7 +31,6 @@
 
 - (void)dealloc 
 {
-    objc_setAssociatedObject([self invocation], kKWINVOCATION_EXAMPLE_GROUP_KEY, nil, OBJC_ASSOCIATION_RETAIN);
     [exampleGroup release];
     [super dealloc];
 }
@@ -59,25 +58,11 @@
     if ([self methodForSelector:selector] == [KWSpec methodForSelector:selector])
         return nil;
 
-    NSArray *exampleGroups = [[KWExampleGroupBuilder sharedExampleGroupBuilder] buildExampleGroups:^{
+    KWExampleSuite *exampleSuite = [[KWExampleGroupBuilder sharedExampleGroupBuilder] buildExampleGroups:^{
         [self buildExampleGroups];
     }];
-    
-    NSMutableArray *invocations = [NSMutableArray array];
-    
-    for (KWExampleGroup *exampleGroup in exampleGroups) {
-        // Add a single dummy invocation for each example group
-        NSMethodSignature *methodSignature = [NSMethodSignature signatureWithObjCTypes:[KWEncodingForVoidMethod() UTF8String]];
-        NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:methodSignature];
-
-        [invocations addObject:invocation];
-        
-        // because SenTest will modify the invocation target, we'll have to store 
-        // another reference to the example group so we can retrieve it later
-        objc_setAssociatedObject(invocation, kKWINVOCATION_EXAMPLE_GROUP_KEY, exampleGroup, OBJC_ASSOCIATION_RETAIN);    
-    }
   
-    return invocations;
+    return [exampleSuite invocationsForTestCase];
 }
 
 #pragma mark -
@@ -87,8 +72,10 @@
 {
     self.exampleGroup = objc_getAssociatedObject([self invocation], kKWINVOCATION_EXAMPLE_GROUP_KEY);
     
-    NSAutoreleasePool *subPool = [[NSAutoreleasePool alloc] init];
+    objc_setAssociatedObject([self invocation], kKWINVOCATION_EXAMPLE_GROUP_KEY, nil, OBJC_ASSOCIATION_RETAIN);
     
+    NSAutoreleasePool *subPool = [[NSAutoreleasePool alloc] init];
+
     @try {
         [self.exampleGroup runWithDelegate:self];
     } @catch (NSException *exception) {

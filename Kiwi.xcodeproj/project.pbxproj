@@ -113,6 +113,8 @@
 		A3B1655D1399694900E9CC6E /* SpaceShip.m in Sources */ = {isa = PBXBuildFile; fileRef = F59E248A1188177800D008C2 /* SpaceShip.m */; };
 		A3B1655E1399694900E9CC6E /* Robot.m in Sources */ = {isa = PBXBuildFile; fileRef = A3A1754012E4966F004DFD70 /* Robot.m */; };
 		A3B1655F1399695000E9CC6E /* StringPrefixMatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = A3A1754312E496CA004DFD70 /* StringPrefixMatcher.m */; };
+		A3CB75E2144C3479002D1F7A /* KWExampleSuite.h in Headers */ = {isa = PBXBuildFile; fileRef = A3CB75E0144C3479002D1F7A /* KWExampleSuite.h */; };
+		A3CB75E3144C3479002D1F7A /* KWExampleSuite.m in Sources */ = {isa = PBXBuildFile; fileRef = A3CB75E1144C3479002D1F7A /* KWExampleSuite.m */; };
 		A3EB7FF1131EA219001860F5 /* KWBeNilMatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = A3A1757312E498CD004DFD70 /* KWBeNilMatcher.m */; };
 		A3EB7FF3131EA21A001860F5 /* KWBeNonNilMatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = A3A1757612E49900004DFD70 /* KWBeNonNilMatcher.m */; };
 		A3EB7FF7131EA224001860F5 /* KWHamcrestMatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = A352EA1812EDC8160049C691 /* KWHamcrestMatcher.m */; };
@@ -276,6 +278,8 @@
 		A3A1757512E498D8004DFD70 /* KWBeNonNilMatcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KWBeNonNilMatcher.h; sourceTree = "<group>"; };
 		A3A1757612E49900004DFD70 /* KWBeNonNilMatcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KWBeNonNilMatcher.m; sourceTree = "<group>"; };
 		A3B16542139967B800E9CC6E /* KiwiExamples.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = KiwiExamples.octest; sourceTree = BUILT_PRODUCTS_DIR; };
+		A3CB75E0144C3479002D1F7A /* KWExampleSuite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KWExampleSuite.h; sourceTree = "<group>"; };
+		A3CB75E1144C3479002D1F7A /* KWExampleSuite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KWExampleSuite.m; sourceTree = "<group>"; };
 		A3FABFAE13CBB187002003F7 /* KiwiBlockMacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KiwiBlockMacros.h; sourceTree = "<group>"; };
 		F5015B501158398E002E9A98 /* Kiwi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Kiwi.h; sourceTree = "<group>"; };
 		F5015B571158398E002E9A98 /* KWCallSite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KWCallSite.h; sourceTree = "<group>"; };
@@ -853,6 +857,8 @@
 				F50C74A011BE835C005BB3E2 /* KWPendingNode.m */,
 				F579D0CC11BE6FD700FC86CB /* KWRegisterMatchersNode.h */,
 				F579D0CD11BE6FD700FC86CB /* KWRegisterMatchersNode.m */,
+				A3CB75E0144C3479002D1F7A /* KWExampleSuite.h */,
+				A3CB75E1144C3479002D1F7A /* KWExampleSuite.m */,
 			);
 			name = "Example Groups";
 			sourceTree = "<group>";
@@ -975,6 +981,7 @@
 				A34FADAB13BBF4A4003968B2 /* KiwiConfiguration.h in Headers */,
 				A34FADAC13BBF4A4003968B2 /* KiwiMacros.h in Headers */,
 				A3FABFAF13CBB187002003F7 /* KiwiBlockMacros.h in Headers */,
+				A3CB75E2144C3479002D1F7A /* KWExampleSuite.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1206,6 +1213,7 @@
 				A3EB8065131EA574001860F5 /* KWHamrestMatchingAdditions.m in Sources */,
 				A385CAEC13AA7EDD00DCA951 /* KWUserDefinedMatcher.m in Sources */,
 				A385CAF013AAC9B800DCA951 /* KWMatchers.m in Sources */,
+				A3CB75E3144C3479002D1F7A /* KWExampleSuite.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

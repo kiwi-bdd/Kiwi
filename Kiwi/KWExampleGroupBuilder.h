@@ -9,10 +9,12 @@
 
 @class KWCallSite;
 @class KWExampleGroup;
+@class KWExampleSuite;
 
 @interface KWExampleGroupBuilder : NSObject {
 @private
     NSMutableArray *contextNodeStack;
+    NSMutableSet *suites;
 }
 
 #pragma mark -
@@ -24,10 +26,10 @@
 #pragma mark Building Example Groups
 
 @property (nonatomic, readonly) BOOL isBuildingExampleGroup;
-@property (nonatomic, retain, readonly) NSMutableArray *exampleGroups;
+@property (nonatomic, retain, readonly) KWExampleSuite *exampleSuite;
 @property (nonatomic, retain) KWExampleGroup *currentExampleGroup;
 
-- (NSArray *)buildExampleGroups:(void (^)(void))buildingBlock;
+- (KWExampleSuite *)buildExampleGroups:(void (^)(void))buildingBlock;
 - (KWExampleGroup *)currentExampleGroup;
 
 - (void)pushContextNodeWithCallSite:(KWCallSite *)aCallSite description:(NSString *)aDescription;

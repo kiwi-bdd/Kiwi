@@ -23,6 +23,7 @@
 #import "KWWorkarounds.h"
 #import "KWIntercept.h"
 #import "KWExampleNode.h"
+#import "KWExampleSuite.h"
 
 
 @interface KWExampleGroup ()
@@ -40,6 +41,7 @@
 @synthesize verifiers;
 @synthesize exampleNodeStack;
 @synthesize delegate = _delegate;
+@synthesize suite;
 
 - (id)initWithExampleNode:(id<KWExampleNode>)node contextNodeStack:(NSArray *)stack;
 {
@@ -149,12 +151,12 @@
   
   @try {
     [aNode.registerMatchersNode acceptExampleNodeVisitor:self];
-    [aNode.beforeAllNode acceptExampleNodeVisitor:self];
+    [aNode.beforeAllNode acceptExampleNodeVisitor:self.suite];
     
     for (id<KWExampleNode> node in aNode.nodes)
       [node acceptExampleNodeVisitor:self];
     
-    [aNode.afterAllNode acceptExampleNodeVisitor:self];
+    [aNode.afterAllNode acceptExampleNodeVisitor:self.suite];
   } @catch (NSException *exception) {
     KWFailure *failure = [KWFailure failureWithCallSite:aNode.callSite format:@"%@ \"%@\" raised",
                           [exception name],
@@ -168,20 +170,6 @@
 
 - (void)visitRegisterMatchersNode:(KWRegisterMatchersNode *)aNode {
   [self.matcherFactory registerMatcherClassesWithNamespacePrefix:aNode.namespacePrefix];
-}
-
-- (void)visitBeforeAllNode:(KWBeforeAllNode *)aNode {
-  if (aNode.block == nil)
-    return;
-  
-  aNode.block();
-}
-
-- (void)visitAfterAllNode:(KWAfterAllNode *)aNode {
-  if (aNode.block == nil)
-    return;
-  
-  aNode.block();
 }
 
 - (void)visitBeforeEachNode:(KWBeforeEachNode *)aNode {

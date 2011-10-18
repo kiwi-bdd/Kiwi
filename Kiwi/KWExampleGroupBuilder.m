@@ -14,20 +14,22 @@
 #import "KWItNode.h"
 #import "KWPendingNode.h"
 #import "KWRegisterMatchersNode.h"
+#import "KWExampleSuite.h"
+
 
 @interface KWExampleGroupBuilder()
 
 #pragma mark -
 #pragma mark Building Example Groups
 
-@property (nonatomic, retain, readwrite) NSMutableArray *exampleGroups;
+@property (nonatomic, retain, readwrite) KWExampleSuite *exampleSuite;
 @property (nonatomic, readonly) NSMutableArray *contextNodeStack;
 
 @end
 
 @implementation KWExampleGroupBuilder
 
-@synthesize exampleGroups;
+@synthesize exampleSuite;
 @synthesize currentExampleGroup;
 
 #pragma mark -
@@ -38,13 +40,15 @@ static KWExampleGroupBuilder *sharedExampleGroupBuilder = nil;
 - (id)init {
     if ((self = [super init])) {
         contextNodeStack = [[NSMutableArray alloc] init];
+        suites = [[NSMutableSet alloc] init];
     }
 
     return self;
 }
 
 - (void)dealloc {
-    [exampleGroups release];
+    [suites release];
+    [exampleSuite release];
     [contextNodeStack release];
     [super dealloc];
 }
@@ -89,14 +93,13 @@ static KWExampleGroupBuilder *sharedExampleGroupBuilder = nil;
     return [self.contextNodeStack count] > 0;
 }
 
-- (NSArray *)buildExampleGroups:(void (^)(void))buildingBlock
+- (KWExampleSuite *)buildExampleGroups:(void (^)(void))buildingBlock
 {
-    if (self.isBuildingExampleGroup)
-        [NSException raise:@"KWExampleGroupBuilderException" format:@"an example group has already been started"];
-    
-    self.exampleGroups = [NSMutableArray array];
-    
     KWContextNode *rootNode = [KWContextNode contextNodeWithCallSite:nil description:nil];
+    
+    self.exampleSuite = [[[KWExampleSuite alloc] initWithRootNode:rootNode] autorelease];
+    
+    [suites addObject:self.exampleSuite];
 
     [self.contextNodeStack addObject:rootNode];
     buildingBlock();
@@ -112,11 +115,7 @@ static KWExampleGroupBuilder *sharedExampleGroupBuilder = nil;
     }
     [self.contextNodeStack removeAllObjects];
     
-    NSArray *_exampleGroups = [self.exampleGroups copy];
-    
-    self.exampleGroups = nil;
-    
-    return [_exampleGroups autorelease];
+    return self.exampleSuite;
 }
 
 - (void)pushContextNodeWithCallSite:(KWCallSite *)aCallSite description:(NSString *)aDescription {
@@ -187,7 +186,7 @@ static KWExampleGroupBuilder *sharedExampleGroupBuilder = nil;
     [contextNode addItNode:itNode];
     
     KWExampleGroup *exampleGroup = [[KWExampleGroup alloc] initWithExampleNode:itNode contextNodeStack:self.contextNodeStack];
-    [self.exampleGroups addObject:exampleGroup];
+    [self.exampleSuite addExampleGroup:exampleGroup];
     [exampleGroup release];
 }
 
@@ -200,7 +199,7 @@ static KWExampleGroupBuilder *sharedExampleGroupBuilder = nil;
     [contextNode addPendingNode:pendingNode];
     
     KWExampleGroup *exampleGroup = [[KWExampleGroup alloc] initWithExampleNode:pendingNode contextNodeStack:self.contextNodeStack];
-    [self.exampleGroups addObject:exampleGroup];
+    [self.exampleSuite addExampleGroup:exampleGroup];
     [exampleGroup release];
 }
 
