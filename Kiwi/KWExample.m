@@ -64,6 +64,11 @@
   [super dealloc];
 }
 
+- (NSString *)description
+{
+  return [NSString stringWithFormat:@"<KWExample: %@>", exampleNode.description];
+}
+
 #pragma mark - Adding Verifiers
 
 - (id)addVerifier:(id<KWVerifying>)aVerifier {
