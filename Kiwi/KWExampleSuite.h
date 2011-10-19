@@ -15,7 +15,7 @@
 
 @interface KWExampleSuite : NSObject <KWExampleNodeVisitor> {
   KWContextNode *rootNode;
-  NSMutableSet *examples;
+  NSMutableArray *examples;
 }
 - (id)initWithRootNode:(KWContextNode *)contextNode;
 - (void)addExample:(KWExample *)example;

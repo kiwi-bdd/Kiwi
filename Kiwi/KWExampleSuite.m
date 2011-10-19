@@ -22,7 +22,7 @@
 {
   if ((self = [super init])) {
     rootNode = [contextNode retain];
-    examples = [[NSMutableSet alloc] init];
+    examples = [[NSMutableArray alloc] init];
   }
   return self;
 }
