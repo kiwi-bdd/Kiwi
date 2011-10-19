@@ -39,7 +39,7 @@ describe(@"stack", ^{
 
 SPEC_END
 
-SPEC_BEGIN(HooksBehaviour)
+SPEC_BEGIN(BeforeHooksBehaviour)
 
 describe(@"before hooks behaviour", ^{
   __block NSInteger calls = 0;
@@ -103,6 +103,75 @@ describe(@"before hooks behaviour", ^{
   
   it(@"will call this after both nested context specs above", ^{
     [[theValue(calls) should] equal:theValue(18)];
+  });
+});
+
+SPEC_END
+
+SPEC_BEGIN(AfterHooksBehaviour)
+
+describe(@"after hooks behaviour", ^{
+  __block NSInteger calls = 0;
+  
+  afterEach(^{
+    calls++;
+  });
+  
+  it(@"will call afterEach but not afterAll after this spec", ^{
+    [[theValue(calls) should] equal:theValue(0)];
+	});
+  
+  it(@"will call afterEach but not afterAll after this spec", ^{
+    [[theValue(calls) should] equal:theValue(1)];
+  });
+  
+  context(@"with nested contexts", ^{
+    afterAll(^{
+      calls++;
+    });
+    
+    afterEach(^{
+      calls++;
+    });
+    
+    it(@"will call inner afterEach and outer afterEach but not afterAll after this spec", ^{
+      [[theValue(calls) should] equal:theValue(2)];
+    });
+    
+    it(@"will call inner afterEach and outer afterEach but not afterAll after this spec", ^{
+      [[theValue(calls) should] equal:theValue(4)];
+    });
+    
+    context(@"and another", ^{
+      afterAll(^{
+        calls++;
+      });
+      
+      afterEach(^{
+        calls++;
+      });
+      
+      it(@"will call inner afterEach and each outer afterEach but not afterAll after this spec", ^{
+        [[theValue(calls) should] equal:theValue(6)];
+      });
+      
+      it(@"will call inner afterEach and each outer afterEach and the inner afterAll after this spec", ^{
+        [[theValue(calls) should] equal:theValue(9)];
+      });
+      
+    });
+    
+    it(@"will call this after the nested context specs above, reflecting the result of its afterAll, and this context's afterAll after this spec", ^{
+	    [[theValue(calls) should] equal:theValue(13)];
+    });
+  });
+  
+  it(@"will call this after both nested context specs above", ^{
+    [[theValue(calls) should] equal:theValue(16)];
+  });
+  
+  afterAll(^{
+    NSLog(@"Can't test this as it's the last thing to run, but verify with log output");
   });
 });
 

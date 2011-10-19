@@ -113,6 +113,10 @@
             innerExampleBlock();
             
             [self.afterEachNode acceptExampleNodeVisitor:example];
+
+            if ([example isLastInContext:self]) {
+                [self.afterAllNode acceptExampleNodeVisitor:example];
+            }
             
         } @catch (NSException *exception) {
             KWFailure *failure = [KWFailure failureWithCallSite:self.callSite format:@"%@ \"%@\" raised", [exception name], [exception reason]];

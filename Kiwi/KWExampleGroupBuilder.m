@@ -126,6 +126,10 @@ static KWExampleGroupBuilder *sharedExampleGroupBuilder = nil;
 }
 
 - (void)popContextNode {
+    KWContextNode *contextNode = [self.contextNodeStack lastObject];
+    
+    [self.exampleSuite markLastExampleAsLastInContext:contextNode];
+    
     if ([self.contextNodeStack count] == 1)
         [NSException raise:@"KWExampleGroupBuilderException" format:@"there is no open context to pop"];
 

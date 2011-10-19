@@ -40,6 +40,11 @@
   [example setSuite:self];
 }
 
+- (void)markLastExampleAsLastInContext:(KWContextNode *)context
+{
+  [[examples objectAtIndex:examples.count-1] setLastInContext:context];
+}
+
 - (NSArray *)invocationsForTestCase;
 {
   NSMutableArray *invocations = [NSMutableArray array];

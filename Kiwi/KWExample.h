@@ -23,7 +23,7 @@
   id<KWExampleNode> exampleNode;
   BOOL passed;
 }
-
+@property (nonatomic, retain) KWContextNode *lastInContext;
 @property (nonatomic, assign) KWExampleSuite *suite;
 
 - (id)initWithExampleNode:(id<KWExampleNode>)node;
@@ -43,6 +43,11 @@
 #pragma mark Anonymous It Node Descriptions
 
 - (NSString *)generateDescriptionForAnonymousItNode;
+
+#pragma mark -
+#pragma mark Checking if last in context
+
+- (BOOL)isLastInContext:(KWContextNode *)context;
 
 @end
 

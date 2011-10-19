@@ -19,6 +19,7 @@
 }
 - (id)initWithRootNode:(KWContextNode *)contextNode;
 - (void)addExample:(KWExample *)example;
+- (void)markLastExampleAsLastInContext:(KWContextNode *)context;
 - (NSArray *)invocationsForTestCase;
 @end
 

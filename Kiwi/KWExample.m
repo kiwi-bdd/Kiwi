@@ -42,6 +42,7 @@
 @synthesize exampleNodeStack;
 @synthesize delegate = _delegate;
 @synthesize suite;
+@synthesize lastInContext;
 
 - (id)initWithExampleNode:(id<KWExampleNode>)node
 {
@@ -57,11 +58,17 @@
 
 - (void)dealloc 
 {
+  [lastInContext release];
   [exampleNode release];
   [exampleNodeStack release];
   [matcherFactory release];
   [verifiers release];
   [super dealloc];
+}
+
+- (BOOL)isLastInContext:(KWContextNode *)context
+{
+  return context == self.lastInContext;
 }
 
 - (NSString *)description
