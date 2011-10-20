@@ -8,6 +8,7 @@
 #import "KWExampleNodeVisitor.h"
 #import "KWExample.h"
 #import "KWVerifying.h"
+#import "KWContextNode.h"
 
 @interface KWItNode ()
 
@@ -17,7 +18,7 @@
 
 @implementation KWItNode
 
-@synthesize context;
+@synthesize context = _context;
 @synthesize example;
 
 #pragma mark -
@@ -50,6 +51,22 @@
     description = [self.example generateDescriptionForAnonymousItNode];
   }
   return description;
+}
+
+#pragma mark -
+#pragma mark - Accessing the context stack
+
+- (NSArray *)contextStack
+{
+  NSMutableArray *contextStack = [NSMutableArray array];
+  
+  KWContextNode *currentContext = _context;
+  
+  while (currentContext) {
+    [contextStack addObject:currentContext];
+    currentContext = currentContext.parentContext;
+  }
+  return contextStack;
 }
 
 @end

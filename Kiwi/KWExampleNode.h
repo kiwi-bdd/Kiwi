@@ -6,6 +6,7 @@
 
 #import "KiwiConfiguration.h"
 
+@class KWContextNode;
 @protocol KWExampleNodeVisitor;
 
 @protocol KWExampleNode<NSObject>
@@ -14,5 +15,9 @@
 #pragma mark Accepting Visitors
 
 - (void)acceptExampleNodeVisitor:(id<KWExampleNodeVisitor>)aVisitor;
+
+@optional
+
+- (NSArray *)contextStack;
 
 @end

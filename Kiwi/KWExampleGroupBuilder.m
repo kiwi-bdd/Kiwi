@@ -199,7 +199,7 @@ static KWExampleGroupBuilder *sharedExampleGroupBuilder = nil;
         [NSException raise:@"KWExampleGroupBuilderException" format:@"an example group has not been started"];
 
     KWContextNode *contextNode = [self.contextNodeStack lastObject];
-    KWPendingNode *pendingNode = [KWPendingNode pendingNodeWithCallSite:aCallSite description:aDescription];
+    KWPendingNode *pendingNode = [KWPendingNode pendingNodeWithCallSite:aCallSite context:contextNode description:aDescription];
     [contextNode addPendingNode:pendingNode];
     
     KWExample *example = [[KWExample alloc] initWithExampleNode:pendingNode];

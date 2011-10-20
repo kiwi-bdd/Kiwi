@@ -12,9 +12,7 @@
 @class KWExample;
 @class KWContextNode;
 
-@interface KWItNode : KWBlockNode<KWExampleNode> {
-  KWContextNode *context;
-}
+@interface KWItNode : KWBlockNode<KWExampleNode>
 
 @property (nonatomic, assign) KWExample *example;
 @property (nonatomic, retain, readonly) KWContextNode *context;

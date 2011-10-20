@@ -7,6 +7,7 @@
 #import "KiwiConfiguration.h"
 #import "KWExampleNode.h"
 
+@class KWContextNode;
 @class KWCallSite;
 
 @interface KWPendingNode : NSObject<KWExampleNode> {
@@ -14,13 +15,14 @@
     KWCallSite *callSite;
     NSString *description;
 }
+@property (nonatomic, readonly, retain) KWContextNode *context;
 
 #pragma mark -
 #pragma mark Initializing
 
-- (id)initWithCallSite:(KWCallSite *)aCallSite description:(NSString *)aDescription;
+- (id)initWithCallSite:(KWCallSite *)aCallSite context:(KWContextNode *)context description:(NSString *)aDescription;
 
-+ (id)pendingNodeWithCallSite:(KWCallSite *)aCallSite description:(NSString *)aDescription;
++ (id)pendingNodeWithCallSite:(KWCallSite *)aCallSite context:(KWContextNode *)context description:(NSString *)aDescription;
 
 #pragma mark -
 #pragma mark Getting Call Sites

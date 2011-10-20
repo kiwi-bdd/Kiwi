@@ -11,6 +11,8 @@
 
 @implementation KWContextNode
 
+@synthesize parentContext;
+
 #pragma mark -
 #pragma mark Initializing
 

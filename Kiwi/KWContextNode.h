@@ -56,6 +56,7 @@
 @property (nonatomic, readwrite, retain) KWAfterAllNode *afterAllNode;
 @property (nonatomic, readwrite, retain) KWBeforeEachNode *beforeEachNode;
 @property (nonatomic, readwrite, retain) KWAfterEachNode *afterEachNode;
+@property (nonatomic, readonly) KWContextNode *parentContext;
 @property (nonatomic, readonly) NSArray *nodes;
 
 - (void)addContextNode:(KWContextNode *)aNode;

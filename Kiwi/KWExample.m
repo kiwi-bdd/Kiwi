@@ -30,8 +30,9 @@
 
 @property (nonatomic, readonly) NSMutableArray *verifiers;
 @property (nonatomic, readonly) KWMatcherFactory *matcherFactory;
-@property (nonatomic, readonly) NSMutableArray *exampleNodeStack;
 @property (nonatomic, assign) id<KWExampleDelegate> delegate;
+
+- (void)reportResultForExampleNodeWithLabel:(NSString *)label;
 
 @end
 
@@ -39,7 +40,6 @@
 
 @synthesize matcherFactory;
 @synthesize verifiers;
-@synthesize exampleNodeStack;
 @synthesize delegate = _delegate;
 @synthesize suite;
 @synthesize lastInContext;
@@ -50,7 +50,6 @@
     exampleNode = [node retain];
     matcherFactory = [[KWMatcherFactory alloc] init];
     verifiers = [[NSMutableArray alloc] init];
-    exampleNodeStack = [[NSMutableArray alloc] init];
     passed = YES;
   }
   return self;
@@ -60,7 +59,6 @@
 {
   [lastInContext release];
   [exampleNode release];
-  [exampleNodeStack release];
   [matcherFactory release];
   [verifiers release];
   [super dealloc];
@@ -116,20 +114,15 @@
 #pragma mark - Reporting failure
 
 - (NSString *)descriptionForExampleContext {
-  NSMutableString *description = [NSMutableString string];
-  
-  for (id<KWExampleNode> node in self.exampleNodeStack) {
-    NSString *nodeDescription = [node description];
-    
-    if (nodeDescription != nil)
-      [description appendFormat:@"%@ ", nodeDescription];
+  NSMutableArray *parts = [NSMutableArray array];
+
+  for (KWContextNode *context in [[exampleNode contextStack] reverseObjectEnumerator]) {
+    if ([context description] != nil) {
+      [parts addObject:[context description]];
+    }
   }
   
-  // Remove trailing space
-  if ([description length] > 0)
-    [description deleteCharactersInRange:NSMakeRange([description length] - 1, 1)];
-  
-  return description;
+  return [parts componentsJoinedByString:@" "];
 }
 
 - (KWFailure *)outputReadyFailureWithFailure:(KWFailure *)aFailure {
@@ -152,6 +145,11 @@
 {
   passed = NO;
   [self.delegate example:self didFailWithFailure:[self outputReadyFailureWithFailure:failure]];
+}
+
+- (void)reportResultForExampleNodeWithLabel:(NSString *)label
+{
+  NSLog(@"+ '%@ %@' [%@]", [self descriptionForExampleContext], [exampleNode description], label);
 }
 
 #pragma mark - Visiting Nodes
@@ -197,32 +195,19 @@
   [aNode.context performExample:self withBlock:^{
   
     @try {      
-      // Add it node to the stack
-      [self.exampleNodeStack addObject:aNode];
       
-      @try {
-        aNode.block();
-
-  #if KW_TARGET_HAS_INVOCATION_EXCEPTION_BUG
-        NSException *invocationException = KWGetAndClearExceptionFromAcrossInvocationBoundary();
-        [invocationException raise];
-  #endif // #if KW_TARGET_HAS_INVOCATION_EXCEPTION_BUG
-        
-        // Finish verifying and clear
-        for (id<KWVerifying> verifier in self.verifiers) {
-          [verifier exampleWillEnd];
-        }
-        
-      } @catch (NSException *exception) {      
-        KWFailure *failure = [KWFailure failureWithCallSite:aNode.callSite format:@"%@ \"%@\" raised",
-                              [exception name],
-                              [exception reason]];
-        [self reportFailure:failure];
+      aNode.block();
+      
+#if KW_TARGET_HAS_INVOCATION_EXCEPTION_BUG
+      NSException *invocationException = KWGetAndClearExceptionFromAcrossInvocationBoundary();
+      [invocationException raise];
+#endif // #if KW_TARGET_HAS_INVOCATION_EXCEPTION_BUG
+      
+      // Finish verifying and clear
+      for (id<KWVerifying> verifier in self.verifiers) {
+        [verifier exampleWillEnd];
       }
-
-      // Remove it node from the stack
-      [self.exampleNodeStack removeLastObject];
-
+      
     } @catch (NSException *exception) {
       KWFailure *failure = [KWFailure failureWithCallSite:aNode.callSite format:@"%@ \"%@\" raised",
                             [exception name],
@@ -231,7 +216,7 @@
     }
     
     if (passed) {
-      NSLog(@"+ '%@ %@' [PASSED]", [self descriptionForExampleContext], [exampleNode description]);
+      [self reportResultForExampleNodeWithLabel:@"PASSED"];
     }
     
     // Always clear stubs and spies at the end of it blocks
@@ -244,7 +229,7 @@
   if (aNode != exampleNode)
     return;
   
-  NSLog(@"+ '%@' [PENDING]", [self descriptionForExampleContext]);
+  [self reportResultForExampleNodeWithLabel:@"PENDING"];
 }
 
 - (NSString *)generateDescriptionForAnonymousItNode
