@@ -126,8 +126,8 @@
 }
 
 - (KWFailure *)outputReadyFailureWithFailure:(KWFailure *)aFailure {
-  NSString *annotatedFailureMessage = [NSString stringWithFormat:@"'%@' [FAILED], %@",
-                                       [self descriptionForExampleContext],
+  NSString *annotatedFailureMessage = [NSString stringWithFormat:@"'%@ %@' [FAILED], %@",
+                                       [self descriptionForExampleContext], [exampleNode description],
                                        aFailure.message];
   
 #if TARGET_IPHONE_SIMULATOR
