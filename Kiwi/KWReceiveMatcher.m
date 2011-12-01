@@ -188,8 +188,8 @@ static NSString * const StubValueKey = @"StubValueKey";
 + (void)invocationCapturer:(KWInvocationCapturer *)anInvocationCapturer didCaptureInvocation:(NSInvocation *)anInvocation {
     NSDictionary *userInfo = anInvocationCapturer.userInfo;
     id verifier = [userInfo objectForKey:MatchVerifierKey];
-    KWCountType countType = [[userInfo objectForKey:CountTypeKey] unsignedIntValue];
-    NSUInteger count = [[userInfo objectForKey:CountKey] unsignedIntValue];
+    KWCountType countType = [[userInfo objectForKey:CountTypeKey] unsignedIntegerValue];
+    NSUInteger count = [[userInfo objectForKey:CountKey] unsignedIntegerValue];
     NSValue *stubValue = [userInfo objectForKey:StubValueKey];
     KWMessagePattern *messagePattern = [KWMessagePattern messagePatternFromInvocation:anInvocation];
 
@@ -266,14 +266,14 @@ static NSString * const StubValueKey = @"StubValueKey";
 
 - (NSDictionary *)userInfoForReceiveMatcherWithCountType:(KWCountType)aCountType count:(NSUInteger)aCount {
     return [NSDictionary dictionaryWithObjectsAndKeys:self, MatchVerifierKey,
-                                                      [NSNumber numberWithUnsignedInt:aCountType], CountTypeKey,
-                                                      [NSNumber numberWithUnsignedInt:aCount], CountKey, nil];
+                                                      [NSNumber numberWithUnsignedInteger:aCountType], CountTypeKey,
+                                                      [NSNumber numberWithUnsignedInteger:aCount], CountKey, nil];
 }
 
 - (NSDictionary *)userInfoForReceiveMatcherWithCountType:(KWCountType)aCountType count:(NSUInteger)aCount value:(id)aValue {
     return [NSDictionary dictionaryWithObjectsAndKeys:self, MatchVerifierKey,
-                                                      [NSNumber numberWithUnsignedInt:aCountType], CountTypeKey,
-                                                      [NSNumber numberWithUnsignedInt:aCount], CountKey,
+                                                      [NSNumber numberWithUnsignedInteger:aCountType], CountTypeKey,
+                                                      [NSNumber numberWithUnsignedInteger:aCount], CountKey,
                                                       [NSValue valueWithNonretainedObject:aValue], StubValueKey, nil];
 }
 
