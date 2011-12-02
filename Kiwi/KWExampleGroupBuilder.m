@@ -91,12 +91,25 @@ static KWExampleGroupBuilder *sharedExampleGroupBuilder = nil;
 
 - (NSArray *)buildExampleGroups:(void (^)(void))buildingBlock
 {
+    if (self.isBuildingExampleGroup)
+        [NSException raise:@"KWExampleGroupBuilderException" format:@"an example group has already been started"];
+    
     self.exampleGroups = [NSMutableArray array];
     
     KWContextNode *rootNode = [KWContextNode contextNodeWithCallSite:nil description:nil];
 
     [self.contextNodeStack addObject:rootNode];
     buildingBlock();
+    if ([self.contextNodeStack count] > 1) {
+        NSDictionary * context = [[NSDictionary alloc] initWithObjectsAndKeys:[self.contextNodeStack copy], @"contextNodeStack", 
+                                                                              [self.exampleGroups copy], @"exampleGroups", nil];
+        [self.contextNodeStack removeAllObjects];
+        self.exampleGroups = nil;
+        NSException *exception = [[NSException alloc] initWithName:@"KWExampleGroupBuilderException"
+                                                            reason:@"cannot end example group with open contexts"
+                                                          userInfo:context];
+        [exception raise];
+    }
     [self.contextNodeStack removeAllObjects];
     
     NSArray *_exampleGroups = [self.exampleGroups copy];
