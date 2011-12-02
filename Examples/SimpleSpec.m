@@ -6,34 +6,22 @@
 
 #import "Kiwi.h"
 
+@interface Card : NSObject
+
+
+
+@end
+
+@implementation Card
+
+
+@end
+
 SPEC_BEGIN(SimpleSpec)
 
 describe(@"stack", ^{
-    __block NSMutableArray *arr = nil;
-
-    context(@"new", ^{
-        beforeEach(^{
-            arr = [NSMutableArray array];
-            [arr addObject:@"shark"];
-        });
-
-        context(@"with 2 items", ^{
-            beforeEach(^{
-                [arr addObject:@"dolphin"];
-            });
-
-            it(@"has the first item", ^{
-                [[arr should] contain:@"shark"];
-            });
-
-            it(@"has the second item", ^{
-                [[arr should] contain:@"dolphin"];
-            });
-
-            specify(^{ [[arr should] haveCountOf:2]; });
-
-            xit(@"has some funky behaviour", ^{});
-        });
+    it(@"works", ^ {
+        [[theValue(2) should] equal:theValue(3)];
     });
 });
 

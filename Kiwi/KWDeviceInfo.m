@@ -20,7 +20,7 @@
 + (BOOL)isSimulator {
 #if TARGET_IPHONE_SIMULATOR
     NSString *model = [[UIDevice currentDevice] model];
-    return [model hasSuffix:@" Simulator"];
+    return [model hasSuffix:@" Simulator"] || [model isEqualToString:@"Unknown"];
 #else
     return NO;
 #endif // #if TARGET_IPHONE_SIMULATOR
