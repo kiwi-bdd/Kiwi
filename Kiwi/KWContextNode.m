@@ -105,8 +105,9 @@
     
     void (^outerExampleBlock)(void) = ^{
         @try {
+            [self.registerMatchersNode acceptExampleNodeVisitor:example];
+            
             if (performedExampleCount == 0) {
-                [self.registerMatchersNode acceptExampleNodeVisitor:example];
                 [self.beforeAllNode acceptExampleNodeVisitor:example];
             }
             

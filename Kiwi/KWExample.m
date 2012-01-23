@@ -228,7 +228,7 @@
 - (void)visitPendingNode:(KWPendingNode *)aNode {
   if (aNode != exampleNode)
     return;
-  
+
   [self reportResultForExampleNodeWithLabel:@"PENDING"];
 }
 

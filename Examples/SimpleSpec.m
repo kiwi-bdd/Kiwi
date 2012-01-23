@@ -6,7 +6,40 @@
 
 #import "Kiwi.h"
 
+@interface ABCDummyMatcher : KWMatcher
+- (void)justWork;
+@end
+
+@implementation ABCDummyMatcher
+
++ (NSArray *)matcherStrings {
+  return [NSArray arrayWithObject:@"justWork"];
+}
+
+- (void)justWork {};
+
+- (BOOL)evaluate
+{
+  return YES;
+}
+
+@end
+
 SPEC_BEGIN(SimpleSpec)
+
+describe(@"anything", ^{
+  
+  it(@"allows matchers to be registered after the first spec", ^{
+    [[@"this" should] equal:@"this"];
+  });
+  
+  registerMatchers(@"ABC");
+  
+  it(@"can work with a custom registered matcher", ^{
+    [[@"anything" should] justWork];
+  });
+  
+});
 
 describe(@"stack", ^{
     __block NSMutableArray *arr = nil;
