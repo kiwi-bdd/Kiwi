@@ -22,20 +22,6 @@
     STAssertFalse([[KWExampleGroupBuilder sharedExampleGroupBuilder] isBuildingExampleGroup], @"example group builder must be clean for other tests to run cleanly");
 }
 
-- (void)testItShouldRaiseIfBuildingIsNested {
-  [[KWExampleGroupBuilder sharedExampleGroupBuilder] buildExampleGroups:^{
-      STAssertThrows([[KWExampleGroupBuilder sharedExampleGroupBuilder] buildExampleGroups:^{}], @"expected raised exception");
-  }];
-    STAssertFalse([[KWExampleGroupBuilder sharedExampleGroupBuilder] isBuildingExampleGroup], @"example group builder must be clean for other tests to run cleanly");
-}
-
-- (void)testItShouldRaiseWhenEndingWithPushContextUnmatched {
-    STAssertThrows([[KWExampleGroupBuilder sharedExampleGroupBuilder] buildExampleGroups:^{
-        [[KWExampleGroupBuilder sharedExampleGroupBuilder] pushContextNodeWithCallSite:nil description:@"Cruiser"];
-    }], @"expected raised exception");
-    STAssertFalse([[KWExampleGroupBuilder sharedExampleGroupBuilder] isBuildingExampleGroup], @"example group builder must be clean for other tests to run cleanly");
-}
-
 - (void)testItShouldRaiseWhenPopContextUnmatched {
     [[KWExampleGroupBuilder sharedExampleGroupBuilder] buildExampleGroups:^{
         STAssertThrows([[KWExampleGroupBuilder sharedExampleGroupBuilder] popContextNode], @"expected raised exception");
