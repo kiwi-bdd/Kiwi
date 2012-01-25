@@ -25,7 +25,7 @@
 }
 
 - (void)testItShouldAllowOnlyOneAfterEachBlock {
-  KWContextNode *node = [KWContextNode contextNodeWithCallSite:nil parentContext:nil  #description:nil];
+    KWContextNode *node = [KWContextNode contextNodeWithCallSite:nil parentContext:nil description:nil];
     __block NSUInteger tag = 0;
     KWVoidBlock block = ^{ ++tag; };
     [node setAfterEachNode:[KWAfterEachNode afterEachNodeWithCallSite:nil block:block]];
