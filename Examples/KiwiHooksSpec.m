@@ -83,6 +83,10 @@ SPEC_BEGIN(AfterHooksBehaviour)
 describe(@"after hooks behaviour", ^{
   __block NSInteger calls = 0;
   
+  afterAll(^{
+    NSLog(@"FINAL AFTER ALL. Can't test this as it's the last thing to run, but verify with log output");
+  });
+  
   afterEach(^{
     calls++;
   });
@@ -97,6 +101,7 @@ describe(@"after hooks behaviour", ^{
   
   context(@"with nested contexts", ^{
     afterAll(^{
+      NSLog(@"[with nested contexts] afterAll");
       calls++;
     });
     
@@ -114,6 +119,7 @@ describe(@"after hooks behaviour", ^{
     
     context(@"and another", ^{
       afterAll(^{
+        NSLog(@"[with nested contexts and another] afterAll");
         calls++;
       });
       
@@ -127,8 +133,7 @@ describe(@"after hooks behaviour", ^{
       
       it(@"will call inner afterEach and each outer afterEach and the inner afterAll after this spec", ^{
         [[theValue(calls) should] equal:theValue(9)];
-      });
-      
+      });      
     });
     
     it(@"will call this after the nested context specs above, reflecting the result of its afterAll, and this context's afterAll after this spec", ^{
@@ -138,10 +143,6 @@ describe(@"after hooks behaviour", ^{
   
   it(@"will call this after both nested context specs above", ^{
     [[theValue(calls) should] equal:theValue(16)];
-  });
-  
-  afterAll(^{
-    NSLog(@"Can't test this as it's the last thing to run, but verify with log output");
   });
 });
 
