@@ -25,7 +25,7 @@ context(@"Asynchronous specs", ^{
     });
     
     // this will block until the matcher is satisfied or it times out (default: 1s)
-    [[theObject(&fetchedData) shouldEventually] equal:@"expected response data"];
+    [[expectFutureValue(fetchedData) shouldEventually] equal:@"expected response data"];
   });
   
   it(@"should verify asynchronous expectations on a variable that starts as nil that succeed with an explicit time", ^{
@@ -36,7 +36,7 @@ context(@"Asynchronous specs", ^{
     });
     
     // this will block until the matcher is satisfied or it times out (default: 1s)
-    [[theObject(&fetchedData) shouldEventuallyBeforeTimingOutAfter(2.0)] equal:@"expected response data"];
+    [[expectFutureValue(fetchedData) shouldEventuallyBeforeTimingOutAfter(2.0)] equal:@"expected response data"];
   });
   
   it(@"should verify asynchronous expectations on the return value of a block", ^{
@@ -77,7 +77,7 @@ context(@"Asynchronous specs", ^{
     });
     
     // this will block until the matcher is satisfied or it times out (default: 1s)
-    [[theObject(&fetchedData) shouldEventually] beNonNil];
+    [[expectFutureValue(fetchedData) shouldEventually] beNonNil];
   });
   
   it(@"should verify asynchronous expectations on a variable that starts as non-nil and becomes nil", ^{
@@ -88,7 +88,7 @@ context(@"Asynchronous specs", ^{
     });
     
     // this will block until the matcher is satisfied or it times out (default: 1s)
-    [[theObject(&fetchedData) shouldEventually] beNil];
+    [[expectFutureValue(fetchedData) shouldEventually] beNil];
   });
 });
 
