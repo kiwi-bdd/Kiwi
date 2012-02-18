@@ -223,7 +223,7 @@ void KWAssociateObjectStub(id anObject, KWStub *aStub) {
 
     NSUInteger stubCount = [stubs count];
 
-    for (int i = 0; i < stubCount; ++i) {
+    for (NSUInteger i = 0; i < stubCount; ++i) {
         KWStub *existingStub = [stubs objectAtIndex:i];
 
         if ([aStub.messagePattern isEqualToMessagePattern:existingStub.messagePattern]) {
