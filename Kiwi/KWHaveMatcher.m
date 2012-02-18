@@ -213,8 +213,8 @@ static NSString * const CountKey = @"CountKey";
 + (void)invocationCapturer:(KWInvocationCapturer *)anInvocationCapturer didCaptureInvocation:(NSInvocation *)anInvocation {
     NSDictionary *userInfo = anInvocationCapturer.userInfo;
     id verifier = [userInfo objectForKey:MatchVerifierKey];
-    KWCountType countType = [[userInfo objectForKey:CountTypeKey] unsignedIntValue];
-    KWCountType count = [[userInfo objectForKey:CountKey] unsignedIntValue];
+    KWCountType countType = [[userInfo objectForKey:CountTypeKey] unsignedIntegerValue];
+    NSUInteger count = [[userInfo objectForKey:CountKey] unsignedIntegerValue];
 
     switch (countType) {
         case KWCountTypeExact:
@@ -240,8 +240,8 @@ static NSString * const CountKey = @"CountKey";
 
 - (NSDictionary *)userInfoForHaveMatcherWithCountType:(KWCountType)aCountType count:(NSUInteger)aCount {
     return [NSDictionary dictionaryWithObjectsAndKeys:self, MatchVerifierKey,
-                                                      [NSNumber numberWithUnsignedInt:aCountType], CountTypeKey,
-                                                      [NSNumber numberWithUnsignedInt:aCount], CountKey, nil];
+                                                      [NSNumber numberWithUnsignedInteger:aCountType], CountTypeKey,
+                                                      [NSNumber numberWithUnsignedInteger:aCount], CountKey, nil];
 }
 
 - (id)have:(NSUInteger)aCount {
