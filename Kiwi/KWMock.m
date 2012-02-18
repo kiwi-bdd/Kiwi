@@ -199,7 +199,7 @@ static NSString * const StubValueKey = @"StubValueKey";
 - (void)removeStubWithMessagePattern:(KWMessagePattern *)messagePattern {
     NSUInteger stubCount = [self.stubs count];
 
-    for (int i = 0; i < stubCount; ++i) {
+    for (NSUInteger i = 0; i < stubCount; ++i) {
         KWStub *stub = [self.stubs objectAtIndex:i];
 
         if ([stub.messagePattern isEqualToMessagePattern:messagePattern]) {
