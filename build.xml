@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns:ivy="antlib:org.apache.ivy.ant" name="${module.name}" default="installer"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="antlib:org.apache.ivy.ant ">
+    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ CONFIGURATION ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+    <property name="target.dir" value="${basedir}/build"/>
+    <property name="source.main.dir" value="${basedir}/Kiwi"/>
+    <property name="temp.dir" value="${target.dir}/temp"/>
+    <property name="reports.dir" value="${target.dir}/reports"/>
+    <property name="module.name" value="Kiwi"/>
+    <property name="module.company" value="Redpath.and.Ding"/>
+    <property name="packager.path"
+              value="/Developer/Applications/Utilities/PackageMaker.app/Contents/MacOS/PackageMaker"/>
+    <property name="packager.out" value="${target.dir}/Kiwi-Installer.mpkg"/>
+
+    <path id="headers">
+        <fileset dir="${source.main.dir}">
+            <include name="**/*.h"/>
+        </fileset>
+    </path>
+    <path id="classes">
+        <fileset dir="${source.main.dir}">
+            <include name="**/*.m"/>
+            <exclude name="**/main.m"/>
+        </fileset>
+    </path>
+
+    <property environment="system.env"/>
+
+    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ PUBLIC TARGETS (can depend on other targets) ~~~~~~~~~~~~~~~~~~~~~~~~ -->
+    <target name="doc" depends="
+    --make.dirs,
+    --api.report"/>
+
+    <target name="framework-ios" depends="
+    --make.dirs,
+    --framework-ios"/>
+
+    <target name="installer" depends="
+    --make.dirs,
+    --api.report,
+    --framework-ios,
+    --framework-mac,
+    --compile.installer,
+    --execute.installer"/>
+
+    <target name="help">
+        <echo>
+            doc : Produces documentation in build/reports/api &amp; installs in xcode.
+            framework-ios : Produces a universal (simulator and device) framework for iOS.
+            framework-mac : Produces a framework for Mac OSX.
+            installer     : Produces an installer to publish all artifacts in a standard location.
+        </echo>
+    </target>
+
+    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ END PUBLIC TARGETS ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+
+    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ PRIVATE TARGETS (MUST NOT depend on other targets!) ~~~~~~~~~~~~~~~~~~~ -->
+    <target name="path">
+        <exec executable="appledocz" failifexecutionfails="false"
+              failonerror="false" outputproperty="appledoc.test" resultproperty="appledoc.installed">
+            <arg line="--help"/>
+        </exec>
+        <echo message="This is the error: ${appledoc.installed}"/>
+    </target>
+
+    <target name="--make.dirs">
+        <mkdir dir="${target.dir}"/>
+        <mkdir dir="${temp.dir}"/>
+        <mkdir dir="${temp.dir}/coverage-data"/>
+        <mkdir dir="${reports.dir}"/>
+        <mkdir dir="${reports.dir}/tests"/>
+    </target>
+
+    <target name="--framework-ios">
+        <exec executable="xcodebuild" failonerror="true">
+            <arg line="-target Kiwi-iOS"/>
+        </exec>
+    </target>
+
+    <target name="--framework-mac">
+        <exec executable="xcodebuild" failonerror="true">
+            <arg line="-target Kiwi-OSX"/>
+        </exec>
+    </target>
+
+    <target name="--compile.installer">
+        <exec executable="${packager.path}">
+            <arg line="--doc ${basedir}/Tools/installer/installer.pmdoc --out ${packager.out}"/>
+        </exec>
+    </target>
+
+    <target name="--execute.installer">
+        <exec executable="open">
+            <arg line="${packager.out}"/>
+        </exec>
+    </target>
+
+    <target name="--api.report">
+        <mkdir dir="${reports.dir}/api"/>
+        <mkdir dir="${user.home}/Library/Developer/Shared"/>
+        <mkdir dir="${user.home}/Library/Developer/Shared/Documentation"/>
+        <mkdir dir="${user.home}/Library/Developer/Shared/Documentation/Docsets"/>
+        <!-- In case it's turned up somehow, despite cleaning up. -->
+        <delete file="${basedir}/docset-installed.txt"/>
+
+        <pathconvert pathsep=" " property="doc.files.list" refid="headers"/>
+        <echo message="Documenting: ${doc.files.list}"/>
+
+        <exec executable="${basedir}/Tools/appledoc" resolveexecutable="true">
+            <arg line="--project-name=${module.name}"/>
+            <arg line="--project-company=${module.company}"/>
+            <arg line="--company-id=${module.company}"/>
+            <arg line="-h --keep-undocumented-objects --keep-undocumented-members"/>
+            <arg line="${doc.files.list}"/>
+        </exec>
+
+        <loadfile srcfile="${basedir}/docset-installed.txt" property="docset.installed"/>
+        <fail unless="docset.installed" message="Error creating documentation"/>
+        <!-- Don't leave it lying around -->
+        <delete file="${basedir}/docset-installed.txt"/>
+
+        <property name="docs.dir" value="${user.home}/Library/Developer/Shared/Documentation/Docsets"/>
+        <copy todir="${reports.dir}/api">
+            <fileset dir="${docs.dir}/${module.company}.${module.name}.docset/Contents/Resources/Documents"/>
+        </copy>
+    </target>
+
+
+</project>
