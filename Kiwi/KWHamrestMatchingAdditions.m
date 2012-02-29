@@ -46,4 +46,28 @@
 
 @end
 
+@implementation NSSet (KiwiHamcrestAdditions)
+
+- (BOOL)containsObjectEqualToOrMatching:(id)object
+{
+    if ([object conformsToProtocol:@protocol(HCMatcher)]) {
+        return [[self allObjects] containsObjectMatching:object];
+    }
+    return [self containsObject:object];
+}
+
+@end
+
+@implementation NSOrderedSet (KiwiHamcrestAdditions)
+
+- (BOOL)containsObjectEqualToOrMatching:(id)object
+{
+    if ([object conformsToProtocol:@protocol(HCMatcher)]) {
+        return [[self array] containsObjectMatching:object];
+    }
+    return [self containsObject:object];
+}
+
+@end
+
 
