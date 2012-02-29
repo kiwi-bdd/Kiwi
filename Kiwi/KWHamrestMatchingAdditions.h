@@ -23,3 +23,14 @@
 
 @end
 
+@interface NSSet (KiwiHamcrestAdditions)
+
+- (BOOL)containsObjectEqualToOrMatching:(id)object;
+
+@end
+
+@interface NSOrderedSet (KiwiHamcrestAdditions)
+
+- (BOOL)containsObjectEqualToOrMatching:(id)object;
+
+@end
