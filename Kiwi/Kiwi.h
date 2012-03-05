@@ -20,6 +20,7 @@ extern "C" {
 #import "KWBeIdenticalToMatcher.h"
 #import "KWBeKindOfClassMatcher.h"
 #import "KWBeMemberOfClassMatcher.h"
+#import "KWBeSubclassOfClassMatcher.h"
 #import "KWBeTrueMatcher.h"
 #import "KWBeNilMatcher.h"
 #import "KWBeNonNilMatcher.h"
