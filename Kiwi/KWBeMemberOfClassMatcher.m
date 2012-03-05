@@ -47,7 +47,8 @@
 
 - (NSString *)description
 {
-  return [NSString stringWithFormat:@"be member of %@", self.targetClass];
+  return [NSString stringWithFormat:@"be member of %@",
+                                    NSStringFromClass(self.targetClass)];
 }
 
 #pragma mark -
