@@ -49,6 +49,11 @@
 
 - (BOOL)isLastInContext:(KWContextNode *)context;
 
+#pragma mark -
+#pragma mark Full description with context
+
+- (NSString *)descriptionWithContext;
+
 @end
 
 #pragma mark -
