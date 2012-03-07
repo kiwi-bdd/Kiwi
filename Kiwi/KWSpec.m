@@ -39,9 +39,16 @@
 
 + (void)buildExampleGroups {}
 
+/* Reported by XCode SenTestingKit Runner before and after invocation of the test
+   Use underscore _ to make method friendly names from example description
+ */
+
 - (NSString *)description
 {
-    return [NSString stringWithFormat:@"-[%@ example]", NSStringFromClass([self class])];
+    KWExample *currentExample = self.example ? self.example : [[self invocation] kw_example];
+    NSString *name = [currentExample descriptionWithContext];
+    name = [name stringByReplacingOccurrencesOfString:@" " withString:@"_"];
+    return [NSString stringWithFormat:@"-[%@ %@]", NSStringFromClass([self class]), name];
 }
 
 #pragma mark -
