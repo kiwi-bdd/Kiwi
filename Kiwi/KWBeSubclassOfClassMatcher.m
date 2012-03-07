@@ -4,10 +4,10 @@
 // Copyright 2010 Allen Ding. All rights reserved.
 //
 
-#import "KWBeMemberOfClassMatcher.h"
+#import "KWBeSubclassOfClassMatcher.h"
 #import "KWFormatter.h"
 
-@interface KWBeMemberOfClassMatcher()
+@interface KWBeSubclassOfClassMatcher()
 
 #pragma mark -
 #pragma mark Properties
@@ -16,7 +16,7 @@
 
 @end
 
-@implementation KWBeMemberOfClassMatcher
+@implementation KWBeSubclassOfClassMatcher
 
 #pragma mark -
 #pragma mark Properties
@@ -27,34 +27,34 @@
 #pragma mark Getting Matcher Strings
 
 + (NSArray *)matcherStrings {
-    return [NSArray arrayWithObject:@"beMemberOfClass:"];
+    return [NSArray arrayWithObject:@"beSubclassOfClass:"];
 }
 
 #pragma mark -
 #pragma mark Matching
 
 - (BOOL)evaluate {
-    return [self.subject isMemberOfClass:self.targetClass];
+    return [self.subject isSubclassOfClass:self.targetClass];
 }
 
 #pragma mark -
 #pragma mark Getting Failure Messages
 
 - (NSString *)failureMessageForShould {
-    return [NSString stringWithFormat:@"expected subject to be member of %@",
+    return [NSString stringWithFormat:@"expected subject to be subclass of %@",
                                       NSStringFromClass(self.targetClass)];
 }
 
 - (NSString *)description
 {
-  return [NSString stringWithFormat:@"be member of %@",
-                                    NSStringFromClass(self.targetClass)];
+    return [NSString stringWithFormat:@"be member of %@",
+                                      NSStringFromClass(self.targetClass)];
 }
 
 #pragma mark -
 #pragma mark Configuring Matchers
 
-- (void)beMemberOfClass:(Class)aClass {
+- (void)beSubclassOfClass:(Class)aClass {
     self.targetClass = aClass;
 }
 
