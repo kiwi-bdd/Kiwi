@@ -120,7 +120,7 @@
 
   for (KWContextNode *context in [[exampleNode contextStack] reverseObjectEnumerator]) {
     if ([context description] != nil) {
-      [parts addObject:[context description]];
+      [parts addObject:[[context description] stringByAppendingString:@","]];
     }
   }
   
