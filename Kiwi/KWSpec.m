@@ -40,14 +40,31 @@
 + (void)buildExampleGroups {}
 
 /* Reported by XCode SenTestingKit Runner before and after invocation of the test
-   Use underscore _ to make method friendly names from example description
+   Use camel case to make method friendly names from example description
  */
 
 - (NSString *)description
 {
     KWExample *currentExample = self.example ? self.example : [[self invocation] kw_example];
     NSString *name = [currentExample descriptionWithContext];
-    name = [name stringByReplacingOccurrencesOfString:@" " withString:@"_"];
+    
+    // CamelCase the string
+    NSArray *words = [name componentsSeparatedByString:@" "];
+    name = @"";
+    for (NSString *word in words) {
+        name = [name stringByAppendingString:[[word substringToIndex:1] uppercaseString]];
+        name = [name stringByAppendingString:[word substringFromIndex:1]];
+    }
+    
+    // Replace the commas with underscores to separate the levels of context
+    name = [name stringByReplacingOccurrencesOfString:@"," withString:@"_"];
+    
+    // Strip out characters not legal in function names
+    NSMutableCharacterSet *illegalCharacters = [NSMutableCharacterSet alphanumericCharacterSet];
+    [illegalCharacters addCharactersInString:@"_()"];
+    [illegalCharacters invert];
+    name = [[name componentsSeparatedByCharactersInSet:illegalCharacters] componentsJoinedByString:@""];
+
     return [NSString stringWithFormat:@"-[%@ %@]", NSStringFromClass([self class]), name];
 }
 
