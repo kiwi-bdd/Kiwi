@@ -301,7 +301,7 @@ void specify(KWVoidBlock aBlock)
     itWithCallSite(nil, nil, aBlock);
 }
 
-void pending(NSString *aDescription, KWVoidBlock ignoredBlock) {
+void pending_(NSString *aDescription, KWVoidBlock ignoredBlock) {
     pendingWithCallSite(nil, aDescription, ignoredBlock);
 }
 
