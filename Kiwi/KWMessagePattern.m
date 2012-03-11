@@ -135,28 +135,25 @@
             continue;
         }
 
-        if (KWObjCTypeIsObject(objCType)) {
-            if ([argumentFilter isEqual:[KWNull null]]) {
-                if (object != nil)
+        if ([argumentFilter conformsToProtocol:@protocol(HCMatcher)]) {
+            id<HCMatcher> matcher = (id<HCMatcher>)argumentFilter;
+            if ([object isKindOfClass:[KWValue class]] && [object isNumeric]) {
+                NSNumber *number = [object numberValue];
+                if (![matcher matches:number]) {
                     return NO;
-            } else if ([argumentFilter respondsToSelector:@selector(matches:)]) {
-              return [(id<HCMatcher>)argumentFilter matches:object];
-            } else if (![argumentFilter isEqual:object]) {
+                }
+            } else if (![matcher matches:object]) {
                 return NO;
             }
-        } else {
-            if ([argumentFilter isEqual:[KWNull null]]) {
-                if (!KWObjCTypeIsPointerLike(objCType))
-                    [NSException raise:@"KWMessagePatternException" format:@"nil was specified as an argument filter, but argument is not a pointer"];
-
-                void *p = nil;
-                [anInvocation getMessageArgument:&p atIndex:i];
-
-                if (p != nil)
-                    return NO;
-            } else if (![argumentFilter isEqual:object]) {
+        } else if ([argumentFilter isEqual:[KWNull null]]) {
+            if (!KWObjCTypeIsPointerLike(objCType))
+                [NSException raise:@"KWMessagePatternException" format:@"nil was specified as an argument filter, but argument is not a pointer"];
+            void *p = nil;
+            [anInvocation getMessageArgument:&p atIndex:i];
+            if (p != nil)
                 return NO;
-            }
+        } else if (![argumentFilter isEqual:object]) {
+            return NO;
         }
     }
 
