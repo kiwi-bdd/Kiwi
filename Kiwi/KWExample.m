@@ -120,7 +120,7 @@
 
   for (KWContextNode *context in [[exampleNode contextStack] reverseObjectEnumerator]) {
     if ([context description] != nil) {
-      [parts addObject:[context description]];
+      [parts addObject:[[context description] stringByAppendingString:@","]];
     }
   }
   
@@ -301,7 +301,7 @@ void specify(KWVoidBlock aBlock)
     itWithCallSite(nil, nil, aBlock);
 }
 
-void pending(NSString *aDescription, KWVoidBlock ignoredBlock) {
+void pending_(NSString *aDescription, KWVoidBlock ignoredBlock) {
     pendingWithCallSite(nil, aDescription, ignoredBlock);
 }
 

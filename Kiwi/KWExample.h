@@ -68,7 +68,7 @@ void beforeEach(KWVoidBlock aBlock);
 void afterEach(KWVoidBlock aBlock);
 void it(NSString *aDescription, KWVoidBlock aBlock);
 void specify(KWVoidBlock aBlock);
-void pending(NSString *aDescription, KWVoidBlock ignoredBlock);
+void pending_(NSString *aDescription, KWVoidBlock ignoredBlock);
 
 void describeWithCallSite(KWCallSite *aCallSite, NSString *aDescription, KWVoidBlock aBlock);
 void contextWithCallSite(KWCallSite *aCallSite, NSString *aDescription, KWVoidBlock aBlock);
@@ -80,4 +80,12 @@ void afterEachWithCallSite(KWCallSite *aCallSite, KWVoidBlock aBlock);
 void itWithCallSite(KWCallSite *aCallSite, NSString *aDescription, KWVoidBlock aBlock);
 void pendingWithCallSite(KWCallSite *aCallSite, NSString *aDescription, KWVoidBlock ignoredBlock);
 
-#define xit(...) pending(__VA_ARGS__)
+#define PRAGMA(x) _Pragma (#x)
+#define PENDING(x) PRAGMA(message ( "Pending: " #x ))
+
+#define pending(title, args...) \
+PENDING(title) \
+pending_(title, ## args)
+#define xit(title, args...) \
+PENDING(title) \
+pending_(title, ## args)
