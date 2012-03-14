@@ -218,6 +218,8 @@
 		F5F7471011B328F1000CA15C /* TestReporter.m in Sources */ = {isa = PBXBuildFile; fileRef = F5F7470F11B328F1000CA15C /* TestReporter.m */; };
 		F5FC83A811B1000500BF98A2 /* KWStringUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = F5FC83A611B1000500BF98A2 /* KWStringUtilities.m */; };
 		F5FC83B611B100B100BF98A2 /* KWStringUtilitiesTest.m in Sources */ = {isa = PBXBuildFile; fileRef = F5FC83B511B100B100BF98A2 /* KWStringUtilitiesTest.m */; };
+		F5FC83B611B100B100BF98A4 /* KWAny.m in Sources */ = {isa = PBXBuildFile; fileRef = F5FC83B611B100B100BF98A3 /* KWAny.m */; };
+		F5FC83B611B100B100BF98A8 /* KWAny.h in Headers */ = {isa = PBXBuildFile; fileRef = F5FC83B611B100B100BF98A7 /* KWAny.h */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -471,6 +473,8 @@
 		F5FC83A511B1000500BF98A2 /* KWStringUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KWStringUtilities.h; sourceTree = "<group>"; };
 		F5FC83A611B1000500BF98A2 /* KWStringUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KWStringUtilities.m; sourceTree = "<group>"; };
 		F5FC83B511B100B100BF98A2 /* KWStringUtilitiesTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KWStringUtilitiesTest.m; sourceTree = "<group>"; };
+		F5FC83B611B100B100BF98A3 /* KWAny.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KWAny.m; sourceTree = "<group>"; };
+		F5FC83B611B100B100BF98A7 /* KWAny.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KWAny.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -726,6 +730,8 @@
 		F57A6868115A3A1D00591C2A /* Support */ = {
 			isa = PBXGroup;
 			children = (
+				F5FC83B611B100B100BF98A3 /* KWAny.m */,
+				F5FC83B611B100B100BF98A7 /* KWAny.h */,
 				F5E9FC2F11AE6A0F0089BACE /* KWBlock.h */,
 				F5E9FC3011AE6A0F0089BACE /* KWBlock.m */,
 				F5015B571158398E002E9A98 /* KWCallSite.h */,
@@ -994,6 +1000,7 @@
 				A3FABFAF13CBB187002003F7 /* KiwiBlockMacros.h in Headers */,
 				A3CB75E2144C3479002D1F7A /* KWExampleSuite.h in Headers */,
 				4B9D040814D3EE7300707E83 /* KWExampleGroupDelegate.h in Headers */,
+				F5FC83B611B100B100BF98A8 /* KWAny.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1228,6 +1235,7 @@
 				A385CAEC13AA7EDD00DCA951 /* KWUserDefinedMatcher.m in Sources */,
 				A385CAF013AAC9B800DCA951 /* KWMatchers.m in Sources */,
 				A3CB75E3144C3479002D1F7A /* KWExampleSuite.m in Sources */,
+				F5FC83B611B100B100BF98A4 /* KWAny.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

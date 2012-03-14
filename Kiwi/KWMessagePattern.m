@@ -12,6 +12,7 @@
 #import "NSInvocation+KiwiAdditions.h"
 #import "NSMethodSignature+KiwiAdditions.h"
 #import "KWHCMatcher.h"
+#import "Kiwi.h"
 
 @implementation KWMessagePattern
 
@@ -129,6 +130,10 @@
 
         // Match argument filter to object
         id argumentFilter = [self.argumentFilters objectAtIndex:i];
+
+        if ([argumentFilter isEqual:[KWAny any]]) {
+            continue;
+        }
 
         if (KWObjCTypeIsObject(objCType)) {
             if ([argumentFilter isEqual:[KWNull null]]) {
