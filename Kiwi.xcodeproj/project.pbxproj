@@ -126,6 +126,7 @@
 		A3EB8064131EA572001860F5 /* KWDeviceInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = F5D7C8CA11643B9700758FEA /* KWDeviceInfo.m */; };
 		A3EB8065131EA574001860F5 /* KWHamrestMatchingAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = A352EA0D12EDC6F20049C691 /* KWHamrestMatchingAdditions.m */; };
 		A3FABFAF13CBB187002003F7 /* KiwiBlockMacros.h in Headers */ = {isa = PBXBuildFile; fileRef = A3FABFAE13CBB187002003F7 /* KiwiBlockMacros.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		ADBF4B031511C6B300784E9E /* KWAny.h in Headers */ = {isa = PBXBuildFile; fileRef = F5FC83B611B100B100BF98A7 /* KWAny.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F5015BB911583ABD002E9A98 /* KWCallSite.m in Sources */ = {isa = PBXBuildFile; fileRef = F5015B581158398E002E9A98 /* KWCallSite.m */; };
 		F5015BBA11583ABD002E9A98 /* KWContainMatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = F5015B5A1158398E002E9A98 /* KWContainMatcher.m */; };
 		F5015BBB11583ABD002E9A98 /* KWEqualMatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = F5015B5C1158398E002E9A98 /* KWEqualMatcher.m */; };
@@ -219,7 +220,6 @@
 		F5FC83A811B1000500BF98A2 /* KWStringUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = F5FC83A611B1000500BF98A2 /* KWStringUtilities.m */; };
 		F5FC83B611B100B100BF98A2 /* KWStringUtilitiesTest.m in Sources */ = {isa = PBXBuildFile; fileRef = F5FC83B511B100B100BF98A2 /* KWStringUtilitiesTest.m */; };
 		F5FC83B611B100B100BF98A4 /* KWAny.m in Sources */ = {isa = PBXBuildFile; fileRef = F5FC83B611B100B100BF98A3 /* KWAny.m */; };
-		F5FC83B611B100B100BF98A8 /* KWAny.h in Headers */ = {isa = PBXBuildFile; fileRef = F5FC83B611B100B100BF98A7 /* KWAny.h */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -998,9 +998,9 @@
 				A34FADAB13BBF4A4003968B2 /* KiwiConfiguration.h in Headers */,
 				A34FADAC13BBF4A4003968B2 /* KiwiMacros.h in Headers */,
 				A3FABFAF13CBB187002003F7 /* KiwiBlockMacros.h in Headers */,
+				ADBF4B031511C6B300784E9E /* KWAny.h in Headers */,
 				A3CB75E2144C3479002D1F7A /* KWExampleSuite.h in Headers */,
 				4B9D040814D3EE7300707E83 /* KWExampleGroupDelegate.h in Headers */,
-				F5FC83B611B100B100BF98A8 /* KWAny.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
