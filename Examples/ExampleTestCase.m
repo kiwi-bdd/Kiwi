@@ -156,6 +156,14 @@
     [[theValue(energyLevel) should] equal:theValue(1.01f)];
 }
 
+- (void)itShouldVerifyReceivedMessagesWithAnyArgument {
+    id subject = [Cruiser cruiser];
+    [[subject should] receive:@selector(energyLevelInWarpCore:) andReturn:theValue(1.01f) withCount:2 arguments:any()];
+    [subject energyLevelInWarpCore:2];
+    float energyLevel = [subject energyLevelInWarpCore:2];
+    [[theValue(energyLevel) should] equal:theValue(1.01f)];
+}
+
 - (void)itShouldAllowExpectationsArgumentsToBeHamcrestMatchersForFuzzyMatching
 {
     id subject = [Robot robot];

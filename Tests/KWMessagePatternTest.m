@@ -7,7 +7,6 @@
 #import "Kiwi.h"
 #import "KiwiTestConfiguration.h"
 #import "NSInvocation+KiwiAdditions.h"
-#import "TestClasses.h"
 
 #if KW_TESTS_ENABLED
 
@@ -46,6 +45,38 @@
     void *context = nil;
     [invocation setMessageArguments:&observer, &keyPath, &options, &context];
     STAssertTrue([messagePattern matchesInvocation:invocation], @"expected matching invocation");
+}
+
+- (void)testItShouldMatchInvocationsWithAnyArguments {
+    KWMessagePattern *messagePattern = [self messagePatternWithSelector:@selector(addObserver:forKeyPath:options:context:) arguments:@"foo",
+                                                                                                                                     [KWAny any],
+                                                                                                                                     [KWAny any],
+                                                                                                                                     nil];
+    NSMethodSignature *signature = [NSObject instanceMethodSignatureForSelector:@selector(addObserver:forKeyPath:options:context:)];
+    NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:signature];
+    [invocation setSelector:@selector(addObserver:forKeyPath:options:context:)];
+    id observer = @"foo";
+    id keyPath = @"bar";
+    NSKeyValueObservingOptions options = 1;
+    void *context = nil;
+    [invocation setMessageArguments:&observer, &keyPath, &options, &context];
+    STAssertTrue([messagePattern matchesInvocation:invocation], @"expected matching invocation");
+}
+
+- (void)testItShouldNotMatchInvocationsWithAnyArguments {
+    KWMessagePattern *messagePattern = [self messagePatternWithSelector:@selector(addObserver:forKeyPath:options:context:) arguments:@"foo",
+                                                                                                                                     [KWAny any],
+                                                                                                                                     [KWValue valueWithUnsignedInt:0],
+                                                                                                                                     nil];
+    NSMethodSignature *signature = [NSObject instanceMethodSignatureForSelector:@selector(addObserver:forKeyPath:options:context:)];
+    NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:signature];
+    [invocation setSelector:@selector(addObserver:forKeyPath:options:context:)];
+    id observer = @"foo";
+    id keyPath = @"bar";
+    NSKeyValueObservingOptions options = 1;
+    void *context = nil;
+    [invocation setMessageArguments:&observer, &keyPath, &options, &context];
+    STAssertTrue(![messagePattern matchesInvocation:invocation], @"expected non-matching invocation");
 }
 
 - (void)testItShouldNotMatchInvocationsWithDifferentArguments {
