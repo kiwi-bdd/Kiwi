@@ -33,6 +33,9 @@
 #define theReturnValueOfBlock(block) [KWFutureObject futureObjectWithBlock:block] // DEPRECATED
 #define expectFutureValue(futureValue) [KWFutureObject futureObjectWithBlock:^{ return futureValue; }]
 
+// used for message patterns to allow matching any value
+#define any() [KWAny any]
+
 // If a gcc compatible compiler is available, use the statement and
 // declarations in expression extension to provide a convenient catch-all macro
 // to create KWValues.

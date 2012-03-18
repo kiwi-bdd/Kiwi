@@ -47,6 +47,13 @@
     STAssertEquals(fighter, [cruiser fighterWithCallsign:fighterCallsign], @"expected method to be stubbed");
 }
 
+- (void)testItShouldStubInstanceMethodsReturningObjectsWithAnyArguments {
+    Cruiser *cruiser = [Cruiser cruiserWithCallsign:@"Galactica"];
+    Fighter *fighter = [Fighter fighterWithCallsign:@"Viper 1"];
+    [cruiser stub:@selector(fighterWithCallsign:) andReturn:fighter withArguments:any()];
+    STAssertEquals(fighter, [cruiser fighterWithCallsign:@"Foo"], @"expected method to be stubbed");
+}
+
 - (void)testItShouldClearStubbedRecursiveMethods {
     NSUInteger starHash = 8 + 4 + 2 + 1;
     Cruiser *cruiser = [Cruiser cruiserWithCallsign:@"Galactica"];
