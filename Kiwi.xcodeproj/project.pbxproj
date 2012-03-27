@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		19A62264151B899D00207192 /* Galaxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 19A62263151B899C00207192 /* Galaxy.m */; };
 		4B9D040814D3EE7300707E83 /* KWExampleGroupDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = A3758CDA1418CDC10051268A /* KWExampleGroupDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		637FFB2A150513D500DBFE8F /* KWBeSubclassOfClassMatcher.h in Headers */ = {isa = PBXBuildFile; fileRef = 637FFB28150513D500DBFE8F /* KWBeSubclassOfClassMatcher.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		637FFB2B150513D500DBFE8F /* KWBeSubclassOfClassMatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 637FFB29150513D500DBFE8F /* KWBeSubclassOfClassMatcher.m */; };
@@ -240,6 +241,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		19A62262151B899C00207192 /* Galaxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Galaxy.h; sourceTree = "<group>"; };
+		19A62263151B899C00207192 /* Galaxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Galaxy.m; sourceTree = "<group>"; };
 		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		1D3623240D0F684500981E51 /* KiwiAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KiwiAppDelegate.h; sourceTree = "<group>"; };
 		1D3623250D0F684500981E51 /* KiwiAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KiwiAppDelegate.m; sourceTree = "<group>"; };
@@ -537,6 +540,8 @@
 				A3A1754012E4966F004DFD70 /* Robot.m */,
 				A3A1754212E496CA004DFD70 /* StringPrefixMatcher.h */,
 				A3A1754312E496CA004DFD70 /* StringPrefixMatcher.m */,
+				19A62262151B899C00207192 /* Galaxy.h */,
+				19A62263151B899C00207192 /* Galaxy.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -1284,6 +1289,7 @@
 				A352EA0E12EDC6F20049C691 /* KWHamrestMatchingAdditions.m in Sources */,
 				A352EA1B12EDC8380049C691 /* KWHamcrestMatcherTest.m in Sources */,
 				A385CAE813AA7EA200DCA951 /* KWUserDefinedMatcherTest.m in Sources */,
+				19A62264151B899D00207192 /* Galaxy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
