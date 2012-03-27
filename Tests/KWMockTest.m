@@ -57,6 +57,23 @@
     STAssertEquals([mock raiseShields], NO, @"expected method to be stubbed with the correct value");
 }
 
+- (void)testItShouldBeOkToStubOnSingletons {
+    TestSpy *firstSpy = [TestSpy testSpy];
+    KWMessagePattern *firstMessagePattern = [KWMessagePattern messagePatternWithSelector:@selector(notifyEarth)];
+    [[Galaxy sharedGalaxy] addMessageSpy:firstSpy forMessagePattern:firstMessagePattern];
+    
+    KWClearAllMessageSpies();
+    KWClearAllObjectStubs();
+    
+    TestSpy *secondSpy = [TestSpy testSpy];
+    KWMessagePattern *secondMessagePattern = [KWMessagePattern messagePatternWithSelector:@selector(notifyPlanet:)];
+    [[Galaxy sharedGalaxy] addMessageSpy:secondSpy forMessagePattern:secondMessagePattern];
+    
+    [[Galaxy sharedGalaxy] notifyEarth];
+    
+    STAssertTrue(secondSpy.wasNotified, @"expected first spy to never be called");
+}
+
 - (void)testItShouldStubWithASelectorAndReturnValue {
     id mock = [Cruiser mock];
     [mock stub:@selector(crewComplement) andReturn:[KWValue valueWithUnsignedInt:42]];
