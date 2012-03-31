@@ -16,6 +16,7 @@ static NSMutableDictionary *KWMessageSpies = nil;
 #pragma mark -
 #pragma mark Intercept Enabled Method Implementations
 
+Class KWRestoreOriginalClass(id anObject);
 void KWInterceptedForwardInvocation(id anObject, SEL aSelector, NSInvocation* anInvocation);
 void KWInterceptedDealloc(id anObject, SEL aSelector);
 Class KWInterceptedClass(id anObject, SEL aSelector);
@@ -66,9 +67,12 @@ BOOL KWClassIsInterceptClass(Class aClass) {
     return result != nil;
 }
 
+int interceptCount = 0;
+
 NSString *KWInterceptClassNameForClass(Class aClass) {
     const char *className = class_getName(aClass);
-    return [NSString stringWithFormat:@"%s%s", className, KWInterceptClassSuffix];
+    interceptCount++;
+    return [NSString stringWithFormat:@"%s%s%d", className, KWInterceptClassSuffix, interceptCount];
 }
 
 Class KWInterceptClassForCanonicalClass(Class canonicalClass) {
@@ -152,6 +156,13 @@ void KWSetupMethodInterceptSupport(Class interceptClass, SEL aSelector) {
 #pragma mark -
 #pragma mark Intercept Enabled Method Implementations
 
+Class KWRestoreOriginalClass(id anObject) {
+    Class interceptClass = object_getClass(anObject);
+    Class originalClass = class_getSuperclass(interceptClass);
+    anObject->isa = originalClass;
+    return interceptClass;
+}
+
 void KWInterceptedForwardInvocation(id anObject, SEL aSelector, NSInvocation* anInvocation) {
     NSValue *key = [NSValue valueWithNonretainedObject:anObject];
     NSMutableDictionary *spyArrayDictionary = [KWMessageSpies objectForKey:key];
@@ -174,9 +185,7 @@ void KWInterceptedForwardInvocation(id anObject, SEL aSelector, NSInvocation* an
             return;
     }
 
-    Class interceptClass = object_getClass(anObject);
-    Class originalClass = class_getSuperclass(interceptClass);
-    anObject->isa = originalClass;
+    Class interceptClass = KWRestoreOriginalClass(anObject);
     [anInvocation invoke];
     anObject->isa = interceptClass;
 }
@@ -186,9 +195,7 @@ void KWInterceptedDealloc(id anObject, SEL aSelector) {
     [KWMessageSpies removeObjectForKey:key];
     [KWObjectStubs removeObjectForKey:key];
 
-    Class interceptClass = object_getClass(anObject);
-    Class originalClass = class_getSuperclass(interceptClass);
-    anObject->isa = originalClass;
+    KWRestoreOriginalClass(anObject);
     [anObject dealloc];
 }
 
@@ -241,6 +248,10 @@ void KWClearObjectStubs(id anObject) {
 }
 
 void KWClearAllObjectStubs(void) {
+    for (NSValue *objectKey in KWObjectStubs) {
+        id stubbedObject = [objectKey nonretainedObjectValue];
+        KWRestoreOriginalClass(stubbedObject);
+    }
     [KWObjectStubs removeAllObjects];
 }
 
@@ -285,5 +296,9 @@ void KWClearObjectSpy(id anObject, id aSpy, KWMessagePattern *aMessagePattern) {
 }
 
 void KWClearAllMessageSpies(void) {
+    for (NSValue *objectKey in KWMessageSpies) {
+        id spiedObject = [objectKey nonretainedObjectValue];
+        KWRestoreOriginalClass(spiedObject);
+    }
     [KWMessageSpies removeAllObjects];
 }
