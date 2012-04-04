@@ -1420,7 +1420,7 @@
 				GCC_MODEL_TUNING = "";
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
-				ONLY_ACTIVE_ARCH = YES;
+				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = Kiwi;
 				PUBLIC_HEADERS_FOLDER_PATH = KiwiPublicHeaders;
@@ -1443,7 +1443,7 @@
 				);
 				GCC_MODEL_TUNING = "";
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
-				ONLY_ACTIVE_ARCH = YES;
+				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = Kiwi;
 				PUBLIC_HEADERS_FOLDER_PATH = KiwiPublicHeaders;
