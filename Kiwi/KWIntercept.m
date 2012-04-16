@@ -158,8 +158,11 @@ void KWSetupMethodInterceptSupport(Class interceptClass, SEL aSelector) {
 
 Class KWRestoreOriginalClass(id anObject) {
     Class interceptClass = object_getClass(anObject);
-    Class originalClass = class_getSuperclass(interceptClass);
-    anObject->isa = originalClass;
+    if (KWClassIsInterceptClass(interceptClass))
+    {
+        Class originalClass = class_getSuperclass(interceptClass);
+        anObject->isa = originalClass;
+    }
     return interceptClass;
 }
 
