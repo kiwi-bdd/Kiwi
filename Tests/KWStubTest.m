@@ -19,8 +19,7 @@
 @implementation KWStubTest
 
 - (void)tearDown {
-    KWClearAllMessageSpies();
-    KWClearAllObjectStubs();
+    KWClearStubsAndSpies();
 }
 
 - (void)testItShouldProcessMatchedInvocations {
