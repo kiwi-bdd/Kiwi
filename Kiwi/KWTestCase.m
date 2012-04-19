@@ -67,8 +67,7 @@
 }
 
 - (void)tearDownExampleEnvironment {
-    KWClearAllMessageSpies();
-    KWClearAllObjectStubs();
+    KWClearStubsAndSpies();
 }
 
 #pragma mark -

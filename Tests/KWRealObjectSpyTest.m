@@ -18,8 +18,7 @@
 @implementation KWRealObjectSpyTest
 
 - (void)tearDown {
-    KWClearAllMessageSpies();
-    KWClearAllObjectStubs();
+    KWClearStubsAndSpies();
 }
 
 - (void)testItShouldNotifySpies {

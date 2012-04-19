@@ -19,8 +19,7 @@
 @implementation KWMockTest
 
 - (void)tearDown {
-    KWClearAllMessageSpies();
-    KWClearAllObjectStubs();
+    KWClearStubsAndSpies();
 }
 
 - (void)testItShouldInitializeForAClassWithANameAsANullObject {
@@ -62,8 +61,7 @@
     KWMessagePattern *firstMessagePattern = [KWMessagePattern messagePatternWithSelector:@selector(notifyEarth)];
     [[Galaxy sharedGalaxy] addMessageSpy:firstSpy forMessagePattern:firstMessagePattern];
     
-    KWClearAllMessageSpies();
-    KWClearAllObjectStubs();
+    KWClearStubsAndSpies();
     
     TestSpy *secondSpy = [TestSpy testSpy];
     KWMessagePattern *secondMessagePattern = [KWMessagePattern messagePatternWithSelector:@selector(notifyPlanet:)];

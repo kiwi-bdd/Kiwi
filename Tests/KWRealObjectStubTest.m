@@ -18,8 +18,7 @@
 @implementation KWRealObjectStubTest
 
 - (void)tearDown {
-    KWClearAllMessageSpies();
-    KWClearAllObjectStubs();
+    KWClearStubsAndSpies();
 }
 
 - (void)testItShouldRaiseWhenStubbingNonExistentMethods {

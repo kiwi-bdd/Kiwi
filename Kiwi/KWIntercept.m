@@ -12,6 +12,7 @@
 static const char * const KWInterceptClassSuffix = "_KWIntercept";
 static NSMutableDictionary *KWObjectStubs = nil;
 static NSMutableDictionary *KWMessageSpies = nil;
+static NSMutableArray *KWRestoredObjects = nil;
 
 #pragma mark -
 #pragma mark Intercept Enabled Method Implementations
@@ -212,6 +213,15 @@ Class KWInterceptedSuperclass(id anObject, SEL aSelector) {
     return originalSuperclass;
 }
 
+#pragma mark - Managing Stubs & Spies
+
+void KWClearStubsAndSpies(void) {
+    KWRestoredObjects = [NSMutableArray array];
+    KWClearAllMessageSpies();
+    KWClearAllObjectStubs();
+    KWRestoredObjects = nil;
+}
+
 #pragma mark -
 #pragma mark Managing Objects Stubs
 
@@ -250,7 +260,11 @@ void KWClearObjectStubs(id anObject) {
 void KWClearAllObjectStubs(void) {
     for (NSValue *objectKey in KWObjectStubs) {
         id stubbedObject = [objectKey nonretainedObjectValue];
+        if ([KWRestoredObjects containsObject:stubbedObject]) {
+            continue;
+        }
         KWRestoreOriginalClass(stubbedObject);
+        [KWRestoredObjects addObject:stubbedObject];
     }
     [KWObjectStubs removeAllObjects];
 }
@@ -298,7 +312,11 @@ void KWClearObjectSpy(id anObject, id aSpy, KWMessagePattern *aMessagePattern) {
 void KWClearAllMessageSpies(void) {
     for (NSValue *objectKey in KWMessageSpies) {
         id spiedObject = [objectKey nonretainedObjectValue];
+        if ([KWRestoredObjects containsObject:spiedObject]) {
+            continue;
+        }
         KWRestoreOriginalClass(spiedObject);
+        [KWRestoredObjects addObject:spiedObject];
     }
     [KWMessageSpies removeAllObjects];
 }
