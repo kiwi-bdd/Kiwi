@@ -32,6 +32,9 @@ Class KWRealClassForClass(Class aClass);
 Class KWSetupObjectInterceptSupport(id anObject);
 void KWSetupMethodInterceptSupport(Class interceptClass, SEL aSelector);
 
+#pragma mark - Managing Stubs & Spies
+void KWClearStubsAndSpies(void);
+
 #pragma mark -
 #pragma mark Managing Objects Stubs
 

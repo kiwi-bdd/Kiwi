@@ -241,8 +241,7 @@
     }
     
     // Always clear stubs and spies at the end of it blocks
-    KWClearAllMessageSpies();
-    KWClearAllObjectStubs();
+      KWClearStubsAndSpies();
   }];
 }
 
