@@ -52,6 +52,10 @@
     NSArray *words = [name componentsSeparatedByString:@" "];
     name = @"";
     for (NSString *word in words) {
+        if ([word length] < 1)
+        {
+            continue;
+        }
         name = [name stringByAppendingString:[[word substringToIndex:1] uppercaseString]];
         name = [name stringByAppendingString:[word substringFromIndex:1]];
     }
