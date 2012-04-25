@@ -64,10 +64,9 @@
     name = [name stringByReplacingOccurrencesOfString:@"," withString:@"_"];
     
     // Strip out characters not legal in function names
-    NSMutableCharacterSet *illegalCharacters = [NSMutableCharacterSet alphanumericCharacterSet];
-    [illegalCharacters addCharactersInString:@"_()"];
-    [illegalCharacters invert];
-    name = [[name componentsSeparatedByCharactersInSet:illegalCharacters] componentsJoinedByString:@""];
+    NSError *error = nil;
+    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"[^a-zA-Z0-9_]*" options:0 error:&error];
+    name = [regex stringByReplacingMatchesInString:name options:0 range:NSMakeRange(0, name.length) withTemplate:@""];
 
     return [NSString stringWithFormat:@"-[%@ %@]", NSStringFromClass([self class]), name];
 }
