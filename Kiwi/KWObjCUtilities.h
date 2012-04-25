@@ -22,7 +22,7 @@ BOOL KWObjCTypeIsSelector(const char *objCType);
 BOOL KWObjCTypeIsPointerToType(const char *objCType);
 BOOL KWObjCTypeIsPointerLike(const char *objCType);
 BOOL KWObjCTypeIsUnknown(const char *objCType);
-BOOL KWObjectIsStackBlock(id object);
+BOOL KWObjCTypeIsBlock(const char *objCType);
 
 NSUInteger KWObjCTypeLength(const char *objCType);
 

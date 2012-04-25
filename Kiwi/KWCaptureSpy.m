@@ -28,7 +28,7 @@
         if (KWObjCTypeIsObject(objCType)) {
             id argument = nil;
             [anInvocation getMessageArgument:&argument atIndex:_argumentIndex];
-            if (KWObjectIsStackBlock(argument)) {
+            if (KWObjCTypeIsBlock(objCType)) {
                 _argument = [argument copy];
             } else {
                 _argument = [argument retain];

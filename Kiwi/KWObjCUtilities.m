@@ -80,8 +80,8 @@ NSUInteger KWObjCTypeLength(const char *objCType) {
     return [signature methodReturnLength];
 }
 
-BOOL KWObjectIsStackBlock(id object) {
-    return [object isKindOfClass:NSClassFromString(@"__NSStackBlock__")];
+BOOL KWObjCTypeIsBlock(const char *objCType) {
+    return strcmp(objCType, "@?") == 0;
 }
 
 
