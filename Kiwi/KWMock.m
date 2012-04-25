@@ -13,6 +13,7 @@
 #import "KWStub.h"
 #import "KWWorkarounds.h"
 #import "NSInvocation+KiwiAdditions.h"
+#import "KWCaptureSpy.h"
 
 static NSString * const ExpectOrStubTagKey = @"ExpectOrStubTagKey";
 static NSString * const StubTag = @"StubTag";
@@ -257,6 +258,12 @@ static NSString * const StubValueKey = @"StubValueKey";
 
 #pragma mark -
 #pragma mark Spying on Messages
+
+- (KWCaptureSpy *)captureArgument:(SEL)selector atIndex:(NSUInteger)index {
+    KWCaptureSpy *spy = [[[KWCaptureSpy alloc] initWithArgumentIndex:index] autorelease];
+    [self addMessageSpy:spy forMessagePattern:[KWMessagePattern messagePatternWithSelector:selector]];
+    return  spy;
+}
 
 - (void)addMessageSpy:(id<KWMessageSpying>)aSpy forMessagePattern:(KWMessagePattern *)aMessagePattern {
     [self expectMessagePattern:aMessagePattern];

@@ -80,6 +80,11 @@ NSUInteger KWObjCTypeLength(const char *objCType) {
     return [signature methodReturnLength];
 }
 
+BOOL KWObjectIsStackBlock(id object) {
+    return [object isKindOfClass:NSClassFromString(@"__NSStackBlock__")];
+}
+
+
 #pragma mark -
 #pragma mark Selector Utlities
 
