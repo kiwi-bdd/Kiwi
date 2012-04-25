@@ -75,7 +75,8 @@ extern "C" {
 #import "KWUserDefinedMatcher.h"
 #import "KWValue.h"
 #import "KWVerifying.h"
-
+#import "KWCaptureSpy.h"
+    
 // Public Foundation Categories
 #import "NSObject+KiwiMockAdditions.h"
 #import "NSObject+KiwiStubAdditions.h"

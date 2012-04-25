@@ -16,14 +16,9 @@
 
 - (id)argument {
     if (!_argument) {
-        @throw [NSException exceptionWithName:NSInternalInconsistencyException reason:@"Argument requested  has yet to be captured." userInfo:nil];    
+        @throw [NSException exceptionWithName:NSInternalInconsistencyException reason:@"Argument requested has yet to be captured." userInfo:nil];    
     }
-    
-    if ([_argument isKindOfClass:NSClassFromString(@"__NSStackBlock__")]) {
-        return [[_argument copy] autorelease];
-    } else {
-        return [[_argument retain] autorelease];
-    }      
+    return [[_argument retain] autorelease];
 }
 
 - (void)object:(id)anObject didReceiveInvocation:(NSInvocation *)anInvocation {
