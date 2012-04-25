@@ -8,6 +8,7 @@
 #import "KWInvocationCapturer.h"
 
 @class KWMessagePattern;
+@class KWCaptureSpy;
 
 @protocol KWMessageSpying;
 @protocol KWVerifying;
@@ -74,6 +75,8 @@
 
 - (void)addMessageSpy:(id<KWMessageSpying>)aSpy forMessagePattern:(KWMessagePattern *)aMessagePattern;
 - (void)removeMessageSpy:(id<KWMessageSpying>)aSpy forMessagePattern:(KWMessagePattern *)aMessagePattern;
+- (KWCaptureSpy *)captureArgument:(SEL)selector atIndex:(NSUInteger)index;
+
 
 #pragma mark -
 #pragma mark Expecting Messages
