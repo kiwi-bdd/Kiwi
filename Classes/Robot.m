@@ -16,9 +16,14 @@
   return [[[self alloc] init] autorelease];
 }
 
-- (void)speak:(NSString *)message;
+- (void)speak:(NSString *)message
 {
   NSLog(@"Robot says %@", message);
+}
+
+- (void)speak:(NSString *)message afterDelay:(NSTimeInterval)delay whenDone:(void(^)(void))handler
+{
+    NSLog(@"Robot will say %@ after a %f second delay", message, delay);
 }
 
 @end

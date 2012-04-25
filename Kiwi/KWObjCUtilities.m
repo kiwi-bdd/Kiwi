@@ -80,6 +80,11 @@ NSUInteger KWObjCTypeLength(const char *objCType) {
     return [signature methodReturnLength];
 }
 
+BOOL KWObjCTypeIsBlock(const char *objCType) {
+    return strcmp(objCType, "@?") == 0;
+}
+
+
 #pragma mark -
 #pragma mark Selector Utlities
 
