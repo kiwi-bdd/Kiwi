@@ -162,7 +162,8 @@ Class KWRestoreOriginalClass(id anObject) {
     if (KWClassIsInterceptClass(interceptClass))
     {
         Class originalClass = class_getSuperclass(interceptClass);
-        anObject->isa = originalClass;
+        // anObject->isa = originalClass;
+        object_setClass(anObject, originalClass);
     }
     return interceptClass;
 }
@@ -191,7 +192,8 @@ void KWInterceptedForwardInvocation(id anObject, SEL aSelector, NSInvocation* an
 
     Class interceptClass = KWRestoreOriginalClass(anObject);
     [anInvocation invoke];
-    anObject->isa = interceptClass;
+    // anObject->isa = interceptClass;
+    object_setClass(anObject, interceptClass);
 }
 
 void KWInterceptedDealloc(id anObject, SEL aSelector) {

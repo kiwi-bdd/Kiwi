@@ -39,7 +39,7 @@
 #pragma mark Identifying and Comparing
 
 - (NSUInteger)hash {
-    return [[NSString stringWithFormat:@"%@%u", self.filename, self.lineNumber] hash];
+    return [[NSString stringWithFormat:@"%@%u", self.filename, (unsigned)self.lineNumber] hash];
 }
 
 - (BOOL)isEqual:(id)anObject {
