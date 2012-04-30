@@ -96,7 +96,7 @@
     if (aCount == 1)
         return @"1 time";
 
-    return [NSString stringWithFormat:@"%d times", aCount];
+    return [NSString stringWithFormat:@"%d times", (int)aCount];
 }
 
 - (NSString *)expectedCountPhrase {
@@ -144,8 +144,8 @@
     return [NSString stringWithFormat:@"messagePattern: %@\nmode: %@\ncount: %d\nreceiveCount: %d",
                                       self.messagePattern,
                                       self.modeString,
-                                      self.count,
-                                      self.receivedCount];
+                                      (int)self.count,
+                                      (int)self.receivedCount];
 }
 
 @end

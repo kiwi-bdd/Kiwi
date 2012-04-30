@@ -133,13 +133,13 @@ static NSString * const CountKey = @"CountKey";
     if (self.actualCount == 1)
         return @"1 item";
     else
-        return [NSString stringWithFormat:@"%u items", self.actualCount];
+        return [NSString stringWithFormat:@"%u items", (unsigned)self.actualCount];
 }
 
 - (NSString *)failureMessageForShould {
     return [NSString stringWithFormat:@"expected subject to %@ %u %@, got %@",
                                       [self verbPhrase],
-                                      self.count,
+                                      (unsigned)self.count,
                                       [self itemPhrase],
                                       [self actualCountPhrase]];
 }
@@ -147,7 +147,7 @@ static NSString * const CountKey = @"CountKey";
 - (NSString *)failureMessageForShouldNot {
     return [NSString stringWithFormat:@"expected subject not to %@ %u %@",
                                       [self verbPhrase],
-                                      self.count,
+                                      (unsigned)self.count,
                                       [self itemPhrase]];
 }
 
@@ -156,7 +156,7 @@ static NSString * const CountKey = @"CountKey";
 
 - (NSString *)description
 {
-  return [NSString stringWithFormat:@"%@ %u %@", [self verbPhrase], self.count, [self itemPhrase]];
+  return [NSString stringWithFormat:@"%@ %u %@", [self verbPhrase], (unsigned)self.count, [self itemPhrase]];
 }
 
 #pragma mark -
