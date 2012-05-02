@@ -13,6 +13,8 @@
 #import "KWStub.h"
 
 static NSString * const StubValueKey = @"StubValueKey";
+static NSString * const StubSecondValueKey = @"StubSecondValueKey";
+static NSString * const ChangeStubValueAfterTimesKey = @"ChangeStubValueAfterTimesKey";
 
 @implementation NSObject(KiwiStubAdditions)
 
@@ -32,7 +34,13 @@ static NSString * const StubValueKey = @"StubValueKey";
 - (void)invocationCapturer:(KWInvocationCapturer *)anInvocationCapturer didCaptureInvocation:(NSInvocation *)anInvocation {
     KWMessagePattern *messagePattern = [KWMessagePattern messagePatternFromInvocation:anInvocation];
     id value = [anInvocationCapturer.userInfo objectForKey:StubValueKey];
-    [self stubMessagePattern:messagePattern andReturn:value];
+    if (![anInvocationCapturer.userInfo objectForKey:StubSecondValueKey]) {
+        [self stubMessagePattern:messagePattern andReturn:value];
+    } else {
+        id times = [anInvocationCapturer.userInfo objectForKey:ChangeStubValueAfterTimesKey];
+        id secondValue = [anInvocationCapturer.userInfo objectForKey:StubSecondValueKey];
+        [self stubMessagePattern:messagePattern andReturn:value times:times afterThatReturn:secondValue];
+    }
 }
 
 #pragma mark -
@@ -71,6 +79,11 @@ static NSString * const StubValueKey = @"StubValueKey";
     return [KWInvocationCapturer invocationCapturerWithDelegate:self userInfo:userInfo];
 }
 
+- (id)stubAndReturn:(id)aValue times:(id)times afterThatReturn:(id)aSecondValue {
+    NSDictionary *userInfo = [NSDictionary dictionaryWithObjectsAndKeys: aValue, StubValueKey, times, ChangeStubValueAfterTimesKey, aSecondValue, StubSecondValueKey, nil];
+    return [KWInvocationCapturer invocationCapturerWithDelegate:self userInfo:userInfo];
+}
+
 - (void)stubMessagePattern:(KWMessagePattern *)aMessagePattern andReturn:(id)aValue {
     if ([self methodSignatureForSelector:aMessagePattern.selector] == nil) {
         [NSException raise:@"KWStubException" format:@"cannot stub -%@ because no such method exists",
@@ -80,6 +93,18 @@ static NSString * const StubValueKey = @"StubValueKey";
     Class interceptClass = KWSetupObjectInterceptSupport(self);
     KWSetupMethodInterceptSupport(interceptClass, aMessagePattern.selector);
     KWStub *stub = [KWStub stubWithMessagePattern:aMessagePattern value:aValue];
+    KWAssociateObjectStub(self, stub);
+}
+
+- (void)stubMessagePattern:(KWMessagePattern *)aMessagePattern andReturn:(id)aValue times:(id)times afterThatReturn:(id)aSecondValue {   
+    if ([self methodSignatureForSelector:aMessagePattern.selector] == nil) {
+        [NSException raise:@"KWStubException" format:@"cannot stub -%@ because no such method exists",
+         NSStringFromSelector(aMessagePattern.selector)];
+    }
+
+    Class interceptClass = KWSetupObjectInterceptSupport(self);
+    KWSetupMethodInterceptSupport(interceptClass, aMessagePattern.selector);
+    KWStub *stub = [KWStub stubWithMessagePattern:aMessagePattern value:aValue times:times afterThatReturn:aSecondValue];
     KWAssociateObjectStub(self, stub);
 }
 
