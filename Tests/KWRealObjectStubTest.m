@@ -91,6 +91,16 @@
     STAssertEqualObjects([cruiser callsign], callsign, @"expected method to be stubbed");
 }
 
+- (void)testItShouldStubTheNextMessagesAndReturnDifferentValues {
+    NSString *callsign = @"Galactica";
+    NSString *secondCallsign = @"Andromeda";
+    Cruiser *cruiser = [Cruiser cruiserWithCallsign:@"Avenger"];
+    [[cruiser stubAndReturn: callsign times:[KWValue valueWithInt:2] afterThatReturn:secondCallsign] callsign];
+    STAssertEqualObjects([cruiser callsign], callsign, @"expected method to be stubbed");
+    STAssertEqualObjects([cruiser callsign], callsign, @"expected method to be stubbed");
+    STAssertEqualObjects([cruiser callsign], secondCallsign, @"expected method to be stubbed and change return value");
+}
+
 - (void)testItShouldPreserveClassResultWhenInstanceMethodStubbed {
     id subject = [Cruiser cruiser];
     Class originalClass = [subject class];

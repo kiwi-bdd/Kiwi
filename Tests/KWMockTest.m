@@ -106,6 +106,17 @@
     STAssertEquals(ratio, 42.0f, @"expected mock to have message stubbed");
 }
 
+- (void)testItShouldStubWithDifferentReturnValuesAndMessage {
+    id mock = [Cruiser mock];
+    STAssertNoThrow([[mock stubAndReturn:[KWValue valueWithFloat:42.0f] times:[KWValue valueWithInt:2] afterThatReturn:[KWValue valueWithFloat:43.0f]] energyLevelInWarpCore:3], @"expected mock to stub message");
+    float firstRatio = [mock energyLevelInWarpCore:3];
+    STAssertEquals(firstRatio, 42.0f, @"expected mock to have message stubbed");
+    float secondRatio = [mock energyLevelInWarpCore:3];
+    STAssertEquals(secondRatio, 42.0f, @"expected mock to have message stubbed");
+    float thirdRatio = [mock energyLevelInWarpCore:3];
+    STAssertEquals(thirdRatio, 43.0f, @"expected mock to have message stubbed and changed return value");
+}
+
 - (void)testItShouldClearStubbedMethods {
     id mock = [Cruiser mock];
     [mock stub:@selector(callsign) andReturn:@"Executor"];
