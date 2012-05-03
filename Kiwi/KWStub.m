@@ -28,6 +28,17 @@
     return self;
 }
 
+- (id)initWithMessagePattern:(KWMessagePattern *)aMessagePattern value:(id)aValue times:(id)times afterThatReturn:(id)aSecondValue {
+    if ((self = [super init])) {
+        messagePattern = [aMessagePattern retain];
+        value = [aValue retain];
+        returnValueTimes = [times retain];
+        secondValue = [aSecondValue retain];
+    }
+    
+    return self;
+}
+
 + (id)stubWithMessagePattern:(KWMessagePattern *)aMessagePattern {
     return [self stubWithMessagePattern:aMessagePattern value:nil];
 }
@@ -36,9 +47,15 @@
     return [[[self alloc] initWithMessagePattern:aMessagePattern value:aValue] autorelease];
 }
 
++ (id)stubWithMessagePattern:(KWMessagePattern *)aMessagePattern value:(id)aValue times:(id)times afterThatReturn:(id)aSecondValue {
+    return [[[self alloc] initWithMessagePattern:aMessagePattern value:aValue times:times afterThatReturn:aSecondValue] autorelease];
+}
+
 - (void)dealloc {
     [messagePattern release];
     [value release];
+    [returnValueTimes release];
+    [secondValue release];
     [super dealloc];
 }
 
@@ -47,6 +64,9 @@
 
 @synthesize messagePattern;
 @synthesize value;
+@synthesize secondValue;
+@synthesize returnValueTimes;
+@synthesize returnedValueTimes;
 
 #pragma mark -
 #pragma mark Processing Invocations
@@ -81,11 +101,24 @@
     const char *returnType = [[anInvocation methodSignature] methodReturnType];
     NSData *data = nil;
 
+    NSData *choosedForData = [self.value dataValue];
+
+    if (returnValueTimes != nil) {
+        NSString *returnValueTimesString = returnValueTimes;
+        int returnValueTimesInt = [returnValueTimesString intValue];
+        
+        if (returnedValueTimes >= returnValueTimesInt) {
+            choosedForData = [self.secondValue dataValue];
+        }
+        returnedValueTimes++;
+    }
+
+    
     // When the return type is not the same as the type of the wrapped value,
     // attempt to convert the wrapped value to the desired type.
 
     if (KWObjCTypeEqualToObjCType([self.value objCType], returnType))
-        data = [self.value dataValue];
+        data = choosedForData;
     else
         data = [self valueDataWithObjCType:returnType];
 
@@ -94,7 +127,20 @@
 
 - (void)writeObjectValueToInvocationReturnValue:(NSInvocation *)anInvocation {
     assert(self.value && "self.value must not be nil");
-    [anInvocation setReturnValue:&value];
+    
+    void *choosedForData = &value;
+    
+    if (returnValueTimes != nil) {
+        NSString *returnValueTimesString = returnValueTimes;
+        int returnValueTimesInt = [returnValueTimesString intValue];
+        
+        if (returnedValueTimes >= returnValueTimesInt) {
+            choosedForData = &secondValue;
+        }
+        returnedValueTimes++;
+    }
+
+    [anInvocation setReturnValue:choosedForData];
 
 #ifndef __clang_analyzer__
     NSString *selectorString = NSStringFromSelector([anInvocation selector]);
