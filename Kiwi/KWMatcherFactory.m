@@ -73,8 +73,10 @@
         Class *classes = malloc(sizeof(Class) * numberOfClasses);
         numberOfClasses = objc_getClassList(classes, numberOfClasses);
 
-        if (numberOfClasses == 0)
+        if (numberOfClasses == 0) {
+            free(classes);
             return;
+        }
 
         for (int i = 0; i < numberOfClasses; ++i) {
             Class candidateClass = classes[i];

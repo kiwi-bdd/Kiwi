@@ -54,7 +54,7 @@
     if (self.count == 1)
         return @"1 item";
     else
-        return [NSString stringWithFormat:@"%u items", self.count];
+        return [NSString stringWithFormat:@"%u items", (unsigned)self.count];
 }
 
 - (NSString *)failureMessageForShould {
