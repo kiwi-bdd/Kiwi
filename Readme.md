@@ -2,12 +2,14 @@
 Kiwi is a Behavior Driven Development library for iOS development.
 The goal is to provide a BDD library that is exquisitely simple to setup and use.
 
-Ping us at @alding or @lukeredpath and let us know what you are using Kiwi for.
-
 Requirements:
 
 * Xcode 4.x
 * LLVM compiler recommended
+
+# Contributors #
+
+Kiwi is open-source and is developed by the community. The full list of Kiwi individual contributors is [here](https://github.com/allending/Kiwi/graphs/contributors).
 
 # Why? #
 The idea behind Kiwi is to have tests that are more readable that what is possible with the bundled test framework.
@@ -43,11 +45,3 @@ The [Kiwi Wiki](https://github.com/allending/Kiwi/wiki) is the official document
 
 # Getting it #
 The best way to get Kiwi is by cloning the git repository: `git clone git://github.com/allending/Kiwi.git`
-# Contributing #
-Kiwi is maintained by:
-
- * Allen Ding (@alding)
- * Luke Redpath (@lukeredpath)
-
-Pull requests welcome. Significant contributors are listed in __Contributors.txt__.
-
