@@ -26,6 +26,9 @@ Class KWInterceptedSuperclass(id anObject, SEL aSelector);
 #pragma mark -
 #pragma mark Getting Forwarding Implementations
 
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wundeclared-selector"
+
 IMP KWRegularForwardingImplementation(void) {
     return class_getMethodImplementation([NSObject class], @selector(KWNonExistantSelector));
 }
@@ -33,6 +36,8 @@ IMP KWRegularForwardingImplementation(void) {
 IMP KWStretForwardingImplementation(void) {
     return class_getMethodImplementation_stret([NSObject class], @selector(KWNonExistantSelector));
 }
+
+#pragma clang diagnostic pop
 
 IMP KWForwardingImplementationForMethodEncoding(const char* encoding) {
 #if TARGET_CPU_ARM
