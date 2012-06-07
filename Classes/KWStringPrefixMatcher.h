@@ -9,11 +9,11 @@
 #import <Foundation/Foundation.h>
 #import "KWHCMatcher.h"
 
-@interface StringPrefixMatcher : NSObject <HCMatcher> {
+@interface KWStringPrefixMatcher : NSObject <HCMatcher> {
   NSString *prefix;
 }
 + (id)matcherWithPrefix:(NSString *)aPrefix;
 - (id)initWithPrefix:(NSString *)aPrefix;
 @end
 
-#define hasPrefix(prefix) [StringPrefixMatcher matcherWithPrefix:prefix]
+#define hasPrefix(prefix) [KWStringPrefixMatcher matcherWithPrefix:prefix]
