@@ -1885,6 +1885,8 @@
 				C922D1DA1580438300995B43 /* KWStringContainsMatcher.m in Sources */,
 				C922D1E715805ADB00995B43 /* KWStringPrefixMatcher.m in Sources */,
 				4B5F433B1575EEE8009A432F /* KWHamcrestDetector.m in Sources */,
+				C922D1DA1580438300995B43 /* KWStringContainsMatcher.m in Sources */,
+				C922D1E715805ADB00995B43 /* KWStringPrefixMatcher.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
