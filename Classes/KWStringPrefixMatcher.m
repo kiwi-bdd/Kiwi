@@ -6,10 +6,10 @@
 //  Copyright 2011 Allen Ding. All rights reserved.
 //
 
-#import "StringPrefixMatcher.h"
+#import "KWStringPrefixMatcher.h"
 
 
-@implementation StringPrefixMatcher
+@implementation KWStringPrefixMatcher
 
 + (id)matcherWithPrefix:(NSString *)aPrefix;
 {
