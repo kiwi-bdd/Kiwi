@@ -26,7 +26,6 @@
 		19A62264151B899D00207192 /* Galaxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 19A62263151B899C00207192 /* Galaxy.m */; };
 		4B45D6BD1548765800793B1E /* KWCaptureSpy.h in Headers */ = {isa = PBXBuildFile; fileRef = 4B45D6BB1548765800793B1E /* KWCaptureSpy.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4B45D6BE1548765800793B1E /* KWCaptureSpy.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B45D6BC1548765800793B1E /* KWCaptureSpy.m */; };
-		4B5F433B1575EEE8009A432F /* KWHamcrestDetector.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B5F433A1575EEE8009A432F /* KWHamcrestDetector.m */; };
 		4B5F433E1575EF65009A432F /* KWHamcrestDetector.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B5F433A1575EEE8009A432F /* KWHamcrestDetector.m */; };
 		4B9D040814D3EE7300707E83 /* KWExampleGroupDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = A3758CDA1418CDC10051268A /* KWExampleGroupDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4BA52D0115487F0C00FC957B /* KWCaptureTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BA52D0015487F0C00FC957B /* KWCaptureTest.m */; };
@@ -1786,6 +1785,7 @@
 				832C83C2157263B300F160D5 /* KWCaptureSpy.m in Sources */,
 				C922D1E915805ADC00995B43 /* KWStringPrefixMatcher.m in Sources */,
 				C922D1EC15805AF600995B43 /* KWStringContainsMatcher.m in Sources */,
+				4B5F433E1575EF65009A432F /* KWHamcrestDetector.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1882,7 +1882,6 @@
 				A3CB75E3144C3479002D1F7A /* KWExampleSuite.m in Sources */,
 				F5FC83B611B100B100BF98A4 /* KWAny.m in Sources */,
 				4B45D6BE1548765800793B1E /* KWCaptureSpy.m in Sources */,
-				4B5F433B1575EEE8009A432F /* KWHamcrestDetector.m in Sources */,
 				C922D1DA1580438300995B43 /* KWStringContainsMatcher.m in Sources */,
 				C922D1E715805ADB00995B43 /* KWStringPrefixMatcher.m in Sources */,
 			);
