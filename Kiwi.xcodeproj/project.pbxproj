@@ -959,8 +959,10 @@
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
 			);
+			indentWidth = 2;
 			name = CustomTemplate;
 			sourceTree = "<group>";
+			tabWidth = 2;
 		};
 		29B97315FDCFA39411CA2CEA /* Other Sources */ = {
 			isa = PBXGroup;
@@ -1785,7 +1787,6 @@
 				832C83C2157263B300F160D5 /* KWCaptureSpy.m in Sources */,
 				C922D1E915805ADC00995B43 /* KWStringPrefixMatcher.m in Sources */,
 				C922D1EC15805AF600995B43 /* KWStringContainsMatcher.m in Sources */,
-				4B5F433E1575EF65009A432F /* KWHamcrestDetector.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

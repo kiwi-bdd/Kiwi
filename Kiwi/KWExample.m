@@ -31,7 +31,6 @@
 @property (nonatomic, readonly) NSMutableArray *verifiers;
 @property (nonatomic, readonly) KWMatcherFactory *matcherFactory;
 @property (nonatomic, assign) id<KWExampleDelegate> delegate;
-@property (nonatomic, assign) BOOL didNotFinish;
 
 - (void)reportResultForExampleNodeWithLabel:(NSString *)label;
 
@@ -44,7 +43,6 @@
 @synthesize delegate = _delegate;
 @synthesize suite;
 @synthesize lastInContext;
-@synthesize didNotFinish;
 
 - (id)initWithExampleNode:(id<KWExampleNode>)node
 {
@@ -117,14 +115,14 @@
 
 - (NSString *)descriptionForExampleContext {
   NSMutableArray *parts = [NSMutableArray array];
-
+  
   for (KWContextNode *context in [[exampleNode contextStack] reverseObjectEnumerator]) {
-    if ([context description] != nil) {
-      [parts addObject:[[context description] stringByAppendingString:@","]];
+    if ([context description]) {
+      [parts addObject:[context description]];
     }
   }
   
-  return [parts componentsJoinedByString:@" "];
+  return [parts componentsJoinedByString:@", "];
 }
 
 - (KWFailure *)outputReadyFailureWithFailure:(KWFailure *)aFailure {
@@ -156,21 +154,12 @@
 
 #pragma mark - Full description with context
 
-/** Pending cases will be marked yellow by XCode as not finished, because their description differs for -[SenTestCaseRun start] and -[SenTestCaseRun stop] methods
- */
-
-- (NSString *)pendingNotFinished {
-    BOOL reportPending = self.didNotFinish;
-    self.didNotFinish = YES;
-    return reportPending ? @"(PENDING)" : @"";
-}
-    
 - (NSString *)descriptionWithContext {
-    NSString *descriptionWithContext = [NSString stringWithFormat:@"%@ %@", 
-                                        [self descriptionForExampleContext], 
-                                        [exampleNode description] ? [exampleNode description] : @""];
-    BOOL isPending = [exampleNode isKindOfClass:[KWPendingNode class]];
-    return isPending ? [descriptionWithContext stringByAppendingString:[self pendingNotFinished]] : descriptionWithContext;
+  NSString *node = [exampleNode description];
+  NSString *context = [self descriptionForExampleContext];
+  NSString *description = node ? [NSString stringWithFormat:@"%@ %@", context, node] : context;
+  BOOL isPending = [exampleNode isKindOfClass:[KWPendingNode class]];
+  return isPending ? [description stringByAppendingString:@"(PENDING)"] : description;
 }
 
 #pragma mark - Visiting Nodes
