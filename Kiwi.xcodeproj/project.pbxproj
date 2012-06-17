@@ -925,10 +925,6 @@
 				F511A03A11AA487300B9BBF1 /* TestVerifier.m */,
 				A3A1753F12E4966F004DFD70 /* Robot.h */,
 				A3A1754012E4966F004DFD70 /* Robot.m */,
-				A3A1754212E496CA004DFD70 /* KWStringPrefixMatcher.h */,
-				A3A1754312E496CA004DFD70 /* KWStringPrefixMatcher.m */,
-				C922D1D71580438300995B43 /* KWStringContainsMatcher.h */,
-				C922D1D81580438300995B43 /* KWStringContainsMatcher.m */,
 				19A62262151B899C00207192 /* Galaxy.h */,
 				19A62263151B899C00207192 /* Galaxy.m */,
 			);
@@ -1194,6 +1190,10 @@
 				4B5F433A1575EEE8009A432F /* KWHamcrestDetector.m */,
 				A352EA0C12EDC6F20049C691 /* KWHamrestMatchingAdditions.h */,
 				A352EA0D12EDC6F20049C691 /* KWHamrestMatchingAdditions.m */,
+				A3A1754212E496CA004DFD70 /* KWStringPrefixMatcher.h */,
+				A3A1754312E496CA004DFD70 /* KWStringPrefixMatcher.m */,
+				C922D1D71580438300995B43 /* KWStringContainsMatcher.h */,
+				C922D1D81580438300995B43 /* KWStringContainsMatcher.m */,
 			);
 			name = Support;
 			sourceTree = "<group>";
