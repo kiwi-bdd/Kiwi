@@ -26,6 +26,7 @@
 		19A62264151B899D00207192 /* Galaxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 19A62263151B899C00207192 /* Galaxy.m */; };
 		4B45D6BD1548765800793B1E /* KWCaptureSpy.h in Headers */ = {isa = PBXBuildFile; fileRef = 4B45D6BB1548765800793B1E /* KWCaptureSpy.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4B45D6BE1548765800793B1E /* KWCaptureSpy.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B45D6BC1548765800793B1E /* KWCaptureSpy.m */; };
+		4B5F433B1575EEE8009A432F /* KWHamcrestDetector.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B5F433A1575EEE8009A432F /* KWHamcrestDetector.m */; };
 		4B9D040814D3EE7300707E83 /* KWExampleGroupDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = A3758CDA1418CDC10051268A /* KWExampleGroupDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4BA52D0115487F0C00FC957B /* KWCaptureTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BA52D0015487F0C00FC957B /* KWCaptureTest.m */; };
 		637FFB2A150513D500DBFE8F /* KWBeSubclassOfClassMatcher.h in Headers */ = {isa = PBXBuildFile; fileRef = 637FFB28150513D500DBFE8F /* KWBeSubclassOfClassMatcher.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -624,6 +625,7 @@
 		32CA4F630368D1EE00C91783 /* Kiwi_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Kiwi_Prefix.pch; sourceTree = "<group>"; };
 		4B45D6BB1548765800793B1E /* KWCaptureSpy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KWCaptureSpy.h; sourceTree = "<group>"; };
 		4B45D6BC1548765800793B1E /* KWCaptureSpy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KWCaptureSpy.m; sourceTree = "<group>"; };
+		4B5F433A1575EEE8009A432F /* KWHamcrestDetector.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KWHamcrestDetector.m; sourceTree = "<group>"; };
 		4BA52D0015487F0C00FC957B /* KWCaptureTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KWCaptureTest.m; sourceTree = "<group>"; };
 		637FFB28150513D500DBFE8F /* KWBeSubclassOfClassMatcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KWBeSubclassOfClassMatcher.h; sourceTree = "<group>"; };
 		637FFB29150513D500DBFE8F /* KWBeSubclassOfClassMatcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KWBeSubclassOfClassMatcher.m; sourceTree = "<group>"; };
@@ -953,8 +955,10 @@
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
 			);
+			indentWidth = 2;
 			name = CustomTemplate;
 			sourceTree = "<group>";
+			tabWidth = 2;
 		};
 		29B97315FDCFA39411CA2CEA /* Other Sources */ = {
 			isa = PBXGroup;
@@ -1115,10 +1119,6 @@
 				A352EA1812EDC8160049C691 /* KWHamcrestMatcher.m */,
 				A385CAE913AA7ED800DCA951 /* KWUserDefinedMatcher.h */,
 				A385CAEA13AA7ED800DCA951 /* KWUserDefinedMatcher.m */,
-				A3A1754212E496CA004DFD70 /* KWStringPrefixMatcher.h */,
-				A3A1754312E496CA004DFD70 /* KWStringPrefixMatcher.m */,
-				C922D1D71580438300995B43 /* KWStringContainsMatcher.h */,
-				C922D1D81580438300995B43 /* KWStringContainsMatcher.m */,
 				A385CAED13AAC9B600DCA951 /* KWMatchers.h */,
 				A385CAEE13AAC9B700DCA951 /* KWMatchers.m */,
 			);
@@ -1187,8 +1187,13 @@
 				F50922FB1165E43D00083EB1 /* NSValue+KiwiAdditions.h */,
 				F50922FC1165E43D00083EB1 /* NSValue+KiwiAdditions.m */,
 				A3A1753E12E49505004DFD70 /* KWHCMatcher.h */,
+				4B5F433A1575EEE8009A432F /* KWHamcrestDetector.m */,
 				A352EA0C12EDC6F20049C691 /* KWHamrestMatchingAdditions.h */,
 				A352EA0D12EDC6F20049C691 /* KWHamrestMatchingAdditions.m */,
+				A3A1754212E496CA004DFD70 /* KWStringPrefixMatcher.h */,
+				A3A1754312E496CA004DFD70 /* KWStringPrefixMatcher.m */,
+				C922D1D71580438300995B43 /* KWStringContainsMatcher.h */,
+				C922D1D81580438300995B43 /* KWStringContainsMatcher.m */,
 			);
 			name = Support;
 			sourceTree = "<group>";
@@ -1880,6 +1885,7 @@
 				4B45D6BE1548765800793B1E /* KWCaptureSpy.m in Sources */,
 				C922D1DA1580438300995B43 /* KWStringContainsMatcher.m in Sources */,
 				C922D1E715805ADB00995B43 /* KWStringPrefixMatcher.m in Sources */,
+				4B5F433B1575EEE8009A432F /* KWHamcrestDetector.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

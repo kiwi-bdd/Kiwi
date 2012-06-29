@@ -7,6 +7,11 @@
 
 #import <Foundation/Foundation.h>
 
+// Use HCMatcher protocol definition from Hamcrest library when available
+#if !defined(HC_assertThat) 
+
 @protocol HCMatcher <NSObject>
 - (BOOL)matches:(id)item;
 @end
+
+#endif

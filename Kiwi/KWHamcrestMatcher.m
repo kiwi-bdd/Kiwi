@@ -14,17 +14,17 @@
 #pragma mark -
 #pragma mark Properties
 
-@property (nonatomic, retain) id<HCMatcher> matcher;
+@property (nonatomic, retain) id<HCMatcher> hamcrestMatcher;
 
 @end
 
 @implementation KWHamcrestMatcher
 
-@synthesize matcher;
+@synthesize hamcrestMatcher;
 
 - (void)dealloc
 {
-  [matcher release];
+  [hamcrestMatcher release];
   [super dealloc];
 }
 
@@ -32,16 +32,16 @@
 #pragma mark Matching
 
 - (BOOL)evaluate {
-    return [self.matcher matches:self.subject];
+    return [self.hamcrestMatcher matches:self.subject];
 }
 
 - (NSString *)failureMessageForShould {
-  return [NSString stringWithFormat:@"expected subject to match %@", self.matcher];
+  return [NSString stringWithFormat:@"expected %@ to %@", subject, self];
 }
 
 - (NSString *)description
 {
-  return [NSString stringWithFormat:@"match %@", [self.matcher description]];
+  return [NSString stringWithFormat:@"match %@", [self.hamcrestMatcher description]];
 }
 
 #pragma mark -
@@ -56,7 +56,7 @@
 
 - (void)match:(id<HCMatcher>)aMatcher;
 {
-    self.matcher = aMatcher;
+    self.hamcrestMatcher = aMatcher;
 }
 
 @end
