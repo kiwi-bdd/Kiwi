@@ -86,6 +86,11 @@ void pendingWithCallSite(KWCallSite *aCallSite, NSString *aDescription, KWVoidBl
 #define pending(title, args...) \
 PENDING(title) \
 pending_(title, ## args)
+
 #define xit(title, args...) \
+PENDING(title) \
+pending_(title, ## args)
+
+#define xcontext(title, args...) \
 PENDING(title) \
 pending_(title, ## args)
