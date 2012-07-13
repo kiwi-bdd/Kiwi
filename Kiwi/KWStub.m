@@ -10,6 +10,8 @@
 #import "KWStringUtilities.h"
 #import "KWValue.h"
 
+#import "NSInvocation+OCMAdditions.h"
+
 @implementation KWStub
 
 #pragma mark -
@@ -25,6 +27,15 @@
         value = [aValue retain];
     }
 
+    return self;
+}
+
+- (id)initWithMessagePattern:(KWMessagePattern *)aMessagePattern block:(id (^)(NSArray *params))aBlock {
+    if ((self = [super init])) {
+        messagePattern = [aMessagePattern retain];
+        block = [aBlock copy];
+    }
+	
     return self;
 }
 
@@ -47,6 +58,10 @@
     return [[[self alloc] initWithMessagePattern:aMessagePattern value:aValue] autorelease];
 }
 
++ (id)stubWithMessagePattern:(KWMessagePattern *)aMessagePattern block:(id (^)(NSArray *params))aBlock {
+    return [[[self alloc] initWithMessagePattern:aMessagePattern block:aBlock] autorelease];
+}
+
 + (id)stubWithMessagePattern:(KWMessagePattern *)aMessagePattern value:(id)aValue times:(id)times afterThatReturn:(id)aSecondValue {
     return [[[self alloc] initWithMessagePattern:aMessagePattern value:aValue times:times afterThatReturn:aSecondValue] autorelease];
 }
@@ -56,6 +71,7 @@
     [value release];
     [returnValueTimes release];
     [secondValue release];
+	[block release];
     [super dealloc];
 }
 
@@ -160,6 +176,19 @@
 - (BOOL)processInvocation:(NSInvocation *)anInvocation {
     if (![self.messagePattern matchesInvocation:anInvocation])
         return NO;
+	
+	if (block) {
+		NSUInteger numberOfArguments = [[anInvocation methodSignature] numberOfArguments];
+		NSMutableArray *params = [NSMutableArray arrayWithCapacity:(numberOfArguments-2)];
+		for (NSUInteger i = 2; i < numberOfArguments; ++i) {
+			id param = [anInvocation getArgumentAtIndexAsObject:i];
+			[params addObject:param];
+		}
+		
+		value = block(params);
+		
+		[params removeAllObjects]; // We don't want these objects to be in autorelease pool
+	}
 
     if (self.value == nil)
         [self writeZerosToInvocationReturnValue:anInvocation];
