@@ -42,7 +42,9 @@
 
 - (void)markLastExampleAsLastInContext:(KWContextNode *)context
 {
-  [[examples objectAtIndex:examples.count-1] setLastInContext:context];
+	if ([examples count] > 0) {
+		[[examples objectAtIndex:examples.count-1] setLastInContext:context];
+	}
 }
 
 - (NSArray *)invocationsForTestCase;
