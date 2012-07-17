@@ -179,19 +179,22 @@
 	
 	if (block) {
 		NSUInteger numberOfArguments = [[anInvocation methodSignature] numberOfArguments];
-		NSMutableArray *params = [NSMutableArray arrayWithCapacity:(numberOfArguments-2)];
+		NSMutableArray *args = [NSMutableArray arrayWithCapacity:(numberOfArguments-2)];
 		for (NSUInteger i = 2; i < numberOfArguments; ++i) {
-			id param = [anInvocation getArgumentAtIndexAsObject:i];
-			[params addObject:param];
+			id arg = [anInvocation getArgumentAtIndexAsObject:i];
+			
+			const char *argType = [[anInvocation methodSignature] getArgumentTypeAtIndex:i];
+			if (strcmp(argType, "@?") == 0) arg = [[arg copy] autorelease];
+			[args addObject:arg];
 		}
 		
-		id newValue = block(params);
+		id newValue = block(args);
 		if (newValue != value) {
 			[value release];
 			value = [newValue retain];
 		}
 		
-		[params removeAllObjects]; // We don't want these objects to be in autorelease pool
+		[args removeAllObjects]; // We don't want these objects to be in autorelease pool
 	}
 
     if (self.value == nil)
