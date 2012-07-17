@@ -185,7 +185,11 @@
 			[params addObject:param];
 		}
 		
-		value = block(params);
+		id newValue = block(params);
+		if (newValue != value) {
+			[value release];
+			value = [newValue retain];
+		}
 		
 		[params removeAllObjects]; // We don't want these objects to be in autorelease pool
 	}
