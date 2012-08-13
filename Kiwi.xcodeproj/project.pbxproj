@@ -1978,8 +1978,8 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				OTHER_LDFLAGS = "";
-				PRODUCT_NAME = "Kiwi-OSX";
 				PUBLIC_HEADERS_FOLDER_PATH = KiwiPublicHeaders;
+				PRODUCT_NAME = "$(TARGET_NAME)";
 				RUN_CLANG_STATIC_ANALYZER = YES;
 				SDKROOT = macosx;
 				VALID_ARCHS = x86_64;
@@ -2000,8 +2000,8 @@
 				);
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				OTHER_LDFLAGS = "";
-				PRODUCT_NAME = "Kiwi-OSX";
 				PUBLIC_HEADERS_FOLDER_PATH = KiwiPublicHeaders;
+				PRODUCT_NAME = "$(TARGET_NAME)";
 				RUN_CLANG_STATIC_ANALYZER = YES;
 				SDKROOT = macosx;
 				VALID_ARCHS = x86_64;
@@ -2121,8 +2121,8 @@
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = "";
-				PRODUCT_NAME = Kiwi;
 				PUBLIC_HEADERS_FOLDER_PATH = KiwiPublicHeaders;
+				PRODUCT_NAME = "$(TARGET_NAME)";
 				RUN_CLANG_STATIC_ANALYZER = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -2144,8 +2144,8 @@
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = "";
-				PRODUCT_NAME = Kiwi;
 				PUBLIC_HEADERS_FOLDER_PATH = KiwiPublicHeaders;
+				PRODUCT_NAME = "$(TARGET_NAME)";
 				RUN_CLANG_STATIC_ANALYZER = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				ZERO_LINK = NO;
