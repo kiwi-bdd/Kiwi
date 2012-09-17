@@ -80,6 +80,8 @@
                 object = [KWValue valueWithBytes:[data bytes] objCType:type];
             }
 
+			
+			if (strcmp(type, "@?") == 0) object = [[object copy] autorelease]; // Converting NSStackBlock to NSMallocBlock
             [argumentFilters addObject:(object != nil) ? object : [KWNull null]];
         }
     }

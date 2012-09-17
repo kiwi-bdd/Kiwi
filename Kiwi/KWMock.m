@@ -217,6 +217,11 @@ static NSString * const ChangeStubValueAfterTimesKey = @"ChangeStubValueAfterTim
     [self stubMessagePattern:messagePattern andReturn:nil];
 }
 
+- (void)stub:(SEL)aSelector withBlock:(id (^)(NSArray *params))block {
+    KWMessagePattern *messagePattern = [KWMessagePattern messagePatternWithSelector:aSelector];
+    [self stubMessagePattern:messagePattern withBlock:block];
+}
+
 - (void)stub:(SEL)aSelector withArguments:(id)firstArgument, ... {
     va_list argumentList;
     va_start(argumentList, firstArgument);
@@ -256,6 +261,13 @@ static NSString * const ChangeStubValueAfterTimesKey = @"ChangeStubValueAfterTim
     [self expectMessagePattern:aMessagePattern];
     [self removeStubWithMessagePattern:aMessagePattern];
     KWStub *stub = [KWStub stubWithMessagePattern:aMessagePattern value:aValue];
+    [self.stubs addObject:stub];
+}
+
+- (void)stubMessagePattern:(KWMessagePattern *)aMessagePattern withBlock:(id (^)(NSArray *params))block {
+    [self expectMessagePattern:aMessagePattern];
+    [self removeStubWithMessagePattern:aMessagePattern];
+    KWStub *stub = [KWStub stubWithMessagePattern:aMessagePattern block:block];
     [self.stubs addObject:stub];
 }
 
