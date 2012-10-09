@@ -10,19 +10,20 @@
 - (id)initWithArgumentIndex:(NSUInteger)index {
     if ((self = [super init])) {
         _argumentIndex = index;
+        _argumentCaptured = NO;
     }
     return self;
 }
 
 - (id)argument {
-    if (!_argument) {
+    if (!_argumentCaptured) {
         @throw [NSException exceptionWithName:NSInternalInconsistencyException reason:@"Argument requested has yet to be captured." userInfo:nil];    
     }
     return [[_argument retain] autorelease];
 }
 
 - (void)object:(id)anObject didReceiveInvocation:(NSInvocation *)anInvocation {
-    if (!_argument) {
+    if (!_argumentCaptured) {
         NSMethodSignature *signature = [anInvocation methodSignature];
         const char *objCType = [signature messageArgumentTypeAtIndex:_argumentIndex];        
         if (KWObjCTypeIsObject(objCType)) {
@@ -37,6 +38,7 @@
             NSData *data = [anInvocation messageArgumentDataAtIndex:_argumentIndex];
             _argument = [[KWValue valueWithBytes:[data bytes] objCType:objCType] retain];
         }
+        _argumentCaptured = YES;
     }
 }
 
