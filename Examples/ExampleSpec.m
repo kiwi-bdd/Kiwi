@@ -73,7 +73,7 @@ describe(@"Cruiser", ^{
                     return NO;
                 }
                 Cruiser *cruiser = subject;
-                return cruiser.fighters.count > 0;
+                return (BOOL)(cruiser.fighters.count > 0);
             }];
             [builder failureMessageForShould:^(id subject) {
                 return [NSString stringWithFormat:@"%@ should have fighters", subject];
