@@ -3,6 +3,7 @@
 #import "KWMessageSpying.h"
 
 @interface KWCaptureSpy : NSObject<KWMessageSpying> {
+    BOOL _argumentCaptured;
     id _argument;
     NSUInteger _argumentIndex;
 }

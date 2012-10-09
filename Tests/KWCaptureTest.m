@@ -52,6 +52,15 @@
     STAssertEqualObjects(spy.argument, [KWValue valueWithDouble:2], @"Captured argument should be equal to '2'");        
 }
 
+- (void)testShouldBeAbleToCaptureNils {
+    id robotMock = [KWMock nullMockForClass:[Robot class]];
+    KWCaptureSpy *spy = [robotMock captureArgument:@selector(speak:afterDelay:whenDone:) atIndex:0];
+    
+    [robotMock speak:nil afterDelay:2 whenDone:^{}];
+    
+    STAssertNil(spy.argument, @"Captured argument should be nil");
+}
+
 - (void)testShouldRaiseAnExceptionIfArgumentHasNotBeenCaptured {
     id robotMock = [KWMock nullMockForClass:[Robot class]];
     KWCaptureSpy *spy = [robotMock captureArgument:@selector(speak:afterDelay:whenDone:) atIndex:1];
