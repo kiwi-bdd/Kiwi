@@ -13,6 +13,7 @@
 			buildPhases = (
 				6BC17EC7155E3A50000B3AA4 /* Build library */,
 				6BC17EC9155E3A84000B3AA4 /* Assemble Framework */,
+				C938A69A165A64A100F0E508 /* ShellScript */,
 			);
 			dependencies = (
 			);
@@ -1484,6 +1485,7 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "xcodebuild -project ${PROJECT_NAME}.xcodeproj -sdk iphonesimulator -scheme ${PROJECT_NAME} -configuration ${CONFIGURATION} build\nxcodebuild -project ${PROJECT_NAME}.xcodeproj -sdk iphoneos -scheme ${PROJECT_NAME} -configuration ${CONFIGURATION} build";
+			showEnvVarsInLog = 0;
 		};
 		6BC17EC9155E3A84000B3AA4 /* Assemble Framework */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -1498,6 +1500,7 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "SIMULATOR_HEADERS_DIR=\"${BUILD_DIR}/${CONFIGURATION}-iphonesimulator/${PRODUCT_NAME}\" &&\nSIMULATOR_LIBRARY_PATH=\"${BUILD_DIR}/${CONFIGURATION}-iphonesimulator/lib${PROJECT_NAME}.a\" &&\nDEVICE_LIBRARY_PATH=\"${BUILD_DIR}/${CONFIGURATION}-iphoneos/lib${PROJECT_NAME}.a\" &&\nUNIVERSAL_LIBRARY_DIR=\"${BUILD_DIR}/${CONFIGURATION}-iphoneuniversal\" &&\nUNIVERSAL_LIBRARY_PATH=\"${UNIVERSAL_LIBRARY_DIR}/lib${PRODUCT_NAME}.a\" &&\nFRAMEWORK=\"${UNIVERSAL_LIBRARY_DIR}/${PRODUCT_NAME}.framework\" &&\n\n# Create framework directory structure.\nrm -rf \"${FRAMEWORK}\" &&\nmkdir -p \"${UNIVERSAL_LIBRARY_DIR}\" &&\nmkdir -p \"${FRAMEWORK}/Versions/A/Resources\" &&\n\n# Generate universal binary from desktop, device, and simulator builds.\nlipo \"${SIMULATOR_LIBRARY_PATH}\" \"${DEVICE_LIBRARY_PATH}\" -create -output \"${UNIVERSAL_LIBRARY_PATH}\" &&\n\n# Copy public headers to Framework headers\n# (had to use move because wildcard matching gave me an error)\ncp -r \"${SIMULATOR_HEADERS_DIR}\" \"${UNIVERSAL_LIBRARY_DIR}\" &&\nmv \"${UNIVERSAL_LIBRARY_DIR}/${PRODUCT_NAME}\" \"${FRAMEWORK}/Versions/A/Headers\" &&\n# Copy public headers to output (doesn't matter which architecture)\ncp -r \"${SIMULATOR_HEADERS_DIR}\" \"${UNIVERSAL_LIBRARY_DIR}\" &&\n\n# Move files to appropriate locations in framework paths.\ncp \"${UNIVERSAL_LIBRARY_PATH}\" \"${FRAMEWORK}/Versions/A/${PRODUCT_NAME}\" &&\nln -s \"A\" \"${FRAMEWORK}/Versions/Current\" &&\nln -s \"Versions/Current/Headers\" \"${FRAMEWORK}/Headers\" &&\nln -s \"Versions/Current/Resources\" \"${FRAMEWORK}/Resources\" &&\nln -s \"Versions/Current/${PRODUCT_NAME}\" \"${FRAMEWORK}/${PRODUCT_NAME}\" &&\ncp \"${SRCROOT}/Resources/KiwiDriver-Info.plist\" \"${FRAMEWORK}/Resources/Info.plist\"";
+			showEnvVarsInLog = 0;
 		};
 		A3B16540139967B800E9CC6E /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -1511,6 +1514,20 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C938A69A165A64A100F0E508 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 8;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+			shellPath = /bin/sh;
+			shellScript = "mkdir -p ${PROJECT_DIR}/output &&\ncp -r ${BUILD_DIR}/${CONFIGURATION}-iphoneuniversal ${PROJECT_DIR}/output";
 			showEnvVarsInLog = 0;
 		};
 		F5015C9C11584017002E9A98 /* ShellScript */ = {
