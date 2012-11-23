@@ -70,13 +70,19 @@
 
 - (NSString *)failureMessageForShould {
     if (self.expectedValue == nil) {
-        return [NSString stringWithFormat:@"expected subject to have a value for key %@", self.expectedKey];
+        return [NSString stringWithFormat:@"expected subject to have a value for key %@",
+                                          [KWFormatter formatObject:self.expectedKey]];
     }
     id subjectValue = [self subjectValue];
     if (subjectValue) {
-        return [NSString stringWithFormat:@"expected subject to have value %@ for key %@, but it had value %@ instead", self.expectedValue, self.expectedKey, subjectValue];
+        return [NSString stringWithFormat:@"expected subject to have value %@ for key %@, but it had value %@ instead",
+                                          [KWFormatter formatObject:self.expectedValue],
+                                          [KWFormatter formatObject:self.expectedKey],
+                                          [KWFormatter formatObject:subjectValue]];
     } else {
-        return [NSString stringWithFormat:@"expected subject to have value %@ for key %@, but the key was not present", self.expectedValue, self.expectedKey];
+        return [NSString stringWithFormat:@"expected subject to have value %@ for key %@, but the key was not present",
+                                          [KWFormatter formatObject:self.expectedValue],
+                                          [KWFormatter formatObject:self.expectedKey]];
     }
 }
 
