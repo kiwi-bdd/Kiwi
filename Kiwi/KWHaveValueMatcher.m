@@ -72,10 +72,15 @@
     if (self.expectedValue == nil) {
         return [NSString stringWithFormat:@"expected subject to have a value for key %@", self.expectedKey];
     }
-    return [NSString stringWithFormat:@"expected subject to have value %@ for key %@", self.expectedValue, self.expectedKey];
+    id subjectValue = [self subjectValue];
+    if (subjectValue) {
+        return [NSString stringWithFormat:@"expected subject to have value %@ for key %@, but it had value %@ instead", self.expectedValue, self.expectedKey, subjectValue];
+    } else {
+        return [NSString stringWithFormat:@"expected subject to have value %@ for key %@, but the key was not present", self.expectedValue, self.expectedKey];
+    }
 }
 
-- (id)subjectValue;
+- (id)subjectValue
 {
   id value = nil;
 
