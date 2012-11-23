@@ -82,6 +82,7 @@ extern "C" {
   
 // Public Foundation Categories
 #import "NSObject+KiwiMockAdditions.h"
+#import "NSObject+KiwiSpyAdditions.h"
 #import "NSObject+KiwiStubAdditions.h"
 #import "NSObject+KiwiVerifierAdditions.h"
 

@@ -187,6 +187,12 @@
 		832C83C0157263B300F160D5 /* KWExampleSuite.m in Sources */ = {isa = PBXBuildFile; fileRef = A3CB75E1144C3479002D1F7A /* KWExampleSuite.m */; };
 		832C83C1157263B300F160D5 /* KWAny.m in Sources */ = {isa = PBXBuildFile; fileRef = F5FC83B611B100B100BF98A3 /* KWAny.m */; };
 		832C83C2157263B300F160D5 /* KWCaptureSpy.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B45D6BC1548765800793B1E /* KWCaptureSpy.m */; };
+		96E8C09E165F182B000C2C5A /* NSObject+KiwiSpyAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 96E8C09C165F182B000C2C5A /* NSObject+KiwiSpyAdditions.h */; };
+		96E8C09F165F182B000C2C5A /* NSObject+KiwiSpyAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 96E8C09C165F182B000C2C5A /* NSObject+KiwiSpyAdditions.h */; };
+		96E8C0A0165F182B000C2C5A /* NSObject+KiwiSpyAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 96E8C09D165F182B000C2C5A /* NSObject+KiwiSpyAdditions.m */; };
+		96E8C0A1165F182B000C2C5A /* NSObject+KiwiSpyAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 96E8C09D165F182B000C2C5A /* NSObject+KiwiSpyAdditions.m */; };
+		96E8C0A2165F182B000C2C5A /* NSObject+KiwiSpyAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 96E8C09D165F182B000C2C5A /* NSObject+KiwiSpyAdditions.m */; };
+		96E8C0A3165F182B000C2C5A /* NSObject+KiwiSpyAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 96E8C09D165F182B000C2C5A /* NSObject+KiwiSpyAdditions.m */; };
 		9F4E04DC12DFB71F00A3440B /* KWFutureObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F4E04D712DFB71F00A3440B /* KWFutureObject.m */; };
 		9F4E04DF12DFB71F00A3440B /* KWProbePoller.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F4E04DA12DFB71F00A3440B /* KWProbePoller.m */; };
 		9FB1D28412DFB60400693E30 /* KWAsyncVerifier.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FB1D28312DFB60400693E30 /* KWAsyncVerifier.m */; };
@@ -451,6 +457,8 @@
 		6B39D95F155C9FCB003C3444 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		6B39D960155C9FCB003C3444 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		832C83C7157263B300F160D5 /* libKiwi-OSX.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libKiwi-OSX.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		96E8C09C165F182B000C2C5A /* NSObject+KiwiSpyAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+KiwiSpyAdditions.h"; sourceTree = "<group>"; };
+		96E8C09D165F182B000C2C5A /* NSObject+KiwiSpyAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+KiwiSpyAdditions.m"; sourceTree = "<group>"; };
 		9F4E04C812DFB6CB00A3440B /* KWAsyncVerifier.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KWAsyncVerifier.h; sourceTree = "<group>"; };
 		9F4E04D612DFB71F00A3440B /* KWFutureObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KWFutureObject.h; sourceTree = "<group>"; };
 		9F4E04D712DFB71F00A3440B /* KWFutureObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KWFutureObject.m; sourceTree = "<group>"; };
@@ -874,6 +882,8 @@
 				F5015B6C1158398E002E9A98 /* KWStub.m */,
 				F59D2C53118DB5460081755E /* NSObject+KiwiMockAdditions.h */,
 				F59D2C54118DB5460081755E /* NSObject+KiwiMockAdditions.m */,
+				96E8C09C165F182B000C2C5A /* NSObject+KiwiSpyAdditions.h */,
+				96E8C09D165F182B000C2C5A /* NSObject+KiwiSpyAdditions.m */,
 				F51512F1119024B100D32CD4 /* NSObject+KiwiStubAdditions.h */,
 				F51512F2119024B100D32CD4 /* NSObject+KiwiStubAdditions.m */,
 				4B45D6BB1548765800793B1E /* KWCaptureSpy.h */,
@@ -1244,6 +1254,7 @@
 				C922D1EA15805AEB00995B43 /* KWStringPrefixMatcher.h in Headers */,
 				C922D1EB15805AF000995B43 /* KWStringContainsMatcher.h in Headers */,
 				B36B276515AFD5120056C31D /* NSInvocation+OCMAdditions.h in Headers */,
+				96E8C09F165F182B000C2C5A /* NSObject+KiwiSpyAdditions.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1340,6 +1351,7 @@
 				C922D1DE1580484300995B43 /* KWStringContainsMatcher.h in Headers */,
 				C922D1DF1580487700995B43 /* KWStringPrefixMatcher.h in Headers */,
 				B36B276415AFD5120056C31D /* NSInvocation+OCMAdditions.h in Headers */,
+				96E8C09E165F182B000C2C5A /* NSObject+KiwiSpyAdditions.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1624,6 +1636,7 @@
 				C922D1E915805ADC00995B43 /* KWStringPrefixMatcher.m in Sources */,
 				C922D1EC15805AF600995B43 /* KWStringContainsMatcher.m in Sources */,
 				B36B276715AFD5120056C31D /* NSInvocation+OCMAdditions.m in Sources */,
+				96E8C0A1165F182B000C2C5A /* NSObject+KiwiSpyAdditions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1642,6 +1655,7 @@
 				A3B1655D1399694900E9CC6E /* SpaceShip.m in Sources */,
 				A3B1655E1399694900E9CC6E /* Robot.m in Sources */,
 				A34D117D144E554600AD1B61 /* KiwiHooksSpec.m in Sources */,
+				96E8C0A3165F182B000C2C5A /* NSObject+KiwiSpyAdditions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1723,6 +1737,7 @@
 				C922D1DA1580438300995B43 /* KWStringContainsMatcher.m in Sources */,
 				C922D1E715805ADB00995B43 /* KWStringPrefixMatcher.m in Sources */,
 				B36B276615AFD5120056C31D /* NSInvocation+OCMAdditions.m in Sources */,
+				96E8C0A0165F182B000C2C5A /* NSObject+KiwiSpyAdditions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1773,6 +1788,7 @@
 				19A62264151B899D00207192 /* Galaxy.m in Sources */,
 				4BA52D0115487F0C00FC957B /* KWCaptureTest.m in Sources */,
 				C922D1DD158045FC00995B43 /* KWStringContainsMatcherTest.m in Sources */,
+				96E8C0A2165F182B000C2C5A /* NSObject+KiwiSpyAdditions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
