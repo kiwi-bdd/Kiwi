@@ -160,7 +160,12 @@
 
 - (void)testSpyWorksOnRealInterfaces {
     Cruiser *cruiser = [Cruiser mock];
-    [cruiser captureArgument:@selector(foo) atIndex:0];
+    STAssertNoThrow([cruiser captureArgument:@selector(foo) atIndex:0], @"expected not to throw exception");
+}
+
+- (void)testCallingCaptureArgumentOnRealObjectThrowsException {
+    Cruiser *cruiser = [Cruiser cruiser];
+    STAssertThrows([cruiser captureArgument:@selector(foo) atIndex:0], @"expected to throw exception");
 }
 
 @end
