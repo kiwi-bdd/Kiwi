@@ -158,6 +158,11 @@
     STAssertEquals(cruiser, otherCruiser, @"expected init to be stubbed");
 }
 
+- (void)testSpyWorksOnRealInterfaces {
+    Cruiser *cruiser = [Cruiser mock];
+    [cruiser captureArgument:@selector(foo) atIndex:0];
+}
+
 @end
 
 #endif // #if KW_TESTS_ENABLED
