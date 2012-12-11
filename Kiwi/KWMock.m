@@ -593,7 +593,7 @@ static NSString * const ChangeStubValueAfterTimesKey = @"ChangeStubValueAfterTim
 #pragma mark -
 #pragma mark Key-Value Coding Support
 
-- (id)valueForKey:(NSString *)key {
+static id stubForIdReturnsId(id self, SEL _cmd, id key) {
     KWMessagePattern *messagePattern = [KWMessagePattern messagePatternWithSelector:_cmd];
     [self expectMessagePattern:messagePattern];
     NSInvocation *invocation = [NSInvocation invocationWithTarget:self selector:_cmd messageArguments:&key];
@@ -607,26 +607,20 @@ static NSString * const ChangeStubValueAfterTimesKey = @"ChangeStubValueAfterTim
     }
 }
 
+- (id)valueForKey:(NSString *)key {
+    return stubForIdReturnsId(self, _cmd, key);
+}
+
+- (id)valueForKeyPath:(NSString *)keyPath {
+    return stubForIdReturnsId(self, _cmd, keyPath);
+}
+
 - (void)setValue:(id)value forKey:(NSString *)key {
     KWMessagePattern *messagePattern = [KWMessagePattern messagePatternWithSelector:_cmd];
     [self expectMessagePattern:messagePattern];
     NSInvocation *invocation = [NSInvocation invocationWithTarget:self selector:_cmd messageArguments:&value, &key];
     
     [self processReceivedInvocation:invocation];
-}
-
-- (id)valueForKeyPath:(NSString *)keyPath {
-    KWMessagePattern *messagePattern = [KWMessagePattern messagePatternWithSelector:_cmd];
-    [self expectMessagePattern:messagePattern];
-    NSInvocation *invocation = [NSInvocation invocationWithTarget:self selector:_cmd messageArguments:&keyPath];
-    
-    if ([self processReceivedInvocation:invocation]) {
-        id result = nil;
-        [invocation getReturnValue:&result];
-        return result;
-    } else {
-        return nil;
-    }
 }
 
 - (void)setValue:(id)value forKeyPath:(NSString *)keyPath {
