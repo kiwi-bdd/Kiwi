@@ -332,6 +332,17 @@
     STAssertTrue(called, @"expected setValue:forKey: to be stubbed");
 }
 
+- (void)testItShouldAllowStubbingSetValueForKeyPath {
+    id mock = [Cruiser mock];
+    __block BOOL called = NO;
+    [mock stub:@selector(setValue:forKeyPath:) withBlock:^id(NSArray *params) {
+        called = YES;
+        return nil;
+    }];
+    [mock setValue:@"baz" forKeyPath:@"foo.bar"];
+    STAssertTrue(called, @"expected setValue:forKeyPath: to be stubbed");
+}
+
 @end
 
 #endif // #if KW_TESTS_ENABLED
