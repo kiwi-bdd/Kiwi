@@ -615,7 +615,7 @@ static id valueForKeyImplementation(id self, SEL _cmd, id key) {
     return valueForKeyImplementation(self, _cmd, keyPath);
 }
 
-static void stubForIdIdReturnsVoid(id self, SEL _cmd, id a, id b) {
+static void setValueForKeyImplementation(id self, SEL _cmd, id a, id b) {
     KWMessagePattern *messagePattern = [KWMessagePattern messagePatternWithSelector:_cmd];
     [self expectMessagePattern:messagePattern];
     NSInvocation *invocation = [NSInvocation invocationWithTarget:self selector:_cmd messageArguments:&a, &b];
@@ -624,11 +624,11 @@ static void stubForIdIdReturnsVoid(id self, SEL _cmd, id a, id b) {
 }
 
 - (void)setValue:(id)value forKey:(NSString *)key {
-    stubForIdIdReturnsVoid(self, _cmd, value, key);
+    setValueForKeyImplementation(self, _cmd, value, key);
 }
 
 - (void)setValue:(id)value forKeyPath:(NSString *)keyPath {
-    stubForIdIdReturnsVoid(self, _cmd, value, keyPath);
+    setValueForKeyImplementation(self, _cmd, value, keyPath);
 }
 
 @end
