@@ -594,7 +594,17 @@ static NSString * const ChangeStubValueAfterTimesKey = @"ChangeStubValueAfterTim
 #pragma mark Key-Value Coding Support
 
 - (id)valueForKey:(NSString *)key {
-    return nil;
+    KWMessagePattern *messagePattern = [KWMessagePattern messagePatternWithSelector:_cmd];
+    [self expectMessagePattern:messagePattern];
+    NSInvocation *invocation = [NSInvocation invocationWithTarget:self selector:_cmd messageArguments:&key];
+    
+    if ([self processReceivedInvocation:invocation]) {
+        id result = nil;
+        [invocation getReturnValue:&result];
+        return result;
+    } else {
+        return nil;
+    }
 }
 
 - (void)setValue:(id)value forKey:(NSString *)keyPath {

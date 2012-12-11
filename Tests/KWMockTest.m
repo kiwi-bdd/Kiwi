@@ -305,6 +305,14 @@
     STAssertNoThrow([mock setValue:@"baz" forKeyPath:@"foo.bar"], @"expected setValue:forKeyPath: not to raise");
 }
 
+- (void)testItShouldAllowStubbingValueForKey {
+    id mock = [Cruiser mock];
+    id otherMock = [Cruiser mock];
+    [mock stub:@selector(valueForKey:) andReturn:otherMock withArguments:@"foo"];
+    id value = [mock valueForKey:@"foo"];
+    STAssertEquals(value, otherMock, @"expected valueForKey: to be stubbed");
+}
+
 @end
 
 #endif // #if KW_TESTS_ENABLED
