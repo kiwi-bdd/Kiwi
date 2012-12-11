@@ -615,20 +615,20 @@ static id stubForIdReturnsId(id self, SEL _cmd, id key) {
     return stubForIdReturnsId(self, _cmd, keyPath);
 }
 
-- (void)setValue:(id)value forKey:(NSString *)key {
+static void stubForIdIdReturnsVoid(id self, SEL _cmd, id a, id b) {
     KWMessagePattern *messagePattern = [KWMessagePattern messagePatternWithSelector:_cmd];
     [self expectMessagePattern:messagePattern];
-    NSInvocation *invocation = [NSInvocation invocationWithTarget:self selector:_cmd messageArguments:&value, &key];
+    NSInvocation *invocation = [NSInvocation invocationWithTarget:self selector:_cmd messageArguments:&a, &b];
     
     [self processReceivedInvocation:invocation];
 }
 
+- (void)setValue:(id)value forKey:(NSString *)key {
+    stubForIdIdReturnsVoid(self, _cmd, value, key);
+}
+
 - (void)setValue:(id)value forKeyPath:(NSString *)keyPath {
-    KWMessagePattern *messagePattern = [KWMessagePattern messagePatternWithSelector:_cmd];
-    [self expectMessagePattern:messagePattern];
-    NSInvocation *invocation = [NSInvocation invocationWithTarget:self selector:_cmd messageArguments:&value, &keyPath];
-    
-    [self processReceivedInvocation:invocation];
+    stubForIdIdReturnsVoid(self, _cmd, value, keyPath);
 }
 
 @end
