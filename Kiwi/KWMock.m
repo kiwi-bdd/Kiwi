@@ -607,10 +607,10 @@ static NSString * const ChangeStubValueAfterTimesKey = @"ChangeStubValueAfterTim
     }
 }
 
-- (void)setValue:(id)value forKey:(NSString *)keyPath {
+- (void)setValue:(id)value forKey:(NSString *)key {
     KWMessagePattern *messagePattern = [KWMessagePattern messagePatternWithSelector:_cmd];
     [self expectMessagePattern:messagePattern];
-    NSInvocation *invocation = [NSInvocation invocationWithTarget:self selector:_cmd messageArguments:&value, &keyPath];
+    NSInvocation *invocation = [NSInvocation invocationWithTarget:self selector:_cmd messageArguments:&value, &key];
     
     [self processReceivedInvocation:invocation];
 }
