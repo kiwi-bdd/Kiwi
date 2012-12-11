@@ -313,6 +313,14 @@
     STAssertEquals(value, otherMock, @"expected valueForKey: to be stubbed");
 }
 
+- (void)testItShouldAllowStubbingValueForKeyPath {
+    id mock = [Cruiser mock];
+    id otherMock = [Cruiser mock];
+    [mock stub:@selector(valueForKeyPath:) andReturn:otherMock withArguments:@"foo.bar"];
+    id value = [mock valueForKeyPath:@"foo.bar"];
+    STAssertEquals(value, otherMock, @"expected valueForKeyPath: to be stubbed");
+}
+
 @end
 
 #endif // #if KW_TESTS_ENABLED
