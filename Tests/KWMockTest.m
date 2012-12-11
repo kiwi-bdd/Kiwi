@@ -300,6 +300,7 @@
 - (void)testItShouldNotRaiseWhenReceivingKVCMessagesAsANullMock {
     id mock = [Cruiser nullMock];
     STAssertNoThrow([mock valueForKey:@"foo"], @"expected valueForKey: not to raise");
+    STAssertNoThrow([mock setValue:@"bar" forKey:@"foo"], @"expected setValue:forKey not to raise");
 }
 
 @end

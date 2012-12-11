@@ -597,4 +597,7 @@ static NSString * const ChangeStubValueAfterTimesKey = @"ChangeStubValueAfterTim
     return nil;
 }
 
+- (void)setValue:(id)value forKey:(NSString *)keyPath {
+}
+
 @end
