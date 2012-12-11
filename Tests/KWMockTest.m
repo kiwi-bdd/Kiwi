@@ -325,6 +325,8 @@
     id mock = [Cruiser mock];
     __block BOOL called = NO;
     [mock stub:@selector(setValue:forKey:) withBlock:^id(NSArray *params) {
+        STAssertEquals([params objectAtIndex:0], @"baz", @"expected arg 1 of setValue:forKey: to be 'baz'");
+        STAssertEquals([params objectAtIndex:1], @"foo", @"expected arg 2 of setValue:forKey: to be 'foo'");
         called = YES;
         return nil;
     }];
@@ -336,6 +338,8 @@
     id mock = [Cruiser mock];
     __block BOOL called = NO;
     [mock stub:@selector(setValue:forKeyPath:) withBlock:^id(NSArray *params) {
+        STAssertEquals([params objectAtIndex:0], @"baz", @"expected arg 1 of setValue:forKeyPath: to be 'baz'");
+        STAssertEquals([params objectAtIndex:1], @"foo.bar", @"expected arg 2 of setValue:forKey: to be 'foo.bar'");
         called = YES;
         return nil;
     }];
