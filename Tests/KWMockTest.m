@@ -302,6 +302,7 @@
     STAssertNoThrow([mock valueForKey:@"foo"], @"expected valueForKey: not to raise");
     STAssertNoThrow([mock setValue:@"bar" forKey:@"foo"], @"expected setValue:forKey not to raise");
     STAssertNoThrow([mock valueForKeyPath:@"foo.bar"], @"expected valueForKeyPath: not to raise");
+    STAssertNoThrow([mock setValue:@"baz" forKeyPath:@"foo.bar"], @"expected setValue:forKeyPath: not to raise");
 }
 
 @end
