@@ -590,4 +590,11 @@ static NSString * const ChangeStubValueAfterTimesKey = @"ChangeStubValueAfterTim
     }
 }
 
+#pragma mark -
+#pragma mark Key-Value Coding Support
+
+- (id)valueForKey:(NSString *)key {
+    return nil;
+}
+
 @end

@@ -297,6 +297,11 @@
     STAssertEquals(cruiser, mock, @"expected init to be stubbed");
 }
 
+- (void)testItShouldNotRaiseWhenReceivingKVCMessagesAsANullMock {
+    id mock = [Cruiser nullMock];
+    STAssertNoThrow([mock valueForKey:@"foo"], @"expected valueForKey: not to raise");
+}
+
 @end
 
 #endif // #if KW_TESTS_ENABLED
