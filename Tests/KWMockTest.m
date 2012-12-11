@@ -297,6 +297,56 @@
     STAssertEquals(cruiser, mock, @"expected init to be stubbed");
 }
 
+- (void)testItShouldNotRaiseWhenReceivingKVCMessagesAsANullMock {
+    id mock = [Cruiser nullMock];
+    STAssertNoThrow([mock valueForKey:@"foo"], @"expected valueForKey: not to raise");
+    STAssertNoThrow([mock setValue:@"bar" forKey:@"foo"], @"expected setValue:forKey not to raise");
+    STAssertNoThrow([mock valueForKeyPath:@"foo.bar"], @"expected valueForKeyPath: not to raise");
+    STAssertNoThrow([mock setValue:@"baz" forKeyPath:@"foo.bar"], @"expected setValue:forKeyPath: not to raise");
+}
+
+- (void)testItShouldAllowStubbingValueForKey {
+    id mock = [Cruiser mock];
+    id otherMock = [Cruiser mock];
+    [mock stub:@selector(valueForKey:) andReturn:otherMock withArguments:@"foo"];
+    id value = [mock valueForKey:@"foo"];
+    STAssertEquals(value, otherMock, @"expected valueForKey: to be stubbed");
+}
+
+- (void)testItShouldAllowStubbingValueForKeyPath {
+    id mock = [Cruiser mock];
+    id otherMock = [Cruiser mock];
+    [mock stub:@selector(valueForKeyPath:) andReturn:otherMock withArguments:@"foo.bar"];
+    id value = [mock valueForKeyPath:@"foo.bar"];
+    STAssertEquals(value, otherMock, @"expected valueForKeyPath: to be stubbed");
+}
+
+- (void)testItShouldAllowStubbingSetValueForKey {
+    id mock = [Cruiser mock];
+    __block BOOL called = NO;
+    [mock stub:@selector(setValue:forKey:) withBlock:^id(NSArray *params) {
+        STAssertEquals([params objectAtIndex:0], @"baz", @"expected arg 1 of setValue:forKey: to be 'baz'");
+        STAssertEquals([params objectAtIndex:1], @"foo", @"expected arg 2 of setValue:forKey: to be 'foo'");
+        called = YES;
+        return nil;
+    }];
+    [mock setValue:@"baz" forKey:@"foo"];
+    STAssertTrue(called, @"expected setValue:forKey: to be stubbed");
+}
+
+- (void)testItShouldAllowStubbingSetValueForKeyPath {
+    id mock = [Cruiser mock];
+    __block BOOL called = NO;
+    [mock stub:@selector(setValue:forKeyPath:) withBlock:^id(NSArray *params) {
+        STAssertEquals([params objectAtIndex:0], @"baz", @"expected arg 1 of setValue:forKeyPath: to be 'baz'");
+        STAssertEquals([params objectAtIndex:1], @"foo.bar", @"expected arg 2 of setValue:forKey: to be 'foo.bar'");
+        called = YES;
+        return nil;
+    }];
+    [mock setValue:@"baz" forKeyPath:@"foo.bar"];
+    STAssertTrue(called, @"expected setValue:forKeyPath: to be stubbed");
+}
+
 @end
 
 #endif // #if KW_TESTS_ENABLED

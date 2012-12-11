@@ -590,4 +590,45 @@ static NSString * const ChangeStubValueAfterTimesKey = @"ChangeStubValueAfterTim
     }
 }
 
+#pragma mark -
+#pragma mark Key-Value Coding Support
+
+static id valueForKeyImplementation(id self, SEL _cmd, id key) {
+    KWMessagePattern *messagePattern = [KWMessagePattern messagePatternWithSelector:_cmd];
+    [self expectMessagePattern:messagePattern];
+    NSInvocation *invocation = [NSInvocation invocationWithTarget:self selector:_cmd messageArguments:&key];
+    
+    if ([self processReceivedInvocation:invocation]) {
+        id result = nil;
+        [invocation getReturnValue:&result];
+        return result;
+    } else {
+        return nil;
+    }
+}
+
+- (id)valueForKey:(NSString *)key {
+    return valueForKeyImplementation(self, _cmd, key);
+}
+
+- (id)valueForKeyPath:(NSString *)keyPath {
+    return valueForKeyImplementation(self, _cmd, keyPath);
+}
+
+static void setValueForKeyImplementation(id self, SEL _cmd, id a, id b) {
+    KWMessagePattern *messagePattern = [KWMessagePattern messagePatternWithSelector:_cmd];
+    [self expectMessagePattern:messagePattern];
+    NSInvocation *invocation = [NSInvocation invocationWithTarget:self selector:_cmd messageArguments:&a, &b];
+    
+    [self processReceivedInvocation:invocation];
+}
+
+- (void)setValue:(id)value forKey:(NSString *)key {
+    setValueForKeyImplementation(self, _cmd, value, key);
+}
+
+- (void)setValue:(id)value forKeyPath:(NSString *)keyPath {
+    setValueForKeyImplementation(self, _cmd, value, keyPath);
+}
+
 @end
