@@ -31,24 +31,20 @@
 #pragma mark -
 #pragma mark Injecting Mocked Dependencies
 
-- (id)mockForDependency:(NSString *)dependencyName ofType:(Class)type {
-	id existingMock = [self valueForKey:dependencyName];
-	if ([existingMock respondsToSelector:@selector(isNullMock)])
-		return existingMock;
+static void ensureDependencyIsAMock(id self, NSString *dependencyName, id newMock) {
+	id existingDependency = [self valueForKey:dependencyName];
+	if (![existingDependency respondsToSelector:@selector(isNullMock)])
+		[self setValue:newMock forKey:dependencyName];
+}
 
-	id mock = [KWMock mockForClass:type];
-	[self setValue:mock forKey:dependencyName];
-	return mock;
+- (id)mockForDependency:(NSString *)dependencyName ofType:(Class)type {
+	ensureDependencyIsAMock(self, dependencyName, [KWMock mockForClass:type]);
+	return [self valueForKey:dependencyName];
 }
 
 - (id)nullMockForDependency:(NSString *)dependencyName ofType:(Class)type {
-	id existingMock = [self valueForKey:dependencyName];
-	if ([existingMock respondsToSelector:@selector(isNullMock)])
-		return existingMock;
-
-	id nullMock = [KWMock nullMockForClass:type];
-	[self setValue:nullMock forKey:dependencyName];
-	return nullMock;
+	ensureDependencyIsAMock(self, dependencyName, [KWMock nullMockForClass:type]);
+	return [self valueForKey:dependencyName];
 }
 
 @end
