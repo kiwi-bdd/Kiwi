@@ -32,30 +32,28 @@
 #pragma mark -
 #pragma mark Injecting Mocked Dependencies
 
-static void ensureDependencyIsAMock(id self, NSString *dependencyName, KWMockDescription *mockDescription) {
+static id mockedDependencyWithDescription(id self, NSString *dependencyName, KWMockDescription *mockDescription) {
 	id existingDependency = [self valueForKey:dependencyName];
 	if (![existingDependency respondsToSelector:@selector(isNullMock)])
         [self setValue:[KWMock mockWithDescription:mockDescription] forKey:dependencyName];
+
+	return [self valueForKey:dependencyName];
 }
 
 - (id)mockFor:(NSString *)dependencyName ofType:(Class)type {
-	ensureDependencyIsAMock(self, dependencyName, [KWMockDescription mockForClass:type]);
-	return [self valueForKey:dependencyName];
+	return mockedDependencyWithDescription(self, dependencyName, [KWMockDescription mockForClass:type]);
 }
 
 - (id)mockFor:(NSString *)dependencyName conformingToProtocol:(Protocol *)protocol {
-	ensureDependencyIsAMock(self, dependencyName, [KWMockDescription mockForProtocol:protocol]);
-	return [self valueForKey:dependencyName];
+	return mockedDependencyWithDescription(self, dependencyName, [KWMockDescription mockForProtocol:protocol]);
 }
 
 - (id)nullMockFor:(NSString *)dependencyName ofType:(Class)type {
-	ensureDependencyIsAMock(self, dependencyName, [KWMockDescription nullMockForClass:type]);
-	return [self valueForKey:dependencyName];
+	return mockedDependencyWithDescription(self, dependencyName, [KWMockDescription nullMockForClass:type]);
 }
 
 - (id)nullMockFor:(NSString *)dependencyName conformingToProtocol:(Protocol *)protocol {
-	ensureDependencyIsAMock(self, dependencyName, [KWMockDescription nullMockForProtocol:protocol]);
-	return [self valueForKey:dependencyName];
+	return mockedDependencyWithDescription(self, dependencyName, [KWMockDescription nullMockForProtocol:protocol]);
 }
 
 @end
