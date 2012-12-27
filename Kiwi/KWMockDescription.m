@@ -20,4 +20,9 @@
 	[name release];
 	[super dealloc];
 }
+
++ (KWMockDescription *)mockForClass:(Class)aClass {
+	return [[[[self class] alloc] initWithNullFlag:NO name:nil mockedClass:aClass mockedProtocol:nil] autorelease];
+}
+
 @end
