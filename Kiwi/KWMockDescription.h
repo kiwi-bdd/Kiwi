@@ -22,5 +22,6 @@
 
 + (KWMockDescription *)mockForClass:(Class)aClass;
 + (KWMockDescription *)mockForProtocol:(Protocol *)aProtocol;
++ (KWMockDescription *)mockNamed:(NSString *)aName forClass:(Class)aClass;
 @end
 
