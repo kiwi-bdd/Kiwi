@@ -8,6 +8,7 @@
 #import "KWInvocationCapturer.h"
 
 @class KWMessagePattern;
+@class KWMockDescription;
 @class KWCaptureSpy;
 
 @protocol KWMessageSpying;
@@ -26,6 +27,8 @@
 
 #pragma mark -
 #pragma mark Initializing
+
+- (id)initWithDescription:(KWMockDescription *)mockDescription;
 
 - (id)initForClass:(Class)aClass;
 - (id)initForProtocol:(Protocol *)aProtocol;

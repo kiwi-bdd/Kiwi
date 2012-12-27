@@ -26,11 +26,6 @@ static NSString * const ChangeStubValueAfterTimesKey = @"ChangeStubValueAfterTim
 @interface KWMock()
 
 #pragma mark -
-#pragma mark Initializing
-
-- (id)initWithDescription:(KWMockDescription *)mockDescription;
-
-#pragma mark -
 #pragma mark Properties
 
 @property (nonatomic, readonly) NSMutableArray *stubs;
