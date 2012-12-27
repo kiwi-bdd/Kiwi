@@ -25,4 +25,8 @@
 	return [[[[self class] alloc] initWithNullFlag:NO name:nil mockedClass:aClass mockedProtocol:nil] autorelease];
 }
 
++ (KWMockDescription *)mockForProtocol:(Protocol *)aProtocol {
+	return [[[[self class] alloc] initWithNullFlag:NO name:nil mockedClass:nil mockedProtocol:aProtocol] autorelease];
+}
+
 @end

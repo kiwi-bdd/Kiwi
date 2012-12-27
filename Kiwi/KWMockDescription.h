@@ -21,5 +21,6 @@
 - (id)initWithNullFlag:(BOOL)nullFlag name:(NSString *)aName mockedClass:(Class)aClass mockedProtocol:(Protocol *)aProtocol;
 
 + (KWMockDescription *)mockForClass:(Class)aClass;
++ (KWMockDescription *)mockForProtocol:(Protocol *)aProtocol;
 @end
 
