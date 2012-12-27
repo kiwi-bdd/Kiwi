@@ -28,7 +28,6 @@ static NSString * const ChangeStubValueAfterTimesKey = @"ChangeStubValueAfterTim
 #pragma mark -
 #pragma mark Initializing
 
-- (id)initAsNullMock:(BOOL)nullMockFlag withName:(NSString *)aName forClass:(Class)aClass protocol:(Protocol *)aProtocol;
 - (id)initWithDescription:(KWMockDescription *)mockDescription;
 
 #pragma mark -
@@ -100,14 +99,6 @@ static NSString * const ChangeStubValueAfterTimesKey = @"ChangeStubValueAfterTim
 
 - (id)initAsNullMockWithName:(NSString *)aName forProtocol:(Protocol *)aProtocol {
     return [self initWithDescription:[KWMockDescription nullMockNamed:aName forProtocol:aProtocol]];
-}
-
-- (id)initAsNullMock:(BOOL)nullMockFlag withName:(NSString *)aName forClass:(Class)aClass protocol:(Protocol *)aProtocol {
-	KWMockDescription *description = [[[KWMockDescription alloc] initWithNullFlag:nullMockFlag
-																			 name:aName
-																	  mockedClass:aClass
-																   mockedProtocol:aProtocol] autorelease];
-	return [self initWithDescription:description];
 }
 
 - (id)initWithDescription:(KWMockDescription *)description {
