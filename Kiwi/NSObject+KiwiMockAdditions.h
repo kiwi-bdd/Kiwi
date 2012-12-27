@@ -20,7 +20,9 @@
 #pragma mark -
 #pragma mark Injecting Mocked Dependencies
 
-- (id)mockForDependency:(NSString *)dependencyName ofType:(Class)type;
-- (id)nullMockForDependency:(NSString *)dependencyName ofType:(Class)type;
+- (id)mockFor:(NSString *)dependencyName ofType:(Class)type;
+- (id)mockFor:(NSString *)dependencyName conformingToProtocol:(Protocol *)protocol;
+
+- (id)nullMockFor:(NSString *)dependencyName ofType:(Class)type;
 
 @end

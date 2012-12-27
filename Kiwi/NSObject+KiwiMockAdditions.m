@@ -37,12 +37,17 @@ static void ensureDependencyIsAMock(id self, NSString *dependencyName, id newMoc
 		[self setValue:newMock forKey:dependencyName];
 }
 
-- (id)mockForDependency:(NSString *)dependencyName ofType:(Class)type {
+- (id)mockFor:(NSString *)dependencyName ofType:(Class)type {
 	ensureDependencyIsAMock(self, dependencyName, [KWMock mockForClass:type]);
 	return [self valueForKey:dependencyName];
 }
 
-- (id)nullMockForDependency:(NSString *)dependencyName ofType:(Class)type {
+- (id)mockFor:(NSString *)dependencyName conformingToProtocol:(Protocol *)protocol {
+	ensureDependencyIsAMock(self, dependencyName, [KWMock mockForProtocol:protocol]);
+	return [self valueForKey:dependencyName];
+}
+
+- (id)nullMockFor:(NSString *)dependencyName ofType:(Class)type {
 	ensureDependencyIsAMock(self, dependencyName, [KWMock nullMockForClass:type]);
 	return [self valueForKey:dependencyName];
 }
