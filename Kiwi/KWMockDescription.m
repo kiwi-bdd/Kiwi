@@ -49,4 +49,8 @@
 	return [[[[self class] alloc] initWithNullFlag:YES name:aName mockedClass:aClass mockedProtocol:nil] autorelease];
 }
 
++ (KWMockDescription *)nullMockNamed:(NSString *)aName forProtocol:(Protocol *)aProtocol {
+	return [[[[self class] alloc] initWithNullFlag:YES name:aName mockedClass:nil mockedProtocol:aProtocol] autorelease];
+}
+
 @end
