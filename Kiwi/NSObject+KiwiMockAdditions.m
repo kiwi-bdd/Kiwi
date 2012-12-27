@@ -28,4 +28,14 @@
     return [KWMock nullMockWithName:aName forClass:[self class]];
 }
 
+#pragma mark -
+#pragma mark Injecting Mocked Dependencies
+
+- (id)nullMockForDependency:(NSString *)dependencyName ofType:(Class)type {
+	id nullMock = [KWMock nullMockForClass:type];
+	[self setValue:nullMock forKey:dependencyName];
+	return nullMock;
+}
+
+
 @end
