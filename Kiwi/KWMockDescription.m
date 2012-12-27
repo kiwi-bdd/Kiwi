@@ -37,6 +37,21 @@
 	return [[[[self class] alloc] initWithNullFlag:NO name:aName mockedClass:nil mockedProtocol:aProtocol] autorelease];
 }
 
++ (KWMockDescription *)mockForTypeEncoding:(const char*)encoding {
+    Class aClass = nil;
+
+    if (encoding[0] == '@' && encoding[1] == '"') {
+        const char *begin = encoding+2;
+        const char *end = strchr(begin, '"');
+
+        NSString *className = [[[NSString alloc] initWithBytes:encoding+2 length:(end-begin) encoding:NSUTF8StringEncoding] autorelease];
+        NSLog(@"CLASS://%@//", className);
+        aClass = NSClassFromString(className);
+    }
+
+	return [[[[self class] alloc] initWithNullFlag:NO name:nil mockedClass:aClass mockedProtocol:nil] autorelease];
+}
+
 + (KWMockDescription *)nullMockForClass:(Class)aClass {
 	return [[[[self class] alloc] initWithNullFlag:YES name:nil mockedClass:aClass mockedProtocol:nil] autorelease];
 }
@@ -51,6 +66,29 @@
 
 + (KWMockDescription *)nullMockNamed:(NSString *)aName forProtocol:(Protocol *)aProtocol {
 	return [[[[self class] alloc] initWithNullFlag:YES name:aName mockedClass:nil mockedProtocol:aProtocol] autorelease];
+}
+
+- (BOOL)isEqual:(KWMockDescription *)other {
+    if (![other isKindOfClass:[KWMockDescription class]])
+        return NO;
+
+    if (isNullMock != other.isNullMock)
+        return NO;
+    if (name != other.name && ![name isEqualToString:other.name])
+        return NO;
+    if (mockedClass != other.mockedClass)
+        return NO;
+    if (mockedProtocol != other.mockedProtocol)
+        return NO;
+
+    return YES;
+}
+
+- (NSUInteger)hash {
+    return (isNullMock * 31) ^
+           [name hash] ^
+           [mockedClass hash] ^
+           [mockedProtocol hash];
 }
 
 @end

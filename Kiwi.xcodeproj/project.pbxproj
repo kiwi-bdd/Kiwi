@@ -192,6 +192,7 @@
 		960846A8168CD181005F5235 /* KWMockDescription.h in Headers */ = {isa = PBXBuildFile; fileRef = 960846A5168CD181005F5235 /* KWMockDescription.h */; };
 		960846A9168CD181005F5235 /* KWMockDescription.m in Sources */ = {isa = PBXBuildFile; fileRef = 960846A6168CD181005F5235 /* KWMockDescription.m */; };
 		960846AA168CD181005F5235 /* KWMockDescription.m in Sources */ = {isa = PBXBuildFile; fileRef = 960846A6168CD181005F5235 /* KWMockDescription.m */; };
+		960846AC168CEF6C005F5235 /* KWMockDescriptionTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 960846AB168CEF6C005F5235 /* KWMockDescriptionTest.m */; };
 		96E8C09E165F182B000C2C5A /* NSObject+KiwiSpyAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 96E8C09C165F182B000C2C5A /* NSObject+KiwiSpyAdditions.h */; };
 		96E8C09F165F182B000C2C5A /* NSObject+KiwiSpyAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 96E8C09C165F182B000C2C5A /* NSObject+KiwiSpyAdditions.h */; };
 		96E8C0A0165F182B000C2C5A /* NSObject+KiwiSpyAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 96E8C09D165F182B000C2C5A /* NSObject+KiwiSpyAdditions.m */; };
@@ -465,6 +466,7 @@
 		960846A2168C9E49005F5235 /* KWMockForDependencyTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KWMockForDependencyTest.m; sourceTree = "<group>"; };
 		960846A5168CD181005F5235 /* KWMockDescription.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KWMockDescription.h; sourceTree = "<group>"; };
 		960846A6168CD181005F5235 /* KWMockDescription.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KWMockDescription.m; sourceTree = "<group>"; };
+		960846AB168CEF6C005F5235 /* KWMockDescriptionTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KWMockDescriptionTest.m; sourceTree = "<group>"; };
 		96E8C09C165F182B000C2C5A /* NSObject+KiwiSpyAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+KiwiSpyAdditions.h"; sourceTree = "<group>"; };
 		96E8C09D165F182B000C2C5A /* NSObject+KiwiSpyAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+KiwiSpyAdditions.m"; sourceTree = "<group>"; };
 		9F4E04C812DFB6CB00A3440B /* KWAsyncVerifier.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KWAsyncVerifier.h; sourceTree = "<group>"; };
@@ -1058,6 +1060,7 @@
 		F5A1E6081174322A002223E1 /* Mocks, Stubs, and Spying */ = {
 			isa = PBXGroup;
 			children = (
+				960846AB168CEF6C005F5235 /* KWMockDescriptionTest.m */,
 				960846A2168C9E49005F5235 /* KWMockForDependencyTest.m */,
 				F59E241111880AD400D008C2 /* KWMockTest.m */,
 				F5CC5B6D119798D400004E69 /* KWRealObjectSpyTest.m */,
@@ -1805,6 +1808,7 @@
 				C922D1DD158045FC00995B43 /* KWStringContainsMatcherTest.m in Sources */,
 				96E8C0A2165F182B000C2C5A /* NSObject+KiwiSpyAdditions.m in Sources */,
 				960846A3168C9E49005F5235 /* KWMockForDependencyTest.m in Sources */,
+				960846AC168CEF6C005F5235 /* KWMockDescriptionTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
