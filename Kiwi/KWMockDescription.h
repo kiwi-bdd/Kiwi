@@ -27,5 +27,6 @@
 
 + (KWMockDescription *)nullMockForClass:(Class)aClass;
 + (KWMockDescription *)nullMockForProtocol:(Protocol *)aProtocol;
++ (KWMockDescription *)nullMockNamed:(NSString *)aName forClass:(Class)aClass;
 @end
 
