@@ -6,6 +6,7 @@
 
 #import "NSObject+KiwiMockAdditions.h"
 #import "KWMock.h"
+#import "KWMockDescription.h"
 
 @implementation NSObject(KiwiMockAdditions)
 
@@ -31,29 +32,29 @@
 #pragma mark -
 #pragma mark Injecting Mocked Dependencies
 
-static void ensureDependencyIsAMock(id self, NSString *dependencyName, id newMock) {
+static void ensureDependencyIsAMock(id self, NSString *dependencyName, KWMockDescription *mockDescription) {
 	id existingDependency = [self valueForKey:dependencyName];
 	if (![existingDependency respondsToSelector:@selector(isNullMock)])
-		[self setValue:newMock forKey:dependencyName];
+        [self setValue:[KWMock mockWithDescription:mockDescription] forKey:dependencyName];
 }
 
 - (id)mockFor:(NSString *)dependencyName ofType:(Class)type {
-	ensureDependencyIsAMock(self, dependencyName, [KWMock mockForClass:type]);
+	ensureDependencyIsAMock(self, dependencyName, [KWMockDescription mockForClass:type]);
 	return [self valueForKey:dependencyName];
 }
 
 - (id)mockFor:(NSString *)dependencyName conformingToProtocol:(Protocol *)protocol {
-	ensureDependencyIsAMock(self, dependencyName, [KWMock mockForProtocol:protocol]);
+	ensureDependencyIsAMock(self, dependencyName, [KWMockDescription mockForProtocol:protocol]);
 	return [self valueForKey:dependencyName];
 }
 
 - (id)nullMockFor:(NSString *)dependencyName ofType:(Class)type {
-	ensureDependencyIsAMock(self, dependencyName, [KWMock nullMockForClass:type]);
+	ensureDependencyIsAMock(self, dependencyName, [KWMockDescription nullMockForClass:type]);
 	return [self valueForKey:dependencyName];
 }
 
 - (id)nullMockFor:(NSString *)dependencyName conformingToProtocol:(Protocol *)protocol {
-	ensureDependencyIsAMock(self, dependencyName, [KWMock nullMockForProtocol:protocol]);
+	ensureDependencyIsAMock(self, dependencyName, [KWMockDescription nullMockForProtocol:protocol]);
 	return [self valueForKey:dependencyName];
 }
 

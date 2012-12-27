@@ -110,6 +110,10 @@ static NSString * const ChangeStubValueAfterTimesKey = @"ChangeStubValueAfterTim
 	return self;
 }
 
++ (id)mockWithDescription:(KWMockDescription *)mockDescription {
+    return [[[self alloc] initWithDescription:mockDescription] autorelease];
+}
+
 + (id)mockForClass:(Class)aClass {
     return [[[self alloc] initForClass:aClass] autorelease];
 }

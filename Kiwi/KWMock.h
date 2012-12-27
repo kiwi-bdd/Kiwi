@@ -40,6 +40,8 @@
 - (id)initAsNullMockWithName:(NSString *)aName forClass:(Class)aClass;
 - (id)initAsNullMockWithName:(NSString *)aName forProtocol:(Protocol *)aProtocol;
 
++ (id)mockWithDescription:(KWMockDescription *)mockDescription;
+
 + (id)mockForClass:(Class)aClass;
 + (id)mockForProtocol:(Protocol *)aProtocol;
 + (id)mockWithName:(NSString *)aName forClass:(Class)aClass;
