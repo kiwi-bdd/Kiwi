@@ -13,12 +13,11 @@
     Class mockedClass;
     Protocol *mockedProtocol;
 }
+
 @property (nonatomic, readonly) BOOL isNullMock;
 @property (nonatomic, readonly) NSString *name;
 @property (nonatomic, readonly) Class mockedClass;
 @property (nonatomic, readonly) Protocol *mockedProtocol;
-
-- (id)initWithNullFlag:(BOOL)nullFlag name:(NSString *)aName mockedClass:(Class)aClass mockedProtocol:(Protocol *)aProtocol;
 
 + (KWMockDescription *)mockForClass:(Class)aClass;
 + (KWMockDescription *)mockForProtocol:(Protocol *)aProtocol;

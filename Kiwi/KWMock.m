@@ -66,7 +66,7 @@ static NSString * const ChangeStubValueAfterTimesKey = @"ChangeStubValueAfterTim
         }
     }
 
-    return [self initAsNullMock:NO withName:nil forClass:nil protocol:nil];
+    @throw [NSException exceptionWithName:NSInternalInconsistencyException reason:@"-[KWMock init] isn't useful!" userInfo:nil];
 }
 
 - (id)initForClass:(Class)aClass {
