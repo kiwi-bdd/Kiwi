@@ -52,4 +52,9 @@ static void ensureDependencyIsAMock(id self, NSString *dependencyName, id newMoc
 	return [self valueForKey:dependencyName];
 }
 
+- (id)nullMockFor:(NSString *)dependencyName conformingToProtocol:(Protocol *)protocol {
+	ensureDependencyIsAMock(self, dependencyName, [KWMock nullMockForProtocol:protocol]);
+	return [self valueForKey:dependencyName];
+}
+
 @end

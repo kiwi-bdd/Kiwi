@@ -24,5 +24,6 @@
 - (id)mockFor:(NSString *)dependencyName conformingToProtocol:(Protocol *)protocol;
 
 - (id)nullMockFor:(NSString *)dependencyName ofType:(Class)type;
+- (id)nullMockFor:(NSString *)dependencyName conformingToProtocol:(Protocol *)protocol;
 
 @end

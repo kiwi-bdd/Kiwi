@@ -39,6 +39,15 @@
 	STAssertTrue(engine == [cruiser valueForKey:@"engine"], @"expected mock to be injected");
 }
 
+- (void)testItCanNullMockADependencyWithASpecifiedProtocol {
+	Cruiser *cruiser = [[[Cruiser alloc] init] autorelease];
+	id engine = [cruiser nullMockFor:@"engine" conformingToProtocol:@protocol(JumpCapable)];
+	STAssertNotNil(engine, @"expected mockFor:conformingToProtcol: to return a value");
+	STAssertTrue([engine isNullMock], @"expected mockFor:conformingToProtocol: to return a null mock");
+	STAssertTrue([engine conformsToProtocol:@protocol(JumpCapable)], @"expected result to conform to <JumpCapable>");
+	STAssertTrue(engine == [cruiser valueForKey:@"engine"], @"expected mock to be injected");
+}
+
 - (void)testItCanMockADependencyWithASpecifiedProtocol {
 	Cruiser *cruiser = [[[Cruiser alloc] init] autorelease];
 	id engine = [cruiser mockFor:@"engine" conformingToProtocol:@protocol(JumpCapable)];
@@ -66,6 +75,13 @@
 	Cruiser *cruiser = [[[Cruiser alloc] init] autorelease];
 	id engine1 = [cruiser mockFor:@"engine" conformingToProtocol:@protocol(JumpCapable)];
 	id engine2 = [cruiser mockFor:@"engine" conformingToProtocol:@protocol(JumpCapable)];
+	STAssertTrue(engine1 == engine2, @"expectd mockFor:conformingToProtocol: to return the same mock each time");
+}
+
+- (void)testItShouldReturnTheSameProtocolNullMockEachTime {
+	Cruiser *cruiser = [[[Cruiser alloc] init] autorelease];
+	id engine1 = [cruiser nullMockFor:@"engine" conformingToProtocol:@protocol(JumpCapable)];
+	id engine2 = [cruiser nullMockFor:@"engine" conformingToProtocol:@protocol(JumpCapable)];
 	STAssertTrue(engine1 == engine2, @"expectd mockFor:conformingToProtocol: to return the same mock each time");
 }
 
