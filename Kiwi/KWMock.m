@@ -91,7 +91,7 @@ static NSString * const ChangeStubValueAfterTimesKey = @"ChangeStubValueAfterTim
 }
 
 - (id)initAsNullMockForProtocol:(Protocol *)aProtocol {
-    return [self initAsNullMock:YES withName:nil forClass:nil protocol:aProtocol];
+    return [self initWithDescription:[KWMockDescription nullMockForProtocol:aProtocol]];
 }
 
 - (id)initAsNullMockWithName:(NSString *)aName forClass:(Class)aClass {
