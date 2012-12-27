@@ -31,11 +31,16 @@
 #pragma mark -
 #pragma mark Injecting Mocked Dependencies
 
+- (id)mockForDependency:(NSString *)dependencyName ofType:(Class)type {
+	id mock = [KWMock mockForClass:type];
+	[self setValue:mock forKey:dependencyName];
+	return mock;
+}
+
 - (id)nullMockForDependency:(NSString *)dependencyName ofType:(Class)type {
 	id nullMock = [KWMock nullMockForClass:type];
 	[self setValue:nullMock forKey:dependencyName];
 	return nullMock;
 }
-
 
 @end
