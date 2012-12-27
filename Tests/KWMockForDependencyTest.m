@@ -62,6 +62,13 @@
 	STAssertTrue(engine1 == engine2, @"expectd mockFor:ofType: to return the same mock each time");
 }
 
+- (void)testItShouldReturnTheSameProtocolMockEachTime {
+	Cruiser *cruiser = [[[Cruiser alloc] init] autorelease];
+	id engine1 = [cruiser mockFor:@"engine" conformingToProtocol:@protocol(JumpCapable)];
+	id engine2 = [cruiser mockFor:@"engine" conformingToProtocol:@protocol(JumpCapable)];
+	STAssertTrue(engine1 == engine2, @"expectd mockFor:conformingToProtocol: to return the same mock each time");
+}
+
 @end
 
 #endif // #if KW_TESTS_ENABLED
