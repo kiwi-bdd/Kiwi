@@ -9,6 +9,7 @@
 #import "KWFormatter.h"
 #import "KWMessagePattern.h"
 #import "KWMessageSpying.h"
+#import "KWMockDescription.h"
 #import "KWStringUtilities.h"
 #import "KWStub.h"
 #import "KWWorkarounds.h"
@@ -28,6 +29,7 @@ static NSString * const ChangeStubValueAfterTimesKey = @"ChangeStubValueAfterTim
 #pragma mark Initializing
 
 - (id)initAsNullMock:(BOOL)nullMockFlag withName:(NSString *)aName forClass:(Class)aClass protocol:(Protocol *)aProtocol;
+- (id)initWithDescription:(KWMockDescription *)mockDescription;
 
 #pragma mark -
 #pragma mark Properties
@@ -101,17 +103,25 @@ static NSString * const ChangeStubValueAfterTimesKey = @"ChangeStubValueAfterTim
 }
 
 - (id)initAsNullMock:(BOOL)nullMockFlag withName:(NSString *)aName forClass:(Class)aClass protocol:(Protocol *)aProtocol {
-    if ((self = [super init])) {
-        isNullMock = nullMockFlag;
-        name = [aName copy];
-        mockedClass = aClass;
-        mockedProtocol = aProtocol;
+	KWMockDescription *description = [[[KWMockDescription alloc] initWithNullFlag:nullMockFlag
+																			 name:aName
+																	  mockedClass:aClass
+																   mockedProtocol:aProtocol] autorelease];
+	return [self initWithDescription:description];
+}
+
+- (id)initWithDescription:(KWMockDescription *)description {
+	if ((self = [super init])) {
+        isNullMock = description.isNullMock;
+        name = [description.name retain];
+        mockedClass = description.mockedClass;
+        mockedProtocol = description.mockedProtocol;
         stubs = [[NSMutableArray alloc] init];
         expectedMessagePatterns = [[NSMutableArray alloc] init];
         messageSpies = [[NSMutableDictionary alloc] init];
-    }
+	}
 
-    return self;
+	return self;
 }
 
 + (id)mockForClass:(Class)aClass {
