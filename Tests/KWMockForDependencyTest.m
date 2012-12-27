@@ -39,6 +39,20 @@
 	STAssertTrue(engine == [cruiser valueForKey:@"engine"], @"expected mock to be injected");
 }
 
+- (void)testItShouldReturnTheSameNullMockEachTime {
+	Cruiser *cruiser = [[[Cruiser alloc] init] autorelease];
+	id engine1 = [cruiser nullMockForDependency:@"engine" ofType:[Engine class]];
+	id engine2 = [cruiser nullMockForDependency:@"engine" ofType:[Engine class]];
+	STAssertTrue(engine1 == engine2, @"expectd nullMockForDependency:ofType: to return the same mock each time");
+}
+
+- (void)testItShouldReturnTheSameMockEachTime {
+	Cruiser *cruiser = [[[Cruiser alloc] init] autorelease];
+	id engine1 = [cruiser mockForDependency:@"engine" ofType:[Engine class]];
+	id engine2 = [cruiser mockForDependency:@"engine" ofType:[Engine class]];
+	STAssertTrue(engine1 == engine2, @"expectd mockForDependency:ofType: to return the same mock each time");
+}
+
 @end
 
 #endif // #if KW_TESTS_ENABLED
