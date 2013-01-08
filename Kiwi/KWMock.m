@@ -99,7 +99,6 @@ static NSString * const ChangeStubValueAfterTimesKey = @"ChangeStubValueAfterTim
 - (id)initWithDescription:(KWMockDescription *)description {
 	if ((self = [super init])) {
         mockDescription = [description retain];
-        mockedProtocol = description.mockedProtocol;
         stubs = [[NSMutableArray alloc] init];
         expectedMessagePatterns = [[NSMutableArray alloc] init];
         messageSpies = [[NSMutableDictionary alloc] init];
@@ -155,7 +154,6 @@ static NSString * const ChangeStubValueAfterTimesKey = @"ChangeStubValueAfterTim
 #pragma mark -
 #pragma mark Properties
 
-@synthesize mockedProtocol;
 @synthesize stubs;
 @synthesize expectedMessagePatterns;
 @synthesize messageSpies;
@@ -170,6 +168,10 @@ static NSString * const ChangeStubValueAfterTimesKey = @"ChangeStubValueAfterTim
 
 - (Class)mockedClass {
     return mockDescription.mockedClass;
+}
+
+- (Protocol *)mockedProtocol {
+    return mockDescription.mockedProtocol;
 }
 
 #pragma mark -
