@@ -59,22 +59,22 @@ static Protocol* encodedProtocol(const char *encoding) {
     return NSProtocolFromString(stringBetween(begin, end));
 }
 
+static Class encodedClass(const char *encoding) {
+    const char *begin = encoding+2;
+    const char *end = strchr(begin, '"');
+    return NSClassFromString(stringBetween(begin, end));
+}
+
 + (KWMockDescription *)mockForTypeEncoding:(const char*)encoding {
     Class aClass = nil;
     Protocol *aProtocol = nil;
 
-    if (isProtocolEncoding(encoding)) {
+    if (isProtocolEncoding(encoding))
         aProtocol = encodedProtocol(encoding);
-    }
-    else if (isClassEncoding(encoding)) {
-        const char *begin = encoding+2;
-        const char *end = strchr(begin, '"');
-
-        aClass = NSClassFromString(stringBetween(begin, end));
-    }
-    else if (isIdEncoding(encoding)) {
+    else if (isClassEncoding(encoding))
+        aClass = encodedClass(encoding);
+    else if (isIdEncoding(encoding))
         aClass = [NSObject class];
-    }
     else {
         NSString *reason = [NSString stringWithFormat:@"do not know how to mock type encoded as \"%s\"", encoding];
         @throw [NSException exceptionWithName:@"KWMockException" reason:reason userInfo:nil];
