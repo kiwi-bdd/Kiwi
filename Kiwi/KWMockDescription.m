@@ -59,6 +59,10 @@
     else if (encoding[0] == '@') {
         aClass = [NSObject class];
     }
+    else {
+        NSString *reason = [NSString stringWithFormat:@"do not know how to mock type encoded as \"%s\"", encoding];
+        @throw [NSException exceptionWithName:@"KWMockException" reason:reason userInfo:nil];
+    }
 
 	return [[[[self class] alloc] initWithNullFlag:NO name:nil mockedClass:aClass mockedProtocol:aProtocol] autorelease];
 }

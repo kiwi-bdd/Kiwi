@@ -45,6 +45,13 @@
            );
 }
 
+- (void)testItShouldRaiseAUsefulErrorIfItCannotMockTheType {
+    STAssertThrows(
+            [KWMockDescription mockForTypeEncoding:"i"],
+            @"expected parsing 'i' to throw a useful error."
+            );
+}
+
 @end
 
 #endif // #if KW_TESTS_ENABLED
