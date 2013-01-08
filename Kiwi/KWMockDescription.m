@@ -66,6 +66,14 @@ static Class encodedClass(const char *encoding) {
 }
 
 + (KWMockDescription *)mockForTypeEncoding:(const char*)encoding {
+    return [self null:NO mockForTypeEncoding:encoding];
+}
+
++ (KWMockDescription *)nullMockForTypeEncoding:(const char*)encoding {
+    return [self null:YES mockForTypeEncoding:encoding];
+}
+
++ (KWMockDescription *)null:(BOOL)isNull mockForTypeEncoding:(const char*)encoding {
     Class aClass = nil;
     Protocol *aProtocol = nil;
 
@@ -80,8 +88,9 @@ static Class encodedClass(const char *encoding) {
         @throw [NSException exceptionWithName:@"KWMockException" reason:reason userInfo:nil];
     }
 
-	return [[[[self class] alloc] initWithNullFlag:NO name:nil mockedClass:aClass mockedProtocol:aProtocol] autorelease];
+	return [[[[self class] alloc] initWithNullFlag:isNull name:nil mockedClass:aClass mockedProtocol:aProtocol] autorelease];
 }
+
 
 + (KWMockDescription *)nullMockForClass:(Class)aClass {
 	return [[[[self class] alloc] initWithNullFlag:YES name:nil mockedClass:aClass mockedProtocol:nil] autorelease];

@@ -52,6 +52,15 @@
             );
 }
 
+- (void)testItShouldProduceAValidClassNullMockFromAClassTypeSignature {
+    STAssertEqualObjects(
+            [KWMockDescription nullMockForTypeEncoding:"@\"Cruiser\""],
+            [KWMockDescription nullMockForClass:[Cruiser class]],
+            @"expected parsing '@\"Cruiser\"' to return a description which would mock Cruiser"
+            );
+}
+
+
 @end
 
 #endif // #if KW_TESTS_ENABLED
