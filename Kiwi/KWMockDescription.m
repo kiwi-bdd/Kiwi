@@ -29,12 +29,12 @@
 	return [[[[self class] alloc] initWithNullFlag:nullFlag name:nil mockedClass:nil mockedProtocol:aProtocol] autorelease];
 }
 
-+ (KWMockDescription *)mockNamed:(NSString *)aName forClass:(Class)aClass {
-	return [[[[self class] alloc] initWithNullFlag:NO name:aName mockedClass:aClass mockedProtocol:nil] autorelease];
++ (KWMockDescription *)null:(BOOL)nullFlag mockNamed:(NSString *)aName forClass:(Class)aClass {
+	return [[[[self class] alloc] initWithNullFlag:nullFlag name:aName mockedClass:aClass mockedProtocol:nil] autorelease];
 }
 
-+ (KWMockDescription *)mockNamed:(NSString *)aName forProtocol:(Protocol *)aProtocol {
-	return [[[[self class] alloc] initWithNullFlag:NO name:aName mockedClass:nil mockedProtocol:aProtocol] autorelease];
++ (KWMockDescription *)null:(BOOL)nullFlag mockNamed:(NSString *)aName forProtocol:(Protocol *)aProtocol {
+	return [[[[self class] alloc] initWithNullFlag:nullFlag name:aName mockedClass:nil mockedProtocol:aProtocol] autorelease];
 }
 
 static NSString *stringBetween(const char *begin, const char *end) {
@@ -81,14 +81,6 @@ static Class encodedClass(const char *encoding) {
     }
 
 	return [[[[self class] alloc] initWithNullFlag:isNull name:nil mockedClass:aClass mockedProtocol:aProtocol] autorelease];
-}
-
-+ (KWMockDescription *)nullMockNamed:(NSString *)aName forClass:(Class)aClass {
-	return [[[[self class] alloc] initWithNullFlag:YES name:aName mockedClass:aClass mockedProtocol:nil] autorelease];
-}
-
-+ (KWMockDescription *)nullMockNamed:(NSString *)aName forProtocol:(Protocol *)aProtocol {
-	return [[[[self class] alloc] initWithNullFlag:YES name:aName mockedClass:nil mockedProtocol:aProtocol] autorelease];
 }
 
 - (BOOL)isEqual:(KWMockDescription *)other {

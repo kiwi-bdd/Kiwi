@@ -73,11 +73,11 @@ static NSString * const ChangeStubValueAfterTimesKey = @"ChangeStubValueAfterTim
 }
 
 - (id)initWithName:(NSString *)aName forClass:(Class)aClass {
-    return [self initWithDescription:[KWMockDescription mockNamed:aName forClass:aClass]];
+    return [self initWithDescription:[KWMockDescription null:NO mockNamed:aName forClass:aClass]];
 }
 
 - (id)initWithName:(NSString *)aName forProtocol:(Protocol *)aProtocol {
-    return [self initWithDescription:[KWMockDescription mockNamed:aName forProtocol:aProtocol]];
+    return [self initWithDescription:[KWMockDescription null:NO mockNamed:aName forProtocol:aProtocol]];
 }
 
 - (id)initAsNullMockForClass:(Class)aClass {
@@ -89,11 +89,11 @@ static NSString * const ChangeStubValueAfterTimesKey = @"ChangeStubValueAfterTim
 }
 
 - (id)initAsNullMockWithName:(NSString *)aName forClass:(Class)aClass {
-    return [self initWithDescription:[KWMockDescription nullMockNamed:aName forClass:aClass]];
+    return [self initWithDescription:[KWMockDescription null:YES mockNamed:aName forClass:aClass]];
 }
 
 - (id)initAsNullMockWithName:(NSString *)aName forProtocol:(Protocol *)aProtocol {
-    return [self initWithDescription:[KWMockDescription nullMockNamed:aName forProtocol:aProtocol]];
+    return [self initWithDescription:[KWMockDescription null:YES mockNamed:aName forProtocol:aProtocol]];
 }
 
 - (id)initWithDescription:(KWMockDescription *)description {
