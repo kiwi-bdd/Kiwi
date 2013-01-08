@@ -53,15 +53,18 @@ static BOOL isIdEncoding(const char *encoding) {
     return !strcmp(encoding, "@");
 }
 
+static Protocol* encodedProtocol(const char *encoding) {
+    const char *begin = encoding+3;
+    const char *end = strchr(begin, '>');
+    return NSProtocolFromString(stringBetween(begin, end));
+}
+
 + (KWMockDescription *)mockForTypeEncoding:(const char*)encoding {
     Class aClass = nil;
     Protocol *aProtocol = nil;
 
     if (isProtocolEncoding(encoding)) {
-        const char *begin = encoding+3;
-        const char *end = strchr(begin, '>');
-
-        aProtocol = NSProtocolFromString(stringBetween(begin, end));
+        aProtocol = encodedProtocol(encoding);
     }
     else if (isClassEncoding(encoding)) {
         const char *begin = encoding+2;
