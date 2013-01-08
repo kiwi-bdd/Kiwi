@@ -31,9 +31,17 @@
 
 - (void)testItShouldProduceAnNSObjectMockForAnIdSignature {
     STAssertEqualObjects(
-            [KWMockDescription mockForTypeEncoding:"@"],
+           [KWMockDescription mockForTypeEncoding:"@"],
            [KWMockDescription mockForClass:[NSObject class]],
            @"expected parsing '@' to return a description which would mock NSObject"
+           );
+}
+
+- (void)testItShouldProduceAProtocolMockForAProtooclTypeSignature {
+    STAssertEqualObjects(
+           [KWMockDescription mockForTypeEncoding:"@\"<NSStreamDelegate>\""],
+           [KWMockDescription mockForProtocol:@protocol(NSStreamDelegate)],
+           @"expected parsing '@\"<NSStreamDelegate>\"' to return a description which would mock the protocol"
            );
 }
 

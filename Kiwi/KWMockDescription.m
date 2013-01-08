@@ -39,20 +39,28 @@
 
 + (KWMockDescription *)mockForTypeEncoding:(const char*)encoding {
     Class aClass = nil;
+    Protocol *aProtocol = nil;
 
-    if (encoding[0] == '@' && encoding[1] == '"') {
+    if (encoding[0] == '@' && encoding[1] == '"' && encoding[2] == '<') {
+        const char *begin = encoding+3;
+        const char *end = strchr(begin, '>');
+
+        NSString *protocolName = [[[NSString alloc] initWithBytes:begin length:(end-begin) encoding:NSUTF8StringEncoding] autorelease];
+        aProtocol = NSProtocolFromString(protocolName);
+        NSLog(@"protocol = %@; protocolName = %@;", aProtocol, protocolName);
+    }
+    else if (encoding[0] == '@' && encoding[1] == '"') {
         const char *begin = encoding+2;
         const char *end = strchr(begin, '"');
 
-        NSString *className = [[[NSString alloc] initWithBytes:encoding+2 length:(end-begin) encoding:NSUTF8StringEncoding] autorelease];
-        NSLog(@"CLASS://%@//", className);
+        NSString *className = [[[NSString alloc] initWithBytes:begin length:(end-begin) encoding:NSUTF8StringEncoding] autorelease];
         aClass = NSClassFromString(className);
     }
     else if (encoding[0] == '@') {
         aClass = [NSObject class];
     }
 
-	return [[[[self class] alloc] initWithNullFlag:NO name:nil mockedClass:aClass mockedProtocol:nil] autorelease];
+	return [[[[self class] alloc] initWithNullFlag:NO name:nil mockedClass:aClass mockedProtocol:aProtocol] autorelease];
 }
 
 + (KWMockDescription *)nullMockForClass:(Class)aClass {
