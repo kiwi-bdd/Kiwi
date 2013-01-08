@@ -41,10 +41,18 @@ static id mockedDependencyWithDescription(id self, NSString *dependencyName, KWM
 	return [self valueForKey:dependencyName];
 }
 
-- (id)mockFor:(NSString *)dependencyName {
+static id mockedDependencyWithNullFlag(id self, NSString *dependencyName, BOOL nullFlag) {
     Ivar ivar = class_getInstanceVariable([self class], [dependencyName UTF8String]);
     const char* encoding = ivar_getTypeEncoding(ivar);
-    return mockedDependencyWithDescription(self, dependencyName, [KWMockDescription null:NO mockForTypeEncoding:encoding]);
+    return mockedDependencyWithDescription(
+            self,
+            dependencyName,
+            [KWMockDescription null:nullFlag mockForTypeEncoding:encoding]
+            );
+}
+
+- (id)mockFor:(NSString *)dependencyName {
+    return mockedDependencyWithNullFlag(self, dependencyName, NO);
 }
 
 - (id)mockFor:(NSString *)dependencyName ofType:(Class)type {
@@ -56,9 +64,7 @@ static id mockedDependencyWithDescription(id self, NSString *dependencyName, KWM
 }
 
 - (id)nullMockFor:(NSString *)dependencyName {
-    Ivar ivar = class_getInstanceVariable([self class], [dependencyName UTF8String]);
-    const char* encoding = ivar_getTypeEncoding(ivar);
-    return mockedDependencyWithDescription(self, dependencyName, [KWMockDescription null:YES mockForTypeEncoding:encoding]);
+    return mockedDependencyWithNullFlag(self, dependencyName, YES);
 }
 
 - (id)nullMockFor:(NSString *)dependencyName ofType:(Class)type {
