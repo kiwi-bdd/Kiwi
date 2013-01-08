@@ -41,23 +41,35 @@ static NSString *stringBetween(const char *begin, const char *end) {
     return [[[NSString alloc] initWithBytes:begin length:(end-begin) encoding:NSUTF8StringEncoding] autorelease];
 }
 
+static BOOL isProtocolEncoding(const char *encoding) {
+    return encoding[0] == '@' && encoding[1] == '"' && encoding[2] == '<';
+}
+
+static BOOL isClassEncoding(const char *encoding) {
+    return encoding[0] == '@' && encoding[1] == '"';
+}
+
+static BOOL isIdEncoding(const char *encoding) {
+    return !strcmp(encoding, "@");
+}
+
 + (KWMockDescription *)mockForTypeEncoding:(const char*)encoding {
     Class aClass = nil;
     Protocol *aProtocol = nil;
 
-    if (encoding[0] == '@' && encoding[1] == '"' && encoding[2] == '<') {
+    if (isProtocolEncoding(encoding)) {
         const char *begin = encoding+3;
         const char *end = strchr(begin, '>');
 
         aProtocol = NSProtocolFromString(stringBetween(begin, end));
     }
-    else if (encoding[0] == '@' && encoding[1] == '"') {
+    else if (isClassEncoding(encoding)) {
         const char *begin = encoding+2;
         const char *end = strchr(begin, '"');
 
         aClass = NSClassFromString(stringBetween(begin, end));
     }
-    else if (encoding[0] == '@') {
+    else if (isIdEncoding(encoding)) {
         aClass = [NSObject class];
     }
     else {
