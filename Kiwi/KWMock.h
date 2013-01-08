@@ -16,7 +16,7 @@
 
 @interface KWMock : NSObject {
 @private
-    BOOL isNullMock;
+    KWMockDescription *mockDescription;
     NSString *name;
     Class mockedClass;
     Protocol *mockedProtocol;

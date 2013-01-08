@@ -98,7 +98,7 @@ static NSString * const ChangeStubValueAfterTimesKey = @"ChangeStubValueAfterTim
 
 - (id)initWithDescription:(KWMockDescription *)description {
 	if ((self = [super init])) {
-        isNullMock = description.isNullMock;
+        mockDescription = [description retain];
         name = [description.name retain];
         mockedClass = description.mockedClass;
         mockedProtocol = description.mockedProtocol;
@@ -147,6 +147,7 @@ static NSString * const ChangeStubValueAfterTimesKey = @"ChangeStubValueAfterTim
 }
 
 - (void)dealloc {
+    [mockDescription release];
     [name release];
     [stubs release];
     [expectedMessagePatterns release];
@@ -157,13 +158,16 @@ static NSString * const ChangeStubValueAfterTimesKey = @"ChangeStubValueAfterTim
 #pragma mark -
 #pragma mark Properties
 
-@synthesize isNullMock;
 @synthesize name;
 @synthesize mockedClass;
 @synthesize mockedProtocol;
 @synthesize stubs;
 @synthesize expectedMessagePatterns;
 @synthesize messageSpies;
+
+- (BOOL)isNullMock {
+    return mockDescription.isNullMock;
+}
 
 #pragma mark -
 #pragma mark Getting Transitive Closure For Mocked Protocols
