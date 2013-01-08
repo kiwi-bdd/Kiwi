@@ -29,6 +29,14 @@
             );
 }
 
+- (void)testItShouldProduceAnNSObjectMockForAnIdSignature {
+    STAssertEqualObjects(
+            [KWMockDescription mockForTypeEncoding:"@"],
+           [KWMockDescription mockForClass:[NSObject class]],
+           @"expected parsing '@' to return a description which would mock NSObject"
+           );
+}
+
 @end
 
 #endif // #if KW_TESTS_ENABLED

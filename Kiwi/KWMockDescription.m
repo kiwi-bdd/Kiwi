@@ -48,6 +48,9 @@
         NSLog(@"CLASS://%@//", className);
         aClass = NSClassFromString(className);
     }
+    else if (encoding[0] == '@') {
+        aClass = [NSObject class];
+    }
 
 	return [[[[self class] alloc] initWithNullFlag:NO name:nil mockedClass:aClass mockedProtocol:nil] autorelease];
 }
