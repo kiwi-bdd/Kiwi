@@ -61,6 +61,7 @@ extern "C" {
 #import "KWMessagePattern.h"
 #import "KWMessageSpying.h"
 #import "KWMock.h"
+#import "KWMockDescription.h"
 #import "KWNull.h"
 #import "KWObjCUtilities.h"
 #import "KWPendingNode.h"

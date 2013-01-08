@@ -17,4 +17,15 @@
 + (id)nullMock;
 + (id)nullMockWithName:(NSString *)aName;
 
+#pragma mark -
+#pragma mark Injecting Mocked Dependencies
+
+- (id)mockFor:(NSString *)dependencyName;
+- (id)mockFor:(NSString *)dependencyName ofType:(Class)type;
+- (id)mockFor:(NSString *)dependencyName conformingToProtocol:(Protocol *)protocol;
+
+- (id)nullMockFor:(NSString *)dependencyName;
+- (id)nullMockFor:(NSString *)dependencyName ofType:(Class)type;
+- (id)nullMockFor:(NSString *)dependencyName conformingToProtocol:(Protocol *)protocol;
+
 @end

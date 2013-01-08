@@ -187,6 +187,12 @@
 		832C83C0157263B300F160D5 /* KWExampleSuite.m in Sources */ = {isa = PBXBuildFile; fileRef = A3CB75E1144C3479002D1F7A /* KWExampleSuite.m */; };
 		832C83C1157263B300F160D5 /* KWAny.m in Sources */ = {isa = PBXBuildFile; fileRef = F5FC83B611B100B100BF98A3 /* KWAny.m */; };
 		832C83C2157263B300F160D5 /* KWCaptureSpy.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B45D6BC1548765800793B1E /* KWCaptureSpy.m */; };
+		960846A3168C9E49005F5235 /* KWMockForDependencyTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 960846A2168C9E49005F5235 /* KWMockForDependencyTest.m */; };
+		960846A7168CD181005F5235 /* KWMockDescription.h in Headers */ = {isa = PBXBuildFile; fileRef = 960846A5168CD181005F5235 /* KWMockDescription.h */; };
+		960846A8168CD181005F5235 /* KWMockDescription.h in Headers */ = {isa = PBXBuildFile; fileRef = 960846A5168CD181005F5235 /* KWMockDescription.h */; };
+		960846A9168CD181005F5235 /* KWMockDescription.m in Sources */ = {isa = PBXBuildFile; fileRef = 960846A6168CD181005F5235 /* KWMockDescription.m */; };
+		960846AA168CD181005F5235 /* KWMockDescription.m in Sources */ = {isa = PBXBuildFile; fileRef = 960846A6168CD181005F5235 /* KWMockDescription.m */; };
+		960846AC168CEF6C005F5235 /* KWMockDescriptionTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 960846AB168CEF6C005F5235 /* KWMockDescriptionTest.m */; };
 		96E8C09E165F182B000C2C5A /* NSObject+KiwiSpyAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 96E8C09C165F182B000C2C5A /* NSObject+KiwiSpyAdditions.h */; };
 		96E8C09F165F182B000C2C5A /* NSObject+KiwiSpyAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 96E8C09C165F182B000C2C5A /* NSObject+KiwiSpyAdditions.h */; };
 		96E8C0A0165F182B000C2C5A /* NSObject+KiwiSpyAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 96E8C09D165F182B000C2C5A /* NSObject+KiwiSpyAdditions.m */; };
@@ -457,6 +463,10 @@
 		6B39D95F155C9FCB003C3444 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		6B39D960155C9FCB003C3444 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		832C83C7157263B300F160D5 /* libKiwi-OSX.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libKiwi-OSX.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		960846A2168C9E49005F5235 /* KWMockForDependencyTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KWMockForDependencyTest.m; sourceTree = "<group>"; };
+		960846A5168CD181005F5235 /* KWMockDescription.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KWMockDescription.h; sourceTree = "<group>"; };
+		960846A6168CD181005F5235 /* KWMockDescription.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KWMockDescription.m; sourceTree = "<group>"; };
+		960846AB168CEF6C005F5235 /* KWMockDescriptionTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KWMockDescriptionTest.m; sourceTree = "<group>"; };
 		96E8C09C165F182B000C2C5A /* NSObject+KiwiSpyAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+KiwiSpyAdditions.h"; sourceTree = "<group>"; };
 		96E8C09D165F182B000C2C5A /* NSObject+KiwiSpyAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+KiwiSpyAdditions.m"; sourceTree = "<group>"; };
 		9F4E04C812DFB6CB00A3440B /* KWAsyncVerifier.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KWAsyncVerifier.h; sourceTree = "<group>"; };
@@ -878,6 +888,8 @@
 				F59D2E6A118E6ED20081755E /* KWMessageTracker.m */,
 				F57A676C115A2ABD00591C2A /* KWMock.h */,
 				F57A676D115A2ABD00591C2A /* KWMock.m */,
+				960846A5168CD181005F5235 /* KWMockDescription.h */,
+				960846A6168CD181005F5235 /* KWMockDescription.m */,
 				F5015B6B1158398E002E9A98 /* KWStub.h */,
 				F5015B6C1158398E002E9A98 /* KWStub.m */,
 				F59D2C53118DB5460081755E /* NSObject+KiwiMockAdditions.h */,
@@ -1048,6 +1060,8 @@
 		F5A1E6081174322A002223E1 /* Mocks, Stubs, and Spying */ = {
 			isa = PBXGroup;
 			children = (
+				960846AB168CEF6C005F5235 /* KWMockDescriptionTest.m */,
+				960846A2168C9E49005F5235 /* KWMockForDependencyTest.m */,
 				F59E241111880AD400D008C2 /* KWMockTest.m */,
 				F5CC5B6D119798D400004E69 /* KWRealObjectSpyTest.m */,
 				F51A59BE1191D45500598B04 /* KWRealObjectStubTest.m */,
@@ -1255,6 +1269,7 @@
 				C922D1EB15805AF000995B43 /* KWStringContainsMatcher.h in Headers */,
 				B36B276515AFD5120056C31D /* NSInvocation+OCMAdditions.h in Headers */,
 				96E8C09F165F182B000C2C5A /* NSObject+KiwiSpyAdditions.h in Headers */,
+				960846A8168CD181005F5235 /* KWMockDescription.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1352,6 +1367,7 @@
 				C922D1DF1580487700995B43 /* KWStringPrefixMatcher.h in Headers */,
 				B36B276415AFD5120056C31D /* NSInvocation+OCMAdditions.h in Headers */,
 				96E8C09E165F182B000C2C5A /* NSObject+KiwiSpyAdditions.h in Headers */,
+				960846A7168CD181005F5235 /* KWMockDescription.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1637,6 +1653,7 @@
 				C922D1EC15805AF600995B43 /* KWStringContainsMatcher.m in Sources */,
 				B36B276715AFD5120056C31D /* NSInvocation+OCMAdditions.m in Sources */,
 				96E8C0A1165F182B000C2C5A /* NSObject+KiwiSpyAdditions.m in Sources */,
+				960846AA168CD181005F5235 /* KWMockDescription.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1738,6 +1755,7 @@
 				C922D1E715805ADB00995B43 /* KWStringPrefixMatcher.m in Sources */,
 				B36B276615AFD5120056C31D /* NSInvocation+OCMAdditions.m in Sources */,
 				96E8C0A0165F182B000C2C5A /* NSObject+KiwiSpyAdditions.m in Sources */,
+				960846A9168CD181005F5235 /* KWMockDescription.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1789,6 +1807,8 @@
 				4BA52D0115487F0C00FC957B /* KWCaptureTest.m in Sources */,
 				C922D1DD158045FC00995B43 /* KWStringContainsMatcherTest.m in Sources */,
 				96E8C0A2165F182B000C2C5A /* NSObject+KiwiSpyAdditions.m in Sources */,
+				960846A3168C9E49005F5235 /* KWMockForDependencyTest.m in Sources */,
+				960846AC168CEF6C005F5235 /* KWMockDescriptionTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

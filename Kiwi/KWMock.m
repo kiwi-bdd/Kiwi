@@ -9,6 +9,7 @@
 #import "KWFormatter.h"
 #import "KWMessagePattern.h"
 #import "KWMessageSpying.h"
+#import "KWMockDescription.h"
 #import "KWStringUtilities.h"
 #import "KWStub.h"
 #import "KWWorkarounds.h"
@@ -23,11 +24,6 @@ static NSString * const StubSecondValueKey = @"StubSecondValueKey";
 static NSString * const ChangeStubValueAfterTimesKey = @"ChangeStubValueAfterTimesKey";
 
 @interface KWMock()
-
-#pragma mark -
-#pragma mark Initializing
-
-- (id)initAsNullMock:(BOOL)nullMockFlag withName:(NSString *)aName forClass:(Class)aClass protocol:(Protocol *)aProtocol;
 
 #pragma mark -
 #pragma mark Properties
@@ -65,53 +61,54 @@ static NSString * const ChangeStubValueAfterTimesKey = @"ChangeStubValueAfterTim
         }
     }
 
-    return [self initAsNullMock:NO withName:nil forClass:nil protocol:nil];
+    @throw [NSException exceptionWithName:NSInternalInconsistencyException reason:@"-[KWMock init] isn't useful!" userInfo:nil];
 }
 
 - (id)initForClass:(Class)aClass {
-    return [self initAsNullMock:NO withName:nil forClass:aClass protocol:nil];
+    return [self initWithDescription:[KWMockDescription null:NO mockForClass:aClass]];
 }
 
 - (id)initForProtocol:(Protocol *)aProtocol {
-    return [self initAsNullMock:NO withName:nil forClass:nil protocol:aProtocol];
+    return [self initWithDescription:[KWMockDescription null:NO mockForProtocol:aProtocol]];
 }
 
 - (id)initWithName:(NSString *)aName forClass:(Class)aClass {
-    return [self initAsNullMock:NO withName:aName forClass:aClass protocol:nil];
+    return [self initWithDescription:[KWMockDescription null:NO mockNamed:aName forClass:aClass]];
 }
 
 - (id)initWithName:(NSString *)aName forProtocol:(Protocol *)aProtocol {
-    return [self initAsNullMock:NO withName:aName forClass:nil protocol:aProtocol];
+    return [self initWithDescription:[KWMockDescription null:NO mockNamed:aName forProtocol:aProtocol]];
 }
 
 - (id)initAsNullMockForClass:(Class)aClass {
-    return [self initAsNullMock:YES withName:nil forClass:aClass protocol:nil];
+    return [self initWithDescription:[KWMockDescription null:YES mockForClass:aClass]];
 }
 
 - (id)initAsNullMockForProtocol:(Protocol *)aProtocol {
-    return [self initAsNullMock:YES withName:nil forClass:nil protocol:aProtocol];
+    return [self initWithDescription:[KWMockDescription null:YES mockForProtocol:aProtocol]];
 }
 
 - (id)initAsNullMockWithName:(NSString *)aName forClass:(Class)aClass {
-    return [self initAsNullMock:YES withName:aName forClass:aClass protocol:nil];
+    return [self initWithDescription:[KWMockDescription null:YES mockNamed:aName forClass:aClass]];
 }
 
 - (id)initAsNullMockWithName:(NSString *)aName forProtocol:(Protocol *)aProtocol {
-    return [self initAsNullMock:YES withName:aName forClass:nil protocol:aProtocol];
+    return [self initWithDescription:[KWMockDescription null:YES mockNamed:aName forProtocol:aProtocol]];
 }
 
-- (id)initAsNullMock:(BOOL)nullMockFlag withName:(NSString *)aName forClass:(Class)aClass protocol:(Protocol *)aProtocol {
-    if ((self = [super init])) {
-        isNullMock = nullMockFlag;
-        name = [aName copy];
-        mockedClass = aClass;
-        mockedProtocol = aProtocol;
+- (id)initWithDescription:(KWMockDescription *)description {
+	if ((self = [super init])) {
+        mockDescription = [description retain];
         stubs = [[NSMutableArray alloc] init];
         expectedMessagePatterns = [[NSMutableArray alloc] init];
         messageSpies = [[NSMutableDictionary alloc] init];
-    }
+	}
 
-    return self;
+	return self;
+}
+
++ (id)mockWithDescription:(KWMockDescription *)mockDescription {
+    return [[[self alloc] initWithDescription:mockDescription] autorelease];
 }
 
 + (id)mockForClass:(Class)aClass {
@@ -147,7 +144,7 @@ static NSString * const ChangeStubValueAfterTimesKey = @"ChangeStubValueAfterTim
 }
 
 - (void)dealloc {
-    [name release];
+    [mockDescription release];
     [stubs release];
     [expectedMessagePatterns release];
     [messageSpies release];
@@ -157,13 +154,25 @@ static NSString * const ChangeStubValueAfterTimesKey = @"ChangeStubValueAfterTim
 #pragma mark -
 #pragma mark Properties
 
-@synthesize isNullMock;
-@synthesize name;
-@synthesize mockedClass;
-@synthesize mockedProtocol;
 @synthesize stubs;
 @synthesize expectedMessagePatterns;
 @synthesize messageSpies;
+
+- (BOOL)isNullMock {
+    return mockDescription.isNullMock;
+}
+
+- (NSString *)name {
+    return mockDescription.name;
+}
+
+- (Class)mockedClass {
+    return mockDescription.mockedClass;
+}
+
+- (Protocol *)mockedProtocol {
+    return mockDescription.mockedProtocol;
+}
 
 #pragma mark -
 #pragma mark Getting Transitive Closure For Mocked Protocols

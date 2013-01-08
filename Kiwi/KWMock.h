@@ -8,6 +8,7 @@
 #import "KWInvocationCapturer.h"
 
 @class KWMessagePattern;
+@class KWMockDescription;
 @class KWCaptureSpy;
 
 @protocol KWMessageSpying;
@@ -15,10 +16,7 @@
 
 @interface KWMock : NSObject {
 @private
-    BOOL isNullMock;
-    NSString *name;
-    Class mockedClass;
-    Protocol *mockedProtocol;
+    KWMockDescription *mockDescription;
     NSMutableArray *stubs;
     NSMutableArray *expectedMessagePatterns;
     NSMutableDictionary *messageSpies;
@@ -26,6 +24,8 @@
 
 #pragma mark -
 #pragma mark Initializing
+
+- (id)initWithDescription:(KWMockDescription *)mockDescription;
 
 - (id)initForClass:(Class)aClass;
 - (id)initForProtocol:(Protocol *)aProtocol;
@@ -36,6 +36,8 @@
 - (id)initAsNullMockForProtocol:(Protocol *)aProtocol;
 - (id)initAsNullMockWithName:(NSString *)aName forClass:(Class)aClass;
 - (id)initAsNullMockWithName:(NSString *)aName forProtocol:(Protocol *)aProtocol;
+
++ (id)mockWithDescription:(KWMockDescription *)mockDescription;
 
 + (id)mockForClass:(Class)aClass;
 + (id)mockForProtocol:(Protocol *)aProtocol;
