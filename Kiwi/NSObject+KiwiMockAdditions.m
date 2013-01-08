@@ -43,6 +43,10 @@ static id mockedDependencyWithDescription(id self, NSString *dependencyName, KWM
 
 static id mockedDependencyWithNullFlag(id self, NSString *dependencyName, BOOL nullFlag) {
     Ivar ivar = class_getInstanceVariable([self class], [dependencyName UTF8String]);
+    if (!ivar) {
+        NSString *reason = [NSString stringWithFormat:@"dependency '%@' was not found.", dependencyName];
+        @throw [NSException exceptionWithName:@"KWMockException" reason:reason userInfo:nil];
+    }
     const char* encoding = ivar_getTypeEncoding(ivar);
     return mockedDependencyWithDescription(
             self,

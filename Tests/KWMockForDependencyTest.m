@@ -95,8 +95,16 @@
 - (void)testItShouldDetectTypeForNullMockWhenNoTypeSupplied {
 	Cruiser *cruiser = [[[Cruiser alloc] init] autorelease];
     id engine = [cruiser nullMockFor:@"engine"];
-    STAssertTrue([engine isNullMock], @"expected mockFor: to return null mock");
+    STAssertTrue([engine isNullMock], @"expected nullMockFor: to return null mock");
     STAssertTrue([engine isKindOfClass:[Engine class]], @"expected nullMockFor: to return an Engine mock");
+}
+
+- (void)testItShouldThrowIfTheDependencyDoesNotExist {
+	Cruiser *cruiser = [[[Cruiser alloc] init] autorelease];
+    STAssertThrows(
+            [cruiser mockFor:@"goneToPlaid"],
+            @"expected mockFor: to throw when the dependency doesn't exist"
+            );
 }
 
 @end
