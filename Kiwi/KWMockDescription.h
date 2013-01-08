@@ -19,16 +19,14 @@
 @property (nonatomic, readonly) Class mockedClass;
 @property (nonatomic, readonly) Protocol *mockedProtocol;
 
-+ (KWMockDescription *)mockForClass:(Class)aClass;
-+ (KWMockDescription *)mockForProtocol:(Protocol *)aProtocol;
 + (KWMockDescription *)mockNamed:(NSString *)aName forClass:(Class)aClass;
 + (KWMockDescription *)mockNamed:(NSString *)aName forProtocol:(Protocol *)aProtocol;
 
-+ (KWMockDescription *)nullMockForClass:(Class)aClass;
-+ (KWMockDescription *)nullMockForProtocol:(Protocol *)aProtocol;
 + (KWMockDescription *)nullMockNamed:(NSString *)aName forClass:(Class)aClass;
 + (KWMockDescription *)nullMockNamed:(NSString *)aName forProtocol:(Protocol *)aProtocol;
 
++ (KWMockDescription *)null:(BOOL)isNull mockForClass:(Class)aClass;
++ (KWMockDescription *)null:(BOOL)isNull mockForProtocol:(Protocol *)aProtocol;
 + (KWMockDescription *)null:(BOOL)isNull mockForTypeEncoding:(const char*)encoding;
 
 @end

@@ -21,12 +21,12 @@
 	[super dealloc];
 }
 
-+ (KWMockDescription *)mockForClass:(Class)aClass {
-	return [[[[self class] alloc] initWithNullFlag:NO name:nil mockedClass:aClass mockedProtocol:nil] autorelease];
++ (KWMockDescription *)null:(BOOL)nullFlag mockForClass:(Class)aClass {
+	return [[[[self class] alloc] initWithNullFlag:nullFlag name:nil mockedClass:aClass mockedProtocol:nil] autorelease];
 }
 
-+ (KWMockDescription *)mockForProtocol:(Protocol *)aProtocol {
-	return [[[[self class] alloc] initWithNullFlag:NO name:nil mockedClass:nil mockedProtocol:aProtocol] autorelease];
++ (KWMockDescription *)null:(BOOL)nullFlag mockForProtocol:(Protocol *)aProtocol {
+	return [[[[self class] alloc] initWithNullFlag:nullFlag name:nil mockedClass:nil mockedProtocol:aProtocol] autorelease];
 }
 
 + (KWMockDescription *)mockNamed:(NSString *)aName forClass:(Class)aClass {
@@ -81,15 +81,6 @@ static Class encodedClass(const char *encoding) {
     }
 
 	return [[[[self class] alloc] initWithNullFlag:isNull name:nil mockedClass:aClass mockedProtocol:aProtocol] autorelease];
-}
-
-
-+ (KWMockDescription *)nullMockForClass:(Class)aClass {
-	return [[[[self class] alloc] initWithNullFlag:YES name:nil mockedClass:aClass mockedProtocol:nil] autorelease];
-}
-
-+ (KWMockDescription *)nullMockForProtocol:(Protocol *)aProtocol {
-	return [[[[self class] alloc] initWithNullFlag:YES name:nil mockedClass:nil mockedProtocol:aProtocol] autorelease];
 }
 
 + (KWMockDescription *)nullMockNamed:(NSString *)aName forClass:(Class)aClass {

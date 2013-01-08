@@ -41,19 +41,19 @@ static id mockedDependencyWithDescription(id self, NSString *dependencyName, KWM
 }
 
 - (id)mockFor:(NSString *)dependencyName ofType:(Class)type {
-	return mockedDependencyWithDescription(self, dependencyName, [KWMockDescription mockForClass:type]);
+    return mockedDependencyWithDescription(self, dependencyName, [KWMockDescription null:NO mockForClass:type]);
 }
 
 - (id)mockFor:(NSString *)dependencyName conformingToProtocol:(Protocol *)protocol {
-	return mockedDependencyWithDescription(self, dependencyName, [KWMockDescription mockForProtocol:protocol]);
+    return mockedDependencyWithDescription(self, dependencyName, [KWMockDescription null:NO mockForProtocol:protocol]);
 }
 
 - (id)nullMockFor:(NSString *)dependencyName ofType:(Class)type {
-	return mockedDependencyWithDescription(self, dependencyName, [KWMockDescription nullMockForClass:type]);
+    return mockedDependencyWithDescription(self, dependencyName, [KWMockDescription null:YES mockForClass:type]);
 }
 
 - (id)nullMockFor:(NSString *)dependencyName conformingToProtocol:(Protocol *)protocol {
-	return mockedDependencyWithDescription(self, dependencyName, [KWMockDescription nullMockForProtocol:protocol]);
+    return mockedDependencyWithDescription(self, dependencyName, [KWMockDescription null:YES mockForProtocol:protocol]);
 }
 
 @end
