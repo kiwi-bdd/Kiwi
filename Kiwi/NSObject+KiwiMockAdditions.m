@@ -7,6 +7,7 @@
 #import "NSObject+KiwiMockAdditions.h"
 #import "KWMock.h"
 #import "KWMockDescription.h"
+#import <objc/runtime.h>
 
 @implementation NSObject(KiwiMockAdditions)
 
@@ -38,6 +39,12 @@ static id mockedDependencyWithDescription(id self, NSString *dependencyName, KWM
         [self setValue:[KWMock mockWithDescription:mockDescription] forKey:dependencyName];
 
 	return [self valueForKey:dependencyName];
+}
+
+- (id)mockFor:(NSString *)dependencyName {
+    Ivar ivar = class_getInstanceVariable([self class], [dependencyName UTF8String]);
+    const char* encoding = ivar_getTypeEncoding(ivar);
+    return mockedDependencyWithDescription(self, dependencyName, [KWMockDescription null:NO mockForTypeEncoding:encoding]);
 }
 
 - (id)mockFor:(NSString *)dependencyName ofType:(Class)type {

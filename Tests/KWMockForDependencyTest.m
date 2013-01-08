@@ -85,6 +85,12 @@
 	STAssertTrue(engine1 == engine2, @"expectd mockFor:conformingToProtocol: to return the same mock each time");
 }
 
+- (void)testItShouldDetectTypeWhenNoTypeSupplied {
+	Cruiser *cruiser = [[[Cruiser alloc] init] autorelease];
+    id engine = [cruiser mockFor:@"engine"];
+    STAssertFalse([engine isNullMock], @"expected mockFor: to return non-null mock");
+}
+
 @end
 
 #endif // #if KW_TESTS_ENABLED
