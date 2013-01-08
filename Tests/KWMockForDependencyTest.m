@@ -92,6 +92,13 @@
     STAssertTrue([engine isKindOfClass:[Engine class]], @"expected mockFor: to return an Engine mock");
 }
 
+- (void)testItShouldDetectTypeForNullMockWhenNoTypeSupplied {
+	Cruiser *cruiser = [[[Cruiser alloc] init] autorelease];
+    id engine = [cruiser nullMockFor:@"engine"];
+    STAssertTrue([engine isNullMock], @"expected mockFor: to return null mock");
+    STAssertTrue([engine isKindOfClass:[Engine class]], @"expected nullMockFor: to return an Engine mock");
+}
+
 @end
 
 #endif // #if KW_TESTS_ENABLED
