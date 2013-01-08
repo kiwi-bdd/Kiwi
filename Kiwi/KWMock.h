@@ -17,7 +17,6 @@
 @interface KWMock : NSObject {
 @private
     KWMockDescription *mockDescription;
-    NSString *name;
     Class mockedClass;
     Protocol *mockedProtocol;
     NSMutableArray *stubs;
