@@ -65,14 +65,6 @@ static Class encodedClass(const char *encoding) {
     return NSClassFromString(stringBetween(begin, end));
 }
 
-+ (KWMockDescription *)mockForTypeEncoding:(const char*)encoding {
-    return [self null:NO mockForTypeEncoding:encoding];
-}
-
-+ (KWMockDescription *)nullMockForTypeEncoding:(const char*)encoding {
-    return [self null:YES mockForTypeEncoding:encoding];
-}
-
 + (KWMockDescription *)null:(BOOL)isNull mockForTypeEncoding:(const char*)encoding {
     Class aClass = nil;
     Protocol *aProtocol = nil;

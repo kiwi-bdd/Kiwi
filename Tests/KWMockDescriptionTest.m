@@ -23,7 +23,7 @@
 
 - (void)testItShouldProduceAValidClassMockFromAClassTypeSignature {
     STAssertEqualObjects(
-            [KWMockDescription mockForTypeEncoding:"@\"Cruiser\""],
+            [KWMockDescription null:NO mockForTypeEncoding:"@\"Cruiser\""],
             [KWMockDescription mockForClass:[Cruiser class]],
             @"expected parsing '@\"Cruiser\"' to return a description which would mock Cruiser"
             );
@@ -31,7 +31,7 @@
 
 - (void)testItShouldProduceAnNSObjectMockForAnIdSignature {
     STAssertEqualObjects(
-           [KWMockDescription mockForTypeEncoding:"@"],
+           [KWMockDescription null:NO mockForTypeEncoding:"@"],
            [KWMockDescription mockForClass:[NSObject class]],
            @"expected parsing '@' to return a description which would mock NSObject"
            );
@@ -39,7 +39,7 @@
 
 - (void)testItShouldProduceAProtocolMockForAProtooclTypeSignature {
     STAssertEqualObjects(
-           [KWMockDescription mockForTypeEncoding:"@\"<NSStreamDelegate>\""],
+           [KWMockDescription null:NO mockForTypeEncoding:"@\"<NSStreamDelegate>\""],
            [KWMockDescription mockForProtocol:@protocol(NSStreamDelegate)],
            @"expected parsing '@\"<NSStreamDelegate>\"' to return a description which would mock the protocol"
            );
@@ -47,14 +47,14 @@
 
 - (void)testItShouldRaiseAUsefulErrorIfItCannotMockTheType {
     STAssertThrows(
-            [KWMockDescription mockForTypeEncoding:"i"],
+            [KWMockDescription null:NO mockForTypeEncoding:"i"],
             @"expected parsing 'i' to throw a useful error."
             );
 }
 
 - (void)testItShouldProduceAValidClassNullMockFromAClassTypeSignature {
     STAssertEqualObjects(
-            [KWMockDescription nullMockForTypeEncoding:"@\"Cruiser\""],
+            [KWMockDescription null:YES mockForTypeEncoding:"@\"Cruiser\""],
             [KWMockDescription nullMockForClass:[Cruiser class]],
             @"expected parsing '@\"Cruiser\"' to return a description which would mock Cruiser"
             );

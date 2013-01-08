@@ -23,13 +23,13 @@
 + (KWMockDescription *)mockForProtocol:(Protocol *)aProtocol;
 + (KWMockDescription *)mockNamed:(NSString *)aName forClass:(Class)aClass;
 + (KWMockDescription *)mockNamed:(NSString *)aName forProtocol:(Protocol *)aProtocol;
-+ (KWMockDescription *)mockForTypeEncoding:(const char*)encoding;
 
 + (KWMockDescription *)nullMockForClass:(Class)aClass;
 + (KWMockDescription *)nullMockForProtocol:(Protocol *)aProtocol;
 + (KWMockDescription *)nullMockNamed:(NSString *)aName forClass:(Class)aClass;
 + (KWMockDescription *)nullMockNamed:(NSString *)aName forProtocol:(Protocol *)aProtocol;
-+ (KWMockDescription *)nullMockForTypeEncoding:(const char*)encoding;
+
++ (KWMockDescription *)null:(BOOL)isNull mockForTypeEncoding:(const char*)encoding;
 
 @end
 
