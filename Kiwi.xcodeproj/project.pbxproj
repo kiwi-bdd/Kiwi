@@ -623,6 +623,7 @@
 		9F982CDD16A802920030A0B1 /* NSObject+KiwiVerifierAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSObject+KiwiVerifierAdditions.m"; path = "Classes/NSObject+KiwiVerifierAdditions.m"; sourceTree = "<group>"; };
 		9F982CDE16A802920030A0B1 /* NSValue+KiwiAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSValue+KiwiAdditions.h"; path = "Classes/NSValue+KiwiAdditions.h"; sourceTree = "<group>"; };
 		9F982CDF16A802920030A0B1 /* NSValue+KiwiAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSValue+KiwiAdditions.m"; path = "Classes/NSValue+KiwiAdditions.m"; sourceTree = "<group>"; };
+		9FFA190B16A83C23009D6FF1 /* uninstall-templates.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; name = "uninstall-templates.sh"; path = "Xcode Templates/uninstall-templates.sh"; sourceTree = "<group>"; };
 		A352E9E712EDC30A0049C691 /* KWHaveValueMatcherTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KWHaveValueMatcherTest.m; sourceTree = "<group>"; };
 		A352EA1A12EDC8380049C691 /* KWHamcrestMatcherTest.m */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 4; lastKnownFileType = sourcecode.c.objc; path = KWHamcrestMatcherTest.m; sourceTree = "<group>"; tabWidth = 4; };
 		A385CAE713AA7EA200DCA951 /* KWUserDefinedMatcherTest.m */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 4; lastKnownFileType = sourcecode.c.objc; path = KWUserDefinedMatcherTest.m; sourceTree = "<group>"; tabWidth = 4; };
@@ -800,6 +801,7 @@
 			isa = PBXGroup;
 			children = (
 				9F982C3616A802690030A0B1 /* install-templates.sh */,
+				9FFA190B16A83C23009D6FF1 /* uninstall-templates.sh */,
 				9F982C3716A802690030A0B1 /* Kiwi Spec.xctemplate */,
 			);
 			name = "Xcode Templates";
