@@ -24,18 +24,6 @@
 
 /* Begin PBXBuildFile section */
 		4BA52D0115487F0C00FC957B /* KWCaptureTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BA52D0015487F0C00FC957B /* KWCaptureTest.m */; };
-		9F84E41F16A8036D009BF7A6 /* Carrier.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F982A1E16A801800030A0B1 /* Carrier.m */; };
-		9F84E42016A8036D009BF7A6 /* Cruiser.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F982A2016A801800030A0B1 /* Cruiser.m */; };
-		9F84E42116A8036D009BF7A6 /* Engine.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F982A2216A801800030A0B1 /* Engine.m */; };
-		9F84E42216A8036D009BF7A6 /* Fighter.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F982A2416A801800030A0B1 /* Fighter.m */; };
-		9F84E42316A8036D009BF7A6 /* Galaxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F982A2616A801800030A0B1 /* Galaxy.m */; };
-		9F84E42416A8036D009BF7A6 /* KiwiAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F982A2916A801800030A0B1 /* KiwiAppDelegate.m */; };
-		9F84E42516A8036D009BF7A6 /* KiwiViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F982A2B16A801800030A0B1 /* KiwiViewController.m */; };
-		9F84E42616A8036D009BF7A6 /* Robot.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F982A2E16A801800030A0B1 /* Robot.m */; };
-		9F84E42716A8036D009BF7A6 /* SpaceShip.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F982A3016A801800030A0B1 /* SpaceShip.m */; };
-		9F84E42816A8036D009BF7A6 /* TestReporter.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F982A3316A801800030A0B1 /* TestReporter.m */; };
-		9F84E42916A8036D009BF7A6 /* TestSpy.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F982A3516A801800030A0B1 /* TestSpy.m */; };
-		9F84E42A16A8036D009BF7A6 /* TestVerifier.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F982A3716A801800030A0B1 /* TestVerifier.m */; };
 		9F982A3816A801800030A0B1 /* Carrier.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F982A1E16A801800030A0B1 /* Carrier.m */; };
 		9F982A3916A801800030A0B1 /* Cruiser.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F982A2016A801800030A0B1 /* Cruiser.m */; };
 		9F982A3A16A801800030A0B1 /* Engine.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F982A2216A801800030A0B1 /* Engine.m */; };
@@ -383,10 +371,6 @@
 		A352E9E812EDC30A0049C691 /* KWHaveValueMatcherTest.m in Sources */ = {isa = PBXBuildFile; fileRef = A352E9E712EDC30A0049C691 /* KWHaveValueMatcherTest.m */; };
 		A352EA1B12EDC8380049C691 /* KWHamcrestMatcherTest.m in Sources */ = {isa = PBXBuildFile; fileRef = A352EA1A12EDC8380049C691 /* KWHamcrestMatcherTest.m */; };
 		A385CAE813AA7EA200DCA951 /* KWUserDefinedMatcherTest.m in Sources */ = {isa = PBXBuildFile; fileRef = A385CAE713AA7EA200DCA951 /* KWUserDefinedMatcherTest.m */; };
-		A3B16543139967B800E9CC6E /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
-		A3B16544139967B800E9CC6E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
-		A3B16545139967B800E9CC6E /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765A40DF7441C002DB57D /* CoreGraphics.framework */; };
-		A3B165581399690E00E9CC6E /* libKiwi.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F5015B9F11583A77002E9A98 /* libKiwi.a */; };
 		C922D1DD158045FC00995B43 /* KWStringContainsMatcherTest.m in Sources */ = {isa = PBXBuildFile; fileRef = C922D1DC158045FC00995B43 /* KWStringContainsMatcherTest.m */; };
 		F5015CBD1158404E002E9A98 /* libKiwi.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F5015B9F11583A77002E9A98 /* libKiwi.a */; };
 		F53B5E43115B33FC0022BC0B /* KWContainMatcherTest.m in Sources */ = {isa = PBXBuildFile; fileRef = F53B5E42115B33FC0022BC0B /* KWContainMatcherTest.m */; };
@@ -419,13 +403,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		A3758CD514184A170051268A /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = F5015B9E11583A77002E9A98;
-			remoteInfo = Kiwi;
-		};
 		F5015CBB1158404B002E9A98 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
@@ -649,7 +626,6 @@
 		A352E9E712EDC30A0049C691 /* KWHaveValueMatcherTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KWHaveValueMatcherTest.m; sourceTree = "<group>"; };
 		A352EA1A12EDC8380049C691 /* KWHamcrestMatcherTest.m */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 4; lastKnownFileType = sourcecode.c.objc; path = KWHamcrestMatcherTest.m; sourceTree = "<group>"; tabWidth = 4; };
 		A385CAE713AA7EA200DCA951 /* KWUserDefinedMatcherTest.m */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 4; lastKnownFileType = sourcecode.c.objc; path = KWUserDefinedMatcherTest.m; sourceTree = "<group>"; tabWidth = 4; };
-		A3B16542139967B800E9CC6E /* KiwiExamples.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = KiwiExamples.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C922D1DC158045FC00995B43 /* KWStringContainsMatcherTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KWStringContainsMatcherTest.m; sourceTree = "<group>"; };
 		F5015B8B11583A39002E9A98 /* KiwiDriver-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "KiwiDriver-Info.plist"; sourceTree = "<group>"; };
 		F5015B9F11583A77002E9A98 /* libKiwi.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libKiwi.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -694,17 +670,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		A3B1653E139967B800E9CC6E /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				A3B16543139967B800E9CC6E /* UIKit.framework in Frameworks */,
-				A3B16544139967B800E9CC6E /* Foundation.framework in Frameworks */,
-				A3B16545139967B800E9CC6E /* CoreGraphics.framework in Frameworks */,
-				A3B165581399690E00E9CC6E /* libKiwi.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -765,7 +730,6 @@
 			children = (
 				F5015B9F11583A77002E9A98 /* libKiwi.a */,
 				F5015C9E11584017002E9A98 /* KiwiTests.octest */,
-				A3B16542139967B800E9CC6E /* KiwiExamples.octest */,
 				832C83C7157263B300F160D5 /* libKiwi-OSX.a */,
 			);
 			name = Products;
@@ -1333,25 +1297,6 @@
 			productReference = 832C83C7157263B300F160D5 /* libKiwi-OSX.a */;
 			productType = "com.apple.product-type.library.static";
 		};
-		A3B16541139967B800E9CC6E /* KiwiExamples */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = A3B16551139967B800E9CC6E /* Build configuration list for PBXNativeTarget "KiwiExamples" */;
-			buildPhases = (
-				A3B1653D139967B800E9CC6E /* Sources */,
-				A3B1653E139967B800E9CC6E /* Frameworks */,
-				A3B1653F139967B800E9CC6E /* Resources */,
-				A3B16540139967B800E9CC6E /* ShellScript */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				A3758CD614184A170051268A /* PBXTargetDependency */,
-			);
-			name = KiwiExamples;
-			productName = KiwiExamples;
-			productReference = A3B16542139967B800E9CC6E /* KiwiExamples.octest */;
-			productType = "com.apple.product-type.bundle";
-		};
 		F5015B9E11583A77002E9A98 /* Kiwi */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = F5015BB511583A95002E9A98 /* Build configuration list for PBXNativeTarget "Kiwi" */;
@@ -1417,20 +1362,12 @@
 				F5015B9E11583A77002E9A98 /* Kiwi */,
 				832C8323157263B300F160D5 /* Kiwi-OSX */,
 				F5015C9D11584017002E9A98 /* KiwiTests */,
-				A3B16541139967B800E9CC6E /* KiwiExamples */,
 				6BC17EC2155E3A47000B3AA4 /* Kiwi-iOS */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		A3B1653F139967B800E9CC6E /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		F5015C9911584017002E9A98 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1469,20 +1406,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "SIMULATOR_HEADERS_DIR=\"${BUILD_DIR}/${CONFIGURATION}-iphonesimulator/${PRODUCT_NAME}\" &&\nSIMULATOR_LIBRARY_PATH=\"${BUILD_DIR}/${CONFIGURATION}-iphonesimulator/lib${PROJECT_NAME}.a\" &&\nDEVICE_LIBRARY_PATH=\"${BUILD_DIR}/${CONFIGURATION}-iphoneos/lib${PROJECT_NAME}.a\" &&\nUNIVERSAL_LIBRARY_DIR=\"${BUILD_DIR}/${CONFIGURATION}-iphoneuniversal\" &&\nUNIVERSAL_LIBRARY_PATH=\"${UNIVERSAL_LIBRARY_DIR}/lib${PRODUCT_NAME}.a\" &&\nFRAMEWORK=\"${UNIVERSAL_LIBRARY_DIR}/${PRODUCT_NAME}.framework\" &&\n\n# Create framework directory structure.\nrm -rf \"${FRAMEWORK}\" &&\nmkdir -p \"${UNIVERSAL_LIBRARY_DIR}\" &&\nmkdir -p \"${FRAMEWORK}/Versions/A/Resources\" &&\n\n# Generate universal binary from desktop, device, and simulator builds.\nlipo \"${SIMULATOR_LIBRARY_PATH}\" \"${DEVICE_LIBRARY_PATH}\" -create -output \"${UNIVERSAL_LIBRARY_PATH}\" &&\n\n# Copy public headers to Framework headers\n# (had to use move because wildcard matching gave me an error)\ncp -r \"${SIMULATOR_HEADERS_DIR}\" \"${UNIVERSAL_LIBRARY_DIR}\" &&\nmv \"${UNIVERSAL_LIBRARY_DIR}/${PRODUCT_NAME}\" \"${FRAMEWORK}/Versions/A/Headers\" &&\n# Copy public headers to output (doesn't matter which architecture)\ncp -r \"${SIMULATOR_HEADERS_DIR}\" \"${UNIVERSAL_LIBRARY_DIR}\" &&\n\n# Move files to appropriate locations in framework paths.\ncp \"${UNIVERSAL_LIBRARY_PATH}\" \"${FRAMEWORK}/Versions/A/${PRODUCT_NAME}\" &&\nln -s \"A\" \"${FRAMEWORK}/Versions/Current\" &&\nln -s \"Versions/Current/Headers\" \"${FRAMEWORK}/Headers\" &&\nln -s \"Versions/Current/Resources\" \"${FRAMEWORK}/Resources\" &&\nln -s \"Versions/Current/${PRODUCT_NAME}\" \"${FRAMEWORK}/${PRODUCT_NAME}\" &&\ncp \"${SRCROOT}/Resources/KiwiDriver-Info.plist\" \"${FRAMEWORK}/Resources/Info.plist\"";
-			showEnvVarsInLog = 0;
-		};
-		A3B16540139967B800E9CC6E /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
 			showEnvVarsInLog = 0;
 		};
 		C938A69A165A64A100F0E508 /* ShellScript */ = {
@@ -1594,25 +1517,6 @@
 				9F982E2316A802920030A0B1 /* NSObject+KiwiStubAdditions.m in Sources */,
 				9F982E2716A802920030A0B1 /* NSObject+KiwiVerifierAdditions.m in Sources */,
 				9F982E2B16A802920030A0B1 /* NSValue+KiwiAdditions.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		A3B1653D139967B800E9CC6E /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				9F84E41F16A8036D009BF7A6 /* Carrier.m in Sources */,
-				9F84E42016A8036D009BF7A6 /* Cruiser.m in Sources */,
-				9F84E42116A8036D009BF7A6 /* Engine.m in Sources */,
-				9F84E42216A8036D009BF7A6 /* Fighter.m in Sources */,
-				9F84E42316A8036D009BF7A6 /* Galaxy.m in Sources */,
-				9F84E42416A8036D009BF7A6 /* KiwiAppDelegate.m in Sources */,
-				9F84E42516A8036D009BF7A6 /* KiwiViewController.m in Sources */,
-				9F84E42616A8036D009BF7A6 /* Robot.m in Sources */,
-				9F84E42716A8036D009BF7A6 /* SpaceShip.m in Sources */,
-				9F84E42816A8036D009BF7A6 /* TestReporter.m in Sources */,
-				9F84E42916A8036D009BF7A6 /* TestSpy.m in Sources */,
-				9F84E42A16A8036D009BF7A6 /* TestVerifier.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1752,11 +1656,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		A3758CD614184A170051268A /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = F5015B9E11583A77002E9A98 /* Kiwi */;
-			targetProxy = A3758CD514184A170051268A /* PBXContainerItemProxy */;
-		};
 		F5015CBC1158404B002E9A98 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = F5015B9E11583A77002E9A98 /* Kiwi */;
@@ -1823,55 +1722,6 @@
 				RUN_CLANG_STATIC_ANALYZER = YES;
 				SDKROOT = macosx;
 				VALID_ARCHS = x86_64;
-			};
-			name = Release;
-		};
-		A3B16552139967B800E9CC6E /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
-				);
-				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
-				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
-				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
-				OTHER_LDFLAGS = (
-					"-framework",
-					SenTestingKit,
-					"-all_load",
-				);
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_AFTER_BUILD = NO;
-				WRAPPER_EXTENSION = octest;
-			};
-			name = Debug;
-		};
-		A3B16553139967B800E9CC6E /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
-				);
-				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
-				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
-				OTHER_LDFLAGS = (
-					"-framework",
-					SenTestingKit,
-					"-all_load",
-				);
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_AFTER_BUILD = NO;
-				WRAPPER_EXTENSION = octest;
 			};
 			name = Release;
 		};
@@ -2065,15 +1915,6 @@
 			buildConfigurations = (
 				832C83C5157263B300F160D5 /* Debug */,
 				832C83C6157263B300F160D5 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		A3B16551139967B800E9CC6E /* Build configuration list for PBXNativeTarget "KiwiExamples" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				A3B16552139967B800E9CC6E /* Debug */,
-				A3B16553139967B800E9CC6E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
