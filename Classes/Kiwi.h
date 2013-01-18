@@ -33,6 +33,7 @@ extern "C" {
 #import "KWBlockNode.h"
 #import "KWBlockRaiseMatcher.h"
 #import "KWCallSite.h"
+#import "KWChangeMatcher.h"
 #import "KWConformToProtocolMatcher.h"
 #import "KWContainMatcher.h"
 #import "KWContextNode.h"
