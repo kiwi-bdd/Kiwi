@@ -43,7 +43,7 @@
 @synthesize verifiers;
 @synthesize delegate = _delegate;
 @synthesize suite;
-@synthesize lastInContext;
+@synthesize lastInContexts;
 @synthesize didNotFinish;
 
 - (id)initWithExampleNode:(id<KWExampleNode>)node
@@ -52,6 +52,7 @@
     exampleNode = [node retain];
     matcherFactory = [[KWMatcherFactory alloc] init];
     verifiers = [[NSMutableArray alloc] init];
+    lastInContexts = [[NSMutableArray alloc] init];
     passed = YES;
   }
   return self;
@@ -59,7 +60,7 @@
 
 - (void)dealloc 
 {
-  [lastInContext release];
+  [lastInContexts release];
   [exampleNode release];
   [matcherFactory release];
   [verifiers release];
@@ -68,7 +69,12 @@
 
 - (BOOL)isLastInContext:(KWContextNode *)context
 {
-  return context == self.lastInContext;
+  for (KWContextNode *contextWhereItLast in lastInContexts) {
+    if (context == contextWhereItLast) {
+      return YES;
+    }
+  }
+  return NO;
 }
 
 - (NSString *)description

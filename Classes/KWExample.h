@@ -23,7 +23,7 @@
   id<KWExampleNode> exampleNode;
   BOOL passed;
 }
-@property (nonatomic, retain) KWContextNode *lastInContext;
+@property (nonatomic, retain, readonly) NSMutableArray *lastInContexts;
 @property (nonatomic, assign) KWExampleSuite *suite;
 
 - (id)initWithExampleNode:(id<KWExampleNode>)node;
