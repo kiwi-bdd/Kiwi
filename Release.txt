@@ -1,0 +1,7 @@
+Release History
+---------------
+
+2.0.3
+-----
+- Add Release.txt (this file) to keep track of changes in each version
+- issue #186 - Add hack to coax Xcode into providing autocompletion for Kiwi verifier keywords

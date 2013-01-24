@@ -434,6 +434,7 @@
 		6B39D95F155C9FCB003C3444 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		6B39D960155C9FCB003C3444 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		832C83C7157263B300F160D5 /* libKiwi-OSX.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libKiwi-OSX.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		9F4C095816B16A6D00FCCCD3 /* Release.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = Release.txt; sourceTree = "<group>"; };
 		9F982A1616A7FCD00030A0B1 /* Kiwi.podspec */ = {isa = PBXFileReference; lastKnownFileType = text; path = Kiwi.podspec; sourceTree = "<group>"; };
 		9F982A1D16A801800030A0B1 /* Carrier.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Carrier.h; path = "Test Classes/Carrier.h"; sourceTree = "<group>"; };
 		9F982A1E16A801800030A0B1 /* Carrier.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Carrier.m; path = "Test Classes/Carrier.m"; sourceTree = "<group>"; };
@@ -748,6 +749,7 @@
 			isa = PBXGroup;
 			children = (
 				F5F5C69F117CAA9900C5F133 /* License.txt */,
+				9F4C095816B16A6D00FCCCD3 /* Release.txt */,
 				F5F5C69E117CAA8800C5F133 /* Readme.md */,
 				9F982A1616A7FCD00030A0B1 /* Kiwi.podspec */,
 				F5015B4D1158396B002E9A98 /* Classes */,
