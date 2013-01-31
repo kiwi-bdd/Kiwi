@@ -47,4 +47,4 @@ the license agreement found in __License.txt__.
 The [Kiwi Wiki](https://github.com/allending/Kiwi/wiki) is the official documentation source.
 
 # Getting it #
-The best way to get Kiwi is by cloning the git repository: `git clone git://github.com/allending/Kiwi.git`
+The best way to get Kiwi is by cloning the git repository: `git clone git://github.com/allending/Kiwi.git`, build "Kiwi iOS" scheme and drag and drop the library to your project.
