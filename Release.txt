@@ -1,6 +1,10 @@
 Release History
 ---------------
 
+2.0.4
+-----
+- issue #206 - Fix Kiwi clashing definition with OCHamcrest
+
 2.0.3
 -----
 - Add Release.txt (this file) to keep track of changes in each version
