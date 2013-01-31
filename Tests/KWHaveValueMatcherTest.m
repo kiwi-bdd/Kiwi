@@ -47,14 +47,14 @@
     STAssertFalse([matcher evaluate], @"expected negative match");
 }
 
-- (void)testItShouldMatchValuesMatchUsingKeyValueCodingAndHamcrestMatcher {
+- (void)testItShouldMatchValuesMatchUsingKeyValueCodingAndGenericMatcher {
     id subject = [Cruiser cruiserWithCallsign:@"Alpha Bravo Zero"];
     id matcher = [KWHaveValueMatcher matcherWithSubject:subject];
     [matcher haveValue:hasPrefix(@"Alpha") forKey:@"callsign"];
     STAssertTrue([matcher evaluate], @"expected positive match");
 }
 
-- (void)testItShouldNotMatchValuesMatchUsingKeyValueCodingAndHamcrestMatcher {
+- (void)testItShouldNotMatchValuesMatchUsingKeyValueCodingAndGenericMatcher {
     id subject = [Cruiser cruiserWithCallsign:@"Alpha Bravo Zero"];
     id matcher = [KWHaveValueMatcher matcherWithSubject:subject];
     [matcher haveValue:hasPrefix(@"Foxtrot") forKey:@"callsign"];

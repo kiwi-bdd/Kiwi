@@ -6,37 +6,38 @@
 //  Copyright 2011 Allen Ding. All rights reserved.
 //
 
-#import "KWHamrestMatchingAdditions.h"
-#import "KWHCMatcher.h"
+#import "KWGenericMatchingAdditions.h"
+#import "KWGenericMatcher.h"
+#import "KWGenericMatchEvaluator.h"
 
-@implementation NSObject (KiwiHamcrestAdditions)
+@implementation NSObject (KiwiGenericMatchingAdditions)
 
 - (BOOL)isEqualOrMatches:(id)object
 {
-    if ([self conformsToProtocol:@protocol(HCMatcher)]) {
-        return [(id<HCMatcher>)self matches:object];
+    if ([KWGenericMatchEvaluator isGenericMatcher:self]) {
+        return [KWGenericMatchEvaluator genericMatcher:self matches:object];
     }
     return [self isEqual:object];
 }
 
 @end
 
-@implementation NSArray (KiwiHamcrestAdditions)
+@implementation NSArray (KiwiGenericMatchingAdditions)
 
 - (BOOL)containsObjectEqualToOrMatching:(id)object
 {
-    if ([object conformsToProtocol:@protocol(HCMatcher)]) {
+    if ([KWGenericMatchEvaluator isGenericMatcher:object]) {
         return [self containsObjectMatching:object];
     }
     return [self containsObject:object];
 }
 
-- (BOOL)containsObjectMatching:(id<HCMatcher>)matcher
+- (BOOL)containsObjectMatching:(id)matcher
 {
     NSIndexSet *indexSet = [self indexesOfObjectsPassingTest:^(id obj, NSUInteger idx, BOOL *stop) {
-        BOOL matches = [matcher matches:obj];
+        BOOL matches = [KWGenericMatchEvaluator genericMatcher:matcher matches:obj];
         if (matches) {
-          *stop = YES;
+            *stop = YES;
         }
         return matches;
     }];
@@ -46,11 +47,11 @@
 
 @end
 
-@implementation NSSet (KiwiHamcrestAdditions)
+@implementation NSSet (KiwiGenericMatchingAdditions)
 
 - (BOOL)containsObjectEqualToOrMatching:(id)object
 {
-    if ([object conformsToProtocol:@protocol(HCMatcher)]) {
+    if ([KWGenericMatchEvaluator isGenericMatcher:object]) {
         return [[self allObjects] containsObjectMatching:object];
     }
     return [self containsObject:object];
@@ -58,16 +59,14 @@
 
 @end
 
-@implementation NSOrderedSet (KiwiHamcrestAdditions)
+@implementation NSOrderedSet (KiwiGenericMatchingAdditions)
 
 - (BOOL)containsObjectEqualToOrMatching:(id)object
 {
-    if ([object conformsToProtocol:@protocol(HCMatcher)]) {
+    if ([KWGenericMatchEvaluator isGenericMatcher:object]) {
         return [[self array] containsObjectMatching:object];
     }
     return [self containsObject:object];
 }
 
 @end
-
-

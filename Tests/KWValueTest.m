@@ -19,47 +19,48 @@
     int value = 42;
     KWValue *wrappedValue = [KWValue valueWithBytes:&value objCType:@encode(int)];
     const char *objCType = [wrappedValue objCType];
-    STAssertTrue(objCType != nil, @"expected value to return valid Objective-C type");
     STAssertTrue(strcmp(objCType, @encode(int)) == 0, @"expected value to preserve Objective-C type for ints");
+    STAssertTrue(objCType != nil, @"expected value to return valid Objective-C type");
 }
 
 - (void)testItShouldPreserveDataObjCTypeForUnsignedInts {
     unsigned int value = 42;
     KWValue *wrappedValue = [KWValue valueWithBytes:&value objCType:@encode(unsigned int)];
     const char *objCType = [wrappedValue objCType];
-    STAssertTrue(objCType != nil, @"expected value to return valid Objective-C type");
     STAssertTrue(strcmp(objCType, @encode(unsigned int)) == 0, @"expected value to preserve Objective-C type for unsigned ints");
+    STAssertTrue(objCType != nil, @"expected value to return valid Objective-C type");
 }
 
 - (void)testItShouldPreserveDataObjCTypeForLongs {
     long value = 42;
     KWValue *wrappedValue = [KWValue valueWithBytes:&value objCType:@encode(long)];
     const char *objCType = [wrappedValue objCType];
-    STAssertTrue(objCType != nil, @"expected value to return valid Objective-C type");
     STAssertTrue(strcmp(objCType, @encode(long)) == 0, @"expected value to preserve Objective-C type for longs");
+    STAssertTrue(objCType != nil, @"expected value to return valid Objective-C type");
 }
 
 - (void)testItShouldPreserveDataObjCTypeForUnsignedLongs {
     unsigned long value = 42;
     KWValue *wrappedValue = [KWValue valueWithBytes:&value objCType:@encode(unsigned long)];
     const char *objCType = [wrappedValue objCType];
+    STAssertTrue(strcmp(objCType, @encode(unsigned long)) == 0, @"expected value to preserve Objective-C type for unsigned longs");
     STAssertTrue(objCType != nil, @"expected value to return valid Objective-C type");
-    STAssertTrue(strcmp(objCType, @encode(unsigned long)) == 0, @"expected value to preserve Objective-C type for unsigned longs");}
+}
 
 - (void)testItShouldPreserveDataObjCTypeForFloats {
     float value = 42.0f;
     KWValue *wrappedValue = [KWValue valueWithBytes:&value objCType:@encode(float)];
     const char *objCType = [wrappedValue objCType];
-    STAssertTrue(objCType != nil, @"expected value to return valid Objective-C type");
     STAssertTrue(strcmp(objCType, @encode(float)) == 0, @"expected value to preserve Objective-C type for floats");
+    STAssertTrue(objCType != nil, @"expected value to return valid Objective-C type");
 }
 
 - (void)testItShouldPreserveDataObjCTypeForDoubles {
     double value = 42.0f;
     KWValue *wrappedValue = [KWValue valueWithBytes:&value objCType:@encode(double)];
     const char *objCType = [wrappedValue objCType];
-    STAssertTrue(objCType != nil, @"expected value to return valid Objective-C type");
     STAssertTrue(strcmp(objCType, @encode(double)) == 0, @"expected value to preserve Objective-C type for doubles");
+    STAssertTrue(objCType != nil, @"expected value to return valid Objective-C type");
 }
 
 - (void)testItShouldConvertToIntValues {

@@ -1,24 +1,24 @@
 //
-//  KWHamcrestMatcher.m
+//  KWGenericMatcher.m
 //  Kiwi
 //
 //  Created by Luke Redpath on 24/01/2011.
 //  Copyright 2011 Allen Ding. All rights reserved.
 //
 
-#import "KWHamcrestMatcher.h"
-#import "KWHCMatcher.h"
+#import "KWGenericMatcher.h"
+#import "KWGenericMatchEvaluator.h"
 
-@interface KWHamcrestMatcher ()
+@interface KWGenericMatcher ()
 
 #pragma mark -
 #pragma mark Properties
 
-@property (nonatomic, retain) id<HCMatcher> matcher;
+@property (nonatomic, retain) id matcher;
 
 @end
 
-@implementation KWHamcrestMatcher
+@implementation KWGenericMatcher
 
 @synthesize matcher;
 
@@ -32,7 +32,7 @@
 #pragma mark Matching
 
 - (BOOL)evaluate {
-    return [self.matcher matches:self.subject];
+    return [KWGenericMatchEvaluator genericMatcher:self.matcher matches:self.subject];
 }
 
 - (NSString *)failureMessageForShould {
@@ -54,7 +54,7 @@
 #pragma mark -
 #pragma mark Configuring Matchers
 
-- (void)match:(id<HCMatcher>)aMatcher;
+- (void)match:(id)aMatcher;
 {
     self.matcher = aMatcher;
 }

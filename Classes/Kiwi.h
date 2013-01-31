@@ -48,7 +48,7 @@ extern "C" {
 #import "KWFailure.h"
 #import "KWFormatter.h"
 #import "KWFutureObject.h"
-#import "KWHamcrestMatcher.h"
+#import "KWGenericMatcher.h"
 #import "KWHaveMatcher.h"
 #import "KWHaveValueMatcher.h"
 #import "KWInequalityMatcher.h"

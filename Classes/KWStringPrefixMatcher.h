@@ -7,9 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "KWHCMatcher.h"
 
-@interface KWStringPrefixMatcher : NSObject <HCMatcher> {
+@interface KWStringPrefixMatcher : NSObject {
   NSString *prefix;
 }
 + (id)matcherWithPrefix:(NSString *)aPrefix;

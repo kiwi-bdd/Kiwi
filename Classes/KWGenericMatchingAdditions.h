@@ -8,28 +8,26 @@
 
 #import <Foundation/Foundation.h>
 
-@interface NSObject (KiwiHamcrestAdditions)
+@interface NSObject (KiwiGenericMatchingAdditions)
 
 - (BOOL)isEqualOrMatches:(id)object;
 
 @end
 
-@protocol HCMatcher;
-
-@interface NSArray (KiwiHamcrestAdditions)
+@interface NSArray (KiwiGenericMatchingAdditions)
 
 - (BOOL)containsObjectEqualToOrMatching:(id)object;
-- (BOOL)containsObjectMatching:(id<HCMatcher>)matcher;
+- (BOOL)containsObjectMatching:(id)matcher;
 
 @end
 
-@interface NSSet (KiwiHamcrestAdditions)
+@interface NSSet (KiwiGenericMatchingAdditions)
 
 - (BOOL)containsObjectEqualToOrMatching:(id)object;
 
 @end
 
-@interface NSOrderedSet (KiwiHamcrestAdditions)
+@interface NSOrderedSet (KiwiGenericMatchingAdditions)
 
 - (BOOL)containsObjectEqualToOrMatching:(id)object;
 

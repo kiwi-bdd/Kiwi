@@ -7,14 +7,14 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "KWHCMatcher.h"
 
-@interface KWStringContainsMatcher : NSObject <HCMatcher> {
+@interface KWStringContainsMatcher : NSObject {
   NSString *substring;
 }
 
 + (id)matcherWithSubstring:(NSString *)aSubstring;
 - (id)initWithSubstring:(NSString *)aSubstring;
+- (BOOL)matches:(id)object;
 
 @end
 

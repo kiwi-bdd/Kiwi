@@ -6,7 +6,7 @@
 
 #import "KWContainMatcher.h"
 #import "KWFormatter.h"
-#import "KWHamrestMatchingAdditions.h"
+#import "KWGenericMatchingAdditions.h"
 
 @interface KWContainMatcher()
 

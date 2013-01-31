@@ -1,5 +1,5 @@
 //
-//  KWHamcrestMatcher.h
+//  KWGenericMatcher.h
 //  Kiwi
 //
 //  Created by Luke Redpath on 24/01/2011.
@@ -9,15 +9,11 @@
 #import <Foundation/Foundation.h>
 #import "KWMatcher.h"
 
-@protocol HCMatcher;
-
-@interface KWHamcrestMatcher : KWMatcher {
-  id<HCMatcher> hamcrestMatcher;
-}
+@interface KWGenericMatcher : KWMatcher
 
 #pragma mark -
 #pragma mark Configuring Matchers
 
-- (void)match:(id<HCMatcher>)aMatcher;
+- (void)match:(id)aMatcher;
 
 @end

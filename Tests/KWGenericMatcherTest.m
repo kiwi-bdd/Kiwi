@@ -1,5 +1,5 @@
 //
-//  KWHamcrestMatcherTest.m
+//  KWGenericMatcherTest.m
 //  Kiwi
 //
 //  Created by Luke Redpath on 24/01/2011.
@@ -12,29 +12,29 @@
 
 #if KW_TESTS_ENABLED
 
-@interface KWHamcrestMatcherTest : SenTestCase
+@interface KWGenericMatcherTest : SenTestCase
 
 @end
 
-@implementation KWHamcrestMatcherTest
+@implementation KWGenericMatcherTest
 
-- (void)testItShouldMatchObjectsThatMatchHamcrestMatchers
+- (void)testItShouldMatchObjectsThatMatchGenericMatchers
 {
-    id matcher = [KWHamcrestMatcher matcherWithSubject:@"Alpha Bravo"];
+    id matcher = [KWGenericMatcher matcherWithSubject:@"Alpha Bravo"];
     [matcher match:hasPrefix(@"Alpha")];
     STAssertTrue([matcher evaluate], @"expected positive match");
 }
 
-- (void)testItShouldNotMatchObjectsThatMatchHamcrestMatchers
+- (void)testItShouldNotMatchObjectsThatMatchGenericMatchers
 {
-    id matcher = [KWHamcrestMatcher matcherWithSubject:@"Charlie Bravo"];
+    id matcher = [KWGenericMatcher matcherWithSubject:@"Charlie Bravo"];
     [matcher match:hasPrefix(@"Alpha")];
     STAssertFalse([matcher evaluate], @"expected negative match");
 }
 
 - (void)testItShouldHaveHumanReadableDescription
 {
-    id matcher = [KWHamcrestMatcher matcherWithSubject:nil];
+    id matcher = [KWGenericMatcher matcherWithSubject:nil];
     [matcher match:hasPrefix(@"Alpha")];
     STAssertEqualObjects(@"match a string with prefix 'Alpha'", [matcher description], @"description should match");
 }
