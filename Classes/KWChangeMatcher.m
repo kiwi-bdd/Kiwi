@@ -36,7 +36,7 @@
     if (self.anyChange) {
         return @"expected subject to change the count";
     } else {
-        return [NSString stringWithFormat:@"expected subject to change the count to %d, got %d", self.expectedTotal, self.actualTotal];
+        return [NSString stringWithFormat:@"expected subject to change the count to %d, got %d", (int)self.expectedTotal, (int)self.actualTotal];
     }
 }
 
@@ -44,7 +44,7 @@
     if (self.anyChange) {
         return @"expected subject to not change the count";
     } else {
-        return [NSString stringWithFormat:@"expected subject not to change the count to %d", self.actualTotal];
+        return [NSString stringWithFormat:@"expected subject not to change the count to %d", (int)self.actualTotal];
     }
 }
 
@@ -52,7 +52,7 @@
     if (self.anyChange) {
         return @"change count";
     } else {
-        return [NSString stringWithFormat:@"change count by %d", self.expectedDifference];
+        return [NSString stringWithFormat:@"change count by %d", (int)self.expectedDifference];
     }
 }
 

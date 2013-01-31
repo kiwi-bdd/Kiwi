@@ -149,7 +149,7 @@
             }
         } else if ([argumentFilter isEqual:[KWNull null]]) {
             if (!KWObjCTypeIsPointerLike(objCType)) {
-                [NSException raise:@"KWMessagePatternException" format:@"nil was specified as an argument filter, but argument(%d) is not a pointer for @selector(%@)", i + 1, NSStringFromSelector([anInvocation selector])];
+                [NSException raise:@"KWMessagePatternException" format:@"nil was specified as an argument filter, but argument(%d) is not a pointer for @selector(%@)", (int)(i + 1), NSStringFromSelector([anInvocation selector])];
             }
             void *p = nil;
             [anInvocation getMessageArgument:&p atIndex:i];
