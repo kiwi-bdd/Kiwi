@@ -40,10 +40,10 @@
 #pragma mark Getting Matcher Strings
 
 + (NSArray *)matcherStrings {
-    return [NSArray arrayWithObjects:@"raiseWhenSent:",
+    return @[@"raiseWhenSent:",
                                      @"raiseWithName:whenSent:",
                                      @"raiseWithReason:whenSent:",
-                                     @"raiseWithName:reason:whenSent:", nil];
+                                     @"raiseWithName:reason:whenSent:"];
 }
 
 #pragma mark -

@@ -18,7 +18,7 @@
 
 - (void)testItShouldHaveTheRightMatcherStrings {
     NSArray *matcherStrings = [KWBeWithinMatcher matcherStrings];
-    NSArray *expectedStrings = [NSArray arrayWithObjects:@"beWithin:of:", @"equal:withDelta:", nil];
+    NSArray *expectedStrings = @[@"beWithin:of:", @"equal:withDelta:"];
     STAssertEqualObjects([matcherStrings sortedArrayUsingSelector:@selector(compare:)],
                          [expectedStrings sortedArrayUsingSelector:@selector(compare:)],
                          @"expected specific matcher strings");

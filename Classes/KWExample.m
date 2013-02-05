@@ -261,7 +261,7 @@
 - (NSString *)generateDescriptionForAnonymousItNode
 {
   // anonymous specify blocks should only have one verifier, but use the first in any case
-  return [[self.verifiers objectAtIndex:0] descriptionForAnonymousItNode];
+  return [(self.verifiers)[0] descriptionForAnonymousItNode];
 }
 
 @end

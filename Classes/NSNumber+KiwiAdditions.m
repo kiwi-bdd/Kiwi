@@ -49,63 +49,63 @@
 }
 
 + (id)numberWithBoolBytes:(const void *)bytes {
-    return [NSNumber numberWithBool:*(const BOOL *)bytes];
+    return @(*(const BOOL *)bytes);
 }
 
 + (id)numberWithCharBytes:(const void *)bytes {
-    return [NSNumber numberWithChar:*(const char *)bytes];
+    return @(*(const char *)bytes);
 }
 
 + (id)numberWithDoubleBytes:(const void *)bytes {
-    return [NSNumber numberWithDouble:*(const double *)bytes];
+    return @(*(const double *)bytes);
 }
 
 + (id)numberWithFloatBytes:(const void *)bytes {
-    return [NSNumber numberWithFloat:*(const float *)bytes];
+    return @(*(const float *)bytes);
 }
 
 + (id)numberWithIntBytes:(const void *)bytes {
-    return [NSNumber numberWithInt:*(const int *)bytes];
+    return @(*(const int *)bytes);
 }
 
 + (id)numberWithIntegerBytes:(const void *)bytes {
-    return [NSNumber numberWithInteger:*(const NSInteger *)bytes];
+    return @(*(const NSInteger *)bytes);
 }
 
 + (id)numberWithLongBytes:(const void *)bytes {
-    return [NSNumber numberWithLong:*(const long *)bytes];
+    return @(*(const long *)bytes);
 }
 
 + (id)numberWithLongLongBytes:(const void *)bytes {
-    return [NSNumber numberWithLongLong:*(const long long *)bytes];
+    return @(*(const long long *)bytes);
 }
 
 + (id)numberWithShortBytes:(const void *)bytes {
-    return [NSNumber numberWithShort:*(const short *)bytes];
+    return @(*(const short *)bytes);
 }
 
 + (id)numberWithUnsignedCharBytes:(const void *)bytes {
-    return [NSNumber numberWithChar:*(const unsigned char *)bytes];
+    return @(*(const unsigned char *)bytes);
 }
 
 + (id)numberWithUnsignedIntBytes:(const void *)bytes {
-    return [NSNumber numberWithInt:*(const unsigned int *)bytes];
+    return @(*(const unsigned int *)bytes);
 }
 
 + (id)numberWithUnsignedIntegerBytes:(const void *)bytes {
-    return [NSNumber numberWithInteger:*(const NSUInteger *)bytes];
+    return @(*(const NSUInteger *)bytes);
 }
 
 + (id)numberWithUnsignedLongBytes:(const void *)bytes {
-    return [NSNumber numberWithLong:*(const unsigned long *)bytes];
+    return @(*(const unsigned long *)bytes);
 }
 
 + (id)numberWithUnsignedLongLongBytes:(const void *)bytes {
-    return [NSNumber numberWithLongLong:*(const unsigned long long *)bytes];
+    return @(*(const unsigned long long *)bytes);
 }
 
 + (id)numberWithUnsignedShortBytes:(const void *)bytes {
-    return [NSNumber numberWithShort:*(const unsigned short *)bytes];
+    return @(*(const unsigned short *)bytes);
 }
 
 @end

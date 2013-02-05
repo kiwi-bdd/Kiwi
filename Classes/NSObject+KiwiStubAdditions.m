@@ -33,12 +33,12 @@ static NSString * const ChangeStubValueAfterTimesKey = @"ChangeStubValueAfterTim
 
 - (void)invocationCapturer:(KWInvocationCapturer *)anInvocationCapturer didCaptureInvocation:(NSInvocation *)anInvocation {
     KWMessagePattern *messagePattern = [KWMessagePattern messagePatternFromInvocation:anInvocation];
-    id value = [anInvocationCapturer.userInfo objectForKey:StubValueKey];
-    if (![anInvocationCapturer.userInfo objectForKey:StubSecondValueKey]) {
+    id value = (anInvocationCapturer.userInfo)[StubValueKey];
+    if (!(anInvocationCapturer.userInfo)[StubSecondValueKey]) {
         [self stubMessagePattern:messagePattern andReturn:value];
     } else {
-        id times = [anInvocationCapturer.userInfo objectForKey:ChangeStubValueAfterTimesKey];
-        id secondValue = [anInvocationCapturer.userInfo objectForKey:StubSecondValueKey];
+        id times = (anInvocationCapturer.userInfo)[ChangeStubValueAfterTimesKey];
+        id secondValue = (anInvocationCapturer.userInfo)[StubSecondValueKey];
         [self stubMessagePattern:messagePattern andReturn:value times:times afterThatReturn:secondValue];
     }
 }
@@ -75,12 +75,12 @@ static NSString * const ChangeStubValueAfterTimesKey = @"ChangeStubValueAfterTim
 }
 
 - (id)stubAndReturn:(id)aValue {
-    NSDictionary *userInfo = [NSDictionary dictionaryWithObject:aValue forKey:StubValueKey];
+    NSDictionary *userInfo = @{StubValueKey: aValue};
     return [KWInvocationCapturer invocationCapturerWithDelegate:self userInfo:userInfo];
 }
 
 - (id)stubAndReturn:(id)aValue times:(id)times afterThatReturn:(id)aSecondValue {
-    NSDictionary *userInfo = [NSDictionary dictionaryWithObjectsAndKeys: aValue, StubValueKey, times, ChangeStubValueAfterTimesKey, aSecondValue, StubSecondValueKey, nil];
+    NSDictionary *userInfo = @{StubValueKey: aValue, ChangeStubValueAfterTimesKey: times, StubSecondValueKey: aSecondValue};
     return [KWInvocationCapturer invocationCapturerWithDelegate:self userInfo:userInfo];
 }
 
