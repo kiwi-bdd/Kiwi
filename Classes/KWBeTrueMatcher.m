@@ -26,7 +26,7 @@
 #pragma mark Getting Matcher Strings
 
 + (NSArray *)matcherStrings {
-    return [NSArray arrayWithObjects:@"beTrue", @"beFalse", @"beYes", @"beNo", nil];
+    return @[@"beTrue", @"beFalse", @"beYes", @"beNo"];
 }
 
 #pragma mark -

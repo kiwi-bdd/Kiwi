@@ -37,10 +37,10 @@
 #pragma mark Getting Matcher Strings
 
 + (NSArray *)matcherStrings {
-    return [NSArray arrayWithObjects:@"beLessThan:",
+    return @[@"beLessThan:",
                                      @"beLessThanOrEqualTo:",
                                      @"beGreaterThan:",
-                                     @"beGreaterThanOrEqualTo:", nil];
+                                     @"beGreaterThanOrEqualTo:"];
 }
 
 #pragma mark -

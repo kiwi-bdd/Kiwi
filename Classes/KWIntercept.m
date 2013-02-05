@@ -175,11 +175,11 @@ Class KWRestoreOriginalClass(id anObject) {
 
 void KWInterceptedForwardInvocation(id anObject, SEL aSelector, NSInvocation* anInvocation) {
     NSValue *key = [NSValue valueWithNonretainedObject:anObject];
-    NSMutableDictionary *spyArrayDictionary = [KWMessageSpies objectForKey:key];
+    NSMutableDictionary *spyArrayDictionary = KWMessageSpies[key];
 
     for (KWMessagePattern *messagePattern in spyArrayDictionary) {
         if ([messagePattern matchesInvocation:anInvocation]) {
-            NSArray *spies = [spyArrayDictionary objectForKey:messagePattern];
+            NSArray *spies = spyArrayDictionary[messagePattern];
 
             for (NSValue *spyWrapper in spies) {
                 id<KWMessageSpying> spy = [spyWrapper nonretainedObjectValue];
@@ -188,7 +188,7 @@ void KWInterceptedForwardInvocation(id anObject, SEL aSelector, NSInvocation* an
         }
     }
 
-    NSMutableArray *stubs = [KWObjectStubs objectForKey:key];
+    NSMutableArray *stubs = KWObjectStubs[key];
 
     for (KWStub *stub in stubs) {
         if ([stub processInvocation:anInvocation])
@@ -240,18 +240,18 @@ void KWAssociateObjectStub(id anObject, KWStub *aStub) {
         KWObjectStubs = [[NSMutableDictionary alloc] init];
 
     NSValue *key = [NSValue valueWithNonretainedObject:anObject];
-    NSMutableArray *stubs = [KWObjectStubs objectForKey:key];
+    NSMutableArray *stubs = KWObjectStubs[key];
 
     if (stubs == nil) {
         stubs = [[NSMutableArray alloc] init];
-        [KWObjectStubs setObject:stubs forKey:key];
+        KWObjectStubs[key] = stubs;
         [stubs release];
     }
 
     NSUInteger stubCount = [stubs count];
 
     for (NSUInteger i = 0; i < stubCount; ++i) {
-        KWStub *existingStub = [stubs objectAtIndex:i];
+        KWStub *existingStub = stubs[i];
 
         if ([aStub.messagePattern isEqualToMessagePattern:existingStub.messagePattern]) {
             [stubs removeObjectAtIndex:i];
@@ -287,19 +287,19 @@ void KWAssociateMessageSpy(id anObject, id aSpy, KWMessagePattern *aMessagePatte
         KWMessageSpies = [[NSMutableDictionary alloc] init];
 
     NSValue *key = [NSValue valueWithNonretainedObject:anObject];
-    NSMutableDictionary *spies = [KWMessageSpies objectForKey:key];
+    NSMutableDictionary *spies = KWMessageSpies[key];
 
     if (spies == nil) {
         spies = [[NSMutableDictionary alloc] init];
-        [KWMessageSpies setObject:spies forKey:key];
+        KWMessageSpies[key] = spies;
         [spies release];
     }
 
-    NSMutableArray *messagePatternSpies = [spies objectForKey:aMessagePattern];
+    NSMutableArray *messagePatternSpies = spies[aMessagePattern];
 
     if (messagePatternSpies == nil) {
         messagePatternSpies = [[NSMutableArray alloc] init];
-        [spies setObject:messagePatternSpies forKey:aMessagePattern];
+        spies[aMessagePattern] = messagePatternSpies;
         [messagePatternSpies release];
     }
 
@@ -313,8 +313,8 @@ void KWAssociateMessageSpy(id anObject, id aSpy, KWMessagePattern *aMessagePatte
 
 void KWClearObjectSpy(id anObject, id aSpy, KWMessagePattern *aMessagePattern) {
     NSValue *key = [NSValue valueWithNonretainedObject:anObject];
-    NSMutableDictionary *spyArrayDictionary = [KWMessageSpies objectForKey:key];
-    NSMutableArray *spies = [spyArrayDictionary objectForKey:aMessagePattern];
+    NSMutableDictionary *spyArrayDictionary = KWMessageSpies[key];
+    NSMutableArray *spies = spyArrayDictionary[aMessagePattern];
     NSValue *spyWrapper = [NSValue valueWithNonretainedObject:aSpy];
     [spies removeObject:spyWrapper];
 }

@@ -14,7 +14,7 @@
 #pragma mark Getting Matcher Strings
 
 + (NSArray *)matcherStrings {
-    return [NSArray arrayWithObject:@"beZero"];
+    return @[@"beZero"];
 }
 
 #pragma mark -
@@ -24,7 +24,7 @@
     if (![self.subject respondsToSelector:@selector(boolValue)])
         [NSException raise:@"KWMatcherException" format:@"subject does not respond to -numberValue"];
 
-    return [[self.subject numberValue] isEqualToNumber:[NSNumber numberWithInt:0]];
+    return [[self.subject numberValue] isEqualToNumber:@0];
 }
 
 #pragma mark -

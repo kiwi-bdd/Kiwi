@@ -18,10 +18,10 @@
 
 - (void)testItShouldHaveTheRightMatcherStrings {
     NSArray *matcherStrings = [KWInequalityMatcher matcherStrings];
-    NSArray *expectedStrings = [NSArray arrayWithObjects:@"beLessThan:",
+    NSArray *expectedStrings = @[@"beLessThan:",
                                                          @"beLessThanOrEqualTo:",
                                                          @"beGreaterThan:",
-                                                         @"beGreaterThanOrEqualTo:", nil];
+                                                         @"beGreaterThanOrEqualTo:"];
     STAssertEqualObjects([matcherStrings sortedArrayUsingSelector:@selector(compare:)],
                          [expectedStrings sortedArrayUsingSelector:@selector(compare:)],
                          @"expected specific matcher strings");

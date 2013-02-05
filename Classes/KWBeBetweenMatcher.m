@@ -38,7 +38,7 @@
 #pragma mark Getting Matcher Strings
 
 + (NSArray *)matcherStrings {
-    return [NSArray arrayWithObjects:@"beBetween:and:", @"beInTheIntervalFrom:to:", nil];
+    return @[@"beBetween:and:", @"beInTheIntervalFrom:to:"];
 }
 
 #pragma mark -

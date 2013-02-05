@@ -36,7 +36,7 @@
 #pragma mark Getting Matcher Strings
 
 + (NSArray *)matcherStrings {
-    return [NSArray arrayWithObjects:@"equal:", nil];
+    return @[@"equal:"];
 }
 
 #pragma mark -

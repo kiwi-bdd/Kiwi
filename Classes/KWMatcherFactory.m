@@ -50,11 +50,11 @@
     [registeredMatcherClasses addObject:aClass];
 
     for (NSString *verificationSelectorString in [aClass matcherStrings]) {
-        NSMutableArray *matcherClassChain = [matcherClassChains objectForKey:verificationSelectorString];
+        NSMutableArray *matcherClassChain = matcherClassChains[verificationSelectorString];
 
         if (matcherClassChain == nil) {
             matcherClassChain = [[NSMutableArray alloc] init];
-            [matcherClassChains setObject:matcherClassChain forKey:verificationSelectorString];
+            matcherClassChains[verificationSelectorString] = matcherClassChain;
             [matcherClassChain release];
         }
 
@@ -113,12 +113,12 @@
 #pragma mark Getting Method Signatures
 
 - (NSMethodSignature *)methodSignatureForMatcherSelector:(SEL)aSelector {
-    NSMutableArray *matcherClassChain = [matcherClassChains objectForKey:NSStringFromSelector(aSelector)];
+    NSMutableArray *matcherClassChain = matcherClassChains[NSStringFromSelector(aSelector)];
 
     if ([matcherClassChain count] == 0)
         return nil;
 
-    Class matcherClass = [matcherClassChain objectAtIndex:0];
+    Class matcherClass = matcherClassChain[0];
     return [matcherClass instanceMethodSignatureForSelector:aSelector];
 }
 
@@ -142,7 +142,7 @@
 #pragma mark Private methods
 
 - (Class)matcherClassForSelector:(SEL)aSelector subject:(id)anObject {
-    NSArray *matcherClassChain = [matcherClassChains objectForKey:NSStringFromSelector(aSelector)];
+    NSArray *matcherClassChain = matcherClassChains[NSStringFromSelector(aSelector)];
 
     for (Class matcherClass in matcherClassChain) {
         if ([matcherClass canMatchSubject:anObject])

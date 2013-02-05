@@ -67,7 +67,7 @@
 }
 
 - (KWFailure *)onlyFailure {
-    return [self.failures objectAtIndex:0];
+    return (self.failures)[0];
 }
 
 @end

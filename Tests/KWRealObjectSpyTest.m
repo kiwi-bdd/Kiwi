@@ -44,7 +44,7 @@
     TestSpy *spy1 = [TestSpy testSpy];
     TestSpy *spy2 = [TestSpy testSpy];
     KWMessagePattern *messagePattern1 = [KWMessagePattern messagePatternWithSelector:@selector(energyLevelInWarpCore:)];
-    NSArray *argumentFilters = [NSArray arrayWithObject:[KWValue valueWithUnsignedInt:2]];
+    NSArray *argumentFilters = @[[KWValue valueWithUnsignedInt:2]];
     KWMessagePattern *messagePattern2 = [KWMessagePattern messagePatternWithSelector:@selector(energyLevelInWarpCore:) argumentFilters:argumentFilters];
 
     [cruiser addMessageSpy:spy1 forMessagePattern:messagePattern1];
