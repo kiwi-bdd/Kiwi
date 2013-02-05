@@ -18,7 +18,7 @@
 
 - (void)testItShouldHaveTheRightMatcherStrings {
     NSArray *matcherStrings = [KWContainMatcher matcherStrings];
-    NSArray *expectedStrings = [NSArray arrayWithObjects:@"contain:", @"containObjectsInArray:", nil];
+    NSArray *expectedStrings = @[@"contain:", @"containObjectsInArray:"];
     STAssertEqualObjects([matcherStrings sortedArrayUsingSelector:@selector(compare:)],
                          [expectedStrings sortedArrayUsingSelector:@selector(compare:)],
                          @"expected specific matcher strings");
@@ -32,30 +32,30 @@
 }
 
 - (void)testItShouldMatchContainedElements {
-    id subject = [NSArray arrayWithObjects:@"dog", @"cat", @"tiger", @"liger", nil];
+    id subject = @[@"dog", @"cat", @"tiger", @"liger"];
     id matcher = [KWContainMatcher matcherWithSubject:subject];
     [matcher contain:@"liger"];
     STAssertTrue([matcher evaluate], @"expected positive match");
 }
 
 - (void)testitShouldNotMatchNonContainedElements {
-    id subject = [NSArray arrayWithObjects:@"dog", @"cat", @"tiger", @"liger", nil];
+    id subject = @[@"dog", @"cat", @"tiger", @"liger"];
     id matcher = [KWContainMatcher matcherWithSubject:subject];
     [matcher contain:@"lion"];
     STAssertFalse([matcher evaluate], @"expected negative match");
 }
 
 - (void)testItShouldMatchContainedArrayObjects {
-    id subject = [NSArray arrayWithObjects:@"dog", @"cat", @"tiger", @"liger", nil];
-    id objects = [NSArray arrayWithObjects:@"cat", @"liger", nil];
+    id subject = @[@"dog", @"cat", @"tiger", @"liger"];
+    id objects = @[@"cat", @"liger"];
     id matcher = [KWContainMatcher matcherWithSubject:subject];
     [matcher containObjectsInArray:objects];
     STAssertTrue([matcher evaluate], @"expected positive match");
 }
 
 - (void)testItShouldNotMatchNonContainedArrayObjects {
-    id subject = [NSArray arrayWithObjects:@"dog", @"cat", @"tiger", @"liger", nil];
-    id objects = [NSArray arrayWithObjects:@"cat", @"lion", nil];
+    id subject = @[@"dog", @"cat", @"tiger", @"liger"];
+    id objects = @[@"cat", @"lion"];
     id matcher = [KWContainMatcher matcherWithSubject:subject];
     [matcher containObjectsInArray:objects];
     STAssertFalse([matcher evaluate], @"expected negative match");
@@ -63,7 +63,7 @@
 
 - (void)testItShouldMatchContainedElementsWithGenericMatcher
 {
-    id subject = [NSArray arrayWithObjects:@"dog", @"cat", @"tiger", @"liger", nil];
+    id subject = @[@"dog", @"cat", @"tiger", @"liger"];
     id matcher = [KWContainMatcher matcherWithSubject:subject];
     [matcher contain:hasPrefix(@"li")];
     STAssertTrue([matcher evaluate], @"expected positive match");
@@ -71,7 +71,7 @@
 
 - (void)testItShouldNotMatchContainedElementsWithGenericMatcher
 {
-    id subject = [NSArray arrayWithObjects:@"dog", @"cat", @"tiger", @"liger", nil];
+    id subject = @[@"dog", @"cat", @"tiger", @"liger"];
     id matcher = [KWContainMatcher matcherWithSubject:subject];
     [matcher contain:hasPrefix(@"ele")];
     STAssertFalse([matcher evaluate], @"expected negative match");
@@ -84,7 +84,7 @@
     [matcher contain:@"liger"];
     STAssertEqualObjects(@"contain \"liger\"", [matcher description], @"description should match");
 
-    [matcher containObjectsInArray:[NSArray arrayWithObjects:@"cat", @"lion", nil]];
+    [matcher containObjectsInArray:@[@"cat", @"lion"]];
     STAssertEqualObjects(@"contain all of (\"cat\", \"lion\")", [matcher description], @"description should match");
 
     [matcher contain:hasPrefix(@"ele")];

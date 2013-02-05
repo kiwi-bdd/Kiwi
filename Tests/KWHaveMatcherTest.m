@@ -19,40 +19,40 @@
 
 - (void)testItShouldHaveTheRightMatcherStrings {
     NSArray *matcherStrings = [KWHaveMatcher matcherStrings];
-    NSArray *expectedStrings = [NSArray arrayWithObjects:@"haveCountOf:",
+    NSArray *expectedStrings = @[@"haveCountOf:",
                                                          @"haveCountOfAtLeast:",
                                                          @"haveCountOfAtMost:",
                                                          @"have:itemsForInvocation:",
                                                          @"haveAtLeast:itemsForInvocation:",
-                                                         @"haveAtMost:itemsForInvocation:", nil];
+                                                         @"haveAtMost:itemsForInvocation:"];
     STAssertEqualObjects([matcherStrings sortedArrayUsingSelector:@selector(compare:)],
                          [expectedStrings sortedArrayUsingSelector:@selector(compare:)],
                          @"expected specific matcher strings");
 }
 
 - (void)testItShouldMatchExactCounts {
-    id subject = [NSArray arrayWithObjects:@"dog", @"cat", @"tiger", @"liger", nil];
+    id subject = @[@"dog", @"cat", @"tiger", @"liger"];
     id matcher = [KWHaveMatcher matcherWithSubject:subject];
     [matcher haveCountOf:4];
     STAssertTrue([matcher evaluate], @"expected positive match");
 }
 
 - (void)testItShouldNotMatchNonExactCounts {
-    id subject = [NSArray arrayWithObjects:@"dog", @"cat", @"tiger", @"liger", nil];
+    id subject = @[@"dog", @"cat", @"tiger", @"liger"];
     id matcher = [KWHaveMatcher matcherWithSubject:subject];
     [matcher haveCountOf:3];
     STAssertFalse([matcher evaluate], @"expected negative match");
 }
 
 - (void)testItShouldMatchAtLeastCounts {
-    id subject = [NSArray arrayWithObjects:@"dog", @"cat", @"tiger", @"liger", nil];
+    id subject = @[@"dog", @"cat", @"tiger", @"liger"];
     id matcher = [KWHaveMatcher matcherWithSubject:subject];
     [matcher haveCountOfAtLeast:3];
     STAssertTrue([matcher evaluate], @"expected positive match");
 }
 
 - (void)testItShouldMatchAtMostCounts {
-    id subject = [NSArray arrayWithObjects:@"dog", @"cat", @"tiger", @"liger", nil];
+    id subject = @[@"dog", @"cat", @"tiger", @"liger"];
     id matcher = [KWHaveMatcher matcherWithSubject:subject];
     [matcher haveCountOfAtMost:5];
     STAssertTrue([matcher evaluate], @"expected positive match");
@@ -60,9 +60,9 @@
 
 - (void)testItShouldMatchExactCountsForInvocation {
     id subject = [Cruiser cruiser];
-    [subject setFighters:[NSArray arrayWithObjects:[Fighter fighterWithCallsign:@"Viper 1"],
+    [subject setFighters:@[[Fighter fighterWithCallsign:@"Viper 1"],
                                                    [Fighter fighterWithCallsign:@"Viper 2"],
-                                                   [Fighter fighterWithCallsign:@"Viper 3"], nil]];
+                                                   [Fighter fighterWithCallsign:@"Viper 3"]]];
     NSInvocation *invocation = [NSInvocation invocationWithTarget:subject selector:@selector(fighters)];
     id matcher = [KWHaveMatcher matcherWithSubject:subject];
     [matcher have:3 itemsForInvocation:invocation];
@@ -71,9 +71,9 @@
 
 - (void)testItShouldMatchAtLeastCountsForInvocation {
     id subject = [Cruiser cruiser];
-    [subject setFighters:[NSArray arrayWithObjects:[Fighter fighterWithCallsign:@"Viper 1"],
+    [subject setFighters:@[[Fighter fighterWithCallsign:@"Viper 1"],
                                                    [Fighter fighterWithCallsign:@"Viper 2"],
-                                                   [Fighter fighterWithCallsign:@"Viper 3"], nil]];
+                                                   [Fighter fighterWithCallsign:@"Viper 3"]]];
     NSInvocation *invocation = [NSInvocation invocationWithTarget:subject selector:@selector(fighters)];
     id matcher = [KWHaveMatcher matcherWithSubject:subject];
     [matcher haveAtLeast:2 itemsForInvocation:invocation];
@@ -82,9 +82,9 @@
 
 - (void)testItShouldMatchAtMostCountsForInvocation {
     id subject = [Cruiser cruiser];
-    [subject setFighters:[NSArray arrayWithObjects:[Fighter fighterWithCallsign:@"Viper 1"],
+    [subject setFighters:@[[Fighter fighterWithCallsign:@"Viper 1"],
                                                    [Fighter fighterWithCallsign:@"Viper 2"],
-                                                   [Fighter fighterWithCallsign:@"Viper 3"], nil]];
+                                                   [Fighter fighterWithCallsign:@"Viper 3"]]];
     NSInvocation *invocation = [NSInvocation invocationWithTarget:subject selector:@selector(fighters)];
     id matcher = [KWHaveMatcher matcherWithSubject:subject];
     [matcher haveAtMost:4 itemsForInvocation:invocation];
@@ -125,9 +125,9 @@
     // invocation matchers
 
     id subject = [Cruiser cruiser];
-    [subject setFighters:[NSArray arrayWithObjects:[Fighter fighterWithCallsign:@"Viper 1"],
+    [subject setFighters:@[[Fighter fighterWithCallsign:@"Viper 1"],
                           [Fighter fighterWithCallsign:@"Viper 2"],
-                          [Fighter fighterWithCallsign:@"Viper 3"], nil]];
+                          [Fighter fighterWithCallsign:@"Viper 3"]]];
     NSInvocation *invocation = [NSInvocation invocationWithTarget:subject selector:@selector(fighters)];
 
     [matcher have:3 itemsForInvocation:invocation];

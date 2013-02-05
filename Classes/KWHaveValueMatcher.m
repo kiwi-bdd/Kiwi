@@ -40,10 +40,10 @@
 #pragma mark Getting Matcher Strings
 
 + (NSArray *)matcherStrings {
-  return [NSArray arrayWithObjects:@"haveValue:forKey:",
+  return @[@"haveValue:forKey:",
           @"haveValueForKey:",
           @"haveValue:forKeyPath:",
-          @"haveValueForKeyPath:", nil];
+          @"haveValueForKeyPath:"];
 }
 
 #pragma mark -

@@ -18,7 +18,7 @@
 
 - (void)testItShouldHaveTheRightMatcherStrings {
     NSArray *matcherStrings = [KWEqualMatcher matcherStrings];
-    NSArray *expectedStrings = [NSArray arrayWithObjects:@"equal:", nil];
+    NSArray *expectedStrings = @[@"equal:"];
     STAssertEqualObjects([matcherStrings sortedArrayUsingSelector:@selector(compare:)],
                          [expectedStrings sortedArrayUsingSelector:@selector(compare:)],
                          @"expected specific matcher strings");
@@ -47,14 +47,14 @@
 }
 
 - (void)testItShouldMatchNumberBoxedValuesWithKiwiBoxedValues {
-  id matcher = [KWEqualMatcher matcherWithSubject:[NSNumber numberWithInteger:123]];
+  id matcher = [KWEqualMatcher matcherWithSubject:@123];
   [matcher equal:theValue(123)];
   STAssertTrue([matcher evaluate], @"expected positive match");
 }
 
 - (void)testItShouldMatchKiwiBoxedValuesWithNumberBoxedValues {
   id matcher = [KWEqualMatcher matcherWithSubject:theValue(123)];
-  [matcher equal:[NSNumber numberWithInteger:123]];
+  [matcher equal:@123];
   STAssertTrue([matcher evaluate], @"expected positive match");
 }
 

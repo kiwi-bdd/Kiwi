@@ -26,7 +26,7 @@
 
 - (void)testShouldNotMatchItemIfItIsNotAString
 {
-  STAssertFalse([hasSubstring(@"sub") matches:[NSArray array]], @"Should match string with array");
+  STAssertFalse([hasSubstring(@"sub") matches:@[]], @"Should match string with array");
 }
 
 @end

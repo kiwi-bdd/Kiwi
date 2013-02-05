@@ -26,9 +26,9 @@
     KWMessagePattern *messagePattern = [self messagePatternWithSelector:@selector(dictionaryWithObjects:forKeys:count:) arguments:@"foo",
                                                                                                                                   nil,
                                                                                                                                   [KWValue valueWithUnsignedInt:1]];
-    STAssertEqualObjects([messagePattern.argumentFilters objectAtIndex:0], @"foo", @"expected matching argument");
-    STAssertEqualObjects([messagePattern.argumentFilters objectAtIndex:1], [KWNull null], @"expected matching argument");
-    STAssertEqualObjects([messagePattern.argumentFilters objectAtIndex:2], [KWValue valueWithUnsignedInt:1], @"expected matching argument");
+    STAssertEqualObjects((messagePattern.argumentFilters)[0], @"foo", @"expected matching argument");
+    STAssertEqualObjects((messagePattern.argumentFilters)[1], [KWNull null], @"expected matching argument");
+    STAssertEqualObjects((messagePattern.argumentFilters)[2], [KWValue valueWithUnsignedInt:1], @"expected matching argument");
 }
 
 - (void)testItShouldMatchInvocationsWithNilArguments {
@@ -97,7 +97,7 @@
 
 - (void)testItShouldCompareMessagePatternsWithNilAndNonNilArgumentFilters {
     KWMessagePattern *messagePattern1 = [KWMessagePattern messagePatternWithSelector:@selector(foobar:)];
-    NSArray *argumentFilters = [NSArray arrayWithObject:[KWValue valueWithUnsignedInt:42]];
+    NSArray *argumentFilters = @[[KWValue valueWithUnsignedInt:42]];
     KWMessagePattern *messagePattern2 = [KWMessagePattern messagePatternWithSelector:@selector(foobar:) argumentFilters:argumentFilters];
     STAssertFalse([messagePattern1 isEqual:messagePattern2], @"expected message patterns to compare as not equal");
     STAssertFalse([messagePattern2 isEqual:messagePattern1], @"expected message patterns to compare as not equal");

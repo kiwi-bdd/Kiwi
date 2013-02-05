@@ -131,7 +131,7 @@
         }
 
         // Match argument filter to object
-        id argumentFilter = [self.argumentFilters objectAtIndex:i];
+        id argumentFilter = (self.argumentFilters)[i];
 
         if ([argumentFilter isEqual:[KWAny any]]) {
             continue;
@@ -204,8 +204,8 @@
     NSUInteger count = [components count] - 1;
 
     for (NSUInteger i = 0; i < count; ++i) {
-        NSString *selectorComponent = [components objectAtIndex:i];
-        NSString *argumentFilterString = [KWFormatter formatObject:[self.argumentFilters objectAtIndex:i]];
+        NSString *selectorComponent = components[i];
+        NSString *argumentFilterString = [KWFormatter formatObject:(self.argumentFilters)[i]];
         [description appendFormat:@"%@:%@ ", selectorComponent, argumentFilterString];
     }
 

@@ -15,7 +15,7 @@
 #pragma mark Getting Matcher Strings
 
 + (NSArray *)matcherStrings {
-  return [NSArray arrayWithObjects:@"beNonNil", nil];
+  return @[@"beNonNil"];
 }
 
 #pragma mark -

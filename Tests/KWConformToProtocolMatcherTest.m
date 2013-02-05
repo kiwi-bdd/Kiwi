@@ -18,7 +18,7 @@
 
 - (void)testItShouldHaveTheRightMatcherStrings {
     NSArray *matcherStrings = [KWConformToProtocolMatcher matcherStrings];
-    NSArray *expectedStrings = [NSArray arrayWithObject:@"conformToProtocol:"];
+    NSArray *expectedStrings = @[@"conformToProtocol:"];
     STAssertEqualObjects([matcherStrings sortedArrayUsingSelector:@selector(compare:)],
                          [expectedStrings sortedArrayUsingSelector:@selector(compare:)],
                          @"expected specific matcher strings");

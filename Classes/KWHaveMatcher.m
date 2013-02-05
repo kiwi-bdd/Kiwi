@@ -48,12 +48,12 @@ static NSString * const CountKey = @"CountKey";
 #pragma mark Getting Matcher Strings
 
 + (NSArray *)matcherStrings {
-    return [NSArray arrayWithObjects:@"haveCountOf:",
+    return @[@"haveCountOf:",
                                      @"haveCountOfAtLeast:",
                                      @"haveCountOfAtMost:",
                                      @"have:itemsForInvocation:",
                                      @"haveAtLeast:itemsForInvocation:",
-                                     @"haveAtMost:itemsForInvocation:", nil];
+                                     @"haveAtMost:itemsForInvocation:"];
 }
 
 #pragma mark -
@@ -199,7 +199,7 @@ static NSString * const CountKey = @"CountKey";
 #pragma mark Capturing Invocations
 
 + (NSMethodSignature *)invocationCapturer:(KWInvocationCapturer *)anInvocationCapturer methodSignatureForSelector:(SEL)aSelector {
-    KWMatchVerifier *verifier = [anInvocationCapturer.userInfo objectForKey:MatchVerifierKey];
+    KWMatchVerifier *verifier = (anInvocationCapturer.userInfo)[MatchVerifierKey];
 
     if ([verifier.subject respondsToSelector:aSelector])
         return [verifier.subject methodSignatureForSelector:aSelector];
@@ -212,9 +212,9 @@ static NSString * const CountKey = @"CountKey";
 
 + (void)invocationCapturer:(KWInvocationCapturer *)anInvocationCapturer didCaptureInvocation:(NSInvocation *)anInvocation {
     NSDictionary *userInfo = anInvocationCapturer.userInfo;
-    id verifier = [userInfo objectForKey:MatchVerifierKey];
-    KWCountType countType = [[userInfo objectForKey:CountTypeKey] unsignedIntegerValue];
-    NSUInteger count = [[userInfo objectForKey:CountKey] unsignedIntegerValue];
+    id verifier = userInfo[MatchVerifierKey];
+    KWCountType countType = [userInfo[CountTypeKey] unsignedIntegerValue];
+    NSUInteger count = [userInfo[CountKey] unsignedIntegerValue];
 
     switch (countType) {
         case KWCountTypeExact:
@@ -239,9 +239,9 @@ static NSString * const CountKey = @"CountKey";
 #pragma mark Invocation Capturing Methods
 
 - (NSDictionary *)userInfoForHaveMatcherWithCountType:(KWCountType)aCountType count:(NSUInteger)aCount {
-    return [NSDictionary dictionaryWithObjectsAndKeys:self, MatchVerifierKey,
-                                                      [NSNumber numberWithUnsignedInteger:aCountType], CountTypeKey,
-                                                      [NSNumber numberWithUnsignedInteger:aCount], CountKey, nil];
+    return @{MatchVerifierKey: self,
+                                                      CountTypeKey: @(aCountType),
+                                                      CountKey: @(aCount)};
 }
 
 - (id)have:(NSUInteger)aCount {

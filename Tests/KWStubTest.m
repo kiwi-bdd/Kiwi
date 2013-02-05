@@ -32,7 +32,7 @@
 
 - (void)testItShouldNotProcessNonMatchedInvocations {
     id subject = [Cruiser cruiser];
-    id argumentFilters = [NSArray arrayWithObject:[KWValue valueWithUnsignedInt:15]];
+    id argumentFilters = @[[KWValue valueWithUnsignedInt:15]];
     KWMessagePattern *messagePattern = [KWMessagePattern messagePatternWithSelector:@selector(energyLevelInWarpCore:) argumentFilters:argumentFilters];
     id stub = [KWStub stubWithMessagePattern:messagePattern value:[KWValue valueWithFloat:13.0f]];
     NSUInteger index = 17;
