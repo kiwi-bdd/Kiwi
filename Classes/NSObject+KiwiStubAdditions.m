@@ -51,6 +51,11 @@ static NSString * const ChangeStubValueAfterTimesKey = @"ChangeStubValueAfterTim
     [self stubMessagePattern:messagePattern andReturn:nil];
 }
 
+- (void)stub:(SEL)aSelector withBlock:(id (^)(NSArray *))block {
+    KWMessagePattern *messagePattern = [KWMessagePattern messagePatternWithSelector:aSelector];
+    [self stubMessagePattern:messagePattern withBlock:block];
+}
+
 - (void)stub:(SEL)aSelector withArguments:(id)firstArgument, ... {
     va_list argumentList;
     va_start(argumentList, firstArgument);
@@ -93,6 +98,18 @@ static NSString * const ChangeStubValueAfterTimesKey = @"ChangeStubValueAfterTim
     Class interceptClass = KWSetupObjectInterceptSupport(self);
     KWSetupMethodInterceptSupport(interceptClass, aMessagePattern.selector);
     KWStub *stub = [KWStub stubWithMessagePattern:aMessagePattern value:aValue];
+    KWAssociateObjectStub(self, stub);
+}
+
+- (void)stubMessagePattern:(KWMessagePattern *)aMessagePattern withBlock:(id (^)(NSArray *params))block {
+    if ([self methodSignatureForSelector:aMessagePattern.selector] == nil) {
+        [NSException raise:@"KWStubException" format:@"cannot stub -%@ because no such method exists",
+         NSStringFromSelector(aMessagePattern.selector)];
+    }
+    
+    Class interceptClass = KWSetupObjectInterceptSupport(self);
+    KWSetupMethodInterceptSupport(interceptClass, aMessagePattern.selector);
+    KWStub *stub = [KWStub stubWithMessagePattern:aMessagePattern block:block];
     KWAssociateObjectStub(self, stub);
 }
 

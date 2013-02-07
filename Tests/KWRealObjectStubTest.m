@@ -168,6 +168,14 @@
     STAssertThrows([cruiser captureArgument:@selector(foo) atIndex:0], @"expected to throw exception");
 }
 
+- (void)testItShouldStubWithBlock {
+    Cruiser *cruiser = [Cruiser cruiser];
+    [cruiser stub:@selector(classification) withBlock:^id(NSArray *params) {
+        return @"Enterprise";
+    }];
+    STAssertEquals([cruiser classification], @"Enterprise", @"expected method to be stubbed with block");
+}
+
 @end
 
 #endif // #if KW_TESTS_ENABLED
