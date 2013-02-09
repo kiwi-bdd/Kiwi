@@ -51,7 +51,7 @@
     return YES;
 }
 
-+ (BOOL)genericMatcher:(id)matcher matches:(id)object
++ (BOOL)genericMatcher:(id)matcher matches:(__unsafe_unretained id)object
 {
     NSString *targetEncoding = KWEncodingWithObjCTypes(@encode(BOOL), @encode(id), @encode(SEL), @encode(id), nil);
     NSMethodSignature *signature = [NSMethodSignature signatureWithObjCTypes:[targetEncoding UTF8String]];

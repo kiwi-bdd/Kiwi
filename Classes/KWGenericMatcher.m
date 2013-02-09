@@ -14,7 +14,7 @@
 #pragma mark -
 #pragma mark Properties
 
-@property (nonatomic, retain) id matcher;
+@property (nonatomic, strong) id matcher;
 
 @end
 
@@ -22,11 +22,6 @@
 
 @synthesize matcher;
 
-- (void)dealloc
-{
-  [matcher release];
-  [super dealloc];
-}
 
 #pragma mark -
 #pragma mark Matching

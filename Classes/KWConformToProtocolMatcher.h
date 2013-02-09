@@ -9,7 +9,7 @@
 
 @interface KWConformToProtocolMatcher : KWMatcher {
 @private
-    Protocol *protocol;
+    Protocol *__unsafe_unretained protocol;
 }
 
 #pragma mark -

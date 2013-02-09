@@ -11,7 +11,7 @@
 #pragma mark -
 #pragma mark Properties
 
-@property (nonatomic, readonly, assign) KWVoidBlock block;
+@property (nonatomic, readonly, unsafe_unretained) KWVoidBlock block;
 
 @end
 
@@ -22,20 +22,16 @@
 
 - (id)initWithBlock:(KWVoidBlock)aBlock {
     if ((self = [super init])) {
-        block = Block_copy(aBlock);
+        block = [aBlock copy];
     }
 
     return self;
 }
 
 + (id)blockWithBlock:(KWVoidBlock)aBlock {
-    return [[[self alloc] initWithBlock:aBlock] autorelease];
+    return [[self alloc] initWithBlock:aBlock];
 }
 
-- (void)dealloc {
-    Block_release(block);
-    [super dealloc];
-}
 
 #pragma mark -
 #pragma mark Properties

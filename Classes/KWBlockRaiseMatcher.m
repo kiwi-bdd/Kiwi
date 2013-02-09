@@ -12,8 +12,8 @@
 #pragma mark -
 #pragma mark Properties
 
-@property (nonatomic, readwrite, retain) NSException *exception;
-@property (nonatomic, readwrite, retain) NSException *actualException;
+@property (nonatomic, readwrite, strong) NSException *exception;
+@property (nonatomic, readwrite, strong) NSException *actualException;
 
 @end
 
@@ -22,11 +22,6 @@
 #pragma mark -
 #pragma mark Initializing
 
-- (void)dealloc {
-    [exception release];
-    [actualException release];
-    [super dealloc];
-}
 
 #pragma mark -
 #pragma mark Properties

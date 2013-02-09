@@ -10,7 +10,7 @@ typedef void (^KWVoidBlock)(void);
 
 @interface KWBlock : NSObject {
 @private
-    KWVoidBlock block;
+    KWVoidBlock __unsafe_unretained block;
 }
 
 #pragma mark -

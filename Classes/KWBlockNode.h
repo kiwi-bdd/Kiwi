@@ -13,7 +13,7 @@
 @private
     KWCallSite *callSite;
     NSString *description;
-    KWVoidBlock block;
+    KWVoidBlock __unsafe_unretained block;
 }
 
 #pragma mark -
@@ -34,7 +34,7 @@
 #pragma mark -
 #pragma mark Getting Blocks
 
-@property (nonatomic, readonly) KWVoidBlock block;
+@property (unsafe_unretained, nonatomic, readonly) KWVoidBlock block;
 
 #pragma mark -
 #pragma mark Performing blocks

@@ -11,36 +11,21 @@
 #pragma mark -
 #pragma mark Initializing
 
-static KWAny *sharedAny = nil;
 
 + (id)any {
-    if (sharedAny == nil) {
+    static KWAny *sharedAny = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
         sharedAny = [[super allocWithZone:nil] init];
-    }
-
+    });
     return sharedAny;
 }
 
 + (id)allocWithZone:(NSZone *)zone {
-    return [[self any] retain];
+    return [self any];
 }
 
 - (id)copyWithZone:(NSZone *)zone {
-    return self;
-}
-
-- (id)retain {
-    return self;
-}
-
-- (NSUInteger)retainCount {
-    return NSUIntegerMax;
-}
-
-- (oneway void)release {
-}
-
-- (id)autorelease {
     return self;
 }
 

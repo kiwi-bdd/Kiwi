@@ -5,6 +5,8 @@
 //
 
 #import "KWExistVerifier.h"
+
+#import "KWCallSite.h"
 #import "KWFailure.h"
 #import "KWFormatter.h"
 #import "KWReporting.h"
@@ -16,7 +18,7 @@
 
 @property (nonatomic, readonly) KWExpectationType expectationType;
 @property (nonatomic, readonly) KWCallSite *callSite;
-@property (nonatomic, readonly) id<KWReporting> reporter;
+@property (unsafe_unretained, nonatomic, readonly) id<KWReporting> reporter;
 
 @end
 
@@ -28,7 +30,7 @@
 - (id)initWithExpectationType:(KWExpectationType)anExpectationType callSite:(KWCallSite *)aCallSite reporter:(id<KWReporting>)aReporter {
     if ((self = [super init])) {
         expectationType = anExpectationType;
-        callSite = [aCallSite retain];
+        callSite = aCallSite;
         reporter = aReporter;
     }
 
@@ -36,14 +38,9 @@
 }
 
 + (id)existVerifierWithExpectationType:(KWExpectationType)anExpectationType callSite:(KWCallSite *)aCallSite reporter:(id<KWReporting>)aReporter {
-    return [[[self alloc] initWithExpectationType:anExpectationType callSite:aCallSite reporter:aReporter] autorelease];
+    return [[self alloc] initWithExpectationType:anExpectationType callSite:aCallSite reporter:aReporter];
 }
 
-- (void)dealloc {
-    [callSite release];
-    [subject release];
-    [super dealloc];
-}
 
 - (NSString *)descriptionForAnonymousItNode
 {

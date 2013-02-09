@@ -21,7 +21,7 @@ static NSString * const CountKey = @"CountKey";
 
 @property (nonatomic, readwrite) KWCountType countType;
 @property (nonatomic, readwrite) NSUInteger count;
-@property (nonatomic, readwrite, retain) NSInvocation *invocation;
+@property (nonatomic, readwrite, strong) NSInvocation *invocation;
 @property (nonatomic, readwrite) NSUInteger actualCount;
 
 @end
@@ -31,10 +31,6 @@ static NSString * const CountKey = @"CountKey";
 #pragma mark -
 #pragma mark Initializing
 
-- (void)dealloc {
-    [invocation release];
-    [super dealloc];
-}
 
 #pragma mark -
 #pragma mark Properties
@@ -71,7 +67,7 @@ static NSString * const CountKey = @"CountKey";
         if (!KWObjCTypeIsObject([signature methodReturnType]))
             [NSException raise:@"KWMatcherEception" format:@"a valid collection was not specified"];
 
-        id object = nil;
+        __unsafe_unretained id object = nil;
         [self.invocation invokeWithTarget:self.subject];
         [self.invocation getReturnValue:&object];
         return object;

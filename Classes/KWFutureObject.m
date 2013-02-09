@@ -18,7 +18,7 @@
 
 + (id)futureObjectWithBlock:(KWFutureObjectBlock)block;
 {
-  return [[[self alloc] initWithBlock:block] autorelease];
+  return [[self alloc] initWithBlock:block];
 }
 
 - (id)initWithBlock:(KWFutureObjectBlock)aBlock;
@@ -34,10 +34,5 @@
   return block();
 }
 
-- (void)dealloc
-{
-  [block release];
-  [super dealloc];
-}
 
 @end

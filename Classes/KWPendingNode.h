@@ -15,7 +15,7 @@
     KWCallSite *callSite;
     NSString *description;
 }
-@property (nonatomic, readonly, retain) KWContextNode *context;
+@property (nonatomic, readonly, strong) KWContextNode *context;
 
 #pragma mark -
 #pragma mark Initializing

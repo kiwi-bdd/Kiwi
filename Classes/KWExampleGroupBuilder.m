@@ -22,7 +22,7 @@
 #pragma mark -
 #pragma mark Building Example Groups
 
-@property (nonatomic, retain, readwrite) KWExampleSuite *exampleSuite;
+@property (nonatomic, strong, readwrite) KWExampleSuite *exampleSuite;
 @property (nonatomic, readonly) NSMutableArray *contextNodeStack;
 
 @end
@@ -35,7 +35,6 @@
 #pragma mark -
 #pragma mark Initializing
 
-static KWExampleGroupBuilder *sharedExampleGroupBuilder = nil;
 
 - (id)init {
     if ((self = [super init])) {
@@ -46,41 +45,21 @@ static KWExampleGroupBuilder *sharedExampleGroupBuilder = nil;
     return self;
 }
 
-- (void)dealloc {
-    [suites release];
-    [exampleSuite release];
-    [contextNodeStack release];
-    [super dealloc];
-}
 
 + (id)sharedExampleGroupBuilder {
-    if (sharedExampleGroupBuilder == nil) {
+    static KWExampleGroupBuilder *sharedExampleGroupBuilder = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
         sharedExampleGroupBuilder = [[super allocWithZone:nil] init];
-    }
-
+    });
     return sharedExampleGroupBuilder;
 }
 
 + (id)allocWithZone:(NSZone *)zone {
-    return [[self sharedExampleGroupBuilder] retain];
+    return [self sharedExampleGroupBuilder];
 }
 
 - (id)copyWithZone:(NSZone *)zone {
-    return self;
-}
-
-- (id)retain {
-    return self;
-}
-
-- (NSUInteger)retainCount {
-    return NSUIntegerMax;
-}
-
-- (oneway void)release {
-}
-
-- (id)autorelease {
     return self;
 }
 
@@ -97,7 +76,7 @@ static KWExampleGroupBuilder *sharedExampleGroupBuilder = nil;
 {
     KWContextNode *rootNode = [KWContextNode contextNodeWithCallSite:nil parentContext:nil description:nil];
    
-    self.exampleSuite = [[[KWExampleSuite alloc] initWithRootNode:rootNode] autorelease];
+    self.exampleSuite = [[KWExampleSuite alloc] initWithRootNode:rootNode];
     
     [suites addObject:self.exampleSuite];
 
@@ -181,7 +160,6 @@ static KWExampleGroupBuilder *sharedExampleGroupBuilder = nil;
     
     KWExample *example = [[KWExample alloc] initWithExampleNode:itNode];
     [self.exampleSuite addExample:example];
-    [example release];
 }
 
 - (void)addPendingNodeWithCallSite:(KWCallSite *)aCallSite description:(NSString *)aDescription {
@@ -194,7 +172,6 @@ static KWExampleGroupBuilder *sharedExampleGroupBuilder = nil;
     
     KWExample *example = [[KWExample alloc] initWithExampleNode:pendingNode];
     [self.exampleSuite addExample:example];
-    [example release];
 }
 
 @end

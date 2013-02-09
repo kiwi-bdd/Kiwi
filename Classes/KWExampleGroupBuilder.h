@@ -26,8 +26,8 @@
 #pragma mark Building Example Groups
 
 @property (nonatomic, readonly) BOOL isBuildingExampleGroup;
-@property (nonatomic, retain, readonly) KWExampleSuite *exampleSuite;
-@property (nonatomic, retain) KWExample *currentExample;
+@property (nonatomic, strong, readonly) KWExampleSuite *exampleSuite;
+@property (nonatomic, strong) KWExample *currentExample;
 
 - (KWExampleSuite *)buildExampleGroups:(void (^)(void))buildingBlock;
 - (KWExample *)currentExample;

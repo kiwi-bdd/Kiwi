@@ -19,7 +19,7 @@
 
 - (id)initWithDelegate:(id)aDelegate userInfo:(NSDictionary *)aUserInfo {
     delegate = aDelegate;
-    userInfo = [aUserInfo retain];
+    userInfo = aUserInfo;
     return self;
 }
 
@@ -28,13 +28,9 @@
 }
 
 + (id)invocationCapturerWithDelegate:(id)aDelegate userInfo:(NSDictionary *)aUserInfo {
-    return [[[self alloc] initWithDelegate:aDelegate userInfo:aUserInfo] autorelease];
+    return [[self alloc] initWithDelegate:aDelegate userInfo:aUserInfo];
 }
 
-- (void)dealloc {
-    [userInfo release];
-    [super dealloc];
-}
 
 #pragma mark -
 #pragma mark Properties

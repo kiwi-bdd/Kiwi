@@ -5,6 +5,8 @@
 //
 
 #import "KWMatchVerifier.h"
+
+#import "KWCallSite.h"
 #import "KWFailure.h"
 #import "KWFormatter.h"
 #import "KWInvocationCapturer.h"
@@ -20,8 +22,8 @@
 #pragma mark -
 #pragma mark Properties
 
-@property (nonatomic, readwrite, retain) id<KWMatching> endOfExampleMatcher;
-@property (nonatomic, readwrite, retain) id<KWMatching> matcher;
+@property (nonatomic, readwrite, strong) id<KWMatching> endOfExampleMatcher;
+@property (nonatomic, readwrite, strong) id<KWMatching> matcher;
 
 @end
 
@@ -43,7 +45,7 @@
 - (id)initWithExpectationType:(KWExpectationType)anExpectationType callSite:(KWCallSite *)aCallSite matcherFactory:(KWMatcherFactory *)aMatcherFactory reporter:(id<KWReporting>)aReporter {
     if ((self = [super init])) {
         expectationType = anExpectationType;
-        callSite = [aCallSite retain];
+        callSite = aCallSite;
         matcherFactory = aMatcherFactory;
         reporter = aReporter;
     }
@@ -52,16 +54,9 @@
 }
 
 + (id)matchVerifierWithExpectationType:(KWExpectationType)anExpectationType callSite:(KWCallSite *)aCallSite matcherFactory:(KWMatcherFactory *)aMatcherFactory reporter:(id<KWReporting>)aReporter {
-    return [[[self alloc] initWithExpectationType:anExpectationType callSite:aCallSite matcherFactory:aMatcherFactory reporter:aReporter] autorelease];
+    return [[self alloc] initWithExpectationType:anExpectationType callSite:aCallSite matcherFactory:aMatcherFactory reporter:aReporter];
 }
 
-- (void)dealloc {
-    [subject release];
-    [callSite release];
-    [matcher release];
-    [endOfExampleMatcher release];
-    [super dealloc];
-}
 
 - (NSString *)descriptionForAnonymousItNode
 {

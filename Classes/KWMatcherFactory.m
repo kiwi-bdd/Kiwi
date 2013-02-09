@@ -29,11 +29,6 @@
     return self;
 }
 
-- (void)dealloc {
-    [registeredMatcherClasses release];
-    [matcherClassChains release];
-    [super dealloc];
-}
 
 #pragma mark -
 #pragma mark Properties
@@ -55,7 +50,6 @@
         if (matcherClassChain == nil) {
             matcherClassChain = [[NSMutableArray alloc] init];
             matcherClassChains[verificationSelectorString] = matcherClassChain;
-            [matcherClassChain release];
         }
 
         [matcherClassChain removeObject:aClass];
@@ -70,7 +64,7 @@
     if (matcherClasses == nil) {
         matcherClasses = [[NSMutableArray alloc] init];
         int numberOfClasses = objc_getClassList(NULL, 0);
-        Class *classes = malloc(sizeof(Class) * numberOfClasses);
+        Class *classes = (__unsafe_unretained Class*)malloc(sizeof(Class) * numberOfClasses);
         numberOfClasses = objc_getClassList(classes, numberOfClasses);
 
         if (numberOfClasses == 0) {
@@ -135,7 +129,7 @@
         // see if we can match with a user-defined matcher instead
         return [[KWMatchers matchers] matcherForSelector:selector subject:subject];
     }
-    return [[[matcherClass alloc] initWithSubject:subject] autorelease];
+    return [[matcherClass alloc] initWithSubject:subject];
 }
 
 #pragma mark -

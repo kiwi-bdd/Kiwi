@@ -13,7 +13,7 @@
 #pragma mark -
 #pragma mark Properties
 
-@property (nonatomic, readwrite, retain) id otherSubject;
+@property (nonatomic, readwrite, strong) id otherSubject;
 
 @end
 
@@ -22,10 +22,6 @@
 #pragma mark -
 #pragma mark Initializing
 
-- (void)dealloc {
-    [otherSubject release];
-    [super dealloc];
-}
 
 #pragma mark -
 #pragma mark Properties

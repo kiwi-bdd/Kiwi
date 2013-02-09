@@ -13,7 +13,7 @@
 #pragma mark Properties
 
 @property (nonatomic, readwrite) KWInequalityType inequalityType;
-@property (nonatomic, readwrite, retain) id otherValue;
+@property (nonatomic, readwrite, strong) id otherValue;
 
 @end
 
@@ -22,10 +22,6 @@
 #pragma mark -
 #pragma mark Initializing
 
-- (void)dealloc {
-    [otherValue release];
-    [super dealloc];
-}
 
 #pragma mark -
 #pragma mark Properties

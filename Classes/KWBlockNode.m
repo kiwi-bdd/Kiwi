@@ -5,6 +5,7 @@
 //
 
 #import "KWBlockNode.h"
+#import "KWCallSite.h"
 
 @implementation KWBlockNode
 
@@ -15,25 +16,16 @@
 
 - (id)initWithCallSite:(KWCallSite *)aCallSite description:(NSString *)aDescription block:(KWVoidBlock)aBlock{
     if ((self = [super init])) {
-        callSite = [aCallSite retain];
+        callSite = aCallSite;
         _description = [aDescription copy];
 
         if (aBlock != nil)
-            block = Block_copy(aBlock);
+            block = [aBlock copy];
     }
 
     return self;
 }
 
-- (void)dealloc {
-    [callSite release];
-    [description release];
-
-    if (block != nil)
-        Block_release(block);
-
-    [super dealloc];
-}
 
 - (void)performBlock
 {

@@ -18,7 +18,7 @@
 
 + (id)matcherWithSubject:(id)aSubject block:(KWUserDefinedMatcherBlock)aBlock
 {
-    return [[[self alloc] initWithSubject:aSubject block:aBlock] autorelease];
+    return [[self alloc] initWithSubject:aSubject block:aBlock];
 }
 
 - (id)initWithSubject:(id)aSubject block:(KWUserDefinedMatcherBlock)aBlock
@@ -30,19 +30,13 @@
     return self;
 }
 
-- (void)dealloc
-{
-    [invocation release];
-    [matcherBlock release];
-    [super dealloc];
-}
 
 - (BOOL)evaluate
 {
     BOOL result;
 
     if (invocation.methodSignature.numberOfArguments == 3) {
-        id argument;
+        __unsafe_unretained id argument;
         [invocation getArgument:&argument atIndex:2];
         result = matcherBlock(self.subject, argument);
     } else {
@@ -53,8 +47,7 @@
 
 - (void)setSubject:(id)aSubject {
     if (aSubject != subject) {
-        [subject release];
-        subject = [aSubject retain];
+        subject = aSubject;
     }
 }
 
@@ -71,8 +64,7 @@
 
 - (void)forwardInvocation:(NSInvocation *)anInvocation
 {
-    [invocation autorelease];
-    invocation = [anInvocation retain];
+    invocation = anInvocation;
 }
 
 - (NSMethodSignature *)methodSignatureForSelector:(SEL)aSelector
@@ -109,7 +101,7 @@
 }
 
 + (id)builderForSelector:(SEL)aSelector {
-    return [[[self alloc] initWithSelector:aSelector] autorelease];
+    return [[self alloc] initWithSelector:aSelector];
 }
 
 - (id)initWithSelector:(SEL)aSelector {
@@ -120,12 +112,6 @@
     return self;
 }
 
-- (void)dealloc
-{
-    [matcher release];
-    [failureMessageForShouldBlock release];
-    [super dealloc];
-}
 
 - (NSString *)key {
     return NSStringFromSelector(matcher.selector);
@@ -139,18 +125,15 @@
 }
 
 - (void)failureMessageForShould:(KWUserDefinedMatcherMessageBlock)block {
-    [failureMessageForShouldBlock release];
     failureMessageForShouldBlock = [block copy];
 }
 
 - (void)failureMessageForShouldNot:(KWUserDefinedMatcherMessageBlock)block {
-    [failureMessageForShouldNotBlock release];
     failureMessageForShouldNotBlock = [block copy];
 }
 
 - (void)description:(NSString *)aDescription
 {
-    [description release];
     description = [aDescription copy];
 }
 

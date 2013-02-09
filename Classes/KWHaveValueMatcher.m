@@ -16,9 +16,9 @@
 #pragma mark -
 #pragma mark Properties
 
-@property (nonatomic, retain) NSString *expectedKey;
-@property (nonatomic, retain) NSString *expectedKeyPath;
-@property (nonatomic, retain) id expectedValue;
+@property (nonatomic, strong) NSString *expectedKey;
+@property (nonatomic, strong) NSString *expectedKeyPath;
+@property (nonatomic, strong) id expectedValue;
 
 - (id)subjectValue;
 
@@ -28,13 +28,6 @@
 
 @synthesize expectedKey, expectedKeyPath, expectedValue;
 
-- (void)dealloc
-{
-  [expectedKeyPath release];
-  [expectedKey release];
-  [expectedValue release];
-  [super dealloc];
-}
 
 #pragma mark -
 #pragma mark Getting Matcher Strings

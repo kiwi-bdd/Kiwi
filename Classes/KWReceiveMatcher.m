@@ -24,7 +24,7 @@ static NSString * const StubValueKey = @"StubValueKey";
 #pragma mark -
 #pragma mark Properties
 
-@property (nonatomic, readwrite, retain) KWMessageTracker *messageTracker;
+@property (nonatomic, readwrite, strong) KWMessageTracker *messageTracker;
 
 @end
 
@@ -41,10 +41,6 @@ static NSString * const StubValueKey = @"StubValueKey";
   return self;
 }
 
-- (void)dealloc {
-    [messageTracker release];
-    [super dealloc];
-}
 
 #pragma mark -
 #pragma mark Properties
