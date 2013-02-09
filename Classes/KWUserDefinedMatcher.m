@@ -10,11 +10,6 @@
 
 @implementation KWUserDefinedMatcher
 
-@synthesize selector;
-@synthesize failureMessageForShould;
-@synthesize failureMessageForShouldNot;
-@synthesize matcherBlock;
-@synthesize description;
 
 + (id)matcherWithSubject:(id)aSubject block:(KWUserDefinedMatcherBlock)aBlock
 {
@@ -24,8 +19,8 @@
 - (id)initWithSubject:(id)aSubject block:(KWUserDefinedMatcherBlock)aBlock
 {
     if ((self = [super initWithSubject:aSubject])) {
-        matcherBlock = [aBlock copy];
-        self.description = @"match user defined matcher";
+        _matcherBlock = [aBlock copy];
+        _description = @"match user defined matcher";
     }
     return self;
 }
@@ -38,9 +33,9 @@
     if (invocation.methodSignature.numberOfArguments == 3) {
         __unsafe_unretained id argument;
         [invocation getArgument:&argument atIndex:2];
-        result = matcherBlock(self.subject, argument);
+        result = self.matcherBlock(self.subject, argument);
     } else {
-        result = matcherBlock(self.subject);
+        result = self.matcherBlock(self.subject);
     }
     return result;
 }

@@ -13,16 +13,12 @@ typedef BOOL (^KWUserDefinedMatcherBlock)();
 
 @interface KWUserDefinedMatcher : KWMatcher
 {
-    KWUserDefinedMatcherBlock __unsafe_unretained matcherBlock;
-    SEL selector;
     NSInvocation *invocation;
-    NSString *failureMessageForShould;
-    NSString *failureMessageForShouldNot;
 }
 @property (nonatomic, assign) SEL selector;
 @property (nonatomic, copy) NSString *failureMessageForShould;
 @property (nonatomic, copy) NSString *failureMessageForShouldNot;
-@property (nonatomic, unsafe_unretained) KWUserDefinedMatcherBlock matcherBlock;
+@property (nonatomic, strong) KWUserDefinedMatcherBlock matcherBlock;
 @property (nonatomic, copy) NSString *description;
 
 + (id)matcherWithSubject:(id)aSubject block:(KWUserDefinedMatcherBlock)aBlock;

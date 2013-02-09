@@ -5,12 +5,13 @@
 //
 
 #import "KWStub.h"
+
 #import "KWMessagePattern.h"
 #import "KWObjCUtilities.h"
 #import "KWStringUtilities.h"
 #import "KWValue.h"
-
 #import "NSInvocation+OCMAdditions.h"
+#import "NSObject+ManualRetain.h"
 
 @implementation KWStub
 
@@ -160,7 +161,7 @@
         KWStringHasWordPrefix(selectorString, @"new") ||
         KWStringHasWord(selectorString, @"copy") ||
         KWStringHasWord(selectorString, @"Copy")) {
-        self.value;
+        [self.value manualRetain];
     }
 #endif
 }

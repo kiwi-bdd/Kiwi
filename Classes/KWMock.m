@@ -14,6 +14,7 @@
 #import "KWWorkarounds.h"
 #import "NSInvocation+KiwiAdditions.h"
 #import "KWCaptureSpy.h"
+#import "KWWeakPointer.h"
 
 static NSString * const ExpectOrStubTagKey = @"ExpectOrStubTagKey";
 static NSString * const StubTag = @"StubTag";
@@ -292,14 +293,14 @@ static NSString * const ChangeStubValueAfterTimesKey = @"ChangeStubValueAfterTim
         messagePatternSpies = [[NSMutableArray alloc] init];
         (self.messageSpies)[aMessagePattern] = messagePatternSpies;
     }
-    NSValue *spyWrapper = [NSValue valueWithNonretainedObject:aSpy];
+    KWWeakPointer *spyWrapper = [KWWeakPointer weakPointerToObject:aSpy];
 
     if (![messagePatternSpies containsObject:spyWrapper])
         [messagePatternSpies addObject:spyWrapper];
 }
 
 - (void)removeMessageSpy:(id<KWMessageSpying>)aSpy forMessagePattern:(KWMessagePattern *)aMessagePattern {
-    NSValue *spyWrapper = [NSValue valueWithNonretainedObject:aSpy];
+    KWWeakPointer *spyWrapper = [KWWeakPointer weakPointerToObject:aSpy];
     NSMutableArray *messagePatternSpies = (self.messageSpies)[aMessagePattern];
     [messagePatternSpies removeObject:spyWrapper];
 }
@@ -368,8 +369,8 @@ static NSString * const ChangeStubValueAfterTimesKey = @"ChangeStubValueAfterTim
         if ([messagePattern matchesInvocation:invocation]) {
             NSArray *spies = (self.messageSpies)[messagePattern];
 
-            for (NSValue *spyWrapper in spies) {
-                id spy = [spyWrapper nonretainedObjectValue];
+            for (KWWeakPointer *spyWrapper in spies) {
+                id spy = [spyWrapper object];
                 [spy object:self didReceiveInvocation:invocation];
             }
         }

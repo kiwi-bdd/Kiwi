@@ -11,7 +11,7 @@
 #pragma mark -
 #pragma mark Properties
 
-@property (nonatomic, readonly, unsafe_unretained) KWVoidBlock block;
+@property (nonatomic, strong, readonly) KWVoidBlock block;
 
 @end
 
@@ -22,7 +22,7 @@
 
 - (id)initWithBlock:(KWVoidBlock)aBlock {
     if ((self = [super init])) {
-        block = [aBlock copy];
+        _block = [aBlock copy];
     }
 
     return self;
@@ -32,17 +32,11 @@
     return [[self alloc] initWithBlock:aBlock];
 }
 
-
-#pragma mark -
-#pragma mark Properties
-
-@synthesize block;
-
 #pragma mark -
 #pragma mark Calling Blocks
 
 - (void)call {
-    block();
+    self.block();
 }
 
 @end
