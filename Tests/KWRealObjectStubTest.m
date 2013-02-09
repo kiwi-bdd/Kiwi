@@ -101,6 +101,17 @@
     STAssertEqualObjects([cruiser callsign], secondCallsign, @"expected method to be stubbed and change return value");
 }
 
+- (void)testItShouldSubstituteMethodImplementationWithBlock {
+    __block BOOL shieldsRaised = NO;
+    Cruiser *cruiser = [Cruiser cruiser];
+    [cruiser stub:@selector(raiseShields) withBlock:(id) ^(NSArray *params) {
+        shieldsRaised = YES;
+        return NO;
+    }];
+    [cruiser raiseShields];
+    STAssertEquals(shieldsRaised, YES, @"expected method implementation to be substituted");
+}
+
 - (void)testItShouldPreserveClassResultWhenInstanceMethodStubbed {
     id subject = [Cruiser cruiser];
     Class originalClass = [subject class];
