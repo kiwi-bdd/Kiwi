@@ -20,7 +20,6 @@
 - (void)stub:(SEL)aSelector withArguments:(id)firstArgument, ...;
 - (void)stub:(SEL)aSelector andReturn:(id)aValue;
 - (void)stub:(SEL)aSelector andReturn:(id)aValue withArguments:(id)firstArgument, ...;
-- (void)stub:(SEL)aSelector withBlock:(id (^)(NSArray *params))block;
 
 - (id)stub;
 - (id)stubAndReturn:(id)aValue;
