@@ -101,18 +101,6 @@ static NSString * const ChangeStubValueAfterTimesKey = @"ChangeStubValueAfterTim
     KWAssociateObjectStub(self, stub);
 }
 
-- (void)stubMessagePattern:(KWMessagePattern *)aMessagePattern withBlock:(id (^)(NSArray *params))block {
-    if ([self methodSignatureForSelector:aMessagePattern.selector] == nil) {
-        [NSException raise:@"KWStubException" format:@"cannot stub -%@ because no such method exists",
-         NSStringFromSelector(aMessagePattern.selector)];
-    }
-    
-    Class interceptClass = KWSetupObjectInterceptSupport(self);
-    KWSetupMethodInterceptSupport(interceptClass, aMessagePattern.selector);
-    KWStub *stub = [KWStub stubWithMessagePattern:aMessagePattern block:block];
-    KWAssociateObjectStub(self, stub);
-}
-
 - (void)stubMessagePattern:(KWMessagePattern *)aMessagePattern andReturn:(id)aValue times:(id)times afterThatReturn:(id)aSecondValue {   
     if ([self methodSignatureForSelector:aMessagePattern.selector] == nil) {
         [NSException raise:@"KWStubException" format:@"cannot stub -%@ because no such method exists",
@@ -122,6 +110,18 @@ static NSString * const ChangeStubValueAfterTimesKey = @"ChangeStubValueAfterTim
     Class interceptClass = KWSetupObjectInterceptSupport(self);
     KWSetupMethodInterceptSupport(interceptClass, aMessagePattern.selector);
     KWStub *stub = [KWStub stubWithMessagePattern:aMessagePattern value:aValue times:times afterThatReturn:aSecondValue];
+    KWAssociateObjectStub(self, stub);
+}
+
+- (void)stubMessagePattern:(KWMessagePattern *)aMessagePattern withBlock:(id (^)(NSArray *params))block {
+    if ([self methodSignatureForSelector:aMessagePattern.selector] == nil) {
+        [NSException raise:@"KWStubException" format:@"cannot stub -%@ because no such method exists",
+         NSStringFromSelector(aMessagePattern.selector)];
+    }
+    
+    Class interceptClass = KWSetupObjectInterceptSupport(self);
+    KWSetupMethodInterceptSupport(interceptClass, aMessagePattern.selector);
+    KWStub *stub = [KWStub stubWithMessagePattern:aMessagePattern block:block];
     KWAssociateObjectStub(self, stub);
 }
 
