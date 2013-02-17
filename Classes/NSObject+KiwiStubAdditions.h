@@ -16,6 +16,7 @@
 #pragma mark Stubbing Methods
 
 - (void)stub:(SEL)aSelector;
+- (void)stub:(SEL)aSelector withBlock:(id (^)(NSArray *params))block;
 - (void)stub:(SEL)aSelector withArguments:(id)firstArgument, ...;
 - (void)stub:(SEL)aSelector andReturn:(id)aValue;
 - (void)stub:(SEL)aSelector andReturn:(id)aValue withArguments:(id)firstArgument, ...;
@@ -26,6 +27,7 @@
 
 - (void)stubMessagePattern:(KWMessagePattern *)aMessagePattern andReturn:(id)aValue;
 - (void)stubMessagePattern:(KWMessagePattern *)aMessagePattern andReturn:(id)aValue times:(id)times afterThatReturn:(id)aSecondValue;
+- (void)stubMessagePattern:(KWMessagePattern *)aMessagePattern withBlock:(id (^)(NSArray *params))block;
 
 - (void)clearStubs;
 
