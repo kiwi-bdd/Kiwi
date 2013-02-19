@@ -29,6 +29,7 @@
     STAssertNotNil(mock, @"expected a mock object to be initialized");
     STAssertEqualObjects([mock mockedClass], mockedClass, @"expected the mockedClass property to be set");
     STAssertTrue([mock isNullMock], @"expected the isNullObject property to be set");
+    STAssertEqualObjects([mock mockName], @"Car mock", @"expected class mock to have the correct mockName");
 }
 
 - (void)testItShouldInitializeForAProtocolWithANameAsANullObject {
@@ -38,6 +39,7 @@
     STAssertNotNil(mock, @"expected a mock object to be initialized");
     STAssertEqualObjects([mock mockedProtocol], mockedProtocol, @"expected the mockedProtocol property to be set");
     STAssertTrue([mock isNullMock], @"expected the isNullObject property to be set");
+    STAssertEqualObjects([mock mockName], @"JumpCapable mock", @"expected class mock to have the correct mockName");
 }
 
 //- (void)testItShouldRaiseWhenReceivingUnexpectedMessageAsAMock {
@@ -54,6 +56,12 @@
     id mock = [Cruiser mock];
     [mock stub:@selector(raiseShields)];
     STAssertEquals([mock raiseShields], NO, @"expected method to be stubbed with the correct value");
+}
+
+- (void)testItShouldStubTheNameMethodOnAClassMock {
+    id mock = [Galaxy mock];
+    [[mock stubAndReturn:@"fake galaxy mockName"] name];
+    STAssertEqualObjects([mock name], @"fake galaxy mockName", @"expected mockName property to return the stub value");
 }
 
 - (void)testItShouldBeOkToStubOnSingletons {
