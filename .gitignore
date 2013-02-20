@@ -12,3 +12,6 @@ xcuserdata/
 *.perspectivev3
 *.pbxuser
 output
+
+# AppCode files
+.idea
