@@ -16,7 +16,7 @@
 @interface KWMock : NSObject {
 @private
     BOOL isNullMock;
-    NSString *name;
+    NSString *mockName;
     Class mockedClass;
     Protocol *__unsafe_unretained mockedProtocol;
     NSMutableArray *stubs;
@@ -51,7 +51,7 @@
 #pragma mark Properties
 
 @property (nonatomic, readonly) BOOL isNullMock;
-@property (nonatomic, readonly) NSString *name;
+@property (nonatomic, readonly) NSString *mockName;
 @property (nonatomic, readonly) Class mockedClass;
 @property (unsafe_unretained, nonatomic, readonly) Protocol *mockedProtocol;
 

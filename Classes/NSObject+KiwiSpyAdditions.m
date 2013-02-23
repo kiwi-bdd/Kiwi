@@ -6,11 +6,17 @@
 
 #import "NSObject+KiwiSpyAdditions.h"
 
+#import "KWCaptureSpy.h"
+#import "KWMessagePattern.h"
+#import "NSObject+KiwiStubAdditions.h"
+
 @implementation NSObject (KiwiSpyAdditions)
 
-- (KWCaptureSpy *)captureArgument:(SEL)selector atIndex:(NSUInteger)index
-{
-    @throw [NSException exceptionWithName:NSInternalInconsistencyException reason:@"captureArgument:atIndex: called on an object which is not a mock." userInfo:nil];
+- (KWCaptureSpy *)captureArgument:(SEL)selector atIndex:(NSUInteger)index {
+    KWCaptureSpy *spy = [[KWCaptureSpy alloc] initWithArgumentIndex:index];
+    KWMessagePattern *pattern = [[KWMessagePattern alloc] initWithSelector:selector];
+    [self addMessageSpy:spy forMessagePattern:pattern];
+    return spy;
 }
 
 @end

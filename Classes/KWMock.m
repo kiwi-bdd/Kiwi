@@ -104,7 +104,7 @@ static NSString * const ChangeStubValueAfterTimesKey = @"ChangeStubValueAfterTim
 - (id)initAsNullMock:(BOOL)nullMockFlag withName:(NSString *)aName forClass:(Class)aClass protocol:(Protocol *)aProtocol {
     if ((self = [super init])) {
         isNullMock = nullMockFlag;
-        name = [aName copy];
+        mockName = [aName copy];
         mockedClass = aClass;
         mockedProtocol = aProtocol;
         stubs = [[NSMutableArray alloc] init];
@@ -152,7 +152,7 @@ static NSString * const ChangeStubValueAfterTimesKey = @"ChangeStubValueAfterTim
 #pragma mark Properties
 
 @synthesize isNullMock;
-@synthesize name;
+@synthesize mockName;
 @synthesize mockedClass;
 @synthesize mockedProtocol;
 @synthesize stubs;
@@ -358,10 +358,10 @@ static NSString * const ChangeStubValueAfterTimesKey = @"ChangeStubValueAfterTim
 #pragma mark Handling Invocations
 
 - (NSString *)namePhrase {
-    if (self.name == nil)
+    if (self.mockName == nil)
         return @"mock";
     else
-        return [NSString stringWithFormat:@"mock \"%@\"", self.name];
+        return [NSString stringWithFormat:@"mock \"%@\"", self.mockName];
 }
 
 - (BOOL)processReceivedInvocation:(NSInvocation *)invocation {
