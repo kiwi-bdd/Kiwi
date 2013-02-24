@@ -38,7 +38,7 @@ void KWClearStubsAndSpies(void);
 #pragma mark -
 #pragma mark Managing Objects Stubs
 
-void KWAssociateObjectStub(id anObject, KWStub *aStub);
+void KWAssociateObjectStub(id anObject, KWStub *aStub, BOOL overrideExisting);
 void KWClearObjectStubs(id anObject);
 void KWClearAllObjectStubs(void);
 
