@@ -47,4 +47,5 @@ the license agreement found in __License.txt__.
 The [Kiwi Wiki](https://github.com/allending/Kiwi/wiki) is the official documentation source.
 
 # Getting it #
-The best way to get Kiwi is by cloning the git repository: `git clone git://github.com/allending/Kiwi.git`, build "Kiwi iOS" scheme and drag and drop the library to your project.
+The best way to get Kiwi is by using [CocoaPods](https://github.com/cocoapods/cocoapods). For all the installation details, check out the [Wiki](https://github.com/allending/kiwi/wiki)
+
