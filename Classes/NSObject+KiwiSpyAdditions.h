@@ -10,4 +10,5 @@
 
 @interface NSObject (KiwiSpyAdditions)
 - (KWCaptureSpy *)captureArgument:(SEL)selector atIndex:(NSUInteger)index;
++ (KWCaptureSpy *)captureArgument:(SEL)selector atIndex:(NSUInteger)index;
 @end

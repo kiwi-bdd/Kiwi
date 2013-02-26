@@ -285,12 +285,6 @@ static NSString * const ChangeStubValueAfterTimesKey = @"ChangeStubValueAfterTim
 #pragma mark -
 #pragma mark Spying on Messages
 
-- (KWCaptureSpy *)captureArgument:(SEL)selector atIndex:(NSUInteger)index {
-    KWCaptureSpy *spy = [[[KWCaptureSpy alloc] initWithArgumentIndex:index] autorelease];
-    [self addMessageSpy:spy forMessagePattern:[KWMessagePattern messagePatternWithSelector:selector]];
-    return  spy;
-}
-
 - (void)addMessageSpy:(id<KWMessageSpying>)aSpy forMessagePattern:(KWMessagePattern *)aMessagePattern {
     [self expectMessagePattern:aMessagePattern];
     NSMutableArray *messagePatternSpies = (self.messageSpies)[aMessagePattern];
