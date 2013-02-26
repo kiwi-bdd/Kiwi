@@ -19,4 +19,11 @@
     return spy;
 }
 
++ (KWCaptureSpy *)captureArgument:(SEL)selector atIndex:(NSUInteger)index {
+    KWCaptureSpy *spy = [[[KWCaptureSpy alloc] initWithArgumentIndex:index] autorelease];
+    KWMessagePattern *pattern = [[[KWMessagePattern alloc] initWithSelector:selector] autorelease];
+    [self addMessageSpy:spy forMessagePattern:pattern];
+    return spy;
+}
+
 @end
