@@ -150,7 +150,7 @@ void KWSetupMethodInterceptSupport(Class interceptClass, SEL aSelector) {
                                 : class_getInstanceMethod(interceptClass, aSelector);
 
     if (method == nil) {
-        [NSException raise:NSInvalidArgumentException format:@"cannot setup intercept support for -%@ because there is no such method exists",
+        [NSException raise:NSInvalidArgumentException format:@"cannot setup intercept support for -%@ because no such method exists",
                                                              NSStringFromSelector(aSelector)];
     }
 
@@ -235,7 +235,7 @@ void KWClearStubsAndSpies(void) {
 #pragma mark -
 #pragma mark Managing Objects Stubs
 
-void KWAssociateObjectStub(id anObject, KWStub *aStub) {
+void KWAssociateObjectStub(id anObject, KWStub *aStub, BOOL overrideExisting) {
     if (KWObjectStubs == nil)
         KWObjectStubs = [[NSMutableDictionary alloc] init];
 
@@ -254,8 +254,12 @@ void KWAssociateObjectStub(id anObject, KWStub *aStub) {
         KWStub *existingStub = stubs[i];
 
         if ([aStub.messagePattern isEqualToMessagePattern:existingStub.messagePattern]) {
-            [stubs removeObjectAtIndex:i];
-            break;
+            if (overrideExisting) {
+                [stubs removeObjectAtIndex:i];
+                break;
+            } else {
+                return;
+            }
         }
     }
 

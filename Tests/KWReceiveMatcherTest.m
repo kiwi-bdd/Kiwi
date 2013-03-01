@@ -84,6 +84,23 @@
     STAssertFalse([matcher evaluate], @"expected negative match");
 }
 
+- (void)testItShouldStubForReceive {
+    id subject  = [Cruiser cruiser];
+    id matcher = [KWReceiveMatcher matcherWithSubject:subject];
+    [matcher receive:@selector(crewComplement)];
+    NSUInteger value = [subject crewComplement];
+    STAssertTrue(value == 0, @"expected method to be stubbed");
+}
+
+- (void)testItShouldNotOverrideExistingStub {
+    id subject  = [Cruiser cruiser];
+    [subject stub:@selector(crewComplement) andReturn:[KWValue valueWithUnsignedInt:333]];
+    id matcher = [KWReceiveMatcher matcherWithSubject:subject];
+    [matcher receive:@selector(crewComplement)];
+    NSUInteger value = [subject crewComplement];
+    STAssertTrue(value == 333, @"expected receive not to override existing stub");
+}
+
 - (void)testItShouldStubForReceiveAndReturn {
     id subject = [Cruiser cruiser];
     id matcher = [KWReceiveMatcher matcherWithSubject:subject];
