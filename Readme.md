@@ -15,7 +15,7 @@ https://github.com/allending/Kiwi/issues/176
 Kiwi is open-source and is developed by the community. The full list of Kiwi individual contributors is [here](https://github.com/allending/Kiwi/graphs/contributors).
 
 # Why? #
-The idea behind Kiwi is to have tests that are more readable that what is possible with the bundled test framework.
+The idea behind Kiwi is to have tests that are more readable than what is possible with the bundled test framework.
 
 Tests (or rather specs) are written in Objective-C and run within the comfort of Xcode to provide a test environment that is as unobtrusive and seamless as possible in terms of running tests and error reporting.
 
