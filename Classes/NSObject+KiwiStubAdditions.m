@@ -119,18 +119,22 @@ static NSString * const ChangeStubValueAfterTimesKey = @"ChangeStubValueAfterTim
 }
 
 - (void)stubMessagePattern:(KWMessagePattern *)aMessagePattern andReturn:(id)aValue {
+    [self stubMessagePattern:aMessagePattern andReturn:aValue overrideExisting:YES];
+}
+
+- (void)stubMessagePattern:(KWMessagePattern *)aMessagePattern andReturn:(id)aValue overrideExisting:(BOOL)overrideExisting {
     if ([self methodSignatureForSelector:aMessagePattern.selector] == nil) {
         [NSException raise:@"KWStubException" format:@"cannot stub -%@ because no such method exists",
-                                                     NSStringFromSelector(aMessagePattern.selector)];
+         NSStringFromSelector(aMessagePattern.selector)];
     }
-
+    
     Class interceptClass = KWSetupObjectInterceptSupport(self);
     KWSetupMethodInterceptSupport(interceptClass, aMessagePattern.selector);
     KWStub *stub = [KWStub stubWithMessagePattern:aMessagePattern value:aValue];
-    KWAssociateObjectStub(self, stub);
+    KWAssociateObjectStub(self, stub, overrideExisting);
 }
 
-- (void)stubMessagePattern:(KWMessagePattern *)aMessagePattern andReturn:(id)aValue times:(id)times afterThatReturn:(id)aSecondValue {   
+- (void)stubMessagePattern:(KWMessagePattern *)aMessagePattern andReturn:(id)aValue times:(id)times afterThatReturn:(id)aSecondValue {
     if ([self methodSignatureForSelector:aMessagePattern.selector] == nil) {
         [NSException raise:@"KWStubException" format:@"cannot stub -%@ because no such method exists",
          NSStringFromSelector(aMessagePattern.selector)];
@@ -139,7 +143,7 @@ static NSString * const ChangeStubValueAfterTimesKey = @"ChangeStubValueAfterTim
     Class interceptClass = KWSetupObjectInterceptSupport(self);
     KWSetupMethodInterceptSupport(interceptClass, aMessagePattern.selector);
     KWStub *stub = [KWStub stubWithMessagePattern:aMessagePattern value:aValue times:times afterThatReturn:aSecondValue];
-    KWAssociateObjectStub(self, stub);
+    KWAssociateObjectStub(self, stub, YES);
 }
 
 - (void)stubMessagePattern:(KWMessagePattern *)aMessagePattern withBlock:(id (^)(NSArray *params))block {
@@ -151,7 +155,7 @@ static NSString * const ChangeStubValueAfterTimesKey = @"ChangeStubValueAfterTim
     Class interceptClass = KWSetupObjectInterceptSupport(self);
     KWSetupMethodInterceptSupport(interceptClass, aMessagePattern.selector);
     KWStub *stub = [KWStub stubWithMessagePattern:aMessagePattern block:block];
-    KWAssociateObjectStub(self, stub);
+    KWAssociateObjectStub(self, stub, YES);
 }
 
 + (void)stubMessagePattern:(KWMessagePattern *)aMessagePattern andReturn:(id)aValue {

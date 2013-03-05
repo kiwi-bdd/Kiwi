@@ -200,16 +200,23 @@ static NSString * const ChangeStubValueAfterTimesKey = @"ChangeStubValueAfterTim
 #pragma mark Stubbing Methods
 
 - (void)removeStubWithMessagePattern:(KWMessagePattern *)messagePattern {
-    NSUInteger stubCount = [self.stubs count];
+    KWStub *stub = [self currentStubWithMessagePattern:messagePattern];
+    if (stub) {
+        [self.stubs removeObject:stub];
+    }
+}
 
+- (KWStub *)currentStubWithMessagePattern:(KWMessagePattern *)messagePattern {
+    NSUInteger stubCount = [self.stubs count];
+    
     for (NSUInteger i = 0; i < stubCount; ++i) {
         KWStub *stub = (self.stubs)[i];
-
+        
         if ([stub.messagePattern isEqualToMessagePattern:messagePattern]) {
-            [self.stubs removeObjectAtIndex:i];
-            return;
+            return stub;
         }
     }
+    return nil;
 }
 
 - (void)stub:(SEL)aSelector {
@@ -258,8 +265,19 @@ static NSString * const ChangeStubValueAfterTimesKey = @"ChangeStubValueAfterTim
 }
 
 - (void)stubMessagePattern:(KWMessagePattern *)aMessagePattern andReturn:(id)aValue {
+    [self stubMessagePattern:aMessagePattern andReturn:aValue overrideExisting:YES];
+}
+
+- (void)stubMessagePattern:(KWMessagePattern *)aMessagePattern andReturn:(id)aValue overrideExisting:(BOOL)overrideExisting {
     [self expectMessagePattern:aMessagePattern];
-    [self removeStubWithMessagePattern:aMessagePattern];
+    KWStub *existingStub = [self currentStubWithMessagePattern:aMessagePattern];
+    if (existingStub) {
+        if (overrideExisting) {
+            [self.stubs removeObject:existingStub];
+        } else {
+            return;
+        }
+    }
     KWStub *stub = [KWStub stubWithMessagePattern:aMessagePattern value:aValue];
     [self.stubs addObject:stub];
 }
