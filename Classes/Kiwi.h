@@ -6,7 +6,6 @@
 
 // This needs to come first.
 #import "KiwiConfiguration.h"
-#import <SenTestingKit/SenTestingKit.h>
 
 #if defined(__cplusplus)
 extern "C" {
@@ -88,8 +87,9 @@ extern "C" {
 #import "NSObject+KiwiVerifierAdditions.h"
 #import "NSProxy+KiwiVerifierAdditions.h"
 
-#import "KiwiMacros.h"
+#import "SenTestProbe+KiwiAdditions.h"
 
+#import "KiwiMacros.h"
 // Some Foundation headers use Kiwi keywords (e.g. 'should') as identifiers for
 // parameter names. Including this last allows the use of Kiwi keywords without
 // conflicting with these headers (hopefully!).
@@ -98,4 +98,3 @@ extern "C" {
 #if defined(__cplusplus)
 }
 #endif
-

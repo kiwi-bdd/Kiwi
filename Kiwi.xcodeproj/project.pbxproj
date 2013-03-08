@@ -1224,6 +1224,7 @@
 				9F820DB716BB6748003A1BA5 /* NSProxy+KiwiVerifierAdditions.m */,
 				9F982CDE16A802920030A0B1 /* NSValue+KiwiAdditions.h */,
 				9F982CDF16A802920030A0B1 /* NSValue+KiwiAdditions.m */,
+				C536B3EB16E33A5900CD9D3A /* SenTestProbe+KiwiAdditions.h */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
