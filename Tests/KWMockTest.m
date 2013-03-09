@@ -42,6 +42,23 @@
     STAssertEqualObjects([mock mockName], @"JumpCapable mock", @"expected class mock to have the correct mockName");
 }
 
+- (void)testItShouldInitializeAPartialMockForAClass {
+    id mockedObject = [[Cruiser alloc] init];
+    id name = @"Cruiser mock";
+    id mock = [KWMock partialMockWithName:name forObject:mockedObject];
+    STAssertNotNil(mock, @"expected a mock object to be initialized");
+    STAssertEqualObjects([mock mockedObject], mockedObject, @"expected the mockedClass property to be set");
+    STAssertTrue([mock isPartialMock], @"expected the isPartialMock property to be set");
+}
+
+- (void)testItShouldPassThroughAMessageToTheMockedObjectAsAPartialMock {
+    id callsign = @"Object Callsign";
+    id mockedObject = [[Cruiser alloc] initWithCallsign:callsign];
+    id mock = [KWMock partialMockForObject:mockedObject];
+    id returnedCallsign = [mock callsign];
+    STAssertEqualObjects(returnedCallsign, callsign, @"expected the partial mock to pass through a message to the object");
+}
+
 //- (void)testItShouldRaiseWhenReceivingUnexpectedMessageAsAMock {
 //    id mock = [KWMock mockForClass:[Cruiser class]];
 //    STAssertThrows([mock objectAtIndex:0], @"expected mock to raise exception");
@@ -142,6 +159,13 @@
     STAssertEquals([mock hash], 4242u, @"expected method to be stubbed");
     STAssertEqualObjects([mock description], @"king rat", @"expected method to be stubbed");
     STAssertEqualObjects([mock copy], @"bacon", @"expected method to be stubbed");
+}
+
+- (void)testItShouldStubWithAsAPartialMock {
+    id mockedObject = [[Cruiser alloc] initWithCallsign:@"asdf"];
+    id mock = [KWMock partialMockForObject:mockedObject];
+    [mock stub:@selector(callsign) andReturn:@"test callsign"];
+    STAssertEqualObjects([mock callsign], @"test callsign", @"expected the partial mock to hit a stub when defined");
 }
 
 - (void)testItShouldNotRaiseForWhitelistedMethods {

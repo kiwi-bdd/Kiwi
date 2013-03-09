@@ -114,6 +114,18 @@ static NSString * const ChangeStubValueAfterTimesKey = @"ChangeStubValueAfterTim
     return self;
 }
 
+- (id)initAsPartialMockForObject:(id)object {
+    return [self initAsPartialMockWithName:nil forObject:object];
+}
+
+- (id)initAsPartialMockWithName:(NSString *)aName forObject:(id)object {
+    if ((self = [self initAsNullMock:YES withName:aName forClass:[object class] protocol:nil])) {
+        isPartialMock = YES;
+        mockedObject = [object retain];
+    }
+    return self;
+}
+
 + (id)mockForClass:(Class)aClass {
     return [[[self alloc] initForClass:aClass] autorelease];
 }
@@ -146,7 +158,16 @@ static NSString * const ChangeStubValueAfterTimesKey = @"ChangeStubValueAfterTim
     return [[[self alloc] initAsNullMockWithName:aName forProtocol:aProtocol] autorelease];
 }
 
++ (id)partialMockWithName:(NSString *)aName forObject:(id)object {
+    return [[[self alloc] initAsPartialMockWithName:aName forObject:object] autorelease];
+}
+
++ (id)partialMockForObject:(id)object {
+    return [[[self alloc] initAsPartialMockForObject:object] autorelease];
+}
+
 - (void)dealloc {
+    [mockedObject release];
     [mockName release];
     [stubs release];
     [expectedMessagePatterns release];
@@ -157,8 +178,10 @@ static NSString * const ChangeStubValueAfterTimesKey = @"ChangeStubValueAfterTim
 #pragma mark -
 #pragma mark Properties
 
+@synthesize isPartialMock;
 @synthesize isNullMock;
 @synthesize mockName;
+@synthesize mockedObject;
 @synthesize mockedClass;
 @synthesize mockedProtocol;
 @synthesize stubs;
@@ -441,6 +464,9 @@ static NSString * const ChangeStubValueAfterTimesKey = @"ChangeStubValueAfterTim
 
     if ([self processReceivedInvocation:anInvocation])
         return;
+
+    if (isPartialMock)
+        [anInvocation invokeWithTarget:self.mockedObject];
 
     if (self.isNullMock)
         return;
