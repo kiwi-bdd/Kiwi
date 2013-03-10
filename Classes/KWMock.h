@@ -15,8 +15,10 @@
 
 @interface KWMock : NSObject {
 @private
+    BOOL isPartialMock;
     BOOL isNullMock;
     NSString *mockName;
+    id mockedObject;
     Class mockedClass;
     Protocol *mockedProtocol;
     NSMutableArray *stubs;
@@ -37,6 +39,9 @@
 - (id)initAsNullMockWithName:(NSString *)aName forClass:(Class)aClass;
 - (id)initAsNullMockWithName:(NSString *)aName forProtocol:(Protocol *)aProtocol;
 
+- (id)initAsPartialMockForObject:(id)object;
+- (id)initAsPartialMockWithName:(NSString *)aName forObject:(id)object;
+
 + (id)mockForClass:(Class)aClass;
 + (id)mockForProtocol:(Protocol *)aProtocol;
 + (id)mockWithName:(NSString *)aName forClass:(Class)aClass;
@@ -47,12 +52,17 @@
 + (id)nullMockWithName:(NSString *)aName forClass:(Class)aClass ;
 + (id)nullMockWithName:(NSString *)aName forProtocol:(Protocol *)aProtocol;
 
++ (id)partialMockForObject:(id)object;
++ (id)partialMockWithName:(NSString *)aName forObject:(id)object;
+
 #pragma mark -
 #pragma mark Properties
 
 @property (nonatomic, readonly) BOOL isNullMock;
+@property (nonatomic, readonly) BOOL isPartialMock;
 @property (nonatomic, readonly) NSString *mockName;
 @property (nonatomic, readonly) Class mockedClass;
+@property (nonatomic, readonly) id mockedObject;
 @property (nonatomic, readonly) Protocol *mockedProtocol;
 
 #pragma mark -
