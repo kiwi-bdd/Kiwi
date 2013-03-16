@@ -15,7 +15,10 @@
     if ([anObject isKindOfClass:[NSString class]])
         return [NSString stringWithFormat:@"\"%@\"", anObject];
 
-    if ([anObject conformsToProtocol:@protocol(NSFastEnumeration)]) {
+    else if ([anObject isKindOfClass:[NSDictionary class]])
+        return [anObject description];
+
+    else if ([anObject conformsToProtocol:@protocol(NSFastEnumeration)]) {
         NSMutableString *description = [[[NSMutableString alloc] initWithString:@"("] autorelease];
         NSUInteger index = 0;
 
