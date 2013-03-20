@@ -77,6 +77,20 @@
     STAssertEquals(result.callsign, @"Red Leader", @"expected stub to perform given block");
 }
 
+- (void)testItShouldPerformStubbedBlockWhenInvocationHasNilArguments {
+    id subject = [Cruiser cruiser];
+    KWMessagePattern *messagePattern = [KWMessagePattern messagePatternWithSelector:@selector(fighterWithCallsign:)];
+    id stub = [KWStub stubWithMessagePattern:messagePattern block: (id) ^(NSArray *params) {
+        return [[params copy] autorelease];
+    }];
+    NSInvocation *invocation = [NSInvocation invocationWithTarget:subject selector:@selector(fighterWithCallsign:) messageArguments:nil];
+    [stub processInvocation:invocation];
+    id outcome = nil;
+    [invocation getReturnValue:&outcome];
+    NSArray *result = (NSArray *)outcome;
+    STAssertEquals([result objectAtIndex:0], [NSNull null], @"expected stub convert nil arguments to NSNull");
+}
+
 - (void)testItShouldRetainValueWhenProcessingInvocationsThatBeginsWithAlloc {
     id subject = [Cruiser mock];
     id messagePattern = [KWMessagePattern messagePatternWithSelector:@selector(alloc)];
