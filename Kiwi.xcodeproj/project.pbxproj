@@ -123,6 +123,7 @@
 		44FC0EC016B6377D0050D616 /* NSObject+KiwiStubAdditions.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9F982CDA16A802920030A0B1 /* NSObject+KiwiStubAdditions.h */; };
 		44FC0EC116B6377D0050D616 /* NSObject+KiwiVerifierAdditions.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9F982CDC16A802920030A0B1 /* NSObject+KiwiVerifierAdditions.h */; };
 		44FC0EC216B6377D0050D616 /* NSValue+KiwiAdditions.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9F982CDE16A802920030A0B1 /* NSValue+KiwiAdditions.h */; };
+		492F3A7A16D5F7DC008E3C49 /* KWFailureTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 492F3A7916D5F7DC008E3C49 /* KWFailureTest.m */; };
 		4BA52D0115487F0C00FC957B /* KWCaptureTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BA52D0015487F0C00FC957B /* KWCaptureTest.m */; };
 		511901A516A95CDE006E7359 /* KWChangeMatcher.h in Headers */ = {isa = PBXBuildFile; fileRef = 511901A316A95CDE006E7359 /* KWChangeMatcher.h */; };
 		511901A616A95CDE006E7359 /* KWChangeMatcher.h in Headers */ = {isa = PBXBuildFile; fileRef = 511901A316A95CDE006E7359 /* KWChangeMatcher.h */; };
@@ -636,6 +637,7 @@
 		28AD733E0D9D9553002E5188 /* MainWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainWindow.xib; sourceTree = "<group>"; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		32CA4F630368D1EE00C91783 /* Kiwi_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Kiwi_Prefix.pch; sourceTree = "<group>"; };
+		492F3A7916D5F7DC008E3C49 /* KWFailureTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KWFailureTest.m; sourceTree = "<group>"; };
 		37B7640016C6E1400002C3CD /* KWWeakPointer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KWWeakPointer.h; path = Classes/KWWeakPointer.h; sourceTree = "<group>"; };
 		37B7640116C6E1400002C3CD /* KWWeakPointer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = KWWeakPointer.m; path = Classes/KWWeakPointer.m; sourceTree = "<group>"; };
 		37B7640616C6FF670002C3CD /* NSObject+ManualRetain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSObject+ManualRetain.h"; path = "Classes/NSObject+ManualRetain.h"; sourceTree = "<group>"; };
@@ -1264,6 +1266,7 @@
 			isa = PBXGroup;
 			children = (
 				F5DBB72E116CBC4A00583385 /* KWTestCaseTest.m */,
+				492F3A7916D5F7DC008E3C49 /* KWFailureTest.m */,
 			);
 			name = Specs;
 			sourceTree = "<group>";
@@ -1921,6 +1924,7 @@
 				9F982A4316A801800030A0B1 /* TestVerifier.m in Sources */,
 				89F9CB7C16B1C2C400E87D34 /* KWFunctionalTests.m in Sources */,
 				9F820DBC16BB6808003A1BA5 /* KWChangeMatcherTest.m in Sources */,
+				492F3A7A16D5F7DC008E3C49 /* KWFailureTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

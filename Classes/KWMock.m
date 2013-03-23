@@ -115,6 +115,18 @@ static NSString * const ChangeStubValueAfterTimesKey = @"ChangeStubValueAfterTim
     return self;
 }
 
+- (id)initAsPartialMockForObject:(id)object {
+    return [self initAsPartialMockWithName:nil forObject:object];
+}
+
+- (id)initAsPartialMockWithName:(NSString *)aName forObject:(id)object {
+    if ((self = [self initAsNullMock:YES withName:aName forClass:[object class] protocol:nil])) {
+        isPartialMock = YES;
+        mockedObject = [object retain];
+    }
+    return self;
+}
+
 + (id)mockForClass:(Class)aClass {
     return [[self alloc] initForClass:aClass];
 }
@@ -147,12 +159,21 @@ static NSString * const ChangeStubValueAfterTimesKey = @"ChangeStubValueAfterTim
     return [[self alloc] initAsNullMockWithName:aName forProtocol:aProtocol];
 }
 
++ (id)partialMockWithName:(NSString *)aName forObject:(id)object {
+    return [[self alloc] initAsPartialMockWithName:aName forObject:object];
+}
+
++ (id)partialMockForObject:(id)object {
+    return [[self alloc] initAsPartialMockForObject:object];
+}
 
 #pragma mark -
 #pragma mark Properties
 
+@synthesize isPartialMock;
 @synthesize isNullMock;
 @synthesize mockName;
+@synthesize mockedObject;
 @synthesize mockedClass;
 @synthesize mockedProtocol;
 @synthesize stubs;
@@ -194,16 +215,23 @@ static NSString * const ChangeStubValueAfterTimesKey = @"ChangeStubValueAfterTim
 #pragma mark Stubbing Methods
 
 - (void)removeStubWithMessagePattern:(KWMessagePattern *)messagePattern {
-    NSUInteger stubCount = [self.stubs count];
+    KWStub *stub = [self currentStubWithMessagePattern:messagePattern];
+    if (stub) {
+        [self.stubs removeObject:stub];
+    }
+}
 
+- (KWStub *)currentStubWithMessagePattern:(KWMessagePattern *)messagePattern {
+    NSUInteger stubCount = [self.stubs count];
+    
     for (NSUInteger i = 0; i < stubCount; ++i) {
         KWStub *stub = (self.stubs)[i];
-
+        
         if ([stub.messagePattern isEqualToMessagePattern:messagePattern]) {
-            [self.stubs removeObjectAtIndex:i];
-            return;
+            return stub;
         }
     }
+    return nil;
 }
 
 - (void)stub:(SEL)aSelector {
@@ -252,8 +280,19 @@ static NSString * const ChangeStubValueAfterTimesKey = @"ChangeStubValueAfterTim
 }
 
 - (void)stubMessagePattern:(KWMessagePattern *)aMessagePattern andReturn:(id)aValue {
+    [self stubMessagePattern:aMessagePattern andReturn:aValue overrideExisting:YES];
+}
+
+- (void)stubMessagePattern:(KWMessagePattern *)aMessagePattern andReturn:(id)aValue overrideExisting:(BOOL)overrideExisting {
     [self expectMessagePattern:aMessagePattern];
-    [self removeStubWithMessagePattern:aMessagePattern];
+    KWStub *existingStub = [self currentStubWithMessagePattern:aMessagePattern];
+    if (existingStub) {
+        if (overrideExisting) {
+            [self.stubs removeObject:existingStub];
+        } else {
+            return;
+        }
+    }
     KWStub *stub = [KWStub stubWithMessagePattern:aMessagePattern value:aValue];
     [self.stubs addObject:stub];
 }
@@ -278,12 +317,6 @@ static NSString * const ChangeStubValueAfterTimesKey = @"ChangeStubValueAfterTim
 
 #pragma mark -
 #pragma mark Spying on Messages
-
-- (KWCaptureSpy *)captureArgument:(SEL)selector atIndex:(NSUInteger)index {
-    KWCaptureSpy *spy = [[KWCaptureSpy alloc] initWithArgumentIndex:index];
-    [self addMessageSpy:spy forMessagePattern:[KWMessagePattern messagePatternWithSelector:selector]];
-    return  spy;
-}
 
 - (void)addMessageSpy:(id<KWMessageSpying>)aSpy forMessagePattern:(KWMessagePattern *)aMessagePattern {
     [self expectMessagePattern:aMessagePattern];
@@ -422,6 +455,9 @@ static NSString * const ChangeStubValueAfterTimesKey = @"ChangeStubValueAfterTim
 
     if ([self processReceivedInvocation:anInvocation])
         return;
+
+    if (isPartialMock)
+        [anInvocation invokeWithTarget:self.mockedObject];
 
     if (self.isNullMock)
         return;
