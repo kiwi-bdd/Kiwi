@@ -8,34 +8,44 @@
 
 @implementation KWFormatter
 
-#pragma mark -
-#pragma mark Getting Descriptions
+
+#pragma mark - Getting Descriptions
 
 + (NSString *)formatObject:(id)anObject {
     if ([anObject isKindOfClass:[NSString class]])
         return [NSString stringWithFormat:@"\"%@\"", anObject];
 
     else if ([anObject isKindOfClass:[NSDictionary class]])
-        return [anObject description];
+        return [anObject description]; // NSDictionary conforms to NSFastEnumeration
 
-    else if ([anObject conformsToProtocol:@protocol(NSFastEnumeration)]) {
-        NSMutableString *description = [[[NSMutableString alloc] initWithString:@"("] autorelease];
-        NSUInteger index = 0;
-
-        for (id object in anObject) {
-            if (index == 0)
-                [description appendFormat:@"%@", [self formatObject:object]];
-            else
-                [description appendFormat:@", %@", [self formatObject:object]];
-
-            ++index;
-        }
-
-        [description appendString:@")"];
-        return description;
-    }
+    else if ([anObject conformsToProtocol:@protocol(NSFastEnumeration)])
+        return [self formattedCollection:anObject];
 
     return [anObject description];
 }
+
+
+
+#pragma mark - Private
+
++ (NSString *)formattedCollection:(id<NSFastEnumeration>)collection {
+
+    NSMutableString *description = [[[NSMutableString alloc] initWithString:@"("] autorelease];
+    NSUInteger index = 0;
+    
+    for (id object in collection) {
+        if (index == 0)
+            [description appendFormat:@"%@", [self formatObject:object]];
+        else
+            [description appendFormat:@", %@", [self formatObject:object]];
+        
+        ++index;
+    }
+    
+    [description appendString:@")"];
+    return description;
+}
+
+
 
 @end
