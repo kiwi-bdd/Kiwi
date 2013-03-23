@@ -185,6 +185,10 @@
 			
 			const char *argType = [[anInvocation methodSignature] getArgumentTypeAtIndex:i];
 			if (strcmp(argType, "@?") == 0) arg = [[arg copy] autorelease];
+            
+            if (arg == nil)
+                arg = [NSNull null];
+            
 			[args addObject:arg];
 		}
 		
