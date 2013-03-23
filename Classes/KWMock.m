@@ -122,7 +122,6 @@ static NSString * const ChangeStubValueAfterTimesKey = @"ChangeStubValueAfterTim
 - (id)initAsPartialMockWithName:(NSString *)aName forObject:(id)object {
     if ((self = [self initAsNullMock:YES withName:aName forClass:[object class] protocol:nil])) {
         isPartialMock = YES;
-        mockedObject = [object retain];
     }
     return self;
 }
