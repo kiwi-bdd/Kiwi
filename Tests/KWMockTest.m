@@ -94,7 +94,7 @@
     
     [[Galaxy sharedGalaxy] notifyEarth];
     
-    STAssertTrue(secondSpy.wasNotified, @"expected first spy to never be called");
+    STAssertFalse(firstSpy.wasNotified, @"expected first spy to never be called");
 }
 
 - (void)testItShouldStubWithASelectorAndReturnValue {

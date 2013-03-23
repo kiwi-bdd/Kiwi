@@ -5,12 +5,13 @@
 //
 
 #import "KWStub.h"
+
 #import "KWMessagePattern.h"
 #import "KWObjCUtilities.h"
 #import "KWStringUtilities.h"
 #import "KWValue.h"
-
 #import "NSInvocation+OCMAdditions.h"
+#import "NSObject+ManualRetain.h"
 
 @implementation KWStub
 
@@ -23,8 +24,8 @@
 
 - (id)initWithMessagePattern:(KWMessagePattern *)aMessagePattern value:(id)aValue {
     if ((self = [super init])) {
-        messagePattern = [aMessagePattern retain];
-        value = [aValue retain];
+        messagePattern = aMessagePattern;
+        value = aValue;
     }
 
     return self;
@@ -32,7 +33,7 @@
 
 - (id)initWithMessagePattern:(KWMessagePattern *)aMessagePattern block:(id (^)(NSArray *params))aBlock {
     if ((self = [super init])) {
-        messagePattern = [aMessagePattern retain];
+        messagePattern = aMessagePattern;
         block = [aBlock copy];
     }
 	
@@ -41,10 +42,10 @@
 
 - (id)initWithMessagePattern:(KWMessagePattern *)aMessagePattern value:(id)aValue times:(id)times afterThatReturn:(id)aSecondValue {
     if ((self = [super init])) {
-        messagePattern = [aMessagePattern retain];
-        value = [aValue retain];
-        returnValueTimes = [times retain];
-        secondValue = [aSecondValue retain];
+        messagePattern = aMessagePattern;
+        value = aValue;
+        returnValueTimes = times;
+        secondValue = aSecondValue;
     }
     
     return self;
@@ -55,25 +56,17 @@
 }
 
 + (id)stubWithMessagePattern:(KWMessagePattern *)aMessagePattern value:(id)aValue {
-    return [[[self alloc] initWithMessagePattern:aMessagePattern value:aValue] autorelease];
+    return [[self alloc] initWithMessagePattern:aMessagePattern value:aValue];
 }
 
 + (id)stubWithMessagePattern:(KWMessagePattern *)aMessagePattern block:(id (^)(NSArray *params))aBlock {
-    return [[[self alloc] initWithMessagePattern:aMessagePattern block:aBlock] autorelease];
+    return [[self alloc] initWithMessagePattern:aMessagePattern block:aBlock];
 }
 
 + (id)stubWithMessagePattern:(KWMessagePattern *)aMessagePattern value:(id)aValue times:(id)times afterThatReturn:(id)aSecondValue {
-    return [[[self alloc] initWithMessagePattern:aMessagePattern value:aValue times:times afterThatReturn:aSecondValue] autorelease];
+    return [[self alloc] initWithMessagePattern:aMessagePattern value:aValue times:times afterThatReturn:aSecondValue];
 }
 
-- (void)dealloc {
-    [messagePattern release];
-    [value release];
-    [returnValueTimes release];
-    [secondValue release];
-	[block release];
-    [super dealloc];
-}
 
 #pragma mark -
 #pragma mark Properties
@@ -168,7 +161,7 @@
         KWStringHasWordPrefix(selectorString, @"new") ||
         KWStringHasWord(selectorString, @"copy") ||
         KWStringHasWord(selectorString, @"Copy")) {
-        [self.value retain];
+        [self.value manualRetain];
     }
 #endif
 }
@@ -184,14 +177,13 @@
 			id arg = [anInvocation getArgumentAtIndexAsObject:i];
 			
 			const char *argType = [[anInvocation methodSignature] getArgumentTypeAtIndex:i];
-			if (strcmp(argType, "@?") == 0) arg = [[arg copy] autorelease];
+			if (strcmp(argType, "@?") == 0) arg = [arg copy];
 			[args addObject:arg];
 		}
 		
 		id newValue = block(args);
 		if (newValue != value) {
-			[value release];
-			value = [newValue retain];
+			value = newValue;
 		}
 		
 		[args removeAllObjects]; // We don't want these objects to be in autorelease pool

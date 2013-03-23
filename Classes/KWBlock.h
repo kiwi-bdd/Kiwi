@@ -8,10 +8,7 @@
 
 typedef void (^KWVoidBlock)(void);
 
-@interface KWBlock : NSObject {
-@private
-    KWVoidBlock block;
-}
+@interface KWBlock : NSObject
 
 #pragma mark -
 #pragma mark Initializing

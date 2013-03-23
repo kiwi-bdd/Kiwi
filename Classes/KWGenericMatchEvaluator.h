@@ -12,6 +12,6 @@
 
 + (BOOL)isGenericMatcher:(id)object;
 
-+ (BOOL)genericMatcher:(id)matcher matches:(id)object;
++ (BOOL)genericMatcher:(id)matcher matches:(__unsafe_unretained id)object;
 
 @end

@@ -19,7 +19,7 @@
         return [anObject description];
 
     else if ([anObject conformsToProtocol:@protocol(NSFastEnumeration)]) {
-        NSMutableString *description = [[[NSMutableString alloc] initWithString:@"("] autorelease];
+        NSMutableString *description = [[NSMutableString alloc] initWithString:@"("];
         NSUInteger index = 0;
 
         for (id object in anObject) {

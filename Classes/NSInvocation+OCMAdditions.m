@@ -24,7 +24,7 @@
 		case '#':
 		case '@': 
 		{
-			id value;
+			__unsafe_unretained id value;
 			[self getArgument:&value atIndex:argIndex];
 			return value;
 		}
@@ -122,7 +122,7 @@
 		case '{': // structure
 		{
 			NSUInteger maxArgSize = [[self methodSignature] frameLength];
-			NSMutableData *argumentData = [[[NSMutableData alloc] initWithLength:maxArgSize] autorelease];
+			NSMutableData *argumentData = [[NSMutableData alloc] initWithLength:maxArgSize];
 			[self getArgument:[argumentData mutableBytes] atIndex:argIndex];
 			return [NSValue valueWithBytes:[argumentData bytes] objCType:argType];
 		}       
@@ -149,7 +149,7 @@
 		[description appendString:[self argumentDescriptionAtIndex:i]];
 	}
 	
-	return [description autorelease];
+	return description;
 }
 
 - (NSString *)argumentDescriptionAtIndex:(int)argIndex
@@ -186,7 +186,7 @@
 
 - (NSString *)objectDescriptionAtIndex:(int)anInt
 {
-	id object;
+	__unsafe_unretained id object;
 	
 	[self getArgument:&object atIndex:anInt];
 	if (object == nil)

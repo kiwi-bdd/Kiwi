@@ -23,6 +23,14 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+		37B7640216C6E1400002C3CD /* KWWeakPointer.h in Headers */ = {isa = PBXBuildFile; fileRef = 37B7640016C6E1400002C3CD /* KWWeakPointer.h */; };
+		37B7640316C6E1400002C3CD /* KWWeakPointer.m in Sources */ = {isa = PBXBuildFile; fileRef = 37B7640116C6E1400002C3CD /* KWWeakPointer.m */; };
+		37B7640416C6E1500002C3CD /* KWWeakPointer.h in Headers */ = {isa = PBXBuildFile; fileRef = 37B7640016C6E1400002C3CD /* KWWeakPointer.h */; };
+		37B7640516C6E1560002C3CD /* KWWeakPointer.m in Sources */ = {isa = PBXBuildFile; fileRef = 37B7640116C6E1400002C3CD /* KWWeakPointer.m */; };
+		37B7640816C6FF680002C3CD /* NSObject+ManualRetain.h in Headers */ = {isa = PBXBuildFile; fileRef = 37B7640616C6FF670002C3CD /* NSObject+ManualRetain.h */; };
+		37B7640916C6FF680002C3CD /* NSObject+ManualRetain.h in Headers */ = {isa = PBXBuildFile; fileRef = 37B7640616C6FF670002C3CD /* NSObject+ManualRetain.h */; };
+		37B7640A16C6FF680002C3CD /* NSObject+ManualRetain.m in Sources */ = {isa = PBXBuildFile; fileRef = 37B7640716C6FF670002C3CD /* NSObject+ManualRetain.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		37B7640B16C6FF680002C3CD /* NSObject+ManualRetain.m in Sources */ = {isa = PBXBuildFile; fileRef = 37B7640716C6FF670002C3CD /* NSObject+ManualRetain.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		44FC0E6716B6377D0050D616 /* Kiwi.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9F982C3A16A802920030A0B1 /* Kiwi.h */; };
 		44FC0E6816B6377D0050D616 /* KiwiBlockMacros.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9F982C3B16A802920030A0B1 /* KiwiBlockMacros.h */; };
 		44FC0E6916B6377D0050D616 /* KiwiConfiguration.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9F982C3C16A802920030A0B1 /* KiwiConfiguration.h */; };
@@ -630,6 +638,10 @@
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		32CA4F630368D1EE00C91783 /* Kiwi_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Kiwi_Prefix.pch; sourceTree = "<group>"; };
 		492F3A7916D5F7DC008E3C49 /* KWFailureTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KWFailureTest.m; sourceTree = "<group>"; };
+		37B7640016C6E1400002C3CD /* KWWeakPointer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KWWeakPointer.h; path = Classes/KWWeakPointer.h; sourceTree = "<group>"; };
+		37B7640116C6E1400002C3CD /* KWWeakPointer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = KWWeakPointer.m; path = Classes/KWWeakPointer.m; sourceTree = "<group>"; };
+		37B7640616C6FF670002C3CD /* NSObject+ManualRetain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSObject+ManualRetain.h"; path = "Classes/NSObject+ManualRetain.h"; sourceTree = "<group>"; };
+		37B7640716C6FF670002C3CD /* NSObject+ManualRetain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSObject+ManualRetain.m"; path = "Classes/NSObject+ManualRetain.m"; sourceTree = "<group>"; };
 		4BA52D0015487F0C00FC957B /* KWCaptureTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KWCaptureTest.m; sourceTree = "<group>"; };
 		511901A016A95803006E7359 /* KWChangeMatcherTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KWChangeMatcherTest.m; sourceTree = "<group>"; };
 		511901A316A95CDE006E7359 /* KWChangeMatcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KWChangeMatcher.h; path = Classes/KWChangeMatcher.h; sourceTree = "<group>"; };
@@ -1204,6 +1216,8 @@
 				9F982CC916A802920030A0B1 /* KWValue.h */,
 				9F982CCA16A802920030A0B1 /* KWValue.m */,
 				9F982CCB16A802920030A0B1 /* KWVerifying.h */,
+				37B7640016C6E1400002C3CD /* KWWeakPointer.h */,
+				37B7640116C6E1400002C3CD /* KWWeakPointer.m */,
 				9F982CCC16A802920030A0B1 /* KWWorkarounds.h */,
 				9F982CCD16A802920030A0B1 /* KWWorkarounds.m */,
 				9F982CCE16A802920030A0B1 /* NSInvocation+KiwiAdditions.h */,
@@ -1222,6 +1236,8 @@
 				9F982CDB16A802920030A0B1 /* NSObject+KiwiStubAdditions.m */,
 				9F982CDC16A802920030A0B1 /* NSObject+KiwiVerifierAdditions.h */,
 				9F982CDD16A802920030A0B1 /* NSObject+KiwiVerifierAdditions.m */,
+				37B7640616C6FF670002C3CD /* NSObject+ManualRetain.h */,
+				37B7640716C6FF670002C3CD /* NSObject+ManualRetain.m */,
 				9F820DB616BB6748003A1BA5 /* NSProxy+KiwiVerifierAdditions.h */,
 				9F820DB716BB6748003A1BA5 /* NSProxy+KiwiVerifierAdditions.m */,
 				9F982CDE16A802920030A0B1 /* NSValue+KiwiAdditions.h */,
@@ -1414,6 +1430,8 @@
 				511901A616A95CDE006E7359 /* KWChangeMatcher.h in Headers */,
 				9F90FBF116BA5FF20057426D /* KWGenericMatchEvaluator.h in Headers */,
 				9F820DB916BB6748003A1BA5 /* NSProxy+KiwiVerifierAdditions.h in Headers */,
+				37B7640416C6E1500002C3CD /* KWWeakPointer.h in Headers */,
+				37B7640916C6FF680002C3CD /* NSObject+ManualRetain.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1514,6 +1532,8 @@
 				511901A516A95CDE006E7359 /* KWChangeMatcher.h in Headers */,
 				9F90FBF016BA5FF20057426D /* KWGenericMatchEvaluator.h in Headers */,
 				9F820DB816BB6748003A1BA5 /* NSProxy+KiwiVerifierAdditions.h in Headers */,
+				37B7640216C6E1400002C3CD /* KWWeakPointer.h in Headers */,
+				37B7640816C6FF680002C3CD /* NSObject+ManualRetain.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1762,6 +1782,8 @@
 				511901A816A95CDE006E7359 /* KWChangeMatcher.m in Sources */,
 				9F90FBF316BA5FF20057426D /* KWGenericMatchEvaluator.m in Sources */,
 				9F820DBB16BB6748003A1BA5 /* NSProxy+KiwiVerifierAdditions.m in Sources */,
+				37B7640516C6E1560002C3CD /* KWWeakPointer.m in Sources */,
+				37B7640B16C6FF680002C3CD /* NSObject+ManualRetain.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1847,6 +1869,8 @@
 				511901A716A95CDE006E7359 /* KWChangeMatcher.m in Sources */,
 				9F90FBF216BA5FF20057426D /* KWGenericMatchEvaluator.m in Sources */,
 				9F820DBA16BB6748003A1BA5 /* NSProxy+KiwiVerifierAdditions.m in Sources */,
+				37B7640316C6E1400002C3CD /* KWWeakPointer.m in Sources */,
+				37B7640A16C6FF680002C3CD /* NSObject+ManualRetain.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1994,7 +2018,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				ONLY_ACTIVE_ARCH = YES;
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
@@ -2022,7 +2046,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				PROVISIONING_PROFILE = "";
@@ -2038,6 +2062,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 1.0;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -2062,6 +2087,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
 				COPY_PHASE_STRIP = YES;
 				CURRENT_PROJECT_VERSION = 1.0;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";

@@ -32,7 +32,7 @@
 }
 
 + (id)valueWithBytes:(const void *)bytes objCType:(const char *)type {
-    return [[[self alloc] initWithBytes:bytes objCType:type] autorelease];
+    return [[self alloc] initWithBytes:bytes objCType:type];
 }
 
 + (id)valueWithBool:(BOOL)aValue {
@@ -95,10 +95,6 @@
     return [self valueWithBytes:&aValue objCType:@encode(unsigned short)];
 }
 
-- (void)dealloc {
-    [value release];
-    [super dealloc];
-}
 
 #pragma mark -
 #pragma mark Properties

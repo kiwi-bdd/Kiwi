@@ -20,7 +20,7 @@
 {
   KWAsyncVerifier *verifier = [[self alloc] initWithExpectationType:anExpectationType callSite:aCallSite matcherFactory:aMatcherFactory reporter:aReporter];
   verifier.timeout = probeTimeout;
-  return [verifier autorelease];
+  return verifier;
 }
 
 - (id)initWithExpectationType:(KWExpectationType)anExpectationType callSite:(KWCallSite *)aCallSite matcherFactory:(KWMatcherFactory *)aMatcherFactory reporter:(id<KWReporting>)aReporter {
@@ -47,7 +47,6 @@
         // don't do anything
       }
     }
-    [poller release];
 
   } @catch (NSException *exception) {
     KWFailure *failure = [KWFailure failureWithCallSite:self.callSite message:[exception description]];
@@ -56,7 +55,7 @@
 }
 
 - (void)verifyWithMatcher:(id<KWMatching>)aMatcher {
-  KWAsyncMatcherProbe *probe = [[[KWAsyncMatcherProbe alloc] initWithMatcher:aMatcher] autorelease];
+  KWAsyncMatcherProbe *probe = [[KWAsyncMatcherProbe alloc] initWithMatcher:aMatcher];
   [self verifyWithProbe:probe];
 }
 
@@ -69,7 +68,7 @@
 - (id)initWithMatcher:(id<KWMatching>)aMatcher;
 {
   if ((self = [super init])) {
-    matcher = [aMatcher retain];
+    matcher = aMatcher;
 
     // make sure the matcher knows we are going to evaluate it multiple times
     if ([aMatcher respondsToSelector:@selector(willEvaluateMultipleTimes)]) {
@@ -79,11 +78,6 @@
   return self;
 }
 
-- (void)dealloc
-{
-  [matcher release];
-  [super dealloc];
-}
 
 - (BOOL)isSatisfied;
 {

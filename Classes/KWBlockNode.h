@@ -9,12 +9,7 @@
 
 @class KWCallSite;
 
-@interface KWBlockNode : NSObject {
-@private
-    KWCallSite *callSite;
-    NSString *description;
-    KWVoidBlock block;
-}
+@interface KWBlockNode : NSObject
 
 #pragma mark -
 #pragma mark Initializing
@@ -24,7 +19,7 @@
 #pragma mark -
 #pragma mark Getting Call Sites
 
-@property (nonatomic, readonly) KWCallSite *callSite;
+@property (nonatomic, strong, readonly) KWCallSite *callSite;
 
 #pragma mark -
 #pragma mark Getting Descriptions
@@ -34,7 +29,7 @@
 #pragma mark -
 #pragma mark Getting Blocks
 
-@property (nonatomic, readonly) KWVoidBlock block;
+@property (nonatomic, strong, readonly) KWVoidBlock block;
 
 #pragma mark -
 #pragma mark Performing blocks

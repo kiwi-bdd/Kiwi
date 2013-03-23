@@ -12,7 +12,7 @@
 
 + (id)matcherWithSubstring:(NSString *)aSubstring;
 {
-  return [[[self alloc] initWithSubstring:aSubstring] autorelease];
+  return [[self alloc] initWithSubstring:aSubstring];
 }
 
 - (id)initWithSubstring:(NSString *)aSubstring;
@@ -23,11 +23,6 @@
   return self;
 }
 
-- (void)dealloc
-{
-  [substring release];
-  [super dealloc];
-}
 
 - (BOOL)matches:(id)item
 {

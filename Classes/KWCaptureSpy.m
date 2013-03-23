@@ -19,7 +19,7 @@
     if (!_argumentCaptured) {
         @throw [NSException exceptionWithName:NSInternalInconsistencyException reason:@"Argument requested has yet to be captured." userInfo:nil];
     }
-    return [[_argument retain] autorelease];
+    return _argument;
 }
 
 - (void)object:(id)anObject didReceiveInvocation:(NSInvocation *)anInvocation {
@@ -32,18 +32,14 @@
             if (KWObjCTypeIsBlock(objCType)) {
                 _argument = [argument copy];
             } else {
-                _argument = [argument retain];
+                _argument = argument;
             }
         } else {
             NSData *data = [anInvocation messageArgumentDataAtIndex:_argumentIndex];
-            _argument = [[KWValue valueWithBytes:[data bytes] objCType:objCType] retain];
+            _argument = [KWValue valueWithBytes:[data bytes] objCType:objCType];
         }
         _argumentCaptured = YES;
     }
 }
 
-- (void)dealloc {
-    [_argument release];
-    [super dealloc];
-}
 @end

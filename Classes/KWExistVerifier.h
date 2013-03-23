@@ -16,7 +16,7 @@
 @private
     KWExpectationType expectationType;
     KWCallSite *callSite;
-    id<KWReporting> reporter;
+    id<KWReporting> __unsafe_unretained reporter;
     id subject;
 }
 
@@ -30,6 +30,6 @@
 #pragma mark -
 #pragma mark Properties
 
-@property (nonatomic, readwrite, retain) id subject;
+@property (nonatomic, readwrite, strong) id subject;
 
 @end

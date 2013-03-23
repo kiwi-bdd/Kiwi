@@ -13,7 +13,7 @@
 
 + (id)matcherWithPrefix:(NSString *)aPrefix;
 {
-  return [[[self alloc] initWithPrefix:aPrefix] autorelease];
+  return [[self alloc] initWithPrefix:aPrefix];
 }
 
 - (id)initWithPrefix:(NSString *)aPrefix;
@@ -24,11 +24,6 @@
   return self;
 }
 
-- (void)dealloc
-{
-  [prefix release];
-  [super dealloc];
-}
 
 - (BOOL)matches:(id)item
 {

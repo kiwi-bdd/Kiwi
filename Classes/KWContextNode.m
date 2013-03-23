@@ -4,10 +4,16 @@
 // Copyright 2010 Allen Ding. All rights reserved.
 //
 
+#import "KWAfterAllNode.h"
+#import "KWAfterEachNode.h"
+#import "KWBeforeAllNode.h"
+#import "KWBeforeEachNode.h"
+#import "KWCallSite.h"
 #import "KWContextNode.h"
 #import "KWExampleNodeVisitor.h"
 #import "KWExample.h"
 #import "KWFailure.h"
+#import "KWRegisterMatchersNode.h"
 
 @implementation KWContextNode
 
@@ -19,8 +25,8 @@
 - (id)initWithCallSite:(KWCallSite *)aCallSite parentContext:(KWContextNode *)node description:(NSString *)aDescription
 {
     if ((self = [super init])) {
-        parentContext = [node retain];
-        callSite = [aCallSite retain];
+        parentContext = node;
+        callSite = aCallSite;
         description = [aDescription copy];
         nodes = [[NSMutableArray alloc] init];
         performedExampleCount = 0;
@@ -30,21 +36,9 @@
 }
 
 + (id)contextNodeWithCallSite:(KWCallSite *)aCallSite parentContext:(KWContextNode *)contextNode description:(NSString *)aDescription {
-    return [[[self alloc] initWithCallSite:aCallSite parentContext:contextNode description:aDescription] autorelease];
+    return [[self alloc] initWithCallSite:aCallSite parentContext:contextNode description:aDescription];
 }
 
-- (void)dealloc {
-    [parentContext release];
-    [callSite release];
-    [description release];
-    [registerMatchersNode release];
-    [beforeAllNode release];
-    [afterAllNode release];
-    [beforeEachNode release];
-    [afterEachNode release];
-    [nodes release];
-    [super dealloc];
-}
 
 #pragma mark -
 #pragma mark  Getting Call Sites
@@ -74,21 +68,21 @@
     if (self.registerMatchersNode != nil)
         [NSException raise:@"KWContextNodeException" format:@"a register matchers node already exists"];
 
-    registerMatchersNode = [aNode retain];
+    registerMatchersNode = aNode;
 }
 
 - (void)setBeforeEachNode:(KWBeforeEachNode *)aNode {
     if (self.beforeEachNode != nil)
         [NSException raise:@"KWContextNodeException" format:@"a before each node already exists"];
 
-    beforeEachNode = [aNode retain];
+    beforeEachNode = aNode;
 }
 
 - (void)setAfterEachNode:(KWAfterEachNode *)aNode {
     if (self.afterEachNode != nil)
         [NSException raise:@"KWContextNodeException" format:@"an after each node already exists"];
 
-    afterEachNode = [aNode retain];
+    afterEachNode = aNode;
 }
 
 - (void)addItNode:(KWItNode *)aNode {
@@ -134,7 +128,6 @@
     else {
         [parentContext performExample:example withBlock:outerExampleBlock];
     }
-    [innerExampleBlock release];
 }
 
 #pragma mark -

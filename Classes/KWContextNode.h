@@ -51,11 +51,11 @@
 #pragma mark -
 #pragma mark Managing Nodes
 
-@property (nonatomic, readwrite, retain) KWRegisterMatchersNode *registerMatchersNode;
-@property (nonatomic, readwrite, retain) KWBeforeAllNode *beforeAllNode;
-@property (nonatomic, readwrite, retain) KWAfterAllNode *afterAllNode;
-@property (nonatomic, readwrite, retain) KWBeforeEachNode *beforeEachNode;
-@property (nonatomic, readwrite, retain) KWAfterEachNode *afterEachNode;
+@property (nonatomic, readwrite, strong) KWRegisterMatchersNode *registerMatchersNode;
+@property (nonatomic, readwrite, strong) KWBeforeAllNode *beforeAllNode;
+@property (nonatomic, readwrite, strong) KWAfterAllNode *afterAllNode;
+@property (nonatomic, readwrite, strong) KWBeforeEachNode *beforeEachNode;
+@property (nonatomic, readwrite, strong) KWAfterEachNode *afterEachNode;
 @property (nonatomic, readonly) KWContextNode *parentContext;
 @property (nonatomic, readonly) NSArray *nodes;
 

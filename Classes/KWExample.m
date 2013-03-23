@@ -30,7 +30,7 @@
 
 @property (nonatomic, readonly) NSMutableArray *verifiers;
 @property (nonatomic, readonly) KWMatcherFactory *matcherFactory;
-@property (nonatomic, assign) id<KWExampleDelegate> delegate;
+@property (nonatomic, unsafe_unretained) id<KWExampleDelegate> delegate;
 @property (nonatomic, assign) BOOL didNotFinish;
 
 - (void)reportResultForExampleNodeWithLabel:(NSString *)label;
@@ -49,7 +49,7 @@
 - (id)initWithExampleNode:(id<KWExampleNode>)node
 {
   if ((self = [super init])) {
-    exampleNode = [node retain];
+    exampleNode = node;
     matcherFactory = [[KWMatcherFactory alloc] init];
     verifiers = [[NSMutableArray alloc] init];
     lastInContexts = [[NSMutableArray alloc] init];
@@ -58,14 +58,6 @@
   return self;
 }
 
-- (void)dealloc 
-{
-  [lastInContexts release];
-  [exampleNode release];
-  [matcherFactory release];
-  [verifiers release];
-  [super dealloc];
-}
 
 - (BOOL)isLastInContext:(KWContextNode *)context
 {

@@ -20,7 +20,7 @@
     NSString *mockName;
     id mockedObject;
     Class mockedClass;
-    Protocol *mockedProtocol;
+    Protocol *__unsafe_unretained mockedProtocol;
     NSMutableArray *stubs;
     NSMutableArray *expectedMessagePatterns;
     NSMutableDictionary *messageSpies;
@@ -63,7 +63,7 @@
 @property (nonatomic, readonly) NSString *mockName;
 @property (nonatomic, readonly) Class mockedClass;
 @property (nonatomic, readonly) id mockedObject;
-@property (nonatomic, readonly) Protocol *mockedProtocol;
+@property (unsafe_unretained, nonatomic, readonly) Protocol *mockedProtocol;
 
 #pragma mark -
 #pragma mark Stubbing Methods

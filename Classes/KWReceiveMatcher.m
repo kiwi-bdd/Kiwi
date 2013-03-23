@@ -13,6 +13,7 @@
 #import "KWStringUtilities.h"
 #import "KWWorkarounds.h"
 #import "NSObject+KiwiStubAdditions.h"
+#import "KWWeakPointer.h"
 
 static NSString * const MatchVerifierKey = @"MatchVerifierKey";
 static NSString * const CountTypeKey = @"CountTypeKey";
@@ -24,7 +25,7 @@ static NSString * const StubValueKey = @"StubValueKey";
 #pragma mark -
 #pragma mark Properties
 
-@property (nonatomic, readwrite, retain) KWMessageTracker *messageTracker;
+@property (nonatomic, readwrite, strong) KWMessageTracker *messageTracker;
 
 @end
 
@@ -41,10 +42,6 @@ static NSString * const StubValueKey = @"StubValueKey";
   return self;
 }
 
-- (void)dealloc {
-    [messageTracker release];
-    [super dealloc];
-}
 
 #pragma mark -
 #pragma mark Properties
@@ -191,11 +188,11 @@ static NSString * const StubValueKey = @"StubValueKey";
     id verifier = userInfo[MatchVerifierKey];
     KWCountType countType = [userInfo[CountTypeKey] unsignedIntegerValue];
     NSUInteger count = [userInfo[CountKey] unsignedIntegerValue];
-    NSValue *stubValue = userInfo[StubValueKey];
+    KWWeakPointer *stubValue = userInfo[StubValueKey];
     KWMessagePattern *messagePattern = [KWMessagePattern messagePatternFromInvocation:anInvocation];
 
-    if (stubValue != nil)
-        [verifier receiveMessagePattern:messagePattern andReturn:[stubValue nonretainedObjectValue] countType:countType count:count];
+    if (stubValue.object)
+        [verifier receiveMessagePattern:messagePattern andReturn:[stubValue object] countType:countType count:count];
     else
         [verifier receiveMessagePattern:messagePattern countType:countType count:count];
 }
@@ -275,7 +272,7 @@ static NSString * const StubValueKey = @"StubValueKey";
     return @{MatchVerifierKey: self,
                                                       CountTypeKey: @(aCountType),
                                                       CountKey: @(aCount),
-                                                      StubValueKey: [NSValue valueWithNonretainedObject:aValue]};
+                                                      StubValueKey: [KWWeakPointer weakPointerToObject:aValue]};
 }
 
 - (id)receive {

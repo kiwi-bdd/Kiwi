@@ -12,7 +12,7 @@
 
 @interface KWItNode ()
 
-@property (nonatomic, retain, readwrite) KWContextNode *context;
+@property (nonatomic, strong, readwrite) KWContextNode *context;
 
 @end
 
@@ -31,7 +31,7 @@
 {
     KWItNode *itNode = [[self alloc] initWithCallSite:aCallSite description:aDescription block:aBlock];
     itNode.context = context;
-    return [itNode autorelease];
+    return itNode;
 }
 
 #pragma mark -
