@@ -17,19 +17,7 @@
 @class KWRegisterMatchersNode;
 @class KWExample;
 
-@interface KWContextNode : NSObject<KWExampleNode> {
-@private
-    KWContextNode *parentContext;
-    KWCallSite *callSite;
-    NSString *description;
-    KWRegisterMatchersNode *registerMatchersNode;
-    KWBeforeAllNode *beforeAllNode;
-    KWAfterAllNode *afterAllNode;
-    KWBeforeEachNode *beforeEachNode;
-    KWAfterEachNode *afterEachNode;
-    NSMutableArray *nodes;
-    BOOL performedExampleCount;
-}
+@interface KWContextNode : NSObject<KWExampleNode>
 
 #pragma mark -
 #pragma mark Initializing
@@ -41,23 +29,25 @@
 #pragma mark -
 #pragma mark  Getting Call Sites
 
-@property (nonatomic, readonly) KWCallSite *callSite;
+@property (nonatomic, strong, readonly) KWCallSite *callSite;
 
 #pragma mark -
 #pragma mark Getting Descriptions
 
-@property (nonatomic, readonly) NSString *description;
+@property (nonatomic, copy, readonly) NSString *description;
 
 #pragma mark -
 #pragma mark Managing Nodes
 
-@property (nonatomic, readwrite, strong) KWRegisterMatchersNode *registerMatchersNode;
-@property (nonatomic, readwrite, strong) KWBeforeAllNode *beforeAllNode;
-@property (nonatomic, readwrite, strong) KWAfterAllNode *afterAllNode;
-@property (nonatomic, readwrite, strong) KWBeforeEachNode *beforeEachNode;
-@property (nonatomic, readwrite, strong) KWAfterEachNode *afterEachNode;
-@property (nonatomic, readonly) KWContextNode *parentContext;
-@property (nonatomic, readonly) NSArray *nodes;
+@property (nonatomic, strong) KWRegisterMatchersNode *registerMatchersNode;
+@property (nonatomic, strong) KWBeforeAllNode *beforeAllNode;
+@property (nonatomic, strong) KWAfterAllNode *afterAllNode;
+@property (nonatomic, strong) KWBeforeEachNode *beforeEachNode;
+@property (nonatomic, strong) KWAfterEachNode *afterEachNode;
+@property (nonatomic, weak, readonly) KWContextNode *parentContext;
+@property (nonatomic, strong, readonly) NSArray *nodes;
+
+@property (nonatomic, assign) int performedExampleCount;
 
 - (void)addContextNode:(KWContextNode *)aNode;
 - (void)addItNode:(KWItNode *)aNode;

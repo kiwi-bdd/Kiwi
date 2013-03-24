@@ -18,7 +18,7 @@
 
 @property (nonatomic, readonly) KWExpectationType expectationType;
 @property (nonatomic, readonly) KWCallSite *callSite;
-@property (unsafe_unretained, nonatomic, readonly) id<KWReporting> reporter;
+@property (nonatomic, strong, readonly) id<KWReporting> reporter;
 
 @end
 
@@ -29,9 +29,9 @@
 
 - (id)initWithExpectationType:(KWExpectationType)anExpectationType callSite:(KWCallSite *)aCallSite reporter:(id<KWReporting>)aReporter {
     if ((self = [super init])) {
-        expectationType = anExpectationType;
-        callSite = aCallSite;
-        reporter = aReporter;
+        _expectationType = anExpectationType;
+        _callSite = aCallSite;
+        _reporter = aReporter;
     }
 
     return self;
@@ -49,14 +49,6 @@
   }
   return @"should not exist";
 }
-
-#pragma mark -
-#pragma mark Properties
-
-@synthesize expectationType;
-@synthesize callSite;
-@synthesize reporter;
-@synthesize subject;
 
 #pragma mark -
 #pragma mark Ending Examples

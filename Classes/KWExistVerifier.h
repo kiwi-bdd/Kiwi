@@ -12,13 +12,7 @@
 
 @protocol KWReporting;
 
-@interface KWExistVerifier : NSObject<KWVerifying> {
-@private
-    KWExpectationType expectationType;
-    KWCallSite *callSite;
-    id<KWReporting> __unsafe_unretained reporter;
-    id subject;
-}
+@interface KWExistVerifier : NSObject<KWVerifying>
 
 #pragma mark -
 #pragma mark Initializing
@@ -30,6 +24,6 @@
 #pragma mark -
 #pragma mark Properties
 
-@property (nonatomic, readwrite, strong) id subject;
+@property (nonatomic, strong) id subject;
 
 @end

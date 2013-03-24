@@ -17,19 +17,17 @@
 
 @implementation KWContextNode
 
-@synthesize parentContext;
-
 #pragma mark -
 #pragma mark Initializing
 
 - (id)initWithCallSite:(KWCallSite *)aCallSite parentContext:(KWContextNode *)node description:(NSString *)aDescription
 {
     if ((self = [super init])) {
-        parentContext = node;
-        callSite = aCallSite;
-        description = [aDescription copy];
-        nodes = [[NSMutableArray alloc] init];
-        performedExampleCount = 0;
+        _parentContext = node;
+        _callSite = aCallSite;
+        _description = [aDescription copy];
+        _nodes = [[NSMutableArray alloc] init];
+        _performedExampleCount = 0;
     }
 
     return self;
@@ -39,27 +37,6 @@
     return [[self alloc] initWithCallSite:aCallSite parentContext:contextNode description:aDescription];
 }
 
-
-#pragma mark -
-#pragma mark  Getting Call Sites
-
-@synthesize callSite;
-
-#pragma mark -
-#pragma mark Getting Descriptions
-
-@synthesize description;
-
-#pragma mark -
-#pragma mark Managing Nodes
-
-@synthesize registerMatchersNode;
-@synthesize beforeAllNode;
-@synthesize afterAllNode;
-@synthesize beforeEachNode;
-@synthesize afterEachNode;
-@synthesize nodes;
-
 - (void)addContextNode:(KWContextNode *)aNode {
     [(NSMutableArray *)self.nodes addObject:aNode];
 }
@@ -68,21 +45,21 @@
     if (self.registerMatchersNode != nil)
         [NSException raise:@"KWContextNodeException" format:@"a register matchers node already exists"];
 
-    registerMatchersNode = aNode;
+    self.registerMatchersNode = aNode;
 }
 
 - (void)setBeforeEachNode:(KWBeforeEachNode *)aNode {
     if (self.beforeEachNode != nil)
         [NSException raise:@"KWContextNodeException" format:@"a before each node already exists"];
 
-    beforeEachNode = aNode;
+    self.beforeEachNode = aNode;
 }
 
 - (void)setAfterEachNode:(KWAfterEachNode *)aNode {
     if (self.afterEachNode != nil)
         [NSException raise:@"KWContextNodeException" format:@"an after each node already exists"];
 
-    afterEachNode = aNode;
+    self.afterEachNode = aNode;
 }
 
 - (void)addItNode:(KWItNode *)aNode {
@@ -120,13 +97,13 @@
             [example reportFailure:failure];
         }
         
-        performedExampleCount++;
+        self.performedExampleCount++;
     };
-    if (parentContext == nil) {
+    if (self.parentContext == nil) {
         outerExampleBlock();
     }
     else {
-        [parentContext performExample:example withBlock:outerExampleBlock];
+        [self.parentContext performExample:example withBlock:outerExampleBlock];
     }
 }
 

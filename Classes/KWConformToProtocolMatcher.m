@@ -12,7 +12,7 @@
 #pragma mark -
 #pragma mark Properties
 
-@property (nonatomic, readwrite, unsafe_unretained) Protocol *protocol;
+@property (nonatomic, assign) Protocol *protocol;
 
 @end
 

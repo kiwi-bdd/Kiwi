@@ -13,7 +13,7 @@
 #pragma mark -
 #pragma mark Properties
 
-@property (nonatomic, readwrite, strong) id otherSubject;
+@property (nonatomic, strong) id otherSubject;
 
 @end
 

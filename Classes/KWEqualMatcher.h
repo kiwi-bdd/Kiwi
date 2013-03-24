@@ -7,10 +7,7 @@
 #import "KiwiConfiguration.h"
 #import "KWMatcher.h"
 
-@interface KWEqualMatcher : KWMatcher {
-@private
-    id otherSubject;
-}
+@interface KWEqualMatcher : KWMatcher
 
 #pragma mark -
 #pragma mark Configuring Matchers

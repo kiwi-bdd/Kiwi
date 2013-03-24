@@ -9,13 +9,7 @@
 #import "KWMatcher.h"
 #import "KWMatchVerifier.h"
 
-@interface KWHaveMatcher : KWMatcher {
-@private
-    KWCountType countType;
-    NSUInteger count;
-    NSInvocation *invocation;
-    NSUInteger actualCount;
-}
+@interface KWHaveMatcher : KWMatcher
 
 #pragma mark -
 #pragma mark Configuring Matchers

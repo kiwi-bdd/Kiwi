@@ -29,18 +29,6 @@ static NSString * const CountKey = @"CountKey";
 @implementation KWHaveMatcher
 
 #pragma mark -
-#pragma mark Initializing
-
-
-#pragma mark -
-#pragma mark Properties
-
-@synthesize countType;
-@synthesize count;
-@synthesize invocation;
-@synthesize actualCount;
-
-#pragma mark -
 #pragma mark Getting Matcher Strings
 
 + (NSArray *)matcherStrings {

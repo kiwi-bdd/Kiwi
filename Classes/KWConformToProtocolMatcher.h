@@ -7,10 +7,7 @@
 #import "KiwiConfiguration.h"
 #import "KWMatcher.h"
 
-@interface KWConformToProtocolMatcher : KWMatcher {
-@private
-    Protocol *__unsafe_unretained protocol;
-}
+@interface KWConformToProtocolMatcher : KWMatcher
 
 #pragma mark -
 #pragma mark Configuring Matchers
