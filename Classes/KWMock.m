@@ -260,8 +260,8 @@ static NSString * const ChangeStubValueAfterTimesKey = @"ChangeStubValueAfterTim
     return [KWInvocationCapturer invocationCapturerWithDelegate:self userInfo:userInfo];
 }
 
-- (id)stubAndReturn:(id)aValue times:(id)times afterThatReturn:(id)aSecondValue {
-    NSDictionary *userInfo = @{ExpectOrStubTagKey: StubTag, StubValueKey: aValue, ChangeStubValueAfterTimesKey: times, StubSecondValueKey: aSecondValue};
+- (id)stubAndReturn:(id)aValue times:(NSInteger)times afterThatReturn:(id)aSecondValue {
+    NSDictionary *userInfo = @{ExpectOrStubTagKey: StubTag, StubValueKey: aValue, ChangeStubValueAfterTimesKey: [NSNumber numberWithInteger:times], StubSecondValueKey: aSecondValue};
     return [KWInvocationCapturer invocationCapturerWithDelegate:self userInfo:userInfo];
 }
 
@@ -364,7 +364,7 @@ static NSString * const ChangeStubValueAfterTimesKey = @"ChangeStubValueAfterTim
         if (!(anInvocationCapturer.userInfo)[StubSecondValueKey]) {
             [self stubMessagePattern:messagePattern andReturn:value];
         } else {
-            id times = (anInvocationCapturer.userInfo)[ChangeStubValueAfterTimesKey];
+            NSInteger times = [(anInvocationCapturer.userInfo)[ChangeStubValueAfterTimesKey] integerValue];
             id secondValue = (anInvocationCapturer.userInfo)[StubSecondValueKey];
             [self stubMessagePattern:messagePattern andReturn:value times:times afterThatReturn:secondValue];
         }

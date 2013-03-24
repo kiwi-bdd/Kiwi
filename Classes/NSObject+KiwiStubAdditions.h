@@ -29,7 +29,7 @@
 
 - (id)stub;
 - (id)stubAndReturn:(id)aValue;
-- (id)stubAndReturn:(id)aValue times:(id)times afterThatReturn:(id)aSecondValue;
+- (id)stubAndReturn:(id)aValue times:(NSInteger)times afterThatReturn:(id)aSecondValue;
 
 - (void)stubMessagePattern:(KWMessagePattern *)aMessagePattern andReturn:(id)aValue;
 - (void)stubMessagePattern:(KWMessagePattern *)aMessagePattern andReturn:(id)aValue overrideExisting:(BOOL)overrideExisting;
