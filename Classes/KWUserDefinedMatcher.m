@@ -31,7 +31,7 @@
     BOOL result;
 
     if (invocation.methodSignature.numberOfArguments == 3) {
-        __unsafe_unretained id argument;
+        id argument = nil;
         [invocation getArgument:&argument atIndex:2];
         result = self.matcherBlock(self.subject, argument);
     } else {

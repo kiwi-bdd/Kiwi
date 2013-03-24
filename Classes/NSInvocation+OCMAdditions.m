@@ -24,7 +24,7 @@
 		case '#':
 		case '@': 
 		{
-			__unsafe_unretained id value;
+			id value;
 			[self getArgument:&value atIndex:argIndex];
 			return value;
 		}
@@ -186,7 +186,7 @@
 
 - (NSString *)objectDescriptionAtIndex:(int)anInt
 {
-	__unsafe_unretained id object;
+	id object;
 	
 	[self getArgument:&object atIndex:anInt];
 	if (object == nil)

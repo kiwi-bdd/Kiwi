@@ -15,7 +15,7 @@
 
 - (id)initWithSubject:(id)anObject {
     if ((self = [super init])) {
-        subject = anObject;
+        _subject = anObject;
     }
 
     return self;
@@ -24,12 +24,6 @@
 + (id)matcherWithSubject:(id)anObject {
     return [[self alloc] initWithSubject:anObject];
 }
-
-
-#pragma mark -
-#pragma mark Properties
-
-@synthesize subject;
 
 - (id)subject
 {
