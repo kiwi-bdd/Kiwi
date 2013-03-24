@@ -24,10 +24,10 @@
 
 - (id)initWithSubject:(id)anObject messagePattern:(KWMessagePattern *)aMessagePattern countType:(KWCountType)aCountType count:(NSUInteger)aCount {
     if ((self = [super init])) {
-        subject = anObject;
-        messagePattern = aMessagePattern;
-        countType = aCountType;
-        count = aCount;
+        _subject = anObject;
+        _messagePattern = aMessagePattern;
+        _countType = aCountType;
+        _count = aCount;
         [anObject addMessageSpy:self forMessagePattern:messagePattern];
     }
 
@@ -37,16 +37,6 @@
 + (id)messageTrackerWithSubject:(id)anObject messagePattern:(KWMessagePattern *)aMessagePattern countType:(KWCountType)aCountType count:(NSUInteger)aCount {
     return [[self alloc] initWithSubject:anObject messagePattern:aMessagePattern countType:aCountType count:aCount];
 }
-
-
-#pragma mark -
-#pragma mark Properties
-
-@synthesize subject;
-@synthesize messagePattern;
-@synthesize countType;
-@synthesize count;
-@synthesize receivedCount;
 
 #pragma mark -
 #pragma mark Spying on Messages

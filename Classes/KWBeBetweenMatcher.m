@@ -12,22 +12,12 @@
 #pragma mark -
 #pragma mark Properties
 
-@property (nonatomic, readwrite, strong) id lowerEndpoint;
-@property (nonatomic, readwrite, strong) id upperEndpoint;
+@property (nonatomic, strong) id lowerEndpoint;
+@property (nonatomic, strong) id upperEndpoint;
 
 @end
 
 @implementation KWBeBetweenMatcher
-
-#pragma mark -
-#pragma mark Initializing
-
-
-#pragma mark -
-#pragma mark Properties
-
-@synthesize lowerEndpoint;
-@synthesize upperEndpoint;
 
 #pragma mark -
 #pragma mark Getting Matcher Strings

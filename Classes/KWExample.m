@@ -39,21 +39,14 @@
 
 @implementation KWExample
 
-@synthesize matcherFactory;
-@synthesize verifiers;
-@synthesize delegate = _delegate;
-@synthesize suite;
-@synthesize lastInContexts;
-@synthesize didNotFinish;
-
 - (id)initWithExampleNode:(id<KWExampleNode>)node
 {
   if ((self = [super init])) {
-    exampleNode = node;
-    matcherFactory = [[KWMatcherFactory alloc] init];
-    verifiers = [[NSMutableArray alloc] init];
-    lastInContexts = [[NSMutableArray alloc] init];
-    passed = YES;
+    _exampleNode = node;
+    _matcherFactory = [[KWMatcherFactory alloc] init];
+    _verifiers = [[NSMutableArray alloc] init];
+    _lastInContexts = [[NSMutableArray alloc] init];
+    _passed = YES;
   }
   return self;
 }
@@ -61,7 +54,7 @@
 
 - (BOOL)isLastInContext:(KWContextNode *)context
 {
-  for (KWContextNode *contextWhereItLast in lastInContexts) {
+  for (KWContextNode *contextWhereItLast in self.lastInContexts) {
     if (context == contextWhereItLast) {
       return YES;
     }
@@ -71,7 +64,7 @@
 
 - (NSString *)description
 {
-  return [NSString stringWithFormat:@"<KWExample: %@>", exampleNode.description];
+  return [NSString stringWithFormat:@"<KWExample: %@>", self.exampleNode.description];
 }
 
 #pragma mark - Adding Verifiers

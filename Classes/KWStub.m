@@ -24,8 +24,8 @@
 
 - (id)initWithMessagePattern:(KWMessagePattern *)aMessagePattern value:(id)aValue {
     if ((self = [super init])) {
-        messagePattern = aMessagePattern;
-        value = aValue;
+        _messagePattern = aMessagePattern;
+        _value = aValue;
     }
 
     return self;
@@ -33,8 +33,8 @@
 
 - (id)initWithMessagePattern:(KWMessagePattern *)aMessagePattern block:(id (^)(NSArray *params))aBlock {
     if ((self = [super init])) {
-        messagePattern = aMessagePattern;
-        block = [aBlock copy];
+        _messagePattern = aMessagePattern;
+        _block = [aBlock copy];
     }
 	
     return self;
@@ -42,10 +42,10 @@
 
 - (id)initWithMessagePattern:(KWMessagePattern *)aMessagePattern value:(id)aValue times:(id)times afterThatReturn:(id)aSecondValue {
     if ((self = [super init])) {
-        messagePattern = aMessagePattern;
-        value = aValue;
-        returnValueTimes = times;
-        secondValue = aSecondValue;
+        _messagePattern = aMessagePattern;
+        _value = aValue;
+        _returnValueTimes = times;
+        _secondValue = aSecondValue;
     }
     
     return self;
@@ -66,16 +66,6 @@
 + (id)stubWithMessagePattern:(KWMessagePattern *)aMessagePattern value:(id)aValue times:(id)times afterThatReturn:(id)aSecondValue {
     return [[self alloc] initWithMessagePattern:aMessagePattern value:aValue times:times afterThatReturn:aSecondValue];
 }
-
-
-#pragma mark -
-#pragma mark Properties
-
-@synthesize messagePattern;
-@synthesize value;
-@synthesize secondValue;
-@synthesize returnValueTimes;
-@synthesize returnedValueTimes;
 
 #pragma mark -
 #pragma mark Processing Invocations

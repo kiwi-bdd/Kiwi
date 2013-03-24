@@ -19,10 +19,10 @@ static NSString * const CountKey = @"CountKey";
 #pragma mark -
 #pragma mark Properties
 
-@property (nonatomic, readwrite) KWCountType countType;
-@property (nonatomic, readwrite) NSUInteger count;
-@property (nonatomic, readwrite, strong) NSInvocation *invocation;
-@property (nonatomic, readwrite) NSUInteger actualCount;
+@property (nonatomic, assign) KWCountType countType;
+@property (nonatomic, assign) NSUInteger count;
+@property (nonatomic, assign) NSUInteger actualCount;
+@property (nonatomic, strong) NSInvocation *invocation;
 
 @end
 

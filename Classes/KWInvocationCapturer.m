@@ -18,8 +18,8 @@
 }
 
 - (id)initWithDelegate:(id)aDelegate userInfo:(NSDictionary *)aUserInfo {
-    delegate = aDelegate;
-    userInfo = aUserInfo;
+    _delegate = aDelegate;
+    _userInfo = aUserInfo;
     return self;
 }
 
@@ -30,13 +30,6 @@
 + (id)invocationCapturerWithDelegate:(id)aDelegate userInfo:(NSDictionary *)aUserInfo {
     return [[self alloc] initWithDelegate:aDelegate userInfo:aUserInfo];
 }
-
-
-#pragma mark -
-#pragma mark Properties
-
-@synthesize delegate;
-@synthesize userInfo;
 
 #pragma mark -
 #pragma mark Capturing Invocations

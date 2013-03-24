@@ -20,15 +20,6 @@
 @implementation KWEqualMatcher
 
 #pragma mark -
-#pragma mark Initializing
-
-
-#pragma mark -
-#pragma mark Properties
-
-@synthesize otherSubject;
-
-#pragma mark -
 #pragma mark Getting Matcher Strings
 
 + (NSArray *)matcherStrings {

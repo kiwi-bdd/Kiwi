@@ -14,22 +14,12 @@
 #pragma mark -
 #pragma mark Properties
 
-@property (nonatomic, readwrite, strong) id distance;
-@property (nonatomic, readwrite, strong) id otherValue;
+@property (nonatomic, strong) id distance;
+@property (nonatomic, strong) id otherValue;
 
 @end
 
 @implementation KWBeWithinMatcher
-
-#pragma mark -
-#pragma mark Initializing
-
-
-#pragma mark -
-#pragma mark Properties
-
-@synthesize distance;
-@synthesize otherValue;
 
 #pragma mark -
 #pragma mark Getting Matcher Strings

@@ -4,22 +4,19 @@
 // Copyright 2010 Allen Ding. All rights reserved.
 //
 
-#import "KWItNode.h"
-#import "KWExampleNodeVisitor.h"
-#import "KWExample.h"
-#import "KWVerifying.h"
 #import "KWContextNode.h"
+#import "KWExample.h"
+#import "KWExampleNodeVisitor.h"
+#import "KWItNode.h"
+#import "KWVerifying.h"
 
 @interface KWItNode ()
 
-@property (nonatomic, strong, readwrite) KWContextNode *context;
+@property (nonatomic, strong) KWContextNode *context;
 
 @end
 
 @implementation KWItNode
-
-@synthesize context = _context;
-@synthesize example;
 
 #pragma mark -
 #pragma mark Initializing
@@ -60,7 +57,7 @@
 {
   NSMutableArray *contextStack = [NSMutableArray array];
   
-  KWContextNode *currentContext = _context;
+  KWContextNode *currentContext = self.context;
   
   while (currentContext) {
     [contextStack addObject:currentContext];

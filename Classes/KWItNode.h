@@ -14,7 +14,7 @@
 
 @interface KWItNode : KWBlockNode<KWExampleNode>
 
-@property (nonatomic, unsafe_unretained) KWExample *example;
+@property (nonatomic, weak) KWExample *example;
 @property (nonatomic, strong, readonly) KWContextNode *context;
 
 #pragma mark -

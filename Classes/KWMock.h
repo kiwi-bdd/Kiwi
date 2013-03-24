@@ -13,19 +13,7 @@
 @protocol KWMessageSpying;
 @protocol KWVerifying;
 
-@interface KWMock : NSObject {
-@private
-    BOOL isPartialMock;
-    BOOL isNullMock;
-    NSString *mockName;
-    id mockedObject;
-    Class mockedClass;
-    Protocol *__unsafe_unretained mockedProtocol;
-    NSMutableArray *stubs;
-    NSMutableArray *expectedMessagePatterns;
-    NSMutableDictionary *messageSpies;
-}
-
+@interface KWMock : NSObject
 #pragma mark -
 #pragma mark Initializing
 
@@ -58,12 +46,12 @@
 #pragma mark -
 #pragma mark Properties
 
-@property (nonatomic, readonly) BOOL isNullMock;
-@property (nonatomic, readonly) BOOL isPartialMock;
-@property (nonatomic, readonly) NSString *mockName;
-@property (nonatomic, readonly) Class mockedClass;
-@property (nonatomic, readonly) id mockedObject;
-@property (unsafe_unretained, nonatomic, readonly) Protocol *mockedProtocol;
+@property (nonatomic, assign, readonly) BOOL isNullMock;
+@property (nonatomic, assign, readonly) BOOL isPartialMock;
+@property (nonatomic, copy, readonly) NSString *mockName;
+@property (nonatomic, assign, readonly) Class mockedClass;
+@property (nonatomic, strong, readonly) id mockedObject;
+@property (nonatomic, assign, readonly) Protocol *mockedProtocol;
 
 #pragma mark -
 #pragma mark Stubbing Methods

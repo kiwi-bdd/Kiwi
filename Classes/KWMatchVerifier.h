@@ -14,24 +14,16 @@
 @protocol KWMatching;
 @protocol KWReporting;
 
-@interface KWMatchVerifier : NSObject<KWVerifying> {
-@private
-    KWExpectationType expectationType;
-    KWCallSite *callSite;
-    KWMatcherFactory *__unsafe_unretained matcherFactory;
-    id<KWReporting> __unsafe_unretained reporter;
-    id subject;
-    id<KWMatching> endOfExampleMatcher;
-}
+@interface KWMatchVerifier : NSObject<KWVerifying>
 
 #pragma mark -
 #pragma mark Properties
 
 @property (nonatomic, readonly) KWExpectationType expectationType;
 @property (nonatomic, readonly) KWCallSite *callSite;
-@property (unsafe_unretained, nonatomic, readonly) KWMatcherFactory *matcherFactory;
-@property (unsafe_unretained, nonatomic, readonly) id<KWReporting> reporter;
-@property (nonatomic, readwrite, strong) id subject;
+@property (nonatomic, weak, readonly) KWMatcherFactory *matcherFactory;
+@property (nonatomic, weak, readonly) id<KWReporting> reporter;
+@property (nonatomic, strong) id subject;
 
 #pragma mark -
 #pragma mark Initializing

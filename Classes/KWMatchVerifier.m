@@ -22,14 +22,12 @@
 #pragma mark -
 #pragma mark Properties
 
-@property (nonatomic, readwrite, strong) id<KWMatching> endOfExampleMatcher;
-@property (nonatomic, readwrite, strong) id<KWMatching> matcher;
+@property (nonatomic, strong) id<KWMatching> endOfExampleMatcher;
+@property (nonatomic, strong) id<KWMatching> matcher;
 
 @end
 
 @implementation KWMatchVerifier
-
-@synthesize matcher;
 
 #pragma mark -
 #pragma mark Initializing
@@ -44,10 +42,10 @@
 
 - (id)initWithExpectationType:(KWExpectationType)anExpectationType callSite:(KWCallSite *)aCallSite matcherFactory:(KWMatcherFactory *)aMatcherFactory reporter:(id<KWReporting>)aReporter {
     if ((self = [super init])) {
-        expectationType = anExpectationType;
-        callSite = aCallSite;
-        matcherFactory = aMatcherFactory;
-        reporter = aReporter;
+        _expectationType = anExpectationType;
+        _callSite = aCallSite;
+        _matcherFactory = aMatcherFactory;
+        _reporter = aReporter;
     }
 
     return self;
@@ -72,16 +70,6 @@
   id<KWMatching> actualMatcher = (self.endOfExampleMatcher == nil) ? self.matcher : self.endOfExampleMatcher;
   return [NSString stringWithFormat:@"%@ %@", typeString, actualMatcher];
 }
-
-#pragma mark -
-#pragma mark Properties
-
-@synthesize expectationType;
-@synthesize callSite;
-@synthesize matcherFactory;
-@synthesize reporter;
-@synthesize subject;
-@synthesize endOfExampleMatcher;
 
 #pragma mark -
 #pragma mark Verifying

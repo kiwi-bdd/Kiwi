@@ -8,11 +8,7 @@
 
 @protocol KWInvocationCapturerDelegate;
 
-@interface KWInvocationCapturer : NSProxy {
-@private
-    id __unsafe_unretained delegate;
-    NSDictionary *userInfo;
-}
+@interface KWInvocationCapturer : NSProxy
 
 #pragma mark -
 #pragma mark Initializing
@@ -26,7 +22,7 @@
 #pragma mark -
 #pragma mark Properties
 
-@property (unsafe_unretained, nonatomic, readonly) id delegate;
+@property (nonatomic, weak, readonly) id<KWInvocationCapturerDelegate> delegate;
 @property (nonatomic, readonly) NSDictionary *userInfo;
 
 @end

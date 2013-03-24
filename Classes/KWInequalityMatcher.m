@@ -12,22 +12,12 @@
 #pragma mark -
 #pragma mark Properties
 
-@property (nonatomic, readwrite) KWInequalityType inequalityType;
-@property (nonatomic, readwrite, strong) id otherValue;
+@property (nonatomic, assign) KWInequalityType inequalityType;
+@property (nonatomic, strong) id otherValue;
 
 @end
 
 @implementation KWInequalityMatcher
-
-#pragma mark -
-#pragma mark Initializing
-
-
-#pragma mark -
-#pragma mark Properties
-
-@synthesize inequalityType;
-@synthesize otherValue;
 
 #pragma mark -
 #pragma mark Getting Matcher Strings

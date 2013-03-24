@@ -10,14 +10,8 @@
 
 @class KWMessagePattern;
 
-@interface KWMessageTracker : NSObject<KWMessageSpying> {
-@private
-    id subject;
-    KWMessagePattern *messagePattern;
-    KWCountType countType;
-    NSUInteger count;
-    NSUInteger receivedCount;
-}
+@interface KWMessageTracker : NSObject<KWMessageSpying>
+
 
 #pragma mark -
 #pragma mark Initializing
@@ -29,10 +23,10 @@
 #pragma mark -
 #pragma mark Properties
 
-@property (nonatomic, readonly) id subject;
-@property (nonatomic, readonly) KWMessagePattern *messagePattern;
-@property (nonatomic, readonly) KWCountType countType;
-@property (nonatomic, readonly) NSUInteger count;
+@property (nonatomic, strong, readonly) id subject;
+@property (nonatomic, strong, readonly) KWMessagePattern *messagePattern;
+@property (nonatomic, assign, readonly) KWCountType countType;
+@property (nonatomic, assign, readonly) NSUInteger count;
 
 #pragma mark -
 #pragma mark Stopping Tracking
