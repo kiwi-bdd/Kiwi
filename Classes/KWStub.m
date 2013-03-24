@@ -13,6 +13,13 @@
 #import "NSInvocation+OCMAdditions.h"
 #import "NSObject+ManualRetain.h"
 
+@interface KWStub ()
+
+@property (nonatomic, strong) id value;
+@property (nonatomic, assign) NSInteger returnedValueTimes;
+
+@end
+
 @implementation KWStub
 
 #pragma mark -
@@ -34,13 +41,13 @@
 - (id)initWithMessagePattern:(KWMessagePattern *)aMessagePattern block:(id (^)(NSArray *params))aBlock {
     if ((self = [super init])) {
         _messagePattern = aMessagePattern;
-        _block = [aBlock copy];
+        _block = aBlock;
     }
 	
     return self;
 }
 
-- (id)initWithMessagePattern:(KWMessagePattern *)aMessagePattern value:(id)aValue times:(id)times afterThatReturn:(id)aSecondValue {
+- (id)initWithMessagePattern:(KWMessagePattern *)aMessagePattern value:(id)aValue times:(NSInteger)times afterThatReturn:(id)aSecondValue {
     if ((self = [super init])) {
         _messagePattern = aMessagePattern;
         _value = aValue;
@@ -63,7 +70,7 @@
     return [[self alloc] initWithMessagePattern:aMessagePattern block:aBlock];
 }
 
-+ (id)stubWithMessagePattern:(KWMessagePattern *)aMessagePattern value:(id)aValue times:(id)times afterThatReturn:(id)aSecondValue {
++ (id)stubWithMessagePattern:(KWMessagePattern *)aMessagePattern value:(id)aValue times:(NSInteger)times afterThatReturn:(id)aSecondValue {
     return [[self alloc] initWithMessagePattern:aMessagePattern value:aValue times:times afterThatReturn:aSecondValue];
 }
 
@@ -102,14 +109,12 @@
 
     NSData *choosedForData = [self.value dataValue];
 
-    if (returnValueTimes != nil) {
-        NSString *returnValueTimesString = returnValueTimes;
-        int returnValueTimesInt = [returnValueTimesString intValue];
+    if (self.returnValueTimes > 0) {
         
-        if (returnedValueTimes >= returnValueTimesInt) {
+        if (self.returnedValueTimes >= self.returnValueTimes) {
             choosedForData = [self.secondValue dataValue];
         }
-        returnedValueTimes++;
+        self.returnedValueTimes++;
     }
 
     
@@ -127,16 +132,14 @@
 - (void)writeObjectValueToInvocationReturnValue:(NSInvocation *)anInvocation {
     assert(self.value && "self.value must not be nil");
     
-    void *choosedForData = &value;
+    void *choosedForData = &_value;
     
-    if (returnValueTimes != nil) {
-        NSString *returnValueTimesString = returnValueTimes;
-        int returnValueTimesInt = [returnValueTimesString intValue];
+    if (self.returnValueTimes > 0) {
         
-        if (returnedValueTimes >= returnValueTimesInt) {
-            choosedForData = &secondValue;
+        if (self.returnedValueTimes >= self.returnValueTimes) {
+            choosedForData = &_secondValue;
         }
-        returnedValueTimes++;
+        self.returnedValueTimes++;
     }
 
     [anInvocation setReturnValue:choosedForData];
@@ -160,7 +163,7 @@
     if (![self.messagePattern matchesInvocation:anInvocation])
         return NO;
 	
-	if (block) {
+	if (self.block) {
 		NSUInteger numberOfArguments = [[anInvocation methodSignature] numberOfArguments];
 		NSMutableArray *args = [NSMutableArray arrayWithCapacity:(numberOfArguments-2)];
 		for (NSUInteger i = 2; i < numberOfArguments; ++i) {
@@ -171,9 +174,9 @@
 			[args addObject:arg];
 		}
 		
-		id newValue = block(args);
-		if (newValue != value) {
-			value = newValue;
+		id newValue = self.block(args);
+		if (newValue != self.value) {
+			self.value = newValue;
 		}
 		
 		[args removeAllObjects]; // We don't want these objects to be in autorelease pool

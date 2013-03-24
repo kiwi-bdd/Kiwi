@@ -23,7 +23,7 @@ typedef BOOL (^KWUserDefinedMatcherBlock)();
 
 + (id)matcherWithSubject:(id)aSubject block:(KWUserDefinedMatcherBlock)aBlock;
 - (id)initWithSubject:(id)aSubject block:(KWUserDefinedMatcherBlock)aBlock;
-- (void)setSubject:(id)aSubject;
+
 @end
 
 #pragma mark -

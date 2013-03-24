@@ -19,7 +19,7 @@
 #pragma mark -
 #pragma mark Properties
 
-@property (nonatomic, strong, readonly) id subject;
+@property (nonatomic, strong) id subject;
 
 #pragma mark -
 #pragma mark Getting Matcher Strings

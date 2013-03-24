@@ -21,8 +21,8 @@
 #pragma mark -
 #pragma mark Properties
 
-@property (nonatomic, strong, readonly) NSArray *registeredMatcherClasses;
-@property (nonatomic, strong) NSDictionary *matcherClassChains;
+@property (nonatomic, strong, readonly) NSMutableArray *registeredMatcherClasses;
+@property (nonatomic, strong) NSMutableDictionary *matcherClassChains;
 
 #pragma mark -
 #pragma mark Registering Matcher Classes

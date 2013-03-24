@@ -36,6 +36,7 @@
     if ([self.registeredMatcherClasses containsObject:aClass])
         return;
 
+
     [self.registeredMatcherClasses addObject:aClass];
 
     for (NSString *verificationSelectorString in [aClass matcherStrings]) {
@@ -58,7 +59,7 @@
     if (matcherClasses == nil) {
         matcherClasses = [[NSMutableArray alloc] init];
         int numberOfClasses = objc_getClassList(NULL, 0);
-        Class *classes = malloc(sizeof(Class) * numberOfClasses);
+        Class *classes = (__unsafe_unretained Class *)malloc(sizeof(Class) * numberOfClasses);
         numberOfClasses = objc_getClassList(classes, numberOfClasses);
 
         if (numberOfClasses == 0) {

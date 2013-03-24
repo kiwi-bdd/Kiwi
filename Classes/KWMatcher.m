@@ -27,10 +27,10 @@
 
 - (id)subject
 {
-  if ([subject isKindOfClass:[KWFutureObject class]]) {
-    return [(KWFutureObject *)subject object];
+  if ([_subject isKindOfClass:[KWFutureObject class]]) {
+    return [(KWFutureObject *)_subject object];
   }
-  return subject;
+  return _subject;
 }
 
 #pragma mark -

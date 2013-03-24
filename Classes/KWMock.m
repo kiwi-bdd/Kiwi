@@ -290,7 +290,7 @@ static NSString * const ChangeStubValueAfterTimesKey = @"ChangeStubValueAfterTim
     [self.stubs addObject:stub];
 }
 
-- (void)stubMessagePattern:(KWMessagePattern *)aMessagePattern andReturn:(id)aValue times:(id)times afterThatReturn:(id)aSecondValue {   
+- (void)stubMessagePattern:(KWMessagePattern *)aMessagePattern andReturn:(id)aValue times:(NSInteger)times afterThatReturn:(id)aSecondValue {
     [self expectMessagePattern:aMessagePattern];
     [self removeStubWithMessagePattern:aMessagePattern];
     KWStub *stub = [KWStub stubWithMessagePattern:aMessagePattern value:aValue times:times afterThatReturn:aSecondValue];
@@ -442,7 +442,7 @@ static NSString * const ChangeStubValueAfterTimesKey = @"ChangeStubValueAfterTim
     if ([self processReceivedInvocation:anInvocation])
         return;
 
-    if (isPartialMock)
+    if (self.isPartialMock)
         [anInvocation invokeWithTarget:self.mockedObject];
 
     if (self.isNullMock)

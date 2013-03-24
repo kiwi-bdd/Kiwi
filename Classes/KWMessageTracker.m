@@ -28,7 +28,7 @@
         _messagePattern = aMessagePattern;
         _countType = aCountType;
         _count = aCount;
-        [anObject addMessageSpy:self forMessagePattern:messagePattern];
+        [anObject addMessageSpy:self forMessagePattern:_messagePattern];
     }
 
     return self;

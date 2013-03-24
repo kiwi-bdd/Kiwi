@@ -78,7 +78,7 @@
         @try {
             [self.registerMatchersNode acceptExampleNodeVisitor:example];
             
-            if (performedExampleCount == 0) {
+            if (self.performedExampleCount == 0) {
                 [self.beforeAllNode acceptExampleNodeVisitor:example];
             }
             

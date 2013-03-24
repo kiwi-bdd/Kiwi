@@ -40,12 +40,6 @@
     return result;
 }
 
-- (void)setSubject:(id)aSubject {
-    if (aSubject != subject) {
-        subject = aSubject;
-    }
-}
-
 #pragma mark -
 #pragma mark Message forwarding
 

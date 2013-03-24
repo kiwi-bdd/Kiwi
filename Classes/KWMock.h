@@ -67,7 +67,7 @@
 - (id)stubAndReturn:(id)aValue times:(id)times afterThatReturn:(id)aSecondValue;
 
 - (void)stubMessagePattern:(KWMessagePattern *)aMessagePattern andReturn:(id)aValue;
-- (void)stubMessagePattern:(KWMessagePattern *)aMessagePattern andReturn:(id)aValue times:(id)times afterThatReturn:(id)aSecondValue;
+- (void)stubMessagePattern:(KWMessagePattern *)aMessagePattern andReturn:(id)aValue times:(NSInteger)times afterThatReturn:(id)aSecondValue;
 
 - (void)clearStubs;
 
