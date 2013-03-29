@@ -1,17 +1,36 @@
 Release History
 ---------------
 
+2.0.6
+-----
+Contributors: Marin Usalj, Adam Sharp, Klaas Pieter Annema, Daniel Hammond, Tim LeMaster, Alex Dunn, Stepan Hruda, Andrew Wagner
+
+d52076d Add tests for pointer value matches
+0216268 refactored formatter a bit
+652d62b Added tests for KWFormatter
+93b92ed Add thePointerValue() macro
+8e52df9 Convert stub nil arguments to NSNull before adding to params array
+88446a2 fix #185 - dictionary failures now have keys and values
+a8ff0c2 Added support for partial mocks
+be3b4b2 Compile issue with pull request 223
+5e76f06 Fix spelling error
+bec597d Changed the suggested installation method to CocoaPods
+bba2eda Added class-level stubbing and spying methods.
+7c0f178 Removed KWMock captureArgument:atIndex method since it has been moved to NSObject level
+c48d874 Receive matcher now stubs its expected message, as in RSpec.
+44f6ebd Prevent nil inseration exception on failure without callsite
+
 2.0.5
 -----
 Contributors: Tim Brückmann, Stepan Hruda, Stewart Gleadow
 
-- 126fde2 Differentiating mockName from generic name property
-- 4ee4c96 Added AppCode .idea to ignore file
-- 49f9d8f Added argument spying capabilities to NSObject
-- 1e618bf Added method for block substitution capabilities to all NSObjects
-- fd66c6f Add stub:withBlock: to NSObject stub category
-- e48c398 Updated code to modern Objective-C syntax (literals)
-- a813200 issue #179 - Add support for expectations on NSProxy
+126fde2 Differentiating mockName from generic name property
+4ee4c96 Added AppCode .idea to ignore file
+49f9d8f Added argument spying capabilities to NSObject
+1e618bf Added method for block substitution capabilities to all NSObjects
+fd66c6f Add stub:withBlock: to NSObject stub category
+e48c398 Updated code to modern Objective-C syntax (literals)
+a813200 issue #179 - Add support for expectations on NSProxy
 
 2.0.4
 -----
