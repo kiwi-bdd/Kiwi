@@ -41,8 +41,9 @@
 #pragma mark Getting Failure Messages
 
 - (NSString *)failureMessageForShould {
-    return [NSString stringWithFormat:@"expected subject to be member of %@",
-                                      NSStringFromClass(self.targetClass)];
+    return [NSString stringWithFormat:@"expected subject to be member of %@, got %@",
+                                      NSStringFromClass(self.targetClass),
+                                      NSStringFromClass([self.subject class])];
 }
 
 - (NSString *)description
