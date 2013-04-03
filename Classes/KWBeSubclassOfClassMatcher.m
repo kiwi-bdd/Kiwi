@@ -48,7 +48,7 @@
 
 - (NSString *)description
 {
-    return [NSString stringWithFormat:@"be member of %@",
+    return [NSString stringWithFormat:@"be subclass of %@",
                                       NSStringFromClass(self.targetClass)];
 }
 

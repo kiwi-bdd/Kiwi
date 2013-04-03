@@ -16,6 +16,13 @@
 
 @implementation KWBeSubclassOfClassMatcherTest
 
+- (void)testItShouldHaveHumanReadableDescription
+{
+    id matcher = [KWBeSubclassOfClassMatcher matcherWithSubject:nil];
+    [matcher beSubclassOfClass:[Cruiser class]];
+    STAssertEqualObjects(@"be subclass of Cruiser", [matcher description], @"description should match");
+}
+
 - (void)testItShouldHaveInformativeFailureMessageForShould
 {
     id subject = [Cruiser cruiser];
