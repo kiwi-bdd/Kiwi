@@ -45,6 +45,22 @@
   STAssertEqualObjects(@"be kind of Fighter", [matcher description], @"description should match");
 }
 
+- (void)testItShouldHaveInformativeFailureMessageForShould
+{
+    id subject = [Cruiser cruiser];
+    id matcher = [KWBeKindOfClassMatcher matcherWithSubject:subject];
+    [matcher beKindOfClass:[Fighter class]];
+    STAssertEqualObjects([matcher failureMessageForShould], @"expected subject to be kind of Fighter, got Cruiser", @"failure message should match");
+}
+
+- (void)testItShouldHaveInformativeFailureMessageForShouldNot
+{
+    id subject = [Cruiser cruiser];
+    id matcher = [KWBeKindOfClassMatcher matcherWithSubject:subject];
+    [matcher beKindOfClass:[Fighter class]];
+    STAssertEqualObjects([matcher failureMessageForShouldNot], @"expected subject not to be kind of Fighter, got Cruiser", @"failure message should match");
+}
+
 @end
 
 #endif // #if KW_TESTS_ENABLED

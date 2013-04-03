@@ -41,13 +41,14 @@
 #pragma mark Getting Failure Messages
 
 - (NSString *)failureMessageForShould {
-    return [NSString stringWithFormat:@"expected subject to be subclass of %@",
-                                      NSStringFromClass(self.targetClass)];
+    return [NSString stringWithFormat:@"expected subject to be subclass of %@, got %@",
+                                      NSStringFromClass(self.targetClass),
+                                      NSStringFromClass([self.subject class])];
 }
 
 - (NSString *)description
 {
-    return [NSString stringWithFormat:@"be member of %@",
+    return [NSString stringWithFormat:@"be subclass of %@",
                                       NSStringFromClass(self.targetClass)];
 }
 
