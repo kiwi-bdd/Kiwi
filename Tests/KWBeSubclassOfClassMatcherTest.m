@@ -16,6 +16,28 @@
 
 @implementation KWBeSubclassOfClassMatcherTest
 
+- (void)testItShouldHaveTheRightMatcherStrings {
+    NSArray *matcherStrings = [KWBeSubclassOfClassMatcher matcherStrings];
+    NSArray *expectedStrings = @[@"beSubclassOfClass:"];
+    STAssertEqualObjects([matcherStrings sortedArrayUsingSelector:@selector(compare:)],
+                         [expectedStrings sortedArrayUsingSelector:@selector(compare:)],
+                         @"expected specific matcher strings");
+}
+
+- (void)testItShouldMatchSubclassesOfAClass {
+    id subject = [Cruiser class];
+    id matcher = [KWBeSubclassOfClassMatcher matcherWithSubject:subject];
+    [matcher beSubclassOfClass:[Cruiser class]];
+    STAssertTrue([matcher evaluate], @"expected positive match");
+}
+
+- (void)testItShouldNotMatchNonSubclassesOfAClass {
+    id subject = [Cruiser class];
+    id matcher = [KWBeSubclassOfClassMatcher matcherWithSubject:subject];
+    [matcher beSubclassOfClass:[Fighter class]];
+    STAssertFalse([matcher evaluate], @"expected negative match");
+}
+
 - (void)testItShouldHaveHumanReadableDescription
 {
     id matcher = [KWBeSubclassOfClassMatcher matcherWithSubject:nil];
