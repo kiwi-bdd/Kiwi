@@ -39,14 +39,16 @@
         NSString *message = [aProbe.matcher failureMessageForShould];
         KWFailure *failure = [KWFailure failureWithCallSite:self.callSite message:message];
         [self.reporter reportFailure:failure];
-      } else if (self.expectationType == KWExpectationTypeShouldNot) {
+      }
+    } else {
+      // poller returned YES -- fail if expectation is NOT
+      if (self.expectationType == KWExpectationTypeShouldNot) {
         NSString *message = [aProbe.matcher failureMessageForShouldNot];
         KWFailure *failure = [KWFailure failureWithCallSite:self.callSite message:message];
         [self.reporter reportFailure:failure];
-      } else if (self.expectationType == KWExpectationTypeMaybe) {
-        // don't do anything
       }
     }
+		
     [poller release];
 
   } @catch (NSException *exception) {
