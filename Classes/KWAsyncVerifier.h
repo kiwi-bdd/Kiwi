@@ -18,8 +18,9 @@
 @interface KWAsyncVerifier : KWMatchVerifier
 
 @property (nonatomic, assign) NSTimeInterval timeout;
+@property (nonatomic, assign) BOOL shouldWait;
 
-+ (id)asyncVerifierWithExpectationType:(KWExpectationType)anExpectationType callSite:(KWCallSite *)aCallSite matcherFactory:(KWMatcherFactory *)aMatcherFactory reporter:(id<KWReporting>)aReporter probeTimeout:(NSTimeInterval)probeTimeout;
++ (id)asyncVerifierWithExpectationType:(KWExpectationType)anExpectationType callSite:(KWCallSite *)aCallSite matcherFactory:(KWMatcherFactory *)aMatcherFactory reporter:(id<KWReporting>)aReporter probeTimeout:(NSTimeInterval)probeTimeout shouldWait:(BOOL)shouldWait;
 - (void)verifyWithProbe:(KWAsyncMatcherProbe *)aProbe;
 
 @end

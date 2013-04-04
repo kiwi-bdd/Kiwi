@@ -13,7 +13,7 @@
 
 @interface KWProbePoller : NSObject
 
-- (id)initWithTimeout:(NSTimeInterval)theTimeout delay:(NSTimeInterval)theDelay;
+- (id)initWithTimeout:(NSTimeInterval)theTimeout delay:(NSTimeInterval)theDelay shouldWait:(BOOL)wait;
 - (BOOL)check:(id<KWProbe>)probe;
 
 @end
