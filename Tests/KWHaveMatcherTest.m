@@ -19,12 +19,17 @@
 
 - (void)testItShouldHaveTheRightMatcherStrings {
     NSArray *matcherStrings = [KWHaveMatcher matcherStrings];
-    NSArray *expectedStrings = @[@"haveCountOf:",
-                                                         @"haveCountOfAtLeast:",
-                                                         @"haveCountOfAtMost:",
-                                                         @"have:itemsForInvocation:",
-                                                         @"haveAtLeast:itemsForInvocation:",
-                                                         @"haveAtMost:itemsForInvocation:"];
+    NSArray *expectedStrings = @[
+                                 @"haveCountOf:",
+                                 @"haveCountOfAtLeast:",
+                                 @"haveCountOfAtMost:",
+                                 @"haveLengthOf:",
+                                 @"haveLengthOfAtLeast:",
+                                 @"haveLengthOfAtMost:",
+                                 @"have:itemsForInvocation:",
+                                 @"haveAtLeast:itemsForInvocation:",
+                                 @"haveAtMost:itemsForInvocation:",
+                                 ];
     STAssertEqualObjects([matcherStrings sortedArrayUsingSelector:@selector(compare:)],
                          [expectedStrings sortedArrayUsingSelector:@selector(compare:)],
                          @"expected specific matcher strings");
@@ -37,10 +42,24 @@
     STAssertTrue([matcher evaluate], @"expected positive match");
 }
 
+- (void)testItShouldMatchExactLengths {
+    id subject = [NSMutableData dataWithLength:4];
+    id matcher = [KWHaveMatcher matcherWithSubject:subject];
+    [matcher haveLengthOf:4];
+    STAssertTrue([matcher evaluate], @"expected positive match");
+}
+
 - (void)testItShouldNotMatchNonExactCounts {
     id subject = @[@"dog", @"cat", @"tiger", @"liger"];
     id matcher = [KWHaveMatcher matcherWithSubject:subject];
     [matcher haveCountOf:3];
+    STAssertFalse([matcher evaluate], @"expected negative match");
+}
+
+- (void)testItShouldNotMatchNonExactLengths {
+    id subject = [NSMutableData dataWithLength:4];
+    id matcher = [KWHaveMatcher matcherWithSubject:subject];
+    [matcher haveLengthOf:3];
     STAssertFalse([matcher evaluate], @"expected negative match");
 }
 
@@ -51,10 +70,24 @@
     STAssertTrue([matcher evaluate], @"expected positive match");
 }
 
+- (void)testItShouldMatchAtLeastLengths {
+    id subject = [NSMutableData dataWithLength:4];
+    id matcher = [KWHaveMatcher matcherWithSubject:subject];
+    [matcher haveLengthOfAtLeast:3];
+    STAssertTrue([matcher evaluate], @"expected positive match");
+}
+
 - (void)testItShouldMatchAtMostCounts {
     id subject = @[@"dog", @"cat", @"tiger", @"liger"];
     id matcher = [KWHaveMatcher matcherWithSubject:subject];
     [matcher haveCountOfAtMost:5];
+    STAssertTrue([matcher evaluate], @"expected positive match");
+}
+
+- (void)testItShouldMatchAtMostLengths {
+    id subject = [NSMutableData dataWithLength:4];
+    id matcher = [KWHaveMatcher matcherWithSubject:subject];
+    [matcher haveLengthOfAtMost:5];
     STAssertTrue([matcher evaluate], @"expected positive match");
 }
 

@@ -48,12 +48,17 @@ static NSString * const CountKey = @"CountKey";
 #pragma mark Getting Matcher Strings
 
 + (NSArray *)matcherStrings {
-    return @[@"haveCountOf:",
-                                     @"haveCountOfAtLeast:",
-                                     @"haveCountOfAtMost:",
-                                     @"have:itemsForInvocation:",
-                                     @"haveAtLeast:itemsForInvocation:",
-                                     @"haveAtMost:itemsForInvocation:"];
+    return @[
+             @"haveCountOf:",
+             @"haveCountOfAtLeast:",
+             @"haveCountOfAtMost:",
+             @"haveLengthOf:",
+             @"haveLengthOfAtLeast:",
+             @"haveLengthOfAtMost:",
+             @"have:itemsForInvocation:",
+             @"haveAtLeast:itemsForInvocation:",
+             @"haveAtMost:itemsForInvocation:",
+             ];
 }
 
 #pragma mark -
@@ -167,14 +172,26 @@ static NSString * const CountKey = @"CountKey";
     self.countType = KWCountTypeExact;
 }
 
+- (void)haveLengthOf:(NSUInteger)aCount {
+  [self haveCountOf:aCount];
+}
+
 - (void)haveCountOfAtLeast:(NSUInteger)aCount {
     self.count = aCount;
     self.countType = KWCountTypeAtLeast;
 }
 
+- (void)haveLengthOfAtLeast:(NSUInteger)aCount {
+  [self haveCountOfAtLeast:aCount];
+}
+
 - (void)haveCountOfAtMost:(NSUInteger)aCount {
     self.count = aCount;
     self.countType = KWCountTypeAtMost;
+}
+
+- (void)haveLengthOfAtMost:(NSUInteger)aCount {
+  [self haveCountOfAtMost:aCount];
 }
 
 - (void)have:(NSUInteger)aCount itemsForInvocation:(NSInvocation *)anInvocation {
