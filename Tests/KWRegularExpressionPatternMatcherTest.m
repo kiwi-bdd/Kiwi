@@ -20,7 +20,7 @@
 
 - (void)testItShouldHaveTheRightMatcherStrings {
     NSArray *matcherStrings = [KWRegularExpressionPatternMatcher matcherStrings];
-    NSArray *expectedStrings = @[@"matchPattern:"];
+    NSArray *expectedStrings = @[@"matchPattern:", @"matchPattern:options:"];
     STAssertEqualObjects([matcherStrings sortedArrayUsingSelector:@selector(compare:)],
                          [expectedStrings sortedArrayUsingSelector:@selector(compare:)],
                          @"expected specific matcher strings");
@@ -51,6 +51,20 @@
     id subject = @"ababab";
     id matcher = [KWRegularExpressionPatternMatcher matcherWithSubject:subject];
     [matcher matchPattern:@"(abc)+"];
+    STAssertFalse([matcher evaluate], @"expected negative match");
+}
+
+- (void)testItShouldMatchCaseInsensitive {
+    id subject = @"abABab";
+    id matcher = [KWRegularExpressionPatternMatcher matcherWithSubject:subject];
+    [matcher matchPattern:@"(ab)+" options:NSRegularExpressionCaseInsensitive];
+    STAssertTrue([matcher evaluate], @"expected positive match");
+}
+
+- (void)testItShouldNotMatchCaseInsensitive {
+    id subject = @"abABab";
+    id matcher = [KWRegularExpressionPatternMatcher matcherWithSubject:subject];
+    [matcher matchPattern:@"(abc)+" options:NSRegularExpressionCaseInsensitive];
     STAssertFalse([matcher evaluate], @"expected negative match");
 }
 
