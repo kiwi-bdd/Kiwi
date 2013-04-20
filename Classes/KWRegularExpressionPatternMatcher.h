@@ -13,4 +13,6 @@
 
 - (void)matchPattern:(NSString *)pattern;
 
+- (void)matchPattern:(NSString *)pattern options:(NSRegularExpressionOptions)options;
+
 @end
