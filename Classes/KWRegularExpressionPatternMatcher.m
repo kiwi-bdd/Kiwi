@@ -13,6 +13,7 @@
 @interface KWRegularExpressionPatternMatcher ()
 
 @property (nonatomic, copy) NSString *pattern;
+@property (nonatomic) NSRegularExpressionOptions options;
 
 @end
 
@@ -28,7 +29,7 @@
 #pragma mark Getting Matcher Strings
 
 + (NSArray *)matcherStrings {
-    return @[@"matchPattern:"];
+    return @[@"matchPattern:", @"matchPattern:options:"];
 }
 
 #pragma mark -
@@ -43,7 +44,7 @@
     
     NSError *error = nil;
     NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:self.pattern
-                                                                           options:0
+                                                                           options:self.options
                                                                              error:&error];
     if (!regex) {
         NSLog(@"%s: Unable to create regular expression for pattern \"%@\": %@",
@@ -77,6 +78,12 @@
 
 - (void)matchPattern:(NSString *)pattern {
     self.pattern = pattern;
+    self.options = 0;
+}
+
+- (void)matchPattern:(NSString *)pattern options:(NSRegularExpressionOptions)options {
+    self.pattern = pattern;
+    self.options = options;
 }
 
 @end
