@@ -23,6 +23,9 @@
 - (void)haveCountOf:(NSUInteger)aCount;
 - (void)haveCountOfAtLeast:(NSUInteger)aCount;
 - (void)haveCountOfAtMost:(NSUInteger)aCount;
+- (void)haveLengthOf:(NSUInteger)aCount;
+- (void)haveLengthOfAtLeast:(NSUInteger)aCount;
+- (void)haveLengthOfAtMost:(NSUInteger)aCount;
 - (void)have:(NSUInteger)aCount itemsForInvocation:(NSInvocation *)anInvocation;
 - (void)haveAtLeast:(NSUInteger)aCount itemsForInvocation:(NSInvocation *)anInvocation;
 - (void)haveAtMost:(NSUInteger)aCount itemsForInvocation:(NSInvocation *)anInvocation;
