@@ -46,8 +46,8 @@
 #define theReturnValueOfBlock(block) [KWFutureObject futureObjectWithBlock:block] // DEPRECATED
 #define expectFutureValue(futureValue) [KWFutureObject futureObjectWithBlock:^{ return futureValue; }]
 
-// failWith triggers a failure report when called
-#define failWith(message, ...) [[[KWExampleGroupBuilder sharedExampleGroupBuilder] currentExample] reportFailure:[KWFailure failureWithCallSite:KW_THIS_CALLSITE format:message, ##__VA_ARGS__]]
+// `fail` triggers a failure report when called
+#define fail(message, ...) [[[KWExampleGroupBuilder sharedExampleGroupBuilder] currentExample] reportFailure:[KWFailure failureWithCallSite:KW_THIS_CALLSITE format:message, ##__VA_ARGS__]]
 
 // used for message patterns to allow matching any value
 #define any() [KWAny any]
