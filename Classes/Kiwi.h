@@ -36,6 +36,7 @@ extern "C" {
 #import "KWChangeMatcher.h"
 #import "KWConformToProtocolMatcher.h"
 #import "KWContainMatcher.h"
+#import "KWContainStringMatcher.h"
 #import "KWContextNode.h"
 #import "KWDeviceInfo.h"
 #import "KWEqualMatcher.h"
