@@ -35,6 +35,10 @@
 - (id)addMatchVerifierWithExpectationType:(KWExpectationType)anExpectationType callSite:(KWCallSite *)aCallSite;
 - (id)addAsyncVerifierWithExpectationType:(KWExpectationType)anExpectationType callSite:(KWCallSite *)aCallSite timeout:(NSInteger)timeout;
 
+#pragma mark - Report failure
+
+- (void)reportFailure:(KWFailure *)failure;
+
 #pragma mark - Running
 
 - (void)runWithDelegate:(id<KWExampleDelegate>)delegate;
