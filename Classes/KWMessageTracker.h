@@ -10,14 +10,7 @@
 
 @class KWMessagePattern;
 
-@interface KWMessageTracker : NSObject<KWMessageSpying> {
-@private
-    id subject;
-    KWMessagePattern *messagePattern;
-    KWCountType countType;
-    NSUInteger count;
-    NSUInteger receivedCount;
-}
+@interface KWMessageTracker : NSObject<KWMessageSpying>
 
 #pragma mark -
 #pragma mark Initializing

@@ -15,12 +15,7 @@
 @protocol KWVerifying;
 
 // Deprecated. This is here just in case blocks are not enabled.
-@interface KWTestCase : SenTestCase<KWReporting> {
-@private
-    KWMatcherFactory *matcherFactory;
-    NSMutableArray *verifiers;
-    NSMutableArray *failures;
-}
+@interface KWTestCase : SenTestCase<KWReporting>
 
 #pragma mark -
 #pragma mark Configuring Example Environments

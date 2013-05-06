@@ -11,11 +11,7 @@
 @class KWExample;
 @class KWExampleSuite;
 
-@interface KWExampleGroupBuilder : NSObject {
-@private
-    NSMutableArray *contextNodeStack;
-    NSMutableSet *suites;
-}
+@interface KWExampleGroupBuilder : NSObject
 
 #pragma mark -
 #pragma mark Initializing

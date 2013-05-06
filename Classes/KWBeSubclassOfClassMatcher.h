@@ -7,10 +7,7 @@
 #import "KiwiConfiguration.h"
 #import "KWMatcher.h"
 
-@interface KWBeSubclassOfClassMatcher : KWMatcher {
-@private
-    Class targetClass;
-}
+@interface KWBeSubclassOfClassMatcher : KWMatcher
 
 #pragma mark -
 #pragma mark Configuring Matchers

@@ -26,7 +26,10 @@
 #import "KWExampleSuite.h"
 
 
-@interface KWExample ()
+@interface KWExample () {
+    id<KWExampleNode> exampleNode;
+    BOOL passed;
+}
 
 @property (nonatomic, readonly) NSMutableArray *verifiers;
 @property (nonatomic, readonly) KWMatcherFactory *matcherFactory;

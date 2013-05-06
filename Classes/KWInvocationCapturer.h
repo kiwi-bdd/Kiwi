@@ -8,11 +8,7 @@
 
 @protocol KWInvocationCapturerDelegate;
 
-@interface KWInvocationCapturer : NSProxy {
-@private
-    id delegate;
-    NSDictionary *userInfo;
-}
+@interface KWInvocationCapturer : NSProxy
 
 #pragma mark -
 #pragma mark Initializing

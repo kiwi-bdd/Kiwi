@@ -9,13 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "KWMatcher.h"
 
-@interface KWHaveValueMatcher : KWMatcher {
-@private
-
-  NSString *expectedKey;
-  NSString *expectedKeyPath;
-  id expectedValue;
-}
+@interface KWHaveValueMatcher : KWMatcher
 
 #pragma mark -
 #pragma mark Configuring Matchers

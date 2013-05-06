@@ -12,13 +12,7 @@
 typedef BOOL (^KWUserDefinedMatcherBlock)();
 
 @interface KWUserDefinedMatcher : KWMatcher
-{
-    KWUserDefinedMatcherBlock matcherBlock;
-    SEL selector;
-    NSInvocation *invocation;
-    NSString *failureMessageForShould;
-    NSString *failureMessageForShouldNot;
-}
+
 @property (nonatomic, assign) SEL selector;
 @property (nonatomic, copy) NSString *failureMessageForShould;
 @property (nonatomic, copy) NSString *failureMessageForShouldNot;

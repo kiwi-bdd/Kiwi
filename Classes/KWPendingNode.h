@@ -10,11 +10,8 @@
 @class KWContextNode;
 @class KWCallSite;
 
-@interface KWPendingNode : NSObject<KWExampleNode> {
-@private
-    KWCallSite *callSite;
-    NSString *description;
-}
+@interface KWPendingNode : NSObject<KWExampleNode>
+
 @property (nonatomic, readonly, retain) KWContextNode *context;
 
 #pragma mark -

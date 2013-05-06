@@ -12,11 +12,8 @@
 @class KWMessagePattern;
 @class KWMessageTracker;
 
-@interface KWReceiveMatcher : KWMatcher {
-@private
-    KWMessageTracker *messageTracker;
-    BOOL willEvaluateMultipleTimes;
-}
+@interface KWReceiveMatcher : KWMatcher
+
 @property (nonatomic, assign) BOOL willEvaluateMultipleTimes;
 
 #pragma mark -

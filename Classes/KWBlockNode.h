@@ -9,12 +9,7 @@
 
 @class KWCallSite;
 
-@interface KWBlockNode : NSObject {
-@private
-    KWCallSite *callSite;
-    NSString *description;
-    KWVoidBlock block;
-}
+@interface KWBlockNode : NSObject
 
 #pragma mark -
 #pragma mark Initializing

@@ -17,19 +17,7 @@
 @class KWRegisterMatchersNode;
 @class KWExample;
 
-@interface KWContextNode : NSObject<KWExampleNode> {
-@private
-    KWContextNode *parentContext;
-    KWCallSite *callSite;
-    NSString *description;
-    KWRegisterMatchersNode *registerMatchersNode;
-    KWBeforeAllNode *beforeAllNode;
-    KWAfterAllNode *afterAllNode;
-    KWBeforeEachNode *beforeEachNode;
-    KWAfterEachNode *afterEachNode;
-    NSMutableArray *nodes;
-    BOOL performedExampleCount;
-}
+@interface KWContextNode : NSObject<KWExampleNode>
 
 #pragma mark -
 #pragma mark Initializing

@@ -14,9 +14,8 @@ typedef void (^KWMatchersBuildingBlock)(KWUserDefinedMatcherBuilder *);
 
 @class KWUserDefinedMatcher;
 
-@interface KWMatchers : NSObject {
-  NSMutableDictionary *userDefinedMatchers;
-}
+@interface KWMatchers : NSObject
+
 + (id)matchers;
 
 #pragma mark -

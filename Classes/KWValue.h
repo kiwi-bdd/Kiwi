@@ -6,11 +6,7 @@
 
 #import "KiwiConfiguration.h"
 
-@interface KWValue : NSObject {
-@private
-    const char *objCType;
-    id value;
-}
+@interface KWValue : NSObject
 
 #pragma mark -
 #pragma mark Initializing

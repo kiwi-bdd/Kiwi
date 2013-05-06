@@ -8,15 +8,7 @@
 
 @class KWMessagePattern;
 
-@interface KWStub : NSObject {
-@private
-    KWMessagePattern *messagePattern;
-    id value;
-    id returnValueTimes;
-    int returnedValueTimes;
-    id secondValue;
-	id (^block)(NSArray *params);
-}
+@interface KWStub : NSObject
 
 #pragma mark -
 #pragma mark Initializing

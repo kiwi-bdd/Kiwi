@@ -13,18 +13,7 @@
 @protocol KWMessageSpying;
 @protocol KWVerifying;
 
-@interface KWMock : NSObject {
-@private
-    BOOL isPartialMock;
-    BOOL isNullMock;
-    NSString *mockName;
-    id mockedObject;
-    Class mockedClass;
-    Protocol *mockedProtocol;
-    NSMutableArray *stubs;
-    NSMutableArray *expectedMessagePatterns;
-    NSMutableDictionary *messageSpies;
-}
+@interface KWMock : NSObject
 
 #pragma mark -
 #pragma mark Initializing

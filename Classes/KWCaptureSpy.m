@@ -4,6 +4,13 @@
 #import "NSMethodSignature+KiwiAdditions.h"
 #import "KWValue.h"
 
+@interface KWCaptureSpy() {
+    id _argument;
+}
+@property (nonatomic) BOOL argumentCaptured;
+@property (nonatomic) NSUInteger argumentIndex;
+@end
+
 @implementation KWCaptureSpy
 @dynamic argument;
 

@@ -6,11 +6,7 @@
 
 #import "KiwiConfiguration.h"
 
-@interface KWCallSite : NSObject {
-@private
-    NSString *filename;
-    NSUInteger lineNumber;
-}
+@interface KWCallSite : NSObject
 
 #pragma mark -
 #pragma mark Initializing

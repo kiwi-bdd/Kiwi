@@ -19,10 +19,8 @@
 @class KWSpec;
 @class KWMatcherFactory;
 
-@interface KWExample : NSObject <KWExampleNodeVisitor, KWReporting> {
-  id<KWExampleNode> exampleNode;
-  BOOL passed;
-}
+@interface KWExample : NSObject <KWExampleNodeVisitor, KWReporting>
+
 @property (nonatomic, retain, readonly) NSMutableArray *lastInContexts;
 @property (nonatomic, assign) KWExampleSuite *suite;
 

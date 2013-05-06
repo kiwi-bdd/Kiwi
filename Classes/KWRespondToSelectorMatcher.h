@@ -7,10 +7,7 @@
 #import "KiwiConfiguration.h"
 #import "KWMatcher.h"
 
-@interface KWRespondToSelectorMatcher : KWMatcher {
-@private
-    SEL selector;
-}
+@interface KWRespondToSelectorMatcher : KWMatcher
 
 #pragma mark -
 #pragma mark Configuring Matchers

@@ -8,11 +8,7 @@
 
 @class KWCallSite;
 
-@interface KWFailure : NSObject {
-@private
-    KWCallSite *callSite;
-    NSString *message;
-}
+@interface KWFailure : NSObject
 
 #pragma mark -
 #pragma mark Initializing

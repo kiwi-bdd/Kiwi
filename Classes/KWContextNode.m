@@ -9,6 +9,11 @@
 #import "KWExample.h"
 #import "KWFailure.h"
 
+@interface KWContextNode() {
+    NSUInteger performedExampleCount;
+}
+@end
+
 @implementation KWContextNode
 
 @synthesize parentContext;

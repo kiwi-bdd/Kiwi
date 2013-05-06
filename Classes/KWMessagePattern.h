@@ -6,11 +6,7 @@
 
 #import "KiwiConfiguration.h"
 
-@interface KWMessagePattern : NSObject<NSCopying> {
-@private
-    SEL selector;
-    NSArray *argumentFilters;
-}
+@interface KWMessagePattern : NSObject<NSCopying>
 
 #pragma mark -
 #pragma mark Initializing

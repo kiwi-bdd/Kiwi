@@ -14,15 +14,7 @@
 @protocol KWMatching;
 @protocol KWReporting;
 
-@interface KWMatchVerifier : NSObject<KWVerifying> {
-@private
-    KWExpectationType expectationType;
-    KWCallSite *callSite;
-    KWMatcherFactory *matcherFactory;
-    id<KWReporting> reporter;
-    id subject;
-    id<KWMatching> endOfExampleMatcher;
-}
+@interface KWMatchVerifier : NSObject<KWVerifying>
 
 #pragma mark -
 #pragma mark Properties

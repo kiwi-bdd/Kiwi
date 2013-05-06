@@ -11,11 +11,7 @@
 @class KWMatcher;
 @class KWUserDefinedMatcherBuilder;
 
-@interface KWMatcherFactory : NSObject {
-@private
-    NSMutableArray *registeredMatcherClasses;
-    NSMutableDictionary *matcherClassChains;
-}
+@interface KWMatcherFactory : NSObject
 
 #pragma mark -
 #pragma mark Initializing

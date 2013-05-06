@@ -8,8 +8,6 @@
 
 @implementation KWBlockNode
 
-@synthesize description = _description;
-
 #pragma mark -
 #pragma mark Initializing
 
@@ -27,7 +25,7 @@
 
 - (void)dealloc {
     [callSite release];
-    [description release];
+    [_description release];
 
     if (block != nil)
         Block_release(block);

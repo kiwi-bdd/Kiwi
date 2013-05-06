@@ -17,7 +17,9 @@
 #import "KWExampleSuite.h"
 
 
-@interface KWExampleGroupBuilder()
+@interface KWExampleGroupBuilder() {
+    NSMutableSet *suites;
+}
 
 #pragma mark -
 #pragma mark Building Example Groups

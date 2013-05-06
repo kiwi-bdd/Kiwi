@@ -8,10 +8,7 @@
 #import "KWMatcher.h"
 #import "KWMatchVerifier.h"
 
-@interface KWContainMatcher : KWMatcher {
-@private
-    NSArray *objects;
-}
+@interface KWContainMatcher : KWMatcher
 
 #pragma mark -
 #pragma mark Configuring Matchers

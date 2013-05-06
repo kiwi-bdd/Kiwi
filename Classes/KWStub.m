@@ -12,6 +12,10 @@
 
 #import "NSInvocation+OCMAdditions.h"
 
+@interface KWStub(){}
+@property (nonatomic, copy) id (^block)(NSArray *params);
+@end
+
 @implementation KWStub
 
 #pragma mark -
@@ -33,7 +37,7 @@
 - (id)initWithMessagePattern:(KWMessagePattern *)aMessagePattern block:(id (^)(NSArray *params))aBlock {
     if ((self = [super init])) {
         messagePattern = [aMessagePattern retain];
-        block = [aBlock copy];
+        _block = [aBlock copy];
     }
 	
     return self;
@@ -71,7 +75,7 @@
     [value release];
     [returnValueTimes release];
     [secondValue release];
-	[block release];
+	[_block release];
     [super dealloc];
 }
 
@@ -177,7 +181,7 @@
     if (![self.messagePattern matchesInvocation:anInvocation])
         return NO;
 	
-	if (block) {
+	if (self.block) {
 		NSUInteger numberOfArguments = [[anInvocation methodSignature] numberOfArguments];
 		NSMutableArray *args = [NSMutableArray arrayWithCapacity:(numberOfArguments-2)];
 		for (NSUInteger i = 2; i < numberOfArguments; ++i) {
@@ -192,7 +196,7 @@
 			[args addObject:arg];
 		}
 		
-		id newValue = block(args);
+		id newValue = self.block(args);
 		if (newValue != value) {
 			[value release];
 			value = [newValue retain];

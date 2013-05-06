@@ -12,13 +12,7 @@
 
 @protocol KWReporting;
 
-@interface KWExistVerifier : NSObject<KWVerifying> {
-@private
-    KWExpectationType expectationType;
-    KWCallSite *callSite;
-    id<KWReporting> reporter;
-    id subject;
-}
+@interface KWExistVerifier : NSObject<KWVerifying>
 
 #pragma mark -
 #pragma mark Initializing

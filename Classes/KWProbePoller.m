@@ -8,10 +8,10 @@
 
 #import "KWProbePoller.h"
 
-@interface KWTimeout : NSObject
-{
-  NSDate *timeoutDate;
+@interface KWTimeout : NSObject {
+    NSDate *timeoutDate;
 }
+
 - (id)initWithTimeout:(NSTimeInterval)timeout;
 - (BOOL)hasTimedOut;
 @end
@@ -39,7 +39,12 @@
 
 @end
 
-#pragma mark -
+
+@interface KWProbePoller(){
+    NSTimeInterval timeoutInterval;
+    NSTimeInterval delayInterval;
+}
+@end
 
 @implementation KWProbePoller
 

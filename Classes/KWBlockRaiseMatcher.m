@@ -39,9 +39,9 @@
 
 + (NSArray *)matcherStrings {
     return @[@"raise",
-                                     @"raiseWithName:",
-                                     @"raiseWithReason:",
-                                     @"raiseWithName:reason:"];
+             @"raiseWithName:",
+             @"raiseWithReason:",
+             @"raiseWithName:reason:"];
 }
 
 #pragma mark -

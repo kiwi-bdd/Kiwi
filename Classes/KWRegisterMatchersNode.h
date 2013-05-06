@@ -9,11 +9,7 @@
 
 @class KWCallSite;
 
-@interface KWRegisterMatchersNode : NSObject<KWExampleNode> {
-@private
-    KWCallSite *callSite;
-    NSString *namespacePrefix;
-}
+@interface KWRegisterMatchersNode : NSObject<KWExampleNode>
 
 #pragma mark -
 #pragma mark Initializing

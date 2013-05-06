@@ -9,6 +9,11 @@
 #import "KWMatchers.h"
 #import "KWUserDefinedMatcher.h"
 
+@interface KWMatchers() {
+    NSMutableDictionary *userDefinedMatchers;
+}
+@end
+
 @implementation KWMatchers
 
 #pragma mark -

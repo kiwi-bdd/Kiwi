@@ -11,7 +11,9 @@
 #import "KWUserDefinedMatcher.h"
 #import "KWMatchers.h"
 
-@interface KWMatcherFactory()
+@interface KWMatcherFactory() {
+    NSMutableDictionary *matcherClassChains;
+}
 - (Class)matcherClassForSelector:(SEL)aSelector subject:(id)anObject;
 @end
 
@@ -47,7 +49,7 @@
     if ([self.registeredMatcherClasses containsObject:aClass])
         return;
 
-    [registeredMatcherClasses addObject:aClass];
+    [(NSMutableArray *)registeredMatcherClasses addObject:aClass];
 
     for (NSString *verificationSelectorString in [aClass matcherStrings]) {
         NSMutableArray *matcherClassChain = matcherClassChains[verificationSelectorString];

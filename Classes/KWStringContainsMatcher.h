@@ -8,9 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface KWStringContainsMatcher : NSObject {
-  NSString *substring;
-}
+@interface KWStringContainsMatcher : NSObject
 
 + (id)matcherWithSubstring:(NSString *)aSubstring;
 - (id)initWithSubstring:(NSString *)aSubstring;

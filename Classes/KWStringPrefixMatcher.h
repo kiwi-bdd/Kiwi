@@ -8,11 +8,11 @@
 
 #import <Foundation/Foundation.h>
 
-@interface KWStringPrefixMatcher : NSObject {
-  NSString *prefix;
-}
+@interface KWStringPrefixMatcher : NSObject
+
 + (id)matcherWithPrefix:(NSString *)aPrefix;
 - (id)initWithPrefix:(NSString *)aPrefix;
+
 @end
 
 #define hasPrefix(prefix) [KWStringPrefixMatcher matcherWithPrefix:prefix]
