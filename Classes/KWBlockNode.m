@@ -13,7 +13,7 @@
 #pragma mark -
 #pragma mark Initializing
 
-- (id)initWithCallSite:(KWCallSite *)aCallSite description:(NSString *)aDescription block:(KWVoidBlock)aBlock{
+- (id)initWithCallSite:(KWCallSite *)aCallSite description:(NSString *)aDescription block:(KWVoidBlock)aBlock {
     if ((self = [super init])) {
         callSite = [aCallSite retain];
         _description = [aDescription copy];
@@ -35,9 +35,8 @@
     [super dealloc];
 }
 
-- (void)performBlock
-{
-  if (block != nil) { block(); }
+- (void)performBlock {
+    if (block != nil) { block(); }
 }
 
 #pragma mark -
