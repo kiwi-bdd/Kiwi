@@ -38,8 +38,6 @@
 		44FC0E7416B6377D0050D616 /* KWBeIdenticalToMatcher.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9F982C4F16A802920030A0B1 /* KWBeIdenticalToMatcher.h */; };
 		44FC0E7516B6377D0050D616 /* KWBeKindOfClassMatcher.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9F982C5116A802920030A0B1 /* KWBeKindOfClassMatcher.h */; };
 		44FC0E7616B6377D0050D616 /* KWBeMemberOfClassMatcher.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9F982C5316A802920030A0B1 /* KWBeMemberOfClassMatcher.h */; };
-		44FC0E7716B6377D0050D616 /* KWBeNilMatcher.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9F982C5516A802920030A0B1 /* KWBeNilMatcher.h */; };
-		44FC0E7816B6377D0050D616 /* KWBeNonNilMatcher.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9F982C5716A802920030A0B1 /* KWBeNonNilMatcher.h */; };
 		44FC0E7916B6377D0050D616 /* KWBeSubclassOfClassMatcher.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9F982C5916A802920030A0B1 /* KWBeSubclassOfClassMatcher.h */; };
 		44FC0E7A16B6377D0050D616 /* KWBeTrueMatcher.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9F982C5B16A802920030A0B1 /* KWBeTrueMatcher.h */; };
 		44FC0E7B16B6377D0050D616 /* KWBeWithinMatcher.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9F982C5D16A802920030A0B1 /* KWBeWithinMatcher.h */; };
@@ -205,14 +203,6 @@
 		9F982D1316A802920030A0B1 /* KWBeMemberOfClassMatcher.h in Headers */ = {isa = PBXBuildFile; fileRef = 9F982C5316A802920030A0B1 /* KWBeMemberOfClassMatcher.h */; };
 		9F982D1416A802920030A0B1 /* KWBeMemberOfClassMatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F982C5416A802920030A0B1 /* KWBeMemberOfClassMatcher.m */; };
 		9F982D1516A802920030A0B1 /* KWBeMemberOfClassMatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F982C5416A802920030A0B1 /* KWBeMemberOfClassMatcher.m */; };
-		9F982D1616A802920030A0B1 /* KWBeNilMatcher.h in Headers */ = {isa = PBXBuildFile; fileRef = 9F982C5516A802920030A0B1 /* KWBeNilMatcher.h */; };
-		9F982D1716A802920030A0B1 /* KWBeNilMatcher.h in Headers */ = {isa = PBXBuildFile; fileRef = 9F982C5516A802920030A0B1 /* KWBeNilMatcher.h */; };
-		9F982D1816A802920030A0B1 /* KWBeNilMatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F982C5616A802920030A0B1 /* KWBeNilMatcher.m */; };
-		9F982D1916A802920030A0B1 /* KWBeNilMatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F982C5616A802920030A0B1 /* KWBeNilMatcher.m */; };
-		9F982D1A16A802920030A0B1 /* KWBeNonNilMatcher.h in Headers */ = {isa = PBXBuildFile; fileRef = 9F982C5716A802920030A0B1 /* KWBeNonNilMatcher.h */; };
-		9F982D1B16A802920030A0B1 /* KWBeNonNilMatcher.h in Headers */ = {isa = PBXBuildFile; fileRef = 9F982C5716A802920030A0B1 /* KWBeNonNilMatcher.h */; };
-		9F982D1C16A802920030A0B1 /* KWBeNonNilMatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F982C5816A802920030A0B1 /* KWBeNonNilMatcher.m */; };
-		9F982D1D16A802920030A0B1 /* KWBeNonNilMatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F982C5816A802920030A0B1 /* KWBeNonNilMatcher.m */; };
 		9F982D1E16A802920030A0B1 /* KWBeSubclassOfClassMatcher.h in Headers */ = {isa = PBXBuildFile; fileRef = 9F982C5916A802920030A0B1 /* KWBeSubclassOfClassMatcher.h */; };
 		9F982D1F16A802920030A0B1 /* KWBeSubclassOfClassMatcher.h in Headers */ = {isa = PBXBuildFile; fileRef = 9F982C5916A802920030A0B1 /* KWBeSubclassOfClassMatcher.h */; };
 		9F982D2016A802920030A0B1 /* KWBeSubclassOfClassMatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F982C5A16A802920030A0B1 /* KWBeSubclassOfClassMatcher.m */; };
@@ -548,8 +538,6 @@
 				44FC0E7416B6377D0050D616 /* KWBeIdenticalToMatcher.h in CopyFiles */,
 				44FC0E7516B6377D0050D616 /* KWBeKindOfClassMatcher.h in CopyFiles */,
 				44FC0E7616B6377D0050D616 /* KWBeMemberOfClassMatcher.h in CopyFiles */,
-				44FC0E7716B6377D0050D616 /* KWBeNilMatcher.h in CopyFiles */,
-				44FC0E7816B6377D0050D616 /* KWBeNonNilMatcher.h in CopyFiles */,
 				44FC0E7916B6377D0050D616 /* KWBeSubclassOfClassMatcher.h in CopyFiles */,
 				44FC0E7A16B6377D0050D616 /* KWBeTrueMatcher.h in CopyFiles */,
 				44FC0E7B16B6377D0050D616 /* KWBeWithinMatcher.h in CopyFiles */,
@@ -717,10 +705,6 @@
 		9F982C5216A802920030A0B1 /* KWBeKindOfClassMatcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = KWBeKindOfClassMatcher.m; path = Classes/KWBeKindOfClassMatcher.m; sourceTree = "<group>"; };
 		9F982C5316A802920030A0B1 /* KWBeMemberOfClassMatcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KWBeMemberOfClassMatcher.h; path = Classes/KWBeMemberOfClassMatcher.h; sourceTree = "<group>"; };
 		9F982C5416A802920030A0B1 /* KWBeMemberOfClassMatcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = KWBeMemberOfClassMatcher.m; path = Classes/KWBeMemberOfClassMatcher.m; sourceTree = "<group>"; };
-		9F982C5516A802920030A0B1 /* KWBeNilMatcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KWBeNilMatcher.h; path = Classes/KWBeNilMatcher.h; sourceTree = "<group>"; };
-		9F982C5616A802920030A0B1 /* KWBeNilMatcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = KWBeNilMatcher.m; path = Classes/KWBeNilMatcher.m; sourceTree = "<group>"; };
-		9F982C5716A802920030A0B1 /* KWBeNonNilMatcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KWBeNonNilMatcher.h; path = Classes/KWBeNonNilMatcher.h; sourceTree = "<group>"; };
-		9F982C5816A802920030A0B1 /* KWBeNonNilMatcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = KWBeNonNilMatcher.m; path = Classes/KWBeNonNilMatcher.m; sourceTree = "<group>"; };
 		9F982C5916A802920030A0B1 /* KWBeSubclassOfClassMatcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KWBeSubclassOfClassMatcher.h; path = Classes/KWBeSubclassOfClassMatcher.h; sourceTree = "<group>"; };
 		9F982C5A16A802920030A0B1 /* KWBeSubclassOfClassMatcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = KWBeSubclassOfClassMatcher.m; path = Classes/KWBeSubclassOfClassMatcher.m; sourceTree = "<group>"; };
 		9F982C5B16A802920030A0B1 /* KWBeTrueMatcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KWBeTrueMatcher.h; path = Classes/KWBeTrueMatcher.h; sourceTree = "<group>"; };
@@ -1096,10 +1080,6 @@
 				9F982C5216A802920030A0B1 /* KWBeKindOfClassMatcher.m */,
 				9F982C5316A802920030A0B1 /* KWBeMemberOfClassMatcher.h */,
 				9F982C5416A802920030A0B1 /* KWBeMemberOfClassMatcher.m */,
-				9F982C5516A802920030A0B1 /* KWBeNilMatcher.h */,
-				9F982C5616A802920030A0B1 /* KWBeNilMatcher.m */,
-				9F982C5716A802920030A0B1 /* KWBeNonNilMatcher.h */,
-				9F982C5816A802920030A0B1 /* KWBeNonNilMatcher.m */,
 				9F982C5916A802920030A0B1 /* KWBeSubclassOfClassMatcher.h */,
 				9F982C5A16A802920030A0B1 /* KWBeSubclassOfClassMatcher.m */,
 				9F982C5B16A802920030A0B1 /* KWBeTrueMatcher.h */,
@@ -1358,8 +1338,6 @@
 				9F982D0B16A802920030A0B1 /* KWBeIdenticalToMatcher.h in Headers */,
 				9F982D0F16A802920030A0B1 /* KWBeKindOfClassMatcher.h in Headers */,
 				9F982D1316A802920030A0B1 /* KWBeMemberOfClassMatcher.h in Headers */,
-				9F982D1716A802920030A0B1 /* KWBeNilMatcher.h in Headers */,
-				9F982D1B16A802920030A0B1 /* KWBeNonNilMatcher.h in Headers */,
 				9F982D1F16A802920030A0B1 /* KWBeSubclassOfClassMatcher.h in Headers */,
 				9F982D2316A802920030A0B1 /* KWBeTrueMatcher.h in Headers */,
 				9F982D2716A802920030A0B1 /* KWBeWithinMatcher.h in Headers */,
@@ -1459,8 +1437,6 @@
 				9F982D0A16A802920030A0B1 /* KWBeIdenticalToMatcher.h in Headers */,
 				9F982D0E16A802920030A0B1 /* KWBeKindOfClassMatcher.h in Headers */,
 				9F982D1216A802920030A0B1 /* KWBeMemberOfClassMatcher.h in Headers */,
-				9F982D1616A802920030A0B1 /* KWBeNilMatcher.h in Headers */,
-				9F982D1A16A802920030A0B1 /* KWBeNonNilMatcher.h in Headers */,
 				9F982D1E16A802920030A0B1 /* KWBeSubclassOfClassMatcher.h in Headers */,
 				9F982D2216A802920030A0B1 /* KWBeTrueMatcher.h in Headers */,
 				9F982D2616A802920030A0B1 /* KWBeWithinMatcher.h in Headers */,
@@ -1719,8 +1695,6 @@
 				9F982D0D16A802920030A0B1 /* KWBeIdenticalToMatcher.m in Sources */,
 				9F982D1116A802920030A0B1 /* KWBeKindOfClassMatcher.m in Sources */,
 				9F982D1516A802920030A0B1 /* KWBeMemberOfClassMatcher.m in Sources */,
-				9F982D1916A802920030A0B1 /* KWBeNilMatcher.m in Sources */,
-				9F982D1D16A802920030A0B1 /* KWBeNonNilMatcher.m in Sources */,
 				9F982D2116A802920030A0B1 /* KWBeSubclassOfClassMatcher.m in Sources */,
 				9F982D2516A802920030A0B1 /* KWBeTrueMatcher.m in Sources */,
 				9F982D2916A802920030A0B1 /* KWBeWithinMatcher.m in Sources */,
@@ -1806,8 +1780,6 @@
 				9F982D0C16A802920030A0B1 /* KWBeIdenticalToMatcher.m in Sources */,
 				9F982D1016A802920030A0B1 /* KWBeKindOfClassMatcher.m in Sources */,
 				9F982D1416A802920030A0B1 /* KWBeMemberOfClassMatcher.m in Sources */,
-				9F982D1816A802920030A0B1 /* KWBeNilMatcher.m in Sources */,
-				9F982D1C16A802920030A0B1 /* KWBeNonNilMatcher.m in Sources */,
 				9F982D2016A802920030A0B1 /* KWBeSubclassOfClassMatcher.m in Sources */,
 				9F982D2416A802920030A0B1 /* KWBeTrueMatcher.m in Sources */,
 				9F982D2816A802920030A0B1 /* KWBeWithinMatcher.m in Sources */,
