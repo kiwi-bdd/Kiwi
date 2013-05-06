@@ -27,7 +27,6 @@
 		44FC0E6816B6377D0050D616 /* KiwiBlockMacros.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9F982C3B16A802920030A0B1 /* KiwiBlockMacros.h */; };
 		44FC0E6916B6377D0050D616 /* KiwiConfiguration.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9F982C3C16A802920030A0B1 /* KiwiConfiguration.h */; };
 		44FC0E6A16B6377D0050D616 /* KiwiMacros.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9F982C3D16A802920030A0B1 /* KiwiMacros.h */; };
-		44FC0E6B16B6377D0050D616 /* KiwiNewMacros.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9F982C3E16A802920030A0B1 /* KiwiNewMacros.h */; };
 		44FC0E6C16B6377D0050D616 /* KWAfterAllNode.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9F982C3F16A802920030A0B1 /* KWAfterAllNode.h */; };
 		44FC0E6D16B6377D0050D616 /* KWAfterEachNode.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9F982C4116A802920030A0B1 /* KWAfterEachNode.h */; };
 		44FC0E6E16B6377D0050D616 /* KWAny.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9F982C4316A802920030A0B1 /* KWAny.h */; };
@@ -162,8 +161,6 @@
 		9F982CE516A802920030A0B1 /* KiwiConfiguration.h in Headers */ = {isa = PBXBuildFile; fileRef = 9F982C3C16A802920030A0B1 /* KiwiConfiguration.h */; };
 		9F982CE616A802920030A0B1 /* KiwiMacros.h in Headers */ = {isa = PBXBuildFile; fileRef = 9F982C3D16A802920030A0B1 /* KiwiMacros.h */; };
 		9F982CE716A802920030A0B1 /* KiwiMacros.h in Headers */ = {isa = PBXBuildFile; fileRef = 9F982C3D16A802920030A0B1 /* KiwiMacros.h */; };
-		9F982CE816A802920030A0B1 /* KiwiNewMacros.h in Headers */ = {isa = PBXBuildFile; fileRef = 9F982C3E16A802920030A0B1 /* KiwiNewMacros.h */; };
-		9F982CE916A802920030A0B1 /* KiwiNewMacros.h in Headers */ = {isa = PBXBuildFile; fileRef = 9F982C3E16A802920030A0B1 /* KiwiNewMacros.h */; };
 		9F982CEA16A802920030A0B1 /* KWAfterAllNode.h in Headers */ = {isa = PBXBuildFile; fileRef = 9F982C3F16A802920030A0B1 /* KWAfterAllNode.h */; };
 		9F982CEB16A802920030A0B1 /* KWAfterAllNode.h in Headers */ = {isa = PBXBuildFile; fileRef = 9F982C3F16A802920030A0B1 /* KWAfterAllNode.h */; };
 		9F982CEC16A802920030A0B1 /* KWAfterAllNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F982C4016A802920030A0B1 /* KWAfterAllNode.m */; };
@@ -540,7 +537,6 @@
 				44FC0E6816B6377D0050D616 /* KiwiBlockMacros.h in CopyFiles */,
 				44FC0E6916B6377D0050D616 /* KiwiConfiguration.h in CopyFiles */,
 				44FC0E6A16B6377D0050D616 /* KiwiMacros.h in CopyFiles */,
-				44FC0E6B16B6377D0050D616 /* KiwiNewMacros.h in CopyFiles */,
 				44FC0E6C16B6377D0050D616 /* KWAfterAllNode.h in CopyFiles */,
 				44FC0E6D16B6377D0050D616 /* KWAfterEachNode.h in CopyFiles */,
 				44FC0E6E16B6377D0050D616 /* KWAny.h in CopyFiles */,
@@ -699,7 +695,6 @@
 		9F982C3B16A802920030A0B1 /* KiwiBlockMacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KiwiBlockMacros.h; path = Classes/KiwiBlockMacros.h; sourceTree = "<group>"; };
 		9F982C3C16A802920030A0B1 /* KiwiConfiguration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KiwiConfiguration.h; path = Classes/KiwiConfiguration.h; sourceTree = "<group>"; };
 		9F982C3D16A802920030A0B1 /* KiwiMacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KiwiMacros.h; path = Classes/KiwiMacros.h; sourceTree = "<group>"; };
-		9F982C3E16A802920030A0B1 /* KiwiNewMacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KiwiNewMacros.h; path = Classes/KiwiNewMacros.h; sourceTree = "<group>"; };
 		9F982C3F16A802920030A0B1 /* KWAfterAllNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KWAfterAllNode.h; path = Classes/KWAfterAllNode.h; sourceTree = "<group>"; };
 		9F982C4016A802920030A0B1 /* KWAfterAllNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = KWAfterAllNode.m; path = Classes/KWAfterAllNode.m; sourceTree = "<group>"; };
 		9F982C4116A802920030A0B1 /* KWAfterEachNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KWAfterEachNode.h; path = Classes/KWAfterEachNode.h; sourceTree = "<group>"; };
@@ -1079,7 +1074,6 @@
 				9F982C3B16A802920030A0B1 /* KiwiBlockMacros.h */,
 				9F982C3C16A802920030A0B1 /* KiwiConfiguration.h */,
 				9F982C3D16A802920030A0B1 /* KiwiMacros.h */,
-				9F982C3E16A802920030A0B1 /* KiwiNewMacros.h */,
 				9F982C3F16A802920030A0B1 /* KWAfterAllNode.h */,
 				9F982C4016A802920030A0B1 /* KWAfterAllNode.m */,
 				9F982C4116A802920030A0B1 /* KWAfterEachNode.h */,
@@ -1353,7 +1347,6 @@
 				9F982CE316A802920030A0B1 /* KiwiBlockMacros.h in Headers */,
 				9F982CE516A802920030A0B1 /* KiwiConfiguration.h in Headers */,
 				9F982CE716A802920030A0B1 /* KiwiMacros.h in Headers */,
-				9F982CE916A802920030A0B1 /* KiwiNewMacros.h in Headers */,
 				9F982CEB16A802920030A0B1 /* KWAfterAllNode.h in Headers */,
 				9F982CEF16A802920030A0B1 /* KWAfterEachNode.h in Headers */,
 				9F982CF316A802920030A0B1 /* KWAny.h in Headers */,
@@ -1455,7 +1448,6 @@
 				9F982CE216A802920030A0B1 /* KiwiBlockMacros.h in Headers */,
 				9F982CE416A802920030A0B1 /* KiwiConfiguration.h in Headers */,
 				9F982CE616A802920030A0B1 /* KiwiMacros.h in Headers */,
-				9F982CE816A802920030A0B1 /* KiwiNewMacros.h in Headers */,
 				9F982CEA16A802920030A0B1 /* KWAfterAllNode.h in Headers */,
 				9F982CEE16A802920030A0B1 /* KWAfterEachNode.h in Headers */,
 				9F982CF216A802920030A0B1 /* KWAny.h in Headers */,
