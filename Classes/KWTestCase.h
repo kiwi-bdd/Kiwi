@@ -17,20 +17,17 @@
 // Deprecated. This is here just in case blocks are not enabled.
 @interface KWTestCase : SenTestCase<KWReporting>
 
-#pragma mark -
-#pragma mark Configuring Example Environments
+#pragma mark - Configuring Example Environments
 
 - (void)setUpExampleEnvironment;
 - (void)tearDownExampleEnvironment;
 
-#pragma mark -
-#pragma mark Marking Pending Examples
+#pragma mark - Marking Pending Examples
 
 - (void)markPendingWithCallSite:(KWCallSite *)aCallSite;
 - (void)markPendingWithCallSite:(KWCallSite *)aCallSite :(NSString *)aDescription;
 
-#pragma mark -
-#pragma mark Adding Verifiers
+#pragma mark - Adding Verifiers
 
 - (id)addVerifier:(id<KWVerifying>)aVerifier;
 - (id)addExistVerifierWithExpectationType:(KWExpectationType)anExpectationType callSite:(KWCallSite *)aCallSite;

@@ -41,25 +41,21 @@
 
 - (void)runWithDelegate:(id<KWExampleDelegate>)delegate;
 
-#pragma mark -
-#pragma mark Anonymous It Node Descriptions
+#pragma mark - Anonymous It Node Descriptions
 
 - (NSString *)generateDescriptionForAnonymousItNode;
 
-#pragma mark -
-#pragma mark Checking if last in context
+#pragma mark - Checking if last in context
 
 - (BOOL)isLastInContext:(KWContextNode *)context;
 
-#pragma mark -
-#pragma mark Full description with context
+#pragma mark - Full description with context
 
 - (NSString *)descriptionWithContext;
 
 @end
 
-#pragma mark -
-#pragma mark Building Example Groups
+#pragma mark - Building Example Groups
 
 void describe(NSString *aDescription, KWVoidBlock aBlock);
 void context(NSString *aDescription, KWVoidBlock aBlock);

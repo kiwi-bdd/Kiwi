@@ -9,8 +9,7 @@
 
 @interface KWRaiseMatcher : KWMatcher
 
-#pragma mark -
-#pragma mark Configuring Matchers
+#pragma mark - Configuring Matchers
 
 - (void)raiseWhenSent:(SEL)aSelector;
 - (void)raiseWithName:(NSString *)aName whenSent:(SEL)aSelector;

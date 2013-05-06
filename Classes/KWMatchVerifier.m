@@ -17,8 +17,7 @@
 
 @interface KWMatchVerifier()
 
-#pragma mark -
-#pragma mark Properties
+#pragma mark - Properties
 
 @property (nonatomic, readwrite, retain) id<KWMatching> endOfExampleMatcher;
 @property (nonatomic, readwrite, retain) id<KWMatching> matcher;
@@ -29,8 +28,7 @@
 
 @synthesize matcher;
 
-#pragma mark -
-#pragma mark Initializing
+#pragma mark - Initializing
 
 - (id)initForShouldWithCallSite:(KWCallSite *)aCallSite matcherFactory:(KWMatcherFactory *)aMatcherFactory reporter:(id<KWReporting>)aReporter {
     return [self initWithExpectationType:KWExpectationTypeShould callSite:aCallSite matcherFactory:aMatcherFactory reporter:aReporter];
@@ -78,8 +76,7 @@
   return [NSString stringWithFormat:@"%@ %@", typeString, actualMatcher];
 }
 
-#pragma mark -
-#pragma mark Properties
+#pragma mark - Properties
 
 @synthesize expectationType;
 @synthesize callSite;
@@ -88,8 +85,7 @@
 @synthesize subject;
 @synthesize endOfExampleMatcher;
 
-#pragma mark -
-#pragma mark Verifying
+#pragma mark - Verifying
 
 - (void)verifyWithMatcher:(id<KWMatching>)aMatcher {
     @try {
@@ -110,8 +106,7 @@
     }
 }
 
-#pragma mark -
-#pragma mark Ending Examples
+#pragma mark - Ending Examples
 
 - (void)exampleWillEnd {
     if (self.endOfExampleMatcher == nil)
@@ -120,8 +115,7 @@
     [self verifyWithMatcher:self.endOfExampleMatcher];
 }
 
-#pragma mark -
-#pragma mark Handling Invocations
+#pragma mark - Handling Invocations
 
 - (NSMethodSignature *)methodSignatureForSelector:(SEL)aSelector {
     NSMethodSignature *signature = [super methodSignatureForSelector:aSelector];

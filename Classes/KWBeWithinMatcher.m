@@ -11,8 +11,7 @@
 
 @interface KWBeWithinMatcher()
 
-#pragma mark -
-#pragma mark Properties
+#pragma mark - Properties
 
 @property (nonatomic, readwrite, retain) id distance;
 @property (nonatomic, readwrite, retain) id otherValue;
@@ -21,8 +20,7 @@
 
 @implementation KWBeWithinMatcher
 
-#pragma mark -
-#pragma mark Initializing
+#pragma mark - Initializing
 
 - (void)dealloc {
     [distance release];
@@ -30,21 +28,18 @@
     [super dealloc];
 }
 
-#pragma mark -
-#pragma mark Properties
+#pragma mark - Properties
 
 @synthesize distance;
 @synthesize otherValue;
 
-#pragma mark -
-#pragma mark Getting Matcher Strings
+#pragma mark - Getting Matcher Strings
 
 + (NSArray *)matcherStrings {
     return @[@"beWithin:of:", @"equal:withDelta:"];
 }
 
-#pragma mark -
-#pragma mark Matching
+#pragma mark - Matching
 
 // Evaluation is done by getting the underlying values as the widest data
 // types available.
@@ -84,8 +79,7 @@
         return [self evaluateForSignedIntegral];
 }
 
-#pragma mark -
-#pragma mark Getting Failure Messages
+#pragma mark - Getting Failure Messages
 
 - (NSString *)failureMessageForShould {
     return [NSString stringWithFormat:@"expected subject to be within %@ of %@, got %@",
@@ -99,8 +93,7 @@
   return [NSString stringWithFormat:@"be within %@ of %@", self.distance, self.otherValue];
 }
 
-#pragma mark -
-#pragma mark Configuring Matchers
+#pragma mark - Configuring Matchers
 
 - (void)beWithin:(id)aDistance of:(id)aValue {
     self.distance = aDistance;

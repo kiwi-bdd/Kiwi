@@ -9,8 +9,7 @@
 
 @interface KWBeEmptyMatcher()
 
-#pragma mark -
-#pragma mark Properties
+#pragma mark - Properties
 
 @property (nonatomic, readwrite) NSUInteger count;
 
@@ -18,20 +17,17 @@
 
 @implementation KWBeEmptyMatcher
 
-#pragma mark -
-#pragma mark Properties
+#pragma mark - Properties
 
 @synthesize count;
 
-#pragma mark -
-#pragma mark Getting Matcher Strings
+#pragma mark - Getting Matcher Strings
 
 + (NSArray *)matcherStrings {
     return @[@"beEmpty"];
 }
 
-#pragma mark -
-#pragma mark Matching
+#pragma mark - Matching
 
 - (BOOL)evaluate {
     if ([self.subject respondsToSelector:@selector(count)]) {
@@ -47,8 +43,7 @@
     return NO;
 }
 
-#pragma mark -
-#pragma mark Getting Failure Messages
+#pragma mark - Getting Failure Messages
 
 - (NSString *)countPhrase {
     if (self.count == 1)
@@ -70,8 +65,7 @@
   return @"be empty";
 }
 
-#pragma mark -
-#pragma mark Configuring Matchers
+#pragma mark - Configuring Matchers
 
 - (void)beEmpty {
 }

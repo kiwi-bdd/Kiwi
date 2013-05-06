@@ -8,8 +8,7 @@
 
 @implementation KWBlockNode
 
-#pragma mark -
-#pragma mark Initializing
+#pragma mark - Initializing
 
 - (id)initWithCallSite:(KWCallSite *)aCallSite description:(NSString *)aDescription block:(KWVoidBlock)aBlock {
     if ((self = [super init])) {
@@ -37,13 +36,11 @@
     if (block != nil) { block(); }
 }
 
-#pragma mark -
-#pragma mark Getting Call Sites
+#pragma mark - Getting Call Sites
 
 @synthesize callSite;
 
-#pragma mark -
-#pragma mark Accepting Visitors
+#pragma mark - Accepting Visitors
 
 @synthesize block;
 

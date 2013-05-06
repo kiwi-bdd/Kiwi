@@ -8,8 +8,7 @@
 
 @interface KWMessagePattern : NSObject<NSCopying>
 
-#pragma mark -
-#pragma mark Initializing
+#pragma mark - Initializing
 
 - (id)initWithSelector:(SEL)aSelector;
 - (id)initWithSelector:(SEL)aSelector argumentFilters:(NSArray *)anArray;
@@ -21,24 +20,20 @@
 
 + (id)messagePatternFromInvocation:(NSInvocation *)anInvocation;
 
-#pragma mark -
-#pragma mark Properties
+#pragma mark - Properties
 
 @property (nonatomic, readonly) SEL selector;
 @property (nonatomic, readonly) NSArray *argumentFilters;
 
-#pragma mark -
-#pragma mark Matching Invocations
+#pragma mark - Matching Invocations
 
 - (BOOL)matchesInvocation:(NSInvocation *)anInvocation;
 
-#pragma mark -
-#pragma mark Comparing Message Patterns
+#pragma mark - Comparing Message Patterns
 
 - (BOOL)isEqualToMessagePattern:(KWMessagePattern *)aMessagePattern;
 
-#pragma mark -
-#pragma mark Retrieving String Representations
+#pragma mark - Retrieving String Representations
 
 - (NSString *)stringValue;
 

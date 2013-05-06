@@ -8,8 +8,7 @@
 
 @interface KWBlock()
 
-#pragma mark -
-#pragma mark Properties
+#pragma mark - Properties
 
 @property (nonatomic, readonly, assign) KWVoidBlock block;
 
@@ -17,8 +16,7 @@
 
 @implementation KWBlock
 
-#pragma mark -
-#pragma mark Initializing
+#pragma mark - Initializing
 
 - (id)initWithBlock:(KWVoidBlock)aBlock {
     if ((self = [super init])) {
@@ -37,13 +35,11 @@
     [super dealloc];
 }
 
-#pragma mark -
-#pragma mark Properties
+#pragma mark - Properties
 
 @synthesize block;
 
-#pragma mark -
-#pragma mark Calling Blocks
+#pragma mark - Calling Blocks
 
 - (void)call {
     block();
@@ -51,8 +47,7 @@
 
 @end
 
-#pragma mark -
-#pragma mark Creating Blocks
+#pragma mark - Creating Blocks
 
 KWBlock *theBlock(KWVoidBlock aBlock) {
     return lambda(aBlock);

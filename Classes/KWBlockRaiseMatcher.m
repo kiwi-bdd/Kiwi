@@ -9,8 +9,7 @@
 
 @interface KWBlockRaiseMatcher()
 
-#pragma mark -
-#pragma mark Properties
+#pragma mark - Properties
 
 @property (nonatomic, readwrite, retain) NSException *exception;
 @property (nonatomic, readwrite, retain) NSException *actualException;
@@ -19,8 +18,7 @@
 
 @implementation KWBlockRaiseMatcher
 
-#pragma mark -
-#pragma mark Initializing
+#pragma mark - Initializing
 
 - (void)dealloc {
     [exception release];
@@ -28,14 +26,12 @@
     [super dealloc];
 }
 
-#pragma mark -
-#pragma mark Properties
+#pragma mark - Properties
 
 @synthesize exception;
 @synthesize actualException;
 
-#pragma mark -
-#pragma mark Getting Matcher Strings
+#pragma mark - Getting Matcher Strings
 
 + (NSArray *)matcherStrings {
     return @[@"raise",
@@ -44,8 +40,7 @@
              @"raiseWithName:reason:"];
 }
 
-#pragma mark -
-#pragma mark Matching
+#pragma mark - Matching
 
 - (BOOL)evaluate {
     if (![self.subject isKindOfClass:[KWBlock class]])
@@ -68,8 +63,7 @@
     return NO;
 }
 
-#pragma mark -
-#pragma mark Getting Failure Messages
+#pragma mark - Getting Failure Messages
 
 + (NSString *)exceptionPhraseWithException:(NSException *)anException {
     if (anException == nil)
@@ -99,8 +93,7 @@
                                       [[self class] exceptionPhraseWithException:self.actualException]];
 }
 
-#pragma mark -
-#pragma mark Configuring Matchers
+#pragma mark - Configuring Matchers
 
 - (void)raise {
     [self raiseWithName:nil reason:nil];

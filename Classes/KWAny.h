@@ -10,8 +10,7 @@
 // match any value. Used for pointers as well as for scalar values.
 @interface KWAny : NSObject
 
-#pragma mark -
-#pragma mark Initializing
+#pragma mark - Initializing
 
 + (id)any;
 

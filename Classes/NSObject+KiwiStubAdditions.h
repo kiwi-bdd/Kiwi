@@ -12,8 +12,7 @@
 
 @interface NSObject(KiwiStubAdditions)
 
-#pragma mark -
-#pragma mark Stubbing Methods
+#pragma mark - Stubbing Methods
 
 - (void)stub:(SEL)aSelector;
 - (void)stub:(SEL)aSelector withBlock:(id (^)(NSArray *params))block;
@@ -42,8 +41,7 @@
 
 - (void)clearStubs;
 
-#pragma mark -
-#pragma mark Spying on Messages
+#pragma mark - Spying on Messages
 
 - (void)addMessageSpy:(id<KWMessageSpying>)aSpy forMessagePattern:(KWMessagePattern *)aMessagePattern;
 - (void)removeMessageSpy:(id<KWMessageSpying>)aSpy forMessagePattern:(KWMessagePattern *)aMessagePattern;

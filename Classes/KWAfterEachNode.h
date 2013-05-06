@@ -10,8 +10,7 @@
 
 @interface KWAfterEachNode : KWBlockNode<KWExampleNode>
 
-#pragma mark -
-#pragma mark Initializing
+#pragma mark - Initializing
 
 + (id)afterEachNodeWithCallSite:(KWCallSite *)aCallSite block:(KWVoidBlock)aBlock;
 

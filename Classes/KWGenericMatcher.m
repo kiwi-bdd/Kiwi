@@ -11,8 +11,7 @@
 
 @interface KWGenericMatcher ()
 
-#pragma mark -
-#pragma mark Properties
+#pragma mark - Properties
 
 @property (nonatomic, retain) id matcher;
 
@@ -28,8 +27,7 @@
   [super dealloc];
 }
 
-#pragma mark -
-#pragma mark Matching
+#pragma mark - Matching
 
 - (BOOL)evaluate {
     return [KWGenericMatchEvaluator genericMatcher:self.matcher matches:self.subject];
@@ -44,15 +42,13 @@
   return [NSString stringWithFormat:@"match %@", [self.matcher description]];
 }
 
-#pragma mark -
-#pragma mark Getting Matcher Strings
+#pragma mark - Getting Matcher Strings
 
 + (NSArray *)matcherStrings {
   return @[@"match:"];
 }
 
-#pragma mark -
-#pragma mark Configuring Matchers
+#pragma mark - Configuring Matchers
 
 - (void)match:(id)aMatcher;
 {

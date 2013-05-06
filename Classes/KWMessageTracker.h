@@ -12,33 +12,28 @@
 
 @interface KWMessageTracker : NSObject<KWMessageSpying>
 
-#pragma mark -
-#pragma mark Initializing
+#pragma mark - Initializing
 
 - (id)initWithSubject:(id)anObject messagePattern:(KWMessagePattern *)aMessagePattern countType:(KWCountType)aCountType count:(NSUInteger)aCount;
 
 + (id)messageTrackerWithSubject:(id)anObject messagePattern:(KWMessagePattern *)aMessagePattern countType:(KWCountType)aCountType count:(NSUInteger)aCount;
 
-#pragma mark -
-#pragma mark Properties
+#pragma mark - Properties
 
 @property (nonatomic, readonly) id subject;
 @property (nonatomic, readonly) KWMessagePattern *messagePattern;
 @property (nonatomic, readonly) KWCountType countType;
 @property (nonatomic, readonly) NSUInteger count;
 
-#pragma mark -
-#pragma mark Stopping Tracking
+#pragma mark - Stopping Tracking
 
 - (void)stopTracking;
 
-#pragma mark -
-#pragma mark Getting Message Tracker Status
+#pragma mark - Getting Message Tracker Status
 
 - (BOOL)succeeded;
 
-#pragma mark -
-#pragma mark Getting Phrases
+#pragma mark - Getting Phrases
 
 - (NSString *)expectedCountPhrase;
 - (NSString *)receivedCountPhrase;

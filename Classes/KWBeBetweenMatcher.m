@@ -9,8 +9,7 @@
 
 @interface KWBeBetweenMatcher()
 
-#pragma mark -
-#pragma mark Properties
+#pragma mark - Properties
 
 @property (nonatomic, readwrite, retain) id lowerEndpoint;
 @property (nonatomic, readwrite, retain) id upperEndpoint;
@@ -19,8 +18,7 @@
 
 @implementation KWBeBetweenMatcher
 
-#pragma mark -
-#pragma mark Initializing
+#pragma mark - Initializing
 
 - (void)dealloc {
     [lowerEndpoint release];
@@ -28,21 +26,18 @@
     [super dealloc];
 }
 
-#pragma mark -
-#pragma mark Properties
+#pragma mark - Properties
 
 @synthesize lowerEndpoint;
 @synthesize upperEndpoint;
 
-#pragma mark -
-#pragma mark Getting Matcher Strings
+#pragma mark - Getting Matcher Strings
 
 + (NSArray *)matcherStrings {
     return @[@"beBetween:and:", @"beInTheIntervalFrom:to:"];
 }
 
-#pragma mark -
-#pragma mark Matching
+#pragma mark - Matching
 
 - (BOOL)evaluate {
     if (![self.subject respondsToSelector:@selector(compare:)])
@@ -54,8 +49,7 @@
            (upperResult == NSOrderedAscending || upperResult == NSOrderedSame);
 }
 
-#pragma mark -
-#pragma mark Getting Failure Messages
+#pragma mark - Getting Failure Messages
 
 - (NSString *)failureMessageForShould {
     return [NSString stringWithFormat:@"expected subject to be in the interval [%@, %@], got %@",
@@ -69,8 +63,7 @@
   return [NSString stringWithFormat:@"be between %@ and %@", self.lowerEndpoint, self.upperEndpoint];
 }
 
-#pragma mark -
-#pragma mark Configuring Matchers
+#pragma mark - Configuring Matchers
 
 - (void)beBetween:(id)aLowerEndpoint and:(id)anUpperEndpoint {
     [self beInTheIntervalFrom:aLowerEndpoint to:anUpperEndpoint];

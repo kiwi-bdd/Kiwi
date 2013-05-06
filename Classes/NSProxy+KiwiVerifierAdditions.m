@@ -11,8 +11,7 @@
 
 @implementation NSProxy (KiwiVerifierAdditions)
 
-#pragma mark -
-#pragma mark Attaching to Verifiers
+#pragma mark - Attaching to Verifiers
 
 - (id)attachToVerifier:(id<KWVerifying>)aVerifier {
     [aVerifier setSubject:self];

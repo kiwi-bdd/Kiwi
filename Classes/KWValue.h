@@ -8,8 +8,7 @@
 
 @interface KWValue : NSObject
 
-#pragma mark -
-#pragma mark Initializing
+#pragma mark - Initializing
 
 - (id)initWithBytes:(const void *)bytes objCType:(const char *)anObjCType;
 
@@ -30,14 +29,12 @@
 + (id)valueWithUnsignedLongLong:(unsigned long long)aValue;
 + (id)valueWithUnsignedShort:(unsigned short)aValue;
 
-#pragma mark -
-#pragma mark Properties
+#pragma mark - Properties
 
 @property (nonatomic, readonly) const char *objCType;
 @property (nonatomic, readonly) BOOL isNumeric;
 
-#pragma mark -
-#pragma mark Accessing Numeric Values
+#pragma mark - Accessing Numeric Values
 
 - (NSNumber *)numberValue;
 - (BOOL)boolValue;
@@ -56,14 +53,12 @@
 - (unsigned long long)unsignedLongLongValue;
 - (unsigned short)unsignedShortValue;
 
-#pragma mark -
-#pragma mark Accessing Data
+#pragma mark - Accessing Data
 
 - (NSData *)dataValue;
 - (void)getValue:(void *)buffer;
 
-#pragma mark -
-#pragma mark Accessing Numeric Data
+#pragma mark - Accessing Numeric Data
 
 - (NSData *)dataForObjCType:(const char *)anObjCType;
 - (NSData *)boolData;
@@ -82,8 +77,7 @@
 - (NSData *)unsignedLongLongData;
 - (NSData *)unsignedShortData;
 
-#pragma mark -
-#pragma mark Comparing Values
+#pragma mark - Comparing Values
 
 - (NSComparisonResult)compare:(KWValue *)aValue;
 

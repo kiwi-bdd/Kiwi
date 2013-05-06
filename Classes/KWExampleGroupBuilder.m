@@ -21,8 +21,7 @@
     NSMutableSet *suites;
 }
 
-#pragma mark -
-#pragma mark Building Example Groups
+#pragma mark - Building Example Groups
 
 @property (nonatomic, retain, readwrite) KWExampleSuite *exampleSuite;
 @property (nonatomic, readonly) NSMutableArray *contextNodeStack;
@@ -34,8 +33,7 @@
 @synthesize exampleSuite;
 @synthesize currentExample;
 
-#pragma mark -
-#pragma mark Initializing
+#pragma mark - Initializing
 
 static KWExampleGroupBuilder *sharedExampleGroupBuilder = nil;
 
@@ -86,8 +84,7 @@ static KWExampleGroupBuilder *sharedExampleGroupBuilder = nil;
     return self;
 }
 
-#pragma mark -
-#pragma mark Building Example Groups
+#pragma mark - Building Example Groups
 
 @synthesize contextNodeStack;
 

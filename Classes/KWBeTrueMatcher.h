@@ -9,8 +9,7 @@
 
 @interface KWBeTrueMatcher : KWMatcher
 
-#pragma mark -
-#pragma mark Configuring Matchers
+#pragma mark - Configuring Matchers
 
 - (void)beTrue;
 - (void)beFalse;

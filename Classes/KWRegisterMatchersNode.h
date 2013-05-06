@@ -11,20 +11,17 @@
 
 @interface KWRegisterMatchersNode : NSObject<KWExampleNode>
 
-#pragma mark -
-#pragma mark Initializing
+#pragma mark - Initializing
 
 - (id)initWithCallSite:(KWCallSite *)aCallSite namespacePrefix:(NSString *)aNamespacePrefix;
 
 + (id)registerMatchersNodeWithCallSite:(KWCallSite *)aCallSite namespacePrefix:(NSString *)aNamespacePrefix;
 
-#pragma mark -
-#pragma mark Getting Call Sites
+#pragma mark - Getting Call Sites
 
 @property (nonatomic, readonly) KWCallSite *callSite;
 
-#pragma mark -
-#pragma mark Getting Namespace Prefixes
+#pragma mark - Getting Namespace Prefixes
 
 @property (nonatomic, readonly) NSString *namespacePrefix;
 

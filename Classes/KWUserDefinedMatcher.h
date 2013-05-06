@@ -41,16 +41,14 @@ typedef NSString * (^KWUserDefinedMatcherMessageBlock)(id);
 + (id)builderForSelector:(SEL)aSelector;
 - (id)initWithSelector:(SEL)aSelector;
 
-#pragma mark -
-#pragma mark Configuring The Matcher
+#pragma mark - Configuring The Matcher
 
 - (void)match:(KWUserDefinedMatcherBlock)block;
 - (void)failureMessageForShould:(KWUserDefinedMatcherMessageBlock)block;
 - (void)failureMessageForShouldNot:(KWUserDefinedMatcherMessageBlock)block;
 - (void)description:(NSString *)description;
 
-#pragma mark -
-#pragma mark Buiding The Matcher
+#pragma mark - Buiding The Matcher
 
 - (KWUserDefinedMatcher *)buildMatcherWithSubject:(id)subject;
 @end

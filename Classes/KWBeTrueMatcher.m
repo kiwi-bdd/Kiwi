@@ -8,8 +8,7 @@
 
 @interface KWBeTrueMatcher()
 
-#pragma mark -
-#pragma mark Properties
+#pragma mark - Properties
 
 @property (nonatomic, readwrite) BOOL expectedValue;
 
@@ -17,20 +16,17 @@
 
 @implementation KWBeTrueMatcher
 
-#pragma mark -
-#pragma mark Properties
+#pragma mark - Properties
 
 @synthesize expectedValue;
 
-#pragma mark -
-#pragma mark Getting Matcher Strings
+#pragma mark - Getting Matcher Strings
 
 + (NSArray *)matcherStrings {
     return @[@"beTrue", @"beFalse", @"beYes", @"beNo"];
 }
 
-#pragma mark -
-#pragma mark Matching
+#pragma mark - Matching
 
 - (BOOL)evaluate {
     if (![self.subject respondsToSelector:@selector(boolValue)])
@@ -39,8 +35,7 @@
     return [self.subject boolValue] == self.expectedValue;
 }
 
-#pragma mark -
-#pragma mark Getting Failure Messages
+#pragma mark - Getting Failure Messages
 
 - (NSString *)failureMessageForShould {
     return [NSString stringWithFormat:@"expected subject to be %@",
@@ -55,8 +50,7 @@
   return @"be false";
 }
 
-#pragma mark -
-#pragma mark Configuring Matchers
+#pragma mark - Configuring Matchers
 
 - (void)beTrue {
     self.expectedValue = YES;

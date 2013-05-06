@@ -10,21 +10,18 @@ typedef void (^KWVoidBlock)(void);
 
 @interface KWBlock : NSObject
 
-#pragma mark -
-#pragma mark Initializing
+#pragma mark - Initializing
 - (id)initWithBlock:(KWVoidBlock)aBlock;
 
 + (id)blockWithBlock:(KWVoidBlock)aBlock;
 
-#pragma mark -
-#pragma mark Calling Blocks
+#pragma mark - Calling Blocks
 
 - (void)call;
 
 @end
 
-#pragma mark -
-#pragma mark Creating Blocks
+#pragma mark - Creating Blocks
 
 KWBlock *theBlock(KWVoidBlock aBlock);
 KWBlock *lambda(KWVoidBlock aBlock);

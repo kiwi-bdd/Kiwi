@@ -16,8 +16,7 @@
 
 @property (nonatomic, assign) BOOL willEvaluateMultipleTimes;
 
-#pragma mark -
-#pragma mark Configuring Matchers
+#pragma mark - Configuring Matchers
 
 - (void)receive:(SEL)aSelector;
 - (void)receive:(SEL)aSelector withCount:(NSUInteger)aCount;
@@ -34,8 +33,7 @@
 
 @interface KWMatchVerifier(KWReceiveMatcherAdditions)
 
-#pragma mark -
-#pragma mark Verifying
+#pragma mark - Verifying
 
 - (void)receive:(SEL)aSelector withArguments:(id)firstArgument, ...;
 - (void)receive:(SEL)aSelector withCount:(NSUInteger)aCount arguments:(id)firstArgument, ...;

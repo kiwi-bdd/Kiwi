@@ -26,7 +26,6 @@ BOOL KWObjCTypeIsBlock(const char *objCType);
 
 NSUInteger KWObjCTypeLength(const char *objCType);
 
-#pragma mark -
-#pragma mark Selector Utlities
+#pragma mark - Selector Utlities
 
 NSUInteger KWSelectorParameterCount(SEL selector);

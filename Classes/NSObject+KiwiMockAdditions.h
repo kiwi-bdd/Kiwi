@@ -8,8 +8,7 @@
 
 @interface NSObject(KiwiMockAdditions)
 
-#pragma mark -
-#pragma mark Creating Mocks
+#pragma mark - Creating Mocks
 
 + (id)mock;
 + (id)mockWithName:(NSString *)aName;

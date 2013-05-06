@@ -15,16 +15,14 @@
 
 @interface KWSpec : SenTestCase<KWExampleDelegate>
 
-#pragma mark -
-#pragma mark Adding Verifiers
+#pragma mark - Adding Verifiers
 
 + (id)addVerifier:(id<KWVerifying>)aVerifier;
 + (id)addExistVerifierWithExpectationType:(KWExpectationType)anExpectationType callSite:(KWCallSite *)aCallSite;
 + (id)addMatchVerifierWithExpectationType:(KWExpectationType)anExpectationType callSite:(KWCallSite *)aCallSite;
 + (id)addAsyncVerifierWithExpectationType:(KWExpectationType)anExpectationType callSite:(KWCallSite *)aCallSite timeout:(NSInteger)timeout;
 
-#pragma mark -
-#pragma mark Building Example Groups
+#pragma mark - Building Example Groups
 
 + (void)buildExampleGroups;
 

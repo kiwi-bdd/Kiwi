@@ -13,13 +13,11 @@
 
 @interface KWExampleGroupBuilder : NSObject
 
-#pragma mark -
-#pragma mark Initializing
+#pragma mark - Initializing
 
 + (id)sharedExampleGroupBuilder;
 
-#pragma mark -
-#pragma mark Building Example Groups
+#pragma mark - Building Example Groups
 
 @property (nonatomic, readonly) BOOL isBuildingExampleGroup;
 @property (nonatomic, retain, readonly) KWExampleSuite *exampleSuite;

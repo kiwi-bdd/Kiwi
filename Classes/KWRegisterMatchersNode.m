@@ -9,8 +9,7 @@
 
 @implementation KWRegisterMatchersNode
 
-#pragma mark -
-#pragma mark Initializing
+#pragma mark - Initializing
 
 - (id)initWithCallSite:(KWCallSite *)aCallSite namespacePrefix:(NSString *)aNamespacePrefix {
     if ((self = [super init])) {
@@ -31,18 +30,15 @@
     [super dealloc];
 }
 
-#pragma mark -
-#pragma mark Getting Call Sites
+#pragma mark - Getting Call Sites
 
 @synthesize callSite;
 
-#pragma mark -
-#pragma mark Getting Namespace Prefixes
+#pragma mark - Getting Namespace Prefixes
 
 @synthesize namespacePrefix;
 
-#pragma mark -
-#pragma mark Accepting Visitors
+#pragma mark - Accepting Visitors
 
 - (void)acceptExampleNodeVisitor:(id<KWExampleNodeVisitor>)aVisitor {
     [aVisitor visitRegisterMatchersNode:self];

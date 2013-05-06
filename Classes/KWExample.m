@@ -269,8 +269,7 @@
 
 @end
 
-#pragma mark -
-#pragma mark Building Example Groups
+#pragma mark - Building Example Groups
 
 void describe(NSString *aDescription, KWVoidBlock aBlock) {
     describeWithCallSite(nil, aDescription, aBlock);

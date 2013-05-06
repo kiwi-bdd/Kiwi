@@ -9,8 +9,7 @@
 
 @interface KWBeEmptyMatcher : KWMatcher
 
-#pragma mark -
-#pragma mark Configuring Matchers
+#pragma mark - Configuring Matchers
 
 - (void)beEmpty;
 
