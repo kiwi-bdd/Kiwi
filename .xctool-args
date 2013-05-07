@@ -1,0 +1,4 @@
+[
+  "-project", "Kiwi.xcodeproj",
+  "-scheme", "Kiwi"
+]
