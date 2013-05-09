@@ -18,8 +18,7 @@
 
 @interface KWSpec()
 
-#pragma mark -
-#pragma mark Properties
+#pragma mark - Properties
 
 @property (nonatomic, retain) KWExample *example;
 
@@ -71,8 +70,7 @@
     return [NSString stringWithFormat:@"-[%@ %@]", NSStringFromClass([self class]), name];
 }
 
-#pragma mark -
-#pragma mark Getting Invocations
+#pragma mark - Getting Invocations
 
 /* Called by the SenTestingKit test suite to get an array of invocations that
    should be run on instances of test cases. */
@@ -92,8 +90,7 @@
     return [exampleSuite invocationsForTestCase];
 }
 
-#pragma mark -
-#pragma mark Running Specs
+#pragma mark - Running Specs
 
 - (void)invokeTest 
 {
@@ -119,8 +116,7 @@
     [self failWithException:[failure exceptionValue]];
 }
 
-#pragma mark -
-#pragma mark Verification proxies
+#pragma mark - Verification proxies
 
 + (id)addVerifier:(id<KWVerifying>)aVerifier
 {

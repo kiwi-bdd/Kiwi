@@ -10,11 +10,11 @@
 
 typedef id (^KWFutureObjectBlock)(void);
 
-@interface KWFutureObject : NSObject {
-  KWFutureObjectBlock block;
-}
+@interface KWFutureObject : NSObject
+
 + (id)objectWithObjectPointer:(id *)pointer;
 + (id)futureObjectWithBlock:(KWFutureObjectBlock)block;
 - (id)initWithBlock:(KWFutureObjectBlock)aBlock;
 - (id)object;
+
 @end

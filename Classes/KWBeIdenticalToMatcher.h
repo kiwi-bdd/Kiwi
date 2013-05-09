@@ -7,13 +7,9 @@
 #import "KiwiConfiguration.h"
 #import "KWMatcher.h"
 
-@interface KWBeIdenticalToMatcher : KWMatcher {
-@private
-    id otherSubject;
-}
+@interface KWBeIdenticalToMatcher : KWMatcher
 
-#pragma mark -
-#pragma mark Configuring Matchers
+#pragma mark - Configuring Matchers
 
 - (void)beIdenticalTo:(id)anObject;
 

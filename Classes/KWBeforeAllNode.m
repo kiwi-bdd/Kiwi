@@ -9,15 +9,13 @@
 
 @implementation KWBeforeAllNode
 
-#pragma mark -
-#pragma mark Initializing
+#pragma mark - Initializing
 
 + (id)beforeAllNodeWithCallSite:(KWCallSite *)aCallSite block:(KWVoidBlock)aBlock {
     return [[[self alloc] initWithCallSite:aCallSite description:nil block:aBlock] autorelease];
 }
 
-#pragma mark -
-#pragma mark Accepting Visitors
+#pragma mark - Accepting Visitors
 
 - (void)acceptExampleNodeVisitor:(id<KWExampleNodeVisitor>)aVisitor {
     [aVisitor visitBeforeAllNode:self];

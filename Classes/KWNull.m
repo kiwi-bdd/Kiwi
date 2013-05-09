@@ -8,8 +8,7 @@
 
 @implementation KWNull
 
-#pragma mark -
-#pragma mark Initializing
+#pragma mark - Initializing
 
 static KWNull *sharedNull = nil;
 

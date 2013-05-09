@@ -8,6 +8,10 @@
 
 #import "KWFutureObject.h"
 
+@interface KWFutureObject() {
+    KWFutureObjectBlock block;
+}
+@end
 
 @implementation KWFutureObject
 

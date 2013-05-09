@@ -12,10 +12,13 @@
 
 #import "NSInvocation+OCMAdditions.h"
 
+@interface KWStub(){}
+@property (nonatomic, copy) id (^block)(NSArray *params);
+@end
+
 @implementation KWStub
 
-#pragma mark -
-#pragma mark Initializing
+#pragma mark - Initializing
 
 - (id)initWithMessagePattern:(KWMessagePattern *)aMessagePattern {
     return [self initWithMessagePattern:aMessagePattern value:nil];
@@ -33,7 +36,7 @@
 - (id)initWithMessagePattern:(KWMessagePattern *)aMessagePattern block:(id (^)(NSArray *params))aBlock {
     if ((self = [super init])) {
         messagePattern = [aMessagePattern retain];
-        block = [aBlock copy];
+        _block = [aBlock copy];
     }
 	
     return self;
@@ -71,12 +74,11 @@
     [value release];
     [returnValueTimes release];
     [secondValue release];
-	[block release];
+	[_block release];
     [super dealloc];
 }
 
-#pragma mark -
-#pragma mark Properties
+#pragma mark - Properties
 
 @synthesize messagePattern;
 @synthesize value;
@@ -84,8 +86,7 @@
 @synthesize returnValueTimes;
 @synthesize returnedValueTimes;
 
-#pragma mark -
-#pragma mark Processing Invocations
+#pragma mark - Processing Invocations
 
 - (void)writeZerosToInvocationReturnValue:(NSInvocation *)anInvocation {
     NSUInteger returnLength = [[anInvocation methodSignature] methodReturnLength];
@@ -177,7 +178,7 @@
     if (![self.messagePattern matchesInvocation:anInvocation])
         return NO;
 	
-	if (block) {
+	if (self.block) {
 		NSUInteger numberOfArguments = [[anInvocation methodSignature] numberOfArguments];
 		NSMutableArray *args = [NSMutableArray arrayWithCapacity:(numberOfArguments-2)];
 		for (NSUInteger i = 2; i < numberOfArguments; ++i) {
@@ -192,7 +193,7 @@
 			[args addObject:arg];
 		}
 		
-		id newValue = block(args);
+		id newValue = self.block(args);
 		if (newValue != value) {
 			[value release];
 			value = [newValue retain];
@@ -211,8 +212,7 @@
     return YES;
 }
 
-#pragma mark -
-#pragma mark Debugging
+#pragma mark - Debugging
 
 - (NSString *)description {
     return [NSString stringWithFormat:@"messagePattern: %@\nvalue: %@", self.messagePattern, self.value];

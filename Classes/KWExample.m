@@ -26,7 +26,10 @@
 #import "KWExampleSuite.h"
 
 
-@interface KWExample ()
+@interface KWExample () {
+    id<KWExampleNode> exampleNode;
+    BOOL passed;
+}
 
 @property (nonatomic, readonly) NSMutableArray *verifiers;
 @property (nonatomic, readonly) KWMatcherFactory *matcherFactory;
@@ -266,8 +269,7 @@
 
 @end
 
-#pragma mark -
-#pragma mark Building Example Groups
+#pragma mark - Building Example Groups
 
 void describe(NSString *aDescription, KWVoidBlock aBlock) {
     describeWithCallSite(nil, aDescription, aBlock);

@@ -16,14 +16,9 @@ enum {
 
 typedef NSUInteger KWInequalityType;
 
-@interface KWInequalityMatcher : KWMatcher {
-@private
-    KWInequalityType inequalityType;
-    id otherValue;
-}
+@interface KWInequalityMatcher : KWMatcher
 
-#pragma mark -
-#pragma mark Configuring Matchers
+#pragma mark - Configuring Matchers
 
 - (void)beLessThan:(id)aValue;
 - (void)beLessThanOrEqualTo:(id)aValue;

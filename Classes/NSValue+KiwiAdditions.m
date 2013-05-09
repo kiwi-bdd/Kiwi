@@ -9,8 +9,7 @@
 
 @implementation NSValue(KiwiAdditions)
 
-#pragma mark -
-#pragma mark Accessing Data
+#pragma mark - Accessing Data
 
 - (NSData *)dataValue {
     NSUInteger length = KWObjCTypeLength([self objCType]);

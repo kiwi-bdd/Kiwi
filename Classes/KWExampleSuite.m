@@ -16,6 +16,12 @@
 
 #define kKWINVOCATION_EXAMPLE_GROUP_KEY @"__KWExampleGroupKey"
 
+@interface KWExampleSuite()  {
+    KWContextNode *rootNode;
+    NSMutableArray *examples;
+}
+@end
+
 @implementation KWExampleSuite
 
 - (id)initWithRootNode:(KWContextNode *)contextNode

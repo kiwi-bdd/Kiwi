@@ -11,8 +11,7 @@
 // is using as an object parameter.
 @interface KWNull : NSObject
 
-#pragma mark -
-#pragma mark Initializing
+#pragma mark - Initializing
 
 + (id)null;
 

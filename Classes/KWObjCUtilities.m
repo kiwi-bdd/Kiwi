@@ -85,8 +85,7 @@ BOOL KWObjCTypeIsBlock(const char *objCType) {
 }
 
 
-#pragma mark -
-#pragma mark Selector Utlities
+#pragma mark - Selector Utlities
 
 NSUInteger KWSelectorParameterCount(SEL selector) {
     NSString *selectorString = NSStringFromSelector(selector);

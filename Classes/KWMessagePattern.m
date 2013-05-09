@@ -16,8 +16,7 @@
 
 @implementation KWMessagePattern
 
-#pragma mark -
-#pragma mark Initializing
+#pragma mark - Initializing
 
 - (id)initWithSelector:(SEL)aSelector {
     return [self initWithSelector:aSelector argumentFilters:nil];
@@ -94,21 +93,18 @@
     [super dealloc];
 }
 
-#pragma mark -
-#pragma mark Copying
+#pragma mark - Copying
 
 - (id)copyWithZone:(NSZone *)zone {
     return [self retain];
 }
 
-#pragma mark -
-#pragma mark Properties
+#pragma mark - Properties
 
 @synthesize selector;
 @synthesize argumentFilters;
 
-#pragma mark -
-#pragma mark Matching Invocations
+#pragma mark - Matching Invocations
 
 - (BOOL)argumentFiltersMatchInvocationArguments:(NSInvocation *)anInvocation {
     if (self.argumentFilters == nil)
@@ -167,8 +163,7 @@
     return self.selector == [anInvocation selector] && [self argumentFiltersMatchInvocationArguments:anInvocation];
 }
 
-#pragma mark -
-#pragma mark Comparing Message Patterns
+#pragma mark - Comparing Message Patterns
 
 - (NSUInteger)hash {
     return [NSStringFromSelector(self.selector) hash];
@@ -191,8 +186,7 @@
     return [self.argumentFilters isEqualToArray:aMessagePattern.argumentFilters];
 }
 
-#pragma mark -
-#pragma mark Retrieving String Representations
+#pragma mark - Retrieving String Representations
 
 - (NSString *)selectorString {
     return NSStringFromSelector(self.selector);
@@ -219,8 +213,7 @@
         return [self selectorAndArgumentFiltersString];
 }
 
-#pragma mark -
-#pragma mark Debugging
+#pragma mark - Debugging
 
 - (NSString *)description {
     return [NSString stringWithFormat:@"selector: %@\nargumentFilters: %@",

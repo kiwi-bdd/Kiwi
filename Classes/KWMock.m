@@ -24,21 +24,18 @@ static NSString * const ChangeStubValueAfterTimesKey = @"ChangeStubValueAfterTim
 
 @interface KWMock()
 
-#pragma mark -
-#pragma mark Initializing
+#pragma mark - Initializing
 
 - (id)initAsNullMock:(BOOL)nullMockFlag withName:(NSString *)aName forClass:(Class)aClass protocol:(Protocol *)aProtocol;
 
-#pragma mark -
-#pragma mark Properties
+#pragma mark - Properties
 
 @property (nonatomic, readonly) NSMutableArray *stubs;
 @property (nonatomic, readonly) NSMutableArray *expectedMessagePatterns;
 @property (nonatomic, readonly) NSMutableDictionary *messageSpies;
 
 
-#pragma mark -
-#pragma mark Handling Invocations
+#pragma mark - Handling Invocations
 
 - (BOOL)processReceivedInvocation:(NSInvocation *)invocation;
 
@@ -46,8 +43,7 @@ static NSString * const ChangeStubValueAfterTimesKey = @"ChangeStubValueAfterTim
 
 @implementation KWMock
 
-#pragma mark -
-#pragma mark Initializing
+#pragma mark - Initializing
 
 - (id)init {
     // May already have been initialized since stubbing -init is allowed!
@@ -175,8 +171,7 @@ static NSString * const ChangeStubValueAfterTimesKey = @"ChangeStubValueAfterTim
     [super dealloc];
 }
 
-#pragma mark -
-#pragma mark Properties
+#pragma mark - Properties
 
 @synthesize isPartialMock;
 @synthesize isNullMock;
@@ -188,8 +183,7 @@ static NSString * const ChangeStubValueAfterTimesKey = @"ChangeStubValueAfterTim
 @synthesize expectedMessagePatterns;
 @synthesize messageSpies;
 
-#pragma mark -
-#pragma mark Getting Transitive Closure For Mocked Protocols
+#pragma mark - Getting Transitive Closure For Mocked Protocols
 
 - (NSSet *)mockedProtocolTransitiveClosureSet {
     if (self.mockedProtocol == nil)
@@ -219,8 +213,7 @@ static NSString * const ChangeStubValueAfterTimesKey = @"ChangeStubValueAfterTim
     return protocolSet;
 }
 
-#pragma mark -
-#pragma mark Stubbing Methods
+#pragma mark - Stubbing Methods
 
 - (void)removeStubWithMessagePattern:(KWMessagePattern *)messagePattern {
     KWStub *stub = [self currentStubWithMessagePattern:messagePattern];
@@ -323,8 +316,7 @@ static NSString * const ChangeStubValueAfterTimesKey = @"ChangeStubValueAfterTim
     [self.stubs removeAllObjects];
 }
 
-#pragma mark -
-#pragma mark Spying on Messages
+#pragma mark - Spying on Messages
 
 - (void)addMessageSpy:(id<KWMessageSpying>)aSpy forMessagePattern:(KWMessagePattern *)aMessagePattern {
     [self expectMessagePattern:aMessagePattern];
@@ -347,8 +339,7 @@ static NSString * const ChangeStubValueAfterTimesKey = @"ChangeStubValueAfterTim
     [messagePatternSpies removeObject:spyWrapper];
 }
 
-#pragma mark -
-#pragma mark Expecting Message Patterns
+#pragma mark - Expecting Message Patterns
 
 - (void)expect:(SEL)aSelector {
     KWMessagePattern *messagePattern = [KWMessagePattern messagePatternWithSelector:aSelector];
@@ -372,8 +363,7 @@ static NSString * const ChangeStubValueAfterTimesKey = @"ChangeStubValueAfterTim
         [self.expectedMessagePatterns addObject:aMessagePattern];
 }
 
-#pragma mark -
-#pragma mark Capturing Invocations
+#pragma mark - Capturing Invocations
 
 - (NSMethodSignature *)invocationCapturer:(KWInvocationCapturer *)anInvocationCapturer methodSignatureForSelector:(SEL)aSelector {
     return [self methodSignatureForSelector:aSelector];
@@ -396,8 +386,7 @@ static NSString * const ChangeStubValueAfterTimesKey = @"ChangeStubValueAfterTim
     }
 }
 
-#pragma mark -
-#pragma mark Handling Invocations
+#pragma mark - Handling Invocations
 
 - (NSString *)namePhrase {
     if (self.mockName == nil)
@@ -488,8 +477,7 @@ static NSString * const ChangeStubValueAfterTimesKey = @"ChangeStubValueAfterTim
 #endif // #if KW_TARGET_HAS_INVOCATION_EXCEPTION_BUG
 }
 
-#pragma mark -
-#pragma mark Testing Objects
+#pragma mark - Testing Objects
 
 - (BOOL)mockedClassHasAncestorClass:(Class)aClass {
     Class currentClass = self.mockedClass;
@@ -555,8 +543,7 @@ static NSString * const ChangeStubValueAfterTimesKey = @"ChangeStubValueAfterTim
            [super conformsToProtocol:aProtocol];
 }
 
-#pragma mark -
-#pragma mark Whitelisted NSObject Methods
+#pragma mark - Whitelisted NSObject Methods
 
 - (BOOL)isEqual:(id)anObject {
     KWMessagePattern *messagePattern = [KWMessagePattern messagePatternWithSelector:_cmd];

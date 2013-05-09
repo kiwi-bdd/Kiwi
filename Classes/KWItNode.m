@@ -21,8 +21,7 @@
 @synthesize context = _context;
 @synthesize example;
 
-#pragma mark -
-#pragma mark Initializing
+#pragma mark - Initializing
 
 + (id)itNodeWithCallSite:(KWCallSite *)aCallSite 
              description:(NSString *)aDescription 
@@ -34,15 +33,13 @@
     return [itNode autorelease];
 }
 
-#pragma mark -
-#pragma mark Accepting Visitors
+#pragma mark - Accepting Visitors
 
 - (void)acceptExampleNodeVisitor:(id<KWExampleNodeVisitor>)aVisitor {
     [aVisitor visitItNode:self];
 }
 
-#pragma mark -
-#pragma mark Runtime Description support
+#pragma mark - Runtime Description support
 
 - (NSString *)description
 {

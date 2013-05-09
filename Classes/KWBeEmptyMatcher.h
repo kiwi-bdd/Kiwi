@@ -7,13 +7,9 @@
 #import "KiwiConfiguration.h"
 #import "KWMatcher.h"
 
-@interface KWBeEmptyMatcher : KWMatcher {
-@private
-    NSUInteger count;
-}
+@interface KWBeEmptyMatcher : KWMatcher
 
-#pragma mark -
-#pragma mark Configuring Matchers
+#pragma mark - Configuring Matchers
 
 - (void)beEmpty;
 

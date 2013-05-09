@@ -7,14 +7,9 @@
 #import "KiwiConfiguration.h"
 #import "KWMatcher.h"
 
-@interface KWBlockRaiseMatcher : KWMatcher {
-@private
-    NSException *exception;
-    NSException *actualException;
-}
+@interface KWBlockRaiseMatcher : KWMatcher
 
-#pragma mark -
-#pragma mark Configuring Matchers
+#pragma mark - Configuring Matchers
 
 - (void)raise;
 - (void)raiseWithName:(NSString *)aName;

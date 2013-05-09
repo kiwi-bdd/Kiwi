@@ -8,12 +8,9 @@
 
 @implementation KWBlockNode
 
-@synthesize description = _description;
+#pragma mark - Initializing
 
-#pragma mark -
-#pragma mark Initializing
-
-- (id)initWithCallSite:(KWCallSite *)aCallSite description:(NSString *)aDescription block:(KWVoidBlock)aBlock{
+- (id)initWithCallSite:(KWCallSite *)aCallSite description:(NSString *)aDescription block:(KWVoidBlock)aBlock {
     if ((self = [super init])) {
         callSite = [aCallSite retain];
         _description = [aDescription copy];
@@ -27,7 +24,7 @@
 
 - (void)dealloc {
     [callSite release];
-    [description release];
+    [_description release];
 
     if (block != nil)
         Block_release(block);
@@ -35,18 +32,15 @@
     [super dealloc];
 }
 
-- (void)performBlock
-{
-  if (block != nil) { block(); }
+- (void)performBlock {
+    if (block != nil) { block(); }
 }
 
-#pragma mark -
-#pragma mark Getting Call Sites
+#pragma mark - Getting Call Sites
 
 @synthesize callSite;
 
-#pragma mark -
-#pragma mark Accepting Visitors
+#pragma mark - Accepting Visitors
 
 @synthesize block;
 

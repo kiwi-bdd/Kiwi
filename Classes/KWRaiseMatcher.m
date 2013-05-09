@@ -9,8 +9,7 @@
 
 @interface KWRaiseMatcher()
 
-#pragma mark -
-#pragma mark Properties
+#pragma mark - Properties
 
 @property (nonatomic, readwrite) SEL selector;
 @property (nonatomic, readwrite, retain) NSException *exception;
@@ -20,8 +19,7 @@
 
 @implementation KWRaiseMatcher
 
-#pragma mark -
-#pragma mark Initializing
+#pragma mark - Initializing
 
 - (void)dealloc {
     [exception release];
@@ -29,15 +27,13 @@
     [super dealloc];
 }
 
-#pragma mark -
-#pragma mark Properties
+#pragma mark - Properties
 
 @synthesize selector;
 @synthesize exception;
 @synthesize actualException;
 
-#pragma mark -
-#pragma mark Getting Matcher Strings
+#pragma mark - Getting Matcher Strings
 
 + (NSArray *)matcherStrings {
     return @[@"raiseWhenSent:",
@@ -46,8 +42,7 @@
                                      @"raiseWithName:reason:whenSent:"];
 }
 
-#pragma mark -
-#pragma mark Matching
+#pragma mark - Matching
 
 - (BOOL)evaluate {
     @try {
@@ -67,8 +62,7 @@
     return NO;
 }
 
-#pragma mark -
-#pragma mark Getting Failure Messages
+#pragma mark - Getting Failure Messages
 
 + (NSString *)exceptionPhraseWithException:(NSException *)anException {
     if (anException == nil)
@@ -103,8 +97,7 @@
   return [NSString stringWithFormat:@"raise %@ when sent %@", [[self class] exceptionPhraseWithException:self.exception], NSStringFromSelector(self.selector)];
 }
 
-#pragma mark -
-#pragma mark Configuring Matchers
+#pragma mark - Configuring Matchers
 
 - (void)raiseWhenSent:(SEL)aSelector {
     [self raiseWithName:nil reason:nil whenSent:aSelector];

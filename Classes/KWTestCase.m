@@ -20,8 +20,7 @@
 
 @interface KWTestCase()
 
-#pragma mark -
-#pragma mark Properties
+#pragma mark - Properties
 
 @property (nonatomic, readonly) KWMatcherFactory *matcherFactory;
 @property (nonatomic, readonly) NSMutableArray *verifiers;
@@ -30,8 +29,7 @@
 
 @implementation KWTestCase
 
-#pragma mark -
-#pragma mark Initializing
+#pragma mark - Initializing
 
 // Initializer used by the SenTestingKit test suite to initialize a test case
 // for each test invocation returned in +testInvocations.
@@ -52,15 +50,13 @@
     [super dealloc];
 }
 
-#pragma mark -
-#pragma mark Properties
+#pragma mark - Properties
 
 @synthesize verifiers;
 @synthesize matcherFactory;
 @synthesize failures;
 
-#pragma mark -
-#pragma mark Configuring Example Environments
+#pragma mark - Configuring Example Environments
 
 - (void)setUpExampleEnvironment {
     [self.matcherFactory registerMatcherClassesWithNamespacePrefix:@"KW"];
@@ -70,8 +66,7 @@
     KWClearStubsAndSpies();
 }
 
-#pragma mark -
-#pragma mark Marking Pending Examples
+#pragma mark - Marking Pending Examples
 
 - (void)markPendingWithCallSite:(KWCallSite *)aCallSite {
     KWFailure *failure = [KWFailure failureWithCallSite:aCallSite format:@"PENDING"];
@@ -83,8 +78,7 @@
     [self reportFailure:failure];
 }
 
-#pragma mark -
-#pragma mark Adding Verifiers
+#pragma mark - Adding Verifiers
 
 - (id)addVerifier:(id<KWVerifying>)aVerifier {
     if (![self.verifiers containsObject:aVerifier])
@@ -111,8 +105,7 @@
     return verifier;
 }
 
-#pragma mark -
-#pragma mark Reporting Failures
+#pragma mark - Reporting Failures
 
 + (KWFailure *)tidiedFailureWithFailure:(KWFailure *)aFailure {
     if ([KWDeviceInfo isSimulator]) {
@@ -133,8 +126,7 @@
     [self failWithException:[tidiedFailure exceptionValue]];
 }
 
-#pragma mark -
-#pragma mark Getting Invocations
+#pragma mark - Getting Invocations
 
 // Called by the SenTestingKit test suite to get an array of invocations that
 // should be run on instances of test cases.
@@ -167,8 +159,7 @@
     return exampleInvocations;
 }
 
-#pragma mark -
-#pragma mark Running Test Cases
+#pragma mark - Running Test Cases
 
 // Called by the SenTestingKit test suite when it is time to run the test.
 - (void)invokeTest {
