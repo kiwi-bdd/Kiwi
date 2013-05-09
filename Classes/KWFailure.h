@@ -8,14 +8,9 @@
 
 @class KWCallSite;
 
-@interface KWFailure : NSObject {
-@private
-    KWCallSite *callSite;
-    NSString *message;
-}
+@interface KWFailure : NSObject
 
-#pragma mark -
-#pragma mark Initializing
+#pragma mark - Initializing
 
 - (id)initWithCallSite:(KWCallSite *)aCallSite message:(NSString *)aMessage;
 - (id)initWithCallSite:(KWCallSite *)aCallSite format:(NSString *)format, ...;
@@ -23,14 +18,12 @@
 + (id)failureWithCallSite:(KWCallSite *)aCallSite message:(NSString *)aMessage;
 + (id)failureWithCallSite:(KWCallSite *)aCallSite format:(NSString *)format, ...;
 
-#pragma mark -
-#pragma mark Properties
+#pragma mark - Properties
 
 @property (nonatomic, readonly) NSString *message;
 @property (nonatomic, readonly) KWCallSite *callSite;
 
-#pragma mark -
-#pragma mark Getting Exception Representations
+#pragma mark - Getting Exception Representations
 
 - (NSException *)exceptionValue;
 

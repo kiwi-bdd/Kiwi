@@ -10,8 +10,7 @@
 
 @protocol KWReporting<NSObject>
 
-#pragma mark -
-#pragma mark Reporting Failures
+#pragma mark - Reporting Failures
 
 - (void)reportFailure:(KWFailure *)failure;
 

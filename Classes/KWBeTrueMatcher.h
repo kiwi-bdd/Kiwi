@@ -7,13 +7,9 @@
 #import "KiwiConfiguration.h"
 #import "KWMatcher.h"
 
-@interface KWBeTrueMatcher : KWMatcher {
-@private
-    BOOL expectedValue;
-}
+@interface KWBeTrueMatcher : KWMatcher
 
-#pragma mark -
-#pragma mark Configuring Matchers
+#pragma mark - Configuring Matchers
 
 - (void)beTrue;
 - (void)beFalse;

@@ -8,8 +8,7 @@
 
 @implementation KWAny
 
-#pragma mark -
-#pragma mark Initializing
+#pragma mark - Initializing
 
 static KWAny *sharedAny = nil;
 

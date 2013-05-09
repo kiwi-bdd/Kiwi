@@ -8,39 +8,37 @@
 
 #import "KWStringPrefixMatcher.h"
 
+@interface KWStringPrefixMatcher(){}
+@property (nonatomic, copy) NSString *prefix;
+@end
 
 @implementation KWStringPrefixMatcher
 
-+ (id)matcherWithPrefix:(NSString *)aPrefix;
-{
++ (id)matcherWithPrefix:(NSString *)aPrefix {
   return [[[self alloc] initWithPrefix:aPrefix] autorelease];
 }
 
-- (id)initWithPrefix:(NSString *)aPrefix;
-{
+- (id)initWithPrefix:(NSString *)aPrefix {
   if ((self = [super init])) {
-    prefix = [aPrefix copy];
+    _prefix = [aPrefix copy];
   }
   return self;
 }
 
-- (void)dealloc
-{
-  [prefix release];
+- (void)dealloc {
+  [_prefix release];
   [super dealloc];
 }
 
-- (BOOL)matches:(id)item
-{
+- (BOOL)matches:(id)item {
   if (![item respondsToSelector:@selector(hasPrefix:)])
     return NO;
 
-  return [item hasPrefix:prefix];
+  return [item hasPrefix:self.prefix];
 }
 
-- (NSString *)description
-{
-  return [NSString stringWithFormat:@"a string with prefix '%@'", prefix];
+- (NSString *)description {
+  return [NSString stringWithFormat:@"a string with prefix '%@'", self.prefix];
 }
 
 @end

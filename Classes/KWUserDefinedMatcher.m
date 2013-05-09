@@ -8,6 +8,10 @@
 
 #import "KWUserDefinedMatcher.h"
 
+@interface KWUserDefinedMatcher(){}
+@property (nonatomic, copy) NSInvocation *invocation;
+@end
+
 @implementation KWUserDefinedMatcher
 
 @synthesize selector;
@@ -32,7 +36,7 @@
 
 - (void)dealloc
 {
-    [invocation release];
+    [_invocation release];
     [matcherBlock release];
     [super dealloc];
 }
@@ -41,9 +45,9 @@
 {
     BOOL result;
 
-    if (invocation.methodSignature.numberOfArguments == 3) {
+    if (self.invocation.methodSignature.numberOfArguments == 3) {
         id argument;
-        [invocation getArgument:&argument atIndex:2];
+        [self.invocation getArgument:&argument atIndex:2];
         result = matcherBlock(self.subject, argument);
     } else {
         result = matcherBlock(self.subject);
@@ -58,8 +62,7 @@
     }
 }
 
-#pragma mark -
-#pragma mark Message forwarding
+#pragma mark - Message forwarding
 
 - (BOOL)respondsToSelector:(SEL)aSelector
 {
@@ -71,8 +74,8 @@
 
 - (void)forwardInvocation:(NSInvocation *)anInvocation
 {
-    [invocation autorelease];
-    invocation = [anInvocation retain];
+    [_invocation autorelease];
+    _invocation = [anInvocation retain];
 }
 
 - (NSMethodSignature *)methodSignatureForSelector:(SEL)aSelector
@@ -131,8 +134,7 @@
     return NSStringFromSelector(matcher.selector);
 }
 
-#pragma mark -
-#pragma mark Configuring The Matcher
+#pragma mark - Configuring The Matcher
 
 - (void)match:(KWUserDefinedMatcherBlock)block {
     matcher.matcherBlock = block;
@@ -154,8 +156,7 @@
     description = [aDescription copy];
 }
 
-#pragma mark -
-#pragma mark Buiding The Matcher
+#pragma mark - Buiding The Matcher
 
 - (KWUserDefinedMatcher *)buildMatcherWithSubject:(id)subject {
     [matcher setSubject:subject];

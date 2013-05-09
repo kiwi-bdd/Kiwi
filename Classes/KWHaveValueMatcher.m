@@ -13,8 +13,7 @@
 
 @interface KWHaveValueMatcher()
 
-#pragma mark -
-#pragma mark Properties
+#pragma mark - Properties
 
 @property (nonatomic, retain) NSString *expectedKey;
 @property (nonatomic, retain) NSString *expectedKeyPath;
@@ -36,8 +35,7 @@
   [super dealloc];
 }
 
-#pragma mark -
-#pragma mark Getting Matcher Strings
+#pragma mark - Getting Matcher Strings
 
 + (NSArray *)matcherStrings {
   return @[@"haveValue:forKey:",
@@ -46,8 +44,7 @@
           @"haveValueForKeyPath:"];
 }
 
-#pragma mark -
-#pragma mark Matching
+#pragma mark - Matching
 
 - (BOOL)evaluate {
   BOOL matched = NO;
@@ -122,8 +119,7 @@
   return [NSString stringWithFormat:@"have %@ for %@", valueDescription, keyDescription];
 }
 
-#pragma mark -
-#pragma mark Configuring Matchers
+#pragma mark - Configuring Matchers
 
 - (void)haveValue:(id)value forKey:(NSString *)key;
 {

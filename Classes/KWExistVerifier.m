@@ -11,8 +11,7 @@
 
 @interface KWExistVerifier()
 
-#pragma mark -
-#pragma mark Properties
+#pragma mark - Properties
 
 @property (nonatomic, readonly) KWExpectationType expectationType;
 @property (nonatomic, readonly) KWCallSite *callSite;
@@ -22,8 +21,7 @@
 
 @implementation KWExistVerifier
 
-#pragma mark -
-#pragma mark Initializing
+#pragma mark - Initializing
 
 - (id)initWithExpectationType:(KWExpectationType)anExpectationType callSite:(KWCallSite *)aCallSite reporter:(id<KWReporting>)aReporter {
     if ((self = [super init])) {
@@ -53,16 +51,14 @@
   return @"should not exist";
 }
 
-#pragma mark -
-#pragma mark Properties
+#pragma mark - Properties
 
 @synthesize expectationType;
 @synthesize callSite;
 @synthesize reporter;
 @synthesize subject;
 
-#pragma mark -
-#pragma mark Ending Examples
+#pragma mark - Ending Examples
 
 - (void)exampleWillEnd {
     if (self.expectationType == KWExpectationTypeShould && self.subject == nil) {

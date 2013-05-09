@@ -10,8 +10,7 @@
 
 @implementation KWFailure
 
-#pragma mark -
-#pragma mark Initializing
+#pragma mark - Initializing
 
 - (id)initWithCallSite:(KWCallSite *)aCallSite message:(NSString *)aMessage {
     if ((self = [super init])) {
@@ -46,14 +45,12 @@
     [super dealloc];
 }
 
-#pragma mark -
-#pragma mark Properties
+#pragma mark - Properties
 
 @synthesize message;
 @synthesize callSite;
 
-#pragma mark -
-#pragma mark Getting Exception Representations
+#pragma mark - Getting Exception Representations
 
 - (NSException *)exceptionValue {
     NSDictionary *userInfo = nil;

@@ -14,8 +14,7 @@ static NSMutableDictionary *KWObjectStubs = nil;
 static NSMutableDictionary *KWMessageSpies = nil;
 static NSMutableArray *KWRestoredObjects = nil;
 
-#pragma mark -
-#pragma mark Intercept Enabled Method Implementations
+#pragma mark - Intercept Enabled Method Implementations
 
 Class KWRestoreOriginalClass(id anObject);
 void KWInterceptedForwardInvocation(id anObject, SEL aSelector, NSInvocation* anInvocation);
@@ -23,8 +22,7 @@ void KWInterceptedDealloc(id anObject, SEL aSelector);
 Class KWInterceptedClass(id anObject, SEL aSelector);
 Class KWInterceptedSuperclass(id anObject, SEL aSelector);
 
-#pragma mark -
-#pragma mark Getting Forwarding Implementations
+#pragma mark - Getting Forwarding Implementations
 
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wundeclared-selector"
@@ -60,8 +58,7 @@ IMP KWForwardingImplementationForMethodEncoding(const char* encoding) {
     }
 }
 
-#pragma mark -
-#pragma mark Getting Intercept Class Information
+#pragma mark - Getting Intercept Class Information
 
 BOOL KWObjectIsClass(id anObject) {
     return class_isMetaClass(object_getClass(anObject));
@@ -109,8 +106,7 @@ Class KWRealClassForClass(Class aClass) {
     return aClass;
 }
 
-#pragma mark -
-#pragma mark Enabling Intercepting
+#pragma mark - Enabling Intercepting
 
 static BOOL IsTollFreeBridged(Class class, id obj)
 {
@@ -159,8 +155,7 @@ void KWSetupMethodInterceptSupport(Class interceptClass, SEL aSelector) {
     class_addMethod(interceptClass, aSelector, forwardingImplementation, encoding);
 }
 
-#pragma mark -
-#pragma mark Intercept Enabled Method Implementations
+#pragma mark - Intercept Enabled Method Implementations
 
 Class KWRestoreOriginalClass(id anObject) {
     Class interceptClass = object_getClass(anObject);
@@ -232,8 +227,7 @@ void KWClearStubsAndSpies(void) {
     KWRestoredObjects = nil;
 }
 
-#pragma mark -
-#pragma mark Managing Objects Stubs
+#pragma mark - Managing Objects Stubs
 
 void KWAssociateObjectStub(id anObject, KWStub *aStub, BOOL overrideExisting) {
     if (KWObjectStubs == nil)
@@ -283,8 +277,7 @@ void KWClearAllObjectStubs(void) {
     [KWObjectStubs removeAllObjects];
 }
 
-#pragma mark -
-#pragma mark Managing Message Spies
+#pragma mark - Managing Message Spies
 
 void KWAssociateMessageSpy(id anObject, id aSpy, KWMessagePattern *aMessagePattern) {
     if (KWMessageSpies == nil)

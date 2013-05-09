@@ -9,8 +9,7 @@
 
 @interface KWBeMemberOfClassMatcher()
 
-#pragma mark -
-#pragma mark Properties
+#pragma mark - Properties
 
 @property (nonatomic, readwrite, assign) Class targetClass;
 
@@ -18,27 +17,23 @@
 
 @implementation KWBeMemberOfClassMatcher
 
-#pragma mark -
-#pragma mark Properties
+#pragma mark - Properties
 
 @synthesize targetClass;
 
-#pragma mark -
-#pragma mark Getting Matcher Strings
+#pragma mark - Getting Matcher Strings
 
 + (NSArray *)matcherStrings {
     return @[@"beMemberOfClass:"];
 }
 
-#pragma mark -
-#pragma mark Matching
+#pragma mark - Matching
 
 - (BOOL)evaluate {
     return [self.subject isMemberOfClass:self.targetClass];
 }
 
-#pragma mark -
-#pragma mark Getting Failure Messages
+#pragma mark - Getting Failure Messages
 
 - (NSString *)failureMessageForShould {
     return [NSString stringWithFormat:@"expected subject to be member of %@, got %@",
@@ -52,8 +47,7 @@
                                     NSStringFromClass(self.targetClass)];
 }
 
-#pragma mark -
-#pragma mark Configuring Matchers
+#pragma mark - Configuring Matchers
 
 - (void)beMemberOfClass:(Class)aClass {
     self.targetClass = aClass;

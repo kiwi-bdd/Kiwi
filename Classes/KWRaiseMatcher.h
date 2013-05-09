@@ -7,15 +7,9 @@
 #import "KiwiConfiguration.h"
 #import "KWMatcher.h"
 
-@interface KWRaiseMatcher : KWMatcher {
-@private
-    SEL selector;
-    NSException *exception;
-    NSException *actualException;
-}
+@interface KWRaiseMatcher : KWMatcher
 
-#pragma mark -
-#pragma mark Configuring Matchers
+#pragma mark - Configuring Matchers
 
 - (void)raiseWhenSent:(SEL)aSelector;
 - (void)raiseWithName:(NSString *)aName whenSent:(SEL)aSelector;

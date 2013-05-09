@@ -8,6 +8,10 @@
 
 #import "KWStringContainsMatcher.h"
 
+@interface KWStringContainsMatcher(){}
+@property (nonatomic, copy) NSString *substring;
+@end
+
 @implementation KWStringContainsMatcher
 
 + (id)matcherWithSubstring:(NSString *)aSubstring;
@@ -18,14 +22,14 @@
 - (id)initWithSubstring:(NSString *)aSubstring;
 {
   if ((self = [super init])) {
-    substring = [aSubstring copy];
+    _substring = [aSubstring copy];
   }
   return self;
 }
 
 - (void)dealloc
 {
-  [substring release];
+  [_substring release];
   [super dealloc];
 }
 
@@ -34,12 +38,12 @@
   if (![item respondsToSelector:@selector(rangeOfString:)])
     return NO;
   
-  return [item rangeOfString:substring].location != NSNotFound;
+  return [item rangeOfString:self.substring].location != NSNotFound;
 }
 
 - (NSString *)description
 {
-  return [NSString stringWithFormat:@"a string with substring '%@'", substring];
+  return [NSString stringWithFormat:@"a string with substring '%@'", self.substring];
 }
 
 @end

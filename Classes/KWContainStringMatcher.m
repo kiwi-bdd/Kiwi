@@ -19,8 +19,7 @@
 
 @implementation KWContainStringMatcher
 
-#pragma mark -
-#pragma mark Getting Matcher Strings
+#pragma mark - Getting Matcher Strings
 
 + (NSArray *)matcherStrings {
     return @[@"containString:",
@@ -29,8 +28,7 @@
              @"endWithString:"];
 }
 
-#pragma mark -
-#pragma mark Matching
+#pragma mark - Matching
 
 - (BOOL)evaluate {
     NSString *subjectString = (NSString *)self.subject;
@@ -43,8 +41,7 @@
     return (range.location != NSNotFound);
 }
 
-#pragma mark -
-#pragma mark Getting Failure Messages
+#pragma mark - Getting Failure Messages
 
 - (NSString *)failureMessageForShould {
     return [NSString stringWithFormat:@"%@ did not contain string \"%@\"",
@@ -61,8 +58,7 @@
     return [NSString stringWithFormat:@"contain substring \"%@\"", self.substring];
 }
 
-#pragma mark -
-#pragma mark Configuring matchers
+#pragma mark - Configuring matchers
 
 - (void)containString:(NSString *)substring {
     self.substring = substring;

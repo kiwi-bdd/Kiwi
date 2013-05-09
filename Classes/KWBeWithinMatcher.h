@@ -7,14 +7,9 @@
 #import "KiwiConfiguration.h"
 #import "KWMatcher.h"
 
-@interface KWBeWithinMatcher : KWMatcher {
-@private
-    id distance;
-    id otherValue;
-}
+@interface KWBeWithinMatcher : KWMatcher
 
-#pragma mark -
-#pragma mark Configuring Matchers
+#pragma mark - Configuring Matchers
 
 - (void)beWithin:(id)aDistance of:(id)aValue;
 - (void)equal:(double)aValue withDelta:(double)aDelta;

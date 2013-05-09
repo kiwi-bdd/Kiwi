@@ -9,8 +9,7 @@
 
 @interface KWConformToProtocolMatcher()
 
-#pragma mark -
-#pragma mark Properties
+#pragma mark - Properties
 
 @property (nonatomic, readwrite, assign) Protocol *protocol;
 
@@ -18,27 +17,23 @@
 
 @implementation KWConformToProtocolMatcher
 
-#pragma mark -
-#pragma mark Properties
+#pragma mark - Properties
 
 @synthesize protocol;
 
-#pragma mark -
-#pragma mark Getting Matcher Strings
+#pragma mark - Getting Matcher Strings
 
 + (NSArray *)matcherStrings {
     return @[@"conformToProtocol:"];
 }
 
-#pragma mark -
-#pragma mark Matching
+#pragma mark - Matching
 
 - (BOOL)evaluate {
     return [self.subject conformsToProtocol:self.protocol];
 }
 
-#pragma mark -
-#pragma mark Getting Failure Messages
+#pragma mark - Getting Failure Messages
 
 - (NSString *)failureMessageForShould {
     return [NSString stringWithFormat:@"expected subject to conform to %@ protocol",
@@ -50,8 +45,7 @@
   return [NSString stringWithFormat:@"conform to %@ protocol", NSStringFromProtocol(self.protocol)];
 }
 
-#pragma mark -
-#pragma mark Configuring Matchers
+#pragma mark - Configuring Matchers
 
 - (void)conformToProtocol:(Protocol *)aProtocol {
     self.protocol = aProtocol;

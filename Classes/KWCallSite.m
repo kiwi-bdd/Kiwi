@@ -8,8 +8,7 @@
 
 @implementation KWCallSite
 
-#pragma mark -
-#pragma mark Initializing
+#pragma mark - Initializing
 
 - (id)initWithFilename:(NSString *)aFilename lineNumber:(NSUInteger)aLineNumber {
     if ((self = [super init])) {
@@ -29,14 +28,12 @@
     [super dealloc];
 }
 
-#pragma mark -
-#pragma mark Accessing Call Site Properties
+#pragma mark - Accessing Call Site Properties
 
 @synthesize filename;
 @synthesize lineNumber;
 
-#pragma mark -
-#pragma mark Identifying and Comparing
+#pragma mark - Identifying and Comparing
 
 - (NSUInteger)hash {
     return [[NSString stringWithFormat:@"%@%u", self.filename, (unsigned)self.lineNumber] hash];

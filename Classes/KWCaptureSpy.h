@@ -2,13 +2,10 @@
 #import "KWMock.h"
 #import "KWMessageSpying.h"
 
-@interface KWCaptureSpy : NSObject<KWMessageSpying> {
-    BOOL _argumentCaptured;
-    id _argument;
-    NSUInteger _argumentIndex;
-}
+@interface KWCaptureSpy : NSObject<KWMessageSpying>
 
 - (id)initWithArgumentIndex:(NSUInteger)index;
+
 @property(nonatomic, readonly, retain) id argument;
 
 @end
