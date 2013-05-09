@@ -2,4 +2,4 @@ language: objective-c
 before_install:
   - brew update
   - brew install xctool
-script: xctool test
+script: xctool test -project Kiwi.xcodeproj -scheme Kiwi
