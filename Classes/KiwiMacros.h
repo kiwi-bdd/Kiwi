@@ -15,7 +15,9 @@
 - (void)shouldBeNil;
 - (void)shouldNotBeNil;
 - (void)shouldEventually;
+- (void)shouldNotEventually;
 - (void)shouldEventuallyBeforeTimingOutAfter;
+- (void)shouldNotEventuallyBeforeTimingOutAfter;
 
 @end
 
@@ -34,10 +36,9 @@
 #define shouldBeNil attachToVerifier:KW_ADD_EXIST_VERIFIER(KWExpectationTypeShouldNot)
 #define shouldNotBeNil attachToVerifier:KW_ADD_EXIST_VERIFIER(KWExpectationTypeShould)
 #define shouldEventually attachToVerifier:KW_ADD_ASYNC_VERIFIER(KWExpectationTypeShould, kKW_DEFAULT_PROBE_TIMEOUT)
+#define shouldNotEventually attachToVerifier:KW_ADD_ASYNC_VERIFIER(KWExpectationTypeShouldNot, kKW_DEFAULT_PROBE_TIMEOUT)
 #define shouldEventuallyBeforeTimingOutAfter(timeout) attachToVerifier:KW_ADD_ASYNC_VERIFIER(KWExpectationTypeShould, timeout)
-
-// waitFor is like a shouldEventually but will not fail if it's never satisfied
-#define waitFor attachToVerifier:KW_ADD_ASYNC_VERIFIER(KWExpectationTypeMaybe, kKW_DEFAULT_PROBE_TIMEOUT)
+#define shouldNotEventuallyBeforeTimingOutAfter(timeout) attachToVerifier:KW_ADD_ASYNC_VERIFIER(KWExpectationTypeShouldNot, timeout)
 
 // used to wrap a pointer to an object that will change in the future (used with shouldEventually)
 #define theObject(objectPtr) [KWFutureObject objectWithObjectPointer:objectPtr] // DEPRECATED
