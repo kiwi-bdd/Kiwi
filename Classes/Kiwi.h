@@ -86,6 +86,7 @@ extern "C" {
 #import "NSObject+KiwiSpyAdditions.h"
 #import "NSObject+KiwiStubAdditions.h"
 #import "NSObject+KiwiVerifierAdditions.h"
+#import "NSProxy+KiwiVerifierAdditions.h"
 
 #import "KiwiMacros.h"
 
