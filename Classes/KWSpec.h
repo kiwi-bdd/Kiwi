@@ -24,6 +24,7 @@
 
 #pragma mark - Building Example Groups
 
++ (NSString *)file;
 + (void)buildExampleGroups;
 
 @end

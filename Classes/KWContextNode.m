@@ -8,6 +8,7 @@
 #import "KWExampleNodeVisitor.h"
 #import "KWExample.h"
 #import "KWFailure.h"
+#import "KWSymbolicator.h"
 
 @interface KWContextNode() {
     NSUInteger performedExampleCount;

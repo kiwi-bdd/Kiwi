@@ -24,7 +24,8 @@
 #import "KWIntercept.h"
 #import "KWExampleNode.h"
 #import "KWExampleSuite.h"
-
+#import "KWCallSite.h"
+#import "KWSymbolicator.h"
 
 @interface KWExample () {
     id<KWExampleNode> exampleNode;
@@ -217,7 +218,8 @@
 }
 
 - (void)visitItNode:(KWItNode *)aNode {
-  if (aNode.block == nil || aNode != exampleNode)
+
+    if (aNode.block == nil || aNode != exampleNode)
     return;
   
   aNode.example = self;
@@ -269,14 +271,46 @@
 
 @end
 
+#pragma mark - Looking up CallSites
+
+KWCallSite *callSiteWithAddress(long address);
+KWCallSite *callSiteAtAddressIfNecessary(long address);
+
+KWCallSite *callSiteAtAddressIfNecessary(long address){
+    BOOL shouldLookup = [[KWExampleGroupBuilder sharedExampleGroupBuilder] isFocused] && ![[KWExampleGroupBuilder sharedExampleGroupBuilder] foundFocus];
+    return  shouldLookup ? callSiteWithAddress(address) : nil;
+}
+
+KWCallSite *callSiteWithAddress(long address){
+    NSArray *args =@[@"-p", @(getpid()).stringValue, [NSString stringWithFormat:@"%lx", address]];
+    NSString *callSite = [NSString stringWithShellCommand:@"/usr/bin/atos" arguments:args];
+
+    NSString *pattern = @".+\\((.+):([0-9]+)\\)";
+    NSError *e;
+    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:pattern options:NSRegularExpressionCaseInsensitive error:&e];
+    NSArray *res = [regex matchesInString:callSite options:0 range:NSMakeRange(0, callSite.length)];
+
+    NSString *fileName = nil;
+    NSInteger lineNumber = 0;
+
+    for (NSTextCheckingResult *ntcr in res) {
+        fileName = [callSite substringWithRange:[ntcr rangeAtIndex:1]];
+        NSString *lineNumberMatch = [callSite substringWithRange:[ntcr rangeAtIndex:2]];
+        lineNumber = lineNumberMatch.integerValue;
+    }
+    return [KWCallSite callSiteWithFilename:fileName lineNumber:lineNumber];
+}
+
 #pragma mark - Building Example Groups
 
 void describe(NSString *aDescription, KWVoidBlock aBlock) {
-    describeWithCallSite(nil, aDescription, aBlock);
+    KWCallSite *callSite = callSiteAtAddressIfNecessary(kwCallerAddress());
+    describeWithCallSite(callSite, aDescription, aBlock);
 }
 
 void context(NSString *aDescription, KWVoidBlock aBlock) {
-    contextWithCallSite(nil, aDescription, aBlock);
+    KWCallSite *callSite = callSiteAtAddressIfNecessary(kwCallerAddress());
+    contextWithCallSite(callSite, aDescription, aBlock);
 }
 
 void registerMatchers(NSString *aNamespacePrefix) {
@@ -300,7 +334,8 @@ void afterEach(KWVoidBlock aBlock) {
 }
 
 void it(NSString *aDescription, KWVoidBlock aBlock) {
-    itWithCallSite(nil, aDescription, aBlock);
+    KWCallSite *callSite = callSiteAtAddressIfNecessary(kwCallerAddress());
+    itWithCallSite(callSite, aDescription, aBlock);
 }
 
 void specify(KWVoidBlock aBlock)
@@ -313,6 +348,7 @@ void pending_(NSString *aDescription, KWVoidBlock ignoredBlock) {
 }
 
 void describeWithCallSite(KWCallSite *aCallSite, NSString *aDescription, KWVoidBlock aBlock) {
+
     contextWithCallSite(aCallSite, aDescription, aBlock);
 }
 

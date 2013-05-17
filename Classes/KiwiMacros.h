@@ -74,6 +74,8 @@
     \
     @implementation name \
     \
+    + (NSString *)file { return @__FILE__; } \
+    \
     + (void)buildExampleGroups { \
 
 #define SPEC_END \
@@ -81,31 +83,3 @@
     \
     @end
 
-// Shared example group declarations.
-// Example group declarations.
-#define SHARED_EXAMPLE_GROUP_BEGIN(name) \
-    \
-    @interface name : KWSpec \
-    \
-    @end \
-    \
-    @implementation name \
-    \
-    + (void)buildSharedExampleGroupsWithContextBlock:(KWSharedExampleGroupObjectBlock)contextBlock { \
-
-#define SHARED_EXAMPLE_GROUP_END \
-    } \
-    \
-@end
-
-#pragma mark -
-#pragma mark Focus
-
-#define FOCUS() \
-    IMPLEMENT_SENTESTPROBE_CATEGORY( \
-        SenTestProbeSetSpecfiedTestSuiteForSuiteNames( \
-            SpecNamesInFile(@__FILE__))); \
-
-#define FOCUS_TEST_SUITE(suite) \
-    IMPLEMENT_SENTESTPROBE_CATEGORY( \
-        SenTestProbeSetSpecfiedTestSuiteForSuiteNames(@[@suite])); \

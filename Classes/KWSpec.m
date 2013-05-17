@@ -34,7 +34,9 @@
     [super dealloc];
 }
 
-/* This method is only implemented by sub-classes */
+/* Methods are only implemented by sub-classes */
+
++ (NSString *)file { return nil; }
 
 + (void)buildExampleGroups {}
 

@@ -87,7 +87,6 @@ extern "C" {
 #import "NSObject+KiwiVerifierAdditions.h"
 #import "NSProxy+KiwiVerifierAdditions.h"
 
-#import "SenTestProbe+KiwiAdditions.h"
 
 #import "KiwiMacros.h"
 // Some Foundation headers use Kiwi keywords (e.g. 'should') as identifiers for
