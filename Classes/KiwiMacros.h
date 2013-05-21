@@ -19,8 +19,10 @@
 - (void)shouldEventuallyBeforeTimingOutAfter;
 - (void)shouldNotEventuallyBeforeTimingOutAfter;
 
-- (void)shouldAfter;
-- (void)shouldNotAfter;
+- (void)shouldAfterWait;
+- (void)shouldNotAfterWait;
+- (void)shouldAfterWaitOf;
+- (void)shouldNotAfterWaitOf;
 
 @end
 
