@@ -48,7 +48,7 @@ static KWExampleGroupBuilder *sharedExampleGroupBuilder = nil;
     if ((self = [super init])) {
         contextNodeStack = [[NSMutableArray alloc] init];
         suites = [[NSMutableSet alloc] init];
-        [self focusWithURI:[[[NSProcessInfo processInfo] environment] objectForKey:@"KW_SPEC_FILE"]];
+        [self focusWithURI:[[[NSProcessInfo processInfo] environment] objectForKey:@"KW_SPEC"]];
     }
     return self;
 }

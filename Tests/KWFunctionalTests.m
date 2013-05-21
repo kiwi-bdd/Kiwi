@@ -27,9 +27,9 @@ NSMutableArray *calls = @[@"OuterTestCase",
 ].mutableCopy;
 
 //There should not be a focused call site at this point
-//assert(![[KWExampleGroupBuilder sharedExampleGroupBuilder] focusedCallSite]);
+assert(![[KWExampleGroupBuilder sharedExampleGroupBuilder] focusedCallSite]);
 
-context(@"OuterDescribe", ^{
+describe(@"OuterDescribe", ^{
     it(@"OuterTestCase", ^{ [calls removeObject:@"OuterTestCase"]; });
     context(@"OuterContext", ^{
         beforeAll(^{ [calls removeObject:@"BeforeAll"]; });
@@ -37,7 +37,7 @@ context(@"OuterDescribe", ^{
         beforeEach(^{ [calls removeObject:@"BeforeEach"]; });
         afterEach(^{ [calls removeObject:@"AfterEach"]; });
         it(@"TestCase", ^{ [calls removeObject:@"TestCase"]; });
-        describe(@"Context", ^{
+        context(@"Context", ^{
             beforeAll(^{ [calls removeObject:@"InnerBeforeAll"]; });
             afterAll(^{ [calls removeObject:@"InnerAfterAll"]; });
             beforeEach(^{ [calls removeObject:@"InnerBeforeEach"]; });

@@ -218,8 +218,7 @@
 }
 
 - (void)visitItNode:(KWItNode *)aNode {
-
-    if (aNode.block == nil || aNode != exampleNode)
+  if (aNode.block == nil || aNode != exampleNode)
     return;
   
   aNode.example = self;
