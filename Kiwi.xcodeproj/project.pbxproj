@@ -69,7 +69,6 @@
 		44FC0E9516B6377D0050D616 /* KWGenericMatchingAdditions.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9F982C8A16A802920030A0B1 /* KWGenericMatchingAdditions.h */; };
 		44FC0E9616B6377D0050D616 /* KWHaveMatcher.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9F982C8C16A802920030A0B1 /* KWHaveMatcher.h */; };
 		44FC0E9716B6377D0050D616 /* KWHaveValueMatcher.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9F982C8E16A802920030A0B1 /* KWHaveValueMatcher.h */; };
-		44FC0E9816B6377D0050D616 /* (null) in CopyFiles */ = {isa = PBXBuildFile; };
 		44FC0E9916B6377D0050D616 /* KWInequalityMatcher.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9F982C9116A802920030A0B1 /* KWInequalityMatcher.h */; };
 		44FC0E9A16B6377D0050D616 /* KWIntercept.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9F982C9316A802920030A0B1 /* KWIntercept.h */; };
 		44FC0E9B16B6377D0050D616 /* KWInvocationCapturer.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9F982C9516A802920030A0B1 /* KWInvocationCapturer.h */; };
@@ -569,7 +568,6 @@
 				44FC0E9516B6377D0050D616 /* KWGenericMatchingAdditions.h in CopyFiles */,
 				44FC0E9616B6377D0050D616 /* KWHaveMatcher.h in CopyFiles */,
 				44FC0E9716B6377D0050D616 /* KWHaveValueMatcher.h in CopyFiles */,
-				44FC0E9816B6377D0050D616 /* (null) in CopyFiles */,
 				44FC0E9916B6377D0050D616 /* KWInequalityMatcher.h in CopyFiles */,
 				44FC0E9A16B6377D0050D616 /* KWIntercept.h in CopyFiles */,
 				44FC0E9B16B6377D0050D616 /* KWInvocationCapturer.h in CopyFiles */,
