@@ -2139,6 +2139,7 @@
 				PRODUCT_NAME = KiwiTests;
 				RUN_CLANG_STATIC_ANALYZER = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
+				VALID_ARCHS = "armv7 armv7s";
 				WRAPPER_EXTENSION = octest;
 			};
 			name = Debug;
@@ -2172,6 +2173,7 @@
 				PRODUCT_NAME = KiwiTests;
 				RUN_CLANG_STATIC_ANALYZER = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
+				VALID_ARCHS = "armv7 armv7s";
 				WRAPPER_EXTENSION = octest;
 				ZERO_LINK = NO;
 			};
