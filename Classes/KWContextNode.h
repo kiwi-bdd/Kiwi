@@ -43,6 +43,8 @@
 @property (nonatomic, readonly) KWContextNode *parentContext;
 @property (nonatomic, readonly) NSArray *nodes;
 
+@property (nonatomic) BOOL isFocused;
+
 - (void)addContextNode:(KWContextNode *)aNode;
 - (void)addItNode:(KWItNode *)aNode;
 - (void)addPendingNode:(KWPendingNode *)aNode;

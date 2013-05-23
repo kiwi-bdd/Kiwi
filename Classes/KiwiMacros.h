@@ -86,6 +86,8 @@
     \
     @implementation name \
     \
+    + (NSString *)file { return @__FILE__; } \
+    \
     + (void)buildExampleGroups { \
 
 #define SPEC_END \
