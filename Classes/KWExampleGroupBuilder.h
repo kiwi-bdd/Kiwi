@@ -10,6 +10,7 @@
 @class KWCallSite;
 @class KWExample;
 @class KWExampleSuite;
+@class KWContextNode;
 
 @interface KWExampleGroupBuilder : NSObject
 
@@ -22,7 +23,10 @@
 @property (nonatomic, readonly) BOOL isBuildingExampleGroup;
 @property (nonatomic, retain, readonly) KWExampleSuite *exampleSuite;
 @property (nonatomic, retain) KWExample *currentExample;
+@property (nonatomic, retain) KWCallSite *focusedCallSite;
 
+//spec file name:line number of callsite
+- (void)focusWithURI:(NSString *)nodeUrl;
 - (KWExampleSuite *)buildExampleGroups:(void (^)(void))buildingBlock;
 - (KWExample *)currentExample;
 
@@ -35,5 +39,9 @@
 - (void)setAfterEachNodeWithCallSite:(KWCallSite *)aCallSite block:(KWVoidBlock)aBlock;
 - (void)addItNodeWithCallSite:(KWCallSite *)aCallSite description:(NSString *)aDescription block:(KWVoidBlock)aBlock;
 - (void)addPendingNodeWithCallSite:(KWCallSite *)aCallSite description:(NSString *)aDescription;
+
+
+- (BOOL)isFocused;
+- (BOOL)foundFocus;
 
 @end
