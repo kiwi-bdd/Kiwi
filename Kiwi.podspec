@@ -3,7 +3,7 @@ Pod::Spec.new do |s|
   s.version         = '2.1'
   s.summary         = 'A Behavior Driven Development library for iOS and OS X.'
   s.homepage        = 'https://github.com/allending/Kiwi'
-  s.authors         = { 'Allen Ding' => 'alding@gmail.com', 'Luke Redpath' => 'luke@lukeredpath.co.uk' }
+  s.authors         = { 'Allen Ding' => 'alding@gmail.com', 'Luke Redpath' => 'luke@lukeredpath.co.uk', 'Marin Usalj' => 'mneorr@gmail.com' }
   s.license         = { :type => 'MIT', :file => 'License.txt' }
   s.source          = { :git => 'https://github.com/allending/Kiwi.git', :tag => '2.1' }
   s.source_files    = 'Classes'
