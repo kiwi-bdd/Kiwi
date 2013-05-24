@@ -1959,7 +1959,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				ARCHS = "$(NATIVE_ARCH_ACTUAL)";
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 1.0;
@@ -1975,7 +1975,6 @@
 				PUBLIC_HEADERS_FOLDER_PATH = "$(PROJECT_NAME)";
 				RUN_CLANG_STATIC_ANALYZER = YES;
 				SDKROOT = macosx;
-				VALID_ARCHS = x86_64;
 			};
 			name = Debug;
 		};
@@ -1983,7 +1982,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				ARCHS = "$(NATIVE_ARCH_ACTUAL)";
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = YES;
 				CURRENT_PROJECT_VERSION = 1.0;
@@ -1998,7 +1997,6 @@
 				PUBLIC_HEADERS_FOLDER_PATH = "$(PROJECT_NAME)";
 				RUN_CLANG_STATIC_ANALYZER = YES;
 				SDKROOT = macosx;
-				VALID_ARCHS = x86_64;
 			};
 			name = Release;
 		};
@@ -2139,7 +2137,7 @@
 				PRODUCT_NAME = KiwiTests;
 				RUN_CLANG_STATIC_ANALYZER = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				VALID_ARCHS = "armv7 armv7s i386";
+				VALID_ARCHS = "$(NATIVE_ARCH_ACTUAL) $(ARCHS_STANDARD_32_BIT)";
 				WRAPPER_EXTENSION = octest;
 			};
 			name = Debug;
@@ -2173,7 +2171,7 @@
 				PRODUCT_NAME = KiwiTests;
 				RUN_CLANG_STATIC_ANALYZER = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				VALID_ARCHS = "armv7 armv7s i386";
+				VALID_ARCHS = "$(NATIVE_ARCH_ACTUAL) $(ARCHS_STANDARD_32_BIT)";
 				WRAPPER_EXTENSION = octest;
 				ZERO_LINK = NO;
 			};
