@@ -182,7 +182,7 @@
 		NSUInteger numberOfArguments = [[anInvocation methodSignature] numberOfArguments];
 		NSMutableArray *args = [NSMutableArray arrayWithCapacity:(numberOfArguments-2)];
 		for (NSUInteger i = 2; i < numberOfArguments; ++i) {
-			id arg = [anInvocation getArgumentAtIndexAsObject:i];
+			id arg = [anInvocation getArgumentAtIndexAsObject:(int)i];
 			
 			const char *argType = [[anInvocation methodSignature] getArgumentTypeAtIndex:i];
 			if (strcmp(argType, "@?") == 0) arg = [[arg copy] autorelease];
