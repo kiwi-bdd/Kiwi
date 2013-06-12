@@ -53,11 +53,7 @@
 + (BOOL)verifyNilSubject {
     KWExample *currentExample = [[KWExampleGroupBuilder sharedExampleGroupBuilder] currentExample];
     id<KWVerifying> verifier = currentExample.unassignedVerifier;
-    if (!verifier) {
-        @throw [NSException exceptionWithName:NSInternalInconsistencyException
-                                       reason:@"Trying to verify a non-existing matcher."
-                                     userInfo:nil];
-    } else if (![verifier subject] && [verifier isKindOfClass:[KWMatchVerifier class]]) {
+    if (verifier && ![verifier subject] && [verifier isKindOfClass:[KWMatchVerifier class]]) {
         KWMatchVerifier *matchVerifier = (KWMatchVerifier *)verifier;
         [matchVerifier performSelector:@selector(beNonNil)];
         currentExample.unassignedVerifier = nil;
