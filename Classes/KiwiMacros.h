@@ -12,8 +12,8 @@
 
 - (void)should;
 - (void)shouldNot;
-- (void)shouldBeNil;
-- (void)shouldNotBeNil;
+- (void)shouldBeNil DEPRECATED_ATTRIBUTE;
+- (void)shouldNotBeNil DEPRECATED_ATTRIBUTE;
 - (void)shouldEventually;
 - (void)shouldNotEventually;
 - (void)shouldEventuallyBeforeTimingOutAfter;
@@ -29,7 +29,7 @@
 #pragma mark - Support Macros
 
 #define KW_THIS_CALLSITE [KWCallSite callSiteWithFilename:@__FILE__ lineNumber:__LINE__]
-#define KW_ADD_EXIST_VERIFIER(expectationType) [self addExistVerifierWithExpectationType:expectationType callSite:KW_THIS_CALLSITE]
+#define KW_ADD_EXIST_VERIFIER(expectationType) [self addExistVerifierWithExpectationType:expectationType callSite:KW_THIS_CALLSITE] 
 #define KW_ADD_MATCH_VERIFIER(expectationType) [self addMatchVerifierWithExpectationType:expectationType callSite:KW_THIS_CALLSITE]
 #define KW_ADD_ASYNC_VERIFIER(expectationType, timeOut, wait) [self addAsyncVerifierWithExpectationType:expectationType callSite:KW_THIS_CALLSITE timeout:timeOut shouldWait:wait]
 
