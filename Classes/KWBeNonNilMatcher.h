@@ -13,4 +13,7 @@
 
 }
 - (void)beNonNil;
+
+- (void)beNonNil:(BOOL)matcherHasSubject;
++ (BOOL)verifyNilSubject;
 @end
