@@ -136,6 +136,45 @@ describe(@"FocusedItCheck", ^{
 
 SPEC_END
 
+SPEC_BEGIN(NilMatchers)
+
+describe(@"nil matchers", ^{
+    __block NSObject *object;
+
+    context(@"when object is nil", ^{
+        beforeEach(^{
+            object = nil;
+        });
+
+        it(@"passes a test for [[x should] beNil]", ^{
+            [[object should] beNil];
+        });
+        it(@"passes a test for [[x shouldNot] beNonNil]", ^{
+            [[object shouldNot] beNonNil];
+        });
+        it(@"passes a test for [x shouldBeNil]", ^{
+            [object shouldBeNil];
+        });
+    });
+
+    context(@"when object is non-nil", ^{
+        beforeEach(^{
+            object = [NSObject new];
+        });
+        it(@"passes a test for [[x should] beNonNil]", ^{
+            [[object should] beNonNil];
+        });
+        it(@"passes a test for [[x shouldNot] beNil]", ^{
+            [[object shouldNot] beNil];
+        });
+        it(@"passes a test for [x shouldNotBeNil]", ^{
+            [object shouldNotBeNil];
+        });
+    });
+});
+
+SPEC_END
+
 #if KW_TESTS_ENABLED
 @interface KWFunctionalTests : SenTestCase
 @end

@@ -7,7 +7,11 @@
 //
 
 #import "KWBeNilMatcher.h"
+#import "KWExample.h"
 #import "KWFormatter.h"
+#import "KWExampleGroupBuilder.h"
+#import "KWMatchVerifier.h"
+#import "KWVerifying.h"
 
 @implementation KWBeNilMatcher
 
@@ -15,7 +19,7 @@
 #pragma mark Getting Matcher Strings
 
 + (NSArray *)matcherStrings {
-  return @[@"beNil"];
+  return @[@"beNil", @"beNil:"];
 }
 
 #pragma mark -
@@ -42,11 +46,28 @@
     return YES;
 }
 
-- (void)beNil {}
-
 - (NSString *)description
 {
-  return @"be nil";
+    return @"be nil";
+}
+
+- (void)beNil {}
+- (void)beNil:(BOOL)matcherHasSubject {}
+
++ (BOOL)verifyNilSubject {
+    KWExample *currentExample = [[KWExampleGroupBuilder sharedExampleGroupBuilder] currentExample];
+    id<KWVerifying> verifier = currentExample.unassignedVerifier;
+    if (!verifier) {
+        @throw [NSException exceptionWithName:NSInternalInconsistencyException
+                                       reason:@"Trying to verify a non-existing matcher."
+                                     userInfo:nil];
+    } else if (![verifier subject] && [verifier isKindOfClass:[KWMatchVerifier class]]) {
+        KWMatchVerifier *matchVerifier = (KWMatchVerifier *)verifier;
+        [matchVerifier performSelector:@selector(beNil)];
+        currentExample.unassignedVerifier = nil;
+        return NO;
+    }
+    return YES;
 }
 
 @end

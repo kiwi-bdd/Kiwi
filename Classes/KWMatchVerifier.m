@@ -14,6 +14,7 @@
 #import "KWWorkarounds.h"
 #import "NSInvocation+KiwiAdditions.h"
 #import "NSMethodSignature+KiwiAdditions.h"
+#import "KWExample.h"
 
 @interface KWMatchVerifier()
 
@@ -21,6 +22,7 @@
 
 @property (nonatomic, readwrite, retain) id<KWMatching> endOfExampleMatcher;
 @property (nonatomic, readwrite, retain) id<KWMatching> matcher;
+@property (nonatomic, readwrite, assign) KWExample *example;
 
 @end
 
@@ -44,12 +46,13 @@
         callSite = [aCallSite retain];
         matcherFactory = aMatcherFactory;
         reporter = aReporter;
+        _example = (KWExample *)aReporter;
     }
 
     return self;
 }
 
-+ (id)matchVerifierWithExpectationType:(KWExpectationType)anExpectationType callSite:(KWCallSite *)aCallSite matcherFactory:(KWMatcherFactory *)aMatcherFactory reporter:(id<KWReporting>)aReporter {
++ (id<KWVerifying>)matchVerifierWithExpectationType:(KWExpectationType)anExpectationType callSite:(KWCallSite *)aCallSite matcherFactory:(KWMatcherFactory *)aMatcherFactory reporter:(id<KWReporting>)aReporter {
     return [[[self alloc] initWithExpectationType:anExpectationType callSite:aCallSite matcherFactory:aMatcherFactory reporter:aReporter] autorelease];
 }
 
@@ -146,6 +149,11 @@
                  NSStringFromSelector(anInvocation.selector)];
       [self.reporter reportFailure:failure];
     }
+
+    if (self.example.unassignedVerifier == self) {
+        self.example.unassignedVerifier = nil;
+    }
+
     [anInvocation invokeWithTarget:self.matcher];
 
 #if KW_TARGET_HAS_INVOCATION_EXCEPTION_BUG
