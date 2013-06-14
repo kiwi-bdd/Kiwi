@@ -16,12 +16,11 @@ typedef BOOL (^KWUserDefinedMatcherBlock)();
 @property (nonatomic, assign) SEL selector;
 @property (nonatomic, copy) NSString *failureMessageForShould;
 @property (nonatomic, copy) NSString *failureMessageForShouldNot;
-@property (nonatomic, assign) KWUserDefinedMatcherBlock matcherBlock;
+@property (nonatomic, copy) KWUserDefinedMatcherBlock matcherBlock;
 @property (nonatomic, copy) NSString *description;
 
 + (id)matcherWithSubject:(id)aSubject block:(KWUserDefinedMatcherBlock)aBlock;
 - (id)initWithSubject:(id)aSubject block:(KWUserDefinedMatcherBlock)aBlock;
-- (void)setSubject:(id)aSubject;
 @end
 
 #pragma mark -
@@ -35,7 +34,7 @@ typedef NSString * (^KWUserDefinedMatcherMessageBlock)(id);
     KWUserDefinedMatcherMessageBlock failureMessageForShouldNotBlock;
     NSString *description;
 }
-@property (nonatomic, readonly) NSString *key;
+@property (nonatomic, copy, readonly) NSString *key;
 
 + (id)builder;
 + (id)builderForSelector:(SEL)aSelector;

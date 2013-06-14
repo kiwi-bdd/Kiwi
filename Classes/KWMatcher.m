@@ -14,7 +14,7 @@
 
 - (id)initWithSubject:(id)anObject {
     if ((self = [super init])) {
-        subject = anObject;
+        _subject = anObject;
     }
 
     return self;
@@ -27,14 +27,12 @@
 
 #pragma mark - Properties
 
-@synthesize subject;
-
 - (id)subject
 {
-  if ([subject isKindOfClass:[KWFutureObject class]]) {
-    return [(KWFutureObject *)subject object];
+  if ([_subject isKindOfClass:[KWFutureObject class]]) {
+    return [(KWFutureObject *)_subject object];
   }
-  return subject;
+  return _subject;
 }
 
 #pragma mark - Getting Matcher Strings

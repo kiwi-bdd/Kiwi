@@ -22,7 +22,7 @@
 
 + (id)matcherWithSubject:(id)aSubject block:(KWUserDefinedMatcherBlock)aBlock
 {
-    return [[[self alloc] initWithSubject:aSubject block:aBlock] autorelease];
+    return [[self alloc] initWithSubject:aSubject block:aBlock];
 }
 
 - (id)initWithSubject:(id)aSubject block:(KWUserDefinedMatcherBlock)aBlock
@@ -34,32 +34,19 @@
     return self;
 }
 
-- (void)dealloc
-{
-    [_invocation release];
-    [matcherBlock release];
-    [super dealloc];
-}
 
 - (BOOL)evaluate
 {
     BOOL result;
 
     if (self.invocation.methodSignature.numberOfArguments == 3) {
-        id argument;
+        __unsafe_unretained id argument;
         [self.invocation getArgument:&argument atIndex:2];
         result = matcherBlock(self.subject, argument);
     } else {
         result = matcherBlock(self.subject);
     }
     return result;
-}
-
-- (void)setSubject:(id)aSubject {
-    if (aSubject != subject) {
-        [subject release];
-        subject = [aSubject retain];
-    }
 }
 
 #pragma mark - Message forwarding
@@ -74,8 +61,7 @@
 
 - (void)forwardInvocation:(NSInvocation *)anInvocation
 {
-    [_invocation autorelease];
-    _invocation = [anInvocation retain];
+    _invocation = anInvocation;
 }
 
 - (NSMethodSignature *)methodSignatureForSelector:(SEL)aSelector
@@ -112,7 +98,7 @@
 }
 
 + (id)builderForSelector:(SEL)aSelector {
-    return [[[self alloc] initWithSelector:aSelector] autorelease];
+    return [[self alloc] initWithSelector:aSelector];
 }
 
 - (id)initWithSelector:(SEL)aSelector {
@@ -123,12 +109,6 @@
     return self;
 }
 
-- (void)dealloc
-{
-    [matcher release];
-    [failureMessageForShouldBlock release];
-    [super dealloc];
-}
 
 - (NSString *)key {
     return NSStringFromSelector(matcher.selector);
@@ -141,18 +121,15 @@
 }
 
 - (void)failureMessageForShould:(KWUserDefinedMatcherMessageBlock)block {
-    [failureMessageForShouldBlock release];
     failureMessageForShouldBlock = [block copy];
 }
 
 - (void)failureMessageForShouldNot:(KWUserDefinedMatcherMessageBlock)block {
-    [failureMessageForShouldNotBlock release];
     failureMessageForShouldNotBlock = [block copy];
 }
 
 - (void)description:(NSString *)aDescription
 {
-    [description release];
     description = [aDescription copy];
 }
 

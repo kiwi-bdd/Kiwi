@@ -49,7 +49,7 @@
 @property (nonatomic, readonly) BOOL isPartialMock;
 @property (nonatomic, readonly) NSString *mockName;
 @property (unsafe_unretained, nonatomic, readonly) Class mockedClass;
-@property (nonatomic, readonly) id mockedObject;
+@property (nonatomic, readonly, strong) id mockedObject;
 @property (unsafe_unretained, nonatomic, readonly) Protocol *mockedProtocol;
 
 #pragma mark - Stubbing Methods
