@@ -10,38 +10,18 @@
 
 #pragma mark - Initializing
 
-- (id)initWithCallSite:(KWCallSite *)aCallSite description:(NSString *)aDescription block:(KWVoidBlock)aBlock {
+- (id)initWithCallSite:(KWCallSite *)aCallSite description:(NSString *)aDescription block:(void (^)(void))block {
     if ((self = [super init])) {
-        callSite = [aCallSite retain];
-        _description = [aDescription copy];
-
-        if (aBlock != nil)
-            block = Block_copy(aBlock);
+        _callSite = aCallSite;
+        _description = aDescription;
+        _block = [block copy];
     }
 
     return self;
 }
 
-- (void)dealloc {
-    [callSite release];
-    [_description release];
-
-    if (block != nil)
-        Block_release(block);
-
-    [super dealloc];
-}
-
 - (void)performBlock {
-    if (block != nil) { block(); }
+    if (self.block != nil) { self.block(); }
 }
-
-#pragma mark - Getting Call Sites
-
-@synthesize callSite;
-
-#pragma mark - Accepting Visitors
-
-@synthesize block;
 
 @end

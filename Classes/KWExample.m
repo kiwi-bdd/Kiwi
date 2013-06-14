@@ -294,58 +294,58 @@ KWCallSite *callSiteWithAddress(long address){
 
 #pragma mark - Building Example Groups
 
-void describe(NSString *aDescription, KWVoidBlock aBlock) {
+void describe(NSString *aDescription, void (^block)(void)) {
     KWCallSite *callSite = callSiteAtAddressIfNecessary(kwCallerAddress());
-    describeWithCallSite(callSite, aDescription, aBlock);
+    describeWithCallSite(callSite, aDescription, block);
 }
 
-void context(NSString *aDescription, KWVoidBlock aBlock) {
+void context(NSString *aDescription, void (^block)(void)) {
     KWCallSite *callSite = callSiteAtAddressIfNecessary(kwCallerAddress());
-    contextWithCallSite(callSite, aDescription, aBlock);
+    contextWithCallSite(callSite, aDescription, block);
 }
 
 void registerMatchers(NSString *aNamespacePrefix) {
     registerMatchersWithCallSite(nil, aNamespacePrefix);
 }
 
-void beforeAll(KWVoidBlock aBlock) {
-    beforeAllWithCallSite(nil, aBlock);
+void beforeAll(void (^block)(void)) {
+    beforeAllWithCallSite(nil, block);
 }
 
-void afterAll(KWVoidBlock aBlock) {
-    afterAllWithCallSite(nil, aBlock);
+void afterAll(void (^block)(void)) {
+    afterAllWithCallSite(nil, block);
 }
 
-void beforeEach(KWVoidBlock aBlock) {
-    beforeEachWithCallSite(nil, aBlock);
+void beforeEach(void (^block)(void)) {
+    beforeEachWithCallSite(nil, block);
 }
 
-void afterEach(KWVoidBlock aBlock) {
-    afterEachWithCallSite(nil, aBlock);
+void afterEach(void (^block)(void)) {
+    afterEachWithCallSite(nil, block);
 }
 
-void it(NSString *aDescription, KWVoidBlock aBlock) {
+void it(NSString *aDescription, void (^block)(void)) {
     KWCallSite *callSite = callSiteAtAddressIfNecessary(kwCallerAddress());
-    itWithCallSite(callSite, aDescription, aBlock);
+    itWithCallSite(callSite, aDescription, block);
 }
 
-void specify(KWVoidBlock aBlock)
+void specify(void (^block)(void))
 {
-    itWithCallSite(nil, nil, aBlock);
+    itWithCallSite(nil, nil, block);
 }
 
-void pending_(NSString *aDescription, KWVoidBlock ignoredBlock) {
+void pending_(NSString *aDescription, void (^ignoredBlock)(void)) {
     pendingWithCallSite(nil, aDescription, ignoredBlock);
 }
 
-void describeWithCallSite(KWCallSite *aCallSite, NSString *aDescription, KWVoidBlock aBlock) {
+void describeWithCallSite(KWCallSite *aCallSite, NSString *aDescription, void (^block)(void)) {
 
-    contextWithCallSite(aCallSite, aDescription, aBlock);
+    contextWithCallSite(aCallSite, aDescription, block);
 }
 
-void contextWithCallSite(KWCallSite *aCallSite, NSString *aDescription, KWVoidBlock aBlock) {
+void contextWithCallSite(KWCallSite *aCallSite, NSString *aDescription, void (^block)(void)) {
     [[KWExampleGroupBuilder sharedExampleGroupBuilder] pushContextNodeWithCallSite:aCallSite description:aDescription];
-    aBlock();
+    block();
     [[KWExampleGroupBuilder sharedExampleGroupBuilder] popContextNode];
 }
 
@@ -353,26 +353,26 @@ void registerMatchersWithCallSite(KWCallSite *aCallSite, NSString *aNamespacePre
     [[KWExampleGroupBuilder sharedExampleGroupBuilder] setRegisterMatchersNodeWithCallSite:aCallSite namespacePrefix:aNamespacePrefix];
 }
 
-void beforeAllWithCallSite(KWCallSite *aCallSite, KWVoidBlock aBlock) {
-    [[KWExampleGroupBuilder sharedExampleGroupBuilder] setBeforeAllNodeWithCallSite:aCallSite block:aBlock];
+void beforeAllWithCallSite(KWCallSite *aCallSite, void (^block)(void)) {
+    [[KWExampleGroupBuilder sharedExampleGroupBuilder] setBeforeAllNodeWithCallSite:aCallSite block:block];
 }
 
-void afterAllWithCallSite(KWCallSite *aCallSite, KWVoidBlock aBlock) {
-    [[KWExampleGroupBuilder sharedExampleGroupBuilder] setAfterAllNodeWithCallSite:aCallSite block:aBlock];
+void afterAllWithCallSite(KWCallSite *aCallSite, void (^block)(void)) {
+    [[KWExampleGroupBuilder sharedExampleGroupBuilder] setAfterAllNodeWithCallSite:aCallSite block:block];
 }
 
-void beforeEachWithCallSite(KWCallSite *aCallSite, KWVoidBlock aBlock) {
-    [[KWExampleGroupBuilder sharedExampleGroupBuilder] setBeforeEachNodeWithCallSite:aCallSite block:aBlock];
+void beforeEachWithCallSite(KWCallSite *aCallSite, void (^block)(void)) {
+    [[KWExampleGroupBuilder sharedExampleGroupBuilder] setBeforeEachNodeWithCallSite:aCallSite block:block];
 }
 
-void afterEachWithCallSite(KWCallSite *aCallSite, KWVoidBlock aBlock) {
-    [[KWExampleGroupBuilder sharedExampleGroupBuilder] setAfterEachNodeWithCallSite:aCallSite block:aBlock];
+void afterEachWithCallSite(KWCallSite *aCallSite, void (^block)(void)) {
+    [[KWExampleGroupBuilder sharedExampleGroupBuilder] setAfterEachNodeWithCallSite:aCallSite block:block];
 }
 
-void itWithCallSite(KWCallSite *aCallSite, NSString *aDescription, KWVoidBlock aBlock) {
-    [[KWExampleGroupBuilder sharedExampleGroupBuilder] addItNodeWithCallSite:aCallSite description:aDescription block:aBlock];
+void itWithCallSite(KWCallSite *aCallSite, NSString *aDescription, void (^block)(void)) {
+    [[KWExampleGroupBuilder sharedExampleGroupBuilder] addItNodeWithCallSite:aCallSite description:aDescription block:block];
 }
 
-void pendingWithCallSite(KWCallSite *aCallSite, NSString *aDescription, KWVoidBlock ignoredBlock) {
+void pendingWithCallSite(KWCallSite *aCallSite, NSString *aDescription, void (^ignoredBlock)(void)) {
     [[KWExampleGroupBuilder sharedExampleGroupBuilder] addPendingNodeWithCallSite:aCallSite description:aDescription];
 }

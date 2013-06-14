@@ -26,9 +26,9 @@
 + (id)itNodeWithCallSite:(KWCallSite *)aCallSite 
              description:(NSString *)aDescription 
                  context:(KWContextNode *)context 
-                   block:(KWVoidBlock)aBlock;
+                   block:(void (^)(void))block;
 {
-    KWItNode *itNode = [[self alloc] initWithCallSite:aCallSite description:aDescription block:aBlock];
+    KWItNode *itNode = [[self alloc] initWithCallSite:aCallSite description:aDescription block:block];
     itNode.context = context;
     return itNode;
 }

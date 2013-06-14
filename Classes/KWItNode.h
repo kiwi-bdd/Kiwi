@@ -22,6 +22,6 @@
 + (id)itNodeWithCallSite:(KWCallSite *)aCallSite 
              description:(NSString *)aDescription 
                  context:(KWContextNode *)context 
-                   block:(KWVoidBlock)aBlock;
+                   block:(void (^)(void))block;
 
 @end

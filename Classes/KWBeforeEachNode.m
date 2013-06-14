@@ -11,8 +11,8 @@
 
 #pragma mark - Initializing
 
-+ (id)beforeEachNodeWithCallSite:(KWCallSite *)aCallSite block:(KWVoidBlock)aBlock {
-    return [[self alloc] initWithCallSite:aCallSite description:nil block:aBlock];
++ (id)beforeEachNodeWithCallSite:(KWCallSite *)aCallSite block:(void (^)(void))block {
+    return [[self alloc] initWithCallSite:aCallSite description:nil block:block];
 }
 
 #pragma mark - Accepting Visitors
