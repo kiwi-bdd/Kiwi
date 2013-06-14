@@ -5,8 +5,10 @@
 //
 
 #import "KWPendingNode.h"
-#import "KWExampleNodeVisitor.h"
+
+#import "KWCallSite.h"
 #import "KWContextNode.h"
+#import "KWExampleNodeVisitor.h"
 
 @implementation KWPendingNode
 
@@ -16,24 +18,18 @@
 
 - (id)initWithCallSite:(KWCallSite *)aCallSite context:(KWContextNode *)context description:(NSString *)aDescription {
     if ((self = [super init])) {
-        callSite = [aCallSite retain];
+        callSite = aCallSite;
         description = [aDescription copy];
-        _context = [context retain];
+        _context = context;
     }
 
     return self;
 }
 
 + (id)pendingNodeWithCallSite:(KWCallSite *)aCallSite context:(KWContextNode *)context description:(NSString *)aDescription {
-    return [[[self alloc] initWithCallSite:aCallSite context:context description:aDescription] autorelease];
+    return [[self alloc] initWithCallSite:aCallSite context:context description:aDescription];
 }
 
-- (void)dealloc {
-    [_context release];
-    [callSite release];
-    [description release];
-    [super dealloc];
-}
 
 #pragma mark - Getting Call Sites
 
