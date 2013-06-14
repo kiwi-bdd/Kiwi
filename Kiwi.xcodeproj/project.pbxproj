@@ -382,7 +382,7 @@
 		9F982DC116A802920030A0B1 /* KWNull.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F982CAA16A802920030A0B1 /* KWNull.m */; };
 		9F982DC216A802920030A0B1 /* KWObjCUtilities.h in Headers */ = {isa = PBXBuildFile; fileRef = 9F982CAB16A802920030A0B1 /* KWObjCUtilities.h */; };
 		9F982DC316A802920030A0B1 /* KWObjCUtilities.h in Headers */ = {isa = PBXBuildFile; fileRef = 9F982CAB16A802920030A0B1 /* KWObjCUtilities.h */; };
-		9F982DC416A802920030A0B1 /* KWObjCUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F982CAC16A802920030A0B1 /* KWObjCUtilities.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		9F982DC416A802920030A0B1 /* KWObjCUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F982CAC16A802920030A0B1 /* KWObjCUtilities.m */; settings = {COMPILER_FLAGS = ""; }; };
 		9F982DC516A802920030A0B1 /* KWObjCUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F982CAC16A802920030A0B1 /* KWObjCUtilities.m */; };
 		9F982DC616A802920030A0B1 /* KWPendingNode.h in Headers */ = {isa = PBXBuildFile; fileRef = 9F982CAD16A802920030A0B1 /* KWPendingNode.h */; };
 		9F982DC716A802920030A0B1 /* KWPendingNode.h in Headers */ = {isa = PBXBuildFile; fileRef = 9F982CAD16A802920030A0B1 /* KWPendingNode.h */; };
