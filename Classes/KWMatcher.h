@@ -9,7 +9,7 @@
 
 @interface KWMatcher : NSObject<KWMatching> {
 @protected
-    id subject;
+    id __unsafe_unretained subject;
 }
 
 #pragma mark - Initializing
@@ -20,7 +20,7 @@
 
 #pragma mark - Properties
 
-@property (nonatomic, readonly) id subject;
+@property (unsafe_unretained, nonatomic, readonly) id subject;
 
 #pragma mark - Getting Matcher Strings
 

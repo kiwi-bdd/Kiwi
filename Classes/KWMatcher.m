@@ -14,20 +14,16 @@
 
 - (id)initWithSubject:(id)anObject {
     if ((self = [super init])) {
-        subject = [anObject retain];
+        subject = anObject;
     }
 
     return self;
 }
 
 + (id)matcherWithSubject:(id)anObject {
-    return [[[self alloc] initWithSubject:anObject] autorelease];
+    return [[self alloc] initWithSubject:anObject];
 }
 
-- (void)dealloc {
-    [subject release];
-    [super dealloc];
-}
 
 #pragma mark - Properties
 
