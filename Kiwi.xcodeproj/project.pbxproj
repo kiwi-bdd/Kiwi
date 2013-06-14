@@ -378,7 +378,7 @@
 		9F982DBD16A802920030A0B1 /* KWMock.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F982CA816A802920030A0B1 /* KWMock.m */; };
 		9F982DBE16A802920030A0B1 /* KWNull.h in Headers */ = {isa = PBXBuildFile; fileRef = 9F982CA916A802920030A0B1 /* KWNull.h */; };
 		9F982DBF16A802920030A0B1 /* KWNull.h in Headers */ = {isa = PBXBuildFile; fileRef = 9F982CA916A802920030A0B1 /* KWNull.h */; };
-		9F982DC016A802920030A0B1 /* KWNull.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F982CAA16A802920030A0B1 /* KWNull.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		9F982DC016A802920030A0B1 /* KWNull.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F982CAA16A802920030A0B1 /* KWNull.m */; settings = {COMPILER_FLAGS = ""; }; };
 		9F982DC116A802920030A0B1 /* KWNull.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F982CAA16A802920030A0B1 /* KWNull.m */; };
 		9F982DC216A802920030A0B1 /* KWObjCUtilities.h in Headers */ = {isa = PBXBuildFile; fileRef = 9F982CAB16A802920030A0B1 /* KWObjCUtilities.h */; };
 		9F982DC316A802920030A0B1 /* KWObjCUtilities.h in Headers */ = {isa = PBXBuildFile; fileRef = 9F982CAB16A802920030A0B1 /* KWObjCUtilities.h */; };

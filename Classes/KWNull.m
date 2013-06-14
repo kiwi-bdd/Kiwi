@@ -10,37 +10,16 @@
 
 #pragma mark - Initializing
 
-static KWNull *sharedNull = nil;
 
 + (id)null {
-    if (sharedNull == nil) {
-        sharedNull = [[super allocWithZone:nil] init];
-    }
+    static KWNull *sharedNull = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        sharedNull = [self new];
+
+    });
 
     return sharedNull;
-}
-
-+ (id)allocWithZone:(NSZone *)zone {
-    return [[self null] retain];
-}
-
-- (id)copyWithZone:(NSZone *)zone {
-    return self;
-}
-
-- (id)retain {
-    return self;
-}
-
-- (NSUInteger)retainCount {
-    return NSUIntegerMax;
-}
-
-- (oneway void)release {
-}
-
-- (id)autorelease {
-    return self;
 }
 
 @end
