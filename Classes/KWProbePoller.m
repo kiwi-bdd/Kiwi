@@ -26,11 +26,6 @@
   return self;
 }
 
-- (void)dealloc
-{
-  [timeoutDate release];
-  [super dealloc];
-}
 
 - (BOOL)hasTimedOut
 {
@@ -65,13 +60,11 @@
 
   while (shouldWait || ![probe isSatisfied]) {
     if ([timeout hasTimedOut]) {
-      [timeout release];
       return [probe isSatisfied];
     }
     [[NSRunLoop currentRunLoop] runUntilDate:[NSDate dateWithTimeIntervalSinceNow:delayInterval]];
     [probe sample];
   }
-  [timeout release];
 
   return YES;
 }
