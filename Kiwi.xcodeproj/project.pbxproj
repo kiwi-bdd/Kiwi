@@ -176,7 +176,7 @@
 		9F982CF116A802920030A0B1 /* KWAfterEachNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F982C4216A802920030A0B1 /* KWAfterEachNode.m */; };
 		9F982CF216A802920030A0B1 /* KWAny.h in Headers */ = {isa = PBXBuildFile; fileRef = 9F982C4316A802920030A0B1 /* KWAny.h */; };
 		9F982CF316A802920030A0B1 /* KWAny.h in Headers */ = {isa = PBXBuildFile; fileRef = 9F982C4316A802920030A0B1 /* KWAny.h */; };
-		9F982CF416A802920030A0B1 /* KWAny.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F982C4416A802920030A0B1 /* KWAny.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		9F982CF416A802920030A0B1 /* KWAny.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F982C4416A802920030A0B1 /* KWAny.m */; settings = {COMPILER_FLAGS = ""; }; };
 		9F982CF516A802920030A0B1 /* KWAny.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F982C4416A802920030A0B1 /* KWAny.m */; };
 		9F982CF616A802920030A0B1 /* KWAsyncVerifier.h in Headers */ = {isa = PBXBuildFile; fileRef = 9F982C4516A802920030A0B1 /* KWAsyncVerifier.h */; };
 		9F982CF716A802920030A0B1 /* KWAsyncVerifier.h in Headers */ = {isa = PBXBuildFile; fileRef = 9F982C4516A802920030A0B1 /* KWAsyncVerifier.h */; };
