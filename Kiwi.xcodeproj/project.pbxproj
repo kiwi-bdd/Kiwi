@@ -133,7 +133,7 @@
 		4E7659B0172DAE4D00105B93 /* KWContainStringMatcherTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E7659AF172DAE4D00105B93 /* KWContainStringMatcherTest.m */; };
 		511901A516A95CDE006E7359 /* KWChangeMatcher.h in Headers */ = {isa = PBXBuildFile; fileRef = 511901A316A95CDE006E7359 /* KWChangeMatcher.h */; };
 		511901A616A95CDE006E7359 /* KWChangeMatcher.h in Headers */ = {isa = PBXBuildFile; fileRef = 511901A316A95CDE006E7359 /* KWChangeMatcher.h */; };
-		511901A716A95CDE006E7359 /* KWChangeMatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 511901A416A95CDE006E7359 /* KWChangeMatcher.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		511901A716A95CDE006E7359 /* KWChangeMatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 511901A416A95CDE006E7359 /* KWChangeMatcher.m */; settings = {COMPILER_FLAGS = ""; }; };
 		511901A816A95CDE006E7359 /* KWChangeMatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 511901A416A95CDE006E7359 /* KWChangeMatcher.m */; };
 		89861D9416FE0EE5008CE99D /* KWFormatterTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 89861D9316FE0EE5008CE99D /* KWFormatterTest.m */; };
 		89F9CB7C16B1C2C400E87D34 /* KWFunctionalTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 89F9CB7B16B1C2C400E87D34 /* KWFunctionalTests.m */; };

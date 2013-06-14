@@ -23,10 +23,6 @@
 @synthesize expectedTotal = _expectedTotal;
 @synthesize actualTotal = _actualTotal;
 
-- (void)dealloc {
-    Block_release(_countBlock);
-    [super dealloc];
-}
 
 + (NSArray *)matcherStrings {
     return @[@"change:by:", @"change:"];
