@@ -19,10 +19,10 @@
 #pragma mark - Properties
 
 @property (nonatomic, readonly) KWExpectationType expectationType;
-@property (nonatomic, readonly) KWCallSite *callSite;
-@property (nonatomic, readonly) KWMatcherFactory *matcherFactory;
-@property (nonatomic, readonly) id<KWReporting> reporter;
-@property (nonatomic, readwrite, retain) id subject;
+@property (unsafe_unretained, nonatomic, readonly) KWCallSite *callSite;
+@property (unsafe_unretained, nonatomic, readonly) KWMatcherFactory *matcherFactory;
+@property (unsafe_unretained, nonatomic, readonly) id<KWReporting> reporter;
+@property (nonatomic, readwrite, strong) id subject;
 
 #pragma mark - Initializing
 
