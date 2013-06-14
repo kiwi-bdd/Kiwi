@@ -144,7 +144,7 @@
 		9F820DBC16BB6808003A1BA5 /* KWChangeMatcherTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 511901A016A95803006E7359 /* KWChangeMatcherTest.m */; };
 		9F90FBF016BA5FF20057426D /* KWGenericMatchEvaluator.h in Headers */ = {isa = PBXBuildFile; fileRef = 9F90FBEE16BA5FF20057426D /* KWGenericMatchEvaluator.h */; };
 		9F90FBF116BA5FF20057426D /* KWGenericMatchEvaluator.h in Headers */ = {isa = PBXBuildFile; fileRef = 9F90FBEE16BA5FF20057426D /* KWGenericMatchEvaluator.h */; };
-		9F90FBF216BA5FF20057426D /* KWGenericMatchEvaluator.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F90FBEF16BA5FF20057426D /* KWGenericMatchEvaluator.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		9F90FBF216BA5FF20057426D /* KWGenericMatchEvaluator.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F90FBEF16BA5FF20057426D /* KWGenericMatchEvaluator.m */; settings = {COMPILER_FLAGS = ""; }; };
 		9F90FBF316BA5FF20057426D /* KWGenericMatchEvaluator.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F90FBEF16BA5FF20057426D /* KWGenericMatchEvaluator.m */; };
 		9F982A3816A801800030A0B1 /* Carrier.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F982A1E16A801800030A0B1 /* Carrier.m */; };
 		9F982A3916A801800030A0B1 /* Cruiser.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F982A2016A801800030A0B1 /* Cruiser.m */; };
