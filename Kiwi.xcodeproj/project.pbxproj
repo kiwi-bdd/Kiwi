@@ -370,7 +370,7 @@
 		9F982DB516A802920030A0B1 /* KWMessageSpying.h in Headers */ = {isa = PBXBuildFile; fileRef = 9F982CA416A802920030A0B1 /* KWMessageSpying.h */; };
 		9F982DB616A802920030A0B1 /* KWMessageTracker.h in Headers */ = {isa = PBXBuildFile; fileRef = 9F982CA516A802920030A0B1 /* KWMessageTracker.h */; };
 		9F982DB716A802920030A0B1 /* KWMessageTracker.h in Headers */ = {isa = PBXBuildFile; fileRef = 9F982CA516A802920030A0B1 /* KWMessageTracker.h */; };
-		9F982DB816A802920030A0B1 /* KWMessageTracker.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F982CA616A802920030A0B1 /* KWMessageTracker.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		9F982DB816A802920030A0B1 /* KWMessageTracker.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F982CA616A802920030A0B1 /* KWMessageTracker.m */; settings = {COMPILER_FLAGS = ""; }; };
 		9F982DB916A802920030A0B1 /* KWMessageTracker.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F982CA616A802920030A0B1 /* KWMessageTracker.m */; };
 		9F982DBA16A802920030A0B1 /* KWMock.h in Headers */ = {isa = PBXBuildFile; fileRef = 9F982CA716A802920030A0B1 /* KWMock.h */; };
 		9F982DBB16A802920030A0B1 /* KWMock.h in Headers */ = {isa = PBXBuildFile; fileRef = 9F982CA716A802920030A0B1 /* KWMock.h */; };

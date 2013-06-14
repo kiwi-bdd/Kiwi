@@ -22,8 +22,8 @@
 
 - (id)initWithSubject:(id)anObject messagePattern:(KWMessagePattern *)aMessagePattern countType:(KWCountType)aCountType count:(NSUInteger)aCount {
     if ((self = [super init])) {
-        subject = [anObject retain];
-        messagePattern = [aMessagePattern retain];
+        subject = anObject;
+        messagePattern = aMessagePattern;
         countType = aCountType;
         count = aCount;
         [anObject addMessageSpy:self forMessagePattern:messagePattern];
@@ -33,14 +33,9 @@
 }
 
 + (id)messageTrackerWithSubject:(id)anObject messagePattern:(KWMessagePattern *)aMessagePattern countType:(KWCountType)aCountType count:(NSUInteger)aCount {
-    return [[[self alloc] initWithSubject:anObject messagePattern:aMessagePattern countType:aCountType count:aCount] autorelease];
+    return [[self alloc] initWithSubject:anObject messagePattern:aMessagePattern countType:aCountType count:aCount];
 }
 
-- (void)dealloc {
-    [subject release];
-    [messagePattern release];
-    [super dealloc];
-}
 
 #pragma mark - Properties
 

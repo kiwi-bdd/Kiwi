@@ -20,8 +20,8 @@
 
 #pragma mark - Properties
 
-@property (nonatomic, readonly) id subject;
-@property (nonatomic, readonly) KWMessagePattern *messagePattern;
+@property (unsafe_unretained, nonatomic, readonly) id subject;
+@property (unsafe_unretained, nonatomic, readonly) KWMessagePattern *messagePattern;
 @property (nonatomic, readonly) KWCountType countType;
 @property (nonatomic, readonly) NSUInteger count;
 
