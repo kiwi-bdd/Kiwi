@@ -484,7 +484,7 @@
 		9F982E2716A802920030A0B1 /* NSObject+KiwiVerifierAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F982CDD16A802920030A0B1 /* NSObject+KiwiVerifierAdditions.m */; };
 		9F982E2816A802920030A0B1 /* NSValue+KiwiAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 9F982CDE16A802920030A0B1 /* NSValue+KiwiAdditions.h */; };
 		9F982E2916A802920030A0B1 /* NSValue+KiwiAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 9F982CDE16A802920030A0B1 /* NSValue+KiwiAdditions.h */; };
-		9F982E2A16A802920030A0B1 /* NSValue+KiwiAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F982CDF16A802920030A0B1 /* NSValue+KiwiAdditions.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		9F982E2A16A802920030A0B1 /* NSValue+KiwiAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F982CDF16A802920030A0B1 /* NSValue+KiwiAdditions.m */; settings = {COMPILER_FLAGS = ""; }; };
 		9F982E2B16A802920030A0B1 /* NSValue+KiwiAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F982CDF16A802920030A0B1 /* NSValue+KiwiAdditions.m */; };
 		A352E9E812EDC30A0049C691 /* KWHaveValueMatcherTest.m in Sources */ = {isa = PBXBuildFile; fileRef = A352E9E712EDC30A0049C691 /* KWHaveValueMatcherTest.m */; };
 		A352EA1B12EDC8380049C691 /* KWGenericMatcherTest.m in Sources */ = {isa = PBXBuildFile; fileRef = A352EA1A12EDC8380049C691 /* KWGenericMatcherTest.m */; };
