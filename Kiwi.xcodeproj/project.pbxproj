@@ -244,7 +244,7 @@
 		9F982D3516A802920030A0B1 /* KWBlockNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F982C6416A802920030A0B1 /* KWBlockNode.m */; };
 		9F982D3616A802920030A0B1 /* KWBlockRaiseMatcher.h in Headers */ = {isa = PBXBuildFile; fileRef = 9F982C6516A802920030A0B1 /* KWBlockRaiseMatcher.h */; };
 		9F982D3716A802920030A0B1 /* KWBlockRaiseMatcher.h in Headers */ = {isa = PBXBuildFile; fileRef = 9F982C6516A802920030A0B1 /* KWBlockRaiseMatcher.h */; };
-		9F982D3816A802920030A0B1 /* KWBlockRaiseMatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F982C6616A802920030A0B1 /* KWBlockRaiseMatcher.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		9F982D3816A802920030A0B1 /* KWBlockRaiseMatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F982C6616A802920030A0B1 /* KWBlockRaiseMatcher.m */; settings = {COMPILER_FLAGS = ""; }; };
 		9F982D3916A802920030A0B1 /* KWBlockRaiseMatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F982C6616A802920030A0B1 /* KWBlockRaiseMatcher.m */; };
 		9F982D3A16A802920030A0B1 /* KWCallSite.h in Headers */ = {isa = PBXBuildFile; fileRef = 9F982C6716A802920030A0B1 /* KWCallSite.h */; };
 		9F982D3B16A802920030A0B1 /* KWCallSite.h in Headers */ = {isa = PBXBuildFile; fileRef = 9F982C6716A802920030A0B1 /* KWCallSite.h */; };
