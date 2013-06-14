@@ -27,7 +27,7 @@
 
 #pragma mark -  Getting Call Sites
 
-@property (nonatomic, readonly) KWCallSite *callSite;
+@property (unsafe_unretained, nonatomic, readonly) KWCallSite *callSite;
 
 #pragma mark - Getting Descriptions
 
@@ -35,12 +35,12 @@
 
 #pragma mark - Managing Nodes
 
-@property (nonatomic, readwrite, retain) KWRegisterMatchersNode *registerMatchersNode;
-@property (nonatomic, readwrite, retain) KWBeforeAllNode *beforeAllNode;
-@property (nonatomic, readwrite, retain) KWAfterAllNode *afterAllNode;
-@property (nonatomic, readwrite, retain) KWBeforeEachNode *beforeEachNode;
-@property (nonatomic, readwrite, retain) KWAfterEachNode *afterEachNode;
-@property (nonatomic, readonly) KWContextNode *parentContext;
+@property (nonatomic, readwrite, strong) KWRegisterMatchersNode *registerMatchersNode;
+@property (nonatomic, readwrite, strong) KWBeforeAllNode *beforeAllNode;
+@property (nonatomic, readwrite, strong) KWAfterAllNode *afterAllNode;
+@property (nonatomic, readwrite, strong) KWBeforeEachNode *beforeEachNode;
+@property (nonatomic, readwrite, strong) KWAfterEachNode *afterEachNode;
+@property (unsafe_unretained, nonatomic, readonly) KWContextNode *parentContext;
 @property (nonatomic, readonly) NSArray *nodes;
 
 @property (nonatomic) BOOL isFocused;
