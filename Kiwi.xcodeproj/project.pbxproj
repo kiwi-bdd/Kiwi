@@ -496,7 +496,7 @@
 		C533F7D617462CAA000CAB02 /* KWSymbolicator.m in Sources */ = {isa = PBXBuildFile; fileRef = C533F7D217462CAA000CAB02 /* KWSymbolicator.m */; };
 		C533F7D917462DC8000CAB02 /* SenTestSuite+KiwiAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = C533F7D717462DC8000CAB02 /* SenTestSuite+KiwiAdditions.h */; };
 		C533F7DA17462DC8000CAB02 /* SenTestSuite+KiwiAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = C533F7D717462DC8000CAB02 /* SenTestSuite+KiwiAdditions.h */; };
-		C533F7DB17462DC8000CAB02 /* SenTestSuite+KiwiAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = C533F7D817462DC8000CAB02 /* SenTestSuite+KiwiAdditions.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		C533F7DB17462DC8000CAB02 /* SenTestSuite+KiwiAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = C533F7D817462DC8000CAB02 /* SenTestSuite+KiwiAdditions.m */; settings = {COMPILER_FLAGS = ""; }; };
 		C533F7DC17462DC8000CAB02 /* SenTestSuite+KiwiAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = C533F7D817462DC8000CAB02 /* SenTestSuite+KiwiAdditions.m */; };
 		C922D1DD158045FC00995B43 /* KWStringContainsMatcherTest.m in Sources */ = {isa = PBXBuildFile; fileRef = C922D1DC158045FC00995B43 /* KWStringContainsMatcherTest.m */; };
 		F5015CBD1158404E002E9A98 /* libKiwi.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F5015B9F11583A77002E9A98 /* libKiwi.a */; };
