@@ -460,7 +460,7 @@
 		9F982E0F16A802920030A0B1 /* NSInvocation+OCMAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F982CD116A802920030A0B1 /* NSInvocation+OCMAdditions.m */; };
 		9F982E1016A802920030A0B1 /* NSMethodSignature+KiwiAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 9F982CD216A802920030A0B1 /* NSMethodSignature+KiwiAdditions.h */; };
 		9F982E1116A802920030A0B1 /* NSMethodSignature+KiwiAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 9F982CD216A802920030A0B1 /* NSMethodSignature+KiwiAdditions.h */; };
-		9F982E1216A802920030A0B1 /* NSMethodSignature+KiwiAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F982CD316A802920030A0B1 /* NSMethodSignature+KiwiAdditions.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		9F982E1216A802920030A0B1 /* NSMethodSignature+KiwiAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F982CD316A802920030A0B1 /* NSMethodSignature+KiwiAdditions.m */; settings = {COMPILER_FLAGS = ""; }; };
 		9F982E1316A802920030A0B1 /* NSMethodSignature+KiwiAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F982CD316A802920030A0B1 /* NSMethodSignature+KiwiAdditions.m */; };
 		9F982E1416A802920030A0B1 /* NSNumber+KiwiAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 9F982CD416A802920030A0B1 /* NSNumber+KiwiAdditions.h */; };
 		9F982E1516A802920030A0B1 /* NSNumber+KiwiAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 9F982CD416A802920030A0B1 /* NSNumber+KiwiAdditions.h */; };
