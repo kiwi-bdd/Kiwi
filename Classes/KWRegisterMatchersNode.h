@@ -19,7 +19,7 @@
 
 #pragma mark - Getting Call Sites
 
-@property (nonatomic, readonly) KWCallSite *callSite;
+@property (unsafe_unretained, nonatomic, readonly) KWCallSite *callSite;
 
 #pragma mark - Getting Namespace Prefixes
 

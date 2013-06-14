@@ -5,6 +5,8 @@
 //
 
 #import "KWRegisterMatchersNode.h"
+
+#import "KWCallSite.h"
 #import "KWExampleNodeVisitor.h"
 
 @implementation KWRegisterMatchersNode
@@ -13,7 +15,7 @@
 
 - (id)initWithCallSite:(KWCallSite *)aCallSite namespacePrefix:(NSString *)aNamespacePrefix {
     if ((self = [super init])) {
-        callSite = [aCallSite retain];
+        callSite = aCallSite;
         namespacePrefix = [aNamespacePrefix copy];
     }
 
@@ -21,14 +23,9 @@
 }
 
 + (id)registerMatchersNodeWithCallSite:(KWCallSite *)aCallSite namespacePrefix:(NSString *)aNamespacePrefix {
-    return [[[self alloc] initWithCallSite:aCallSite namespacePrefix:aNamespacePrefix] autorelease];
+    return [[self alloc] initWithCallSite:aCallSite namespacePrefix:aNamespacePrefix];
 }
 
-- (void)dealloc {
-    [callSite release];
-    [namespacePrefix release];
-    [super dealloc];
-}
 
 #pragma mark - Getting Call Sites
 
