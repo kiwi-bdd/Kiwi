@@ -21,8 +21,8 @@
 
 @interface KWExample : NSObject <KWExampleNodeVisitor, KWReporting>
 
-@property (nonatomic, retain, readonly) NSMutableArray *lastInContexts;
-@property (nonatomic, assign) KWExampleSuite *suite;
+@property (nonatomic, strong, readonly) NSMutableArray *lastInContexts;
+@property (nonatomic, unsafe_unretained) KWExampleSuite *suite;
 
 - (id)initWithExampleNode:(id<KWExampleNode>)node;
 
