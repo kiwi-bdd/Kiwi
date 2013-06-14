@@ -30,7 +30,7 @@
     BOOL matchResult;
 }
 
-@property (nonatomic, readonly) id<KWMatching> matcher;
+@property (unsafe_unretained, nonatomic, readonly) id<KWMatching> matcher;
 
 - (id)initWithMatcher:(id<KWMatching>)aMatcher;
 
