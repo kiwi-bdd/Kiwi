@@ -296,7 +296,7 @@
 		9F982D6916A802920030A0B1 /* KWExampleSuite.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F982C7E16A802920030A0B1 /* KWExampleSuite.m */; };
 		9F982D6A16A802920030A0B1 /* KWExistVerifier.h in Headers */ = {isa = PBXBuildFile; fileRef = 9F982C7F16A802920030A0B1 /* KWExistVerifier.h */; };
 		9F982D6B16A802920030A0B1 /* KWExistVerifier.h in Headers */ = {isa = PBXBuildFile; fileRef = 9F982C7F16A802920030A0B1 /* KWExistVerifier.h */; };
-		9F982D6C16A802920030A0B1 /* KWExistVerifier.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F982C8016A802920030A0B1 /* KWExistVerifier.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		9F982D6C16A802920030A0B1 /* KWExistVerifier.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F982C8016A802920030A0B1 /* KWExistVerifier.m */; settings = {COMPILER_FLAGS = ""; }; };
 		9F982D6D16A802920030A0B1 /* KWExistVerifier.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F982C8016A802920030A0B1 /* KWExistVerifier.m */; };
 		9F982D6E16A802920030A0B1 /* KWExpectationType.h in Headers */ = {isa = PBXBuildFile; fileRef = 9F982C8116A802920030A0B1 /* KWExpectationType.h */; };
 		9F982D6F16A802920030A0B1 /* KWExpectationType.h in Headers */ = {isa = PBXBuildFile; fileRef = 9F982C8116A802920030A0B1 /* KWExpectationType.h */; };
