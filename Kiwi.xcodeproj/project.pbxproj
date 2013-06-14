@@ -232,7 +232,7 @@
 		9F982D2916A802920030A0B1 /* KWBeWithinMatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F982C5E16A802920030A0B1 /* KWBeWithinMatcher.m */; };
 		9F982D2A16A802920030A0B1 /* KWBeZeroMatcher.h in Headers */ = {isa = PBXBuildFile; fileRef = 9F982C5F16A802920030A0B1 /* KWBeZeroMatcher.h */; };
 		9F982D2B16A802920030A0B1 /* KWBeZeroMatcher.h in Headers */ = {isa = PBXBuildFile; fileRef = 9F982C5F16A802920030A0B1 /* KWBeZeroMatcher.h */; };
-		9F982D2C16A802920030A0B1 /* KWBeZeroMatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F982C6016A802920030A0B1 /* KWBeZeroMatcher.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		9F982D2C16A802920030A0B1 /* KWBeZeroMatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F982C6016A802920030A0B1 /* KWBeZeroMatcher.m */; settings = {COMPILER_FLAGS = ""; }; };
 		9F982D2D16A802920030A0B1 /* KWBeZeroMatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F982C6016A802920030A0B1 /* KWBeZeroMatcher.m */; };
 		9F982D2E16A802920030A0B1 /* KWBlock.h in Headers */ = {isa = PBXBuildFile; fileRef = 9F982C6116A802920030A0B1 /* KWBlock.h */; };
 		9F982D2F16A802920030A0B1 /* KWBlock.h in Headers */ = {isa = PBXBuildFile; fileRef = 9F982C6116A802920030A0B1 /* KWBlock.h */; };
