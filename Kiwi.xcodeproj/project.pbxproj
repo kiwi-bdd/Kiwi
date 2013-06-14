@@ -306,7 +306,7 @@
 		9F982D7316A802920030A0B1 /* KWFailure.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F982C8316A802920030A0B1 /* KWFailure.m */; };
 		9F982D7416A802920030A0B1 /* KWFormatter.h in Headers */ = {isa = PBXBuildFile; fileRef = 9F982C8416A802920030A0B1 /* KWFormatter.h */; };
 		9F982D7516A802920030A0B1 /* KWFormatter.h in Headers */ = {isa = PBXBuildFile; fileRef = 9F982C8416A802920030A0B1 /* KWFormatter.h */; };
-		9F982D7616A802920030A0B1 /* KWFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F982C8516A802920030A0B1 /* KWFormatter.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		9F982D7616A802920030A0B1 /* KWFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F982C8516A802920030A0B1 /* KWFormatter.m */; settings = {COMPILER_FLAGS = ""; }; };
 		9F982D7716A802920030A0B1 /* KWFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F982C8516A802920030A0B1 /* KWFormatter.m */; };
 		9F982D7816A802920030A0B1 /* KWFutureObject.h in Headers */ = {isa = PBXBuildFile; fileRef = 9F982C8616A802920030A0B1 /* KWFutureObject.h */; };
 		9F982D7916A802920030A0B1 /* KWFutureObject.h in Headers */ = {isa = PBXBuildFile; fileRef = 9F982C8616A802920030A0B1 /* KWFutureObject.h */; };
