@@ -53,7 +53,7 @@ static NSString * const ChangeStubValueAfterTimesKey = @"ChangeStubValueAfterTim
         NSInvocation *invocation = [NSInvocation invocationWithTarget:self selector:_cmd];
 
         if ([self processReceivedInvocation:invocation]) {
-            id result = nil;
+            __unsafe_unretained id result = nil;
             [invocation getReturnValue:&result];
             return result;
         } else {
@@ -117,59 +117,51 @@ static NSString * const ChangeStubValueAfterTimesKey = @"ChangeStubValueAfterTim
 - (id)initAsPartialMockWithName:(NSString *)aName forObject:(id)object {
     if ((self = [self initAsNullMock:YES withName:aName forClass:[object class] protocol:nil])) {
         isPartialMock = YES;
-        mockedObject = [object retain];
+        mockedObject = object;
     }
     return self;
 }
 
 + (id)mockForClass:(Class)aClass {
-    return [[[self alloc] initForClass:aClass] autorelease];
+    return [[self alloc] initForClass:aClass];
 }
 
 + (id)mockForProtocol:(Protocol *)aProtocol {
-    return [[[self alloc] initForProtocol:aProtocol] autorelease];
+    return [[self alloc] initForProtocol:aProtocol];
 }
 
 + (id)mockWithName:(NSString *)aName forClass:(Class)aClass {
-    return [[[self alloc] initWithName:aName forClass:aClass] autorelease];
+    return [[self alloc] initWithName:aName forClass:aClass];
 }
 
 + (id)mockWithName:(NSString *)aName forProtocol:(Protocol *)aProtocol {
-    return [[[self alloc] initWithName:aName forProtocol:aProtocol] autorelease];
+    return [[self alloc] initWithName:aName forProtocol:aProtocol];
 }
 
 + (id)nullMockForClass:(Class)aClass {
-    return [[[self alloc] initAsNullMockForClass:aClass] autorelease];
+    return [[self alloc] initAsNullMockForClass:aClass];
 }
 
 + (id)nullMockForProtocol:(Protocol *)aProtocol {
-    return [[[self alloc] initAsNullMockForProtocol:aProtocol] autorelease];
+    return [[self alloc] initAsNullMockForProtocol:aProtocol];
 }
 
 + (id)nullMockWithName:(NSString *)aName forClass:(Class)aClass {
-    return [[[self alloc] initAsNullMockWithName:aName forClass:aClass] autorelease];
+    return [[self alloc] initAsNullMockWithName:aName forClass:aClass];
 }
 
 + (id)nullMockWithName:(NSString *)aName forProtocol:(Protocol *)aProtocol {
-    return [[[self alloc] initAsNullMockWithName:aName forProtocol:aProtocol] autorelease];
+    return [[self alloc] initAsNullMockWithName:aName forProtocol:aProtocol];
 }
 
 + (id)partialMockWithName:(NSString *)aName forObject:(id)object {
-    return [[[self alloc] initAsPartialMockWithName:aName forObject:object] autorelease];
+    return [[self alloc] initAsPartialMockWithName:aName forObject:object];
 }
 
 + (id)partialMockForObject:(id)object {
-    return [[[self alloc] initAsPartialMockForObject:object] autorelease];
+    return [[self alloc] initAsPartialMockForObject:object];
 }
 
-- (void)dealloc {
-    [mockedObject release];
-    [mockName release];
-    [stubs release];
-    [expectedMessagePatterns release];
-    [messageSpies release];
-    [super dealloc];
-}
 
 #pragma mark - Properties
 
@@ -199,7 +191,7 @@ static NSString * const ChangeStubValueAfterTimesKey = @"ChangeStubValueAfterTim
         [protocolQueue removeLastObject];
 
         unsigned int count = 0;
-        Protocol **protocols = (Protocol **)protocol_copyProtocolList(protocol, &count);
+        Protocol *__unsafe_unretained*protocols = (Protocol **)protocol_copyProtocolList(protocol, &count);
 
         if (count == 0)
             continue;
@@ -325,7 +317,6 @@ static NSString * const ChangeStubValueAfterTimesKey = @"ChangeStubValueAfterTim
     if (messagePatternSpies == nil) {
         messagePatternSpies = [[NSMutableArray alloc] init];
         (self.messageSpies)[aMessagePattern] = messagePatternSpies;
-        [messagePatternSpies release];
     }
     NSValue *spyWrapper = [NSValue valueWithNonretainedObject:aSpy];
 
@@ -579,7 +570,7 @@ static NSString * const ChangeStubValueAfterTimesKey = @"ChangeStubValueAfterTim
     NSInvocation *invocation = [NSInvocation invocationWithTarget:self selector:_cmd];
 
     if ([self processReceivedInvocation:invocation]) {
-        NSString *result = nil;
+        __unsafe_unretained NSString *result = nil;
         [invocation getReturnValue:&result];
         return result;
     } else {
@@ -593,7 +584,7 @@ static NSString * const ChangeStubValueAfterTimesKey = @"ChangeStubValueAfterTim
     NSInvocation *invocation = [NSInvocation invocationWithTarget:self selector:_cmd];
 
     if ([self processReceivedInvocation:invocation]) {
-        id result = nil;
+        __unsafe_unretained id result = nil;
         [invocation getReturnValue:&result];
         return result;
     } else {
@@ -607,7 +598,7 @@ static NSString * const ChangeStubValueAfterTimesKey = @"ChangeStubValueAfterTim
     NSInvocation *invocation = [NSInvocation invocationWithTarget:self selector:_cmd];
 
     if ([self processReceivedInvocation:invocation]) {
-        id result = nil;
+        __unsafe_unretained id result = nil;
         [invocation getReturnValue:&result];
         return result;
     } else {
@@ -624,7 +615,7 @@ static id valueForKeyImplementation(id self, SEL _cmd, id key) {
     NSInvocation *invocation = [NSInvocation invocationWithTarget:self selector:_cmd messageArguments:&key];
     
     if ([self processReceivedInvocation:invocation]) {
-        id result = nil;
+        __unsafe_unretained id result = nil;
         [invocation getReturnValue:&result];
         return result;
     } else {
