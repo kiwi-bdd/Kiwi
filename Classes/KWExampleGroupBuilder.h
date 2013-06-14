@@ -21,9 +21,9 @@
 #pragma mark - Building Example Groups
 
 @property (nonatomic, readonly) BOOL isBuildingExampleGroup;
-@property (nonatomic, retain, readonly) KWExampleSuite *exampleSuite;
-@property (nonatomic, retain) KWExample *currentExample;
-@property (nonatomic, retain) KWCallSite *focusedCallSite;
+@property (nonatomic, strong, readonly) KWExampleSuite *exampleSuite;
+@property (nonatomic, strong) KWExample *currentExample;
+@property (nonatomic, strong) KWCallSite *focusedCallSite;
 
 //spec file name:line number of callsite
 - (void)focusWithURI:(NSString *)nodeUrl;
