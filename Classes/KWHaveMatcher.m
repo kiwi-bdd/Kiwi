@@ -67,7 +67,7 @@ static NSString * const CountKey = @"CountKey";
         if (!KWObjCTypeIsObject([signature methodReturnType]))
             [NSException raise:@"KWMatcherEception" format:@"a valid collection was not specified"];
 
-        __unsafe_unretained id object = nil;
+        id object = nil;
         [self.invocation invokeWithTarget:self.subject];
         [self.invocation getReturnValue:&object];
         return object;

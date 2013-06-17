@@ -21,7 +21,7 @@
 #pragma mark - Properties
 
 @property (nonatomic, readonly) NSString *message;
-@property (unsafe_unretained, nonatomic, readonly) KWCallSite *callSite;
+@property (nonatomic, weak, readonly) KWCallSite *callSite;
 
 #pragma mark - Getting Exception Representations
 

@@ -12,7 +12,7 @@
 
 @interface KWItNode ()
 
-@property (nonatomic, strong, readwrite) KWContextNode *context;
+@property (nonatomic, weak) KWContextNode *context;
 
 @end
 
