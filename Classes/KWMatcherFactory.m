@@ -63,7 +63,7 @@
     if (matcherClasses == nil) {
         matcherClasses = [[NSMutableArray alloc] init];
         int numberOfClasses = objc_getClassList(NULL, 0);
-        Class *classes = (__unsafe_unretained Class *)malloc(sizeof(Class) * numberOfClasses);
+        Class *classes = (Class *)malloc(sizeof(Class) * numberOfClasses);
         numberOfClasses = objc_getClassList(classes, numberOfClasses);
 
         if (numberOfClasses == 0) {
