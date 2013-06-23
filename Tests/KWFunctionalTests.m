@@ -65,8 +65,7 @@ SPEC_END
 
 SPEC_BEGIN(FunctionalFocusedDescribe)
 
-#pragma mark -
-#pragma mark Focused describe blocks
+#pragma mark - Focused describe blocks
 
 NSMutableArray *focusedContextCalls = @[@"InnerBeforeAll", @"InnerAfterAll", @"InnerBeforeEach", @"InnerAfterEach", @"InnerTestCase", @"DoubleInnerBeforeAll", @"DoubleInnerAfterAll", @"DoubleInnerBeforeEach", @"DoubleInnerAfterEach", @"DoubleInnerTestCase"
 ].mutableCopy;
@@ -111,8 +110,7 @@ SPEC_END
 
 SPEC_BEGIN(FunctionalFocusedIt)
 
-#pragma mark -
-#pragma mark Focused it blocks
+#pragma mark - Focused it blocks
 
 NSMutableArray *focusedItCalls = @[@"FocusedTestCase"].mutableCopy;
 

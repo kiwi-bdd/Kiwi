@@ -35,11 +35,11 @@
 
 @end
 
-@interface KWMatchVerifier(KWHaveMatcherAdditions)
-
 #pragma mark - Verifying
 
-#pragma mark Invocation Capturing Methods
+@interface KWMatchVerifier(KWHaveMatcherAdditions)
+
+#pragma mark - Invocation Capturing Methods
 
 - (id)have:(NSUInteger)aCount;
 - (id)haveAtLeast:(NSUInteger)aCount;
