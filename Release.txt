@@ -1,6 +1,32 @@
 Release History
 ---------------
 
+2.2
+-----
+Contributors: Stepan Hruda, Marin Usalj, Jon Klein, Maxim V. Potapov, Jerry Marino, Allen Ding, Victor Ilyukevich, Michael Hackett
+
+5b1515e  Removed unnecessary exception in nil matchers
+bcb20ea  Fixed [[object should] beNil] and tests with similar syntax
+b1472cf  Returned -be(Non)Nil verifiers for now, deprecated -shouldBe(Non)Nil
+32cded6  Fixed: Xcode template install script fails because "Xcode Templates" path includes a space.
+0b81db1  simplified readme
+1f51476  Added missing headers to Copy Files step of iOS framework build.
+01e8fd1  Updated list of valid architectures
+dbf3a67  Add Marin Usalj to contributors in podspec
+116d805  Second attempt to fix travis build
+dfb938d  Attempt to fix the KiwiTests target on travis
+7c53c57  Set VALID_ARCHS for KiwiTests target
+dbc75a7  removed (null) records in project
+a71cd5b  add method names for shouldAfterWait and friends
+60cfc8a  implement an async watcher that always waits until the end before checking the result
+c0366c0  Rename KW_SPEC environment variable + Cleanup
+f397b05  - Focus an it/context/describe node with a call site - Set focused node with environment variable URI
+4b2dde5  Implement run a single spec
+eaea2a1  added a missing import. fixes #179
+a1973ee  added a newline
+4d753a6  remove waitFor macro
+9a25fae  add support for [[obj shouldNotEventually] receive: ...]
+
 2.1
 -----
 Contributors: Cameron Desautels, Marin Usalj, Kristopher Johnson, Allen Ding, Rob Napier, Philippe Bernery, Viktor Ilyukevich, Gordon Fontentot
