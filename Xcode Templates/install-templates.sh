@@ -1,6 +1,6 @@
 #!/usr/bin/env sh
 
-SOURCE_DIR=$(dirname $0)
+SOURCE_DIR=$(dirname "$0")
 TEMPLATES_DIR="$HOME/Library/Developer/Xcode/Templates"
 FILE_TEMPLATES_DIR="$TEMPLATES_DIR/File Templates"
 KIWI_TEMPLATES_DIR="$FILE_TEMPLATES_DIR/Kiwi"
