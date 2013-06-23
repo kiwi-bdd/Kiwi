@@ -1,6 +1,30 @@
 Release History
 ---------------
 
+2.1
+-----
+Contributors: Cameron Desautels, Marin Usalj, Kristopher Johnson, Allen Ding, Rob Napier, Philippe Bernery, Viktor Ilyukevich, Gordon Fontentot
+
+f6d79d4  simplified
+8a8ab2c  inlined pragma marks
+f84ccc0  removed redundant header declarations
+7dfd24d  removing some unneeded declarations
+9d36bd8  Fix whitespace on Kiwi file template
+38ffc5c  Added Travis CI integration
+defeebe  removed beNil beNonNil matchers.
+6b7b41a  removed NewMacros file as it was empty. added newline
+a4eed62  added newline compiler check, corrected newline issues
+34e774b  Add KWContainStringMatcher, supporting expectations containString:, containString:options:, startWithString:, and endWithString:
+d869399  Renamed failWith macro to fail
+8fc4bfc  Adds a failWith macro to report a failure.
+27f4817  Add support for matchPattern:options:
+3b581c3  Add KWRegularExpressionPatternMatcher, to support [[subject should] matchPattern:(NSString*)regexPattern]
+e498b75  Fixes #245 "length" synonym for "count"
+6dbf47d  Add missing tests for KWBeSubclassOfClassMatcher
+0545772  KWBeSubclassOfClassMatcher: fix typo in description
+65d4e04  Add tests for more informative class matcher failure methods
+75f25fe  Provide more useful output when class matchers fail
+
 2.0.6
 -----
 Contributors: Marin Usalj, Adam Sharp, Klaas Pieter Annema, Daniel Hammond, Tim LeMaster, Alex Dunn, Stepan Hruda, Andrew Wagner
