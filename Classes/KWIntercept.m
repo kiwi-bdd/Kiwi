@@ -89,7 +89,7 @@ Class KWInterceptClassForCanonicalClass(Class canonicalClass) {
     objc_registerClassPair(interceptClass);
 
     class_addMethod(interceptClass, @selector(forwardInvocation:), (IMP)KWInterceptedForwardInvocation, "v@:@");
-    class_addMethod(interceptClass, @selector(dealloc), (IMP)KWInterceptedDealloc, "v@:");
+    class_addMethod(interceptClass, NSSelectorFromString(@"dealloc"), (IMP)KWInterceptedDealloc, "v@:");
     class_addMethod(interceptClass, @selector(class), (IMP)KWInterceptedClass, "#@:");
     class_addMethod(interceptClass, @selector(superclass), (IMP)KWInterceptedSuperclass, "#@:");
 
@@ -202,7 +202,7 @@ void KWInterceptedDealloc(id anObject, SEL aSelector) {
     [KWObjectStubs removeObjectForKey:key];
 
     KWRestoreOriginalClass(anObject);
-    [anObject dealloc];
+    [anObject performSelector:NSSelectorFromString(@"dealloc")];
 }
 
 Class KWInterceptedClass(id anObject, SEL aSelector) {
@@ -239,7 +239,6 @@ void KWAssociateObjectStub(id anObject, KWStub *aStub, BOOL overrideExisting) {
     if (stubs == nil) {
         stubs = [[NSMutableArray alloc] init];
         KWObjectStubs[key] = stubs;
-        [stubs release];
     }
 
     NSUInteger stubCount = [stubs count];
@@ -289,7 +288,6 @@ void KWAssociateMessageSpy(id anObject, id aSpy, KWMessagePattern *aMessagePatte
     if (spies == nil) {
         spies = [[NSMutableDictionary alloc] init];
         KWMessageSpies[key] = spies;
-        [spies release];
     }
 
     NSMutableArray *messagePatternSpies = spies[aMessagePattern];
@@ -297,7 +295,6 @@ void KWAssociateMessageSpy(id anObject, id aSpy, KWMessagePattern *aMessagePatte
     if (messagePatternSpies == nil) {
         messagePatternSpies = [[NSMutableArray alloc] init];
         spies[aMessagePattern] = messagePatternSpies;
-        [messagePatternSpies release];
     }
 
     NSValue *spyWrapper = [NSValue valueWithNonretainedObject:aSpy];

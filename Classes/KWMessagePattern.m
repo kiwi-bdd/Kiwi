@@ -91,7 +91,7 @@
 
 #pragma mark - Copying
 
-- (id)copyWithZone:(NSZone *)zone {
+- (id)copyWithZone:(NSZone *)zone NS_RETURNS_RETAINED {
     return self;
 }
 
