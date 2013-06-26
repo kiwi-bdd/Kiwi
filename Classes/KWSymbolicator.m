@@ -27,27 +27,21 @@ long kwCallerAddress (void){
 
 @implementation NSString (KWShellCommand)
 
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wobjc-method-access"
-
 + (NSString *)stringWithShellCommand:(NSString *)command arguments:(NSArray *)arguments {
     id task = [[NSClassFromString(@"NSTask") alloc] init];
-    [task setEnvironment:[NSDictionary dictionary]];
-    [task setLaunchPath:command];
-    [task setArguments:arguments];
+    [task performSelector:@selector(setEnvironment:) withObject:[NSDictionary dictionary]];
+    [task performSelector:@selector(setLaunchPath:) withObject:command];
+    [task performSelector:@selector(setArguments:) withObject:arguments];
 
     NSPipe *pipe = [NSPipe pipe];
-    [task setStandardOutput:pipe];
-    [task launch];
-
-    [task waitUntilExit];
+    [task performSelector:@selector(setStandardOutput:) withObject:pipe];
+    [task performSelector:@selector(launch)];
+    [task performSelector:@selector(waitUntilExit)];
 
     NSData *data = [[pipe fileHandleForReading] readDataToEndOfFile];
-    NSString *string = [[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding] autorelease];
-    [task release];
+    NSString *string = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+
     return string;
 }
-
-#pragma clang diagnostic pop
 
 @end
