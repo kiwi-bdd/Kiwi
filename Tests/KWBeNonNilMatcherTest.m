@@ -19,6 +19,16 @@
 
 @implementation KWBeNonNilMatcherTest
 
+id subject;
+id matcher;
+
+- (void)setUp {
+    [super setUp];
+    subject = [Cruiser cruiser];
+    matcher = [KWBeNonNilMatcher matcherWithSubject:subject];
+    [matcher beNonNil];
+}
+
 - (void)testItShouldHaveTheRightMatcherStrings {
     NSArray *matcherStrings = [KWBeNonNilMatcher matcherStrings];
     NSArray *expectedStrings = @[@"beNonNil", @"beNonNil:"];
@@ -28,33 +38,24 @@
 }
 
 - (void)testItShouldMatchNonNils {
-    id subject = [Cruiser cruiser];
-    id matcher = [KWBeNonNilMatcher matcherWithSubject:subject];
-    [matcher beNonNil];
     STAssertTrue([matcher evaluate], @"expected positive match");
 }
 
 - (void)testItShouldNotMatchNils {
-    id subject = nil;
-    id matcher = [KWBeNonNilMatcher matcherWithSubject:subject];
+    matcher = [KWBeNonNilMatcher matcherWithSubject:nil];
     [matcher beNonNil];
     STAssertFalse([matcher evaluate], @"expected negative match");
 }
 
 - (void)testItShouldHaveHumanReadableDescription {
-    id matcher = [KWBeNonNilMatcher matcherWithSubject:nil];
     STAssertEqualObjects(@"be non-nil", [matcher description], @"description should match");
 }
 
 - (void)testItShouldHaveInformativeFailureMessageForShould {
-    id subject = [Cruiser cruiser];
-    id matcher = [KWBeNonNilMatcher matcherWithSubject:subject];
     STAssertEqualObjects([matcher failureMessageForShould], @"expected subject to be non-nil", @"failure message should match");
 }
 
 - (void)testItShouldHaveInformativeFailureMessageForShouldNot {
-    id subject = [Cruiser cruiser];
-    id matcher = [KWBeNonNilMatcher matcherWithSubject:subject];
     NSString *failure = [NSString stringWithFormat:@"expected %@ to be nil", subject];
     STAssertEqualObjects([matcher failureMessageForShouldNot], failure, @"failure message should match");
 }
