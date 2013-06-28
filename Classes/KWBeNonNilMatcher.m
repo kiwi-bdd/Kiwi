@@ -30,12 +30,11 @@
 #pragma mark - Getting Failure Messages
 
 - (NSString *)failureMessageForShould {
-  return [NSString stringWithFormat:@"expected subject to be non-nil, got %@",
-          [KWFormatter formatObject:self.subject]];
+  return @"expected subject to be non-nil";
 }
 
 - (NSString *)failureMessageForShouldNot {
-  return [NSString stringWithFormat:@"expected %@ not to be non-nil",
+  return [NSString stringWithFormat:@"expected %@ to be nil",
           [KWFormatter formatObject:self.subject]];
 }
 

@@ -18,13 +18,13 @@
 #pragma mark - Getting Matcher Strings
 
 + (NSArray *)matcherStrings {
-  return @[@"beNil", @"beNil:"];
+    return @[@"beNil", @"beNil:"];
 }
 
 #pragma mark - Matching
 
 - (BOOL)evaluate {
-  return (BOOL)(self.subject == nil);
+    return (BOOL)(self.subject == nil);
 }
 
 #pragma mark Getting Failure Messages
