@@ -23,6 +23,7 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+		37828763177F860B00BCD40F /* Kiwi-Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = 37828762177F860B00BCD40F /* Kiwi-Prefix.pch */; };
 		44FC0E6716B6377D0050D616 /* Kiwi.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9F982C3A16A802920030A0B1 /* Kiwi.h */; };
 		44FC0E6816B6377D0050D616 /* KiwiBlockMacros.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9F982C3B16A802920030A0B1 /* KiwiBlockMacros.h */; };
 		44FC0E6916B6377D0050D616 /* KiwiConfiguration.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9F982C3C16A802920030A0B1 /* KiwiConfiguration.h */; };
@@ -642,6 +643,7 @@
 
 /* Begin PBXFileReference section */
 		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		37828762177F860B00BCD40F /* Kiwi-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Kiwi-Prefix.pch"; sourceTree = "<group>"; };
 		492F3A7916D5F7DC008E3C49 /* KWFailureTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KWFailureTest.m; sourceTree = "<group>"; };
 		4BA52D0015487F0C00FC957B /* KWCaptureTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KWCaptureTest.m; sourceTree = "<group>"; };
 		4E3C5DB01716C34900835B62 /* KWRegularExpressionPatternMatcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KWRegularExpressionPatternMatcher.h; sourceTree = "<group>"; };
@@ -970,16 +972,17 @@
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
-				F5F5C69F117CAA9900C5F133 /* License.txt */,
-				9F4C095816B16A6D00FCCCD3 /* Release.txt */,
-				F5F5C69E117CAA8800C5F133 /* Readme.md */,
-				9F982A1616A7FCD00030A0B1 /* Kiwi.podspec */,
-				37B0BAF8177F42E800E07085 /* NonARC */,
 				F5015B4D1158396B002E9A98 /* Classes */,
+				29B97323FDCFA39411CA2CEA /* Frameworks */,
+				37B0BAF8177F42E800E07085 /* NonARC */,
+				19C28FACFE9D520D11CA2CBB /* Products */,
+				37828761177F85EB00BCD40F /* Supporting Files */,
 				F5015BE211583C27002E9A98 /* Tests */,
 				9F982A1716A7FCF20030A0B1 /* Xcode Templates */,
-				29B97323FDCFA39411CA2CEA /* Frameworks */,
-				19C28FACFE9D520D11CA2CBB /* Products */,
+				9F982A1616A7FCD00030A0B1 /* Kiwi.podspec */,
+				F5F5C69F117CAA9900C5F133 /* License.txt */,
+				F5F5C69E117CAA8800C5F133 /* Readme.md */,
+				9F4C095816B16A6D00FCCCD3 /* Release.txt */,
 			);
 			name = CustomTemplate;
 			sourceTree = "<group>";
@@ -990,6 +993,14 @@
 				1D30AB110D05D00D00671497 /* Foundation.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		37828761177F85EB00BCD40F /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				37828762177F860B00BCD40F /* Kiwi-Prefix.pch */,
+			);
+			path = "Supporting Files";
 			sourceTree = "<group>";
 		};
 		37934CE3177F661400D07AE8 /* Core */ = {
@@ -1557,6 +1568,7 @@
 				4E7659AA172DAC6500105B93 /* KWContainStringMatcher.h in Headers */,
 				C533F7D317462CAA000CAB02 /* KWSymbolicator.h in Headers */,
 				C533F7D917462DC8000CAB02 /* SenTestSuite+KiwiAdditions.h in Headers */,
+				37828763177F860B00BCD40F /* Kiwi-Prefix.pch in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2037,6 +2049,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREFIX_HEADER = "Supporting Files/Kiwi-Prefix.pch";
 				GCC_TREAT_WARNINGS_AS_ERRORS = NO;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
@@ -2068,6 +2081,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_PREFIX_HEADER = "Supporting Files/Kiwi-Prefix.pch";
 				GCC_TREAT_WARNINGS_AS_ERRORS = NO;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
