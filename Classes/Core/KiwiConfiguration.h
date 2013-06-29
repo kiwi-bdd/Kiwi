@@ -4,16 +4,6 @@
 // Copyright 2010 Allen Ding. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
-
-#define KW_VERSION 0.9001
-
-// Blocks being unavailable cripples the usability of Kiwi, but is supported
-// because they are not available on anything less than a device running 3.2.
-#if !defined(__BLOCKS__)
-#error "Kiwi requires blocks support."
-#endif
-
 // As of iPhone SDK 4 GM, exceptions thrown across an NSInvocation -invoke or
 // forwardInvocation: boundary in the simulator will terminate the app instead
 // of being caught in @catch blocks from the caller side of the -invoke. Kiwi
