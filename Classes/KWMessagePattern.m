@@ -53,11 +53,11 @@
 }
 
 + (id)messagePatternWithSelector:(SEL)aSelector argumentFilters:(NSArray *)anArray {
-    return [[self alloc] initWithSelector:aSelector argumentFilters:anArray];
+    return [[[self alloc] initWithSelector:aSelector argumentFilters:anArray] autorelease];
 }
 
 + (id)messagePatternWithSelector:(SEL)aSelector firstArgumentFilter:(id)firstArgumentFilter argumentList:(va_list)argumentList {
-    return [[self alloc] initWithSelector:aSelector firstArgumentFilter:firstArgumentFilter argumentList:argumentList];
+    return [[[self alloc] initWithSelector:aSelector firstArgumentFilter:firstArgumentFilter argumentList:argumentList] autorelease];
 }
 
 + (id)messagePatternFromInvocation:(NSInvocation *)anInvocation {
@@ -80,19 +80,23 @@
             }
 
 			
-			if (strcmp(type, "@?") == 0) object = [object copy]; // Converting NSStackBlock to NSMallocBlock
+			if (strcmp(type, "@?") == 0) object = [[object copy] autorelease]; // Converting NSStackBlock to NSMallocBlock
             [argumentFilters addObject:(object != nil) ? object : [KWNull null]];
         }
     }
 
-    return [self messagePatternWithSelector:[anInvocation selector] argumentFilters:argumentFilters];
+    return [self messagePatternWithSelector:[anInvocation selector] argumentFilters:[argumentFilters autorelease]];
 }
 
+- (void)dealloc {
+    [argumentFilters release];
+    [super dealloc];
+}
 
 #pragma mark - Copying
 
 - (id)copyWithZone:(NSZone *)zone {
-    return self;
+    return [self retain];
 }
 
 #pragma mark - Properties
@@ -189,7 +193,7 @@
 }
 
 - (NSString *)selectorAndArgumentFiltersString {
-    NSMutableString *description = @"".mutableCopy;
+    NSMutableString *description = [[[NSMutableString alloc] init] autorelease];
     NSArray *components = [NSStringFromSelector(self.selector) componentsSeparatedByString:@":"];
     NSUInteger count = [components count] - 1;
 
