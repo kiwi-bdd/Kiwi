@@ -7,25 +7,26 @@
 //
 
 #import "KWBeNilMatcher.h"
+#import "KWExample.h"
+#import "KWExampleGroupBuilder.h"
 #import "KWFormatter.h"
+#import "KWMatchVerifier.h"
+#import "KWVerifying.h"
 
 @implementation KWBeNilMatcher
 
-#pragma mark -
-#pragma mark Getting Matcher Strings
+#pragma mark - Getting Matcher Strings
 
 + (NSArray *)matcherStrings {
-  return @[@"beNil"];
+  return @[@"beNil", @"beNil:"];
 }
 
-#pragma mark -
-#pragma mark Matching
+#pragma mark - Matching
 
 - (BOOL)evaluate {
   return (BOOL)(self.subject == nil);
 }
 
-#pragma mark -
 #pragma mark Getting Failure Messages
 
 - (NSString *)failureMessageForShould {
@@ -42,11 +43,24 @@
     return YES;
 }
 
-- (void)beNil {}
-
 - (NSString *)description
 {
-  return @"be nil";
+    return @"be nil";
+}
+
+- (void)beNil {}
+- (void)beNil:(BOOL)matcherHasSubject {}
+
++ (BOOL)verifyNilSubject {
+    KWExample *currentExample = [[KWExampleGroupBuilder sharedExampleGroupBuilder] currentExample];
+    id<KWVerifying> verifier = currentExample.unassignedVerifier;
+    if (verifier && ![verifier subject] && [verifier isKindOfClass:[KWMatchVerifier class]]) {
+        KWMatchVerifier *matchVerifier = (KWMatchVerifier *)verifier;
+        [matchVerifier performSelector:@selector(beNil)];
+        currentExample.unassignedVerifier = nil;
+        return NO;
+    }
+    return YES;
 }
 
 @end

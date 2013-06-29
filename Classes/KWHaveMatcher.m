@@ -235,11 +235,11 @@ static NSString * const CountKey = @"CountKey";
 
 @end
 
-@implementation KWMatchVerifier(KWHaveMatcherAdditions)
-
 #pragma mark - Verifying
 
-#pragma mark Invocation Capturing Methods
+@implementation KWMatchVerifier(KWHaveMatcherAdditions)
+
+#pragma mark - Invocation Capturing Methods
 
 - (NSDictionary *)userInfoForHaveMatcherWithCountType:(KWCountType)aCountType count:(NSUInteger)aCount {
     return @{MatchVerifierKey: self,

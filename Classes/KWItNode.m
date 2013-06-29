@@ -50,7 +50,6 @@
   return description;
 }
 
-#pragma mark -
 #pragma mark - Accessing the context stack
 
 - (NSArray *)contextStack

@@ -65,8 +65,7 @@ SPEC_END
 
 SPEC_BEGIN(FunctionalFocusedDescribe)
 
-#pragma mark -
-#pragma mark Focused describe blocks
+#pragma mark - Focused describe blocks
 
 NSMutableArray *focusedContextCalls = @[@"InnerBeforeAll", @"InnerAfterAll", @"InnerBeforeEach", @"InnerAfterEach", @"InnerTestCase", @"DoubleInnerBeforeAll", @"DoubleInnerAfterAll", @"DoubleInnerBeforeEach", @"DoubleInnerAfterEach", @"DoubleInnerTestCase"
 ].mutableCopy;
@@ -74,7 +73,7 @@ NSMutableArray *focusedContextCalls = @[@"InnerBeforeAll", @"InnerAfterAll", @"I
 NSMutableArray *unFocusedContextCalls = @[ @"OuterTestCase", @"BeforeAll", @"AfterAll", @"BeforeEach", @"AfterEach"
 ].mutableCopy;
 
-[[KWExampleGroupBuilder sharedExampleGroupBuilder] setFocusedCallSite:[KWCallSite callSiteWithFilename:@"KWFunctionalTests.m" lineNumber:85]];
+[[KWExampleGroupBuilder sharedExampleGroupBuilder] setFocusedCallSite:[KWCallSite callSiteWithFilename:@"KWFunctionalTests.m" lineNumber:84]];
 
 describe(@"UnFocusedContext", ^{
     it(@"OuterTestCase", ^{ [unFocusedContextCalls removeObject:@"OuterTestCase"]; });
@@ -111,14 +110,13 @@ SPEC_END
 
 SPEC_BEGIN(FunctionalFocusedIt)
 
-#pragma mark -
-#pragma mark Focused it blocks
+#pragma mark - Focused it blocks
 
 NSMutableArray *focusedItCalls = @[@"FocusedTestCase"].mutableCopy;
 
 NSMutableArray *unFocusedItCalls = @[@"UnFocusedTestCase"].mutableCopy;
 
-[[KWExampleGroupBuilder sharedExampleGroupBuilder] setFocusedCallSite:[KWCallSite callSiteWithFilename:@"KWFunctionalTests.m" lineNumber:124]];
+[[KWExampleGroupBuilder sharedExampleGroupBuilder] setFocusedCallSite:[KWCallSite callSiteWithFilename:@"KWFunctionalTests.m" lineNumber:122]];
 
 describe(@"FocusedIt", ^{
     it(@"FocusedTestCase", ^{ [focusedItCalls removeObject:@"FocusedTestCase"]; });
@@ -131,6 +129,45 @@ describe(@"FocusedItCheck", ^{
     it(@"All the blocks were called", ^{
         [[focusedItCalls should] haveCountOf:0];
         [[unFocusedItCalls should] haveCountOf:1];
+    });
+});
+
+SPEC_END
+
+SPEC_BEGIN(NilMatchers)
+
+describe(@"nil matchers", ^{
+    __block NSObject *object;
+
+    context(@"when object is nil", ^{
+        beforeEach(^{
+            object = nil;
+        });
+
+        it(@"passes a test for [[x should] beNil]", ^{
+            [[object should] beNil];
+        });
+        it(@"passes a test for [[x shouldNot] beNonNil]", ^{
+            [[object shouldNot] beNonNil];
+        });
+        it(@"passes a test for [x shouldBeNil]", ^{
+            [object shouldBeNil];
+        });
+    });
+
+    context(@"when object is non-nil", ^{
+        beforeEach(^{
+            object = [NSObject new];
+        });
+        it(@"passes a test for [[x should] beNonNil]", ^{
+            [[object should] beNonNil];
+        });
+        it(@"passes a test for [[x shouldNot] beNil]", ^{
+            [[object shouldNot] beNil];
+        });
+        it(@"passes a test for [x shouldNotBeNil]", ^{
+            [object shouldNotBeNil];
+        });
     });
 });
 

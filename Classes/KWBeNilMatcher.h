@@ -13,4 +13,8 @@
 
 }
 - (void)beNil;
+
+- (void)beNil:(BOOL)matcherHasSubject;
++ (BOOL)verifyNilSubject;
+
 @end

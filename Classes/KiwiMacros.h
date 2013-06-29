@@ -36,8 +36,8 @@
 #pragma mark - Keywords
 
 // Kiwi macros used in specs for verifying expectations.
-#define should attachToVerifier:KW_ADD_MATCH_VERIFIER(KWExpectationTypeShould) verifier:KW_ADD_EXIST_VERIFIER(KWExpectationTypeShould)
-#define shouldNot attachToVerifier:KW_ADD_MATCH_VERIFIER(KWExpectationTypeShouldNot) verifier:KW_ADD_EXIST_VERIFIER(KWExpectationTypeShould)
+#define should attachToVerifier:KW_ADD_MATCH_VERIFIER(KWExpectationTypeShould)
+#define shouldNot attachToVerifier:KW_ADD_MATCH_VERIFIER(KWExpectationTypeShouldNot)
 #define shouldBeNil attachToVerifier:KW_ADD_EXIST_VERIFIER(KWExpectationTypeShouldNot)
 #define shouldNotBeNil attachToVerifier:KW_ADD_EXIST_VERIFIER(KWExpectationTypeShould)
 
@@ -51,6 +51,8 @@
 #define shouldAfterWaitOf(timeout) attachToVerifier:KW_ADD_ASYNC_VERIFIER(KWExpectationTypeShould, timeout, YES)
 #define shouldNotAfterWaitOf(timeout) attachToVerifier:KW_ADD_ASYNC_VERIFIER(KWExpectationTypeShouldNot, timeout, YES)
 
+#define beNil beNil:[KWBeNilMatcher verifyNilSubject]
+#define beNonNil beNonNil:[KWBeNonNilMatcher verifyNilSubject]
 
 // used to wrap a pointer to an object that will change in the future (used with shouldEventually)
 #define theObject(objectPtr) [KWFutureObject objectWithObjectPointer:objectPtr] // DEPRECATED

@@ -1,6 +1,56 @@
 Release History
 ---------------
 
+2.2
+-----
+Contributors: Stepan Hruda, Marin Usalj, Jon Klein, Maxim V. Potapov, Jerry Marino, Allen Ding, Victor Ilyukevich, Michael Hackett
+
+5b1515e  Removed unnecessary exception in nil matchers
+bcb20ea  Fixed [[object should] beNil] and tests with similar syntax
+b1472cf  Returned -be(Non)Nil verifiers for now, deprecated -shouldBe(Non)Nil
+32cded6  Fixed: Xcode template install script fails because "Xcode Templates" path includes a space.
+0b81db1  simplified readme
+1f51476  Added missing headers to Copy Files step of iOS framework build.
+01e8fd1  Updated list of valid architectures
+dbf3a67  Add Marin Usalj to contributors in podspec
+116d805  Second attempt to fix travis build
+dfb938d  Attempt to fix the KiwiTests target on travis
+7c53c57  Set VALID_ARCHS for KiwiTests target
+dbc75a7  removed (null) records in project
+a71cd5b  add method names for shouldAfterWait and friends
+60cfc8a  implement an async watcher that always waits until the end before checking the result
+c0366c0  Rename KW_SPEC environment variable + Cleanup
+f397b05  - Focus an it/context/describe node with a call site - Set focused node with environment variable URI
+4b2dde5  Implement run a single spec
+eaea2a1  added a missing import. fixes #179
+a1973ee  added a newline
+4d753a6  remove waitFor macro
+9a25fae  add support for [[obj shouldNotEventually] receive: ...]
+
+2.1
+-----
+Contributors: Cameron Desautels, Marin Usalj, Kristopher Johnson, Allen Ding, Rob Napier, Philippe Bernery, Viktor Ilyukevich, Gordon Fontentot
+
+f6d79d4  simplified
+8a8ab2c  inlined pragma marks
+f84ccc0  removed redundant header declarations
+7dfd24d  removing some unneeded declarations
+9d36bd8  Fix whitespace on Kiwi file template
+38ffc5c  Added Travis CI integration
+defeebe  removed beNil beNonNil matchers.
+6b7b41a  removed NewMacros file as it was empty. added newline
+a4eed62  added newline compiler check, corrected newline issues
+34e774b  Add KWContainStringMatcher, supporting expectations containString:, containString:options:, startWithString:, and endWithString:
+d869399  Renamed failWith macro to fail
+8fc4bfc  Adds a failWith macro to report a failure.
+27f4817  Add support for matchPattern:options:
+3b581c3  Add KWRegularExpressionPatternMatcher, to support [[subject should] matchPattern:(NSString*)regexPattern]
+e498b75  Fixes #245 "length" synonym for "count"
+6dbf47d  Add missing tests for KWBeSubclassOfClassMatcher
+0545772  KWBeSubclassOfClassMatcher: fix typo in description
+65d4e04  Add tests for more informative class matcher failure methods
+75f25fe  Provide more useful output when class matchers fail
+
 2.0.6
 -----
 Contributors: Marin Usalj, Adam Sharp, Klaas Pieter Annema, Daniel Hammond, Tim LeMaster, Alex Dunn, Stepan Hruda, Andrew Wagner
