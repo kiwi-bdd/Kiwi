@@ -12,7 +12,7 @@
 
 #pragma mark - Properties
 
-@property (nonatomic, readwrite, retain) id objects;
+@property (nonatomic, readwrite, strong) id objects;
 
 @end
 
@@ -20,10 +20,6 @@
 
 #pragma mark - Initializing
 
-- (void)dealloc {
-    [objects release];
-    [super dealloc];
-}
 
 #pragma mark - Properties
 

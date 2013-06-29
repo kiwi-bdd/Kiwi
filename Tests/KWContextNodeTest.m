@@ -19,7 +19,7 @@
 - (void)testItShouldAllowOnlyOneBeforeEachBlock {
     KWContextNode *node = [KWContextNode contextNodeWithCallSite:nil parentContext:nil description:nil];
     __block NSUInteger tag = 0;
-    KWVoidBlock block = ^{ ++tag; };
+    void (^block)(void) = ^{ ++tag; };
     [node setBeforeEachNode:[KWBeforeEachNode beforeEachNodeWithCallSite:nil block:block]];
     STAssertThrows([node setBeforeEachNode:[KWBeforeEachNode beforeEachNodeWithCallSite:nil block:block]], @"expected exception");
 }
@@ -27,7 +27,7 @@
 - (void)testItShouldAllowOnlyOneAfterEachBlock {
     KWContextNode *node = [KWContextNode contextNodeWithCallSite:nil parentContext:nil description:nil];
     __block NSUInteger tag = 0;
-    KWVoidBlock block = ^{ ++tag; };
+    void (^block)(void) = ^{ ++tag; };
     [node setAfterEachNode:[KWAfterEachNode afterEachNodeWithCallSite:nil block:block]];
     STAssertThrows([node setAfterEachNode:[KWAfterEachNode afterEachNodeWithCallSite:nil block:block]], @"expected exception");
 }

@@ -5,17 +5,18 @@
 //
 
 #import "KWExampleGroupBuilder.h"
-#import "KWExample.h"
+
 #import "KWAfterAllNode.h"
 #import "KWAfterEachNode.h"
 #import "KWBeforeAllNode.h"
 #import "KWBeforeEachNode.h"
+#import "KWCallSite.h"
 #import "KWContextNode.h"
+#import "KWExample.h"
+#import "KWExampleSuite.h"
 #import "KWItNode.h"
 #import "KWPendingNode.h"
 #import "KWRegisterMatchersNode.h"
-#import "KWExampleSuite.h"
-#import "KWCallSite.h"
 #import "KWSymbolicator.h"
 
 @interface KWExampleGroupBuilder() {
@@ -24,7 +25,7 @@
 
 #pragma mark - Building Example Groups
 
-@property (nonatomic, retain, readwrite) KWExampleSuite *exampleSuite;
+@property (nonatomic, strong, readwrite) KWExampleSuite *exampleSuite;
 @property (nonatomic, readonly) NSMutableArray *contextNodeStack;
 
 @property (nonatomic, assign) BOOL focusedContextNode;
@@ -42,7 +43,6 @@
 
 #pragma mark - Initializing
 
-static KWExampleGroupBuilder *sharedExampleGroupBuilder = nil;
 
 - (id)init {
     if ((self = [super init])) {
@@ -53,43 +53,15 @@ static KWExampleGroupBuilder *sharedExampleGroupBuilder = nil;
     return self;
 }
 
-- (void)dealloc {
-    [suites release];
-    [exampleSuite release];
-    [contextNodeStack release];
-    [focusedCallSite release];
-    [super dealloc];
-}
 
 + (id)sharedExampleGroupBuilder {
-    if (sharedExampleGroupBuilder == nil) {
-        sharedExampleGroupBuilder = [[super allocWithZone:nil] init];
-    }
+    static KWExampleGroupBuilder *sharedExampleGroupBuilder = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        sharedExampleGroupBuilder = [self new];
+    });
 
     return sharedExampleGroupBuilder;
-}
-
-+ (id)allocWithZone:(NSZone *)zone {
-    return [[self sharedExampleGroupBuilder] retain];
-}
-
-- (id)copyWithZone:(NSZone *)zone {
-    return self;
-}
-
-- (id)retain {
-    return self;
-}
-
-- (NSUInteger)retainCount {
-    return NSUIntegerMax;
-}
-
-- (oneway void)release {
-}
-
-- (id)autorelease {
-    return self;
 }
 
 #pragma mark - Building Example Groups
@@ -129,7 +101,7 @@ static KWExampleGroupBuilder *sharedExampleGroupBuilder = nil;
 {
     KWContextNode *rootNode = [KWContextNode contextNodeWithCallSite:nil parentContext:nil description:nil];
 
-    self.exampleSuite = [[[KWExampleSuite alloc] initWithRootNode:rootNode] autorelease];
+    self.exampleSuite = [[KWExampleSuite alloc] initWithRootNode:rootNode];
     
     [suites addObject:self.exampleSuite];
 
@@ -183,43 +155,43 @@ static KWExampleGroupBuilder *sharedExampleGroupBuilder = nil;
     [contextNode setRegisterMatchersNode:registerMatchersNode];
 }
 
-- (void)setBeforeAllNodeWithCallSite:(KWCallSite *)aCallSite block:(KWVoidBlock)aBlock {
+- (void)setBeforeAllNodeWithCallSite:(KWCallSite *)aCallSite block:(void (^)(void))block {
     if ([self.contextNodeStack count] == 0)
         [NSException raise:@"KWExampleGroupBuilderException" format:@"an example group has not been started"];
 
     KWContextNode *contextNode = [self.contextNodeStack lastObject];
-    KWBeforeAllNode *beforeAllNode = [KWBeforeAllNode beforeAllNodeWithCallSite:aCallSite block:aBlock];
+    KWBeforeAllNode *beforeAllNode = [KWBeforeAllNode beforeAllNodeWithCallSite:aCallSite block:block];
     [contextNode setBeforeAllNode:beforeAllNode];
 }
 
-- (void)setAfterAllNodeWithCallSite:(KWCallSite *)aCallSite block:(KWVoidBlock)aBlock {
+- (void)setAfterAllNodeWithCallSite:(KWCallSite *)aCallSite block:(void (^)(void))block {
     if ([self.contextNodeStack count] == 0)
         [NSException raise:@"KWExampleGroupBuilderException" format:@"an example group has not been started"];
 
     KWContextNode *contextNode = [self.contextNodeStack lastObject];
-    KWAfterAllNode *afterAllNode = [KWAfterAllNode afterAllNodeWithCallSite:aCallSite block:aBlock];
+    KWAfterAllNode *afterAllNode = [KWAfterAllNode afterAllNodeWithCallSite:aCallSite block:block];
     [contextNode setAfterAllNode:afterAllNode];
 }
 
-- (void)setBeforeEachNodeWithCallSite:(KWCallSite *)aCallSite block:(KWVoidBlock)aBlock {
+- (void)setBeforeEachNodeWithCallSite:(KWCallSite *)aCallSite block:(void (^)(void))block {
     if ([self.contextNodeStack count] == 0)
         [NSException raise:@"KWExampleGroupBuilderException" format:@"an example group has not been started"];
 
     KWContextNode *contextNode = [self.contextNodeStack lastObject];
-    KWBeforeEachNode *beforeEachNode = [KWBeforeEachNode beforeEachNodeWithCallSite:aCallSite block:aBlock];
+    KWBeforeEachNode *beforeEachNode = [KWBeforeEachNode beforeEachNodeWithCallSite:aCallSite block:block];
     [contextNode setBeforeEachNode:beforeEachNode];
 }
 
-- (void)setAfterEachNodeWithCallSite:(KWCallSite *)aCallSite block:(KWVoidBlock)aBlock {
+- (void)setAfterEachNodeWithCallSite:(KWCallSite *)aCallSite block:(void (^)(void))block {
     if ([self.contextNodeStack count] == 0)
         [NSException raise:@"KWExampleGroupBuilderException" format:@"an example group has not been started"];
 
     KWContextNode *contextNode = [self.contextNodeStack lastObject];
-    KWAfterEachNode *afterEachNode = [KWAfterEachNode afterEachNodeWithCallSite:aCallSite block:aBlock];
+    KWAfterEachNode *afterEachNode = [KWAfterEachNode afterEachNodeWithCallSite:aCallSite block:block];
     [contextNode setAfterEachNode:afterEachNode];
 }
 
-- (void)addItNodeWithCallSite:(KWCallSite *)aCallSite description:(NSString *)aDescription block:(KWVoidBlock)aBlock {
+- (void)addItNodeWithCallSite:(KWCallSite *)aCallSite description:(NSString *)aDescription block:(void (^)(void))block {
     if ([self.contextNodeStack count] == 0)
         [NSException raise:@"KWExampleGroupBuilderException" format:@"an example group has not been started"];
 
@@ -228,12 +200,11 @@ static KWExampleGroupBuilder *sharedExampleGroupBuilder = nil;
     if (self.isFocused && ![self shouldAddItNodeWithCallSite:aCallSite toContextNode:contextNode])
         return;
 
-    KWItNode* itNode = [KWItNode itNodeWithCallSite:aCallSite description:aDescription context:contextNode block:aBlock];
+    KWItNode* itNode = [KWItNode itNodeWithCallSite:aCallSite description:aDescription context:contextNode block:block];
     [contextNode addItNode:itNode];
     
     KWExample *example = [[KWExample alloc] initWithExampleNode:itNode];
     [self.exampleSuite addExample:example];
-    [example release];
 }
 
 - (BOOL)shouldAddItNodeWithCallSite:(KWCallSite *)aCallSite toContextNode:(KWContextNode *)contextNode {
@@ -257,7 +228,6 @@ static KWExampleGroupBuilder *sharedExampleGroupBuilder = nil;
     [contextNode addPendingNode:pendingNode];
     KWExample *example = [[KWExample alloc] initWithExampleNode:pendingNode];
     [self.exampleSuite addExample:example];
-    [example release];
 }
 
 @end

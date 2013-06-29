@@ -14,11 +14,11 @@ void KWSetExceptionFromAcrossInvocationBoundary(NSException *anException) {
     if (KWExceptionAcrossInvokeBoundary != nil)
         return;
 
-    KWExceptionAcrossInvokeBoundary = [anException retain];
+    KWExceptionAcrossInvokeBoundary = anException;
 }
 
 NSException *KWGetAndClearExceptionFromAcrossInvocationBoundary(void) {
-    NSException *exception = [KWExceptionAcrossInvokeBoundary autorelease];
+    NSException *exception = KWExceptionAcrossInvokeBoundary;
     KWExceptionAcrossInvokeBoundary = nil;
     return exception;
 }

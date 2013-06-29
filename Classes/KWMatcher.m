@@ -14,31 +14,25 @@
 
 - (id)initWithSubject:(id)anObject {
     if ((self = [super init])) {
-        subject = [anObject retain];
+        _subject = anObject;
     }
 
     return self;
 }
 
 + (id)matcherWithSubject:(id)anObject {
-    return [[[self alloc] initWithSubject:anObject] autorelease];
+    return [[self alloc] initWithSubject:anObject];
 }
 
-- (void)dealloc {
-    [subject release];
-    [super dealloc];
-}
 
 #pragma mark - Properties
 
-@synthesize subject;
-
 - (id)subject
 {
-  if ([subject isKindOfClass:[KWFutureObject class]]) {
-    return [(KWFutureObject *)subject object];
+  if ([_subject isKindOfClass:[KWFutureObject class]]) {
+    return [(KWFutureObject *)_subject object];
   }
-  return subject;
+  return _subject;
 }
 
 #pragma mark - Getting Matcher Strings

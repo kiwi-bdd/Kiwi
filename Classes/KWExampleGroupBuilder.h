@@ -21,9 +21,9 @@
 #pragma mark - Building Example Groups
 
 @property (nonatomic, readonly) BOOL isBuildingExampleGroup;
-@property (nonatomic, retain, readonly) KWExampleSuite *exampleSuite;
-@property (nonatomic, retain) KWExample *currentExample;
-@property (nonatomic, retain) KWCallSite *focusedCallSite;
+@property (nonatomic, strong, readonly) KWExampleSuite *exampleSuite;
+@property (nonatomic, strong) KWExample *currentExample;
+@property (nonatomic, strong) KWCallSite *focusedCallSite;
 
 //spec file name:line number of callsite
 - (void)focusWithURI:(NSString *)nodeUrl;
@@ -33,11 +33,11 @@
 - (void)pushContextNodeWithCallSite:(KWCallSite *)aCallSite description:(NSString *)aDescription;
 - (void)popContextNode;
 - (void)setRegisterMatchersNodeWithCallSite:(KWCallSite *)aCallSite namespacePrefix:(NSString *)aNamespacePrefix;
-- (void)setBeforeAllNodeWithCallSite:(KWCallSite *)aCallSite block:(KWVoidBlock)aBlock;
-- (void)setAfterAllNodeWithCallSite:(KWCallSite *)aCallSite block:(KWVoidBlock)aBlock;
-- (void)setBeforeEachNodeWithCallSite:(KWCallSite *)aCallSite block:(KWVoidBlock)aBlock;
-- (void)setAfterEachNodeWithCallSite:(KWCallSite *)aCallSite block:(KWVoidBlock)aBlock;
-- (void)addItNodeWithCallSite:(KWCallSite *)aCallSite description:(NSString *)aDescription block:(KWVoidBlock)aBlock;
+- (void)setBeforeAllNodeWithCallSite:(KWCallSite *)aCallSite block:(void (^)(void))block;
+- (void)setAfterAllNodeWithCallSite:(KWCallSite *)aCallSite block:(void (^)(void))block;
+- (void)setBeforeEachNodeWithCallSite:(KWCallSite *)aCallSite block:(void (^)(void))block;
+- (void)setAfterEachNodeWithCallSite:(KWCallSite *)aCallSite block:(void (^)(void))block;
+- (void)addItNodeWithCallSite:(KWCallSite *)aCallSite description:(NSString *)aDescription block:(void (^)(void))block;
 - (void)addPendingNodeWithCallSite:(KWCallSite *)aCallSite description:(NSString *)aDescription;
 
 

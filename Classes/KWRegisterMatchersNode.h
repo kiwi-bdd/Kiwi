@@ -19,10 +19,10 @@
 
 #pragma mark - Getting Call Sites
 
-@property (nonatomic, readonly) KWCallSite *callSite;
+@property (nonatomic, weak, readonly) KWCallSite *callSite;
 
 #pragma mark - Getting Namespace Prefixes
 
-@property (nonatomic, readonly) NSString *namespacePrefix;
+@property (nonatomic, copy, readonly) NSString *namespacePrefix;
 
 @end

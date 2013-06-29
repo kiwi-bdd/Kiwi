@@ -7,10 +7,7 @@
 #import "KiwiConfiguration.h"
 #import "KWMatching.h"
 
-@interface KWMatcher : NSObject<KWMatching> {
-@protected
-    id subject;
-}
+@interface KWMatcher : NSObject<KWMatching>
 
 #pragma mark - Initializing
 
@@ -20,7 +17,7 @@
 
 #pragma mark - Properties
 
-@property (nonatomic, readonly) id subject;
+@property (nonatomic, strong) id subject;
 
 #pragma mark - Getting Matcher Strings
 

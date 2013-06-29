@@ -13,8 +13,8 @@
 
 #pragma mark - Properties
 
-@property (nonatomic, readwrite, retain) id distance;
-@property (nonatomic, readwrite, retain) id otherValue;
+@property (nonatomic, readwrite, strong) id distance;
+@property (nonatomic, readwrite, strong) id otherValue;
 
 @end
 
@@ -22,11 +22,6 @@
 
 #pragma mark - Initializing
 
-- (void)dealloc {
-    [distance release];
-    [otherValue release];
-    [super dealloc];
-}
 
 #pragma mark - Properties
 

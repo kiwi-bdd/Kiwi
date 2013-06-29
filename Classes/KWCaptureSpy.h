@@ -6,6 +6,6 @@
 
 - (id)initWithArgumentIndex:(NSUInteger)index;
 
-@property(nonatomic, readonly, retain) id argument;
+@property(nonatomic, readonly, strong) id argument;
 
 @end

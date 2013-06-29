@@ -8,8 +8,8 @@
 
 #import "KWBeNilMatcher.h"
 #import "KWExample.h"
-#import "KWFormatter.h"
 #import "KWExampleGroupBuilder.h"
+#import "KWFormatter.h"
 #import "KWMatchVerifier.h"
 #import "KWVerifying.h"
 

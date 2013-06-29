@@ -7,10 +7,12 @@
 //
 
 #import "KWExampleSuite.h"
+
+#import "KWAfterAllNode.h"
+#import "KWBeforeAllNode.h"
+#import "KWContextNode.h"
 #import "KWExample.h"
 #import "KWStringUtilities.h"
-#import "KWBeforeAllNode.h"
-#import "KWAfterAllNode.h"
 #import "NSMethodSignature+KiwiAdditions.h"
 #import <objc/runtime.h>
 
@@ -27,18 +29,12 @@
 - (id)initWithRootNode:(KWContextNode *)contextNode
 {
   if ((self = [super init])) {
-    rootNode = [contextNode retain];
+    rootNode = contextNode;
     examples = [[NSMutableArray alloc] init];
   }
   return self;
 }
 
-- (void)dealloc 
-{
-  [examples release];
-  [rootNode release];
-  [super dealloc];
-}
 
 - (void)addExample:(KWExample *)example
 {

@@ -11,7 +11,7 @@
 
 #pragma mark - Properties
 
-@property (nonatomic, readwrite, assign) Class targetClass;
+@property (nonatomic, assign) Class targetClass;
 
 @end
 

@@ -10,7 +10,7 @@
 
 #pragma mark - Properties
 
-@property (nonatomic, readonly, assign) KWVoidBlock block;
+@property (nonatomic, readonly, copy) void (^block)(void);
 
 @end
 
@@ -18,41 +18,32 @@
 
 #pragma mark - Initializing
 
-- (id)initWithBlock:(KWVoidBlock)aBlock {
+- (id)initWithBlock:(void (^)(void))block {
     if ((self = [super init])) {
-        block = Block_copy(aBlock);
+        _block = [block copy];
     }
 
     return self;
 }
 
-+ (id)blockWithBlock:(KWVoidBlock)aBlock {
-    return [[[self alloc] initWithBlock:aBlock] autorelease];
++ (id)blockWithBlock:(void (^)(void))aBlock {
+    return [[self alloc] initWithBlock:aBlock];
 }
-
-- (void)dealloc {
-    Block_release(block);
-    [super dealloc];
-}
-
-#pragma mark - Properties
-
-@synthesize block;
 
 #pragma mark - Calling Blocks
 
 - (void)call {
-    block();
+    self.block();
 }
 
 @end
 
 #pragma mark - Creating Blocks
 
-KWBlock *theBlock(KWVoidBlock aBlock) {
-    return lambda(aBlock);
+KWBlock *theBlock(void (^block)(void)) {
+    return lambda(block);
 }
 
-KWBlock *lambda(KWVoidBlock aBlock) {
-    return [KWBlock blockWithBlock:aBlock];
+KWBlock *lambda(void (^block)(void)) {
+    return [KWBlock blockWithBlock:block];
 }

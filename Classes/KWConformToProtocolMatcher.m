@@ -11,7 +11,7 @@
 
 #pragma mark - Properties
 
-@property (nonatomic, readwrite, assign) Protocol *protocol;
+@property (nonatomic, assign) Protocol *protocol;
 
 @end
 

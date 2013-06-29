@@ -13,11 +13,11 @@
 
 #pragma mark - Initializing
 
-- (id)initWithCallSite:(KWCallSite *)aCallSite description:(NSString *)aDescription block:(KWVoidBlock)aBlock;
+- (id)initWithCallSite:(KWCallSite *)aCallSite description:(NSString *)aDescription block:(void (^)(void))block;
 
 #pragma mark - Getting Call Sites
 
-@property (nonatomic, readonly) KWCallSite *callSite;
+@property (nonatomic, strong, readonly) KWCallSite *callSite;
 
 #pragma mark - Getting Descriptions
 
@@ -25,7 +25,7 @@
 
 #pragma mark - Getting Blocks
 
-@property (nonatomic, readonly) KWVoidBlock block;
+@property (nonatomic, copy, readonly) void (^block)(void);
 
 #pragma mark - Performing blocks
 

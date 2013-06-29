@@ -12,7 +12,7 @@
 
 @interface KWPendingNode : NSObject<KWExampleNode>
 
-@property (nonatomic, readonly, retain) KWContextNode *context;
+@property (nonatomic, readonly, strong) KWContextNode *context;
 
 #pragma mark - Initializing
 
@@ -22,10 +22,10 @@
 
 #pragma mark - Getting Call Sites
 
-@property (nonatomic, readonly) KWCallSite *callSite;
+@property (nonatomic, weak, readonly) KWCallSite *callSite;
 
 #pragma mark - Getting Descriptions
 
-@property (nonatomic, readonly) NSString *description;
+@property (nonatomic, copy, readonly) NSString *description;
 
 @end
