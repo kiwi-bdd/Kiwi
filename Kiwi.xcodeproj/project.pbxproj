@@ -1002,7 +1002,7 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		37934CE3177F661400D07AE8 /* Engine */ = {
+		37934CE3177F661400D07AE8 /* Core */ = {
 			isa = PBXGroup;
 			children = (
 				9F982C3A16A802920030A0B1 /* Kiwi.h */,
@@ -1084,7 +1084,7 @@
 				C533F7D717462DC8000CAB02 /* SenTestSuite+KiwiAdditions.h */,
 				C533F7D817462DC8000CAB02 /* SenTestSuite+KiwiAdditions.m */,
 			);
-			path = Engine;
+			path = Core;
 			sourceTree = "<group>";
 		};
 		37934CE4177F67A200D07AE8 /* Mocking */ = {
@@ -1268,7 +1268,7 @@
 		F5015B4D1158396B002E9A98 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				37934CE3177F661400D07AE8 /* Engine */,
+				37934CE3177F661400D07AE8 /* Core */,
 				37B0BAFD177F63D300E07085 /* Nodes */,
 				37B0BAFC177F63D000E07085 /* Matchers */,
 				37934CE4177F67A200D07AE8 /* Mocking */,
