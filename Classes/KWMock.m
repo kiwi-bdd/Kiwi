@@ -53,7 +53,7 @@ static NSString * const ChangeStubValueAfterTimesKey = @"ChangeStubValueAfterTim
         NSInvocation *invocation = [NSInvocation invocationWithTarget:self selector:_cmd];
 
         if ([self processReceivedInvocation:invocation]) {
-            __unsafe_unretained id result = nil;
+            id result = nil;
             [invocation getReturnValue:&result];
             return result;
         } else {
@@ -191,7 +191,7 @@ static NSString * const ChangeStubValueAfterTimesKey = @"ChangeStubValueAfterTim
         [protocolQueue removeLastObject];
 
         unsigned int count = 0;
-        Protocol *__unsafe_unretained*protocols = (Protocol **)protocol_copyProtocolList(protocol, &count);
+        Protocol *__unsafe_unretained*protocols = protocol_copyProtocolList(protocol, &count);
 
         if (count == 0)
             continue;
@@ -570,7 +570,7 @@ static NSString * const ChangeStubValueAfterTimesKey = @"ChangeStubValueAfterTim
     NSInvocation *invocation = [NSInvocation invocationWithTarget:self selector:_cmd];
 
     if ([self processReceivedInvocation:invocation]) {
-        __unsafe_unretained NSString *result = nil;
+        NSString *result = nil;
         [invocation getReturnValue:&result];
         return result;
     } else {
@@ -584,7 +584,7 @@ static NSString * const ChangeStubValueAfterTimesKey = @"ChangeStubValueAfterTim
     NSInvocation *invocation = [NSInvocation invocationWithTarget:self selector:_cmd];
 
     if ([self processReceivedInvocation:invocation]) {
-        __unsafe_unretained id result = nil;
+        id result = nil;
         [invocation getReturnValue:&result];
         return result;
     } else {
@@ -598,7 +598,7 @@ static NSString * const ChangeStubValueAfterTimesKey = @"ChangeStubValueAfterTim
     NSInvocation *invocation = [NSInvocation invocationWithTarget:self selector:_cmd];
 
     if ([self processReceivedInvocation:invocation]) {
-        __unsafe_unretained id result = nil;
+        id result = nil;
         [invocation getReturnValue:&result];
         return result;
     } else {
@@ -615,7 +615,7 @@ static id valueForKeyImplementation(id self, SEL _cmd, id key) {
     NSInvocation *invocation = [NSInvocation invocationWithTarget:self selector:_cmd messageArguments:&key];
     
     if ([self processReceivedInvocation:invocation]) {
-        __unsafe_unretained id result = nil;
+        id result = nil;
         [invocation getReturnValue:&result];
         return result;
     } else {

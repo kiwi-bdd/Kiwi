@@ -34,7 +34,7 @@
 
 @property (nonatomic, readonly) NSMutableArray *verifiers;
 @property (nonatomic, readonly) KWMatcherFactory *matcherFactory;
-@property (nonatomic, unsafe_unretained) id<KWExampleDelegate> delegate;
+@property (nonatomic, weak) id<KWExampleDelegate> delegate;
 @property (nonatomic, assign) BOOL didNotFinish;
 
 - (void)reportResultForExampleNodeWithLabel:(NSString *)label;

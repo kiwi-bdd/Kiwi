@@ -40,7 +40,7 @@
     BOOL result;
 
     if (self.invocation.methodSignature.numberOfArguments == 3) {
-        __unsafe_unretained id argument;
+        id argument;
         [self.invocation getArgument:&argument atIndex:2];
         result = matcherBlock(self.subject, argument);
     } else {

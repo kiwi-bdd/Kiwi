@@ -15,9 +15,9 @@
 
 #pragma mark - Properties
 
-@property (nonatomic, readonly) KWExpectationType expectationType;
-@property (unsafe_unretained, nonatomic, readonly) KWCallSite *callSite;
-@property (unsafe_unretained, nonatomic, readonly) id<KWReporting> reporter;
+@property (nonatomic, assign, readonly) KWExpectationType expectationType;
+@property (nonatomic, weak, readonly) KWCallSite *callSite;
+@property (nonatomic, weak, readonly) id<KWReporting> reporter;
 
 @end
 
