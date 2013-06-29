@@ -12,7 +12,7 @@
 
 #pragma mark - Subjects
 
-@property (nonatomic, readwrite, retain) id subject;
+@property (nonatomic, strong) id subject;
 
 #pragma mark - Ending Examples
 

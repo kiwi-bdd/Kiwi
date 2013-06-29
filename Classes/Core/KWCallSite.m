@@ -11,9 +11,10 @@
 #pragma mark - Initializing
 
 - (id)initWithFilename:(NSString *)aFilename lineNumber:(NSUInteger)aLineNumber {
-    if ((self = [super init])) {
-        filename = [aFilename copy];
-        lineNumber = aLineNumber;
+    self = [super init];
+    if (self) {
+        _filename = [aFilename copy];
+        _lineNumber = aLineNumber;
     }
 
     return self;
@@ -22,12 +23,6 @@
 + (id)callSiteWithFilename:(NSString *)aFilename lineNumber:(NSUInteger)aLineNumber {
     return [[self alloc] initWithFilename:aFilename lineNumber:aLineNumber];
 }
-
-
-#pragma mark - Accessing Call Site Properties
-
-@synthesize filename;
-@synthesize lineNumber;
 
 #pragma mark - Identifying and Comparing
 

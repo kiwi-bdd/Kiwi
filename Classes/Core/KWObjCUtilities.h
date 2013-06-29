@@ -6,8 +6,7 @@
 
 #import "KiwiConfiguration.h"
 
-#pragma mark -
-#pragma mark Objective-C Type Utilities
+#pragma mark - Objective-C Type Utilities
 
 BOOL KWObjCTypeEqualToObjCType(const char *firstObjCType, const char *secondObjCType);
 BOOL KWObjCTypeIsNumeric(const char *objCType);

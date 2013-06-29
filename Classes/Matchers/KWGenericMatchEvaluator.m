@@ -14,8 +14,7 @@
 @implementation KWGenericMatchEvaluator
 
 // Returns true only if the object has a method with the signature "- (void)matches:(id)object"
-+ (BOOL)isGenericMatcher:(id)object
-{
++ (BOOL)isGenericMatcher:(id)object {
     Class theClass = object_getClass(object);
 
     if (theClass == NULL) {
@@ -51,8 +50,7 @@
     return YES;
 }
 
-+ (BOOL)genericMatcher:(id)matcher matches:(id)object
-{
++ (BOOL)genericMatcher:(id)matcher matches:(id)object {
     NSString *targetEncoding = KWEncodingWithObjCTypes(@encode(BOOL), @encode(id), @encode(SEL), @encode(id), nil);
     NSMethodSignature *signature = [NSMethodSignature signatureWithObjCTypes:[targetEncoding UTF8String]];
     NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:signature];

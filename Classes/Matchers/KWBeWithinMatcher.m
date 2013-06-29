@@ -11,22 +11,12 @@
 
 @interface KWBeWithinMatcher()
 
-#pragma mark - Properties
-
 @property (nonatomic, readwrite, strong) id distance;
 @property (nonatomic, readwrite, strong) id otherValue;
 
 @end
 
 @implementation KWBeWithinMatcher
-
-#pragma mark - Initializing
-
-
-#pragma mark - Properties
-
-@synthesize distance;
-@synthesize otherValue;
 
 #pragma mark - Getting Matcher Strings
 
@@ -83,9 +73,8 @@
                                       [KWFormatter formatObject:self.subject]];
 }
 
-- (NSString *)description
-{
-  return [NSString stringWithFormat:@"be within %@ of %@", self.distance, self.otherValue];
+- (NSString *)description {
+    return [NSString stringWithFormat:@"be within %@ of %@", self.distance, self.otherValue];
 }
 
 #pragma mark - Configuring Matchers

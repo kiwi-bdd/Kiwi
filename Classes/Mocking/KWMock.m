@@ -24,20 +24,9 @@ static NSString * const ChangeStubValueAfterTimesKey = @"ChangeStubValueAfterTim
 
 @interface KWMock()
 
-#pragma mark - Initializing
-
-- (id)initAsNullMock:(BOOL)nullMockFlag withName:(NSString *)aName forClass:(Class)aClass protocol:(Protocol *)aProtocol;
-
-#pragma mark - Properties
-
 @property (nonatomic, readonly) NSMutableArray *stubs;
 @property (nonatomic, readonly) NSMutableArray *expectedMessagePatterns;
 @property (nonatomic, readonly) NSMutableDictionary *messageSpies;
-
-
-#pragma mark - Handling Invocations
-
-- (BOOL)processReceivedInvocation:(NSInvocation *)invocation;
 
 @end
 
@@ -97,14 +86,15 @@ static NSString * const ChangeStubValueAfterTimesKey = @"ChangeStubValueAfterTim
 }
 
 - (id)initAsNullMock:(BOOL)nullMockFlag withName:(NSString *)aName forClass:(Class)aClass protocol:(Protocol *)aProtocol {
-    if ((self = [super init])) {
-        isNullMock = nullMockFlag;
-        mockName = [aName copy];
-        mockedClass = aClass;
-        mockedProtocol = aProtocol;
-        stubs = [[NSMutableArray alloc] init];
-        expectedMessagePatterns = [[NSMutableArray alloc] init];
-        messageSpies = [[NSMutableDictionary alloc] init];
+    self = [super init];
+    if (self) {
+        _isNullMock = nullMockFlag;
+        _mockName = [aName copy];
+        _mockedClass = aClass;
+        _mockedProtocol = aProtocol;
+        _stubs = [[NSMutableArray alloc] init];
+        _expectedMessagePatterns = [[NSMutableArray alloc] init];
+        _messageSpies = [[NSMutableDictionary alloc] init];
     }
 
     return self;
@@ -115,9 +105,10 @@ static NSString * const ChangeStubValueAfterTimesKey = @"ChangeStubValueAfterTim
 }
 
 - (id)initAsPartialMockWithName:(NSString *)aName forObject:(id)object {
-    if ((self = [self initAsNullMock:YES withName:aName forClass:[object class] protocol:nil])) {
-        isPartialMock = YES;
-        mockedObject = object;
+    self = [self initAsNullMock:YES withName:aName forClass:[object class] protocol:nil];
+    if (self) {
+        _isPartialMock = YES;
+        _mockedObject = object;
     }
     return self;
 }
@@ -161,19 +152,6 @@ static NSString * const ChangeStubValueAfterTimesKey = @"ChangeStubValueAfterTim
 + (id)partialMockForObject:(id)object {
     return [[self alloc] initAsPartialMockForObject:object];
 }
-
-
-#pragma mark - Properties
-
-@synthesize isPartialMock;
-@synthesize isNullMock;
-@synthesize mockName;
-@synthesize mockedObject;
-@synthesize mockedClass;
-@synthesize mockedProtocol;
-@synthesize stubs;
-@synthesize expectedMessagePatterns;
-@synthesize messageSpies;
 
 #pragma mark - Getting Transitive Closure For Mocked Protocols
 
@@ -445,7 +423,7 @@ static NSString * const ChangeStubValueAfterTimesKey = @"ChangeStubValueAfterTim
     if ([self processReceivedInvocation:anInvocation])
         return;
 
-    if (isPartialMock)
+    if (self.isPartialMock)
         [anInvocation invokeWithTarget:self.mockedObject];
 
     if (self.isNullMock)

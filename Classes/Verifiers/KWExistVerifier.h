@@ -22,6 +22,6 @@
 
 #pragma mark - Properties
 
-@property (nonatomic, readwrite, strong) id subject;
+@property (nonatomic, strong) id subject;
 
 @end

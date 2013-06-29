@@ -7,8 +7,7 @@
 #import "KWObjCUtilities.h"
 #import "KWStringUtilities.h"
 
-#pragma mark -
-#pragma mark Objective-C Type Utilities
+#pragma mark - Objective-C Type Utilities
 
 BOOL KWObjCTypeEqualToObjCType(const char *firstObjCType, const char *secondObjCType) {
     return strcmp(firstObjCType, secondObjCType) == 0;

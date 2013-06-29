@@ -21,17 +21,18 @@
 static id sharedMatchers = nil;
 
 + (void)initialize {
-  if (self == [KWMatchers class]) {
-    sharedMatchers = [[self alloc] init];
-  }
+    if (self == [KWMatchers class]) {
+        sharedMatchers = [[self alloc] init];
+    }
 }
 
 + (id)matchers {
-  return sharedMatchers;
+    return sharedMatchers;
 }
 
 - (id)init {
-    if ((self = [super init])) {
+    self = [super init];
+    if (self) {
         userDefinedMatchers = [[NSMutableDictionary alloc] init];
     }
     return self;

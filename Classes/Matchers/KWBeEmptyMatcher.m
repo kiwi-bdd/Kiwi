@@ -17,10 +17,6 @@
 
 @implementation KWBeEmptyMatcher
 
-#pragma mark - Properties
-
-@synthesize count;
-
 #pragma mark - Getting Matcher Strings
 
 + (NSArray *)matcherStrings {
@@ -60,9 +56,8 @@
     return @"expected subject not to be empty";
 }
 
-- (NSString *)description
-{
-  return @"be empty";
+- (NSString *)description {
+    return @"be empty";
 }
 
 #pragma mark - Configuring Matchers

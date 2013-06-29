@@ -11,20 +11,12 @@
 
 #pragma mark - Properties
 
-@property (nonatomic, readwrite, strong) id lowerEndpoint;
-@property (nonatomic, readwrite, strong) id upperEndpoint;
+@property (nonatomic, strong) id lowerEndpoint;
+@property (nonatomic, strong) id upperEndpoint;
 
 @end
 
 @implementation KWBeBetweenMatcher
-
-#pragma mark - Initializing
-
-
-#pragma mark - Properties
-
-@synthesize lowerEndpoint;
-@synthesize upperEndpoint;
 
 #pragma mark - Getting Matcher Strings
 
@@ -53,9 +45,8 @@
                                       [KWFormatter formatObject:self.subject]];
 }
 
-- (NSString *)description
-{
-  return [NSString stringWithFormat:@"be between %@ and %@", self.lowerEndpoint, self.upperEndpoint];
+- (NSString *)description {
+    return [NSString stringWithFormat:@"be between %@ and %@", self.lowerEndpoint, self.upperEndpoint];
 }
 
 #pragma mark - Configuring Matchers

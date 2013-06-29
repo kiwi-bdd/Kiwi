@@ -1,18 +1,19 @@
 #import "KWCaptureSpy.h"
+
 #import "KWObjCUtilities.h"
+#import "KWValue.h"
 #import "NSInvocation+KiwiAdditions.h"
 #import "NSMethodSignature+KiwiAdditions.h"
-#import "KWValue.h"
 
-@interface KWCaptureSpy() {
-    id _argument;
-}
-@property (nonatomic) BOOL argumentCaptured;
-@property (nonatomic) NSUInteger argumentIndex;
+@interface KWCaptureSpy()
+
+@property (nonatomic, assign) BOOL argumentCaptured;
+@property (nonatomic, assign) NSUInteger argumentIndex;
+@property (nonatomic, strong) id argument;
+
 @end
 
 @implementation KWCaptureSpy
-@dynamic argument;
 
 - (id)initWithArgumentIndex:(NSUInteger)index {
     if ((self = [super init])) {
@@ -37,9 +38,9 @@
             id argument = nil;
             [anInvocation getMessageArgument:&argument atIndex:_argumentIndex];
             if (KWObjCTypeIsBlock(objCType)) {
-                _argument = [argument copy];
+                self.argument = [argument copy];
             } else {
-                _argument = argument;
+                self.argument = argument;
             }
         } else {
             NSData *data = [anInvocation messageArgumentDataAtIndex:_argumentIndex];

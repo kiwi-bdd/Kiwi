@@ -32,18 +32,13 @@ static NSString * const StubValueKey = @"StubValueKey";
 #pragma mark - Initializing
 
 - (id)initWithSubject:(id)anObject {
-  if ((self = [super initWithSubject:anObject])) {
-    self.willEvaluateMultipleTimes = NO;
-  }
-
-  return self;
+    self = [super initWithSubject:anObject];
+    if (self) {
+        _willEvaluateMultipleTimes = NO;
+    }
+    
+    return self;
 }
-
-
-#pragma mark - Properties
-
-@synthesize messageTracker;
-@synthesize willEvaluateMultipleTimes;
 
 #pragma mark - Getting Matcher Strings
 

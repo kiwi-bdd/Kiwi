@@ -15,8 +15,8 @@
 
 - (id)initWithCallSite:(KWCallSite *)aCallSite namespacePrefix:(NSString *)aNamespacePrefix {
     if ((self = [super init])) {
-        callSite = aCallSite;
-        namespacePrefix = [aNamespacePrefix copy];
+        _callSite = aCallSite;
+        _namespacePrefix = [aNamespacePrefix copy];
     }
 
     return self;
@@ -25,15 +25,6 @@
 + (id)registerMatchersNodeWithCallSite:(KWCallSite *)aCallSite namespacePrefix:(NSString *)aNamespacePrefix {
     return [[self alloc] initWithCallSite:aCallSite namespacePrefix:aNamespacePrefix];
 }
-
-
-#pragma mark - Getting Call Sites
-
-@synthesize callSite;
-
-#pragma mark - Getting Namespace Prefixes
-
-@synthesize namespacePrefix;
 
 #pragma mark - Accepting Visitors
 

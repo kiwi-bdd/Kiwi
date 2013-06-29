@@ -9,17 +9,11 @@
 
 @interface KWConformToProtocolMatcher()
 
-#pragma mark - Properties
-
 @property (nonatomic, assign) Protocol *protocol;
 
 @end
 
 @implementation KWConformToProtocolMatcher
-
-#pragma mark - Properties
-
-@synthesize protocol;
 
 #pragma mark - Getting Matcher Strings
 
@@ -40,9 +34,8 @@
                                       NSStringFromProtocol(self.protocol)];
 }
 
-- (NSString *)description
-{
-  return [NSString stringWithFormat:@"conform to %@ protocol", NSStringFromProtocol(self.protocol)];
+- (NSString *)description {
+    return [NSString stringWithFormat:@"conform to %@ protocol", NSStringFromProtocol(self.protocol)];
 }
 
 #pragma mark - Configuring Matchers

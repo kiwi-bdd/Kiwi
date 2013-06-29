@@ -22,10 +22,10 @@
 
 #pragma mark - Getting Call Sites
 
-@property (nonatomic, weak, readonly) KWCallSite *callSite;
+@property (nonatomic, readonly) KWCallSite *callSite;
 
 #pragma mark - Getting Descriptions
 
-@property (nonatomic, copy, readonly) NSString *description;
+@property (nonatomic, readonly) NSString *description;
 
 @end

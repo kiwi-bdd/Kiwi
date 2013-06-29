@@ -18,24 +18,14 @@ static NSString * const CountKey = @"CountKey";
 
 #pragma mark - Properties
 
-@property (nonatomic, readwrite) KWCountType countType;
-@property (nonatomic, readwrite) NSUInteger count;
-@property (nonatomic, readwrite, strong) NSInvocation *invocation;
-@property (nonatomic, readwrite) NSUInteger actualCount;
+@property (nonatomic, assign) KWCountType countType;
+@property (nonatomic, assign) NSUInteger count;
+@property (nonatomic, strong) NSInvocation *invocation;
+@property (nonatomic, assign) NSUInteger actualCount;
 
 @end
 
 @implementation KWHaveMatcher
-
-#pragma mark - Initializing
-
-
-#pragma mark - Properties
-
-@synthesize countType;
-@synthesize count;
-@synthesize invocation;
-@synthesize actualCount;
 
 #pragma mark - Getting Matcher Strings
 
@@ -148,9 +138,8 @@ static NSString * const CountKey = @"CountKey";
 
 #pragma mark - Description
 
-- (NSString *)description
-{
-  return [NSString stringWithFormat:@"%@ %u %@", [self verbPhrase], (unsigned)self.count, [self itemPhrase]];
+- (NSString *)description {
+    return [NSString stringWithFormat:@"%@ %u %@", [self verbPhrase], (unsigned)self.count, [self itemPhrase]];
 }
 
 #pragma mark - Configuring Matchers

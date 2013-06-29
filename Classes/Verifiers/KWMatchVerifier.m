@@ -30,8 +30,6 @@
 
 @implementation KWMatchVerifier
 
-@synthesize matcher;
-
 #pragma mark - Initializing
 
 - (id)initForShouldWithCallSite:(KWCallSite *)aCallSite matcherFactory:(KWMatcherFactory *)aMatcherFactory reporter:(id<KWReporting>)aReporter {
@@ -43,11 +41,12 @@
 }
 
 - (id)initWithExpectationType:(KWExpectationType)anExpectationType callSite:(KWCallSite *)aCallSite matcherFactory:(KWMatcherFactory *)aMatcherFactory reporter:(id<KWReporting>)aReporter {
-    if ((self = [super init])) {
-        expectationType = anExpectationType;
-        callSite = aCallSite;
-        matcherFactory = aMatcherFactory;
-        reporter = aReporter;
+    self = [super init];
+    if (self) {
+        _expectationType = anExpectationType;
+        _callSite = aCallSite;
+        _matcherFactory = aMatcherFactory;
+        _reporter = aReporter;
         _example = (KWExample *)aReporter;
     }
 
@@ -59,29 +58,19 @@
 }
 
 
-- (NSString *)descriptionForAnonymousItNode
-{
-  NSString *typeString = @"";
-
-  switch (self.expectationType) {
-    case KWExpectationTypeShould:
-      typeString = @"should";
-      break;
-    case KWExpectationTypeShouldNot:
-      typeString = @"should not";
-  }
-  id<KWMatching> actualMatcher = (self.endOfExampleMatcher == nil) ? self.matcher : self.endOfExampleMatcher;
-  return [NSString stringWithFormat:@"%@ %@", typeString, actualMatcher];
+- (NSString *)descriptionForAnonymousItNode {
+    NSString *typeString = @"";
+    
+    switch (self.expectationType) {
+        case KWExpectationTypeShould:
+            typeString = @"should";
+            break;
+        case KWExpectationTypeShouldNot:
+            typeString = @"should not";
+    }
+    id<KWMatching> actualMatcher = (self.endOfExampleMatcher == nil) ? self.matcher : self.endOfExampleMatcher;
+    return [NSString stringWithFormat:@"%@ %@", typeString, actualMatcher];
 }
-
-#pragma mark - Properties
-
-@synthesize expectationType;
-@synthesize callSite;
-@synthesize matcherFactory;
-@synthesize reporter;
-@synthesize subject;
-@synthesize endOfExampleMatcher;
 
 #pragma mark - Verifying
 

@@ -19,26 +19,21 @@
 #import "KWRegisterMatchersNode.h"
 #import "KWSymbolicator.h"
 
-@interface KWExampleGroupBuilder() {
-    NSMutableSet *suites;
-}
+@interface KWExampleGroupBuilder()
 
 #pragma mark - Building Example Groups
 
 @property (nonatomic, strong, readwrite) KWExampleSuite *exampleSuite;
 @property (nonatomic, readonly) NSMutableArray *contextNodeStack;
 
+@property (nonatomic, strong) NSMutableSet *suites;
+
 @property (nonatomic, assign) BOOL focusedContextNode;
 @property (nonatomic, assign) BOOL focusedItNode;
 
 @end
 
-
 @implementation KWExampleGroupBuilder
-
-@synthesize exampleSuite;
-@synthesize currentExample;
-@synthesize focusedCallSite;
 
 
 #pragma mark - Initializing
@@ -46,8 +41,8 @@
 
 - (id)init {
     if ((self = [super init])) {
-        contextNodeStack = [[NSMutableArray alloc] init];
-        suites = [[NSMutableSet alloc] init];
+        _contextNodeStack = [[NSMutableArray alloc] init];
+        _suites = [[NSMutableSet alloc] init];
         [self focusWithURI:[[[NSProcessInfo processInfo] environment] objectForKey:@"KW_SPEC"]];
     }
     return self;
@@ -64,8 +59,6 @@
     return sharedExampleGroupBuilder;
 }
 
-#pragma mark - Building Example Groups
-
 #pragma mark - Focus
 
 - (void)focusWithURI:(NSString *)nodeUrl {
@@ -76,7 +69,7 @@
 }
 
 - (void)setFocusedCallSite:(KWCallSite *)aFocusedCallSite {
-    focusedCallSite = aFocusedCallSite;
+    _focusedCallSite = aFocusedCallSite;
     self.focusedItNode = NO;
     self.focusedContextNode = NO;
 }
@@ -91,8 +84,6 @@
 
 #pragma mark - Building Example Groups
 
-@synthesize contextNodeStack;
-
 - (BOOL)isBuildingExampleGroup {
     return [self.contextNodeStack count] > 0;
 }
@@ -103,7 +94,7 @@
 
     self.exampleSuite = [[KWExampleSuite alloc] initWithRootNode:rootNode];
     
-    [suites addObject:self.exampleSuite];
+    [self.suites addObject:self.exampleSuite];
 
     [self.contextNodeStack addObject:rootNode];
     buildingBlock();

@@ -13,11 +13,9 @@
 
 @interface KWExistVerifier()
 
-#pragma mark - Properties
-
-@property (nonatomic, assign, readonly) KWExpectationType expectationType;
-@property (nonatomic, weak, readonly) KWCallSite *callSite;
-@property (nonatomic, weak, readonly) id<KWReporting> reporter;
+@property (nonatomic, readonly) KWExpectationType expectationType;
+@property (nonatomic, readonly) KWCallSite *callSite;
+@property (nonatomic, readonly) id<KWReporting> reporter;
 
 @end
 
@@ -26,10 +24,11 @@
 #pragma mark - Initializing
 
 - (id)initWithExpectationType:(KWExpectationType)anExpectationType callSite:(KWCallSite *)aCallSite reporter:(id<KWReporting>)aReporter {
-    if ((self = [super init])) {
-        expectationType = anExpectationType;
-        callSite = aCallSite;
-        reporter = aReporter;
+    self = [super init];
+    if (self) {
+        _expectationType = anExpectationType;
+        _callSite = aCallSite;
+        _reporter = aReporter;
     }
 
     return self;
@@ -40,20 +39,12 @@
 }
 
 
-- (NSString *)descriptionForAnonymousItNode
-{
-  if (self.expectationType == KWExpectationTypeShould) {
-    return @"should exist";
-  }
-  return @"should not exist";
+- (NSString *)descriptionForAnonymousItNode {
+    if (self.expectationType == KWExpectationTypeShould) {
+        return @"should exist";
+    }
+    return @"should not exist";
 }
-
-#pragma mark - Properties
-
-@synthesize expectationType;
-@synthesize callSite;
-@synthesize reporter;
-@synthesize subject;
 
 #pragma mark - Ending Examples
 

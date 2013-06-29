@@ -8,9 +8,10 @@
 
 #import "KWFutureObject.h"
 
-@interface KWFutureObject() {
-    KWFutureObjectBlock block;
-}
+@interface KWFutureObject()
+
+@property (nonatomic, strong) KWFutureObjectBlock block;
+
 @end
 
 @implementation KWFutureObject
@@ -28,14 +29,14 @@
 - (id)initWithBlock:(KWFutureObjectBlock)aBlock;
 {
   if ((self = [super init])) {
-    block = [aBlock copy];
+    _block = [aBlock copy];
   }
   return self;
 }
 
 - (id)object;
 {
-  return block();
+  return self.block();
 }
 
 

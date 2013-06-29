@@ -15,26 +15,27 @@
 @implementation KWStringPrefixMatcher
 
 + (id)matcherWithPrefix:(NSString *)aPrefix {
-  return [[self alloc] initWithPrefix:aPrefix];
+    return [[self alloc] initWithPrefix:aPrefix];
 }
 
 - (id)initWithPrefix:(NSString *)aPrefix {
-  if ((self = [super init])) {
-    _prefix = [aPrefix copy];
-  }
-  return self;
+    self = [super init];
+    if (self) {
+        _prefix = [aPrefix copy];
+    }
+    return self;
 }
 
 
 - (BOOL)matches:(id)item {
-  if (![item respondsToSelector:@selector(hasPrefix:)])
-    return NO;
-
-  return [item hasPrefix:self.prefix];
+    if (![item respondsToSelector:@selector(hasPrefix:)])
+        return NO;
+    
+    return [item hasPrefix:self.prefix];
 }
 
 - (NSString *)description {
-  return [NSString stringWithFormat:@"a string with prefix '%@'", self.prefix];
+    return [NSString stringWithFormat:@"a string with prefix '%@'", self.prefix];
 }
 
 @end

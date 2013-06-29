@@ -9,9 +9,8 @@
 #import <Foundation/Foundation.h>
 #import "KWMatcher.h"
 
-@interface KWBeNilMatcher : KWMatcher {
+@interface KWBeNilMatcher : KWMatcher
 
-}
 - (void)beNil;
 
 - (void)beNil:(BOOL)matcherHasSubject;

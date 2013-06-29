@@ -8,17 +8,11 @@
 
 @interface KWBeTrueMatcher()
 
-#pragma mark - Properties
-
 @property (nonatomic, readwrite) BOOL expectedValue;
 
 @end
 
 @implementation KWBeTrueMatcher
-
-#pragma mark - Properties
-
-@synthesize expectedValue;
 
 #pragma mark - Getting Matcher Strings
 
@@ -39,15 +33,14 @@
 
 - (NSString *)failureMessageForShould {
     return [NSString stringWithFormat:@"expected subject to be %@",
-                                       expectedValue ? @"true" : @"false"];
+                                       self.expectedValue ? @"true" : @"false"];
 }
 
-- (NSString *)description
-{
-  if (self.expectedValue == YES) {
-    return @"be true";
-  }
-  return @"be false";
+- (NSString *)description {
+    if (self.expectedValue == YES) {
+        return @"be true";
+    }
+    return @"be false";
 }
 
 #pragma mark - Configuring Matchers

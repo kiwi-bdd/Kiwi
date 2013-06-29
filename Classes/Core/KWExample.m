@@ -27,15 +27,14 @@
 #import "KWCallSite.h"
 #import "KWSymbolicator.h"
 
-@interface KWExample () {
-    id<KWExampleNode> exampleNode;
-    BOOL passed;
-}
+@interface KWExample ()
 
 @property (nonatomic, readonly) NSMutableArray *verifiers;
 @property (nonatomic, readonly) KWMatcherFactory *matcherFactory;
 @property (nonatomic, weak) id<KWExampleDelegate> delegate;
 @property (nonatomic, assign) BOOL didNotFinish;
+@property (nonatomic, strong) id<KWExampleNode> exampleNode;
+@property (nonatomic, assign) BOOL passed;
 
 - (void)reportResultForExampleNodeWithLabel:(NSString *)label;
 
@@ -43,21 +42,14 @@
 
 @implementation KWExample
 
-@synthesize matcherFactory;
-@synthesize verifiers;
-@synthesize delegate = _delegate;
-@synthesize suite;
-@synthesize lastInContexts;
-@synthesize didNotFinish;
-
 - (id)initWithExampleNode:(id<KWExampleNode>)node
 {
   if ((self = [super init])) {
-    exampleNode = node;
-    matcherFactory = [[KWMatcherFactory alloc] init];
-    verifiers = [[NSMutableArray alloc] init];
-    lastInContexts = [[NSMutableArray alloc] init];
-    passed = YES;
+    _exampleNode = node;
+    _matcherFactory = [[KWMatcherFactory alloc] init];
+    _verifiers = [[NSMutableArray alloc] init];
+    _lastInContexts = [[NSMutableArray alloc] init];
+    _passed = YES;
   }
   return self;
 }
@@ -65,7 +57,7 @@
 
 - (BOOL)isLastInContext:(KWContextNode *)context
 {
-  for (KWContextNode *contextWhereItLast in lastInContexts) {
+  for (KWContextNode *contextWhereItLast in self.lastInContexts) {
     if (context == contextWhereItLast) {
       return YES;
     }
@@ -75,7 +67,7 @@
 
 - (NSString *)description
 {
-  return [NSString stringWithFormat:@"<KWExample: %@>", exampleNode.description];
+  return [NSString stringWithFormat:@"<KWExample: %@>", self.exampleNode.description];
 }
 
 #pragma mark - Adding Verifiers
@@ -118,7 +110,7 @@
   self.delegate = delegate;
   [self.matcherFactory registerMatcherClassesWithNamespacePrefix:@"KW"];
   [[KWExampleGroupBuilder sharedExampleGroupBuilder] setCurrentExample:self];
-  [exampleNode acceptExampleNodeVisitor:self]; 
+  [self.exampleNode acceptExampleNodeVisitor:self];
 }
 
 #pragma mark - Reporting failure
@@ -126,7 +118,7 @@
 - (NSString *)descriptionForExampleContext {
   NSMutableArray *parts = [NSMutableArray array];
 
-  for (KWContextNode *context in [[exampleNode contextStack] reverseObjectEnumerator]) {
+  for (KWContextNode *context in [[self.exampleNode contextStack] reverseObjectEnumerator]) {
     if ([context description] != nil) {
       [parts addObject:[[context description] stringByAppendingString:@","]];
     }
@@ -137,7 +129,7 @@
 
 - (KWFailure *)outputReadyFailureWithFailure:(KWFailure *)aFailure {
   NSString *annotatedFailureMessage = [NSString stringWithFormat:@"'%@ %@' [FAILED], %@",
-                                       [self descriptionForExampleContext], [exampleNode description],
+                                       [self descriptionForExampleContext], [self.exampleNode description],
                                        aFailure.message];
   
 #if TARGET_IPHONE_SIMULATOR
@@ -153,13 +145,13 @@
 
 - (void)reportFailure:(KWFailure *)failure
 {
-  passed = NO;
+  self.passed = NO;
   [self.delegate example:self didFailWithFailure:[self outputReadyFailureWithFailure:failure]];
 }
 
 - (void)reportResultForExampleNodeWithLabel:(NSString *)label
 {
-  NSLog(@"+ '%@ %@' [%@]", [self descriptionForExampleContext], [exampleNode description], label);
+  NSLog(@"+ '%@ %@' [%@]", [self descriptionForExampleContext], [self.exampleNode description], label);
 }
 
 #pragma mark - Full description with context
@@ -176,8 +168,8 @@
 - (NSString *)descriptionWithContext {
     NSString *descriptionWithContext = [NSString stringWithFormat:@"%@ %@", 
                                         [self descriptionForExampleContext], 
-                                        [exampleNode description] ? [exampleNode description] : @""];
-    BOOL isPending = [exampleNode isKindOfClass:[KWPendingNode class]];
+                                        [self.exampleNode description] ? [self.exampleNode description] : @""];
+    BOOL isPending = [self.exampleNode isKindOfClass:[KWPendingNode class]];
     return isPending ? [descriptionWithContext stringByAppendingString:[self pendingNotFinished]] : descriptionWithContext;
 }
 
@@ -216,7 +208,7 @@
 }
 
 - (void)visitItNode:(KWItNode *)aNode {
-  if (aNode.block == nil || aNode != exampleNode)
+  if (aNode.block == nil || aNode != self.exampleNode)
     return;
   
   aNode.example = self;
@@ -244,7 +236,7 @@
       [self reportFailure:failure];
     }
     
-    if (passed) {
+    if (self.passed) {
       [self reportResultForExampleNodeWithLabel:@"PASSED"];
     }
     
@@ -254,7 +246,7 @@
 }
 
 - (void)visitPendingNode:(KWPendingNode *)aNode {
-  if (aNode != exampleNode)
+  if (aNode != self.exampleNode)
     return;
 
   [self reportResultForExampleNodeWithLabel:@"PENDING"];

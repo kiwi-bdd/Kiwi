@@ -13,7 +13,8 @@
 #pragma mark - Initializing
 
 - (id)initWithSubject:(id)anObject {
-    if ((self = [super init])) {
+    self = [super init];
+    if (self) {
         _subject = anObject;
     }
 

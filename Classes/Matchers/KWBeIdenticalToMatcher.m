@@ -17,13 +17,6 @@
 
 @implementation KWBeIdenticalToMatcher
 
-#pragma mark - Initializing
-
-
-#pragma mark - Properties
-
-@synthesize otherSubject;
-
 #pragma mark - Getting Matcher Strings
 
 + (NSArray *)matcherStrings {
@@ -52,9 +45,8 @@
                                       self.otherSubject];
 }
 
-- (NSString *)description
-{
-  return [NSString stringWithFormat:@"be identical to %@", self.otherSubject];
+- (NSString *)description {
+    return [NSString stringWithFormat:@"be identical to %@", self.otherSubject];
 }
 
 #pragma mark - Configuring Matchers
