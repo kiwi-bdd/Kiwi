@@ -492,7 +492,7 @@
 		C10F0370170C7C2D0031FE64 /* KWBeSubclassOfClassMatcherTest.m in Sources */ = {isa = PBXBuildFile; fileRef = C10F036D170C7C190031FE64 /* KWBeSubclassOfClassMatcherTest.m */; };
 		C533F7D317462CAA000CAB02 /* KWSymbolicator.h in Headers */ = {isa = PBXBuildFile; fileRef = C533F7D117462CAA000CAB02 /* KWSymbolicator.h */; };
 		C533F7D417462CAA000CAB02 /* KWSymbolicator.h in Headers */ = {isa = PBXBuildFile; fileRef = C533F7D117462CAA000CAB02 /* KWSymbolicator.h */; };
-		C533F7D517462CAA000CAB02 /* KWSymbolicator.m in Sources */ = {isa = PBXBuildFile; fileRef = C533F7D217462CAA000CAB02 /* KWSymbolicator.m */; };
+		C533F7D517462CAA000CAB02 /* KWSymbolicator.m in Sources */ = {isa = PBXBuildFile; fileRef = C533F7D217462CAA000CAB02 /* KWSymbolicator.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		C533F7D617462CAA000CAB02 /* KWSymbolicator.m in Sources */ = {isa = PBXBuildFile; fileRef = C533F7D217462CAA000CAB02 /* KWSymbolicator.m */; };
 		C533F7D917462DC8000CAB02 /* SenTestSuite+KiwiAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = C533F7D717462DC8000CAB02 /* SenTestSuite+KiwiAdditions.h */; };
 		C533F7DA17462DC8000CAB02 /* SenTestSuite+KiwiAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = C533F7D717462DC8000CAB02 /* SenTestSuite+KiwiAdditions.h */; };
