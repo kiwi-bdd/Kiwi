@@ -14,7 +14,7 @@
 
 - (id)initWithCallSite:(KWCallSite *)aCallSite message:(NSString *)aMessage {
     if ((self = [super init])) {
-        callSite = [aCallSite retain];
+        callSite = aCallSite;
         message = [aMessage copy];
     }
 
@@ -24,26 +24,21 @@
 - (id)initWithCallSite:(KWCallSite *)aCallSite format:(NSString *)format, ... {
     va_list argumentList;
     va_start(argumentList, format);
-    NSString *aMessage = [[[NSString alloc] initWithFormat:format arguments:argumentList] autorelease];
+    NSString *aMessage = [[NSString alloc] initWithFormat:format arguments:argumentList];
     return [self initWithCallSite:aCallSite message:aMessage];
 }
 
 + (id)failureWithCallSite:(KWCallSite *)aCallSite message:(NSString *)aMessage {
-    return [[[self alloc] initWithCallSite:aCallSite message:aMessage] autorelease];
+    return [[self alloc] initWithCallSite:aCallSite message:aMessage];
 }
 
 + (id)failureWithCallSite:(KWCallSite *)aCallSite format:(NSString *)format, ... {
     va_list argumentList;
     va_start(argumentList, format);
-    NSString *message = [[[NSString alloc] initWithFormat:format arguments:argumentList] autorelease];
+    NSString *message = [[NSString alloc] initWithFormat:format arguments:argumentList];
     return [self failureWithCallSite:aCallSite message:message];
 }
 
-- (void)dealloc {
-    [callSite release];
-    [message release];
-    [super dealloc];
-}
 
 #pragma mark - Properties
 

@@ -43,12 +43,6 @@
     return self;
 }
 
-- (void)dealloc {
-    [matcherFactory release];
-    [verifiers release];
-    [failures release];
-    [super dealloc];
-}
 
 #pragma mark - Properties
 
@@ -133,7 +127,7 @@
 + (NSArray *)testInvocations {
     // Examples are methods returning void with no parameters in the receiver
     // that begin with "it" followed by an uppercase word.
-    NSMutableArray *exampleInvocations = [[[NSMutableArray alloc] init] autorelease];
+    NSMutableArray *exampleInvocations = [[NSMutableArray alloc] init];
     unsigned int methodCount = 0;
     Method *methods = class_copyMethodList([self class], &methodCount);
 
@@ -163,20 +157,20 @@
 
 // Called by the SenTestingKit test suite when it is time to run the test.
 - (void)invokeTest {
-    NSAutoreleasePool *subPool = [[NSAutoreleasePool alloc] init];
-    [self setUpExampleEnvironment];
+    @autoreleasepool {
+        [self setUpExampleEnvironment];
 
-    @try {
-        [super invokeTest];
+        @try {
+            [super invokeTest];
 
-        for (id<KWVerifying> verifier in self.verifiers)
-            [verifier exampleWillEnd];
-    } @catch (NSException *exception) {
-        [self failWithException:exception];
+            for (id<KWVerifying> verifier in self.verifiers)
+                [verifier exampleWillEnd];
+        } @catch (NSException *exception) {
+            [self failWithException:exception];
+        }
+
+        [self tearDownExampleEnvironment];
     }
-
-    [self tearDownExampleEnvironment];
-    [subPool release];
 }
 
 @end

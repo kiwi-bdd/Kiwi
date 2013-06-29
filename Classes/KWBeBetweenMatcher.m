@@ -11,8 +11,8 @@
 
 #pragma mark - Properties
 
-@property (nonatomic, readwrite, retain) id lowerEndpoint;
-@property (nonatomic, readwrite, retain) id upperEndpoint;
+@property (nonatomic, readwrite, strong) id lowerEndpoint;
+@property (nonatomic, readwrite, strong) id upperEndpoint;
 
 @end
 
@@ -20,11 +20,6 @@
 
 #pragma mark - Initializing
 
-- (void)dealloc {
-    [lowerEndpoint release];
-    [upperEndpoint release];
-    [super dealloc];
-}
 
 #pragma mark - Properties
 

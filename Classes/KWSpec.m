@@ -20,7 +20,7 @@
 
 #pragma mark - Properties
 
-@property (nonatomic, retain) KWExample *example;
+@property (nonatomic, strong) KWExample *example;
 
 @end
 
@@ -28,11 +28,6 @@
 
 @synthesize example;
 
-- (void)dealloc 
-{
-    [example release];
-    [super dealloc];
-}
 
 /* Methods are only implemented by sub-classes */
 
@@ -98,17 +93,17 @@
 {
     self.example = [[self invocation] kw_example];
 
-    NSAutoreleasePool *subPool = [[NSAutoreleasePool alloc] init];
+    @autoreleasepool {
 
-    @try {
-        [self.example runWithDelegate:self];
-    } @catch (NSException *exception) {
-        [self failWithException:exception];
+        @try {
+            [self.example runWithDelegate:self];
+        } @catch (NSException *exception) {
+            [self failWithException:exception];
+        }
+        
+        [[self invocation] kw_setExample:nil];
+    
     }
-    
-    [[self invocation] kw_setExample:nil];
-    
-    [subPool release];
 }
 
 #pragma mark - KWExampleGroupDelegate methods

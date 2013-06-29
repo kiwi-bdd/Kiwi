@@ -33,7 +33,7 @@
     class_addMethod(c, newSEL, method_getImplementation(origMethod), method_getTypeEncoding(origMethod)) ;
 
     IMP focusedSuite = imp_implementationWithBlock(^(id _self, Class aClass){
-        return ([[KWExampleGroupBuilder sharedExampleGroupBuilder] isFocused] && ![_self testSuiteClassHasFocus:aClass]) ? nil : (void *)[_self performSelector:@selector(__testSuiteForTestCaseClass:) withObject:aClass];
+        return ([[KWExampleGroupBuilder sharedExampleGroupBuilder] isFocused] && ![_self testSuiteClassHasFocus:aClass]) ? nil : (__bridge void *)[_self performSelector:@selector(__testSuiteForTestCaseClass:) withObject:aClass];
     });
     method_setImplementation(origMethod, focusedSuite);
 }

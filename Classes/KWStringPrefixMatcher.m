@@ -15,7 +15,7 @@
 @implementation KWStringPrefixMatcher
 
 + (id)matcherWithPrefix:(NSString *)aPrefix {
-  return [[[self alloc] initWithPrefix:aPrefix] autorelease];
+  return [[self alloc] initWithPrefix:aPrefix];
 }
 
 - (id)initWithPrefix:(NSString *)aPrefix {
@@ -25,10 +25,6 @@
   return self;
 }
 
-- (void)dealloc {
-  [_prefix release];
-  [super dealloc];
-}
 
 - (BOOL)matches:(id)item {
   if (![item respondsToSelector:@selector(hasPrefix:)])

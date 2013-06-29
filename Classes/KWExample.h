@@ -21,9 +21,9 @@
 
 @interface KWExample : NSObject <KWExampleNodeVisitor, KWReporting>
 
-@property (nonatomic, retain, readonly) NSMutableArray *lastInContexts;
-@property (nonatomic, assign) KWExampleSuite *suite;
-@property (nonatomic, assign) id<KWVerifying> unassignedVerifier;
+@property (nonatomic, strong, readonly) NSMutableArray *lastInContexts;
+@property (nonatomic, weak) KWExampleSuite *suite;
+@property (nonatomic, strong) id<KWVerifying> unassignedVerifier;
 
 
 - (id)initWithExampleNode:(id<KWExampleNode>)node;
@@ -59,26 +59,26 @@
 
 #pragma mark - Building Example Groups
 
-void describe(NSString *aDescription, KWVoidBlock aBlock);
-void context(NSString *aDescription, KWVoidBlock aBlock);
+void describe(NSString *aDescription, void (^block)(void));
+void context(NSString *aDescription, void (^block)(void));
 void registerMatchers(NSString *aNamespacePrefix);
-void beforeAll(KWVoidBlock aBlock);
-void afterAll(KWVoidBlock aBlock);
-void beforeEach(KWVoidBlock aBlock);
-void afterEach(KWVoidBlock aBlock);
-void it(NSString *aDescription, KWVoidBlock aBlock);
-void specify(KWVoidBlock aBlock);
-void pending_(NSString *aDescription, KWVoidBlock ignoredBlock);
+void beforeAll(void (^block)(void));
+void afterAll(void (^block)(void));
+void beforeEach(void (^block)(void));
+void afterEach(void (^block)(void));
+void it(NSString *aDescription, void (^block)(void));
+void specify(void (^block)(void));
+void pending_(NSString *aDescription, void (^block)(void));
 
-void describeWithCallSite(KWCallSite *aCallSite, NSString *aDescription, KWVoidBlock aBlock);
-void contextWithCallSite(KWCallSite *aCallSite, NSString *aDescription, KWVoidBlock aBlock);
+void describeWithCallSite(KWCallSite *aCallSite, NSString *aDescription, void (^block)(void));
+void contextWithCallSite(KWCallSite *aCallSite, NSString *aDescription, void (^block)(void));
 void registerMatchersWithCallSite(KWCallSite *aCallSite, NSString *aNamespacePrefix);
-void beforeAllWithCallSite(KWCallSite *aCallSite, KWVoidBlock aBlock);
-void afterAllWithCallSite(KWCallSite *aCallSite, KWVoidBlock aBlock);
-void beforeEachWithCallSite(KWCallSite *aCallSite, KWVoidBlock aBlock);
-void afterEachWithCallSite(KWCallSite *aCallSite, KWVoidBlock aBlock);
-void itWithCallSite(KWCallSite *aCallSite, NSString *aDescription, KWVoidBlock aBlock);
-void pendingWithCallSite(KWCallSite *aCallSite, NSString *aDescription, KWVoidBlock ignoredBlock);
+void beforeAllWithCallSite(KWCallSite *aCallSite, void (^block)(void));
+void afterAllWithCallSite(KWCallSite *aCallSite, void (^block)(void));
+void beforeEachWithCallSite(KWCallSite *aCallSite, void (^block)(void));
+void afterEachWithCallSite(KWCallSite *aCallSite, void (^block)(void));
+void itWithCallSite(KWCallSite *aCallSite, NSString *aDescription, void (^block)(void));
+void pendingWithCallSite(KWCallSite *aCallSite, NSString *aDescription, void (^block)(void));
 
 #define PRAGMA(x) _Pragma (#x)
 #define PENDING(x) PRAGMA(message ( "Pending: " #x ))

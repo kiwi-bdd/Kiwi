@@ -30,7 +30,7 @@
 
 + (NSString *)formattedCollection:(id<NSFastEnumeration>)collection {
 
-    NSMutableString *description = [[[NSMutableString alloc] initWithString:@"("] autorelease];
+    NSMutableString *description = [[NSMutableString alloc] initWithString:@"("];
     NSUInteger index = 0;
     
     for (id object in collection) {

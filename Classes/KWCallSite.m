@@ -20,13 +20,9 @@
 }
 
 + (id)callSiteWithFilename:(NSString *)aFilename lineNumber:(NSUInteger)aLineNumber {
-    return [[[self alloc] initWithFilename:aFilename lineNumber:aLineNumber] autorelease];
+    return [[self alloc] initWithFilename:aFilename lineNumber:aLineNumber];
 }
 
-- (void)dealloc {
-    [filename release];
-    [super dealloc];
-}
 
 #pragma mark - Accessing Call Site Properties
 

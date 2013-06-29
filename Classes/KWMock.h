@@ -45,12 +45,12 @@
 
 #pragma mark - Properties
 
-@property (nonatomic, readonly) BOOL isNullMock;
-@property (nonatomic, readonly) BOOL isPartialMock;
-@property (nonatomic, readonly) NSString *mockName;
-@property (nonatomic, readonly) Class mockedClass;
-@property (nonatomic, readonly) id mockedObject;
-@property (nonatomic, readonly) Protocol *mockedProtocol;
+@property (nonatomic, assign, readonly) BOOL isNullMock;
+@property (nonatomic, assign, readonly) BOOL isPartialMock;
+@property (nonatomic, copy, readonly) NSString *mockName;
+@property (nonatomic, assign, readonly) Class mockedClass;
+@property (nonatomic, strong, readonly) id mockedObject;
+@property (nonatomic, assign, readonly) Protocol *mockedProtocol;
 
 #pragma mark - Stubbing Methods
 

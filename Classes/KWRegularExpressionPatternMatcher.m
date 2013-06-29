@@ -20,10 +20,6 @@
 
 @implementation KWRegularExpressionPatternMatcher
 
-- (void)dealloc {
-    self.pattern = nil;
-    [super dealloc];
-}
 
 #pragma mark - Getting Matcher Strings
 

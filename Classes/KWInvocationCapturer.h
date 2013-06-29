@@ -20,8 +20,8 @@
 
 #pragma mark - Properties
 
-@property (nonatomic, readonly) id delegate;
-@property (nonatomic, readonly) NSDictionary *userInfo;
+@property (nonatomic, weak, readonly) id delegate;
+@property (nonatomic, strong, readonly) NSDictionary *userInfo;
 
 @end
 

@@ -12,7 +12,7 @@
 
 @interface KWItNode ()
 
-@property (nonatomic, retain, readwrite) KWContextNode *context;
+@property (nonatomic, weak) KWContextNode *context;
 
 @end
 
@@ -26,11 +26,11 @@
 + (id)itNodeWithCallSite:(KWCallSite *)aCallSite 
              description:(NSString *)aDescription 
                  context:(KWContextNode *)context 
-                   block:(KWVoidBlock)aBlock;
+                   block:(void (^)(void))block;
 {
-    KWItNode *itNode = [[self alloc] initWithCallSite:aCallSite description:aDescription block:aBlock];
+    KWItNode *itNode = [[self alloc] initWithCallSite:aCallSite description:aDescription block:block];
     itNode.context = context;
-    return [itNode autorelease];
+    return itNode;
 }
 
 #pragma mark - Accepting Visitors

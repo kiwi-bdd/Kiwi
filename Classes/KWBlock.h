@@ -6,14 +6,12 @@
 
 #import "KiwiConfiguration.h"
 
-typedef void (^KWVoidBlock)(void);
-
 @interface KWBlock : NSObject
 
 #pragma mark - Initializing
-- (id)initWithBlock:(KWVoidBlock)aBlock;
+- (id)initWithBlock:(void (^)(void))block;
 
-+ (id)blockWithBlock:(KWVoidBlock)aBlock;
++ (id)blockWithBlock:(void (^)(void))block;
 
 #pragma mark - Calling Blocks
 
@@ -23,5 +21,5 @@ typedef void (^KWVoidBlock)(void);
 
 #pragma mark - Creating Blocks
 
-KWBlock *theBlock(KWVoidBlock aBlock);
-KWBlock *lambda(KWVoidBlock aBlock);
+KWBlock *theBlock(void (^block)(void));
+KWBlock *lambda(void (^block)(void));
