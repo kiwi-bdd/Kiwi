@@ -14,7 +14,8 @@
 #pragma mark Initializing
 
 - (id)initWithCallsign:(NSString *)aCallsign {
-    if ((self = [super init])) {
+    self = [super init];
+    if (self) {
         callsign = [aCallsign copy];
     }
 

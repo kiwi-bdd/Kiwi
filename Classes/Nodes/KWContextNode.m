@@ -26,9 +26,9 @@
 
 #pragma mark - Initializing
 
-- (id)initWithCallSite:(KWCallSite *)aCallSite parentContext:(KWContextNode *)node description:(NSString *)aDescription
-{
-    if ((self = [super init])) {
+- (id)initWithCallSite:(KWCallSite *)aCallSite parentContext:(KWContextNode *)node description:(NSString *)aDescription {
+    self = [super init];
+    if (self) {
         _parentContext = node;
         _callSite = aCallSite;
         _description = [aDescription copy];

@@ -22,7 +22,8 @@
 #pragma mark Initializing
 
 - (id)init {
-    if ((self = [super init])) {
+    self = [super init];
+    if (self) {
         failures = [[NSMutableArray alloc] init];
     }
 

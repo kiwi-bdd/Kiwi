@@ -20,14 +20,13 @@
 @synthesize matcherBlock;
 @synthesize description;
 
-+ (id)matcherWithSubject:(id)aSubject block:(KWUserDefinedMatcherBlock)aBlock
-{
++ (id)matcherWithSubject:(id)aSubject block:(KWUserDefinedMatcherBlock)aBlock {
     return [[self alloc] initWithSubject:aSubject block:aBlock];
 }
 
-- (id)initWithSubject:(id)aSubject block:(KWUserDefinedMatcherBlock)aBlock
-{
-    if ((self = [super initWithSubject:aSubject])) {
+- (id)initWithSubject:(id)aSubject block:(KWUserDefinedMatcherBlock)aBlock {
+    self = [super initWithSubject:aSubject];
+    if (self) {
         matcherBlock = [aBlock copy];
         self.description = @"match user defined matcher";
     }
@@ -35,8 +34,7 @@
 }
 
 
-- (BOOL)evaluate
-{
+- (BOOL)evaluate {
     BOOL result;
 
     if (self.invocation.methodSignature.numberOfArguments == 3) {
@@ -51,21 +49,18 @@
 
 #pragma mark - Message forwarding
 
-- (BOOL)respondsToSelector:(SEL)aSelector
-{
+- (BOOL)respondsToSelector:(SEL)aSelector {
     if (aSelector == self.selector) {
         return YES;
     }
     return [super respondsToSelector:aSelector];
 }
 
-- (void)forwardInvocation:(NSInvocation *)anInvocation
-{
+- (void)forwardInvocation:(NSInvocation *)anInvocation {
     _invocation = anInvocation;
 }
 
-- (NSMethodSignature *)methodSignatureForSelector:(SEL)aSelector
-{
+- (NSMethodSignature *)methodSignatureForSelector:(SEL)aSelector {
     if (aSelector == self.selector) {
         NSString *selectorString = NSStringFromSelector(self.selector);
 
@@ -92,8 +87,7 @@
 
 @implementation KWUserDefinedMatcherBuilder
 
-+ (id)builder
-{
++ (id)builder {
     return [self builderForSelector:nil];
 }
 
@@ -102,7 +96,8 @@
 }
 
 - (id)initWithSelector:(SEL)aSelector {
-    if ((self = [super init])) {
+    self = [super init];
+    if (self) {
         matcher = [[KWUserDefinedMatcher alloc] init];
         matcher.selector = aSelector;
     }
@@ -128,8 +123,7 @@
     failureMessageForShouldNotBlock = [block copy];
 }
 
-- (void)description:(NSString *)aDescription
-{
+- (void)description:(NSString *)aDescription {
     description = [aDescription copy];
 }
 

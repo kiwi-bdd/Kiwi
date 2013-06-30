@@ -40,7 +40,8 @@
 
 
 - (id)init {
-    if ((self = [super init])) {
+    self = [super init];
+    if (self) {
         _contextNodeStack = [[NSMutableArray alloc] init];
         _suites = [[NSMutableSet alloc] init];
         [self focusWithURI:[[[NSProcessInfo processInfo] environment] objectForKey:@"KW_SPEC"]];

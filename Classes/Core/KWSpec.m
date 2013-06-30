@@ -67,10 +67,10 @@
    should be run on instances of test cases. */
 
 + (NSArray *)testInvocations {
-    SEL selector = @selector(buildExampleGroups);
+    SEL buildExampleGroups = @selector(buildExampleGroups);
 
     // Only return invocation if the receiver is a concrete spec that has overridden -buildExampleGroups.
-    if ([self methodForSelector:selector] == [KWSpec methodForSelector:selector])
+    if ([self methodForSelector:buildExampleGroups] == [KWSpec methodForSelector:buildExampleGroups])
         return nil;
 
     KWExampleSuite *exampleSuite = [[KWExampleGroupBuilder sharedExampleGroupBuilder] buildExampleGroups:^{

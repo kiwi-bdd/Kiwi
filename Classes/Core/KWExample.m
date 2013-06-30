@@ -42,21 +42,20 @@
 
 @implementation KWExample
 
-- (id)initWithExampleNode:(id<KWExampleNode>)node
-{
-  if ((self = [super init])) {
-    _exampleNode = node;
-    _matcherFactory = [[KWMatcherFactory alloc] init];
-    _verifiers = [[NSMutableArray alloc] init];
-    _lastInContexts = [[NSMutableArray alloc] init];
-    _passed = YES;
-  }
-  return self;
+- (id)initWithExampleNode:(id<KWExampleNode>)node {
+    self = [super init];
+    if (self) {
+        _exampleNode = node;
+        _matcherFactory = [[KWMatcherFactory alloc] init];
+        _verifiers = [[NSMutableArray alloc] init];
+        _lastInContexts = [[NSMutableArray alloc] init];
+        _passed = YES;
+    }
+    return self;
 }
 
 
-- (BOOL)isLastInContext:(KWContextNode *)context
-{
+- (BOOL)isLastInContext:(KWContextNode *)context {
   for (KWContextNode *contextWhereItLast in self.lastInContexts) {
     if (context == contextWhereItLast) {
       return YES;
@@ -65,8 +64,7 @@
   return NO;
 }
 
-- (NSString *)description
-{
+- (NSString *)description {
   return [NSString stringWithFormat:@"<KWExample: %@>", self.exampleNode.description];
 }
 
@@ -105,53 +103,50 @@
 
 #pragma mark - Running examples
 
-- (void)runWithDelegate:(id<KWExampleDelegate>)delegate;
-{
-  self.delegate = delegate;
-  [self.matcherFactory registerMatcherClassesWithNamespacePrefix:@"KW"];
-  [[KWExampleGroupBuilder sharedExampleGroupBuilder] setCurrentExample:self];
-  [self.exampleNode acceptExampleNodeVisitor:self];
+- (void)runWithDelegate:(id<KWExampleDelegate>)delegate; {
+    self.delegate = delegate;
+    [self.matcherFactory registerMatcherClassesWithNamespacePrefix:@"KW"];
+    [[KWExampleGroupBuilder sharedExampleGroupBuilder] setCurrentExample:self];
+    [self.exampleNode acceptExampleNodeVisitor:self];
 }
 
 #pragma mark - Reporting failure
 
 - (NSString *)descriptionForExampleContext {
-  NSMutableArray *parts = [NSMutableArray array];
-
-  for (KWContextNode *context in [[self.exampleNode contextStack] reverseObjectEnumerator]) {
-    if ([context description] != nil) {
-      [parts addObject:[[context description] stringByAppendingString:@","]];
+    NSMutableArray *parts = [NSMutableArray array];
+    
+    for (KWContextNode *context in [[self.exampleNode contextStack] reverseObjectEnumerator]) {
+        if ([context description] != nil) {
+            [parts addObject:[[context description] stringByAppendingString:@","]];
+        }
     }
-  }
-  
-  return [parts componentsJoinedByString:@" "];
+    
+    return [parts componentsJoinedByString:@" "];
 }
 
 - (KWFailure *)outputReadyFailureWithFailure:(KWFailure *)aFailure {
-  NSString *annotatedFailureMessage = [NSString stringWithFormat:@"'%@ %@' [FAILED], %@",
-                                       [self descriptionForExampleContext], [self.exampleNode description],
-                                       aFailure.message];
+    NSString *annotatedFailureMessage = [NSString stringWithFormat:@"'%@ %@' [FAILED], %@",
+                                         [self descriptionForExampleContext], [self.exampleNode description],
+                                         aFailure.message];
   
 #if TARGET_IPHONE_SIMULATOR
-  // \uff1a is the unicode for a fill width colon, as opposed to a regular
-  // colon character (':'). This escape is performed so that Xcode doesn't
-  // truncate the error output in the build results window, which is running
-  // build time specs.
-  annotatedFailureMessage = [annotatedFailureMessage stringByReplacingOccurrencesOfString:@":" withString:@"\uff1a"];
+    // \uff1a is the unicode for a fill width colon, as opposed to a regular
+    // colon character (':'). This escape is performed so that Xcode doesn't
+    // truncate the error output in the build results window, which is running
+    // build time specs.
+    annotatedFailureMessage = [annotatedFailureMessage stringByReplacingOccurrencesOfString:@":" withString:@"\uff1a"];
 #endif // #if TARGET_IPHONE_SIMULATOR
   
-  return [KWFailure failureWithCallSite:aFailure.callSite message:annotatedFailureMessage];
+    return [KWFailure failureWithCallSite:aFailure.callSite message:annotatedFailureMessage];
 }
 
-- (void)reportFailure:(KWFailure *)failure
-{
-  self.passed = NO;
-  [self.delegate example:self didFailWithFailure:[self outputReadyFailureWithFailure:failure]];
+- (void)reportFailure:(KWFailure *)failure {
+    self.passed = NO;
+    [self.delegate example:self didFailWithFailure:[self outputReadyFailureWithFailure:failure]];
 }
 
-- (void)reportResultForExampleNodeWithLabel:(NSString *)label
-{
-  NSLog(@"+ '%@ %@' [%@]", [self descriptionForExampleContext], [self.exampleNode description], label);
+- (void)reportResultForExampleNodeWithLabel:(NSString *)label {
+    NSLog(@"+ '%@ %@' [%@]", [self descriptionForExampleContext], [self.exampleNode description], label);
 }
 
 #pragma mark - Full description with context
@@ -176,86 +171,85 @@
 #pragma mark - Visiting Nodes
 
 - (void)visitRegisterMatchersNode:(KWRegisterMatchersNode *)aNode {
-  [self.matcherFactory registerMatcherClassesWithNamespacePrefix:aNode.namespacePrefix];
+    [self.matcherFactory registerMatcherClassesWithNamespacePrefix:aNode.namespacePrefix];
 }
 
 - (void)visitBeforeAllNode:(KWBeforeAllNode *)aNode {
-  if (aNode.block == nil)
-    return;
-  
-  aNode.block();
+    if (aNode.block == nil)
+        return;
+    
+    aNode.block();
 }
 
 - (void)visitAfterAllNode:(KWAfterAllNode *)aNode {
-  if (aNode.block == nil)
-    return;
-  
-  aNode.block();
+    if (aNode.block == nil)
+        return;
+    
+    aNode.block();
 }
 
 - (void)visitBeforeEachNode:(KWBeforeEachNode *)aNode {
-  if (aNode.block == nil)
-    return;
-  
-  aNode.block();
+    if (aNode.block == nil)
+        return;
+    
+    aNode.block();
 }
 
 - (void)visitAfterEachNode:(KWAfterEachNode *)aNode {
-  if (aNode.block == nil)
-    return;
-  
-  aNode.block();
+    if (aNode.block == nil)
+        return;
+    
+    aNode.block();
 }
 
 - (void)visitItNode:(KWItNode *)aNode {
-  if (aNode.block == nil || aNode != self.exampleNode)
-    return;
-  
-  aNode.example = self;
-  
-  [aNode.context performExample:self withBlock:^{
-  
-    @try {      
-      
-      aNode.block();
-      
+    if (aNode.block == nil || aNode != self.exampleNode)
+        return;
+    
+    aNode.example = self;
+    
+    [aNode.context performExample:self withBlock:^{
+        
+        @try {
+            
+            aNode.block();
+            
 #if KW_TARGET_HAS_INVOCATION_EXCEPTION_BUG
-      NSException *invocationException = KWGetAndClearExceptionFromAcrossInvocationBoundary();
-      [invocationException raise];
+            NSException *invocationException = KWGetAndClearExceptionFromAcrossInvocationBoundary();
+            [invocationException raise];
 #endif // #if KW_TARGET_HAS_INVOCATION_EXCEPTION_BUG
-      
-      // Finish verifying and clear
-      for (id<KWVerifying> verifier in self.verifiers) {
-        [verifier exampleWillEnd];
-      }
-      
-    } @catch (NSException *exception) {
-      KWFailure *failure = [KWFailure failureWithCallSite:aNode.callSite format:@"%@ \"%@\" raised",
-                            [exception name],
-                            [exception reason]];
-      [self reportFailure:failure];
-    }
-    
-    if (self.passed) {
-      [self reportResultForExampleNodeWithLabel:@"PASSED"];
-    }
-    
-    // Always clear stubs and spies at the end of it blocks
-      KWClearStubsAndSpies();
-  }];
+            
+            // Finish verifying and clear
+            for (id<KWVerifying> verifier in self.verifiers) {
+                [verifier exampleWillEnd];
+            }
+            
+        } @catch (NSException *exception) {
+            KWFailure *failure = [KWFailure failureWithCallSite:aNode.callSite format:@"%@ \"%@\" raised",
+                                  [exception name],
+                                  [exception reason]];
+            [self reportFailure:failure];
+        }
+        
+        if (self.passed) {
+            [self reportResultForExampleNodeWithLabel:@"PASSED"];
+        }
+        
+        // Always clear stubs and spies at the end of it blocks
+        KWClearStubsAndSpies();
+    }];
 }
 
 - (void)visitPendingNode:(KWPendingNode *)aNode {
-  if (aNode != self.exampleNode)
-    return;
-
-  [self reportResultForExampleNodeWithLabel:@"PENDING"];
+    if (aNode != self.exampleNode)
+        return;
+    
+    [self reportResultForExampleNodeWithLabel:@"PENDING"];
 }
 
-- (NSString *)generateDescriptionForAnonymousItNode
-{
-  // anonymous specify blocks should only have one verifier, but use the first in any case
-  return [(self.verifiers)[0] descriptionForAnonymousItNode];
+- (NSString *)generateDescriptionForAnonymousItNode {
+    // anonymous specify blocks should only have one verifier, but use the first in any case
+    return [(self.verifiers)[0] descriptionForAnonymousItNode];
 }
 
 @end

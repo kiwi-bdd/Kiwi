@@ -39,7 +39,7 @@
 
 - (void)addExample:(KWExample *)example {
     [self.examples addObject:example];
-    [example setSuite:self];
+    example.suite = self;
 }
 
 - (void)markLastExampleAsLastInContext:(KWContextNode *)context

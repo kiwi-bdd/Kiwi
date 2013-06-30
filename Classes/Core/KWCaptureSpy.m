@@ -16,7 +16,8 @@
 @implementation KWCaptureSpy
 
 - (id)initWithArgumentIndex:(NSUInteger)index {
-    if ((self = [super init])) {
+    self = [super init];
+    if (self) {
         _argumentIndex = index;
         _argumentCaptured = NO;
     }

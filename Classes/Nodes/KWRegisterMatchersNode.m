@@ -14,7 +14,8 @@
 #pragma mark - Initializing
 
 - (id)initWithCallSite:(KWCallSite *)aCallSite namespacePrefix:(NSString *)aNamespacePrefix {
-    if ((self = [super init])) {
+    self = [super init];
+    if (self) {
         _callSite = aCallSite;
         _namespacePrefix = [aNamespacePrefix copy];
     }

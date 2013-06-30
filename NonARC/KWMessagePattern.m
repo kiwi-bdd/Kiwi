@@ -23,7 +23,8 @@
 }
 
 - (id)initWithSelector:(SEL)aSelector argumentFilters:(NSArray *)anArray {
-    if ((self = [super init])) {
+    self = [super init];
+    if (self) {
         selector = aSelector;
 
         if ([anArray count] > 0)
