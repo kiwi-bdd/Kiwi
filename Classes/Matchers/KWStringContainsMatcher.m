@@ -14,31 +14,29 @@
 
 @implementation KWStringContainsMatcher
 
-+ (id)matcherWithSubstring:(NSString *)aSubstring;
-{
++ (id)matcherWithSubstring:(NSString *)aSubstring {
   return [[self alloc] initWithSubstring:aSubstring];
 }
 
-- (id)initWithSubstring:(NSString *)aSubstring;
-{
-  if ((self = [super init])) {
-    _substring = [aSubstring copy];
-  }
-  return self;
+- (id)initWithSubstring:(NSString *)aSubstring {
+    self = [super init];
+    if (self) {
+        _substring = [aSubstring copy];
+    }
+    return self;
 }
 
 
-- (BOOL)matches:(id)item
-{
-  if (![item respondsToSelector:@selector(rangeOfString:)])
-    return NO;
-  
-  return [item rangeOfString:self.substring].location != NSNotFound;
+- (BOOL)matches:(id)item {
+    if (![item respondsToSelector:@selector(rangeOfString:)]) {
+        return NO;
+    }
+    
+    return [item rangeOfString:self.substring].location != NSNotFound;
 }
 
-- (NSString *)description
-{
-  return [NSString stringWithFormat:@"a string with substring '%@'", self.substring];
+- (NSString *)description {
+    return [NSString stringWithFormat:@"a string with substring '%@'", self.substring];
 }
 
 @end

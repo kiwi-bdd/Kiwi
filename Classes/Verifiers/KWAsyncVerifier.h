@@ -26,11 +26,10 @@
 @end
 
 
-@interface KWAsyncMatcherProbe : NSObject <KWProbe> {
-    BOOL matchResult;
-}
+@interface KWAsyncMatcherProbe : NSObject <KWProbe>
 
-@property (nonatomic, strong, readonly) id<KWMatching> matcher;
+@property (nonatomic, assign) BOOL matchResult;
+@property (nonatomic, readonly) id<KWMatching> matcher;
 
 - (id)initWithMatcher:(id<KWMatching>)aMatcher;
 

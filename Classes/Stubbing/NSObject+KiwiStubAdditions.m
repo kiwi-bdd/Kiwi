@@ -156,13 +156,11 @@ static NSString * const ChangeStubValueAfterTimesKey = @"ChangeStubValueAfterTim
     KWAssociateObjectStub(self, stub, YES);
 }
 
-+ (void)stubMessagePattern:(KWMessagePattern *)aMessagePattern andReturn:(id)aValue
-{
++ (void)stubMessagePattern:(KWMessagePattern *)aMessagePattern andReturn:(id)aValue {
     [self stubMessagePattern:aMessagePattern andReturn:aValue overrideExisting:YES];
 }
 
-+ (void)stubMessagePattern:(KWMessagePattern *)aMessagePattern andReturn:(id)aValue overrideExisting:(BOOL)override
-{
++ (void)stubMessagePattern:(KWMessagePattern *)aMessagePattern andReturn:(id)aValue overrideExisting:(BOOL)override {
     if ([self methodSignatureForSelector:aMessagePattern.selector] == nil) {
         [NSException raise:@"KWStubException" format:@"cannot stub -%@ because no such method exists",
          NSStringFromSelector(aMessagePattern.selector)];

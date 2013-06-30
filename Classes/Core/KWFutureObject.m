@@ -8,34 +8,32 @@
 
 #import "KWFutureObject.h"
 
-@interface KWFutureObject() {
-    KWFutureObjectBlock block;
-}
+@interface KWFutureObject()
+
+@property (nonatomic, strong) KWFutureObjectBlock block;
+
 @end
 
 @implementation KWFutureObject
 
-+ (id)objectWithObjectPointer:(id *)pointer;
-{
++ (id)objectWithObjectPointer:(id *)pointer {
   return [self futureObjectWithBlock:^{ return *pointer; }];
 }
 
-+ (id)futureObjectWithBlock:(KWFutureObjectBlock)block;
-{
++ (id)futureObjectWithBlock:(KWFutureObjectBlock)block {
   return [[self alloc] initWithBlock:block];
 }
 
-- (id)initWithBlock:(KWFutureObjectBlock)aBlock;
-{
-  if ((self = [super init])) {
-    block = [aBlock copy];
+- (id)initWithBlock:(KWFutureObjectBlock)aBlock {
+    self = [super init];
+    if (self) {
+        _block = [aBlock copy];
   }
   return self;
 }
 
-- (id)object;
-{
-  return block();
+- (id)object; {
+  return self.block();
 }
 
 

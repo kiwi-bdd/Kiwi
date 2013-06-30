@@ -13,9 +13,10 @@
 #pragma mark - Initializing
 
 - (id)initWithCallSite:(KWCallSite *)aCallSite message:(NSString *)aMessage {
-    if ((self = [super init])) {
-        callSite = aCallSite;
-        message = [aMessage copy];
+    self = [super init];
+    if (self) {
+        _callSite = aCallSite;
+        _message = [aMessage copy];
     }
 
     return self;
@@ -39,12 +40,6 @@
     return [self failureWithCallSite:aCallSite message:message];
 }
 
-
-#pragma mark - Properties
-
-@synthesize message;
-@synthesize callSite;
-
 #pragma mark - Getting Exception Representations
 
 - (NSException *)exceptionValue {
@@ -54,7 +49,7 @@
         userInfo = @{SenTestFilenameKey: self.callSite.filename,
                                                                             SenTestLineNumberKey: lineNumber};
     }
-    return [NSException exceptionWithName:@"KWFailureException" reason:message userInfo:userInfo];
+    return [NSException exceptionWithName:@"KWFailureException" reason:self.message userInfo:userInfo];
 }
 
 @end

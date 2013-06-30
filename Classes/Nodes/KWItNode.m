@@ -18,16 +18,12 @@
 
 @implementation KWItNode
 
-@synthesize context = _context;
-@synthesize example;
-
 #pragma mark - Initializing
 
 + (id)itNodeWithCallSite:(KWCallSite *)aCallSite 
              description:(NSString *)aDescription 
                  context:(KWContextNode *)context 
-                   block:(void (^)(void))block;
-{
+                   block:(void (^)(void))block {
     KWItNode *itNode = [[self alloc] initWithCallSite:aCallSite description:aDescription block:block];
     itNode.context = context;
     return itNode;
@@ -41,28 +37,26 @@
 
 #pragma mark - Runtime Description support
 
-- (NSString *)description
-{
-  NSString *description = [super description];
-  if (description == nil) {
-    description = [self.example generateDescriptionForAnonymousItNode];
-  }
-  return description;
+- (NSString *)description {
+    NSString *description = [super description];
+    if (description == nil) {
+        description = [self.example generateDescriptionForAnonymousItNode];
+    }
+    return description;
 }
 
 #pragma mark - Accessing the context stack
 
-- (NSArray *)contextStack
-{
-  NSMutableArray *contextStack = [NSMutableArray array];
-  
-  KWContextNode *currentContext = _context;
-  
-  while (currentContext) {
-    [contextStack addObject:currentContext];
-    currentContext = currentContext.parentContext;
-  }
-  return contextStack;
+- (NSArray *)contextStack {
+    NSMutableArray *contextStack = [NSMutableArray array];
+    
+    KWContextNode *currentContext = _context;
+    
+    while (currentContext) {
+        [contextStack addObject:currentContext];
+        currentContext = currentContext.parentContext;
+    }
+    return contextStack;
 }
 
 @end

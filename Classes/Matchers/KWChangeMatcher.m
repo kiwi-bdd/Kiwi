@@ -17,13 +17,6 @@
 
 @implementation KWChangeMatcher
 
-@synthesize countBlock = _countBlock;
-@synthesize anyChange = _anyChange;
-@synthesize expectedDifference = _expectedDifference;
-@synthesize expectedTotal = _expectedTotal;
-@synthesize actualTotal = _actualTotal;
-
-
 + (NSArray *)matcherStrings {
     return @[@"change:by:", @"change:"];
 }

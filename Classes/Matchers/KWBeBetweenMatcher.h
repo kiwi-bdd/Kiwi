@@ -7,11 +7,7 @@
 #import "KiwiConfiguration.h"
 #import "KWMatcher.h"
 
-@interface KWBeBetweenMatcher : KWMatcher {
-@private
-    id lowerEndpoint;
-    id upperEndpoint;
-}
+@interface KWBeBetweenMatcher : KWMatcher
 
 #pragma mark - Configuring Matchers
 

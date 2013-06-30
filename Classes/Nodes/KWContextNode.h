@@ -40,9 +40,9 @@
 @property (nonatomic, strong) KWAfterAllNode *afterAllNode;
 @property (nonatomic, strong) KWBeforeEachNode *beforeEachNode;
 @property (nonatomic, strong) KWAfterEachNode *afterEachNode;
-@property (nonatomic, strong, readonly) NSArray *nodes;
+@property (nonatomic, readonly) NSArray *nodes;
 
-@property (nonatomic, weak, readonly) KWContextNode *parentContext;
+@property (nonatomic, readonly) KWContextNode *parentContext;
 
 @property (nonatomic, assign) BOOL isFocused;
 

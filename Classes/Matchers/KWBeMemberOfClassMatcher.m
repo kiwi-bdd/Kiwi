@@ -9,17 +9,11 @@
 
 @interface KWBeMemberOfClassMatcher()
 
-#pragma mark - Properties
-
 @property (nonatomic, assign) Class targetClass;
 
 @end
 
 @implementation KWBeMemberOfClassMatcher
-
-#pragma mark - Properties
-
-@synthesize targetClass;
 
 #pragma mark - Getting Matcher Strings
 
@@ -41,9 +35,8 @@
                                       NSStringFromClass([self.subject class])];
 }
 
-- (NSString *)description
-{
-  return [NSString stringWithFormat:@"be member of %@",
+- (NSString *)description {
+    return [NSString stringWithFormat:@"be member of %@",
                                     NSStringFromClass(self.targetClass)];
 }
 

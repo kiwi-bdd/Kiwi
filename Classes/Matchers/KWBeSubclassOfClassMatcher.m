@@ -17,10 +17,6 @@
 
 @implementation KWBeSubclassOfClassMatcher
 
-#pragma mark - Properties
-
-@synthesize targetClass;
-
 #pragma mark - Getting Matcher Strings
 
 + (NSArray *)matcherStrings {
@@ -41,8 +37,7 @@
                                       NSStringFromClass([self.subject class])];
 }
 
-- (NSString *)description
-{
+- (NSString *)description {
     return [NSString stringWithFormat:@"be subclass of %@",
                                       NSStringFromClass(self.targetClass)];
 }

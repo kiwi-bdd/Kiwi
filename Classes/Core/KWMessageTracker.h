@@ -20,10 +20,10 @@
 
 #pragma mark - Properties
 
-@property (nonatomic, strong, readonly) id subject;
-@property (nonatomic, strong, readonly) KWMessagePattern *messagePattern;
-@property (nonatomic, assign, readonly) KWCountType countType;
-@property (nonatomic, assign, readonly) NSUInteger count;
+@property (nonatomic, readonly) id subject;
+@property (nonatomic, readonly) KWMessagePattern *messagePattern;
+@property (nonatomic, readonly) KWCountType countType;
+@property (nonatomic, readonly) NSUInteger count;
 
 #pragma mark - Stopping Tracking
 

@@ -12,14 +12,13 @@
 
 @implementation KWPendingNode
 
-@synthesize context = _context;
-
 #pragma mark - Initializing
 
 - (id)initWithCallSite:(KWCallSite *)aCallSite context:(KWContextNode *)context description:(NSString *)aDescription {
-    if ((self = [super init])) {
-        callSite = aCallSite;
-        description = [aDescription copy];
+    self = [super init];
+    if (self) {
+        _callSite = aCallSite;
+        _description = [aDescription copy];
         _context = context;
     }
 
@@ -30,22 +29,12 @@
     return [[self alloc] initWithCallSite:aCallSite context:context description:aDescription];
 }
 
-
-#pragma mark - Getting Call Sites
-
-@synthesize callSite;
-
-#pragma mark - Getting Descriptions
-
-@synthesize description;
-
 #pragma mark - Accepting Visitors
 
 - (void)acceptExampleNodeVisitor:(id<KWExampleNodeVisitor>)aVisitor {
     [aVisitor visitPendingNode:self];
 }
 
-#pragma mark -
 #pragma mark - Accessing the context stack
 
 - (NSArray *)contextStack

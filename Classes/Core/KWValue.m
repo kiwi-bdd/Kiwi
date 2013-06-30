@@ -21,7 +21,8 @@
 #pragma mark - Initializing
 
 - (id)initWithBytes:(const void *)bytes objCType:(const char *)anObjCType {
-    if ((self = [super init])) {
+    self = [super init];
+    if (self) {
         objCType = anObjCType;
         value = [[NSValue alloc] initWithBytes:bytes objCType:anObjCType];
     }

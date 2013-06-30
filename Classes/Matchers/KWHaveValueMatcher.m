@@ -13,49 +13,42 @@
 
 @interface KWHaveValueMatcher()
 
-#pragma mark - Properties
-
 @property (nonatomic, strong) NSString *expectedKey;
 @property (nonatomic, strong) NSString *expectedKeyPath;
 @property (nonatomic, strong) id expectedValue;
-
-- (id)subjectValue;
 
 @end
 
 @implementation KWHaveValueMatcher
 
-@synthesize expectedKey, expectedKeyPath, expectedValue;
-
-
 #pragma mark - Getting Matcher Strings
 
 + (NSArray *)matcherStrings {
-  return @[@"haveValue:forKey:",
-          @"haveValueForKey:",
-          @"haveValue:forKeyPath:",
-          @"haveValueForKeyPath:"];
+    return @[@"haveValue:forKey:",
+             @"haveValueForKey:",
+             @"haveValue:forKeyPath:",
+             @"haveValueForKeyPath:"];
 }
 
 #pragma mark - Matching
 
 - (BOOL)evaluate {
-  BOOL matched = NO;
-
-  @try {
-    id value = [self subjectValue];
-
-    if (value) {
-      matched = YES;
-
-      if (self.expectedValue) {
-        matched = [self.expectedValue isEqualOrMatches:value];
-      }
+    BOOL matched = NO;
+    
+    @try {
+        id value = [self subjectValue];
+        
+        if (value) {
+            matched = YES;
+            
+            if (self.expectedValue) {
+                matched = [self.expectedValue isEqualOrMatches:value];
+            }
+        }
     }
-  }
-  @catch (NSException * e) {} // catch KVO non-existent key errors
-
-  return matched;
+    @catch (NSException * e) {} // catch KVO non-existent key errors
+    
+    return matched;
 }
 
 - (NSString *)failureMessageForShould {
@@ -76,64 +69,58 @@
     }
 }
 
-- (id)subjectValue
-{
-  id value = nil;
-
-  if (self.expectedKey) {
-    value = [self.subject valueForKey:self.expectedKey];
-  } else
-  if (self.expectedKeyPath) {
-    value = [self.subject valueForKeyPath:self.expectedKeyPath];
-  }
-  return value;
+- (id)subjectValue {
+    id value = nil;
+    
+    if (self.expectedKey) {
+        value = [self.subject valueForKey:self.expectedKey];
+    } else
+        if (self.expectedKeyPath) {
+            value = [self.subject valueForKeyPath:self.expectedKeyPath];
+        }
+    return value;
 }
 
-- (NSString *)description
-{
-  NSString *keyDescription = nil;
-
-  if (self.expectedKey) {
-    keyDescription = [NSString stringWithFormat:@"key %@", [KWFormatter formatObject:self.expectedKey]];
-  }
-  else {
-    keyDescription = [NSString stringWithFormat:@"keypath %@", [KWFormatter formatObject:self.expectedKeyPath]];
-  }
-
-  NSString *valueDescription = nil;
-
-  if (self.expectedValue) {
-    valueDescription = [NSString stringWithFormat:@"value %@", [KWFormatter formatObject:self.expectedValue]];
-  }
-  else {
-    valueDescription = @"value";
-  }
-
-  return [NSString stringWithFormat:@"have %@ for %@", valueDescription, keyDescription];
+- (NSString *)description {
+    NSString *keyDescription = nil;
+    
+    if (self.expectedKey) {
+        keyDescription = [NSString stringWithFormat:@"key %@", [KWFormatter formatObject:self.expectedKey]];
+    }
+    else {
+        keyDescription = [NSString stringWithFormat:@"keypath %@", [KWFormatter formatObject:self.expectedKeyPath]];
+    }
+    
+    NSString *valueDescription = nil;
+    
+    if (self.expectedValue) {
+        valueDescription = [NSString stringWithFormat:@"value %@", [KWFormatter formatObject:self.expectedValue]];
+    }
+    else {
+        valueDescription = @"value";
+    }
+    
+    return [NSString stringWithFormat:@"have %@ for %@", valueDescription, keyDescription];
 }
 
 #pragma mark - Configuring Matchers
 
-- (void)haveValue:(id)value forKey:(NSString *)key;
-{
+- (void)haveValue:(id)value forKey:(NSString *)key {
     self.expectedKey = key;
     self.expectedValue = value;
 }
 
-- (void)haveValue:(id)value forKeyPath:(NSString *)key;
-{
+- (void)haveValue:(id)value forKeyPath:(NSString *)key {
     self.expectedKeyPath = key;
     self.expectedValue = value;
 }
 
-- (void)haveValueForKey:(NSString *)key;
-{
+- (void)haveValueForKey:(NSString *)key {
     self.expectedKey = key;
     self.expectedValue = nil;
 }
 
-- (void)haveValueForKeyPath:(NSString *)keyPath;
-{
+- (void)haveValueForKeyPath:(NSString *)keyPath {
     self.expectedKeyPath = keyPath;
     self.expectedValue = nil;
 }

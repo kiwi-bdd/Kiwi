@@ -11,20 +11,12 @@
 
 #pragma mark - Properties
 
-@property (nonatomic, readwrite) KWInequalityType inequalityType;
-@property (nonatomic, readwrite, strong) id otherValue;
+@property (nonatomic, assign) KWInequalityType inequalityType;
+@property (nonatomic, strong) id otherValue;
 
 @end
 
 @implementation KWInequalityMatcher
-
-#pragma mark - Initializing
-
-
-#pragma mark - Properties
-
-@synthesize inequalityType;
-@synthesize otherValue;
 
 #pragma mark - Getting Matcher Strings
 
@@ -81,8 +73,7 @@
                                       [KWFormatter formatObject:self.subject]];
 }
 
-- (NSString *)description
-{
+- (NSString *)description {
   return [NSString stringWithFormat:@"be %@ %@", [self comparisonPhrase], [KWFormatter formatObject:self.otherValue]];
 }
 

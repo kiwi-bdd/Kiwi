@@ -7,14 +7,12 @@
 #import "KiwiConfiguration.h"
 #import "KWMatcher.h"
 
-enum {
+typedef NS_ENUM(NSUInteger, KWInequalityType) {
     KWInequalityTypeLessThan,
     KWInequalityTypeLessThanOrEqualTo,
     KWInequalityTypeGreaterThan,
     KWInequalityTypeGreaterThanOrEqualTo
 };
-
-typedef NSUInteger KWInequalityType;
 
 @interface KWInequalityMatcher : KWMatcher
 

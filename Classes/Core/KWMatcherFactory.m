@@ -11,10 +11,10 @@
 #import "KWUserDefinedMatcher.h"
 #import "KWMatchers.h"
 
-@interface KWMatcherFactory() {
-    NSMutableDictionary *matcherClassChains;
-}
-- (Class)matcherClassForSelector:(SEL)aSelector subject:(id)anObject;
+@interface KWMatcherFactory()
+
+@property (nonatomic, strong) NSMutableDictionary *matcherClassChains;
+
 @end
 
 @implementation KWMatcherFactory
@@ -22,18 +22,14 @@
 #pragma mark - Initializing
 
 - (id)init {
-    if ((self = [super init])) {
-        matcherClassChains = [[NSMutableDictionary alloc] init];
-        registeredMatcherClasses = [[NSMutableArray alloc] init];
+    self = [super init];
+    if (self) {
+        _matcherClassChains = [[NSMutableDictionary alloc] init];
+        _registeredMatcherClasses = [[NSMutableArray alloc] init];
     }
 
     return self;
 }
-
-
-#pragma mark - Properties
-
-@synthesize registeredMatcherClasses;
 
 #pragma mark - Registering Matcher Classes
 
@@ -41,14 +37,14 @@
     if ([self.registeredMatcherClasses containsObject:aClass])
         return;
 
-    [(NSMutableArray *)registeredMatcherClasses addObject:aClass];
+    [(NSMutableArray *)self.registeredMatcherClasses addObject:aClass];
 
     for (NSString *verificationSelectorString in [aClass matcherStrings]) {
-        NSMutableArray *matcherClassChain = matcherClassChains[verificationSelectorString];
+        NSMutableArray *matcherClassChain = self.matcherClassChains[verificationSelectorString];
 
         if (matcherClassChain == nil) {
             matcherClassChain = [[NSMutableArray alloc] init];
-            matcherClassChains[verificationSelectorString] = matcherClassChain;
+            self.matcherClassChains[verificationSelectorString] = matcherClassChain;
         }
 
         [matcherClassChain removeObject:aClass];
@@ -104,7 +100,7 @@
 #pragma mark - Getting Method Signatures
 
 - (NSMethodSignature *)methodSignatureForMatcherSelector:(SEL)aSelector {
-    NSMutableArray *matcherClassChain = matcherClassChains[NSStringFromSelector(aSelector)];
+    NSMutableArray *matcherClassChain = self.matcherClassChains[NSStringFromSelector(aSelector)];
 
     if ([matcherClassChain count] == 0)
         return nil;
@@ -131,7 +127,7 @@
 #pragma mark - Private methods
 
 - (Class)matcherClassForSelector:(SEL)aSelector subject:(id)anObject {
-    NSArray *matcherClassChain = matcherClassChains[NSStringFromSelector(aSelector)];
+    NSArray *matcherClassChain = self.matcherClassChains[NSStringFromSelector(aSelector)];
 
     for (Class matcherClass in matcherClassChain) {
         if ([matcherClass canMatchSubject:anObject])
