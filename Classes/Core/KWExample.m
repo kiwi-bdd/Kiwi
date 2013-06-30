@@ -136,8 +136,10 @@
     // build time specs.
     annotatedFailureMessage = [annotatedFailureMessage stringByReplacingOccurrencesOfString:@":" withString:@"\uff1a"];
 #endif // #if TARGET_IPHONE_SIMULATOR
-  
-    return [KWFailure failureWithCallSite:aFailure.callSite message:annotatedFailureMessage];
+    
+    KWCallSite *callSiteWithFullFileName = [KWCallSite callSiteWithFilename:[[self.delegate class] file] lineNumber:aFailure.callSite.lineNumber];
+    
+    return [KWFailure failureWithCallSite:callSiteWithFullFileName message:annotatedFailureMessage];
 }
 
 - (void)reportFailure:(KWFailure *)failure {
@@ -257,12 +259,6 @@
 #pragma mark - Looking up CallSites
 
 KWCallSite *callSiteWithAddress(long address);
-KWCallSite *callSiteAtAddressIfNecessary(long address);
-
-KWCallSite *callSiteAtAddressIfNecessary(long address){
-    BOOL shouldLookup = [[KWExampleSuiteBuilder sharedExampleSuiteBuilder] isFocused] && ![[KWExampleSuiteBuilder sharedExampleSuiteBuilder] foundFocus];
-    return  shouldLookup ? callSiteWithAddress(address) : nil;
-}
 
 KWCallSite *callSiteWithAddress(long address){
     NSArray *args =@[@"-p", @(getpid()).stringValue, [NSString stringWithFormat:@"%lx", address]];
@@ -287,12 +283,12 @@ KWCallSite *callSiteWithAddress(long address){
 #pragma mark - Building Example Groups
 
 void describe(NSString *aDescription, void (^block)(void)) {
-    KWCallSite *callSite = callSiteAtAddressIfNecessary(kwCallerAddress());
+    KWCallSite *callSite = callSiteWithAddress(kwCallerAddress());
     describeWithCallSite(callSite, aDescription, block);
 }
 
 void context(NSString *aDescription, void (^block)(void)) {
-    KWCallSite *callSite = callSiteAtAddressIfNecessary(kwCallerAddress());
+    KWCallSite *callSite = callSiteWithAddress(kwCallerAddress());
     contextWithCallSite(callSite, aDescription, block);
 }
 
@@ -301,23 +297,27 @@ void registerMatchers(NSString *aNamespacePrefix) {
 }
 
 void beforeAll(void (^block)(void)) {
-    beforeAllWithCallSite(nil, block);
+    KWCallSite *callSite = callSiteWithAddress(kwCallerAddress());
+    beforeAllWithCallSite(callSite, block);
 }
 
 void afterAll(void (^block)(void)) {
-    afterAllWithCallSite(nil, block);
+    KWCallSite *callSite = callSiteWithAddress(kwCallerAddress());
+    afterAllWithCallSite(callSite, block);
 }
 
 void beforeEach(void (^block)(void)) {
-    beforeEachWithCallSite(nil, block);
+    KWCallSite *callSite = callSiteWithAddress(kwCallerAddress());
+    beforeEachWithCallSite(callSite, block);
 }
 
 void afterEach(void (^block)(void)) {
-    afterEachWithCallSite(nil, block);
+    KWCallSite *callSite = callSiteWithAddress(kwCallerAddress());
+    afterEachWithCallSite(callSite, block);
 }
 
 void it(NSString *aDescription, void (^block)(void)) {
-    KWCallSite *callSite = callSiteAtAddressIfNecessary(kwCallerAddress());
+    KWCallSite *callSite = callSiteWithAddress(kwCallerAddress());
     itWithCallSite(callSite, aDescription, block);
 }
 

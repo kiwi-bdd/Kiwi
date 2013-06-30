@@ -26,6 +26,10 @@
 
 #pragma mark - Identifying and Comparing
 
+- (NSString *)description {
+    return [NSString stringWithFormat:@"%@:%d", self.filename, self.lineNumber];
+}
+
 - (NSUInteger)hash {
     return [[NSString stringWithFormat:@"%@%u", self.filename, (unsigned)self.lineNumber] hash];
 }

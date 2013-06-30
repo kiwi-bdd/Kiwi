@@ -76,8 +76,7 @@
     [(NSMutableArray *)self.nodes addObject:aNode];
 }
 
-- (void)performExample:(KWExample *)example withBlock:(void (^)(void))exampleBlock
-{
+- (void)performExample:(KWExample *)example withBlock:(void (^)(void))exampleBlock {
     void (^innerExampleBlock)(void) = [exampleBlock copy];
     
     void (^outerExampleBlock)(void) = ^{
