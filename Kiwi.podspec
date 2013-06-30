@@ -9,6 +9,8 @@ Pod::Spec.new do |s|
   s.framework       = 'SenTestingKit'
   s.ios.xcconfig    = { 'FRAMEWORK_SEARCH_PATHS' => '$(inherited) "$(SDKROOT)/Developer/Library/Frameworks" "$(DEVELOPER_LIBRARY_DIR)/Frameworks"' }
   s.osx.xcconfig    = { 'FRAMEWORK_SEARCH_PATHS' => '$(inherited) "$(DEVELOPER_LIBRARY_DIR)/Frameworks"' }
+  s.ios.deployment_target = '5.0'
+  s.osx.deployment_target = '10.7'
   
   s.subspec 'ARC' do |arc|
       arc.source_files = 'Classes'
