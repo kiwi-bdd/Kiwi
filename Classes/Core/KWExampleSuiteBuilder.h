@@ -12,23 +12,22 @@
 @class KWExampleSuite;
 @class KWContextNode;
 
-@interface KWExampleGroupBuilder : NSObject
+@interface KWExampleSuiteBuilder : NSObject
 
 #pragma mark - Initializing
 
-+ (id)sharedExampleGroupBuilder;
++ (id)sharedExampleSuiteBuilder;
 
 #pragma mark - Building Example Groups
 
-@property (nonatomic, readonly) BOOL isBuildingExampleGroup;
-@property (nonatomic, strong, readonly) KWExampleSuite *exampleSuite;
+@property (nonatomic, readonly) BOOL isBuildingExampleSuite;
+@property (nonatomic, strong, readonly) KWExampleSuite *currentExampleSuite;
 @property (nonatomic, strong) KWExample *currentExample;
 @property (nonatomic, strong) KWCallSite *focusedCallSite;
 
 //spec file name:line number of callsite
 - (void)focusWithURI:(NSString *)nodeUrl;
-- (KWExampleSuite *)buildExampleGroups:(void (^)(void))buildingBlock;
-- (KWExample *)currentExample;
+- (KWExampleSuite *)buildExampleSuite:(void (^)(void))buildingBlock;
 
 - (void)pushContextNodeWithCallSite:(KWCallSite *)aCallSite description:(NSString *)aDescription;
 - (void)popContextNode;
@@ -39,7 +38,6 @@
 - (void)setAfterEachNodeWithCallSite:(KWCallSite *)aCallSite block:(void (^)(void))block;
 - (void)addItNodeWithCallSite:(KWCallSite *)aCallSite description:(NSString *)aDescription block:(void (^)(void))block;
 - (void)addPendingNodeWithCallSite:(KWCallSite *)aCallSite description:(NSString *)aDescription;
-
 
 - (BOOL)isFocused;
 - (BOOL)foundFocus;

@@ -8,7 +8,7 @@
 
 #import "KWBeNilMatcher.h"
 #import "KWExample.h"
-#import "KWExampleGroupBuilder.h"
+#import "KWExampleSuiteBuilder.h"
 #import "KWFormatter.h"
 #import "KWMatchVerifier.h"
 #import "KWVerifying.h"
@@ -52,7 +52,7 @@
 - (void)beNil:(BOOL)matcherHasSubject {}
 
 + (BOOL)verifyNilSubject {
-    KWExample *currentExample = [[KWExampleGroupBuilder sharedExampleGroupBuilder] currentExample];
+    KWExample *currentExample = [[KWExampleSuiteBuilder sharedExampleSuiteBuilder] currentExample];
     id<KWVerifying> verifier = currentExample.unassignedVerifier;
     if (verifier && ![verifier subject] && [verifier isKindOfClass:[KWMatchVerifier class]]) {
         KWMatchVerifier *matchVerifier = (KWMatchVerifier *)verifier;

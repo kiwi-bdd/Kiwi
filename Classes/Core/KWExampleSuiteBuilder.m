@@ -4,7 +4,7 @@
 // Copyright 2010 Allen Ding. All rights reserved.
 //
 
-#import "KWExampleGroupBuilder.h"
+#import "KWExampleSuiteBuilder.h"
 
 #import "KWAfterAllNode.h"
 #import "KWAfterEachNode.h"
@@ -19,11 +19,11 @@
 #import "KWRegisterMatchersNode.h"
 #import "KWSymbolicator.h"
 
-@interface KWExampleGroupBuilder()
+@interface KWExampleSuiteBuilder()
 
 #pragma mark - Building Example Groups
 
-@property (nonatomic, strong, readwrite) KWExampleSuite *exampleSuite;
+@property (nonatomic, strong) KWExampleSuite *currentExampleSuite;
 @property (nonatomic, readonly) NSMutableArray *contextNodeStack;
 
 @property (nonatomic, strong) NSMutableSet *suites;
@@ -33,7 +33,7 @@
 
 @end
 
-@implementation KWExampleGroupBuilder
+@implementation KWExampleSuiteBuilder
 
 
 #pragma mark - Initializing
@@ -50,14 +50,14 @@
 }
 
 
-+ (id)sharedExampleGroupBuilder {
-    static KWExampleGroupBuilder *sharedExampleGroupBuilder = nil;
++ (id)sharedExampleSuiteBuilder {
+    static KWExampleSuiteBuilder *sharedExampleSuiteBuilder = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        sharedExampleGroupBuilder = [self new];
+        sharedExampleSuiteBuilder = [self new];
     });
 
-    return sharedExampleGroupBuilder;
+    return sharedExampleSuiteBuilder;
 }
 
 #pragma mark - Focus
@@ -76,7 +76,7 @@
 }
 
 - (BOOL)isFocused {
-    return !!self.focusedCallSite;
+    return self.focusedCallSite != nil;
 }
 
 - (BOOL)foundFocus {
@@ -85,23 +85,23 @@
 
 #pragma mark - Building Example Groups
 
-- (BOOL)isBuildingExampleGroup {
+- (BOOL)isBuildingExampleSuite {
     return [self.contextNodeStack count] > 0;
 }
 
-- (KWExampleSuite *)buildExampleGroups:(void (^)(void))buildingBlock
+- (KWExampleSuite *)buildExampleSuite:(void (^)(void))buildingBlock
 {
     KWContextNode *rootNode = [KWContextNode contextNodeWithCallSite:nil parentContext:nil description:nil];
 
-    self.exampleSuite = [[KWExampleSuite alloc] initWithRootNode:rootNode];
+    self.currentExampleSuite = [[KWExampleSuite alloc] initWithRootNode:rootNode];
     
-    [self.suites addObject:self.exampleSuite];
+    [self.suites addObject:self.currentExampleSuite];
 
     [self.contextNodeStack addObject:rootNode];
     buildingBlock();
     [self.contextNodeStack removeAllObjects];
     
-    return self.exampleSuite;
+    return self.currentExampleSuite;
 }
 
 - (void)pushContextNodeWithCallSite:(KWCallSite *)aCallSite description:(NSString *)aDescription {
@@ -130,7 +130,7 @@
 - (void)popContextNode {
     KWContextNode *contextNode = [self.contextNodeStack lastObject];
     
-    [self.exampleSuite markLastExampleAsLastInContext:contextNode];
+    [self.currentExampleSuite markLastExampleAsLastInContext:contextNode];
     
     if ([self.contextNodeStack count] == 1)
         [NSException raise:@"KWExampleGroupBuilderException" format:@"there is no open context to pop"];
@@ -196,7 +196,7 @@
     [contextNode addItNode:itNode];
     
     KWExample *example = [[KWExample alloc] initWithExampleNode:itNode];
-    [self.exampleSuite addExample:example];
+    [self.currentExampleSuite addExample:example];
 }
 
 - (BOOL)shouldAddItNodeWithCallSite:(KWCallSite *)aCallSite toContextNode:(KWContextNode *)contextNode {
@@ -219,7 +219,7 @@
     KWPendingNode *pendingNode = [KWPendingNode pendingNodeWithCallSite:aCallSite context:contextNode description:aDescription];
     [contextNode addPendingNode:pendingNode];
     KWExample *example = [[KWExample alloc] initWithExampleNode:pendingNode];
-    [self.exampleSuite addExample:example];
+    [self.currentExampleSuite addExample:example];
 }
 
 @end

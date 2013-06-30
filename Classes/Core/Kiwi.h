@@ -41,7 +41,7 @@ extern "C" {
 #import "KWDeviceInfo.h"
 #import "KWEqualMatcher.h"
 #import "KWExample.h"
-#import "KWExampleGroupBuilder.h"
+#import "KWExampleSuiteBuilder.h"
 #import "KWExampleNode.h"
 #import "KWExampleNodeVisitor.h"
 #import "KWExistVerifier.h"

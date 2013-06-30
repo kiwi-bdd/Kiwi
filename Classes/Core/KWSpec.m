@@ -7,7 +7,7 @@
 #import "KWSpec.h"
 #import <objc/runtime.h>
 #import "KWExample.h"
-#import "KWExampleGroupBuilder.h"
+#import "KWExampleSuiteBuilder.h"
 #import "KWIntercept.h"
 #import "KWObjCUtilities.h"
 #import "KWStringUtilities.h"
@@ -18,7 +18,7 @@
 
 @interface KWSpec()
 
-@property (nonatomic, strong) KWExample *example;
+@property (nonatomic, strong) KWExample *currentExample;
 
 @end
 
@@ -35,7 +35,7 @@
  */
 
 - (NSString *)description {
-    KWExample *currentExample = self.example ? self.example : [[self invocation] kw_example];
+    KWExample *currentExample = self.currentExample ? self.currentExample : [[self invocation] kw_example];
     NSString *name = [currentExample descriptionWithContext];
     
     // CamelCase the string
@@ -73,7 +73,7 @@
     if ([self methodForSelector:buildExampleGroups] == [KWSpec methodForSelector:buildExampleGroups])
         return nil;
 
-    KWExampleSuite *exampleSuite = [[KWExampleGroupBuilder sharedExampleGroupBuilder] buildExampleGroups:^{
+    KWExampleSuite *exampleSuite = [[KWExampleSuiteBuilder sharedExampleSuiteBuilder] buildExampleSuite:^{
         [self buildExampleGroups];
     }];
   
@@ -83,12 +83,12 @@
 #pragma mark - Running Specs
 
 - (void)invokeTest {
-    self.example = [[self invocation] kw_example];
+    self.currentExample = [[self invocation] kw_example];
 
     @autoreleasepool {
 
         @try {
-            [self.example runWithDelegate:self];
+            [self.currentExample runWithDelegate:self];
         } @catch (NSException *exception) {
             [self failWithException:exception];
         }
@@ -107,19 +107,19 @@
 #pragma mark - Verification proxies
 
 + (id)addVerifier:(id<KWVerifying>)aVerifier {
-    return [[[KWExampleGroupBuilder sharedExampleGroupBuilder] currentExample] addVerifier:aVerifier];
+    return [[[KWExampleSuiteBuilder sharedExampleSuiteBuilder] currentExample] addVerifier:aVerifier];
 }
 
 + (id)addExistVerifierWithExpectationType:(KWExpectationType)anExpectationType callSite:(KWCallSite *)aCallSite {
-    return [[[KWExampleGroupBuilder sharedExampleGroupBuilder] currentExample] addExistVerifierWithExpectationType:anExpectationType callSite:aCallSite];
+    return [[[KWExampleSuiteBuilder sharedExampleSuiteBuilder] currentExample] addExistVerifierWithExpectationType:anExpectationType callSite:aCallSite];
 }
 
 + (id)addMatchVerifierWithExpectationType:(KWExpectationType)anExpectationType callSite:(KWCallSite *)aCallSite {
-    return [[[KWExampleGroupBuilder sharedExampleGroupBuilder] currentExample] addMatchVerifierWithExpectationType:anExpectationType callSite:aCallSite];
+    return [[[KWExampleSuiteBuilder sharedExampleSuiteBuilder] currentExample] addMatchVerifierWithExpectationType:anExpectationType callSite:aCallSite];
 }
 
 + (id)addAsyncVerifierWithExpectationType:(KWExpectationType)anExpectationType callSite:(KWCallSite *)aCallSite timeout:(NSInteger)timeout shouldWait:(BOOL)shouldWait {
-    return [[[KWExampleGroupBuilder sharedExampleGroupBuilder] currentExample] addAsyncVerifierWithExpectationType:anExpectationType callSite:aCallSite timeout:timeout shouldWait: shouldWait];
+    return [[[KWExampleSuiteBuilder sharedExampleSuiteBuilder] currentExample] addAsyncVerifierWithExpectationType:anExpectationType callSite:aCallSite timeout:timeout shouldWait: shouldWait];
 }
 
 @end
