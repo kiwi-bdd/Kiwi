@@ -11,22 +11,14 @@
 
 #pragma mark - Properties
 
-@property (nonatomic, readwrite) SEL selector;
-@property (nonatomic, readwrite, strong) NSException *exception;
-@property (nonatomic, readwrite, strong) NSException *actualException;
+@property (nonatomic, assign) SEL selector;
+@property (nonatomic, strong) NSException *exception;
+@property (nonatomic, strong) NSException *actualException;
 
 @end
 
 @implementation KWRaiseMatcher
 
-#pragma mark - Initializing
-
-
-#pragma mark - Properties
-
-@synthesize selector;
-@synthesize exception;
-@synthesize actualException;
 
 #pragma mark - Getting Matcher Strings
 
@@ -87,8 +79,7 @@
                                       [[self class] exceptionPhraseWithException:self.actualException]];
 }
 
-- (NSString *)description
-{
+- (NSString *)description {
   return [NSString stringWithFormat:@"raise %@ when sent %@", [[self class] exceptionPhraseWithException:self.exception], NSStringFromSelector(self.selector)];
 }
 

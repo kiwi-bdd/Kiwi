@@ -11,7 +11,8 @@
 #pragma mark - Initializing
 
 - (id)initWithCallSite:(KWCallSite *)aCallSite description:(NSString *)aDescription block:(void (^)(void))block {
-    if ((self = [super init])) {
+    self = [super init];
+    if (self) {
         _callSite = aCallSite;
         _description = aDescription;
         _block = [block copy];

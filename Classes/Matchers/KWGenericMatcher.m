@@ -11,16 +11,11 @@
 
 @interface KWGenericMatcher ()
 
-#pragma mark - Properties
-
 @property (nonatomic, strong) id matcher;
 
 @end
 
 @implementation KWGenericMatcher
-
-@synthesize matcher;
-
 
 #pragma mark - Matching
 

@@ -11,15 +11,11 @@
 
 #pragma mark - Properties
 
-@property (nonatomic, readwrite) SEL selector;
+@property (nonatomic, assign) SEL selector;
 
 @end
 
 @implementation KWRespondToSelectorMatcher
-
-#pragma mark - Properties
-
-@synthesize selector;
 
 #pragma mark - Getting Matcher Strings
 
@@ -40,9 +36,8 @@
                                       NSStringFromSelector(self.selector)];
 }
 
-- (NSString *)description
-{
-  return [NSString stringWithFormat:@"respond to -%@", NSStringFromSelector(self.selector)];
+- (NSString *)description {
+    return [NSString stringWithFormat:@"respond to -%@", NSStringFromSelector(self.selector)];
 }
 
 #pragma mark - Configuring Matchers

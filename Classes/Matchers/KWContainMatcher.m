@@ -10,20 +10,11 @@
 
 @interface KWContainMatcher()
 
-#pragma mark - Properties
-
 @property (nonatomic, readwrite, strong) id objects;
 
 @end
 
 @implementation KWContainMatcher
-
-#pragma mark - Initializing
-
-
-#pragma mark - Properties
-
-@synthesize objects;
 
 #pragma mark - Getting Matcher Strings
 
@@ -58,9 +49,8 @@
     return [NSString stringWithFormat:@"expected subject to contain %@", [self objectsPhrase]];
 }
 
-- (NSString *)description
-{
-  return [NSString stringWithFormat:@"contain %@", [self objectsPhrase]];
+- (NSString *)description {
+    return [NSString stringWithFormat:@"contain %@", [self objectsPhrase]];
 }
 
 #pragma mark - Configuring Matchers

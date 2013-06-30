@@ -9,17 +9,11 @@
 
 @interface KWBeKindOfClassMatcher()
 
-#pragma mark - Properties
-
 @property (nonatomic, assign) Class targetClass;
 
 @end
 
 @implementation KWBeKindOfClassMatcher
-
-#pragma mark - Properties
-
-@synthesize targetClass;
 
 #pragma mark - Getting Matcher Strings
 
@@ -41,9 +35,8 @@
                                       NSStringFromClass([self.subject class])];
 }
 
-- (NSString *)description
-{
-  return [NSString stringWithFormat:@"be kind of %@", NSStringFromClass(self.targetClass)];
+- (NSString *)description {
+    return [NSString stringWithFormat:@"be kind of %@", NSStringFromClass(self.targetClass)];
 }
 
 #pragma mark - Configuring Matchers

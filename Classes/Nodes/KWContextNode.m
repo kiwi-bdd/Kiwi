@@ -16,25 +16,24 @@
 #import "KWRegisterMatchersNode.h"
 #import "KWSymbolicator.h"
 
-@interface KWContextNode() {
-    NSUInteger performedExampleCount;
-}
+@interface KWContextNode()
+
+@property (nonatomic, assign) NSUInteger performedExampleCount;
+
 @end
 
 @implementation KWContextNode
 
-@synthesize parentContext;
-
 #pragma mark - Initializing
 
-- (id)initWithCallSite:(KWCallSite *)aCallSite parentContext:(KWContextNode *)node description:(NSString *)aDescription
-{
-    if ((self = [super init])) {
-        parentContext = node;
-        callSite = aCallSite;
-        description = [aDescription copy];
-        nodes = [[NSMutableArray alloc] init];
-        performedExampleCount = 0;
+- (id)initWithCallSite:(KWCallSite *)aCallSite parentContext:(KWContextNode *)node description:(NSString *)aDescription {
+    self = [super init];
+    if (self) {
+        _parentContext = node;
+        _callSite = aCallSite;
+        _description = [aDescription copy];
+        _nodes = [[NSMutableArray alloc] init];
+        _performedExampleCount = 0;
     }
 
     return self;
@@ -44,24 +43,6 @@
     return [[self alloc] initWithCallSite:aCallSite parentContext:contextNode description:aDescription];
 }
 
-
-#pragma mark -  Getting Call Sites
-
-@synthesize callSite;
-
-#pragma mark - Getting Descriptions
-
-@synthesize description;
-
-#pragma mark - Managing Nodes
-
-@synthesize registerMatchersNode;
-@synthesize beforeAllNode;
-@synthesize afterAllNode;
-@synthesize beforeEachNode;
-@synthesize afterEachNode;
-@synthesize nodes;
-
 - (void)addContextNode:(KWContextNode *)aNode {
     [(NSMutableArray *)self.nodes addObject:aNode];
 }
@@ -70,21 +51,21 @@
     if (self.registerMatchersNode != nil)
         [NSException raise:@"KWContextNodeException" format:@"a register matchers node already exists"];
 
-    registerMatchersNode = aNode;
+    _registerMatchersNode = aNode;
 }
 
 - (void)setBeforeEachNode:(KWBeforeEachNode *)aNode {
     if (self.beforeEachNode != nil)
         [NSException raise:@"KWContextNodeException" format:@"a before each node already exists"];
 
-    beforeEachNode = aNode;
+    _beforeEachNode = aNode;
 }
 
 - (void)setAfterEachNode:(KWAfterEachNode *)aNode {
     if (self.afterEachNode != nil)
         [NSException raise:@"KWContextNodeException" format:@"an after each node already exists"];
 
-    afterEachNode = aNode;
+    _afterEachNode = aNode;
 }
 
 - (void)addItNode:(KWItNode *)aNode {
@@ -103,7 +84,7 @@
         @try {
             [self.registerMatchersNode acceptExampleNodeVisitor:example];
             
-            if (performedExampleCount == 0) {
+            if (self.performedExampleCount == 0) {
                 [self.beforeAllNode acceptExampleNodeVisitor:example];
             }
             
@@ -122,13 +103,13 @@
             [example reportFailure:failure];
         }
         
-        performedExampleCount++;
+        self.performedExampleCount++;
     };
-    if (parentContext == nil) {
+    if (self.parentContext == nil) {
         outerExampleBlock();
     }
     else {
-        [parentContext performExample:example withBlock:outerExampleBlock];
+        [self.parentContext performExample:example withBlock:outerExampleBlock];
     }
 }
 

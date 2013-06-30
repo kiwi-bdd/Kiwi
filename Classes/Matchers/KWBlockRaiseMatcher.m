@@ -9,22 +9,12 @@
 
 @interface KWBlockRaiseMatcher()
 
-#pragma mark - Properties
-
 @property (nonatomic, readwrite, strong) NSException *exception;
 @property (nonatomic, readwrite, strong) NSException *actualException;
 
 @end
 
 @implementation KWBlockRaiseMatcher
-
-#pragma mark - Initializing
-
-
-#pragma mark - Properties
-
-@synthesize exception;
-@synthesize actualException;
 
 #pragma mark - Getting Matcher Strings
 
@@ -106,9 +96,8 @@
     self.exception = [NSException exceptionWithName:aName reason:aReason userInfo:nil];
 }
 
-- (NSString *)description
-{
-  return [NSString stringWithFormat:@"raise %@", [[self class] exceptionPhraseWithException:self.exception]];
+- (NSString *)description {
+    return [NSString stringWithFormat:@"raise %@", [[self class] exceptionPhraseWithException:self.exception]];
 }
 
 @end

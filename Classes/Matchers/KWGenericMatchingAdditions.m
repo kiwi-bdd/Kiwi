@@ -12,8 +12,7 @@
 
 @implementation NSObject (KiwiGenericMatchingAdditions)
 
-- (BOOL)isEqualOrMatches:(id)object
-{
+- (BOOL)isEqualOrMatches:(id)object {
     if ([KWGenericMatchEvaluator isGenericMatcher:self]) {
         return [KWGenericMatchEvaluator genericMatcher:self matches:object];
     }
@@ -24,16 +23,14 @@
 
 @implementation NSArray (KiwiGenericMatchingAdditions)
 
-- (BOOL)containsObjectEqualToOrMatching:(id)object
-{
+- (BOOL)containsObjectEqualToOrMatching:(id)object {
     if ([KWGenericMatchEvaluator isGenericMatcher:object]) {
         return [self containsObjectMatching:object];
     }
     return [self containsObject:object];
 }
 
-- (BOOL)containsObjectMatching:(id)matcher
-{
+- (BOOL)containsObjectMatching:(id)matcher {
     NSIndexSet *indexSet = [self indexesOfObjectsPassingTest:^(id obj, NSUInteger idx, BOOL *stop) {
         BOOL matches = [KWGenericMatchEvaluator genericMatcher:matcher matches:obj];
         if (matches) {
@@ -49,8 +46,7 @@
 
 @implementation NSSet (KiwiGenericMatchingAdditions)
 
-- (BOOL)containsObjectEqualToOrMatching:(id)object
-{
+- (BOOL)containsObjectEqualToOrMatching:(id)object {
     if ([KWGenericMatchEvaluator isGenericMatcher:object]) {
         return [[self allObjects] containsObjectMatching:object];
     }
@@ -61,8 +57,7 @@
 
 @implementation NSOrderedSet (KiwiGenericMatchingAdditions)
 
-- (BOOL)containsObjectEqualToOrMatching:(id)object
-{
+- (BOOL)containsObjectEqualToOrMatching:(id)object {
     if ([KWGenericMatchEvaluator isGenericMatcher:object]) {
         return [[self array] containsObjectMatching:object];
     }

@@ -19,7 +19,8 @@
 #pragma mark - Initializing
 
 - (id)initWithBlock:(void (^)(void))block {
-    if ((self = [super init])) {
+    self = [super init];
+    if (self) {
         _block = [block copy];
     }
 

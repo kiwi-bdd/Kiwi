@@ -18,24 +18,24 @@
 #pragma mark - Getting Matcher Strings
 
 + (NSArray *)matcherStrings {
-  return @[@"beNil", @"beNil:"];
+    return @[@"beNil", @"beNil:"];
 }
 
 #pragma mark - Matching
 
 - (BOOL)evaluate {
-  return (BOOL)(self.subject == nil);
+    return (BOOL)(self.subject == nil);
 }
 
 #pragma mark Getting Failure Messages
 
 - (NSString *)failureMessageForShould {
-  return [NSString stringWithFormat:@"expected subject to be nil, got %@",
+    return [NSString stringWithFormat:@"expected subject to be nil, got %@",
           [KWFormatter formatObject:self.subject]];
 }
 
 - (NSString *)failureMessageForShouldNot {
-  return [NSString stringWithFormat:@"expected %@ not to be nil",
+    return [NSString stringWithFormat:@"expected %@ not to be nil",
           [KWFormatter formatObject:self.subject]];
 }
 

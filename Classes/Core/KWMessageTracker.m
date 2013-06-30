@@ -12,7 +12,7 @@
 
 #pragma mark - Properties
 
-@property (nonatomic, readwrite) NSUInteger receivedCount;
+@property (nonatomic, assign) NSUInteger receivedCount;
 
 @end
 
@@ -21,12 +21,13 @@
 #pragma mark - Initializing
 
 - (id)initWithSubject:(id)anObject messagePattern:(KWMessagePattern *)aMessagePattern countType:(KWCountType)aCountType count:(NSUInteger)aCount {
-    if ((self = [super init])) {
-        subject = anObject;
-        messagePattern = aMessagePattern;
-        countType = aCountType;
-        count = aCount;
-        [anObject addMessageSpy:self forMessagePattern:messagePattern];
+    self = [super init];
+    if (self) {
+        _subject = anObject;
+        _messagePattern = aMessagePattern;
+        _countType = aCountType;
+        _count = aCount;
+        [anObject addMessageSpy:self forMessagePattern:aMessagePattern];
     }
 
     return self;
@@ -35,15 +36,6 @@
 + (id)messageTrackerWithSubject:(id)anObject messagePattern:(KWMessagePattern *)aMessagePattern countType:(KWCountType)aCountType count:(NSUInteger)aCount {
     return [[self alloc] initWithSubject:anObject messagePattern:aMessagePattern countType:aCountType count:aCount];
 }
-
-
-#pragma mark - Properties
-
-@synthesize subject;
-@synthesize messagePattern;
-@synthesize countType;
-@synthesize count;
-@synthesize receivedCount;
 
 #pragma mark - Spying on Messages
 
