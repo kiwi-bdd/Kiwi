@@ -60,7 +60,7 @@
 #define expectFutureValue(futureValue) [KWFutureObject futureObjectWithBlock:^{ return futureValue; }]
 
 // `fail` triggers a failure report when called
-#define fail(message, ...) [[[KWExampleGroupBuilder sharedExampleGroupBuilder] currentExample] reportFailure:[KWFailure failureWithCallSite:KW_THIS_CALLSITE format:message, ##__VA_ARGS__]]
+#define fail(message, ...) [[[KWExampleSuiteBuilder sharedExampleSuiteBuilder] currentExample] reportFailure:[KWFailure failureWithCallSite:KW_THIS_CALLSITE format:message, ##__VA_ARGS__]]
 
 // used for message patterns to allow matching any value
 #define any() [KWAny any]

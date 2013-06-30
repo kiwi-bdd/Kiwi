@@ -9,7 +9,7 @@
 #import "Kiwi.h"
 #import "KiwiTestConfiguration.h"
 
-@interface KWExampleGroupBuilder ()
+@interface KWExampleSuiteBuilder ()
 
 @property (nonatomic, retain, readwrite) NSString *focusedContextNodeDescription;
 @property (nonatomic, retain, readwrite) NSString *focusedItNodeDescription;
@@ -27,7 +27,7 @@ NSMutableArray *calls = @[@"OuterTestCase",
 ].mutableCopy;
 
 //There should not be a focused call site at this point
-assert(![[KWExampleGroupBuilder sharedExampleGroupBuilder] focusedCallSite]);
+assert(![[KWExampleSuiteBuilder sharedExampleSuiteBuilder] focusedCallSite]);
 
 describe(@"OuterDescribe", ^{
     it(@"OuterTestCase", ^{ [calls removeObject:@"OuterTestCase"]; });
@@ -73,7 +73,7 @@ NSMutableArray *focusedContextCalls = @[@"InnerBeforeAll", @"InnerAfterAll", @"I
 NSMutableArray *unFocusedContextCalls = @[ @"OuterTestCase", @"BeforeAll", @"AfterAll", @"BeforeEach", @"AfterEach"
 ].mutableCopy;
 
-[[KWExampleGroupBuilder sharedExampleGroupBuilder] setFocusedCallSite:[KWCallSite callSiteWithFilename:@"KWFunctionalTests.m" lineNumber:84]];
+[[KWExampleSuiteBuilder sharedExampleSuiteBuilder] setFocusedCallSite:[KWCallSite callSiteWithFilename:@"KWFunctionalTests.m" lineNumber:84]];
 
 describe(@"UnFocusedContext", ^{
     it(@"OuterTestCase", ^{ [unFocusedContextCalls removeObject:@"OuterTestCase"]; });
@@ -97,7 +97,7 @@ describe(@"UnFocusedContext", ^{
     });
 });
 
-[[KWExampleGroupBuilder sharedExampleGroupBuilder] setFocusedCallSite:nil];
+[[KWExampleSuiteBuilder sharedExampleSuiteBuilder] setFocusedCallSite:nil];
 
 describe(@"FocusedContextCheck", ^{
     it(@"All the blocks were called", ^{
@@ -116,14 +116,14 @@ NSMutableArray *focusedItCalls = @[@"FocusedTestCase"].mutableCopy;
 
 NSMutableArray *unFocusedItCalls = @[@"UnFocusedTestCase"].mutableCopy;
 
-[[KWExampleGroupBuilder sharedExampleGroupBuilder] setFocusedCallSite:[KWCallSite callSiteWithFilename:@"KWFunctionalTests.m" lineNumber:122]];
+[[KWExampleSuiteBuilder sharedExampleSuiteBuilder] setFocusedCallSite:[KWCallSite callSiteWithFilename:@"KWFunctionalTests.m" lineNumber:122]];
 
 describe(@"FocusedIt", ^{
     it(@"FocusedTestCase", ^{ [focusedItCalls removeObject:@"FocusedTestCase"]; });
     it(@"UnFocusedTestCase", ^{ [unFocusedItCalls removeObject:@"UnFocusedTestCase"]; });
 });
 
-[[KWExampleGroupBuilder sharedExampleGroupBuilder] setFocusedCallSite:nil];
+[[KWExampleSuiteBuilder sharedExampleSuiteBuilder] setFocusedCallSite:nil];
 
 describe(@"FocusedItCheck", ^{
     it(@"All the blocks were called", ^{

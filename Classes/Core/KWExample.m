@@ -5,7 +5,7 @@
 //
 
 #import "KWExample.h"
-#import "KWExampleGroupBuilder.h"
+#import "KWExampleSuiteBuilder.h"
 #import "KWContextNode.h"
 #import "KWMatcherFactory.h"
 #import "KWExistVerifier.h"
@@ -106,7 +106,7 @@
 - (void)runWithDelegate:(id<KWExampleDelegate>)delegate; {
     self.delegate = delegate;
     [self.matcherFactory registerMatcherClassesWithNamespacePrefix:@"KW"];
-    [[KWExampleGroupBuilder sharedExampleGroupBuilder] setCurrentExample:self];
+    [[KWExampleSuiteBuilder sharedExampleSuiteBuilder] setCurrentExample:self];
     [self.exampleNode acceptExampleNodeVisitor:self];
 }
 
@@ -260,7 +260,7 @@ KWCallSite *callSiteWithAddress(long address);
 KWCallSite *callSiteAtAddressIfNecessary(long address);
 
 KWCallSite *callSiteAtAddressIfNecessary(long address){
-    BOOL shouldLookup = [[KWExampleGroupBuilder sharedExampleGroupBuilder] isFocused] && ![[KWExampleGroupBuilder sharedExampleGroupBuilder] foundFocus];
+    BOOL shouldLookup = [[KWExampleSuiteBuilder sharedExampleSuiteBuilder] isFocused] && ![[KWExampleSuiteBuilder sharedExampleSuiteBuilder] foundFocus];
     return  shouldLookup ? callSiteWithAddress(address) : nil;
 }
 
@@ -336,35 +336,35 @@ void describeWithCallSite(KWCallSite *aCallSite, NSString *aDescription, void (^
 }
 
 void contextWithCallSite(KWCallSite *aCallSite, NSString *aDescription, void (^block)(void)) {
-    [[KWExampleGroupBuilder sharedExampleGroupBuilder] pushContextNodeWithCallSite:aCallSite description:aDescription];
+    [[KWExampleSuiteBuilder sharedExampleSuiteBuilder] pushContextNodeWithCallSite:aCallSite description:aDescription];
     block();
-    [[KWExampleGroupBuilder sharedExampleGroupBuilder] popContextNode];
+    [[KWExampleSuiteBuilder sharedExampleSuiteBuilder] popContextNode];
 }
 
 void registerMatchersWithCallSite(KWCallSite *aCallSite, NSString *aNamespacePrefix) {
-    [[KWExampleGroupBuilder sharedExampleGroupBuilder] setRegisterMatchersNodeWithCallSite:aCallSite namespacePrefix:aNamespacePrefix];
+    [[KWExampleSuiteBuilder sharedExampleSuiteBuilder] setRegisterMatchersNodeWithCallSite:aCallSite namespacePrefix:aNamespacePrefix];
 }
 
 void beforeAllWithCallSite(KWCallSite *aCallSite, void (^block)(void)) {
-    [[KWExampleGroupBuilder sharedExampleGroupBuilder] setBeforeAllNodeWithCallSite:aCallSite block:block];
+    [[KWExampleSuiteBuilder sharedExampleSuiteBuilder] setBeforeAllNodeWithCallSite:aCallSite block:block];
 }
 
 void afterAllWithCallSite(KWCallSite *aCallSite, void (^block)(void)) {
-    [[KWExampleGroupBuilder sharedExampleGroupBuilder] setAfterAllNodeWithCallSite:aCallSite block:block];
+    [[KWExampleSuiteBuilder sharedExampleSuiteBuilder] setAfterAllNodeWithCallSite:aCallSite block:block];
 }
 
 void beforeEachWithCallSite(KWCallSite *aCallSite, void (^block)(void)) {
-    [[KWExampleGroupBuilder sharedExampleGroupBuilder] setBeforeEachNodeWithCallSite:aCallSite block:block];
+    [[KWExampleSuiteBuilder sharedExampleSuiteBuilder] setBeforeEachNodeWithCallSite:aCallSite block:block];
 }
 
 void afterEachWithCallSite(KWCallSite *aCallSite, void (^block)(void)) {
-    [[KWExampleGroupBuilder sharedExampleGroupBuilder] setAfterEachNodeWithCallSite:aCallSite block:block];
+    [[KWExampleSuiteBuilder sharedExampleSuiteBuilder] setAfterEachNodeWithCallSite:aCallSite block:block];
 }
 
 void itWithCallSite(KWCallSite *aCallSite, NSString *aDescription, void (^block)(void)) {
-    [[KWExampleGroupBuilder sharedExampleGroupBuilder] addItNodeWithCallSite:aCallSite description:aDescription block:block];
+    [[KWExampleSuiteBuilder sharedExampleSuiteBuilder] addItNodeWithCallSite:aCallSite description:aDescription block:block];
 }
 
 void pendingWithCallSite(KWCallSite *aCallSite, NSString *aDescription, void (^ignoredBlock)(void)) {
-    [[KWExampleGroupBuilder sharedExampleGroupBuilder] addPendingNodeWithCallSite:aCallSite description:aDescription];
+    [[KWExampleSuiteBuilder sharedExampleSuiteBuilder] addPendingNodeWithCallSite:aCallSite description:aDescription];
 }
