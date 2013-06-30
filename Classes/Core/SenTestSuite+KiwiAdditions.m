@@ -10,7 +10,7 @@
 #import <SenTestingKit/SenTestProbe.h>
 #import <SenTestingKit/SenTestSuite.h>
 #import <objc/runtime.h>
-#import "KWExampleGroupBuilder.h"
+#import "KWExampleSuiteBuilder.h"
 #import "KWCallSite.h"
 
 @implementation SenTestSuite (KiwiAdditions)
@@ -33,7 +33,7 @@
     class_addMethod(c, newSEL, method_getImplementation(origMethod), method_getTypeEncoding(origMethod)) ;
 
     IMP focusedSuite = imp_implementationWithBlock(^(id _self, Class aClass){
-        return ([[KWExampleGroupBuilder sharedExampleGroupBuilder] isFocused] && ![_self testSuiteClassHasFocus:aClass]) ? nil : (__bridge void *)[_self performSelector:@selector(__testSuiteForTestCaseClass:) withObject:aClass];
+        return ([[KWExampleSuiteBuilder sharedExampleSuiteBuilder] isFocused] && ![_self testSuiteClassHasFocus:aClass]) ? nil : (__bridge void *)[_self performSelector:@selector(__testSuiteForTestCaseClass:) withObject:aClass];
     });
     method_setImplementation(origMethod, focusedSuite);
 }
@@ -42,7 +42,7 @@
     if (![aClass respondsToSelector:@selector(file)])
         return NO;
 
-    KWCallSite *focusedCallSite = [[KWExampleGroupBuilder sharedExampleGroupBuilder] focusedCallSite];
+    KWCallSite *focusedCallSite = [[KWExampleSuiteBuilder sharedExampleSuiteBuilder] focusedCallSite];
     NSString *fullFilePathOfClass = [aClass performSelector:@selector(file)];
     NSRange rangeOfFileName = [fullFilePathOfClass rangeOfString:focusedCallSite.filename];
     return rangeOfFileName.length != 0;

@@ -8,7 +8,7 @@
 #import <SenTestingKit/SenTestingKit.h>
 #import "KWExpectationType.h"
 #import "KWVerifying.h"
-#import "KWExampleGroupDelegate.h"
+#import "KWExampleDelegate.h"
 
 
 @class KWCallSite;

@@ -11,7 +11,7 @@
 #import "KWExampleNode.h"
 #import "KWExampleNodeVisitor.h"
 #import "KWReporting.h"
-#import "KWExampleGroupDelegate.h"
+#import "KWExampleDelegate.h"
 
 @class KWCallSite;
 @class KWExampleSuite;
