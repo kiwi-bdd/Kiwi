@@ -10,20 +10,18 @@
 #import "KWStringUtilities.h"
 #import "KWObjCUtilities.h"
 #import <objc/runtime.h>
+#import "KWGenericMatcher.h"
 
 @implementation KWGenericMatchEvaluator
 
-// Returns true only if the object has a method with the signature "- (void)matches:(id)object"
+// Returns true only if the object has a method with the signature "- (BOOL)matches:(id)object"
 + (BOOL)isGenericMatcher:(id)object {
     Class theClass = object_getClass(object);
 
     if (theClass == NULL) {
         return NO;
     }
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wundeclared-selector"
     Method method = class_getInstanceMethod(theClass, @selector(matches:));
-#pragma clang diagnostic pop
 
     if (method == NULL) {
         return NO;
@@ -56,10 +54,7 @@
     NSString *targetEncoding = KWEncodingWithObjCTypes(@encode(BOOL), @encode(id), @encode(SEL), @encode(id), nil);
     NSMethodSignature *signature = [NSMethodSignature signatureWithObjCTypes:[targetEncoding UTF8String]];
     NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:signature];
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wundeclared-selector"
     [invocation setSelector:@selector(matches:)];
-#pragma clang diagnostic pop
     [invocation setArgument:&object atIndex:2];
     [invocation invokeWithTarget:matcher];
     BOOL result = NO;

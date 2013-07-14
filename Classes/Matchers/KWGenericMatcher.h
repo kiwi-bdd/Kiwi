@@ -9,10 +9,16 @@
 #import <Foundation/Foundation.h>
 #import "KWMatcher.h"
 
+@protocol KWGenericMatching <NSObject>
+
+- (BOOL)matches:(id)object;
+
+@end
+
 @interface KWGenericMatcher : KWMatcher
 
 #pragma mark - Configuring Matchers
 
-- (void)match:(id)aMatcher;
+- (void)match:(id<KWGenericMatching>)aMatcher;
 
 @end

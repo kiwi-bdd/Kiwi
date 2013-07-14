@@ -7,8 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "KWGenericMatcher.h"
 
-@interface KWStringContainsMatcher : NSObject
+@interface KWStringContainsMatcher : NSObject <KWGenericMatching>
 
 + (id)matcherWithSubstring:(NSString *)aSubstring;
 - (id)initWithSubstring:(NSString *)aSubstring;
