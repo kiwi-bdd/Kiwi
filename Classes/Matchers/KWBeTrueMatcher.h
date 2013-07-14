@@ -11,8 +11,8 @@
 
 #pragma mark - Configuring Matchers
 
-- (void)beTrue;
-- (void)beFalse;
+- (void)beTrue DEPRECATED_ATTRIBUTE;
+- (void)beFalse DEPRECATED_ATTRIBUTE;
 - (void)beYes;
 - (void)beNo;
 
