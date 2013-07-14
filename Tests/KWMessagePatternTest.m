@@ -96,9 +96,10 @@
 }
 
 - (void)testItShouldCompareMessagePatternsWithNilAndNonNilArgumentFilters {
-    KWMessagePattern *messagePattern1 = [KWMessagePattern messagePatternWithSelector:@selector(foobar:)];
+    KWMessagePattern *messagePattern1 = [KWMessagePattern messagePatternWithSelector:@selector(setYear:)];
     NSArray *argumentFilters = @[[KWValue valueWithUnsignedInt:42]];
-    KWMessagePattern *messagePattern2 = [KWMessagePattern messagePatternWithSelector:@selector(foobar:) argumentFilters:argumentFilters];
+    KWMessagePattern *messagePattern2 = [KWMessagePattern messagePatternWithSelector:@selector(setYear:) argumentFilters:argumentFilters];
+
     STAssertFalse([messagePattern1 isEqual:messagePattern2], @"expected message patterns to compare as not equal");
     STAssertFalse([messagePattern2 isEqual:messagePattern1], @"expected message patterns to compare as not equal");
 }

@@ -33,7 +33,10 @@
 
 - (BOOL)evaluate {
     @try {
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Warc-performSelector-leaks"
         [self.subject performSelector:self.selector];
+#pragma clang diagnostic pop
     } @catch (NSException *anException) {
         self.actualException = anException;
 

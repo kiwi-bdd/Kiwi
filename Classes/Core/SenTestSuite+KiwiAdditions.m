@@ -12,6 +12,7 @@
 #import <objc/runtime.h>
 #import "KWExampleSuiteBuilder.h"
 #import "KWCallSite.h"
+#import "KWSpec.h"
 
 @implementation SenTestSuite (KiwiAdditions)
 
@@ -33,7 +34,10 @@
     class_addMethod(c, newSEL, method_getImplementation(origMethod), method_getTypeEncoding(origMethod)) ;
 
     IMP focusedSuite = imp_implementationWithBlock(^(id _self, Class aClass){
-        return ([[KWExampleSuiteBuilder sharedExampleSuiteBuilder] isFocused] && ![_self testSuiteClassHasFocus:aClass]) ? nil : (__bridge void *)[_self performSelector:@selector(__testSuiteForTestCaseClass:) withObject:aClass];
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Warc-performSelector-leaks"
+        return ([[KWExampleSuiteBuilder sharedExampleSuiteBuilder] isFocused] && ![_self testSuiteClassHasFocus:aClass]) ? nil : (__bridge void *)[_self performSelector:newSEL withObject:aClass];
+#pragma clang diagnostic pop
     });
     method_setImplementation(origMethod, focusedSuite);
 }
