@@ -25,7 +25,8 @@
 }
 
 - (id)initWithMessagePattern:(KWMessagePattern *)aMessagePattern value:(id)aValue {
-    if ((self = [super init])) {
+    self = [super init];
+    if (self) {
         messagePattern = [aMessagePattern retain];
         value = [aValue retain];
     }
@@ -34,7 +35,8 @@
 }
 
 - (id)initWithMessagePattern:(KWMessagePattern *)aMessagePattern block:(id (^)(NSArray *params))aBlock {
-    if ((self = [super init])) {
+    self = [super init];
+    if (self) {
         messagePattern = [aMessagePattern retain];
         _block = [aBlock copy];
     }
@@ -43,7 +45,8 @@
 }
 
 - (id)initWithMessagePattern:(KWMessagePattern *)aMessagePattern value:(id)aValue times:(id)times afterThatReturn:(id)aSecondValue {
-    if ((self = [super init])) {
+    self = [super init];
+    if (self) {
         messagePattern = [aMessagePattern retain];
         value = [aValue retain];
         returnValueTimes = [times retain];
