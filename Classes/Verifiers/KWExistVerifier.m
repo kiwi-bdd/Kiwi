@@ -14,8 +14,9 @@
 @interface KWExistVerifier()
 
 @property (nonatomic, readonly) KWExpectationType expectationType;
-@property (nonatomic, readonly) KWCallSite *callSite;
 @property (nonatomic, readonly) id<KWReporting> reporter;
+
+@property (nonatomic, strong) KWCallSite *callSite;
 
 @end
 

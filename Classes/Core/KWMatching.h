@@ -24,6 +24,8 @@
 
 @optional
 
+@property (nonatomic, readonly) BOOL isNilMatcher;
+
 - (BOOL)shouldBeEvaluatedAtEndOfExample;
 - (BOOL)willEvaluateMultipleTimes;
 - (void)setWillEvaluateMultipleTimes:(BOOL)shouldEvaluateMultipleTimes;

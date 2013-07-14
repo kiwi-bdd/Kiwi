@@ -6,7 +6,11 @@
 
 #import "KiwiConfiguration.h"
 
+@class KWCallSite;
+
 @protocol KWVerifying<NSObject>
+
+@property (nonatomic, readonly) KWCallSite *callSite;
 
 - (NSString *)descriptionForAnonymousItNode;
 
