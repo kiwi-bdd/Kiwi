@@ -170,20 +170,13 @@
 }
 
 - (void)testSpyWorksOnRealInterfaces {
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wundeclared-selector"
-    Cruiser *cruiser = [Cruiser mock];
-    STAssertNoThrow([cruiser captureArgument:@selector(foo) atIndex:0], @"expected not to throw exception");
-
-#pragma clang diagnostic pop
+    Fighter *cruiser = [Fighter mock];
+    STAssertNoThrow([cruiser captureArgument:@selector(cruiser) atIndex:0], @"expected not to throw exception");
 }
 
 - (void)testCallingCaptureArgumentOnRealObjectThrowsException {
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wundeclared-selector"
-    Cruiser *cruiser = [Cruiser cruiser];
-    STAssertThrows([cruiser captureArgument:@selector(foo) atIndex:0], @"expected to throw exception");
-#pragma clang diagnostic pop
+    Fighter *cruiser = [Fighter fighter];
+    STAssertThrows([cruiser captureArgument:@selector(cruiser) atIndex:0], @"expected to throw exception");
 }
 
 - (void)testItShouldStubWithBlock {
