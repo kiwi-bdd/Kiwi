@@ -23,7 +23,7 @@
 
 @property (nonatomic, strong, readonly) NSMutableArray *lastInContexts;
 @property (nonatomic, weak) KWExampleSuite *suite;
-@property (nonatomic, strong) id<KWVerifying> unassignedVerifier;
+@property (nonatomic, strong) id<KWVerifying> unresolvedVerifier;
 
 
 - (id)initWithExampleNode:(id<KWExampleNode>)node;

@@ -26,6 +26,8 @@
 @property (nonatomic, readwrite, strong) id<KWMatching> matcher;
 @property (nonatomic, readwrite, strong) KWExample *example;
 
+@property (nonatomic, strong) KWCallSite *callSite;
+
 @end
 
 @implementation KWMatchVerifier
@@ -75,31 +77,38 @@
 #pragma mark - Verifying
 
 - (void)verifyWithMatcher:(id<KWMatching>)aMatcher {
+    BOOL specFailed = NO;
+    NSString *failureMessage = nil;
+    
     @try {
         BOOL matchResult = [aMatcher evaluate];
-
+        
         if (self.expectationType == KWExpectationTypeShould && !matchResult) {
-            NSString *message = [aMatcher failureMessageForShould];
-            KWFailure *failure = [KWFailure failureWithCallSite:self.callSite message:message];
-            [self.reporter reportFailure:failure];
+            failureMessage = [aMatcher failureMessageForShould];
+            specFailed = YES;
+
         } else if (self.expectationType == KWExpectationTypeShouldNot && matchResult) {
-            NSString *message = [aMatcher failureMessageForShouldNot];
-            KWFailure *failure = [KWFailure failureWithCallSite:self.callSite message:message];
-            [self.reporter reportFailure:failure];
+            failureMessage = [aMatcher failureMessageForShouldNot];
+            specFailed = YES;
         }
     } @catch (NSException *exception) {
-        KWFailure *failure = [KWFailure failureWithCallSite:self.callSite message:[exception description]];
-        [self.reporter reportFailure:failure];
+        failureMessage = [exception description];
+        specFailed = YES;
+    }
+    @finally {
+        if (specFailed) {
+            KWFailure *failure = [KWFailure failureWithCallSite:self.callSite message:failureMessage];
+            [self.reporter reportFailure:failure];
+        }
     }
 }
 
 #pragma mark - Ending Examples
 
 - (void)exampleWillEnd {
-    if (self.endOfExampleMatcher == nil)
-        return;
-
-    [self verifyWithMatcher:self.endOfExampleMatcher];
+    if (self.endOfExampleMatcher) {
+        [self verifyWithMatcher:self.endOfExampleMatcher];
+    }
 }
 
 #pragma mark - Handling Invocations
@@ -134,8 +143,8 @@
       [self.reporter reportFailure:failure];
     }
 
-    if (self.example.unassignedVerifier == self) {
-        self.example.unassignedVerifier = nil;
+    if (self.example.unresolvedVerifier == self) {
+        self.example.unresolvedVerifier = nil;
     }
 
     [anInvocation invokeWithTarget:self.matcher];
