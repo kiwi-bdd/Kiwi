@@ -13,7 +13,7 @@
 
 @protocol KWExampleDelegate <NSObject>
 
-+ (NSString *)file;
++ (NSString *)filePath;
 
 - (void)example:(KWExample *)example didFailWithFailure:(KWFailure *)failure;
 

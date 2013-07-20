@@ -14,7 +14,6 @@
 #import "KWExample.h"
 #import "KWFailure.h"
 #import "KWRegisterMatchersNode.h"
-#import "KWSymbolicator.h"
 
 @interface KWContextNode()
 
