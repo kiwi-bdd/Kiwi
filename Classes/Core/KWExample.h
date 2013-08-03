@@ -67,6 +67,7 @@ void afterAll(void (^block)(void));
 void beforeEach(void (^block)(void));
 void afterEach(void (^block)(void));
 void it(NSString *aDescription, void (^block)(void));
+void its(NSString *aDescription, void (^block)(void));
 void specify(void (^block)(void));
 void pending_(NSString *aDescription, void (^block)(void));
 
