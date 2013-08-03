@@ -321,6 +321,10 @@ void it(NSString *aDescription, void (^block)(void)) {
     itWithCallSite(callSite, aDescription, block);
 }
 
+void its(NSString *aDescription, void (^block)(void)) {
+    it(aDescription, block);
+}
+
 void specify(void (^block)(void))
 {
     itWithCallSite(nil, nil, block);
