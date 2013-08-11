@@ -84,14 +84,14 @@
 }
 
 - (id)addMatchVerifierWithExpectationType:(KWExpectationType)anExpectationType callSite:(KWCallSite *)aCallSite {
-    if (self.unassignedVerifier) {
+    if (self.unresolvedVerifier) {
         @throw [NSException exceptionWithName:NSInternalInconsistencyException
                                        reason:@"Trying to add another verifier without specifying a matcher for the previous one."
                                      userInfo:nil];
     }
     id<KWVerifying> verifier = [KWMatchVerifier matchVerifierWithExpectationType:anExpectationType callSite:aCallSite matcherFactory:self.matcherFactory reporter:self];
     [self addVerifier:verifier];
-    self.unassignedVerifier = verifier;
+    self.unresolvedVerifier = verifier;
     return verifier;
 }
 
@@ -222,6 +222,11 @@
             // Finish verifying and clear
             for (id<KWVerifying> verifier in self.verifiers) {
                 [verifier exampleWillEnd];
+            }
+            
+            if (self.unresolvedVerifier) {
+                KWFailure *failure = [KWFailure failureWithCallSite:self.unresolvedVerifier.callSite format:@"expected subject not to be nil"];
+                [self reportFailure:failure];
             }
             
         } @catch (NSException *exception) {

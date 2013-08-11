@@ -20,7 +20,6 @@
 
 @property (nonatomic, readonly) KWExpectationType expectationType;
 
-@property (nonatomic, readonly) KWCallSite *callSite;
 @property (nonatomic, readonly) KWMatcherFactory *matcherFactory;
 @property (nonatomic, readonly) id<KWReporting> reporter;
 
