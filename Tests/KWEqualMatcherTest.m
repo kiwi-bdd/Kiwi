@@ -75,7 +75,15 @@
 - (void)testItShouldHaveHumanReadableDescription {
   id matcher = [KWEqualMatcher matcherWithSubject:theValue(123)];
   [matcher equal:@"test value"];
-  STAssertEqualObjects(@"equal \"test value\"", [matcher description], @"description should match");
+  STAssertEqualObjects(@"equal (NSString) \"test value\"", [matcher description], @"description should match");
+}
+
+- (void)testItShouldIncludeClassesInFailureMessage {
+  id matcher = [KWEqualMatcher matcherWithSubject:[NSURL URLWithString:@"http://www.example.com/"]];
+  [matcher equal:@"http://www.example.com/"];
+  STAssertEqualObjects(@"expected subject to equal (NSString) \"http://www.example.com/\", got (NSURL) http://www.example.com/",
+                       [matcher failureMessageForShould],
+                       @"failure message should include subject and otherSubject class names");
 }
 
 @end
