@@ -58,24 +58,21 @@
   STAssertTrue([matcher evaluate], @"expected positive match");
 }
 
-- (void)testItShouldMatchEqualPointerValues
-{
-    int subject = 123;
-    id matcher = [KWEqualMatcher matcherWithSubject:thePointerValue(&subject)];
-    [matcher equal:thePointerValue(&subject)];
-    STAssertTrue([matcher evaluate], @"expected positive match");
+- (void)testItShouldMatchEqualPointerValues {
+  int subject = 123;
+  id matcher = [KWEqualMatcher matcherWithSubject:thePointerValue(&subject)];
+  [matcher equal:thePointerValue(&subject)];
+  STAssertTrue([matcher evaluate], @"expected positive match");
 }
 
-- (void)testItShouldNotMatchUnequalPointerValues
-{
-    int subject = 123;
-    id matcher = [KWEqualMatcher matcherWithSubject:thePointerValue(&subject)];
-    [matcher equal:thePointerValue(NULL)];
-    STAssertFalse([matcher evaluate], @"expected negative match");
+- (void)testItShouldNotMatchUnequalPointerValues {
+  int subject = 123;
+  id matcher = [KWEqualMatcher matcherWithSubject:thePointerValue(&subject)];
+  [matcher equal:thePointerValue(NULL)];
+  STAssertFalse([matcher evaluate], @"expected negative match");
 }
 
-- (void)testItShouldHaveHumanReadableDescription
-{
+- (void)testItShouldHaveHumanReadableDescription {
   id matcher = [KWEqualMatcher matcherWithSubject:theValue(123)];
   [matcher equal:@"test value"];
   STAssertEqualObjects(@"equal \"test value\"", [matcher description], @"description should match");
