@@ -183,6 +183,20 @@
     [contextNode setAfterEachNode:afterEachNode];
 }
 
+- (void)addLetNodeWithCallSite:(KWCallSite *)aCallSite objectRef:(__autoreleasing id *)anObjectRef symbolName:(NSString *)aSymbolName block:(id (^)(void))block {
+    if ([self.contextNodeStack count] == 0)
+        [NSException raise:@"KWExampleSuiteBuilderException" format:@"an example group has not been started"];
+
+    // TODO: construct a let node and add it to the context
+    KWContextNode *contextNode = [self.contextNodeStack lastObject];
+
+    NSLog(@"Let block for symbol \"%@\" (context: %@)", aSymbolName, contextNode);
+
+    if (anObjectRef) {
+        *anObjectRef = block ? block() : nil;
+    }
+}
+
 - (void)addItNodeWithCallSite:(KWCallSite *)aCallSite description:(NSString *)aDescription block:(void (^)(void))block {
     if ([self.contextNodeStack count] == 0)
         [NSException raise:@"KWExampleSuiteBuilderException" format:@"an example group has not been started"];

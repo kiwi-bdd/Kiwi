@@ -66,6 +66,7 @@ void beforeAll(void (^block)(void));
 void afterAll(void (^block)(void));
 void beforeEach(void (^block)(void));
 void afterEach(void (^block)(void));
+void let_(id *anObjectRef, const char *aSymbolName, id (^block)(void));
 void it(NSString *aDescription, void (^block)(void));
 void specify(void (^block)(void));
 void pending_(NSString *aDescription, void (^block)(void));
@@ -77,8 +78,15 @@ void beforeAllWithCallSite(KWCallSite *aCallSite, void (^block)(void));
 void afterAllWithCallSite(KWCallSite *aCallSite, void (^block)(void));
 void beforeEachWithCallSite(KWCallSite *aCallSite, void (^block)(void));
 void afterEachWithCallSite(KWCallSite *aCallSite, void (^block)(void));
+void letWithCallSite(KWCallSite *aCallSite, id *anObjectRef, NSString *aSymbolName, id (^block)(void));
 void itWithCallSite(KWCallSite *aCallSite, NSString *aDescription, void (^block)(void));
 void pendingWithCallSite(KWCallSite *aCallSite, NSString *aDescription, void (^block)(void));
+
+// This function declaration is solely meant to coax Xcode into exposing
+// the let() function defined in the macro below during autocompletion.
+// The macro then just calls into the real function, let_().
+void let(id name, id (^block)(void));
+#define let(var, args...) id var; let_(&var, #var, ## args)
 
 #define PRAGMA(x) _Pragma (#x)
 #define PENDING(x) PRAGMA(message ( "Pending: " #x ))

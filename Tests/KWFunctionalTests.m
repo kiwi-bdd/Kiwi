@@ -134,6 +134,31 @@ describe(@"FocusedItCheck", ^{
 
 SPEC_END
 
+SPEC_BEGIN(FunctionalLet)
+
+describe(@"Greeting", ^{
+    let(subject, ^{ return @""; });
+    let(greeting, ^{ return [NSString stringWithFormat:@"Hello, %@!", subject]; });
+
+    describe(@"default subject", ^{
+        specify(^{ [[subject should] beEmpty]; });
+    });
+
+    context(@"with the subject \"world\"", ^{
+        let(subject, ^{ return @"world"; });
+
+        specify(^{ [[greeting should] equal:@"Hello, world!"]; });
+    });
+
+    context(@"with the subject \"Kiwi\"", ^{
+        let(subject, ^{ return @"Kiwi"; });
+
+        specify(^{ [[greeting should] equal:@"Hello, Kiwi!"]; });
+    });
+});
+
+SPEC_END
+
 SPEC_BEGIN(NilMatchers)
 
 describe(@"nil matchers", ^{
