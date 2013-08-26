@@ -12,6 +12,7 @@
 @class KWBeforeAllNode;
 @class KWBeforeEachNode;
 @class KWCallSite;
+@class KWLetNode;
 @class KWItNode;
 @class KWPendingNode;
 @class KWRegisterMatchersNode;
@@ -47,6 +48,7 @@
 @property (nonatomic, assign) BOOL isFocused;
 
 - (void)addContextNode:(KWContextNode *)aNode;
+- (void)addLetNode:(KWLetNode *)aNode;
 - (void)addItNode:(KWItNode *)aNode;
 - (void)addPendingNode:(KWPendingNode *)aNode;
 

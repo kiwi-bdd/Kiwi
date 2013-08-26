@@ -86,7 +86,7 @@ void pendingWithCallSite(KWCallSite *aCallSite, NSString *aDescription, void (^b
 // the let() function defined in the macro below during autocompletion.
 // The macro then just calls into the real function, let_().
 void let(id name, id (^block)(void));
-#define let(var, args...) id var; let_(&var, #var, ## args)
+#define let(var, args...) id var = nil; let_(&var, #var, ## args)
 
 #define PRAGMA(x) _Pragma (#x)
 #define PENDING(x) PRAGMA(message ( "Pending: " #x ))

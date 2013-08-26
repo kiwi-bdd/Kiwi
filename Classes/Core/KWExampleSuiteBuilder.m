@@ -10,6 +10,7 @@
 #import "KWAfterEachNode.h"
 #import "KWBeforeAllNode.h"
 #import "KWBeforeEachNode.h"
+#import "KWLetNode.h"
 #import "KWCallSite.h"
 #import "KWContextNode.h"
 #import "KWExample.h"
@@ -187,14 +188,8 @@
     if ([self.contextNodeStack count] == 0)
         [NSException raise:@"KWExampleSuiteBuilderException" format:@"an example group has not been started"];
 
-    // TODO: construct a let node and add it to the context
     KWContextNode *contextNode = [self.contextNodeStack lastObject];
-
-    NSLog(@"Let block for symbol \"%@\" (context: %@)", aSymbolName, contextNode);
-
-    if (anObjectRef) {
-        *anObjectRef = block ? block() : nil;
-    }
+    [contextNode addLetNode:[KWLetNode letNodeWithSymbolName:aSymbolName objectRef:anObjectRef block:block]];
 }
 
 - (void)addItNodeWithCallSite:(KWCallSite *)aCallSite description:(NSString *)aDescription block:(void (^)(void))block {

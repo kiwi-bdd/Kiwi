@@ -8,6 +8,7 @@
 #import "KWAfterEachNode.h"
 #import "KWBeforeAllNode.h"
 #import "KWBeforeEachNode.h"
+#import "KWLetNode.h"
 #import "KWCallSite.h"
 #import "KWContextNode.h"
 #import "KWExampleNodeVisitor.h"
@@ -19,6 +20,9 @@
 @interface KWContextNode()
 
 @property (nonatomic, assign) NSUInteger performedExampleCount;
+
+@property (nonatomic, readonly) NSMutableArray *letNodes;
+@property (nonatomic, readonly) NSMutableDictionary *declaredLetNodes;
 
 @end
 
@@ -33,6 +37,8 @@
         _callSite = aCallSite;
         _description = [aDescription copy];
         _nodes = [[NSMutableArray alloc] init];
+        _letNodes = [[NSMutableArray alloc] init];
+        _declaredLetNodes = [[NSMutableDictionary alloc] init];
         _performedExampleCount = 0;
     }
 
@@ -68,6 +74,29 @@
     _afterEachNode = aNode;
 }
 
+- (void)addLetNode:(KWLetNode *)aNode
+{
+    if (self.parentContext) {
+        [self.parentContext addLetNode:aNode];
+    }
+    else {
+        [self registerLetNode:aNode];
+    }
+}
+
+- (void)registerLetNode:(KWLetNode *)aNode
+{
+    [self.letNodes addObject:aNode];
+
+    NSMutableArray *declaredLetNodes = self.declaredLetNodes[aNode.symbolName];
+    if (!declaredLetNodes) {
+        declaredLetNodes = [[NSMutableArray alloc] init];
+        self.declaredLetNodes[aNode.symbolName] = declaredLetNodes;
+    }
+
+    [declaredLetNodes addObject:aNode];
+}
+
 - (void)addItNode:(KWItNode *)aNode {
     [(NSMutableArray *)self.nodes addObject:aNode];
 }
@@ -90,6 +119,8 @@
             
             [self.beforeEachNode acceptExampleNodeVisitor:example];
             
+            [self evaluateLetNodes];
+            
             innerExampleBlock();
             
             [self.afterEachNode acceptExampleNodeVisitor:example];
@@ -110,6 +141,39 @@
     }
     else {
         [self.parentContext performExample:example withBlock:outerExampleBlock];
+    }
+}
+
+- (void)evaluateLetNodes {
+    if (self.parentContext) {
+        [self.parentContext evaluateLetNodes];
+    }
+    else {
+        NSDictionary *evaluatedSymbols = [self evaluatedSymbolsForDeclaredLetNodes:self.declaredLetNodes];
+        [self propagateEvaluatedLetNodesToObjectRefsForSymbols:evaluatedSymbols];
+    }
+}
+
+- (NSDictionary *)evaluatedSymbolsForDeclaredLetNodes:(NSDictionary *)declaredLetNodes {
+    NSMutableDictionary *evaluatedSymbols = [[NSMutableDictionary alloc] init];
+    for (KWLetNode *letNode in self.letNodes) {
+        for (NSArray *declaredLetNodes in self.declaredLetNodes[letNode.symbolName]) {
+            KWLetNode *deepestDeclaredLetNode = [declaredLetNodes lastObject];
+            id result = [deepestDeclaredLetNode evaluate];
+            [evaluatedSymbols setObject:result forKey:letNode.symbolName];
+        }
+    }
+    return evaluatedSymbols;
+}
+
+- (void)propagateEvaluatedLetNodesToObjectRefsForSymbols:(NSDictionary *)evaluatedSymbols {
+    for (id symbol in evaluatedSymbols) {
+        for (NSArray *declaredLetNodes in self.declaredLetNodes[symbol]) {
+            for (KWLetNode *declaredLetNode in declaredLetNodes) {
+                __weak id *objectRef = (__weak id *)[declaredLetNode.objectRef pointerValue];
+                *objectRef = evaluatedSymbols[symbol];
+            }
+        }
     }
 }
 
