@@ -16,7 +16,7 @@
 {
     if ((self = [super init])) {
         _symbolName = [aSymbolName copy];
-        _objectRef = [NSValue valueWithPointer:anObjectRef];
+        _objectRef = anObjectRef;
         _block = [block copy];
     }
     return self;

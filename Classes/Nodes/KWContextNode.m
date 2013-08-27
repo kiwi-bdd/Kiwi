@@ -170,8 +170,7 @@
     for (id symbol in evaluatedSymbols) {
         for (NSArray *declaredLetNodes in self.declaredLetNodes[symbol]) {
             for (KWLetNode *declaredLetNode in declaredLetNodes) {
-                __weak id *objectRef = (__weak id *)[declaredLetNode.objectRef pointerValue];
-                *objectRef = evaluatedSymbols[symbol];
+                *declaredLetNode.objectRef = evaluatedSymbols[symbol];
             }
         }
     }

@@ -16,7 +16,7 @@
 
 @property (nonatomic, copy) NSString *symbolName;
 @property (nonatomic, copy) id (^block)(void);
-@property (nonatomic, readonly) NSValue *objectRef;
+@property (nonatomic, readonly) __autoreleasing id *objectRef;
 
 - (id)evaluate;
 
