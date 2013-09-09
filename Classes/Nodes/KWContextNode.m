@@ -157,21 +157,19 @@
 - (NSDictionary *)evaluatedSymbolsForDeclaredLetNodes:(NSDictionary *)declaredLetNodes {
     NSMutableDictionary *evaluatedSymbols = [[NSMutableDictionary alloc] init];
     for (KWLetNode *letNode in self.letNodes) {
-        for (NSArray *declaredLetNodes in self.declaredLetNodes[letNode.symbolName]) {
-            KWLetNode *deepestDeclaredLetNode = [declaredLetNodes lastObject];
-            id result = [deepestDeclaredLetNode evaluate];
-            [evaluatedSymbols setObject:result forKey:letNode.symbolName];
-        }
+        NSArray *declaredLetNodes = self.declaredLetNodes[letNode.symbolName];
+        KWLetNode *deepestDeclaredLetNode = [declaredLetNodes lastObject];
+        id result = [deepestDeclaredLetNode evaluate];
+        [evaluatedSymbols setObject:result forKey:letNode.symbolName];
     }
     return evaluatedSymbols;
 }
 
 - (void)propagateEvaluatedLetNodesToObjectRefsForSymbols:(NSDictionary *)evaluatedSymbols {
     for (id symbol in evaluatedSymbols) {
-        for (NSArray *declaredLetNodes in self.declaredLetNodes[symbol]) {
-            for (KWLetNode *declaredLetNode in declaredLetNodes) {
-                *declaredLetNode.objectRef = evaluatedSymbols[symbol];
-            }
+        NSArray *declaredLetNodes = self.declaredLetNodes[symbol];
+        for (KWLetNode *declaredLetNode in declaredLetNodes) {
+            *declaredLetNode.objectRef = evaluatedSymbols[symbol];
         }
     }
 }
