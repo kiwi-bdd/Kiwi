@@ -12,6 +12,7 @@
 #import <objc/runtime.h>
 #import "KWExampleSuiteBuilder.h"
 #import "KWCallSite.h"
+#import "KWExampleDelegate.h"
 #import "KWSpec.h"
 
 @implementation SenTestSuite (KiwiAdditions)
@@ -42,13 +43,15 @@
     method_setImplementation(origMethod, focusedSuite);
 }
 
-+ (BOOL)testSuiteClassHasFocus:(Class)aClass {
-    if (![aClass respondsToSelector:@selector(file)])
++ (BOOL)testSuiteClassHasFocus:(Class)class {
+    if (![class conformsToProtocol:@protocol(KWExampleDelegate)]) {
         return NO;
+    }
 
+    Class<KWExampleDelegate> exampleDelegate = class;
     KWCallSite *focusedCallSite = [[KWExampleSuiteBuilder sharedExampleSuiteBuilder] focusedCallSite];
-    NSString *fullFilePathOfClass = [aClass performSelector:@selector(file)];
-    NSRange rangeOfFileName = [fullFilePathOfClass rangeOfString:focusedCallSite.filename];
+    NSString *fullFilePathOfClass = [exampleDelegate filePath];
+    NSRange rangeOfFileName = [fullFilePathOfClass rangeOfString:focusedCallSite.fileName];
     return rangeOfFileName.length != 0;
 }
 

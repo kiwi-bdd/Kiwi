@@ -59,15 +59,8 @@
 
 #pragma mark - Building Example Groups
 
-void describe(NSString *aDescription, void (^block)(void));
-void context(NSString *aDescription, void (^block)(void));
 void registerMatchers(NSString *aNamespacePrefix);
-void beforeAll(void (^block)(void));
-void afterAll(void (^block)(void));
-void beforeEach(void (^block)(void));
-void afterEach(void (^block)(void));
-void it(NSString *aDescription, void (^block)(void));
-void specify(void (^block)(void));
+void specify(void (^block)(void)) DEPRECATED_ATTRIBUTE;
 void pending_(NSString *aDescription, void (^block)(void));
 
 void describeWithCallSite(KWCallSite *aCallSite, NSString *aDescription, void (^block)(void));
@@ -79,6 +72,7 @@ void beforeEachWithCallSite(KWCallSite *aCallSite, void (^block)(void));
 void afterEachWithCallSite(KWCallSite *aCallSite, void (^block)(void));
 void itWithCallSite(KWCallSite *aCallSite, NSString *aDescription, void (^block)(void));
 void pendingWithCallSite(KWCallSite *aCallSite, NSString *aDescription, void (^block)(void));
+
 
 #define PRAGMA(x) _Pragma (#x)
 #define PENDING(x) PRAGMA(message ( "Pending: " #x ))

@@ -10,24 +10,42 @@
 
 #pragma mark - Initializing
 
-- (id)initWithFilename:(NSString *)aFilename lineNumber:(NSUInteger)aLineNumber {
+- (instancetype)initWithFileName:(NSString *)fileName lineNumber:(NSUInteger)lineNumber {
     self = [super init];
     if (self) {
-        _filename = [aFilename copy];
-        _lineNumber = aLineNumber;
+        _fileName = fileName;
+        _lineNumber = lineNumber;
     }
-
     return self;
 }
 
-+ (id)callSiteWithFilename:(NSString *)aFilename lineNumber:(NSUInteger)aLineNumber {
-    return [[self alloc] initWithFilename:aFilename lineNumber:aLineNumber];
+- (instancetype)initWithPath:(NSString *)path lineNumber:(NSUInteger)lineNumber {
+    self = [super init];
+    if (self) {
+        _path = [path copy];
+        NSString *fileName = [[path componentsSeparatedByString:@"/"] lastObject];
+        _fileName = fileName;
+        _lineNumber = lineNumber;
+    }
+    return self;
+}
+
++ (instancetype)callSiteWithPath:(NSString *)path lineNumber:(NSUInteger)lineNumber {
+    return [[self alloc] initWithPath:path lineNumber:lineNumber];
+}
+
++ (instancetype)callSiteWithFileName:(NSString *)fileName lineNumber:(NSUInteger)lineNumber {
+    return [[self alloc] initWithFileName:fileName lineNumber:lineNumber];
 }
 
 #pragma mark - Identifying and Comparing
 
+- (NSString *)description {
+    return [NSString stringWithFormat:@"%@:%d", self.fileName, self.lineNumber];
+}
+
 - (NSUInteger)hash {
-    return [[NSString stringWithFormat:@"%@%u", self.filename, (unsigned)self.lineNumber] hash];
+    return [[NSString stringWithFormat:@"%@%u", self.fileName, (unsigned)self.lineNumber] hash];
 }
 
 - (BOOL)isEqual:(id)anObject {
@@ -38,7 +56,7 @@
 }
 
 - (BOOL)isEqualToCallSite:(KWCallSite *)aCallSite {
-    return [self.filename isEqualToString:aCallSite.filename] && (self.lineNumber == aCallSite.lineNumber);
+    return [self.fileName isEqualToString:aCallSite.fileName] && (self.lineNumber == aCallSite.lineNumber);
 }
 
 @end

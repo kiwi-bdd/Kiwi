@@ -4,7 +4,7 @@
 // Copyright 2010 Allen Ding. All rights reserved.
 //
 
-// As of iPhone SDK 4 GM, exceptions thrown across an NSInvocation -invoke or
+// As of iOS SDK 6, exceptions thrown across an NSInvocation -invoke or
 // forwardInvocation: boundary in the simulator will terminate the app instead
 // of being caught in @catch blocks from the caller side of the -invoke. Kiwi
 // tries to handle this by storing the first exception that it would have

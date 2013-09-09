@@ -73,11 +73,11 @@ NSMutableArray *focusedContextCalls = @[@"InnerBeforeAll", @"InnerAfterAll", @"I
 NSMutableArray *unFocusedContextCalls = @[ @"OuterTestCase", @"BeforeAll", @"AfterAll", @"BeforeEach", @"AfterEach"
 ].mutableCopy;
 
-[[KWExampleSuiteBuilder sharedExampleSuiteBuilder] setFocusedCallSite:[KWCallSite callSiteWithFilename:@"KWFunctionalTests.m" lineNumber:84]];
+[[KWExampleSuiteBuilder sharedExampleSuiteBuilder] setFocusedCallSite:[KWCallSite callSiteWithFileName:@"KWFunctionalTests.m" lineNumber:84]];
 
 describe(@"UnFocusedContext", ^{
     it(@"OuterTestCase", ^{ [unFocusedContextCalls removeObject:@"OuterTestCase"]; });
-    beforeAll(^{ [unFocusedContextCalls removeObject:@"BeforeAll"]; });
+    beforeAll(^{ [unFocusedContextCalls removeObject:@"BeforeAll"];});
     afterAll(^{ [unFocusedContextCalls removeObject:@"AfterAll"]; });
     beforeEach(^{ [unFocusedContextCalls removeObject:@"BeforeEach"]; });
     afterEach(^{ [unFocusedContextCalls removeObject:@"AfterEach"]; });
@@ -116,7 +116,7 @@ NSMutableArray *focusedItCalls = @[@"FocusedTestCase"].mutableCopy;
 
 NSMutableArray *unFocusedItCalls = @[@"UnFocusedTestCase"].mutableCopy;
 
-[[KWExampleSuiteBuilder sharedExampleSuiteBuilder] setFocusedCallSite:[KWCallSite callSiteWithFilename:@"KWFunctionalTests.m" lineNumber:122]];
+[[KWExampleSuiteBuilder sharedExampleSuiteBuilder] setFocusedCallSite:[KWCallSite callSiteWithFileName:@"KWFunctionalTests.m" lineNumber:122]];
 
 describe(@"FocusedIt", ^{
     it(@"FocusedTestCase", ^{ [focusedItCalls removeObject:@"FocusedTestCase"]; });

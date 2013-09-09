@@ -25,7 +25,6 @@
 #import "KWExampleNode.h"
 #import "KWExampleSuite.h"
 #import "KWCallSite.h"
-#import "KWSymbolicator.h"
 
 @interface KWExample ()
 
@@ -35,8 +34,6 @@
 @property (nonatomic, assign) BOOL didNotFinish;
 @property (nonatomic, strong) id<KWExampleNode> exampleNode;
 @property (nonatomic, assign) BOOL passed;
-
-- (void)reportResultForExampleNodeWithLabel:(NSString *)label;
 
 @end
 
@@ -136,8 +133,10 @@
     // build time specs.
     annotatedFailureMessage = [annotatedFailureMessage stringByReplacingOccurrencesOfString:@":" withString:@"\uff1a"];
 #endif // #if TARGET_IPHONE_SIMULATOR
-  
-    return [KWFailure failureWithCallSite:aFailure.callSite message:annotatedFailureMessage];
+    
+    KWCallSite *callSiteWithFullFileName = [KWCallSite callSiteWithPath:[[self.delegate class] filePath] lineNumber:aFailure.callSite.lineNumber];
+    
+    return [KWFailure failureWithCallSite:callSiteWithFullFileName message:annotatedFailureMessage];
 }
 
 - (void)reportFailure:(KWFailure *)failure {
@@ -259,75 +258,13 @@
 
 @end
 
-#pragma mark - Looking up CallSites
-
-KWCallSite *callSiteWithAddress(long address);
-KWCallSite *callSiteAtAddressIfNecessary(long address);
-
-KWCallSite *callSiteAtAddressIfNecessary(long address){
-    BOOL shouldLookup = [[KWExampleSuiteBuilder sharedExampleSuiteBuilder] isFocused] && ![[KWExampleSuiteBuilder sharedExampleSuiteBuilder] foundFocus];
-    return  shouldLookup ? callSiteWithAddress(address) : nil;
-}
-
-KWCallSite *callSiteWithAddress(long address){
-    NSArray *args =@[@"-p", @(getpid()).stringValue, [NSString stringWithFormat:@"%lx", address]];
-    NSString *callSite = [NSString stringWithShellCommand:@"/usr/bin/atos" arguments:args];
-
-    NSString *pattern = @".+\\((.+):([0-9]+)\\)";
-    NSError *e;
-    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:pattern options:NSRegularExpressionCaseInsensitive error:&e];
-    NSArray *res = [regex matchesInString:callSite options:0 range:NSMakeRange(0, callSite.length)];
-
-    NSString *fileName = nil;
-    NSInteger lineNumber = 0;
-
-    for (NSTextCheckingResult *ntcr in res) {
-        fileName = [callSite substringWithRange:[ntcr rangeAtIndex:1]];
-        NSString *lineNumberMatch = [callSite substringWithRange:[ntcr rangeAtIndex:2]];
-        lineNumber = lineNumberMatch.integerValue;
-    }
-    return [KWCallSite callSiteWithFilename:fileName lineNumber:lineNumber];
-}
-
 #pragma mark - Building Example Groups
-
-void describe(NSString *aDescription, void (^block)(void)) {
-    KWCallSite *callSite = callSiteAtAddressIfNecessary(kwCallerAddress());
-    describeWithCallSite(callSite, aDescription, block);
-}
-
-void context(NSString *aDescription, void (^block)(void)) {
-    KWCallSite *callSite = callSiteAtAddressIfNecessary(kwCallerAddress());
-    contextWithCallSite(callSite, aDescription, block);
-}
 
 void registerMatchers(NSString *aNamespacePrefix) {
     registerMatchersWithCallSite(nil, aNamespacePrefix);
 }
 
-void beforeAll(void (^block)(void)) {
-    beforeAllWithCallSite(nil, block);
-}
-
-void afterAll(void (^block)(void)) {
-    afterAllWithCallSite(nil, block);
-}
-
-void beforeEach(void (^block)(void)) {
-    beforeEachWithCallSite(nil, block);
-}
-
-void afterEach(void (^block)(void)) {
-    afterEachWithCallSite(nil, block);
-}
-
-void it(NSString *aDescription, void (^block)(void)) {
-    KWCallSite *callSite = callSiteAtAddressIfNecessary(kwCallerAddress());
-    itWithCallSite(callSite, aDescription, block);
-}
-
-void specify(void (^block)(void))
-{
+void specify(void (^block)(void)) {
     itWithCallSite(nil, nil, block);
 }
 

@@ -17,7 +17,6 @@
 #import "KWItNode.h"
 #import "KWPendingNode.h"
 #import "KWRegisterMatchersNode.h"
-#import "KWSymbolicator.h"
 
 @interface KWExampleSuiteBuilder()
 
@@ -66,7 +65,7 @@
     NSArray *focusInfo = [nodeUrl componentsSeparatedByString:@":"];
     if (!focusInfo || focusInfo.count != 2)
         return;
-    self.focusedCallSite = [KWCallSite callSiteWithFilename:focusInfo[0] lineNumber:[focusInfo[1] intValue]];
+    self.focusedCallSite = [KWCallSite callSiteWithFileName:focusInfo[0] lineNumber:[focusInfo[1] intValue]];
 }
 
 - (void)setFocusedCallSite:(KWCallSite *)aFocusedCallSite {
@@ -109,8 +108,9 @@
     KWContextNode *contextNode = [self.contextNodeStack lastObject];
     KWContextNode *node = [KWContextNode contextNodeWithCallSite:aCallSite parentContext:contextNode description:aDescription];
 
-    if (self.isFocused)
+    if (self.isFocused) {
         node.isFocused = [self shouldFocusContextNodeWithCallSite:aCallSite parentNode:contextNode];
+    }
 
     [contextNode addContextNode:node];
     [self.contextNodeStack addObject:node];

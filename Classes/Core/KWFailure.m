@@ -46,8 +46,8 @@
     NSDictionary *userInfo = nil;
     if (self.callSite) {
         NSNumber *lineNumber = @(self.callSite.lineNumber);
-        userInfo = @{SenTestFilenameKey: self.callSite.filename,
-                                                                            SenTestLineNumberKey: lineNumber};
+        userInfo = @{ SenTestFilenameKey: self.callSite.path,
+                      SenTestLineNumberKey: lineNumber };
     }
     return [NSException exceptionWithName:@"KWFailureException" reason:self.message userInfo:userInfo];
 }

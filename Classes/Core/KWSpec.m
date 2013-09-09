@@ -26,7 +26,7 @@
 
 /* Methods are only implemented by sub-classes */
 
-+ (NSString *)file { return nil; }
++ (NSString *)filePath { return nil; }
 
 + (void)buildExampleGroups {}
 

@@ -14,7 +14,6 @@
 #import "KWExample.h"
 #import "KWFailure.h"
 #import "KWRegisterMatchersNode.h"
-#import "KWSymbolicator.h"
 
 @interface KWContextNode()
 
@@ -76,8 +75,7 @@
     [(NSMutableArray *)self.nodes addObject:aNode];
 }
 
-- (void)performExample:(KWExample *)example withBlock:(void (^)(void))exampleBlock
-{
+- (void)performExample:(KWExample *)example withBlock:(void (^)(void))exampleBlock {
     void (^innerExampleBlock)(void) = [exampleBlock copy];
     
     void (^outerExampleBlock)(void) = ^{

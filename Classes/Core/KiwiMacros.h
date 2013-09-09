@@ -28,14 +28,13 @@
 
 #pragma mark - Support Macros
 
-#define KW_THIS_CALLSITE [KWCallSite callSiteWithFilename:@__FILE__ lineNumber:__LINE__]
+#define KW_THIS_CALLSITE [KWCallSite callSiteWithPath:@__FILE__ lineNumber:__LINE__]
 #define KW_ADD_EXIST_VERIFIER(expectationType) [self addExistVerifierWithExpectationType:expectationType callSite:KW_THIS_CALLSITE] 
 #define KW_ADD_MATCH_VERIFIER(expectationType) [self addMatchVerifierWithExpectationType:expectationType callSite:KW_THIS_CALLSITE]
 #define KW_ADD_ASYNC_VERIFIER(expectationType, timeOut, wait) [self addAsyncVerifierWithExpectationType:expectationType callSite:KW_THIS_CALLSITE timeout:timeOut shouldWait:wait]
 
 #pragma mark - Keywords
 
-// Kiwi macros used in specs for verifying expectations.
 #define should attachToVerifier:KW_ADD_MATCH_VERIFIER(KWExpectationTypeShould)
 #define shouldNot attachToVerifier:KW_ADD_MATCH_VERIFIER(KWExpectationTypeShouldNot)
 #define shouldBeNil attachToVerifier:KW_ADD_EXIST_VERIFIER(KWExpectationTypeShouldNot)
@@ -53,6 +52,14 @@
 
 #define beNil beNil:[KWNilMatcher verifyNilSubject]
 #define beNonNil beNonNil:[KWNilMatcher verifyNonNilSubject]
+
+#define afterAll(block) afterAllWithCallSite(KW_THIS_CALLSITE, block)
+#define afterEach(block) afterEachWithCallSite(KW_THIS_CALLSITE, block)
+#define beforeAll(block) beforeAllWithCallSite(KW_THIS_CALLSITE, block)
+#define beforeEach(block) beforeEachWithCallSite(KW_THIS_CALLSITE, block)
+#define context(description, block) contextWithCallSite(KW_THIS_CALLSITE, description, block)
+#define describe(description, block) describeWithCallSite(KW_THIS_CALLSITE, description, block)
+#define it(description, block) itWithCallSite(KW_THIS_CALLSITE, description, block)
 
 // used to wrap a pointer to an object that will change in the future (used with shouldEventually)
 #define theObject(objectPtr) [KWFutureObject objectWithObjectPointer:objectPtr] // DEPRECATED
@@ -88,7 +95,7 @@
     \
     @implementation name \
     \
-    + (NSString *)file { return @__FILE__; } \
+    + (NSString *)filePath { return @__FILE__; } \
     \
     + (void)buildExampleGroups { \
 
