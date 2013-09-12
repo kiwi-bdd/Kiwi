@@ -11,6 +11,7 @@
 @class KWBeforeAllNode;
 @class KWBeforeEachNode;
 @class KWContextNode;
+@class KWLetNode;
 @class KWItNode;
 @class KWPendingNode;
 @class KWRegisterMatchersNode;
@@ -27,6 +28,7 @@
 - (void)visitAfterAllNode:(KWAfterAllNode *)aNode;
 - (void)visitBeforeEachNode:(KWBeforeEachNode *)aNode;
 - (void)visitAfterEachNode:(KWAfterEachNode *)aNode;
+- (void)visitLetNode:(KWLetNode *)aNode;
 - (void)visitItNode:(KWItNode *)aNode;
 - (void)visitPendingNode:(KWPendingNode *)aNode;
 

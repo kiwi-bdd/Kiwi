@@ -15,6 +15,7 @@
 #import "KWContextNode.h"
 #import "KWBeforeEachNode.h"
 #import "KWBeforeAllNode.h"
+#import "KWLetNode.h"
 #import "KWItNode.h"
 #import "KWAfterEachNode.h"
 #import "KWAfterAllNode.h"
@@ -200,6 +201,11 @@
         return;
     
     aNode.block();
+}
+
+- (void)visitLetNode:(KWLetNode *)aNode
+{
+    [aNode evaluateTree];
 }
 
 - (void)visitItNode:(KWItNode *)aNode {

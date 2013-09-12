@@ -112,7 +112,7 @@
             }
 
             KWLetNode *contextLetNode = [self contextLetNode];
-            [contextLetNode evaluateTree];
+            [contextLetNode acceptExampleNodeVisitor:example];
 
             [self.beforeEachNode acceptExampleNodeVisitor:example];
 

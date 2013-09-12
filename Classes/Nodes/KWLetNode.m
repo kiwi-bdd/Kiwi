@@ -113,6 +113,13 @@
     self.child = nil;
 }
 
+#pragma mark - Accepting visitors
+
+- (void)acceptExampleNodeVisitor:(id<KWExampleNodeVisitor>)aVisitor
+{
+    [aVisitor visitLetNode:self];
+}
+
 #pragma mark - Describing nodes
 
 - (NSString *)description
