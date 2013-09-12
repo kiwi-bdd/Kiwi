@@ -332,7 +332,7 @@ void it(NSString *aDescription, void (^block)(void)) {
     itWithCallSite(callSite, aDescription, block);
 }
 
-void let_(id *anObjectRef, const char *aSymbolName, id (^block)(void))
+void let_(__autoreleasing id *anObjectRef, const char *aSymbolName, id (^block)(void))
 {
     NSString *aDescription = [NSString stringWithUTF8String:aSymbolName];
     letWithCallSite(nil, anObjectRef, aDescription, block);
@@ -378,7 +378,7 @@ void afterEachWithCallSite(KWCallSite *aCallSite, void (^block)(void)) {
     [[KWExampleSuiteBuilder sharedExampleSuiteBuilder] setAfterEachNodeWithCallSite:aCallSite block:block];
 }
 
-void letWithCallSite(KWCallSite *aCallSite, id *anObjectRef, NSString *aSymbolName, id (^block)(void))
+void letWithCallSite(KWCallSite *aCallSite, __autoreleasing id *anObjectRef, NSString *aSymbolName, id (^block)(void))
 {
     [[KWExampleSuiteBuilder sharedExampleSuiteBuilder] addLetNodeWithCallSite:aCallSite objectRef:anObjectRef symbolName:aSymbolName block:block];
 }
