@@ -98,6 +98,17 @@
     }
 }
 
+- (void)failWithException:(NSException *)anException {
+#ifdef KIWI_XCTEST
+    [self recordFailureWithDescription:[anException description]
+                                inFile:nil
+                                atLine:0
+                              expected:NO];
+#else
+    [super failWithException:anException];
+#endif
+}
+
 #pragma mark - KWExampleGroupDelegate methods
 
 - (void)example:(KWExample *)example didFailWithFailure:(KWFailure *)failure {
