@@ -7,6 +7,22 @@
 //
 
 #import "KWLetNode.h"
+#import "KWExampleNodeVisitor.h"
+
+@interface KWLetNode ()
+
+// The parent/child relationship describes let nodes declared in nested
+// contexts -- evaluating a node returns the value of the deepest
+// evaluated child.
+@property (nonatomic, weak) KWLetNode *parent;
+@property (nonatomic, strong) KWLetNode *child;
+
+// The next/previous relationship describes the order in which nodes
+// of different symbols were declared.
+@property (nonatomic, strong) KWLetNode *next;
+@property (nonatomic, weak) KWLetNode *previous;
+
+@end
 
 @implementation KWLetNode
 
@@ -27,9 +43,101 @@
     return [[self alloc] initWithSymbolName:aSymbolName objectRef:anObjectRef block:block];
 }
 
+#pragma mark - Evaluating nodes
+
 - (id)evaluate
 {
-    return self.block ? self.block() : nil;
+    id result = nil;
+    if (self.child) {
+        result = [self.child evaluate];
+    }
+    else if (self.block) {
+        result = self.block();
+    }
+    return (*self.objectRef = result);
+}
+
+- (void)evaluateTree
+{
+    [self evaluate];
+    [self.next evaluateTree];
+}
+
+#pragma mark - Managing node relationships
+
+- (void)addLetNode:(KWLetNode *)aNode
+{
+    if (![aNode isEqual:self]) {
+        if ([aNode.symbolName isEqualToString:self.symbolName]) {
+            [self addChild:aNode];
+        }
+        else if (self.next) {
+            [self.next addLetNode:aNode];
+        }
+        else {
+            self.next = aNode;
+        }
+    }
+}
+
+- (void)addChild:(KWLetNode *)aNode
+{
+    if (self.child) {
+        [self.child addChild:aNode];
+    }
+    else {
+        self.child = aNode;
+    }
+}
+
+- (void)setNext:(KWLetNode *)aNode
+{
+    aNode.previous = self;
+    _next = aNode;
+}
+
+- (void)setChild:(KWLetNode *)aNode
+{
+    aNode.parent = self;
+    _child = aNode;
+}
+
+- (void)unlink
+{
+    [self.next unlink];
+    self.next.previous = nil;
+    self.next = nil;
+
+    [self.child unlink];
+    self.child.parent = nil;
+    self.child = nil;
+}
+
+#pragma mark - Describing nodes
+
+- (NSString *)description
+{
+    return [NSString stringWithFormat:@"%@ {%@\n}", [[self class] description], [self recursiveDescription]];
+}
+
+- (NSString *)nodeDescription
+{
+    return [NSString stringWithFormat:@"<%@ \"%@\">", [[self class] description], self.block ? self.block() : nil];
+}
+
+- (NSString *)recursiveDescription
+{
+    if (!self.parent) {
+        NSMutableString *description = [NSMutableString stringWithFormat:@"\n\t%@:\n\t\t%@", self.symbolName, [self nodeDescription]];
+        if (self.child) [description appendFormat:@"%@", [self.child recursiveDescription]];
+        if (self.next) [description appendString:[self.next recursiveDescription]];
+        return [description copy];
+    }
+    else {
+        NSMutableString *description = [NSMutableString stringWithFormat:@",\n\t\t%@", [self nodeDescription]];
+        if (self.child) [description appendString:[self.child recursiveDescription]];
+        return [description copy];
+    }
 }
 
 @end
