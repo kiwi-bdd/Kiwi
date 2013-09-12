@@ -6,6 +6,7 @@
 
 #import "KWSpec.h"
 #import <objc/runtime.h>
+#import "KWCallSite.h"
 #import "KWExample.h"
 #import "KWExampleSuiteBuilder.h"
 #import "KWIntercept.h"
@@ -90,7 +91,14 @@
         @try {
             [self.currentExample runWithDelegate:self];
         } @catch (NSException *exception) {
+#ifdef KIWI_XCTEST
+            [self recordFailureWithDescription:[exception description]
+                                        inFile:nil
+                                        atLine:0
+                                      expected:NO];
+#else
             [self failWithException:exception];
+#endif
         }
         
         [[self invocation] kw_setExample:nil];
@@ -98,21 +106,17 @@
     }
 }
 
-- (void)failWithException:(NSException *)anException {
-#ifdef KIWI_XCTEST
-    [self recordFailureWithDescription:[anException description]
-                                inFile:nil
-                                atLine:0
-                              expected:NO];
-#else
-    [super failWithException:anException];
-#endif
-}
-
 #pragma mark - KWExampleGroupDelegate methods
 
 - (void)example:(KWExample *)example didFailWithFailure:(KWFailure *)failure {
+#ifdef KIWI_XCTEST
+    [self recordFailureWithDescription:[[failure exceptionValue] description]
+                                inFile:failure.callSite.filename
+                                atLine:failure.callSite.lineNumber
+                              expected:NO];
+#else
     [self failWithException:[failure exceptionValue]];
+#endif
 }
 
 #pragma mark - Verification proxies
