@@ -86,6 +86,60 @@ void pendingWithCallSite(KWCallSite *aCallSite, NSString *aDescription, void (^b
 // the let() function defined in the macro below during autocompletion.
 // The macro then just calls into the real function, let_().
 void let(id name, id (^block)(void));
+
+// The let macro needs to:
+//
+//   a) Declare a local variable, and
+//   b) Get a pointer to the local variable that can later be
+//      dereferenced and assigned the return value of the block
+//
+// However, by the time an example block is executed, any references to
+// __block variables will have been copied to the heap:
+//
+//    __block id foo = nil;
+//    void (^bar)(void) = ^{
+//      foo; // (1)
+//    };
+//    specify(^{
+//      foo; // (2)
+//    });
+//
+// Thus, though (1) and (2) both resolve to the same variable, a
+// pointer to (1) will have a different address than a pointer to (2),
+// because the first is on the stack and the second on the heap.
+//
+// This means that if we dereference a pointer to (1), we get a different
+// location in memory than if we dereference a pointer to (2). For the
+// eager evaluation of let nodes to work, we need a *non-stack pointer*.
+//
+// How do we get a pointer at position (1) that points to the same
+// location as position (2)? We need to return the pointer from a block
+// that has been copied to the heap, like so:
+//
+//    __autoreleasing id *fooRef = Block_copy(^{
+//        // capture a reference to foo; get a pointer to the heap location
+//        __autoreleasing id *fooRef = &foo;
+//        return fooRef;
+//    })();
+//
+// Every reference to 'foo' from within a block that has been copied to
+// the heap points to the same location in memory, so by copying this
+// block and returning a pointer, we have a pointer to the same variable
+// that is referenced within the example node.
+//
+// The reason we don't return '&foo' directly, e.g.,
+//
+//    Block_copy(^{ return &foo; })();
+//
+// is that clang will generate the warning "Address of stack memory
+// associated local variable '...' returned". As it turns out, this is
+// actually the desired behaviour. So to keep the compiler happy, we add
+// the indirection of first assigning to a local id * variable, then
+// returning that pointer.
+//
+// This ultimately allows us to pass around pointers to block storage
+// that resides on the heap.
+//
 #define let(var, args...) \
     __block id var = nil; \
     let_( \
