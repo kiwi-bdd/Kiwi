@@ -764,7 +764,7 @@
 		DA084E6D17E3838100592D5A /* KWSymbolicator.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = C533F7D117462CAA000CAB02 /* KWSymbolicator.h */; };
 		DA084E6E17E3838100592D5A /* NSProxy+KiwiVerifierAdditions.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9F820DB616BB6748003A1BA5 /* NSProxy+KiwiVerifierAdditions.h */; };
 		DA084E6F17E3838100592D5A /* SenTestSuite+KiwiAdditions.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = C533F7D717462DC8000CAB02 /* SenTestSuite+KiwiAdditions.h */; };
-		DA084E7617E383B900592D5A /* libKiwi/XCTest.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DA084E7317E3838100592D5A /* libKiwi/XCTest.a */; };
+		DA084E7617E383B900592D5A /* libKiwi-XCTest.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DA084E7317E3838100592D5A /* libKiwi-XCTest.a */; };
 		F5015CBD1158404E002E9A98 /* libKiwi.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F5015B9F11583A77002E9A98 /* libKiwi.a */; };
 		F53B5E43115B33FC0022BC0B /* KWContainMatcherTest.m in Sources */ = {isa = PBXBuildFile; fileRef = F53B5E42115B33FC0022BC0B /* KWContainMatcherTest.m */; };
 		F53B5E66115B36EB0022BC0B /* KWEqualMatcherTest.m in Sources */ = {isa = PBXBuildFile; fileRef = F53B5E65115B36EB0022BC0B /* KWEqualMatcherTest.m */; };
@@ -1248,7 +1248,7 @@
 		DA084D4217E3804200592D5A /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
 		DA084D5317E381C700592D5A /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		DA084D5A17E3831E00592D5A /* KWXCFunctionalTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KWXCFunctionalTest.m; sourceTree = "<group>"; };
-		DA084E7317E3838100592D5A /* libKiwi/XCTest.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libKiwi/XCTest.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		DA084E7317E3838100592D5A /* libKiwi-XCTest.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libKiwi-XCTest.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F5015B9F11583A77002E9A98 /* libKiwi.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libKiwi.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		F5015C9E11584017002E9A98 /* KiwiTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = KiwiTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F508565011BE61A1000EAD4E /* KiwiTestConfiguration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KiwiTestConfiguration.h; sourceTree = "<group>"; };
@@ -1294,7 +1294,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DA084E7617E383B900592D5A /* libKiwi/XCTest.a in Frameworks */,
+				DA084E7617E383B900592D5A /* libKiwi-XCTest.a in Frameworks */,
 				DA084D5417E381C700592D5A /* SenTestingKit.framework in Frameworks */,
 				DA084D4017E3804200592D5A /* XCTest.framework in Frameworks */,
 				DA084D4317E3804200592D5A /* UIKit.framework in Frameworks */,
@@ -1368,7 +1368,7 @@
 				F5015C9E11584017002E9A98 /* KiwiTests.octest */,
 				832C83C7157263B300F160D5 /* libKiwi-OSX.a */,
 				DA084D3E17E3804200592D5A /* KiwiXCTests.xctest */,
-				DA084E7317E3838100592D5A /* libKiwi/XCTest.a */,
+				DA084E7317E3838100592D5A /* libKiwi-XCTest.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -2125,9 +2125,9 @@
 			productReference = DA084D3E17E3804200592D5A /* KiwiXCTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		DA084D5E17E3838100592D5A /* Kiwi/XCTest */ = {
+		DA084D5E17E3838100592D5A /* Kiwi-XCTest */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = DA084E7017E3838100592D5A /* Build configuration list for PBXNativeTarget "Kiwi/XCTest" */;
+			buildConfigurationList = DA084E7017E3838100592D5A /* Build configuration list for PBXNativeTarget "Kiwi-XCTest" */;
 			buildPhases = (
 				DA084D5F17E3838100592D5A /* Headers */,
 				DA084DBF17E3838100592D5A /* Sources */,
@@ -2139,9 +2139,9 @@
 			comments = "Framework search path \"$(SDKROOT)/Developer/Library/Frameworks\" and \"$(DEVELOPER_LIBRARY_DIR)/Frameworks\" so that SenTestingKit framework can be found.";
 			dependencies = (
 			);
-			name = Kiwi/XCTest;
+			name = "Kiwi-XCTest";
 			productName = Kiwi;
-			productReference = DA084E7317E3838100592D5A /* libKiwi/XCTest.a */;
+			productReference = DA084E7317E3838100592D5A /* libKiwi-XCTest.a */;
 			productType = "com.apple.product-type.library.static";
 		};
 		F5015B9E11583A77002E9A98 /* Kiwi */ = {
@@ -2213,11 +2213,11 @@
 			projectRoot = "";
 			targets = (
 				F5015B9E11583A77002E9A98 /* Kiwi */,
-				DA084D5E17E3838100592D5A /* Kiwi/XCTest */,
 				832C8323157263B300F160D5 /* Kiwi-OSX */,
-				F5015C9D11584017002E9A98 /* KiwiTests */,
-				DA084D3D17E3804200592D5A /* KiwiXCTests */,
 				6BC17EC2155E3A47000B3AA4 /* Kiwi-iOS */,
+				F5015C9D11584017002E9A98 /* KiwiTests */,
+				DA084D5E17E3838100592D5A /* Kiwi-XCTest */,
+				DA084D3D17E3804200592D5A /* KiwiXCTests */,
 			);
 		};
 /* End PBXProject section */
@@ -2631,7 +2631,7 @@
 /* Begin PBXTargetDependency section */
 		DA084E7517E383B200592D5A /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = DA084D5E17E3838100592D5A /* Kiwi/XCTest */;
+			target = DA084D5E17E3838100592D5A /* Kiwi-XCTest */;
 			targetProxy = DA084E7417E383B200592D5A /* PBXContainerItemProxy */;
 		};
 		F5015CBC1158404B002E9A98 /* PBXTargetDependency */ = {
@@ -2859,7 +2859,7 @@
 				GCC_WARN_ABOUT_MISSING_NEWLINE = YES;
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = "";
-				PRODUCT_NAME = Kiwi/XCTest;
+				PRODUCT_NAME = "Kiwi-XCTest";
 				PUBLIC_HEADERS_FOLDER_PATH = "$(PROJECT_NAME)";
 				RUN_CLANG_STATIC_ANALYZER = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -2884,7 +2884,7 @@
 				GCC_WARN_ABOUT_MISSING_NEWLINE = YES;
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = "";
-				PRODUCT_NAME = Kiwi/XCTest;
+				PRODUCT_NAME = "Kiwi-XCTest";
 				PUBLIC_HEADERS_FOLDER_PATH = "$(PROJECT_NAME)";
 				RUN_CLANG_STATIC_ANALYZER = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -3045,8 +3045,9 @@
 				DA084D5017E3804200592D5A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
-		DA084E7017E3838100592D5A /* Build configuration list for PBXNativeTarget "Kiwi/XCTest" */ = {
+		DA084E7017E3838100592D5A /* Build configuration list for PBXNativeTarget "Kiwi-XCTest" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				DA084E7117E3838100592D5A /* Debug */,
