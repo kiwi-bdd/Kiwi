@@ -31,9 +31,13 @@
 
 + (void)buildExampleGroups {}
 
-/* Reported by XCode SenTestingKit Runner before and after invocation of the test
-   Use camel case to make method friendly names from example description
+/* SenTestingKit uses -description, XCTest uses -name when displaying tests
+ in test navigator. Use camel case to make method friendly names from example description.
  */
+
+- (NSString *)name {
+    return [self description];
+}
 
 - (NSString *)description {
     KWExample *currentExample = self.currentExample ? self.currentExample : [[self invocation] kw_example];
