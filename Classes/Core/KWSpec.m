@@ -95,7 +95,7 @@
         @try {
             [self.currentExample runWithDelegate:self];
         } @catch (NSException *exception) {
-#ifdef KIWI_XCTEST
+#ifdef XCT_EXPORT
             [self recordFailureWithDescription:[exception description]
                                         inFile:nil
                                         atLine:0
@@ -113,7 +113,7 @@
 #pragma mark - KWExampleGroupDelegate methods
 
 - (void)example:(KWExample *)example didFailWithFailure:(KWFailure *)failure {
-#ifdef KIWI_XCTEST
+#ifdef XCT_EXPORT
     [self recordFailureWithDescription:[[failure exceptionValue] description]
                                 inFile:failure.callSite.filename
                                 atLine:failure.callSite.lineNumber

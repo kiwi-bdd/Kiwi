@@ -16,14 +16,19 @@ Pod::Spec.new do |s|
       sentest.framework = 'SenTestingKit'
       sentest.dependency 'Kiwi/ARC'
       sentest.dependency 'Kiwi/NonARC'
+      sentest.prefix_header_contents = <<-EOS
+#import <SenTestingKit/SenTestingKit.h>
+EOS
   end
 
   s.subspec 'XCTest' do |xctest|
       xctest.dependency 'Kiwi/SenTestingKit'
       xctest.framework = 'XCTest'
-      xctest.xcconfig = { 'GCC_PREPROCESSOR_DEFINITIONS' => 'KIWI_XCTEST=1' }
+      xctest.prefix_header_contents = <<-EOS
+#import <XCTest/XCTest.h>
+EOS
   end
-  
+
   s.subspec 'ARC' do |arc|
       arc.source_files = 'Classes/**/*.{h,m}'
       arc.requires_arc = true

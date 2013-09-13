@@ -764,7 +764,8 @@
 		DA084E6D17E3838100592D5A /* KWSymbolicator.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = C533F7D117462CAA000CAB02 /* KWSymbolicator.h */; };
 		DA084E6E17E3838100592D5A /* NSProxy+KiwiVerifierAdditions.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9F820DB616BB6748003A1BA5 /* NSProxy+KiwiVerifierAdditions.h */; };
 		DA084E6F17E3838100592D5A /* SenTestSuite+KiwiAdditions.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = C533F7D717462DC8000CAB02 /* SenTestSuite+KiwiAdditions.h */; };
-		DA084E7617E383B900592D5A /* libKiwi-XCTest.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DA084E7317E3838100592D5A /* libKiwi-XCTest.a */; };
+		DAA35A2317E3CF6600C41AE2 /* libKiwi-XCTest.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DA084E7317E3838100592D5A /* libKiwi-XCTest.a */; };
+		DABFFFEC17E3CC3800E79FB4 /* Kiwi-XCTest-Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = DABFFFEB17E3CC2B00E79FB4 /* Kiwi-XCTest-Prefix.pch */; };
 		F5015CBD1158404E002E9A98 /* libKiwi.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F5015B9F11583A77002E9A98 /* libKiwi.a */; };
 		F53B5E43115B33FC0022BC0B /* KWContainMatcherTest.m in Sources */ = {isa = PBXBuildFile; fileRef = F53B5E42115B33FC0022BC0B /* KWContainMatcherTest.m */; };
 		F53B5E66115B36EB0022BC0B /* KWEqualMatcherTest.m in Sources */ = {isa = PBXBuildFile; fileRef = F53B5E65115B36EB0022BC0B /* KWEqualMatcherTest.m */; };
@@ -795,12 +796,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		DA084E7417E383B200592D5A /* PBXContainerItemProxy */ = {
+		DAA35A2117E3CEC600C41AE2 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = DA084D5E17E3838100592D5A;
-			remoteInfo = Kiwi/XCTest;
+			remoteInfo = "Kiwi-XCTest";
 		};
 		F5015CBB1158404B002E9A98 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -1249,6 +1250,7 @@
 		DA084D5317E381C700592D5A /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		DA084D5A17E3831E00592D5A /* KWXCFunctionalTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KWXCFunctionalTest.m; sourceTree = "<group>"; };
 		DA084E7317E3838100592D5A /* libKiwi-XCTest.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libKiwi-XCTest.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		DABFFFEB17E3CC2B00E79FB4 /* Kiwi-XCTest-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Kiwi-XCTest-Prefix.pch"; sourceTree = "<group>"; };
 		F5015B9F11583A77002E9A98 /* libKiwi.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libKiwi.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		F5015C9E11584017002E9A98 /* KiwiTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = KiwiTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F508565011BE61A1000EAD4E /* KiwiTestConfiguration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KiwiTestConfiguration.h; sourceTree = "<group>"; };
@@ -1294,7 +1296,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DA084E7617E383B900592D5A /* libKiwi-XCTest.a in Frameworks */,
+				DAA35A2317E3CF6600C41AE2 /* libKiwi-XCTest.a in Frameworks */,
 				DA084D5417E381C700592D5A /* SenTestingKit.framework in Frameworks */,
 				DA084D4017E3804200592D5A /* XCTest.framework in Frameworks */,
 				DA084D4317E3804200592D5A /* UIKit.framework in Frameworks */,
@@ -1407,6 +1409,7 @@
 			isa = PBXGroup;
 			children = (
 				37828762177F860B00BCD40F /* Kiwi-Prefix.pch */,
+				DABFFFEB17E3CC2B00E79FB4 /* Kiwi-XCTest-Prefix.pch */,
 			);
 			path = "Supporting Files";
 			sourceTree = "<group>";
@@ -1972,6 +1975,7 @@
 				DA084DB317E3838100592D5A /* NSObject+KiwiSpyAdditions.h in Headers */,
 				DA084DB417E3838100592D5A /* NSObject+KiwiStubAdditions.h in Headers */,
 				DA084DB517E3838100592D5A /* NSObject+KiwiVerifierAdditions.h in Headers */,
+				DABFFFEC17E3CC3800E79FB4 /* Kiwi-XCTest-Prefix.pch in Headers */,
 				DA084DB617E3838100592D5A /* NSValue+KiwiAdditions.h in Headers */,
 				DA084DB717E3838100592D5A /* KWChangeMatcher.h in Headers */,
 				DA084DB817E3838100592D5A /* KWGenericMatchEvaluator.h in Headers */,
@@ -2118,7 +2122,7 @@
 			buildRules = (
 			);
 			dependencies = (
-				DA084E7517E383B200592D5A /* PBXTargetDependency */,
+				DAA35A2217E3CEC600C41AE2 /* PBXTargetDependency */,
 			);
 			name = KiwiXCTests;
 			productName = KiwiXCTests;
@@ -2629,10 +2633,10 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		DA084E7517E383B200592D5A /* PBXTargetDependency */ = {
+		DAA35A2217E3CEC600C41AE2 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = DA084D5E17E3838100592D5A /* Kiwi-XCTest */;
-			targetProxy = DA084E7417E383B200592D5A /* PBXContainerItemProxy */;
+			targetProxy = DAA35A2117E3CEC600C41AE2 /* PBXContainerItemProxy */;
 		};
 		F5015CBC1158404B002E9A98 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -2854,11 +2858,11 @@
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_MODEL_TUNING = "";
 				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = "KIWI_XCTEST=1";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Supporting Files/Kiwi-XCTest-Prefix.pch";
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_ABOUT_MISSING_NEWLINE = YES;
 				ONLY_ACTIVE_ARCH = NO;
-				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = "Kiwi-XCTest";
 				PUBLIC_HEADERS_FOLDER_PATH = "$(PROJECT_NAME)";
 				RUN_CLANG_STATIC_ANALYZER = YES;
@@ -2879,11 +2883,11 @@
 					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
 				);
 				GCC_MODEL_TUNING = "";
-				GCC_PREPROCESSOR_DEFINITIONS = "KIWI_XCTEST=1";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Supporting Files/Kiwi-XCTest-Prefix.pch";
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_ABOUT_MISSING_NEWLINE = YES;
 				ONLY_ACTIVE_ARCH = NO;
-				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = "Kiwi-XCTest";
 				PUBLIC_HEADERS_FOLDER_PATH = "$(PROJECT_NAME)";
 				RUN_CLANG_STATIC_ANALYZER = YES;

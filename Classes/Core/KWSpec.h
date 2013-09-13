@@ -5,13 +5,7 @@
 //
 
 #import "KiwiConfiguration.h"
-
-#ifdef KIWI_XCTEST
-#import <XCTest/XCTest.h>
-#else
 #import <SenTestingKit/SenTestingKit.h>
-#endif
-
 #import "KWExpectationType.h"
 #import "KWVerifying.h"
 #import "KWExampleDelegate.h"
@@ -19,7 +13,7 @@
 
 @class KWCallSite;
 
-#ifdef KIWI_XCTEST
+#ifdef XCT_EXPORT
 @interface KWSpec : XCTestCase<KWExampleDelegate>
 #else
 @interface KWSpec : SenTestCase<KWExampleDelegate>
