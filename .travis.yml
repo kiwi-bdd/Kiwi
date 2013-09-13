@@ -1,4 +1,2 @@
 language: objective-c
-script:
-  - xctool test -project Kiwi.xcodeproj -scheme Kiwi -sdk iphonesimulator
-  - xcodebuild test -project Kiwi.xcodeproj -scheme Kiwi-XCTest -sdk iphonesimulator
+script: xctool test -project Kiwi.xcodeproj -scheme Kiwi -sdk iphonesimulator
