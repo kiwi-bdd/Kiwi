@@ -6,6 +6,7 @@
 
 #import "KWSpec.h"
 #import <objc/runtime.h>
+#import <objc/message.h>
 #import "KWCallSite.h"
 #import "KWExample.h"
 #import "KWExampleSuiteBuilder.h"
@@ -87,6 +88,9 @@
 
 #pragma mark - Running Specs
 
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wundeclared-selector"
+
 - (void)invokeTest {
     self.currentExample = [[self invocation] kw_example];
 
@@ -95,33 +99,41 @@
         @try {
             [self.currentExample runWithDelegate:self];
         } @catch (NSException *exception) {
-#ifdef XCT_EXPORT
-            [self recordFailureWithDescription:[exception description]
-                                        inFile:nil
-                                        atLine:0
-                                      expected:NO];
-#else
-            [self failWithException:exception];
-#endif
+            if ([self respondsToSelector:@selector(recordFailureWithDescription:inFile:atLine:expected:)]) {
+                objc_msgSend(self,
+                             @selector(recordFailureWithDescription:inFile:atLine:expected:),
+                             [exception description], @"", 0, NO);
+            } else {
+                objc_msgSend(self, @selector(failWithException:), exception);
+            }
         }
-        
+
         [[self invocation] kw_setExample:nil];
-    
+
     }
 }
 
+#pragma clang diagnostic pop
+
 #pragma mark - KWExampleGroupDelegate methods
 
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wundeclared-selector"
+
 - (void)example:(KWExample *)example didFailWithFailure:(KWFailure *)failure {
-#ifdef XCT_EXPORT
-    [self recordFailureWithDescription:[[failure exceptionValue] description]
-                                inFile:failure.callSite.filename
-                                atLine:failure.callSite.lineNumber
-                              expected:NO];
-#else
-    [self failWithException:[failure exceptionValue]];
-#endif
+    if ([self respondsToSelector:@selector(recordFailureWithDescription:inFile:atLine:expected:)]) {
+        objc_msgSend(self,
+                     @selector(recordFailureWithDescription:inFile:atLine:expected:),
+                     [[failure exceptionValue] description],
+                     failure.callSite.filename,
+                     failure.callSite.lineNumber,
+                     NO);
+    } else {
+        objc_msgSend(self, @selector(failWithException:), [failure exceptionValue]);
+    }
 }
+
+#pragma clang diagnostic pop
 
 #pragma mark - Verification proxies
 
