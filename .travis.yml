@@ -1,5 +1,2 @@
 language: objective-c
-before_install:
-  - brew update
-  - brew install xctool
-script: xctool test -project Kiwi.xcodeproj -scheme Kiwi
+script: xctool test -project Kiwi.xcodeproj -scheme Kiwi -sdk iphonesimulator
