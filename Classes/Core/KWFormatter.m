@@ -24,7 +24,7 @@
     return [anObject description];
 }
 
-+ (NSString *)formatPrefixedObject:(id)anObject {
++ (NSString *)formatObjectIncludingClass:(id)anObject {
     NSString *classString = [[anObject class] description];
     
     if ([anObject isKindOfClass:[NSString class]])

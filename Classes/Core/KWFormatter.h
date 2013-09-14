@@ -11,6 +11,6 @@
 #pragma mark - Getting Descriptions
 
 + (NSString *)formatObject:(id)anObject;
-+ (NSString *)formatPrefixedObject:(id)anObject;
++ (NSString *)formatObjectIncludingClass:(id)anObject;
 
 @end

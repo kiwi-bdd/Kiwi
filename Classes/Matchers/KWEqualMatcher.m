@@ -45,18 +45,18 @@
 
 - (NSString *)failureMessageForShould {
     return [NSString stringWithFormat:@"expected subject to equal %@, got %@",
-                                      [KWFormatter formatPrefixedObject:self.otherSubject],
-                                      [KWFormatter formatPrefixedObject:self.subject]];
+                                      [KWFormatter formatObjectIncludingClass:self.otherSubject],
+                                      [KWFormatter formatObjectIncludingClass:self.subject]];
 }
 
 - (NSString *)failureMessageForShouldNot {
     return [NSString stringWithFormat:@"expected subject not to equal %@",
-                                      [KWFormatter formatPrefixedObject:self.otherSubject]];
+                                      [KWFormatter formatObjectIncludingClass:self.otherSubject]];
 }
 
 - (NSString *)description
 {
-  return [NSString stringWithFormat:@"equal %@", [KWFormatter formatPrefixedObject:self.otherSubject]];
+  return [NSString stringWithFormat:@"equal %@", [KWFormatter formatObjectIncludingClass:self.otherSubject]];
 }
 
 #pragma mark - Configuring Matchers
