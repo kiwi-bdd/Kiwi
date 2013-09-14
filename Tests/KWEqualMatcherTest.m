@@ -58,27 +58,32 @@
   STAssertTrue([matcher evaluate], @"expected positive match");
 }
 
-- (void)testItShouldMatchEqualPointerValues
-{
-    int subject = 123;
-    id matcher = [KWEqualMatcher matcherWithSubject:thePointerValue(&subject)];
-    [matcher equal:thePointerValue(&subject)];
-    STAssertTrue([matcher evaluate], @"expected positive match");
+- (void)testItShouldMatchEqualPointerValues {
+  int subject = 123;
+  id matcher = [KWEqualMatcher matcherWithSubject:thePointerValue(&subject)];
+  [matcher equal:thePointerValue(&subject)];
+  STAssertTrue([matcher evaluate], @"expected positive match");
 }
 
-- (void)testItShouldNotMatchUnequalPointerValues
-{
-    int subject = 123;
-    id matcher = [KWEqualMatcher matcherWithSubject:thePointerValue(&subject)];
-    [matcher equal:thePointerValue(NULL)];
-    STAssertFalse([matcher evaluate], @"expected negative match");
+- (void)testItShouldNotMatchUnequalPointerValues {
+  int subject = 123;
+  id matcher = [KWEqualMatcher matcherWithSubject:thePointerValue(&subject)];
+  [matcher equal:thePointerValue(NULL)];
+  STAssertFalse([matcher evaluate], @"expected negative match");
 }
 
-- (void)testItShouldHaveHumanReadableDescription
-{
+- (void)testItShouldHaveHumanReadableDescription {
   id matcher = [KWEqualMatcher matcherWithSubject:theValue(123)];
   [matcher equal:@"test value"];
-  STAssertEqualObjects(@"equal \"test value\"", [matcher description], @"description should match");
+  STAssertEqualObjects(@"equal (NSString) \"test value\"", [matcher description], @"description should match");
+}
+
+- (void)testItShouldIncludeClassesInFailureMessage {
+  id matcher = [KWEqualMatcher matcherWithSubject:[NSURL URLWithString:@"http://www.example.com/"]];
+  [matcher equal:@"http://www.example.com/"];
+  STAssertEqualObjects(@"expected subject to equal (NSString) \"http://www.example.com/\", got (NSURL) http://www.example.com/",
+                       [matcher failureMessageForShould],
+                       @"failure message should include subject and otherSubject class names");
 }
 
 @end
