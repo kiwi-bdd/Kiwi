@@ -270,7 +270,8 @@ KWCallSite *callSiteAtAddressIfNecessary(long address){
 }
 
 KWCallSite *callSiteWithAddress(long address){
-    NSArray *args =@[@"-p", @(getpid()).stringValue, [NSString stringWithFormat:@"%lx", address]];
+    NSArray *args = @[@"-d",
+                      @"-p", @(getpid()).stringValue, [NSString stringWithFormat:@"%lx", address]];
     NSString *callSite = [NSString stringWithShellCommand:@"/usr/bin/atos" arguments:args];
 
     NSString *pattern = @".+\\((.+):([0-9]+)\\)";
