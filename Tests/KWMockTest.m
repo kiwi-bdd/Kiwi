@@ -100,7 +100,7 @@
 - (void)testItShouldStubWithASelectorAndReturnValue {
     id mock = [Cruiser mock];
     [mock stub:@selector(crewComplement) andReturn:[KWValue valueWithUnsignedInt:42]];
-    STAssertEquals([mock crewComplement], 42u, @"expected method to be stubbed with the correct value");
+    STAssertEquals([mock crewComplement], (NSUInteger)42, @"expected method to be stubbed with the correct value");
 }
 
 - (void)testItShouldStubWithASelectorReturnValueAndArguments {
@@ -156,7 +156,7 @@
     [mock stub:@selector(description) andReturn:@"king rat"];
     [mock stub:@selector(copy) andReturn:@"bacon"];
     STAssertTrue([mock isEqual:@"foobar"], @"expected method to be stubbed");
-    STAssertEquals([mock hash], 4242u, @"expected method to be stubbed");
+    STAssertEquals([mock hash], (NSUInteger)4242, @"expected method to be stubbed");
     STAssertEqualObjects([mock description], @"king rat", @"expected method to be stubbed");
     STAssertEqualObjects([mock copy], @"bacon", @"expected method to be stubbed");
 }
@@ -222,7 +222,7 @@
     id mock = [Cruiser mock];
     NSMethodSignature *signature = [mock methodSignatureForSelector:@selector(computeStarHashForKey:)];
     STAssertTrue(KWObjCTypeEqualToObjCType([signature methodReturnType], @encode(NSUInteger)), @"expected return types to match");
-    STAssertEquals([signature numberOfMessageArguments], 1u, @"expected number of arguments to match");
+    STAssertEquals([signature numberOfMessageArguments], (NSUInteger)1, @"expected number of arguments to match");
     STAssertTrue(KWObjCTypeEqualToObjCType([signature messageArgumentTypeAtIndex:0], @encode(NSUInteger)), @"expected argument types to match");
 }
 
@@ -260,27 +260,27 @@
     id mock = [KWMock mockForProtocol:@protocol(JumpCapable)];
     NSMethodSignature *signature = [mock methodSignatureForSelector:@selector(hyperdriveFuelLevel)];
     STAssertTrue(KWObjCTypeEqualToObjCType([signature methodReturnType], @encode(NSUInteger)), @"expected return types to match");
-    STAssertEquals([signature numberOfMessageArguments], 0u, @"expected number of arguments to match");
+    STAssertEquals([signature numberOfMessageArguments], (NSUInteger)0, @"expected number of arguments to match");
 }
 
 - (void)testItShouldReturnResultsForMethodsOfMockedProtocols {
     id mock = [KWMock mockForProtocol:@protocol(JumpCapable)];
     [mock stub:@selector(hyperdriveFuelLevel)];
-    STAssertEquals([mock hyperdriveFuelLevel], 0u, @"expected method to be stubbed");
+    STAssertEquals([mock hyperdriveFuelLevel], (NSUInteger)0, @"expected method to be stubbed");
 }
 
 - (void)testItShouldReturnMethodSignaturesForMethodsOfIndirectConformedProtocols {
     id mock = [KWMock mockForProtocol:@protocol(JumpCapable)];
     NSMethodSignature *signature = [mock methodSignatureForSelector:@selector(orbitPeriodForMass:)];
     STAssertTrue(KWObjCTypeEqualToObjCType([signature methodReturnType], @encode(float)), @"expected return types to match");
-    STAssertEquals([signature numberOfMessageArguments], 1u, @"expected number of arguments to match");
+    STAssertEquals([signature numberOfMessageArguments], (NSUInteger)1, @"expected number of arguments to match");
     STAssertTrue(KWObjCTypeEqualToObjCType([signature messageArgumentTypeAtIndex:0], @encode(float)), @"expected argument types to match");
 }
 
 - (void)testItShouldStubAndReturnResultsForMethodsOfMockedProtocols {
     id mock = [KWMock mockForProtocol:@protocol(JumpCapable)];
     [mock stub:@selector(hyperdriveFuelLevel) andReturn:[KWValue valueWithUnsignedInt:4242]];
-    STAssertEquals([mock hyperdriveFuelLevel], 4242u, @"expected method to be stubbed");
+    STAssertEquals([mock hyperdriveFuelLevel], (NSUInteger)4242, @"expected method to be stubbed");
 }
 
 - (void)testItShouldReturnResultsForMethodsOfIndirectConformedProtocols {
