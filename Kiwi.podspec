@@ -16,14 +16,16 @@ Pod::Spec.new do |s|
       sentest.framework = 'SenTestingKit'
       sentest.dependency 'Kiwi/ARC'
       sentest.dependency 'Kiwi/NonARC'
+      sentest.source_files = 'SenTestingKit/**/*.{h,m}'
       sentest.prefix_header_contents = <<-EOS
 #import <SenTestingKit/SenTestingKit.h>
 EOS
   end
 
   s.subspec 'XCTest' do |xctest|
-      xctest.dependency 'Kiwi/SenTestingKit'
       xctest.framework = 'XCTest'
+      xctest.dependency 'Kiwi/ARC'
+      xctest.dependency 'Kiwi/NonARC'
       xctest.prefix_header_contents = <<-EOS
 #import <XCTest/XCTest.h>
 EOS
