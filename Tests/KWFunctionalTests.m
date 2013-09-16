@@ -157,6 +157,58 @@ describe(@"Greeting", ^{
     });
 });
 
+describe(@"Let context tree", ^{
+    let(number, ^{ return @0; });
+
+    describe(@"number 1", ^{
+        let(number, ^{ return @1; });
+
+        context(@"number 2", ^{
+            let(number, ^{ return @2; });
+
+            context(@"number 3", ^{
+                let(number, ^{ return @3; });
+
+                context(@"number 4", ^{
+                    let(number, ^{ return @4; });
+
+                    specify(^{
+                        [[number should] equal:@4];
+                    });
+                });
+
+                specify(^{
+                    [[number should] equal:@3];
+                });
+            });
+
+            specify(^{
+                [[number should] equal:@2];
+            });
+        });
+
+        context(@"number 5", ^{
+            let(number, ^{ return @5; });
+
+            context(@"number 6", ^{
+                let(number, ^{ return @6; });
+
+                specify(^{
+                    [[number should] equal:@6];
+                });
+            });
+
+            specify(^{
+                [[number should] equal:@5];
+            });
+        });
+
+        specify(^{
+            [[number should] equal:@1];
+        });
+    });
+});
+
 SPEC_END
 
 SPEC_BEGIN(NilMatchers)
