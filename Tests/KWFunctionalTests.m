@@ -159,6 +159,7 @@ describe(@"Greeting", ^{
 
 describe(@"Let context tree", ^{
     let(number, ^{ return @0; });
+    let(string, ^{ return [number stringValue]; });
 
     describe(@"number 1", ^{
         let(number, ^{ return @1; });
@@ -172,19 +173,16 @@ describe(@"Let context tree", ^{
                 context(@"number 4", ^{
                     let(number, ^{ return @4; });
 
-                    specify(^{
-                        [[number should] equal:@4];
-                    });
+                    specify(^{ [[number should] equal:@4]; });
+                    specify(^{ [[string should] equal:@"4"]; });
                 });
 
-                specify(^{
-                    [[number should] equal:@3];
-                });
+                specify(^{ [[number should] equal:@3]; });
+                specify(^{ [[string should] equal:@"3"]; });
             });
 
-            specify(^{
-                [[number should] equal:@2];
-            });
+            specify(^{ [[number should] equal:@2];});
+            specify(^{ [[string should] equal:@"2"]; });
         });
 
         context(@"number 5", ^{
@@ -193,19 +191,16 @@ describe(@"Let context tree", ^{
             context(@"number 6", ^{
                 let(number, ^{ return @6; });
 
-                specify(^{
-                    [[number should] equal:@6];
-                });
+                specify(^{ [[number should] equal:@6]; });
+                specify(^{ [[string should] equal:@"6"]; });
             });
 
-            specify(^{
-                [[number should] equal:@5];
-            });
+            specify(^{ [[number should] equal:@5]; });
+            specify(^{ [[string should] equal:@"5"]; });
         });
 
-        specify(^{
-            [[number should] equal:@1];
-        });
+        specify(^{ [[number should] equal:@1]; });
+        specify(^{ [[string should] equal:@"1"]; });
     });
 });
 
