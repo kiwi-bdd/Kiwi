@@ -82,7 +82,7 @@
 
 - (void)addChild:(KWLetNode *)aNode
 {
-    if (self.child) {
+    if (self.child && ![self.child isEqual:aNode]) {
         [self.child addChild:aNode];
     }
     else {
