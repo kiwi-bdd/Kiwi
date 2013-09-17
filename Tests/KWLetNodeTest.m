@@ -116,6 +116,26 @@
     STAssertEqualObjects(string, @"2", @"expected the last node to be based on the value of the deepest previous child");
 }
 
+#pragma mark - Example node visiting
+
+- (void)testItSendsVisitLetNodeToTheVisitor {
+    __block BOOL visitorCalled = NO;
+    __block id visitorArgument = nil;
+
+    KWLetNode *letNode = [KWLetNode letNodeWithSymbolName:@"symbol" objectRef:nil block:nil];
+    KWMock<KWExampleNodeVisitor> *visitor = [KWMock mockForProtocol:@protocol(KWExampleNodeVisitor)];
+    [visitor stub:@selector(visitLetNode:) withBlock:^id(NSArray *params) {
+        visitorCalled = YES;
+        visitorArgument = params[0];
+        return nil;
+    }];
+
+    [letNode acceptExampleNodeVisitor:visitor];
+
+    STAssertTrue(visitorCalled, @"expected let node to send 'visitLetNode:' to the visitor");
+    STAssertEqualObjects(visitorArgument, letNode, @"expected let node to pass a reference to itself to the visitor");
+}
+
 @end
 
 #endif // #if KW_TESTS_ENABLED
