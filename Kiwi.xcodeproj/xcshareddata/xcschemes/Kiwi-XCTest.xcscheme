@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "F5015B9E11583A77002E9A98"
-               BuildableName = "libKiwi.a"
-               BlueprintName = "Kiwi"
+               BlueprintIdentifier = "DA084D5E17E3838100592D5A"
+               BuildableName = "libKiwi-XCTest.a"
+               BlueprintName = "Kiwi-XCTest"
                ReferencedContainer = "container:Kiwi.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -32,9 +32,9 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "F5015C9D11584017002E9A98"
-               BuildableName = "KiwiTests.octest"
-               BlueprintName = "KiwiTests"
+               BlueprintIdentifier = "DA084D3D17E3804200592D5A"
+               BuildableName = "KiwiXCTests.xctest"
+               BlueprintName = "KiwiXCTests"
                ReferencedContainer = "container:Kiwi.xcodeproj">
             </BuildableReference>
          </TestableReference>
