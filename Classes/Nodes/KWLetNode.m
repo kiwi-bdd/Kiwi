@@ -100,12 +100,12 @@
 - (void)unlink
 {
     [self.next unlink];
-    self.next.previous = nil;
-    self.next = nil;
+    self.previous.next = nil;
+    self.previous = nil;
 
     [self.child unlink];
-    self.child.parent = nil;
-    self.child = nil;
+    self.parent.child = nil;
+    self.parent = nil;
 }
 
 #pragma mark - Accepting visitors

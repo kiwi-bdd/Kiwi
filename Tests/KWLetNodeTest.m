@@ -46,6 +46,45 @@
     STAssertNil(letNode2.parent, @"expected no 'parent' node to be set");
 }
 
+- (void)testItBuildsATreeofNodes {
+    KWLetNode *letNode1 = [KWLetNode letNodeWithSymbolName:@"foo" objectRef:nil block:nil];
+    KWLetNode *letNode2 = [KWLetNode letNodeWithSymbolName:@"foo" objectRef:nil block:nil];
+    KWLetNode *letNode3 = [KWLetNode letNodeWithSymbolName:@"bar" objectRef:nil block:nil];
+    KWLetNode *letNode4 = [KWLetNode letNodeWithSymbolName:@"bar" objectRef:nil block:nil];
+    KWLetNode *letNode5 = [KWLetNode letNodeWithSymbolName:@"baz" objectRef:nil block:nil];
+    [letNode1 addLetNode:letNode2];
+    [letNode1 addLetNode:letNode3];
+    [letNode1 addLetNode:letNode4];
+    [letNode1 addLetNode:letNode5];
+    STAssertEqualObjects(letNode1.child, letNode2, @"expected the second 'foo' node to be a child of the first");
+    STAssertEqualObjects(letNode1.next, letNode3, @"expected the first 'bar' node to be next after 'foo'");
+    STAssertEqualObjects(letNode3.child, letNode4, @"expected the second 'bar' node to be a child of the first");
+    STAssertEqualObjects(letNode3.next, letNode5, @"expected the 'baz' node to be next after 'bar'");
+    STAssertEqualObjects(letNode3.previous, letNode1, @"expected the first 'foo' node to be the previous of the first 'bar' node");
+    STAssertEqualObjects(letNode4.parent, letNode3, @"expected the first 'bar' node to be the parent of the second");
+    STAssertEqualObjects(letNode5.previous, letNode3, @"expected the first 'bar' node to be the previous of the 'baz' node");
+}
+
+- (void)testItUnlinksASubtreeOfNodes {
+    KWLetNode *letNode1 = [KWLetNode letNodeWithSymbolName:@"foo" objectRef:nil block:nil];
+    KWLetNode *letNode2 = [KWLetNode letNodeWithSymbolName:@"foo" objectRef:nil block:nil];
+    KWLetNode *letNode3 = [KWLetNode letNodeWithSymbolName:@"bar" objectRef:nil block:nil];
+    KWLetNode *letNode4 = [KWLetNode letNodeWithSymbolName:@"bar" objectRef:nil block:nil];
+    KWLetNode *letNode5 = [KWLetNode letNodeWithSymbolName:@"baz" objectRef:nil block:nil];
+    [letNode1 addLetNode:letNode2];
+    [letNode1 addLetNode:letNode3];
+    [letNode1 addLetNode:letNode4];
+    [letNode1 addLetNode:letNode5];
+    [letNode3 unlink];
+    STAssertEqualObjects(letNode1.child, letNode2, @"expected the root node to have a child");
+    STAssertEqualObjects(letNode1.next, nil, @"expected the root node to have no next node");
+    STAssertEqualObjects(letNode3.child, nil, @"expected the first 'bar' node to have no children");
+    STAssertEqualObjects(letNode3.next, nil, @"expected the first 'bar' node to have no next node");
+    STAssertEqualObjects(letNode3.previous, nil, @"expected the first 'bar' node to have no previous node");
+    STAssertEqualObjects(letNode4.parent, nil, @"expected the second 'bar' node to have no parent node");
+    STAssertEqualObjects(letNode5.previous, nil, @"expected the 'baz' node to have no previous node");
+}
+
 #pragma mark - Evaluating let node blocks
 
 - (void)testItSetsItsObjectRefWhenEvaluated {
@@ -63,6 +102,18 @@
     [letNode1 evaluate];
     STAssertEqualObjects(number2, @2, @"expected the child object to have the value '2' after evaluation");
     STAssertEqualObjects(number1, number2, @"expected the parent object to have the same value as the child");
+}
+
+- (void)testItEvaluatesTheDeepestChild {
+    __block NSNumber *number = nil;
+    __block NSString *string = nil;
+    KWLetNode *letNode1 = [KWLetNode letNodeWithSymbolName:@"number" objectRef:&number block:^{ return @1; }];
+    KWLetNode *letNode2 = [KWLetNode letNodeWithSymbolName:@"string" objectRef:&string block:^{ return [number stringValue]; }];
+    KWLetNode *letNode3 = [KWLetNode letNodeWithSymbolName:@"number" objectRef:&number block:^{ return @2; }];
+    [letNode1 addLetNode:letNode2];
+    [letNode1 addLetNode:letNode3];
+    [letNode1 evaluateTree];
+    STAssertEqualObjects(string, @"2", @"expected the last node to be based on the value of the deepest previous child");
 }
 
 @end
