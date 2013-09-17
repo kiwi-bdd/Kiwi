@@ -24,4 +24,15 @@
 - (void)addLetNode:(KWLetNode *)aNode;
 - (void)unlink;
 
+// The parent/child relationship describes let nodes declared in nested
+// contexts -- evaluating a node returns the value of the deepest
+// evaluated child.
+@property (nonatomic, readonly, weak) KWLetNode *parent;
+@property (nonatomic, readonly, strong) KWLetNode *child;
+
+// The next/previous relationship describes the order in which nodes
+// of different symbols were declared.
+@property (nonatomic, readonly, strong) KWLetNode *next;
+@property (nonatomic, readonly, weak) KWLetNode *previous;
+
 @end

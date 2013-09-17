@@ -11,14 +11,9 @@
 
 @interface KWLetNode ()
 
-// The parent/child relationship describes let nodes declared in nested
-// contexts -- evaluating a node returns the value of the deepest
-// evaluated child.
 @property (nonatomic, weak) KWLetNode *parent;
 @property (nonatomic, strong) KWLetNode *child;
 
-// The next/previous relationship describes the order in which nodes
-// of different symbols were declared.
 @property (nonatomic, strong) KWLetNode *next;
 @property (nonatomic, weak) KWLetNode *previous;
 
