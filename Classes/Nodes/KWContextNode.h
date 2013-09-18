@@ -53,6 +53,8 @@
 - (void)addItNode:(KWItNode *)aNode;
 - (void)addPendingNode:(KWPendingNode *)aNode;
 
+- (KWLetNode *)letNodeTree;
+
 - (void)performExample:(KWExample *)example withBlock:(void (^)(void))exampleBlock;
 
 #pragma mark - Accepting Visitors

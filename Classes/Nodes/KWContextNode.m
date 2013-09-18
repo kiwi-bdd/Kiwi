@@ -75,18 +75,18 @@
     [(NSMutableArray *)self.letNodes addObject:aNode];
 }
 
-- (KWLetNode *)contextLetNode
+- (KWLetNode *)letNodeTree
 {
-    KWLetNode *contextLetNode = [self.parentContext contextLetNode];
+    KWLetNode *tree = [self.parentContext letNodeTree];
     for (KWLetNode *letNode in self.letNodes) {
-        if (!contextLetNode) {
-            contextLetNode = letNode;
+        if (!tree) {
+            tree = letNode;
         }
         else {
-            [contextLetNode addLetNode:letNode];
+            [tree addLetNode:letNode];
         }
     }
-    return contextLetNode;
+    return tree;
 }
 
 - (void)addItNode:(KWItNode *)aNode {
@@ -109,8 +109,8 @@
                 [self.beforeAllNode acceptExampleNodeVisitor:example];
             }
 
-            KWLetNode *contextLetNode = [self contextLetNode];
-            [contextLetNode acceptExampleNodeVisitor:example];
+            KWLetNode *letNodeTree = [self letNodeTree];
+            [letNodeTree acceptExampleNodeVisitor:example];
 
             [self.beforeEachNode acceptExampleNodeVisitor:example];
 
@@ -120,7 +120,7 @@
 
             if ([example isLastInContext:self]) {
                 [self.afterAllNode acceptExampleNodeVisitor:example];
-                [contextLetNode unlink];
+                [letNodeTree unlink];
             }
 
         } @catch (NSException *exception) {

@@ -61,6 +61,35 @@
     STAssertNil(letNode2.previous, @"expected second let node to have no previous node");
 }
 
+- (void)testItBuildsATreeOfItsLetNodesWithoutAParentContext {
+    KWLetNode *letNode1 = [KWLetNode letNodeWithSymbolName:@"symbol1" objectRef:nil block:nil];
+    KWLetNode *letNode2 = [KWLetNode letNodeWithSymbolName:@"symbol2" objectRef:nil block:nil];
+    KWContextNode *context = [KWContextNode contextNodeWithCallSite:nil parentContext:nil description:nil];
+    [context addLetNode:letNode1];
+    [context addLetNode:letNode2];
+    KWLetNode *tree = [context letNodeTree];
+    STAssertEqualObjects(tree, letNode1, @"expected the root of the tree to be the first let node");
+    STAssertEqualObjects(tree.next, letNode2, @"expected the root's next node to be the second let node");
+}
+
+- (void)testItBuildsATreeBasedOnItsParentsTreeWithAParentContext {
+    KWLetNode *letNode1 = [KWLetNode letNodeWithSymbolName:@"symbol1" objectRef:nil block:nil];
+    KWLetNode *letNode2 = [KWLetNode letNodeWithSymbolName:@"symbol2" objectRef:nil block:nil];
+    KWContextNode *context1 = [KWContextNode contextNodeWithCallSite:nil parentContext:nil description:@"context1"];
+    [context1 addLetNode:letNode1];
+    [context1 addLetNode:letNode2];
+
+    KWLetNode *letNode3 = [KWLetNode letNodeWithSymbolName:@"symbol1" objectRef:nil block:nil];
+    KWContextNode *context2 = [KWContextNode contextNodeWithCallSite:nil parentContext:context1 description:@"context2"];
+    [context2 addLetNode:letNode3];
+    [context1 addContextNode:context2];
+
+    KWLetNode *tree = [context2 letNodeTree];
+    STAssertEqualObjects(tree, letNode1, @"expected the root of the tree to be the first let node");
+    STAssertEqualObjects(tree.next, letNode2, @"expected the root's next node to be the second let node");
+    STAssertEqualObjects(tree.child, letNode3, @"expected the root's child node to be the third let node");
+}
+
 @end
 
 #endif // #if KW_TESTS_ENABLED
