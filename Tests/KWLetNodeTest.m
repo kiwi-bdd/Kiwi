@@ -77,12 +77,12 @@
     [letNode1 addLetNode:letNode5];
     [letNode3 unlink];
     STAssertEqualObjects(letNode1.child, letNode2, @"expected the root node to have a child");
-    STAssertEqualObjects(letNode1.next, nil, @"expected the root node to have no next node");
-    STAssertEqualObjects(letNode3.child, nil, @"expected the first 'bar' node to have no children");
-    STAssertEqualObjects(letNode3.next, nil, @"expected the first 'bar' node to have no next node");
-    STAssertEqualObjects(letNode3.previous, nil, @"expected the first 'bar' node to have no previous node");
-    STAssertEqualObjects(letNode4.parent, nil, @"expected the second 'bar' node to have no parent node");
-    STAssertEqualObjects(letNode5.previous, nil, @"expected the 'baz' node to have no previous node");
+    STAssertNil(letNode1.next, @"expected the root node to have no next node");
+    STAssertNil(letNode3.child, @"expected the first 'bar' node to have no children");
+    STAssertNil(letNode3.next, @"expected the first 'bar' node to have no next node");
+    STAssertNil(letNode3.previous, @"expected the first 'bar' node to have no previous node");
+    STAssertNil(letNode4.parent, @"expected the second 'bar' node to have no parent node");
+    STAssertNil(letNode5.previous, @"expected the 'baz' node to have no previous node");
 }
 
 #pragma mark - Evaluating let node blocks
