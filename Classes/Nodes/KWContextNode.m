@@ -21,8 +21,6 @@
 
 @property (nonatomic, assign) NSUInteger performedExampleCount;
 
-@property (nonatomic, readonly) NSMutableArray *letNodes;
-
 @end
 
 @implementation KWContextNode
@@ -74,7 +72,7 @@
 
 - (void)addLetNode:(KWLetNode *)aNode
 {
-    [self.letNodes addObject:aNode];
+    [(NSMutableArray *)self.letNodes addObject:aNode];
 }
 
 - (KWLetNode *)contextLetNode

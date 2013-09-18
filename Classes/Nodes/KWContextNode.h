@@ -42,6 +42,7 @@
 @property (nonatomic, strong) KWBeforeEachNode *beforeEachNode;
 @property (nonatomic, strong) KWAfterEachNode *afterEachNode;
 @property (nonatomic, readonly) NSArray *nodes;
+@property (nonatomic, readonly) NSArray *letNodes;
 
 @property (nonatomic, readonly) KWContextNode *parentContext;
 
