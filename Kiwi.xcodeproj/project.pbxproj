@@ -113,6 +113,7 @@
 		44FC0EC116B6377D0050D616 /* NSObject+KiwiVerifierAdditions.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9F982CDC16A802920030A0B1 /* NSObject+KiwiVerifierAdditions.h */; };
 		44FC0EC216B6377D0050D616 /* NSValue+KiwiAdditions.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9F982CDE16A802920030A0B1 /* NSValue+KiwiAdditions.h */; };
 		492F3A7A16D5F7DC008E3C49 /* KWFailureTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 492F3A7916D5F7DC008E3C49 /* KWFailureTest.m */; };
+		4A6E82B317EA57E200B64278 /* KWLetNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A71047F17CC016600A7B718 /* KWLetNode.m */; };
 		4A71048017CC016600A7B718 /* KWLetNode.h in Headers */ = {isa = PBXBuildFile; fileRef = 4A71047E17CC016600A7B718 /* KWLetNode.h */; };
 		4A8699B817E9B399007F250E /* KWLetNodeTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A0941AB17E7A6A800FD0EB7 /* KWLetNodeTest.m */; };
 		4A8699B917E9B3CE007F250E /* KWLetNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A71047F17CC016600A7B718 /* KWLetNode.m */; };
@@ -2447,6 +2448,7 @@
 				DA084DE017E3838100592D5A /* KWFutureObject.m in Sources */,
 				DA084DE117E3838100592D5A /* KWGenericMatcher.m in Sources */,
 				DA084DE217E3838100592D5A /* KWGenericMatchingAdditions.m in Sources */,
+				4A6E82B317EA57E200B64278 /* KWLetNode.m in Sources */,
 				DA084DE317E3838100592D5A /* KWHaveMatcher.m in Sources */,
 				DA084DE417E3838100592D5A /* KWHaveValueMatcher.m in Sources */,
 				DA084DE517E3838100592D5A /* KWInequalityMatcher.m in Sources */,
