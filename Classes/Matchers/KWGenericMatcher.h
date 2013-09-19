@@ -19,6 +19,10 @@
 
 #pragma mark - Configuring Matchers
 
-- (void)match:(id<KWGenericMatching>)aMatcher;
-
+// Note using id<KWGenericMatching> breaks OCHamcrest integration with Kiwi and cause
+// warning: sending 'id<HCMatcher>' to parameter of incompatible type 'id<KWGenericMatching>'
+// as Hamcrest has own HCMatcher protocol and unaware of KWGenericMatching protocol.
+// Passing generic id object works.
+// - (void)match:(id<KWGenericMatching>)aMatcher; // breaks integration with https://github.com/hamcrest/OCHamcrest
+- (void)match:(id)aMatcher;
 @end
