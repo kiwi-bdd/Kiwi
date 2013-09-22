@@ -51,8 +51,8 @@
 #define shouldAfterWaitOf(timeout) attachToVerifier:KW_ADD_ASYNC_VERIFIER(KWExpectationTypeShould, timeout, YES)
 #define shouldNotAfterWaitOf(timeout) attachToVerifier:KW_ADD_ASYNC_VERIFIER(KWExpectationTypeShouldNot, timeout, YES)
 
-#define beNil beNil:[KWBeNilMatcher verifyNilSubject]
-#define beNonNil beNonNil:[KWBeNonNilMatcher verifyNilSubject]
+#define beNil beNil:[KWNilMatcher verifyNilSubject]
+#define beNonNil beNonNil:[KWNilMatcher verifyNonNilSubject]
 
 // used to wrap a pointer to an object that will change in the future (used with shouldEventually)
 #define theObject(objectPtr) [KWFutureObject objectWithObjectPointer:objectPtr] // DEPRECATED

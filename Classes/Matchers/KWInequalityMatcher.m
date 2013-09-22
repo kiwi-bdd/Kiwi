@@ -7,6 +7,13 @@
 #import "KWInequalityMatcher.h"
 #import "KWFormatter.h"
 
+typedef NS_ENUM(NSUInteger, KWInequalityType) {
+    KWInequalityTypeLessThan,
+    KWInequalityTypeLessThanOrEqualTo,
+    KWInequalityTypeGreaterThan,
+    KWInequalityTypeGreaterThanOrEqualTo
+};
+
 @interface KWInequalityMatcher()
 
 #pragma mark - Properties
