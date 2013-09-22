@@ -6,6 +6,8 @@
 
 #import "KWSpec.h"
 #import <objc/runtime.h>
+#import <objc/message.h>
+#import "KWCallSite.h"
 #import "KWExample.h"
 #import "KWExampleSuiteBuilder.h"
 #import "KWIntercept.h"
@@ -30,9 +32,13 @@
 
 + (void)buildExampleGroups {}
 
-/* Reported by XCode SenTestingKit Runner before and after invocation of the test
-   Use camel case to make method friendly names from example description
+/* SenTestingKit uses -description, XCTest uses -name when displaying tests
+ in test navigator. Use camel case to make method friendly names from example description.
  */
+
+- (NSString *)name {
+    return [self description];
+}
 
 - (NSString *)description {
     KWExample *currentExample = self.currentExample ? self.currentExample : [[self invocation] kw_example];
@@ -82,6 +88,9 @@
 
 #pragma mark - Running Specs
 
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wundeclared-selector"
+
 - (void)invokeTest {
     self.currentExample = [[self invocation] kw_example];
 
@@ -90,19 +99,41 @@
         @try {
             [self.currentExample runWithDelegate:self];
         } @catch (NSException *exception) {
-            [self failWithException:exception];
+            if ([self respondsToSelector:@selector(recordFailureWithDescription:inFile:atLine:expected:)]) {
+                objc_msgSend(self,
+                             @selector(recordFailureWithDescription:inFile:atLine:expected:),
+                             [exception description], @"", 0, NO);
+            } else {
+                objc_msgSend(self, @selector(failWithException:), exception);
+            }
         }
-        
+
         [[self invocation] kw_setExample:nil];
-    
+
     }
 }
 
+#pragma clang diagnostic pop
+
 #pragma mark - KWExampleGroupDelegate methods
 
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wundeclared-selector"
+
 - (void)example:(KWExample *)example didFailWithFailure:(KWFailure *)failure {
-    [self failWithException:[failure exceptionValue]];
+    if ([self respondsToSelector:@selector(recordFailureWithDescription:inFile:atLine:expected:)]) {
+        objc_msgSend(self,
+                     @selector(recordFailureWithDescription:inFile:atLine:expected:),
+                     [[failure exceptionValue] description],
+                     failure.callSite.filename,
+                     failure.callSite.lineNumber,
+                     NO);
+    } else {
+        objc_msgSend(self, @selector(failWithException:), [failure exceptionValue]);
+    }
 }
+
+#pragma clang diagnostic pop
 
 #pragma mark - Verification proxies
 

@@ -13,7 +13,11 @@
 
 @class KWCallSite;
 
+#ifdef XCT_EXPORT
+@interface KWSpec : XCTestCase<KWExampleDelegate>
+#else
 @interface KWSpec : SenTestCase<KWExampleDelegate>
+#endif
 
 #pragma mark - Adding Verifiers
 
