@@ -49,7 +49,9 @@
     else if (self.block) {
         result = self.block();
     }
-    return (*self.objectRef = result);
+
+    *self.objectRef = result;
+    return result;
 }
 
 - (void)evaluateTree
