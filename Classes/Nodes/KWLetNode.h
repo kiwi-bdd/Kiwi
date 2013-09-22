@@ -1,9 +1,7 @@
 //
-//  KWLetNode.h
-//  Kiwi
+// Licensed under the terms in License.txt
 //
-//  Created by Adam Sharp on 27/08/13.
-//  Copyright (c) 2013 Allen Ding. All rights reserved.
+// Copyright 2010 Allen Ding. All rights reserved.
 //
 
 #import "KiwiConfiguration.h"
