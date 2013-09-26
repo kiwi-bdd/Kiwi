@@ -81,12 +81,12 @@
 			else {
 				object = *(id*)argumentDataBuffer;
 
-				if (strcmp(type, "@?") == 0) {
+				// Check to make sure object responds to copyWithZone: to avoid copying KWAny
+				if (strcmp(type, "@?") == 0 && [object respondsToSelector:@selector(copyWithZone:)]) {
 					object = [[object copy] autorelease]; // Converting NSStackBlock to NSMallocBlock
 				}
 			}
 			
-			if (strcmp(type, "@?") == 0) object = [[object copy] autorelease]; // Converting NSStackBlock to NSMallocBlock
             [argumentFilters addObject:(object != nil) ? object : [KWNull null]];
 
 			free(argumentDataBuffer);
