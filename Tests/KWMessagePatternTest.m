@@ -7,7 +7,7 @@
 #import "Kiwi.h"
 #import "KiwiTestConfiguration.h"
 #import "NSInvocation+KiwiAdditions.h"
-#import "Robot.h"
+#import "TestClasses.h"
 
 #if KW_TESTS_ENABLED
 
