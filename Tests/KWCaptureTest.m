@@ -77,6 +77,15 @@
     STAssertThrows([spy argument], @"Should have raised an exception");
 }
 
+- (void)testAddSpyConvenienceMethodOnNSObject {
+	Robot *robot = [[Robot alloc] init];
+	KWCaptureSpy *spy = [robot captureArgument:@selector(speak:) atIndex:0];
+
+	[robot speak:@"Hello"];
+
+	STAssertEqualObjects(spy.argument, @"Hello", @"Captured argument from NSObject convenience method based spy should be equal to 'Hello'");
+}
+
 - (void)tearDown {
     KWClearStubsAndSpies();
 }
