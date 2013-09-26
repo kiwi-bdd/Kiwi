@@ -21,6 +21,10 @@
   NSLog(@"Robot says %@", message);
 }
 
+- (void)speak:(id)message ofType:(Class)messageType {
+	NSLog(@"Robot says %@ [Message Type:%@]", message, messageType);
+}
+
 - (void)speak:(NSString *)message afterDelay:(NSTimeInterval)delay whenDone:(void(^)(void))handler
 {
     NSLog(@"Robot will say %@ after a %f second delay", message, delay);

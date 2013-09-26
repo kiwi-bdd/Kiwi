@@ -35,7 +35,7 @@
     if (!_argumentCaptured) {
         NSMethodSignature *signature = [anInvocation methodSignature];
         const char *objCType = [signature messageArgumentTypeAtIndex:_argumentIndex];
-        if (KWObjCTypeIsObject(objCType)) {
+        if (KWObjCTypeIsObject(objCType) || KWObjCTypeIsClass(objCType)) {
             id argument = nil;
             [anInvocation getMessageArgument:&argument atIndex:_argumentIndex];
             if (KWObjCTypeIsBlock(objCType)) {
