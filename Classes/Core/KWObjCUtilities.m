@@ -74,9 +74,9 @@ BOOL KWObjCTypeIsUnknown(const char *objCType) {
 }
 
 NSUInteger KWObjCTypeLength(const char *objCType) {
-    NSString *encoding = KWEncodingWithObjCTypes(objCType, @encode(id), @encode(SEL), nil);
-    NSMethodSignature *signature = [NSMethodSignature signatureWithObjCTypes:[encoding UTF8String]];
-    return [signature methodReturnLength];
+	NSUInteger typeSize = 0;
+	NSGetSizeAndAlignment(objCType, &typeSize, NULL);
+	return typeSize;
 }
 
 BOOL KWObjCTypeIsBlock(const char *objCType) {
