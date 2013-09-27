@@ -33,7 +33,7 @@
 		return nil;
 	}
 	else {
-		return [[_argument retain] autorelease];
+		return _argument;
 	}
 }
 
@@ -42,29 +42,24 @@
         NSMethodSignature *signature = [anInvocation methodSignature];
         const char *objCType = [signature messageArgumentTypeAtIndex:_argumentIndex];
         if (KWObjCTypeIsObject(objCType) || KWObjCTypeIsClass(objCType)) {
-            id argument = nil;
-            [anInvocation getMessageArgument:&argument atIndex:_argumentIndex];
+			void* argumentBuffer = NULL;
+            [anInvocation getMessageArgument:&argumentBuffer atIndex:_argumentIndex];
+			id argument = (__bridge id)argumentBuffer;
             if (KWObjCTypeIsBlock(objCType)) {
                 _argument = [argument copy];
             } else {
 				if(argument == nil) {
-					_argument = [[KWNull null] retain];
+					_argument = [KWNull null];
 				}
 				else {
-					_argument = [argument retain];
+					_argument = argument;
 				}
             }
         } else {
             NSData *data = [anInvocation messageArgumentDataAtIndex:_argumentIndex];
-            _argument = [[KWValue valueWithBytes:[data bytes] objCType:objCType] retain];
+            _argument = [KWValue valueWithBytes:[data bytes] objCType:objCType];
         }
     }
-}
-
-
-- (void)dealloc {
-    [_argument release];
-    [super dealloc];
 }
 
 @end
