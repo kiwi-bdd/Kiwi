@@ -246,8 +246,8 @@
 		9F982D3D16A802920030A0B1 /* KWCallSite.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F982C6816A802920030A0B1 /* KWCallSite.m */; };
 		9F982D3E16A802920030A0B1 /* KWCaptureSpy.h in Headers */ = {isa = PBXBuildFile; fileRef = 9F982C6916A802920030A0B1 /* KWCaptureSpy.h */; };
 		9F982D3F16A802920030A0B1 /* KWCaptureSpy.h in Headers */ = {isa = PBXBuildFile; fileRef = 9F982C6916A802920030A0B1 /* KWCaptureSpy.h */; };
-		9F982D4016A802920030A0B1 /* KWCaptureSpy.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F982C6A16A802920030A0B1 /* KWCaptureSpy.m */; settings = {COMPILER_FLAGS = ""; }; };
-		9F982D4116A802920030A0B1 /* KWCaptureSpy.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F982C6A16A802920030A0B1 /* KWCaptureSpy.m */; };
+		9F982D4016A802920030A0B1 /* KWCaptureSpy.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F982C6A16A802920030A0B1 /* KWCaptureSpy.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		9F982D4116A802920030A0B1 /* KWCaptureSpy.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F982C6A16A802920030A0B1 /* KWCaptureSpy.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		9F982D4216A802920030A0B1 /* KWConformToProtocolMatcher.h in Headers */ = {isa = PBXBuildFile; fileRef = 9F982C6B16A802920030A0B1 /* KWConformToProtocolMatcher.h */; };
 		9F982D4316A802920030A0B1 /* KWConformToProtocolMatcher.h in Headers */ = {isa = PBXBuildFile; fileRef = 9F982C6B16A802920030A0B1 /* KWConformToProtocolMatcher.h */; };
 		9F982D4416A802920030A0B1 /* KWConformToProtocolMatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F982C6C16A802920030A0B1 /* KWConformToProtocolMatcher.m */; settings = {COMPILER_FLAGS = ""; }; };
@@ -604,7 +604,7 @@
 		DA084DD117E3838100592D5A /* KWBlockNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F982C6416A802920030A0B1 /* KWBlockNode.m */; settings = {COMPILER_FLAGS = ""; }; };
 		DA084DD217E3838100592D5A /* KWBlockRaiseMatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F982C6616A802920030A0B1 /* KWBlockRaiseMatcher.m */; settings = {COMPILER_FLAGS = ""; }; };
 		DA084DD317E3838100592D5A /* KWCallSite.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F982C6816A802920030A0B1 /* KWCallSite.m */; settings = {COMPILER_FLAGS = ""; }; };
-		DA084DD417E3838100592D5A /* KWCaptureSpy.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F982C6A16A802920030A0B1 /* KWCaptureSpy.m */; settings = {COMPILER_FLAGS = ""; }; };
+		DA084DD417E3838100592D5A /* KWCaptureSpy.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F982C6A16A802920030A0B1 /* KWCaptureSpy.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		DA084DD517E3838100592D5A /* KWConformToProtocolMatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F982C6C16A802920030A0B1 /* KWConformToProtocolMatcher.m */; settings = {COMPILER_FLAGS = ""; }; };
 		DA084DD617E3838100592D5A /* KWContainMatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F982C6E16A802920030A0B1 /* KWContainMatcher.m */; settings = {COMPILER_FLAGS = ""; }; };
 		DA084DD717E3838100592D5A /* KWContextNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F982C7016A802920030A0B1 /* KWContextNode.m */; settings = {COMPILER_FLAGS = ""; }; };
@@ -1110,8 +1110,8 @@
 		9F982C6616A802920030A0B1 /* KWBlockRaiseMatcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KWBlockRaiseMatcher.m; sourceTree = "<group>"; };
 		9F982C6716A802920030A0B1 /* KWCallSite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KWCallSite.h; sourceTree = "<group>"; };
 		9F982C6816A802920030A0B1 /* KWCallSite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KWCallSite.m; sourceTree = "<group>"; };
-		9F982C6916A802920030A0B1 /* KWCaptureSpy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KWCaptureSpy.h; sourceTree = "<group>"; };
-		9F982C6A16A802920030A0B1 /* KWCaptureSpy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KWCaptureSpy.m; sourceTree = "<group>"; };
+		9F982C6916A802920030A0B1 /* KWCaptureSpy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KWCaptureSpy.h; path = ../Classes/Core/KWCaptureSpy.h; sourceTree = "<group>"; };
+		9F982C6A16A802920030A0B1 /* KWCaptureSpy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = KWCaptureSpy.m; path = ../Classes/Core/KWCaptureSpy.m; sourceTree = "<group>"; };
 		9F982C6B16A802920030A0B1 /* KWConformToProtocolMatcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KWConformToProtocolMatcher.h; sourceTree = "<group>"; };
 		9F982C6C16A802920030A0B1 /* KWConformToProtocolMatcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KWConformToProtocolMatcher.m; sourceTree = "<group>"; };
 		9F982C6D16A802920030A0B1 /* KWContainMatcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KWContainMatcher.h; sourceTree = "<group>"; };
@@ -1420,8 +1420,6 @@
 				9F982C6216A802920030A0B1 /* KWBlock.m */,
 				9F982C6716A802920030A0B1 /* KWCallSite.h */,
 				9F982C6816A802920030A0B1 /* KWCallSite.m */,
-				9F982C6916A802920030A0B1 /* KWCaptureSpy.h */,
-				9F982C6A16A802920030A0B1 /* KWCaptureSpy.m */,
 				9F982C7116A802920030A0B1 /* KWCountType.h */,
 				9F982C7216A802920030A0B1 /* KWDeviceInfo.h */,
 				9F982C7316A802920030A0B1 /* KWDeviceInfo.m */,
@@ -1511,6 +1509,8 @@
 		37B0BAF8177F42E800E07085 /* NonARC */ = {
 			isa = PBXGroup;
 			children = (
+				9F982C6916A802920030A0B1 /* KWCaptureSpy.h */,
+				9F982C6A16A802920030A0B1 /* KWCaptureSpy.m */,
 				9F982C9316A802920030A0B1 /* KWIntercept.h */,
 				9F982C9416A802920030A0B1 /* KWIntercept.m */,
 				9F982CA216A802920030A0B1 /* KWMessagePattern.h */,
