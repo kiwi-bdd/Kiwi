@@ -37,10 +37,25 @@
 - (void)testShouldBeAbleToCaptureObjects {
     id robotMock = [KWMock nullMockForClass:[Robot class]];
     KWCaptureSpy *spy = [robotMock captureArgument:@selector(speak:afterDelay:whenDone:) atIndex:0];
-    
+
     [robotMock speak:@"Hello" afterDelay:2 whenDone:^{}];
-    
-    STAssertEqualObjects(spy.argument, @"Hello", @"Captured argument should be equal to 'Hello'");    
+
+    STAssertEqualObjects(spy.argument, @"Hello", @"Captured argument should be equal to 'Hello'");
+}
+
+- (void)testShouldBeAbleToCaptureAndRetainObjectsThatWouldBeDeallocated {
+	id mutableArrayMock = [KWMock nullMockForClass:[NSMutableArray class]];
+	KWCaptureSpy *spy = [mutableArrayMock captureArgument:@selector(addObject:) atIndex:0];
+
+	NSDictionary *value = [[NSDictionary alloc] initWithObjectsAndKeys:@"Value", @"Key", nil];
+
+	[mutableArrayMock addObject:value];
+	[value release];
+	value = nil;
+
+	NSDictionary *spyValue = spy.argument;
+	STAssertNotNil(spyValue, @"Captured value should not be nil");
+	STAssertEqualObjects(spyValue, @{@"Key" : @"Value"}, @"spy value is not equal to expected value");
 }
 
 - (void)testShouldBeAbleToCaptureValues {
