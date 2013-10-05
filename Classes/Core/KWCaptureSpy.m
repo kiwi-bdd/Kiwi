@@ -50,8 +50,7 @@
             } else {
 				if(argument == nil) {
 					_argument = [KWNull null];
-				}
-				else {
+				} else {
 					_argument = argument;
 				}
             }

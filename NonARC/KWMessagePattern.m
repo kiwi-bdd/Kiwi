@@ -77,12 +77,10 @@
 			if(*(id*)argumentDataBuffer != [KWAny any] && !KWObjCTypeIsObject(type)) {
                 NSData *data = [anInvocation messageArgumentDataAtIndex:i];
                 object = [KWValue valueWithBytes:[data bytes] objCType:type];
-            }
-			else {
+            } else {
 				object = *(id*)argumentDataBuffer;
 
-				// Check to make sure object responds to copyWithZone: to avoid copying KWAny
-				if (strcmp(type, "@?") == 0 && [object respondsToSelector:@selector(copyWithZone:)]) {
+				if (object != [KWAny any] && KWObjCTypeIsBlock(type)) {
 					object = [[object copy] autorelease]; // Converting NSStackBlock to NSMallocBlock
 				}
 			}
