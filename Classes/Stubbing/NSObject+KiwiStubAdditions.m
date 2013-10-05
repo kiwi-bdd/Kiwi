@@ -229,7 +229,7 @@ static NSString * const ChangeStubValueAfterTimesKey = @"ChangeStubValueAfterTim
 - (KWCaptureSpy *)captureArgument:(SEL)selector atIndex:(NSUInteger)index {
     KWCaptureSpy *spy = [[KWCaptureSpy alloc] initWithArgumentIndex:index];
     [self addMessageSpy:spy forMessagePattern:[KWMessagePattern messagePatternWithSelector:selector]];
-    return  spy;
+    return spy;
 }
 
 + (void)addMessageSpy:(id<KWMessageSpying>)aSpy forMessagePattern:(KWMessagePattern *)aMessagePattern {
