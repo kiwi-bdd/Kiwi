@@ -20,6 +20,33 @@
     <string>___FILEBASENAME___.m</string>
 	<key>SortOrder</key>
 	<integer>1</integer>
+	<key>Options</key>
+	<array>
+		<dict>
+			<key>Default</key>
+			<string></string>
+			<key>Description</key>
+			<string>What would you like to test?</string>
+			<key>Identifier</key>
+			<string>testedClass</string>
+			<key>Name</key>
+			<string>Spec for</string>
+			<key>Required</key>
+			<true/>
+			<key>NotPersisted</key>
+			<true/>
+			<key>Type</key>
+			<string>text</string>
+		</dict>
+		<dict>
+			<key>Default</key>
+			<string>___VARIABLE_testedClass:identifier___Spec</string>
+			<key>Identifier</key>
+			<string>productName</string>
+			<key>Type</key>
+			<string>static</string>
+		</dict>
+	</array>
 	<key>Summary</key>
 	<string>Spec class of Kiwi BDD framework</string>
 </dict>
