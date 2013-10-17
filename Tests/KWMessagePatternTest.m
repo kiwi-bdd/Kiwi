@@ -7,6 +7,7 @@
 #import "Kiwi.h"
 #import "KiwiTestConfiguration.h"
 #import "NSInvocation+KiwiAdditions.h"
+#import "TestClasses.h"
 
 #if KW_TESTS_ENABLED
 
@@ -61,6 +62,65 @@
     void *context = nil;
     [invocation setMessageArguments:&observer, &keyPath, &options, &context];
     STAssertTrue([messagePattern matchesInvocation:invocation], @"expected matching invocation");
+}
+
+- (void)testItShouldMatchInvocationsWithAnyArgumentsWhenCreatedWithMessagePatternFromInvocation {
+    NSMethodSignature *signature = [NSObject instanceMethodSignatureForSelector:@selector(addObserver:forKeyPath:options:context:)];
+    NSInvocation *creationInvocation = [NSInvocation invocationWithMethodSignature:signature];
+    id creationInvocationObserver = @"foo";
+    id creationInvocationKeyPath = [KWAny any];
+    id creationInvocationOptions = [KWAny any];
+    void *creationInvocationContext = nil;
+    [creationInvocation setMessageArguments:&creationInvocationObserver, &creationInvocationKeyPath, &creationInvocationOptions, &creationInvocationContext];
+    [creationInvocation setSelector:@selector(addObserver:forKeyPath:options:context:)];
+    KWMessagePattern *messagePattern = [KWMessagePattern messagePatternFromInvocation:creationInvocation];
+
+    NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:signature];
+    [invocation setSelector:@selector(addObserver:forKeyPath:options:context:)];
+    id observer = @"foo";
+    id keyPath = @"bar";
+    NSKeyValueObservingOptions options = 1;
+    void *context = nil;
+    [invocation setMessageArguments:&observer, &keyPath, &options, &context];
+    STAssertTrue([messagePattern matchesInvocation:invocation], @"expected matching invocation");
+}
+
+- (void)testItShouldMatchInvocationsWithAnyArgumentsWhenCreatedWithMessagePatternFromInvocationTwo {
+    NSMethodSignature *signature = [NSObject instanceMethodSignatureForSelector:@selector(addObserver:forKeyPath:options:context:)];
+    NSInvocation *creationInvocation = [NSInvocation invocationWithMethodSignature:signature];
+    id creationInvocationObserver = @"foo";
+    id creationInvocationKeyPath = [KWAny any];
+    NSKeyValueObservingOptions creationInvocationOptions = 1;
+    void *creationInvocationContext = nil;
+    [creationInvocation setMessageArguments:&creationInvocationObserver, &creationInvocationKeyPath, &creationInvocationOptions, &creationInvocationContext];
+    [creationInvocation setSelector:@selector(addObserver:forKeyPath:options:context:)];
+    KWMessagePattern *messagePattern = [KWMessagePattern messagePatternFromInvocation:creationInvocation];
+    NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:signature];
+    [invocation setSelector:@selector(addObserver:forKeyPath:options:context:)];
+    id observer = @"foo";
+    id keyPath = @"bar";
+    NSKeyValueObservingOptions options = 1;
+    void *context = nil;
+    [invocation setMessageArguments:&observer, &keyPath, &options, &context];
+    STAssertTrue([messagePattern matchesInvocation:invocation], @"expected matching invocation");
+}
+
+- (void)testItShouldMatchInvocationsWithAnyArgumentsForBlockParameters {
+	NSMethodSignature *signature = [Robot instanceMethodSignatureForSelector:@selector(speak:afterDelay:whenDone:)];
+	NSInvocation *creationInvocation = [NSInvocation invocationWithMethodSignature:signature];
+	id creationInvocationMessage = @"Hello World";
+	NSTimeInterval creationInvocationTimeInterval = 1.0;
+	id creationInvocationHandler = [KWAny any];
+	[creationInvocation setMessageArguments:&creationInvocationMessage, &creationInvocationTimeInterval, &creationInvocationHandler];
+	[creationInvocation setSelector:@selector(speak:afterDelay:whenDone:)];
+	KWMessagePattern *messagePattern = [KWMessagePattern messagePatternFromInvocation:creationInvocation];
+	NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:signature];
+	[invocation setSelector:@selector(speak:afterDelay:whenDone:)];
+	id message = @"Hello World";
+	NSTimeInterval timeInterval = 1.0;
+	id handler = ^{};
+	[invocation setMessageArguments:&message, &timeInterval, &handler];
+	STAssertTrue([messagePattern matchesInvocation:invocation], @"expected matching invocation");
 }
 
 - (void)testItShouldNotMatchInvocationsWithAnyArguments {

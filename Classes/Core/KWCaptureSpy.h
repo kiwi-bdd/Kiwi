@@ -2,7 +2,7 @@
 
 @interface KWCaptureSpy : NSObject<KWMessageSpying>
 
-@property (nonatomic, readonly) id argument;
+@property (nonatomic, strong, readonly) id argument;
 
 - (id)initWithArgumentIndex:(NSUInteger)index;
 

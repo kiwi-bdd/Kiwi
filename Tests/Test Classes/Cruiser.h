@@ -41,6 +41,7 @@
 @property (nonatomic, readwrite, retain) NSArray *fighters;
 
 - (Fighter *)fighterWithCallsign:(NSString *)aCallsign;
+- (Fighter *)fighterWithCallsignUTF8CString:(const char *)aCallsign;
 - (NSArray *)fightersInSquadron:(NSString *)aSquadron;
 
 #pragma mark -
