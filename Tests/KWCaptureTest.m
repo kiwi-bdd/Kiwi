@@ -37,10 +37,25 @@
 - (void)testShouldBeAbleToCaptureObjects {
     id robotMock = [KWMock nullMockForClass:[Robot class]];
     KWCaptureSpy *spy = [robotMock captureArgument:@selector(speak:afterDelay:whenDone:) atIndex:0];
-    
+
     [robotMock speak:@"Hello" afterDelay:2 whenDone:^{}];
-    
-    STAssertEqualObjects(spy.argument, @"Hello", @"Captured argument should be equal to 'Hello'");    
+
+    STAssertEqualObjects(spy.argument, @"Hello", @"Captured argument should be equal to 'Hello'");
+}
+
+- (void)testShouldBeAbleToCaptureAndRetainObjectsThatWouldBeDeallocated {
+	id mutableArrayMock = [KWMock nullMockForClass:[NSMutableArray class]];
+	KWCaptureSpy *spy = [mutableArrayMock captureArgument:@selector(addObject:) atIndex:0];
+
+	NSDictionary *value = [[NSDictionary alloc] initWithObjectsAndKeys:@"Value", @"Key", nil];
+
+	[mutableArrayMock addObject:value];
+	[value release];
+	value = nil;
+
+	NSDictionary *spyValue = spy.argument;
+	STAssertNotNil(spyValue, @"Captured value should not be nil");
+	STAssertEqualObjects(spyValue, @{@"Key" : @"Value"}, @"spy value is not equal to expected value");
 }
 
 - (void)testShouldBeAbleToCaptureValues {
@@ -48,8 +63,17 @@
     KWCaptureSpy *spy = [robotMock captureArgument:@selector(speak:afterDelay:whenDone:) atIndex:1];
     
     [robotMock speak:@"Hello" afterDelay:2 whenDone:^{}];
-    
+
     STAssertEqualObjects(spy.argument, [KWValue valueWithDouble:2], @"Captured argument should be equal to '2'");        
+}
+
+- (void)testShouldBeAbleToCaptureClasses {
+	id robotMock = [KWMock nullMockForClass:[Robot class]];
+	KWCaptureSpy *spy = [robotMock captureArgument:@selector(speak:ofType:) atIndex:1];
+
+	[robotMock speak:@"Hello" ofType:[NSString class]];
+
+	STAssertEqualObjects(spy.argument, [NSString class], @"Captured argument should be equal to [NSString class]");
 }
 
 - (void)testShouldBeAbleToCaptureNils {
@@ -66,6 +90,15 @@
     KWCaptureSpy *spy = [robotMock captureArgument:@selector(speak:afterDelay:whenDone:) atIndex:1];
     
     STAssertThrows([spy argument], @"Should have raised an exception");
+}
+
+- (void)testAddSpyConvenienceMethodOnNSObject {
+	Robot *robot = [[Robot alloc] init];
+	KWCaptureSpy *spy = [robot captureArgument:@selector(speak:) atIndex:0];
+
+	[robot speak:@"Hello"];
+
+	STAssertEqualObjects(spy.argument, @"Hello", @"Captured argument from NSObject convenience method based spy should be equal to 'Hello'");
 }
 
 - (void)tearDown {

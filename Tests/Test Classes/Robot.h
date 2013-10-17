@@ -14,5 +14,6 @@
 }
 + (id)robot;
 - (void)speak:(NSString *)message;
+- (void)speak:(id)message ofType:(Class)messageType;
 - (void)speak:(NSString *)message afterDelay:(NSTimeInterval)delay whenDone:(void(^)(void))handler;
 @end
