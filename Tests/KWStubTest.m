@@ -133,6 +133,13 @@
     STAssertEquals(retainCountAfter, retainCountBefore + 1, @"expected stub to retain value");
 }
 
+- (void)testItShouldUseIdAsDefaultReturnType{
+    id mock = [Cruiser mock];
+    SEL selector = NSSelectorFromString(@"unknownMethod");
+    [mock stub:selector];
+    STAssertEqualObjects(@([mock methodSignatureForSelector:selector].methodReturnType), @"@", @"expected id as default return type");
+}
+
 @end
 
 #endif // #if KW_TESTS_ENABLED
