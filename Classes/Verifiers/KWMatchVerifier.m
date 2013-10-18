@@ -126,7 +126,7 @@
 
     // Return a dummy method signature so that problems can be handled in
     // -forwardInvocation:.
-    NSString *encoding = KWEncodingForVoidMethod();
+    NSString *encoding = KWEncodingForDefaultMethod();
     return [NSMethodSignature signatureWithObjCTypes:[encoding UTF8String]];
 }
 

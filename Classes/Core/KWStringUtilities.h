@@ -16,3 +16,4 @@ BOOL KWStringHasWord(NSString *string, NSString *word);
 
 NSString *KWEncodingWithObjCTypes(const char *firstType, ...) NS_REQUIRES_NIL_TERMINATION;
 NSString *KWEncodingForVoidMethod(void);
+NSString *KWEncodingForDefaultMethod(void);
