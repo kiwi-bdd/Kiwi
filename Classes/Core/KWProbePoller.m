@@ -11,7 +11,6 @@
 @interface KWTimeout : NSObject
 
 @property (nonatomic) CFTimeInterval timeoutDateStamp;
-//@property (nonatomic, strong) NSDate *timeoutDate;
 
 @end
 
