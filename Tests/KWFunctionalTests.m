@@ -173,6 +173,26 @@ describe(@"nil matchers", ^{
 
 SPEC_END
 
+SPEC_BEGIN(NSDateStub)
+
+describe(@"NSDate stubs", ^{
+	__block id dateMock = nil;
+	context(@"shouldEventually should work when [NSDate date] is mocked and stubbed", ^{
+		beforeEach(^{
+			dateMock = [NSDate mock];
+			[dateMock stub: @selector(timeIntervalSince1970) andReturn: [KWValue valueWithDouble: 1.0f]];
+			[NSDate stub: @selector(date) andReturn: dateMock];
+		});
+		
+		it(@"should not hang", ^{
+			[[theValue([[NSDate date] timeIntervalSince1970]) shouldNotEventually] equal: 5.0f withDelta: 0.5f];
+		});
+	});
+	
+});
+
+SPEC_END
+
 #if KW_TESTS_ENABLED
 @interface KWFunctionalTests : SenTestCase
 @end
