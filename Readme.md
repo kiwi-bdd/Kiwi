@@ -34,3 +34,5 @@ The [Kiwi Wiki](https://github.com/allending/Kiwi/wiki) is the official document
 The best way to get Kiwi is by using [CocoaPods](https://github.com/cocoapods/cocoapods).
 For all the installation details, check out the [Wiki](https://github.com/allending/kiwi/wiki)
 
+# Support #
+For all the questions / suggestions you have, that aren't bug reports please use our [Google Group](https://groups.google.com/forum/#!forum/kiwi-bdd)
