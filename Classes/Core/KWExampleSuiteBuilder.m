@@ -10,6 +10,7 @@
 #import "KWAfterEachNode.h"
 #import "KWBeforeAllNode.h"
 #import "KWBeforeEachNode.h"
+#import "KWLetNode.h"
 #import "KWCallSite.h"
 #import "KWContextNode.h"
 #import "KWExample.h"
@@ -181,6 +182,14 @@
     KWContextNode *contextNode = [self.contextNodeStack lastObject];
     KWAfterEachNode *afterEachNode = [KWAfterEachNode afterEachNodeWithCallSite:aCallSite block:block];
     [contextNode setAfterEachNode:afterEachNode];
+}
+
+- (void)addLetNodeWithCallSite:(KWCallSite *)aCallSite objectRef:(__autoreleasing id *)anObjectRef symbolName:(NSString *)aSymbolName block:(id (^)(void))block {
+    if ([self.contextNodeStack count] == 0)
+        [NSException raise:@"KWExampleSuiteBuilderException" format:@"an example group has not been started"];
+
+    KWContextNode *contextNode = [self.contextNodeStack lastObject];
+    [contextNode addLetNode:[KWLetNode letNodeWithSymbolName:aSymbolName objectRef:anObjectRef block:block]];
 }
 
 - (void)addItNodeWithCallSite:(KWCallSite *)aCallSite description:(NSString *)aDescription block:(void (^)(void))block {

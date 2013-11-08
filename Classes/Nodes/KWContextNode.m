@@ -8,6 +8,7 @@
 #import "KWAfterEachNode.h"
 #import "KWBeforeAllNode.h"
 #import "KWBeforeEachNode.h"
+#import "KWLetNode.h"
 #import "KWCallSite.h"
 #import "KWContextNode.h"
 #import "KWExampleNodeVisitor.h"
@@ -33,6 +34,7 @@
         _callSite = aCallSite;
         _description = [aDescription copy];
         _nodes = [[NSMutableArray alloc] init];
+        _letNodes = [[NSMutableArray alloc] init];
         _performedExampleCount = 0;
     }
 
@@ -68,6 +70,25 @@
     _afterEachNode = aNode;
 }
 
+- (void)addLetNode:(KWLetNode *)aNode
+{
+    [(NSMutableArray *)self.letNodes addObject:aNode];
+}
+
+- (KWLetNode *)letNodeTree
+{
+    KWLetNode *tree = [self.parentContext letNodeTree];
+    for (KWLetNode *letNode in self.letNodes) {
+        if (!tree) {
+            tree = letNode;
+        }
+        else {
+            [tree addLetNode:letNode];
+        }
+    }
+    return tree;
+}
+
 - (void)addItNode:(KWItNode *)aNode {
     [(NSMutableArray *)self.nodes addObject:aNode];
 }
@@ -87,17 +108,21 @@
             if (self.performedExampleCount == 0) {
                 [self.beforeAllNode acceptExampleNodeVisitor:example];
             }
-            
+
+            KWLetNode *letNodeTree = [self letNodeTree];
+            [letNodeTree acceptExampleNodeVisitor:example];
+
             [self.beforeEachNode acceptExampleNodeVisitor:example];
-            
+
             innerExampleBlock();
-            
+
             [self.afterEachNode acceptExampleNodeVisitor:example];
 
             if ([example isLastInContext:self]) {
                 [self.afterAllNode acceptExampleNodeVisitor:example];
+                [letNodeTree unlink];
             }
-            
+
         } @catch (NSException *exception) {
             KWFailure *failure = [KWFailure failureWithCallSite:self.callSite format:@"%@ \"%@\" raised", [exception name], [exception reason]];
             [example reportFailure:failure];

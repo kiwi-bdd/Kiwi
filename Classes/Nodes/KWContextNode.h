@@ -12,6 +12,7 @@
 @class KWBeforeAllNode;
 @class KWBeforeEachNode;
 @class KWCallSite;
+@class KWLetNode;
 @class KWItNode;
 @class KWPendingNode;
 @class KWRegisterMatchersNode;
@@ -41,14 +42,18 @@
 @property (nonatomic, strong) KWBeforeEachNode *beforeEachNode;
 @property (nonatomic, strong) KWAfterEachNode *afterEachNode;
 @property (nonatomic, readonly) NSArray *nodes;
+@property (nonatomic, readonly) NSArray *letNodes;
 
 @property (nonatomic, readonly) KWContextNode *parentContext;
 
 @property (nonatomic, assign) BOOL isFocused;
 
 - (void)addContextNode:(KWContextNode *)aNode;
+- (void)addLetNode:(KWLetNode *)aNode;
 - (void)addItNode:(KWItNode *)aNode;
 - (void)addPendingNode:(KWPendingNode *)aNode;
+
+- (KWLetNode *)letNodeTree;
 
 - (void)performExample:(KWExample *)example withBlock:(void (^)(void))exampleBlock;
 
