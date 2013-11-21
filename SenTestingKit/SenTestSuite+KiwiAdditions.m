@@ -36,7 +36,7 @@
     IMP focusedSuite = imp_implementationWithBlock(^(id _self, Class aClass){
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Warc-performSelector-leaks"
-        return ([[KWExampleSuiteBuilder sharedExampleSuiteBuilder] isFocused] && ![_self testSuiteClassHasFocus:aClass]) ? nil : (__bridge void *)[_self performSelector:newSEL withObject:aClass];
+        return ([[KWExampleSuiteBuilder sharedExampleSuiteBuilder] isFocused] && ![_self testSuiteClassHasFocus:aClass]) ? nil : (void *)[_self performSelector:newSEL withObject:aClass];
 #pragma clang diagnostic pop
     });
     method_setImplementation(origMethod, focusedSuite);
