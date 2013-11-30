@@ -12,6 +12,10 @@
 extern "C" {
 #endif
 
+#if __LP64__
+#warning "Kiwi does not support 64 bit architectures yet"
+#endif
+
 #import "KWAfterAllNode.h"
 #import "KWAfterEachNode.h"
 #import "KWAny.h"
