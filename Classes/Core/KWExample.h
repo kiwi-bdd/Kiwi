@@ -139,6 +139,12 @@ void let(id name, id (^block)(void)); // coax Xcode into autocompleting
     __block id var = nil; \
     let_(Block_copy(^{ __autoreleasing id *ref = &var; return ref; })(), #var, ## args)
 
+typedef void (^KWWhenActionBlock)(void);
+void story(NSString *aDescription, void (^block)(void));
+void given(NSString *aDescription, void (^block)(void));
+void when(NSString *aDescription, KWWhenActionBlock act, void (^examples)(KWWhenActionBlock act));
+void then(NSString *aDescription, void (^block)(void));
+
 #define PRAGMA(x) _Pragma (#x)
 #define PENDING(x) PRAGMA(message ( "Pending: " #x ))
 

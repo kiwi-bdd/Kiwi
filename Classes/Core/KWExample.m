@@ -391,3 +391,22 @@ void itWithCallSite(KWCallSite *aCallSite, NSString *aDescription, void (^block)
 void pendingWithCallSite(KWCallSite *aCallSite, NSString *aDescription, void (^ignoredBlock)(void)) {
     [[KWExampleSuiteBuilder sharedExampleSuiteBuilder] addPendingNodeWithCallSite:aCallSite description:aDescription];
 }
+
+void story(NSString *aDescription, void (^block)(void)) {
+  describe(aDescription, block);
+}
+
+void given(NSString *aDescription, void (^block)(void)) {
+  context([NSString stringWithFormat:@"given %@", aDescription], block);
+}
+
+void when(NSString *aDescription, KWWhenActionBlock act, void (^examples)(KWWhenActionBlock act)) {
+  void (^block)(void) = ^{
+    examples(act);
+  };
+  context([NSString stringWithFormat:@"when %@", aDescription], block);
+}
+
+void then(NSString *aDescription, void (^block)(void)) {
+  it([NSString stringWithFormat:@"then %@", aDescription], block);
+}
