@@ -48,7 +48,7 @@
     [stub processInvocation:invocation];
     NSUInteger crewComplement = 0;
     [invocation getReturnValue:&crewComplement];
-    STAssertEquals(crewComplement, 42u, @"expected stub to write return value");
+    STAssertEquals(crewComplement, (NSUInteger)42, @"expected stub to write return value");
 }
 
 - (void)testItShouldWriteObjectInvocationReturnValues {

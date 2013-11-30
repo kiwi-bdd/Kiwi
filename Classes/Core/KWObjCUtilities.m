@@ -41,6 +41,10 @@ BOOL KWObjCTypeIsUnsignedIntegral(const char *objCType) {
            strcmp(objCType, @encode(unsigned long long)) == 0;
 }
 
+BOOL KWObjCTypeIsBool(const char *objCType) {
+    return strcmp(objCType, @encode(BOOL)) == 0;
+}
+
 BOOL KWObjCTypeIsObject(const char *objCType) {
     return strcmp(objCType, @encode(id)) == 0 || strcmp(objCType, "@?") == 0;
 }
