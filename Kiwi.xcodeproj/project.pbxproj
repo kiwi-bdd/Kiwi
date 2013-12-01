@@ -1023,6 +1023,7 @@
 		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		37828762177F860B00BCD40F /* Kiwi-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Kiwi-Prefix.pch"; sourceTree = "<group>"; };
 		492F3A7916D5F7DC008E3C49 /* KWFailureTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KWFailureTest.m; sourceTree = "<group>"; };
+		4A03096618448E800086F533 /* KWLet.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KWLet.h; sourceTree = "<group>"; };
 		4A0941AB17E7A6A800FD0EB7 /* KWLetNodeTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KWLetNodeTest.m; sourceTree = "<group>"; };
 		4A71047E17CC016600A7B718 /* KWLetNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KWLetNode.h; sourceTree = "<group>"; };
 		4A71047F17CC016600A7B718 /* KWLetNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KWLetNode.m; sourceTree = "<group>"; };
@@ -1452,6 +1453,7 @@
 				9F982C8716A802920030A0B1 /* KWFutureObject.m */,
 				9F982C9516A802920030A0B1 /* KWInvocationCapturer.h */,
 				9F982C9616A802920030A0B1 /* KWInvocationCapturer.m */,
+				4A03096618448E800086F533 /* KWLet.h */,
 				9F982CA416A802920030A0B1 /* KWMessageSpying.h */,
 				9F982CA516A802920030A0B1 /* KWMessageTracker.h */,
 				9F982CA616A802920030A0B1 /* KWMessageTracker.m */,

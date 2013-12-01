@@ -5,6 +5,7 @@
 //
 
 #import "KiwiConfiguration.h"
+#import "KWLet.h"
 #import "KWBlock.h"
 #import "KWVerifying.h"
 #import "KWExpectationType.h"
@@ -137,7 +138,7 @@ void pendingWithCallSite(KWCallSite *aCallSite, NSString *aDescription, void (^b
 void let(id name, id (^block)(void)); // coax Xcode into autocompleting
 #define let(var, args...) \
     __block id var = nil; \
-    let_(Block_copy(^{ __autoreleasing id *ref = &var; return ref; })(), #var, ## args)
+    let_(KW_LET_REF(var), #var, ## args)
 
 #define PRAGMA(x) _Pragma (#x)
 #define PENDING(x) PRAGMA(message ( "Pending: " #x ))
