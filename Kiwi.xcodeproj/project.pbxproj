@@ -7,6 +7,19 @@
 	objects = {
 
 /* Begin PBXAggregateTarget section */
+		110CB24818564FCB00F0BCD3 /* Kiwi-iOS-XCTest */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = 110CB24C18564FCB00F0BCD3 /* Build configuration list for PBXAggregateTarget "Kiwi-iOS-XCTest" */;
+			buildPhases = (
+				110CB24918564FCB00F0BCD3 /* Build library */,
+				110CB24A18564FCB00F0BCD3 /* Assemble Framework */,
+				110CB24B18564FCB00F0BCD3 /* ShellScript */,
+			);
+			dependencies = (
+			);
+			name = "Kiwi-iOS-XCTest";
+			productName = "Kiwi-iOS";
+		};
 		6BC17EC2155E3A47000B3AA4 /* Kiwi-iOS */ = {
 			isa = PBXAggregateTarget;
 			buildConfigurationList = 6BC17EC5155E3A47000B3AA4 /* Build configuration list for PBXAggregateTarget "Kiwi-iOS" */;
@@ -2243,10 +2256,11 @@
 			targets = (
 				F5015B9E11583A77002E9A98 /* Kiwi */,
 				832C8323157263B300F160D5 /* Kiwi-OSX */,
-				6BC17EC2155E3A47000B3AA4 /* Kiwi-iOS */,
 				F5015C9D11584017002E9A98 /* KiwiTests */,
 				DA084D5E17E3838100592D5A /* Kiwi-XCTest */,
 				DA084D3D17E3804200592D5A /* KiwiXCTests */,
+				6BC17EC2155E3A47000B3AA4 /* Kiwi-iOS */,
+				110CB24818564FCB00F0BCD3 /* Kiwi-iOS-XCTest */,
 			);
 		};
 /* End PBXProject section */
@@ -2269,6 +2283,50 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		110CB24918564FCB00F0BCD3 /* Build library */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Build library";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "xcodebuild -project ${PROJECT_NAME}.xcodeproj -sdk iphonesimulator -scheme ${PROJECT_NAME}-XCTest -configuration ${CONFIGURATION} build\nxcodebuild -project ${PROJECT_NAME}.xcodeproj -sdk iphoneos -scheme ${PROJECT_NAME}-XCTest -configuration ${CONFIGURATION} build";
+			showEnvVarsInLog = 0;
+		};
+		110CB24A18564FCB00F0BCD3 /* Assemble Framework */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Assemble Framework";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "SIMULATOR_HEADERS_DIR=\"${BUILD_DIR}/${CONFIGURATION}-iphonesimulator/${PRODUCT_NAME}-XCTest\" &&\nSIMULATOR_LIBRARY_PATH=\"${BUILD_DIR}/${CONFIGURATION}-iphonesimulator/lib${PROJECT_NAME}-XCTest.a\" &&\nDEVICE_LIBRARY_PATH=\"${BUILD_DIR}/${CONFIGURATION}-iphoneos/lib${PROJECT_NAME}-XCTest.a\" &&\nUNIVERSAL_LIBRARY_DIR=\"${BUILD_DIR}/${CONFIGURATION}-iphoneuniversal\" &&\nUNIVERSAL_LIBRARY_PATH=\"${UNIVERSAL_LIBRARY_DIR}/lib${PRODUCT_NAME}-XCTest.a\" &&\nFRAMEWORK=\"${UNIVERSAL_LIBRARY_DIR}/${PRODUCT_NAME}.framework\" &&\n\n# Create framework directory structure.\nrm -rf \"${FRAMEWORK}\" &&\nmkdir -p \"${UNIVERSAL_LIBRARY_DIR}\" &&\nmkdir -p \"${FRAMEWORK}/Versions/A/Resources\" &&\n\n# Generate universal binary from desktop, device, and simulator builds.\nlipo \"${SIMULATOR_LIBRARY_PATH}\" \"${DEVICE_LIBRARY_PATH}\" -create -output \"${UNIVERSAL_LIBRARY_PATH}\" &&\n\n# Copy public headers to Framework headers\n# (had to use move because wildcard matching gave me an error)\ncp -r \"${SIMULATOR_HEADERS_DIR}\" \"${UNIVERSAL_LIBRARY_DIR}\" &&\nmv \"${UNIVERSAL_LIBRARY_DIR}/${PRODUCT_NAME}-XCTest\" \"${FRAMEWORK}/Versions/A/Headers\" &&\n# Copy public headers to output (doesn't matter which architecture)\ncp -r \"${SIMULATOR_HEADERS_DIR}\" \"${UNIVERSAL_LIBRARY_DIR}\" &&\n\n# Move files to appropriate locations in framework paths.\ncp \"${UNIVERSAL_LIBRARY_PATH}\" \"${FRAMEWORK}/Versions/A/${PRODUCT_NAME}\" &&\nln -s \"A\" \"${FRAMEWORK}/Versions/Current\" &&\nln -s \"Versions/Current/Headers\" \"${FRAMEWORK}/Headers\" &&\nln -s \"Versions/Current/Resources\" \"${FRAMEWORK}/Resources\" &&\nln -s \"Versions/Current/${PRODUCT_NAME}\" \"${FRAMEWORK}/${PRODUCT_NAME}\" &&\ncp \"${SRCROOT}/Resources/KiwiDriver-Info.plist\" \"${FRAMEWORK}/Resources/Info.plist\"\n\n# Open Products (output) directory\nopen \"${UNIVERSAL_LIBRARY_DIR}\"";
+			showEnvVarsInLog = 0;
+		};
+		110CB24B18564FCB00F0BCD3 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 8;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+			shellPath = /bin/sh;
+			shellScript = "mkdir -p ${PROJECT_DIR}/output &&\ncp -r ${BUILD_DIR}/${CONFIGURATION}-iphoneuniversal ${PROJECT_DIR}/output";
+			showEnvVarsInLog = 0;
+		};
 		6BC17EC7155E3A50000B3AA4 /* Build library */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -2674,6 +2732,20 @@
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
+		110CB24D18564FCB00F0BCD3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = Kiwi;
+			};
+			name = Debug;
+		};
+		110CB24E18564FCB00F0BCD3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = Kiwi;
+			};
+			name = Release;
+		};
 		6BC17EC3155E3A47000B3AA4 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -3041,6 +3113,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		110CB24C18564FCB00F0BCD3 /* Build configuration list for PBXAggregateTarget "Kiwi-iOS-XCTest" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				110CB24D18564FCB00F0BCD3 /* Debug */,
+				110CB24E18564FCB00F0BCD3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		6BC17EC5155E3A47000B3AA4 /* Build configuration list for PBXAggregateTarget "Kiwi-iOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
