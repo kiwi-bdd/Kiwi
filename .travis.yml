@@ -1,2 +1,4 @@
 language: objective-c
-script: make ci
+before_install:
+  - gem install xcpretty
+script: make ci | xcpretty -c

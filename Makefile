@@ -13,5 +13,5 @@ install:
 test:
 	xcodebuild -project Kiwi.xcodeproj -scheme Kiwi -sdk iphonesimulator test
 
-ci: clean test
+ci: test
 
