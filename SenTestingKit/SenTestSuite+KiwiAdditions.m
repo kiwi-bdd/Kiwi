@@ -13,6 +13,7 @@
 #import "KWExampleSuiteBuilder.h"
 #import "KWCallSite.h"
 #import "KWSpec.h"
+#import "KWSuiteConfigurationBase.h"
 
 @implementation SenTestSuite (KiwiAdditions)
 
@@ -40,12 +41,12 @@
 
         Method setUpMethod = class_getInstanceMethod([suite class], @selector(setUp));
         method_setImplementation(setUpMethod, imp_implementationWithBlock(^(id _self){
-            NSLog(@"SETUP TEST SUITE %@", _self);
+            [[KWSuiteConfigurationBase defaultConfiguration] setUp];
         }));
 
         Method tearDownMethod = class_getInstanceMethod([suite class], @selector(tearDown));
         method_setImplementation(tearDownMethod, imp_implementationWithBlock(^(id _self){
-            NSLog(@"TEARDOWN TEST SUITE %@", _self);
+            [[KWSuiteConfigurationBase defaultConfiguration] tearDown];
         }));
 
         return suite;
