@@ -6,10 +6,8 @@
 //  Copyright (c) 2013 Allen Ding. All rights reserved.
 //
 
-#ifdef XCT_EXPORT
-@interface XCTestSuite (SuiteConfigurationAdditions)
-#else
-@interface SenTestSuite (SuiteConfigurationAdditions)
-#endif
+#import "KiwiConfiguration.h"
+
+@interface KW_TEST_SUITE (SuiteConfigurationAdditions)
 
 @end

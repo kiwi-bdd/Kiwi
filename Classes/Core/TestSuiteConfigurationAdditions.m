@@ -11,11 +11,7 @@
 
 #import <objc/runtime.h>
 
-#ifdef XCT_EXPORT
-@implementation XCTestSuite (SuiteConfigurationAdditions)
-#else
-@implementation SenTestSuite (SuiteConfigurationAdditions)
-#endif
+@implementation KW_TEST_SUITE (SuiteConfigurationAdditions)
 
 + (void)initialize {
     static dispatch_once_t onceToken;
