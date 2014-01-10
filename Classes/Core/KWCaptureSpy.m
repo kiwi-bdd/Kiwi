@@ -9,6 +9,7 @@
 @interface KWCaptureSpy()
 
 @property (nonatomic, strong) id argument;
+@property (nonatomic, readwrite, getter=isCaptured) BOOL captured;
 
 @end
 
@@ -25,7 +26,7 @@
 }
 
 - (id)argument {
-    if (!_argument) {
+    if (!_captured) {
         @throw [NSException exceptionWithName:NSInternalInconsistencyException reason:@"Argument requested has yet to be captured." userInfo:nil];
     }
 
@@ -58,6 +59,8 @@
             NSData *data = [anInvocation messageArgumentDataAtIndex:_argumentIndex];
             _argument = [KWValue valueWithBytes:[data bytes] objCType:objCType];
         }
+        
+        _captured = YES;
     }
 }
 
