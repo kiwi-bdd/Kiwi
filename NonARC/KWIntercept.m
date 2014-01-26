@@ -32,7 +32,11 @@ IMP KWRegularForwardingImplementation(void) {
 }
 
 IMP KWStretForwardingImplementation(void) {
+#ifndef __arm64__
     return class_getMethodImplementation_stret([NSObject class], @selector(KWNonExistantSelector));
+#else
+    return class_getMethodImplementation([NSObject class], @selector(KWNonExistantSelector));
+#endif
 }
 
 #pragma clang diagnostic pop
