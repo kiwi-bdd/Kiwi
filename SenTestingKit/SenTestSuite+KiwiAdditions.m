@@ -13,6 +13,7 @@
 #import "KWExampleSuiteBuilder.h"
 #import "KWCallSite.h"
 #import "KWSpec.h"
+#import "KWSuiteConfigurationBase.h"
 
 @implementation SenTestSuite (KiwiAdditions)
 
