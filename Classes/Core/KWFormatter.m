@@ -34,7 +34,7 @@
 }
 
 
-#pragma mark - Private
+#pragma mark - Internal Methods
 
 + (NSString *)formattedCollection:(id<NSFastEnumeration>)collection {
 
