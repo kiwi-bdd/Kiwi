@@ -11,7 +11,7 @@
 
 @protocol KWMessageSpying;
 
-@interface NSObject(KiwiStubAdditions)
+@protocol KiwiStubAdditions <NSObject>
 
 #pragma mark - Stubbing Methods
 
@@ -51,5 +51,9 @@
 + (void)addMessageSpy:(id<KWMessageSpying>)aSpy forMessagePattern:(KWMessagePattern *)aMessagePattern;
 + (void)removeMessageSpy:(id<KWMessageSpying>)aSpy forMessagePattern:(KWMessagePattern *)aMessagePattern;
 + (KWCaptureSpy *)captureArgument:(SEL)selector atIndex:(NSUInteger)index;
+
+@end
+
+@interface NSObject(KiwiStubAdditions) <KiwiStubAdditions>
 
 @end
