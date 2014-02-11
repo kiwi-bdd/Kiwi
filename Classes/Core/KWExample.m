@@ -27,6 +27,7 @@
 #import "KWExampleSuite.h"
 #import "KWCallSite.h"
 #import "KWSymbolicator.h"
+#import "KWReporter.h"
 
 @interface KWExample ()
 
@@ -36,8 +37,6 @@
 @property (nonatomic, assign) BOOL didNotFinish;
 @property (nonatomic, strong) id<KWExampleNode> exampleNode;
 @property (nonatomic, assign) BOOL passed;
-
-- (void)reportResultForExampleNodeWithLabel:(NSString *)label;
 
 @end
 
@@ -115,13 +114,13 @@
 
 - (NSString *)descriptionForExampleContext {
     NSMutableArray *parts = [NSMutableArray array];
-    
+
     for (KWContextNode *context in [[self.exampleNode contextStack] reverseObjectEnumerator]) {
         if ([context description] != nil) {
             [parts addObject:[[context description] stringByAppendingString:@","]];
         }
     }
-    
+
     return [parts componentsJoinedByString:@" "];
 }
 
@@ -143,11 +142,9 @@
 
 - (void)reportFailure:(KWFailure *)failure {
     self.passed = NO;
-    [self.delegate example:self didFailWithFailure:[self outputReadyFailureWithFailure:failure]];
-}
-
-- (void)reportResultForExampleNodeWithLabel:(NSString *)label {
-    NSLog(@"+ '%@ %@' [%@]", [self descriptionForExampleContext], [self.exampleNode description], label);
+    [[KWReporter sharedReporter] exampleFailed:self];
+    [self.delegate example:self
+        didFailWithFailure:[self outputReadyFailureWithFailure:failure]];
 }
 
 #pragma mark - Full description with context
@@ -211,13 +208,13 @@
 - (void)visitItNode:(KWItNode *)aNode {
     if (aNode.block == nil || aNode != self.exampleNode)
         return;
-    
+
+    [[KWReporter sharedReporter] exampleStarted:self];
     aNode.example = self;
     
     [aNode.context performExample:self withBlock:^{
         
         @try {
-            
             aNode.block();
             
 #if KW_TARGET_HAS_INVOCATION_EXCEPTION_BUG
@@ -243,9 +240,10 @@
         }
         
         if (self.passed) {
-            [self reportResultForExampleNodeWithLabel:@"PASSED"];
+            [[KWReporter sharedReporter] examplePassed:self];
         }
-        
+
+        [[KWReporter sharedReporter] exampleFinished:self];
         // Always clear stubs and spies at the end of it blocks
         KWClearStubsAndSpies();
     }];
@@ -254,8 +252,8 @@
 - (void)visitPendingNode:(KWPendingNode *)aNode {
     if (aNode != self.exampleNode)
         return;
-    
-    [self reportResultForExampleNodeWithLabel:@"PENDING"];
+
+    [[KWReporter sharedReporter] examplePending:self];
 }
 
 - (NSString *)generateDescriptionForAnonymousItNode {
