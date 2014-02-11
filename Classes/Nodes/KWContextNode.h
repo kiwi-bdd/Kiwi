@@ -36,12 +36,12 @@
 
 #pragma mark - Managing Nodes
 
-@property (nonatomic, strong) KWRegisterMatchersNode *registerMatchersNode;
 @property (nonatomic, strong) KWBeforeAllNode *beforeAllNode;
 @property (nonatomic, strong) KWAfterAllNode *afterAllNode;
 @property (nonatomic, strong) KWBeforeEachNode *beforeEachNode;
 @property (nonatomic, strong) KWAfterEachNode *afterEachNode;
 @property (nonatomic, readonly) NSArray *nodes;
+@property (nonatomic, readonly) NSArray *registerMatchersNodes;
 @property (nonatomic, readonly) NSArray *letNodes;
 
 @property (nonatomic, readonly) KWContextNode *parentContext;
@@ -50,6 +50,7 @@
 
 - (void)addContextNode:(KWContextNode *)aNode;
 - (void)addLetNode:(KWLetNode *)aNode;
+- (void)addRegisterMatchersNode:(KWRegisterMatchersNode *)aNode;
 - (void)addItNode:(KWItNode *)aNode;
 - (void)addPendingNode:(KWPendingNode *)aNode;
 
