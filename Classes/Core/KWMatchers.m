@@ -65,11 +65,4 @@ static id sharedMatchers = nil;
     return [builder buildMatcherWithSubject:subject];
 }
 
-
 @end
-
-void KWDefineMatchers(NSString *selectorString, KWMatchersBuildingBlock block)
-{
-    [KWMatchers defineMatcher:selectorString as:block];
-}
-

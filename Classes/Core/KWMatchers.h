@@ -27,6 +27,5 @@ typedef void (^KWMatchersBuildingBlock)(KWUserDefinedMatcherBuilder *);
 #pragma mark - Building Matchers
 
 - (KWUserDefinedMatcher *)matcherForSelector:(SEL)selector subject:(id)subject;
-@end
 
-void KWDefineMatchers(NSString *selectorString, KWMatchersBuildingBlock block);
+@end
