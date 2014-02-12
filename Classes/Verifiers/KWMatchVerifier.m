@@ -9,7 +9,6 @@
 #import "KWCallSite.h"
 #import "KWExample.h"
 #import "KWFailure.h"
-#import "KWFormatter.h"
 #import "KWInvocationCapturer.h"
 #import "KWMatcherFactory.h"
 #import "KWReporting.h"

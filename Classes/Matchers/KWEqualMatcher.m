@@ -5,8 +5,8 @@
 //
 
 #import "KWEqualMatcher.h"
-#import "KWFormatter.h"
 #import "KWValue.h"
+#import "NSObject+KWStringRepresentation.h"
 
 @interface KWEqualMatcher()
 
@@ -45,18 +45,18 @@
 
 - (NSString *)failureMessageForShould {
     return [NSString stringWithFormat:@"expected subject to equal %@, got %@",
-                                      [KWFormatter formatObjectIncludingClass:self.otherSubject],
-                                      [KWFormatter formatObjectIncludingClass:self.subject]];
+                                      [self.otherSubject kw_stringRepresentationWithClass],
+                                      [self.subject kw_stringRepresentationWithClass]];
 }
 
 - (NSString *)failureMessageForShouldNot {
     return [NSString stringWithFormat:@"expected subject not to equal %@",
-                                      [KWFormatter formatObjectIncludingClass:self.otherSubject]];
+                                      [self.otherSubject kw_stringRepresentationWithClass]];
 }
 
 - (NSString *)description
 {
-  return [NSString stringWithFormat:@"equal %@", [KWFormatter formatObjectIncludingClass:self.otherSubject]];
+  return [NSString stringWithFormat:@"equal %@", [self.otherSubject kw_stringRepresentationWithClass]];
 }
 
 #pragma mark - Configuring Matchers

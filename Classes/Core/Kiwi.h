@@ -46,7 +46,6 @@ extern "C" {
 #import "KWExistVerifier.h"
 #import "KWExpectationType.h"
 #import "KWFailure.h"
-#import "KWFormatter.h"
 #import "KWFutureObject.h"
 #import "KWGenericMatcher.h"
 #import "KWHaveMatcher.h"

@@ -5,13 +5,13 @@
 //
 
 #import "KWMessagePattern.h"
-#import "KWFormatter.h"
 #import "KWNull.h"
 #import "KWObjCUtilities.h"
 #import "KWValue.h"
 #import "NSInvocation+KiwiAdditions.h"
 #import "NSMethodSignature+KiwiAdditions.h"
 #import "KWGenericMatchEvaluator.h"
+#import "NSObject+KWStringRepresentation.h"
 #import "Kiwi.h"
 
 @implementation KWMessagePattern
@@ -205,7 +205,7 @@
 
     for (NSUInteger i = 0; i < count; ++i) {
         NSString *selectorComponent = components[i];
-        NSString *argumentFilterString = [KWFormatter formatObject:(self.argumentFilters)[i]];
+        NSString *argumentFilterString = [(self.argumentFilters)[i] kw_stringRepresentation];
         [description appendFormat:@"%@:%@ ", selectorComponent, argumentFilterString];
     }
 

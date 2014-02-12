@@ -9,7 +9,7 @@
 #import "KWHaveValueMatcher.h"
 #import "KWGenericMatchingAdditions.h"
 #import "KWGenericMatcher.h"
-#import "KWFormatter.h"
+#import "NSObject+KWStringRepresentation.h"
 
 @interface KWHaveValueMatcher()
 
@@ -54,18 +54,18 @@
 - (NSString *)failureMessageForShould {
     if (self.expectedValue == nil) {
         return [NSString stringWithFormat:@"expected subject to have a value for key %@",
-                                          [KWFormatter formatObject:self.expectedKey]];
+                                          [self.expectedKey kw_stringRepresentation]];
     }
     id subjectValue = [self subjectValue];
     if (subjectValue) {
         return [NSString stringWithFormat:@"expected subject to have value %@ for key %@, but it had value %@ instead",
-                                          [KWFormatter formatObject:self.expectedValue],
-                                          [KWFormatter formatObject:self.expectedKey],
-                                          [KWFormatter formatObject:subjectValue]];
+                                          [self.expectedValue kw_stringRepresentation],
+                                          [self.expectedKey kw_stringRepresentation],
+                                          [subjectValue kw_stringRepresentation]];
     } else {
         return [NSString stringWithFormat:@"expected subject to have value %@ for key %@, but the key was not present",
-                                          [KWFormatter formatObject:self.expectedValue],
-                                          [KWFormatter formatObject:self.expectedKey]];
+                                          [self.expectedValue kw_stringRepresentation],
+                                          [self.expectedKey kw_stringRepresentation]];
     }
 }
 
@@ -85,16 +85,16 @@
     NSString *keyDescription = nil;
     
     if (self.expectedKey) {
-        keyDescription = [NSString stringWithFormat:@"key %@", [KWFormatter formatObject:self.expectedKey]];
+        keyDescription = [NSString stringWithFormat:@"key %@", [self.expectedKey kw_stringRepresentation]];
     }
     else {
-        keyDescription = [NSString stringWithFormat:@"keypath %@", [KWFormatter formatObject:self.expectedKeyPath]];
+        keyDescription = [NSString stringWithFormat:@"keypath %@", [self.expectedKeyPath kw_stringRepresentation]];
     }
     
     NSString *valueDescription = nil;
     
     if (self.expectedValue) {
-        valueDescription = [NSString stringWithFormat:@"value %@", [KWFormatter formatObject:self.expectedValue]];
+        valueDescription = [NSString stringWithFormat:@"value %@", [self.expectedValue kw_stringRepresentation]];
     }
     else {
         valueDescription = @"value";

@@ -5,7 +5,7 @@
 //
 
 #import "KWInequalityMatcher.h"
-#import "KWFormatter.h"
+#import "NSObject+KWStringRepresentation.h"
 
 typedef NS_ENUM(NSUInteger, KWInequalityType) {
     KWInequalityTypeLessThan,
@@ -29,16 +29,17 @@ typedef NS_ENUM(NSUInteger, KWInequalityType) {
 
 + (NSArray *)matcherStrings {
     return @[@"beLessThan:",
-                                     @"beLessThanOrEqualTo:",
-                                     @"beGreaterThan:",
-                                     @"beGreaterThanOrEqualTo:"];
+             @"beLessThanOrEqualTo:",
+             @"beGreaterThan:",
+             @"beGreaterThanOrEqualTo:"];
 }
 
 #pragma mark - Matching
 
 - (BOOL)evaluate {
-    if (![self.subject respondsToSelector:@selector(compare:)])
+    if (![self.subject respondsToSelector:@selector(compare:)]) {
         [NSException raise:@"KWMatcherException" format:@"subject does not respond to -compare:"];
+    }
 
     NSComparisonResult result = [self.subject compare:self.otherValue];
 
@@ -76,12 +77,14 @@ typedef NS_ENUM(NSUInteger, KWInequalityType) {
 - (NSString *)failureMessageForShould {
     return [NSString stringWithFormat:@"expected subject to be %@ %@, got %@",
                                       [self comparisonPhrase],
-                                      [KWFormatter formatObject:self.otherValue],
-                                      [KWFormatter formatObject:self.subject]];
+                                      [self.otherValue kw_stringRepresentation],
+                                      [self.subject kw_stringRepresentation]];
 }
 
 - (NSString *)description {
-  return [NSString stringWithFormat:@"be %@ %@", [self comparisonPhrase], [KWFormatter formatObject:self.otherValue]];
+  return [NSString stringWithFormat:@"be %@ %@",
+                                    [self comparisonPhrase],
+                                    [self.otherValue kw_stringRepresentation]];
 }
 
 #pragma mark - Configuring Matchers

@@ -5,7 +5,6 @@
 //
 
 #import "KWConformToProtocolMatcher.h"
-#import "KWFormatter.h"
 
 @interface KWConformToProtocolMatcher()
 

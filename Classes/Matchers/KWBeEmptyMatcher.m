@@ -5,7 +5,6 @@
 //
 
 #import "KWBeEmptyMatcher.h"
-#import "KWFormatter.h"
 
 @interface KWBeEmptyMatcher()
 
@@ -35,7 +34,7 @@
         return self.count == 0;
     }
 
-    [NSException raise:@"KWMatcherException" format:@"subject does not respond to -count or -length"];
+    [NSException raise:KWMatcherException format:@"subject does not respond to -count or -length"];
     return NO;
 }
 

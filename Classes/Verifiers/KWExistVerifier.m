@@ -8,8 +8,8 @@
 
 #import "KWCallSite.h"
 #import "KWFailure.h"
-#import "KWFormatter.h"
 #import "KWReporting.h"
+#import "NSObject+KWStringRepresentation.h"
 
 @interface KWExistVerifier()
 
@@ -51,11 +51,13 @@
 
 - (void)exampleWillEnd {
     if (self.expectationType == KWExpectationTypeShould && self.subject == nil) {
-        KWFailure *failure = [KWFailure failureWithCallSite:self.callSite message:@"expected subject not to be nil"];
+        KWFailure *failure = [KWFailure failureWithCallSite:self.callSite
+                                                    message:@"expected subject not to be nil"];
         [self.reporter reportFailure:failure];
     } else if (self.expectationType == KWExpectationTypeShouldNot && self.subject != nil) {
-        KWFailure *failure = [KWFailure failureWithCallSite:self.callSite format:@"expected subject to be nil, got %@",
-                                                                                 [KWFormatter formatObject:self.subject]];
+        KWFailure *failure = [KWFailure failureWithCallSite:self.callSite
+                                                     format:@"expected subject to be nil, got %@",
+                                                            [self.subject kw_stringRepresentation]];
         [self.reporter reportFailure:failure];
     }
 }

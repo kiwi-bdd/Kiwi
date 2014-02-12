@@ -5,9 +5,9 @@
 //
 
 #import "KWBeWithinMatcher.h"
-#import "KWFormatter.h"
 #import "KWObjCUtilities.h"
 #import "KWValue.h"
+#import "NSObject+KWStringRepresentation.h"
 
 @interface KWBeWithinMatcher()
 
@@ -68,9 +68,9 @@
 
 - (NSString *)failureMessageForShould {
     return [NSString stringWithFormat:@"expected subject to be within %@ of %@, got %@",
-                                      [KWFormatter formatObject:self.distance],
-                                      [KWFormatter formatObject:self.otherValue],
-                                      [KWFormatter formatObject:self.subject]];
+                                      [self.distance kw_stringRepresentation],
+                                      [self.otherValue kw_stringRepresentation],
+                                      [self.subject kw_stringRepresentation]];
 }
 
 - (NSString *)description {

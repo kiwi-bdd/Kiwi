@@ -5,7 +5,7 @@
 //
 
 #import "KWBeIdenticalToMatcher.h"
-#import "KWFormatter.h"
+#import "NSObject+KWStringRepresentation.h"
 
 @interface KWBeIdenticalToMatcher()
 
@@ -33,15 +33,15 @@
 
 - (NSString *)failureMessageForShould {
     return [NSString stringWithFormat:@"expected subject to be identical to %@ (%p), got %@ (%p)",
-                                      [KWFormatter formatObject:self.otherSubject],
+                                      [self.otherSubject kw_stringRepresentation],
                                       self.otherSubject,
-                                      [KWFormatter formatObject:self.subject],
+                                      [self.subject kw_stringRepresentation],
                                       self.subject];
 }
 
 - (NSString *)failureMessageForShouldNot {
     return [NSString stringWithFormat:@"expected subject not to be identical to %@ (%p)",
-                                      [KWFormatter formatObject:self.otherSubject],
+                                      [self.otherSubject kw_stringRepresentation],
                                       self.otherSubject];
 }
 

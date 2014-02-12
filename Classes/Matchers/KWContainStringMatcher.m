@@ -7,7 +7,7 @@
 //
 
 #import "KWContainStringMatcher.h"
-#import "KWFormatter.h"
+#import "NSObject+KWStringRepresentation.h"
 
 @interface KWContainStringMatcher ()
 
@@ -33,7 +33,7 @@
 - (BOOL)evaluate {
     NSString *subjectString = (NSString *)self.subject;
     if (![subjectString isKindOfClass:[NSString class]]) {
-        [NSException raise:@"KWMatcherException" format:@"subject is not a string"];
+        [NSException raise:KWMatcherException format:@"subject is not a string"];
         return NO;
     }
     
@@ -45,7 +45,7 @@
 
 - (NSString *)failureMessageForShould {
     return [NSString stringWithFormat:@"%@ did not contain string \"%@\"",
-            [KWFormatter formatObject:self.subject],
+            [self.subject kw_stringRepresentation],
             self.substring];
 }
 

@@ -5,8 +5,10 @@
 //
 
 #import "KWMatcher.h"
-#import "KWFormatter.h"
 #import "KWFutureObject.h"
+#import "NSObject+KWStringRepresentation.h"
+
+NSString * const KWMatcherException = @"KWMatcherException";
 
 @implementation KWMatcher
 
@@ -52,7 +54,7 @@
 
 - (BOOL)evaluate {
     [NSException raise:NSInternalInconsistencyException format:@"%@ must override -evaluate",
-                                                               [KWFormatter formatObject:[self class]]];
+                                                               [[self class] kw_stringRepresentation]];
     return NO;
 }
 

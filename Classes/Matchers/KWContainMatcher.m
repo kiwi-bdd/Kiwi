@@ -5,8 +5,8 @@
 //
 
 #import "KWContainMatcher.h"
-#import "KWFormatter.h"
 #import "KWGenericMatchingAdditions.h"
+#import "NSObject+KWStringRepresentation.h"
 
 @interface KWContainMatcher()
 
@@ -25,8 +25,9 @@
 #pragma mark - Matching
 
 - (BOOL)evaluate {
-    if (![self.subject respondsToSelector:@selector(containsObjectEqualToOrMatching:)])
-        [NSException raise:@"KWMatcherException" format:@"subject does not respond to -containsObjectEqualToOrMatching:"];
+    if (![self.subject respondsToSelector:@selector(containsObjectEqualToOrMatching:)]) {
+        [NSException raise:KWMatcherException format:@"subject does not respond to -containsObjectEqualToOrMatching:"];
+    }
 
     for (id object in self.objects) {
         if (![self.subject containsObjectEqualToOrMatching:object])
@@ -39,10 +40,11 @@
 #pragma mark - Getting Failure Messages
 
 - (NSString *)objectsPhrase {
-    if ([self.objects count] == 1)
-        return [KWFormatter formatObject:(self.objects)[0]];
+    if ([self.objects count] == 1) {
+        return [(self.objects)[0] kw_stringRepresentation];
+    }
 
-    return [NSString stringWithFormat:@"all of %@", [KWFormatter formatObject:self.objects]];
+    return [NSString stringWithFormat:@"all of %@", [self.objects kw_stringRepresentation]];
 }
 
 - (NSString *)failureMessageForShould {

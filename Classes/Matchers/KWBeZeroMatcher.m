@@ -5,8 +5,8 @@
 //
 
 #import "KWBeZeroMatcher.h"
-#import "KWFormatter.h"
 #import "KWValue.h"
+#import "NSObject+KWStringRepresentation.h"
 
 @implementation KWBeZeroMatcher
 
@@ -19,8 +19,9 @@
 #pragma mark - Matching
 
 - (BOOL)evaluate {
-    if (![self.subject respondsToSelector:@selector(boolValue)])
-        [NSException raise:@"KWMatcherException" format:@"subject does not respond to -numberValue"];
+    if (![self.subject respondsToSelector:@selector(boolValue)]) {
+        [NSException raise:KWMatcherException format:@"subject does not respond to -numberValue"];
+    }
 
     return [[self.subject numberValue] isEqualToNumber:@0];
 }
@@ -29,7 +30,7 @@
 
 - (NSString *)failureMessageForShould {
     return [NSString stringWithFormat:@"expected subject to be zero, got %@",
-                                      [KWFormatter formatObject:self.subject]];
+                                      [self.subject kw_stringRepresentation]];
 }
 
 - (NSString *)failureMessageForShouldNot {

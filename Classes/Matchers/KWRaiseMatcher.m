@@ -5,7 +5,6 @@
 //
 
 #import "KWRaiseMatcher.h"
-#import "KWFormatter.h"
 
 @interface KWRaiseMatcher()
 
@@ -24,9 +23,9 @@
 
 + (NSArray *)matcherStrings {
     return @[@"raiseWhenSent:",
-                                     @"raiseWithName:whenSent:",
-                                     @"raiseWithReason:whenSent:",
-                                     @"raiseWithName:reason:whenSent:"];
+             @"raiseWithName:whenSent:",
+             @"raiseWithReason:whenSent:",
+             @"raiseWithName:reason:whenSent:"];
 }
 
 #pragma mark - Matching
