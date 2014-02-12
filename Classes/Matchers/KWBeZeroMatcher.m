@@ -19,6 +19,10 @@
 #pragma mark - Matching
 
 - (BOOL)evaluate {
+    if ([self.subject isKindOfClass:[NSNumber class]]) {
+        return [self.subject isEqualToNumber:@0];
+    }
+    
     if ([self.subject respondsToSelector:@selector(numberValue)]) {
         return [[self.subject numberValue] isEqualToNumber:@0];
     }

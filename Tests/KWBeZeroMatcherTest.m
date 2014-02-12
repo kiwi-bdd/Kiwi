@@ -42,8 +42,21 @@
     STAssertFalse([matcher evaluate], @"expected negative match for primitive non-zero value");
 }
 
-- (void)testItShouldHaveHumanReadableDescription
-{
+- (void)testItShouldMatchZeroAsAnNSNumber {
+    id subject = @0;
+    id matcher = [KWBeZeroMatcher matcherWithSubject:subject];
+    [matcher beZero];
+    STAssertTrue([matcher evaluate], @"expected positive match for zero as an NSNumber");
+}
+
+- (void)testItShouldNotMatchNonZeroNSNumberValues {
+    id subject = @42;
+    id matcher = [KWBeZeroMatcher matcherWithSubject:subject];
+    [matcher beZero];
+    STAssertFalse([matcher evaluate], @"expected negative match for non-zero NSNumber values");
+}
+
+- (void)testItShouldHaveHumanReadableDescription {
     id matcher = [KWBeZeroMatcher matcherWithSubject:nil];
     STAssertEqualObjects(@"be zero", [matcher description], @"description should match");
 }
