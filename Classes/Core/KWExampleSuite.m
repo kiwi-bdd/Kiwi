@@ -14,15 +14,12 @@
 #import "KWExample.h"
 #import "KWStringUtilities.h"
 #import "NSMethodSignature+KiwiAdditions.h"
+#import "NSInvocation+KWExample.h"
 #import <objc/runtime.h>
 
-#define kKWINVOCATION_EXAMPLE_GROUP_KEY @"__KWExampleGroupKey"
-
 @interface KWExampleSuite()
-
 @property (nonatomic, strong) KWContextNode *rootNode;
 @property (nonatomic, strong) NSMutableArray *examples;
-
 @end
 
 @implementation KWExampleSuite
@@ -42,8 +39,7 @@
     example.suite = self;
 }
 
-- (void)markLastExampleAsLastInContext:(KWContextNode *)context
-{
+- (void)markLastExampleAsLastInContext:(KWContextNode *)context {
     if ([self.examples count] > 0) {
         KWExample *lastExample = (KWExample *)[self.examples lastObject];
         [lastExample.lastInContexts addObject:context];
@@ -61,26 +57,10 @@
         [invocations addObject:invocation];
         [invocation kw_setExample:exampleGroup];
     }
-    
+
+    [[invocations firstObject] kw_setIsFirstExample:YES];
+    [[invocations lastObject] kw_setIsLastExample:YES];
     return invocations;
 }
 
 @end
-
-#pragma mark -
-
-// because SenTest will modify the invocation target, we'll have to store 
-// another reference to the example group so we can retrieve it later
-
-@implementation NSInvocation (KWExampleGroup)
-
-- (void)kw_setExample:(KWExample *)exampleGroup {
-  objc_setAssociatedObject(self, kKWINVOCATION_EXAMPLE_GROUP_KEY, exampleGroup, OBJC_ASSOCIATION_RETAIN);    
-}
-
-- (KWExample *)kw_example {
-    return objc_getAssociatedObject(self, kKWINVOCATION_EXAMPLE_GROUP_KEY);
-}
-
-@end
-

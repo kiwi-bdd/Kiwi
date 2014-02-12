@@ -8,5 +8,4 @@
 
 #import <Foundation/Foundation.h>
 
-void loadClassesConformingToProtocol(NSMutableArray *destination,
-                                     Protocol *protocol);
+void loadClassesConformingToProtocol(NSMutableArray *destination, Protocol *protocol);

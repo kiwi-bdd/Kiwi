@@ -7,13 +7,23 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "KWEventNotification.h"
+#import "KWExampleNotification.h"
+#import "KWMessageNotification.h"
+#import "KWSummaryNotification.h"
 
 @protocol KWListener <NSObject>
 @optional
-- (void)exampleStarted:(KWEventNotification *)notification;
-- (void)examplePending:(KWEventNotification *)notification;
-- (void)exampleFinished:(KWEventNotification *)notification;
-- (void)examplePassed:(KWEventNotification *)notification;
-- (void)exampleFailed:(KWEventNotification *)notification;
+- (void)start;
+- (void)message:(KWMessageNotification *)notification;
+- (void)exampleStarted:(KWExampleNotification *)notification;
+- (void)examplePassed:(KWExampleNotification *)notification;
+- (void)examplePending:(KWExampleNotification *)notification;
+- (void)exampleFinished:(KWExampleNotification *)notification;
+- (void)exampleFailed:(KWExampleNotification *)notification;
+- (void)stop;
+- (void)startDump;
+- (void)dumpPending;
+- (void)dumpFailures;
+- (void)dumpSummary:(KWSummaryNotification *)notification;
+- (void)close;
 @end

@@ -6,13 +6,13 @@
 //  Copyright (c) 2014 Allen Ding. All rights reserved.
 //
 
-#import "KWEventNotification.h"
+#import "KWExampleNotification.h"
 
-@interface KWEventNotification ()
+@interface KWExampleNotification ()
 @property (nonatomic, strong) KWExample *example;
 @end
 
-@implementation KWEventNotification
+@implementation KWExampleNotification
 
 #pragma mark -  Initializing
 

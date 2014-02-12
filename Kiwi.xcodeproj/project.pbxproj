@@ -783,12 +783,18 @@
 		DA35A2FB18AA9320000C875B /* KWReporter.m in Sources */ = {isa = PBXBuildFile; fileRef = DA35A2F918AA9320000C875B /* KWReporter.m */; };
 		DA35A2FC18AA9320000C875B /* KWReporter.h in Headers */ = {isa = PBXBuildFile; fileRef = DA35A2FA18AA9320000C875B /* KWReporter.h */; };
 		DA35A2FE18AA9337000C875B /* KWListener.h in Headers */ = {isa = PBXBuildFile; fileRef = DA35A2FD18AA9337000C875B /* KWListener.h */; };
-		DA35A30118AA9355000C875B /* KWEventNotification.h in Headers */ = {isa = PBXBuildFile; fileRef = DA35A2FF18AA9355000C875B /* KWEventNotification.h */; };
-		DA35A30218AA9355000C875B /* KWEventNotification.m in Sources */ = {isa = PBXBuildFile; fileRef = DA35A30018AA9355000C875B /* KWEventNotification.m */; };
+		DA35A30118AA9355000C875B /* KWExampleNotification.h in Headers */ = {isa = PBXBuildFile; fileRef = DA35A2FF18AA9355000C875B /* KWExampleNotification.h */; };
+		DA35A30218AA9355000C875B /* KWExampleNotification.m in Sources */ = {isa = PBXBuildFile; fileRef = DA35A30018AA9355000C875B /* KWExampleNotification.m */; };
 		DA35A30A18AB3969000C875B /* KWClassLoading.h in Headers */ = {isa = PBXBuildFile; fileRef = DA35A30818AB3969000C875B /* KWClassLoading.h */; };
 		DA35A30B18AB3969000C875B /* KWClassLoading.m in Sources */ = {isa = PBXBuildFile; fileRef = DA35A30918AB3969000C875B /* KWClassLoading.m */; };
 		DA35A30E18AB3D13000C875B /* KWFormatterLoader.h in Headers */ = {isa = PBXBuildFile; fileRef = DA35A30C18AB3D13000C875B /* KWFormatterLoader.h */; };
 		DA35A30F18AB3D13000C875B /* KWFormatterLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = DA35A30D18AB3D13000C875B /* KWFormatterLoader.m */; };
+		DA35A31218AB5F8E000C875B /* KWMessageNotification.h in Headers */ = {isa = PBXBuildFile; fileRef = DA35A31018AB5F8E000C875B /* KWMessageNotification.h */; };
+		DA35A31318AB5F8E000C875B /* KWMessageNotification.m in Sources */ = {isa = PBXBuildFile; fileRef = DA35A31118AB5F8E000C875B /* KWMessageNotification.m */; };
+		DA35A31618AB600C000C875B /* KWSummaryNotification.h in Headers */ = {isa = PBXBuildFile; fileRef = DA35A31418AB600C000C875B /* KWSummaryNotification.h */; };
+		DA35A31718AB600C000C875B /* KWSummaryNotification.m in Sources */ = {isa = PBXBuildFile; fileRef = DA35A31518AB600C000C875B /* KWSummaryNotification.m */; };
+		DA35A31A18ABC06E000C875B /* NSInvocation+KWExample.h in Headers */ = {isa = PBXBuildFile; fileRef = DA35A31818ABC06E000C875B /* NSInvocation+KWExample.h */; };
+		DA35A31B18ABC06E000C875B /* NSInvocation+KWExample.m in Sources */ = {isa = PBXBuildFile; fileRef = DA35A31918ABC06E000C875B /* NSInvocation+KWExample.m */; };
 		DA92B2A617E6A3EF0062F84D /* SenTestSuite+KiwiAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = DA92B2A417E6A3EF0062F84D /* SenTestSuite+KiwiAdditions.h */; };
 		DA92B2A717E6A3EF0062F84D /* SenTestSuite+KiwiAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = DA92B2A517E6A3EF0062F84D /* SenTestSuite+KiwiAdditions.m */; };
 		DAA35A2317E3CF6600C41AE2 /* libKiwi-XCTest.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DA084E7317E3838100592D5A /* libKiwi-XCTest.a */; };
@@ -1289,12 +1295,18 @@
 		DA35A2F918AA9320000C875B /* KWReporter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KWReporter.m; sourceTree = "<group>"; };
 		DA35A2FA18AA9320000C875B /* KWReporter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KWReporter.h; sourceTree = "<group>"; };
 		DA35A2FD18AA9337000C875B /* KWListener.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KWListener.h; sourceTree = "<group>"; };
-		DA35A2FF18AA9355000C875B /* KWEventNotification.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KWEventNotification.h; sourceTree = "<group>"; };
-		DA35A30018AA9355000C875B /* KWEventNotification.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KWEventNotification.m; sourceTree = "<group>"; };
+		DA35A2FF18AA9355000C875B /* KWExampleNotification.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KWExampleNotification.h; sourceTree = "<group>"; };
+		DA35A30018AA9355000C875B /* KWExampleNotification.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KWExampleNotification.m; sourceTree = "<group>"; };
 		DA35A30818AB3969000C875B /* KWClassLoading.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KWClassLoading.h; sourceTree = "<group>"; };
 		DA35A30918AB3969000C875B /* KWClassLoading.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KWClassLoading.m; sourceTree = "<group>"; };
 		DA35A30C18AB3D13000C875B /* KWFormatterLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KWFormatterLoader.h; sourceTree = "<group>"; };
 		DA35A30D18AB3D13000C875B /* KWFormatterLoader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KWFormatterLoader.m; sourceTree = "<group>"; };
+		DA35A31018AB5F8E000C875B /* KWMessageNotification.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KWMessageNotification.h; sourceTree = "<group>"; };
+		DA35A31118AB5F8E000C875B /* KWMessageNotification.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KWMessageNotification.m; sourceTree = "<group>"; };
+		DA35A31418AB600C000C875B /* KWSummaryNotification.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KWSummaryNotification.h; sourceTree = "<group>"; };
+		DA35A31518AB600C000C875B /* KWSummaryNotification.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KWSummaryNotification.m; sourceTree = "<group>"; };
+		DA35A31818ABC06E000C875B /* NSInvocation+KWExample.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSInvocation+KWExample.h"; sourceTree = "<group>"; };
+		DA35A31918ABC06E000C875B /* NSInvocation+KWExample.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSInvocation+KWExample.m"; sourceTree = "<group>"; };
 		DA92B2A417E6A3EF0062F84D /* SenTestSuite+KiwiAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SenTestSuite+KiwiAdditions.h"; sourceTree = "<group>"; };
 		DA92B2A517E6A3EF0062F84D /* SenTestSuite+KiwiAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SenTestSuite+KiwiAdditions.m"; sourceTree = "<group>"; };
 		DAAC61CA17E75B50000165F6 /* KWObjCUtilitiesTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KWObjCUtilitiesTest.m; sourceTree = "<group>"; };
@@ -1489,6 +1501,8 @@
 				9F982C7C16A802920030A0B1 /* KWExampleNodeVisitor.h */,
 				9F982C7D16A802920030A0B1 /* KWExampleSuite.h */,
 				9F982C7E16A802920030A0B1 /* KWExampleSuite.m */,
+				DA35A31818ABC06E000C875B /* NSInvocation+KWExample.h */,
+				DA35A31918ABC06E000C875B /* NSInvocation+KWExample.m */,
 				9F982C8116A802920030A0B1 /* KWExpectationType.h */,
 				9F982C8216A802920030A0B1 /* KWFailure.h */,
 				9F982C8316A802920030A0B1 /* KWFailure.m */,
@@ -1752,8 +1766,12 @@
 				DA35A2FD18AA9337000C875B /* KWListener.h */,
 				DA35A2FA18AA9320000C875B /* KWReporter.h */,
 				DA35A2F918AA9320000C875B /* KWReporter.m */,
-				DA35A2FF18AA9355000C875B /* KWEventNotification.h */,
-				DA35A30018AA9355000C875B /* KWEventNotification.m */,
+				DA35A2FF18AA9355000C875B /* KWExampleNotification.h */,
+				DA35A30018AA9355000C875B /* KWExampleNotification.m */,
+				DA35A31018AB5F8E000C875B /* KWMessageNotification.h */,
+				DA35A31118AB5F8E000C875B /* KWMessageNotification.m */,
+				DA35A31418AB600C000C875B /* KWSummaryNotification.h */,
+				DA35A31518AB600C000C875B /* KWSummaryNotification.m */,
 			);
 			path = Reporters;
 			sourceTree = "<group>";
@@ -2131,7 +2149,7 @@
 				DA35A2F618AA92A7000C875B /* KWTextFormatter.h in Headers */,
 				9F982D4616A802920030A0B1 /* KWContainMatcher.h in Headers */,
 				9F982D4A16A802920030A0B1 /* KWContextNode.h in Headers */,
-				DA35A30118AA9355000C875B /* KWEventNotification.h in Headers */,
+				DA35A30118AA9355000C875B /* KWExampleNotification.h in Headers */,
 				9F982D4E16A802920030A0B1 /* KWCountType.h in Headers */,
 				9F982D5016A802920030A0B1 /* KWDeviceInfo.h in Headers */,
 				9F982D5416A802920030A0B1 /* KWEqualMatcher.h in Headers */,
@@ -2141,6 +2159,7 @@
 				9F982D6216A802920030A0B1 /* KWExampleNode.h in Headers */,
 				9F982D6416A802920030A0B1 /* KWExampleNodeVisitor.h in Headers */,
 				DA92B2A617E6A3EF0062F84D /* SenTestSuite+KiwiAdditions.h in Headers */,
+				DA35A31A18ABC06E000C875B /* NSInvocation+KWExample.h in Headers */,
 				9F982D6616A802920030A0B1 /* KWExampleSuite.h in Headers */,
 				9F982D6A16A802920030A0B1 /* KWExistVerifier.h in Headers */,
 				9F982D6E16A802920030A0B1 /* KWExpectationType.h in Headers */,
@@ -2167,6 +2186,7 @@
 				9F982DBE16A802920030A0B1 /* KWNull.h in Headers */,
 				9F982DC216A802920030A0B1 /* KWObjCUtilities.h in Headers */,
 				9F982DC616A802920030A0B1 /* KWPendingNode.h in Headers */,
+				DA35A31218AB5F8E000C875B /* KWMessageNotification.h in Headers */,
 				9F982DCA16A802920030A0B1 /* KWProbe.h in Headers */,
 				9F982DCC16A802920030A0B1 /* KWProbePoller.h in Headers */,
 				9F982DD016A802920030A0B1 /* KWRaiseMatcher.h in Headers */,
@@ -2200,6 +2220,7 @@
 				4A6A09EF185F93D70053DAE2 /* TestSuiteConfigurationAdditions.h in Headers */,
 				C533F7D317462CAA000CAB02 /* KWSymbolicator.h in Headers */,
 				37828763177F860B00BCD40F /* Kiwi-Prefix.pch in Headers */,
+				DA35A31618AB600C000C875B /* KWSummaryNotification.h in Headers */,
 				4A71048017CC016600A7B718 /* KWLetNode.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2608,6 +2629,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DA35A31318AB5F8E000C875B /* KWMessageNotification.m in Sources */,
 				9F982CEC16A802920030A0B1 /* KWAfterAllNode.m in Sources */,
 				9F982CF016A802920030A0B1 /* KWAfterEachNode.m in Sources */,
 				9F982CF416A802920030A0B1 /* KWAny.m in Sources */,
@@ -2637,7 +2659,7 @@
 				DA35A2FB18AA9320000C875B /* KWReporter.m in Sources */,
 				9F982D5616A802920030A0B1 /* KWEqualMatcher.m in Sources */,
 				9F982D5A16A802920030A0B1 /* KWExample.m in Sources */,
-				DA35A30218AA9355000C875B /* KWEventNotification.m in Sources */,
+				DA35A30218AA9355000C875B /* KWExampleNotification.m in Sources */,
 				9F982D5E16A802920030A0B1 /* KWExampleSuiteBuilder.m in Sources */,
 				9F982D6816A802920030A0B1 /* KWExampleSuite.m in Sources */,
 				9F982D6C16A802920030A0B1 /* KWExistVerifier.m in Sources */,
@@ -2687,11 +2709,13 @@
 				9F982E2216A802920030A0B1 /* NSObject+KiwiStubAdditions.m in Sources */,
 				9F982E2616A802920030A0B1 /* NSObject+KiwiVerifierAdditions.m in Sources */,
 				9F982E2A16A802920030A0B1 /* NSValue+KiwiAdditions.m in Sources */,
+				DA35A31B18ABC06E000C875B /* NSInvocation+KWExample.m in Sources */,
 				511901A716A95CDE006E7359 /* KWChangeMatcher.m in Sources */,
 				9F90FBF216BA5FF20057426D /* KWGenericMatchEvaluator.m in Sources */,
 				DA35A30B18AB3969000C875B /* KWClassLoading.m in Sources */,
 				DA35A2F718AA92A7000C875B /* KWTextFormatter.m in Sources */,
 				9F820DBA16BB6748003A1BA5 /* NSProxy+KiwiVerifierAdditions.m in Sources */,
+				DA35A31718AB600C000C875B /* KWSummaryNotification.m in Sources */,
 				4E3C5DB41716C34900835B62 /* KWRegularExpressionPatternMatcher.m in Sources */,
 				4E7659AB172DAC6500105B93 /* KWContainStringMatcher.m in Sources */,
 				C533F7D517462CAA000CAB02 /* KWSymbolicator.m in Sources */,

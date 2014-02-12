@@ -16,7 +16,8 @@
 #import "NSMethodSignature+KiwiAdditions.h"
 #import "KWFailure.h"
 #import "KWExampleSuite.h"
-
+#import "KWReporter.h"
+#import "NSInvocation+KWExample.h"
 
 @interface KWSpec()
 
@@ -26,11 +27,15 @@
 
 @implementation KWSpec
 
-/* Methods are only implemented by sub-classes */
++ (void)initialize {
+    [super initialize];
 
-+ (NSString *)file { return nil; }
+    if ([self isConcreteSubclass]) {
+        [[KWReporter sharedReporter] registerSpecClass:[self class]];
+    }
+}
 
-+ (void)buildExampleGroups {}
+#pragma mark - SenTestCase/XCTestCase Overrides
 
 /* SenTestingKit uses -description, XCTest uses -name when displaying tests
  in test navigator. Use camel case to make method friendly names from example description.
@@ -67,35 +72,32 @@
     return [NSString stringWithFormat:@"-[%@ %@]", NSStringFromClass([self class]), name];
 }
 
-#pragma mark - Getting Invocations
-
 /* Called by the SenTestingKit test suite to get an array of invocations that
    should be run on instances of test cases. */
 
 + (NSArray *)testInvocations {
-    SEL buildExampleGroups = @selector(buildExampleGroups);
-
-    // Only return invocation if the receiver is a concrete spec that has overridden -buildExampleGroups.
-    if ([self methodForSelector:buildExampleGroups] == [KWSpec methodForSelector:buildExampleGroups])
+    if (![self isConcreteSubclass]) {
         return nil;
+    }
 
     KWExampleSuite *exampleSuite = [[KWExampleSuiteBuilder sharedExampleSuiteBuilder] buildExampleSuite:^{
         [self buildExampleGroups];
     }];
-  
+
     return [exampleSuite invocationsForTestCase];
 }
-
-#pragma mark - Running Specs
 
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wundeclared-selector"
 
 - (void)invokeTest {
+    if ([[self invocation] kw_isFirstExample]) {
+        [[KWReporter sharedReporter] specStarted:self];
+    }
+
     self.currentExample = [[self invocation] kw_example];
 
     @autoreleasepool {
-
         @try {
             [self.currentExample runWithDelegate:self];
         } @catch (NSException *exception) {
@@ -107,9 +109,10 @@
                 objc_msgSend(self, @selector(failWithException:), exception);
             }
         }
+    }
 
-        [[self invocation] kw_setExample:nil];
-
+    if ([[self invocation] kw_isLastExample]) {
+        [[KWReporter sharedReporter] specFinished:self];
     }
 }
 
@@ -135,7 +138,20 @@
 
 #pragma clang diagnostic pop
 
-#pragma mark - Verification proxies
+#pragma mark - Internal Methods
+
+/* Methods are only implemented by sub-classes */
+
++ (NSString *)file { return nil; }
+
++ (void)buildExampleGroups {}
+
++ (BOOL)isConcreteSubclass {
+    SEL buildExampleGroups = @selector(buildExampleGroups);
+    return [self methodForSelector:buildExampleGroups] != [KWSpec methodForSelector:buildExampleGroups];
+}
+
+#pragma mark Verification proxies
 
 + (id)addVerifier:(id<KWVerifying>)aVerifier {
     return [[[KWExampleSuiteBuilder sharedExampleSuiteBuilder] currentExample] addVerifier:aVerifier];

@@ -331,14 +331,12 @@ void it(NSString *aDescription, void (^block)(void)) {
     itWithCallSite(callSite, aDescription, block);
 }
 
-void let_(__autoreleasing id *anObjectRef, const char *aSymbolName, id (^block)(void))
-{
+void let_(__autoreleasing id *anObjectRef, const char *aSymbolName, id (^block)(void)) {
     NSString *aDescription = [NSString stringWithUTF8String:aSymbolName];
     letWithCallSite(nil, anObjectRef, aDescription, block);
 }
 
-void specify(void (^block)(void))
-{
+void specify(void (^block)(void)) {
     itWithCallSite(nil, nil, block);
 }
 
@@ -347,7 +345,6 @@ void pending_(NSString *aDescription, void (^ignoredBlock)(void)) {
 }
 
 void describeWithCallSite(KWCallSite *aCallSite, NSString *aDescription, void (^block)(void)) {
-
     contextWithCallSite(aCallSite, aDescription, block);
 }
 

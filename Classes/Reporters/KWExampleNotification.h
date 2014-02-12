@@ -10,7 +10,7 @@
 
 @class KWExample;
 
-@interface KWEventNotification : NSObject
+@interface KWExampleNotification : NSObject
 
 @property (nonatomic, readonly) KWExample *example;
 
