@@ -17,8 +17,6 @@
 @class KWCallSite;
 @class KWExampleSuite;
 @class KWContextNode;
-@class KWSpec;
-@class KWMatcherFactory;
 
 @interface KWExample : NSObject <KWExampleNodeVisitor, KWReporting>
 

@@ -10,7 +10,7 @@
 
 @class KWUserDefinedMatcherBuilder;
 
-typedef void (^KWMatchersBuildingBlock)(KWUserDefinedMatcherBuilder *);
+typedef void (^KWMatchersBuildingBlock)(KWUserDefinedMatcherBuilder *matcherBuilder);
 
 @class KWUserDefinedMatcher;
 

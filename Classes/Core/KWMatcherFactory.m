@@ -90,13 +90,6 @@
     }
 }
 
-#pragma mark - Registering User Defined Matchers
-
-//- (void)registerUserDefinedMatcherWithBuilder:(KWUserDefinedMatcherBuilder *)aBuilder
-//{
-//
-//}
-
 #pragma mark - Getting Method Signatures
 
 - (NSMethodSignature *)methodSignatureForMatcherSelector:(SEL)aSelector {
