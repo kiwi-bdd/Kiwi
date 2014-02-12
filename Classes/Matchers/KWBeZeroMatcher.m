@@ -36,6 +36,10 @@
     return [NSString stringWithFormat:@"expected subject not to be zero"];
 }
 
+- (NSString *)description {
+    return @"be zero";
+}
+
 #pragma mark - Configuring Matchers
 
 - (void)beZero {
