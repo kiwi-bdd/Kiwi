@@ -9,7 +9,7 @@
 
 @class KWFailure;
 
-@interface TestReporter : NSObject<KWReporting> {
+@interface TestReporter : NSObject<KWFailureReporting> {
 @private
     BOOL hasUnmetExpectations;
     NSMutableArray *failures;

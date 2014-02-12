@@ -14,7 +14,7 @@
 @interface KWExistVerifier()
 
 @property (nonatomic, readonly) KWExpectationType expectationType;
-@property (nonatomic, readonly) id<KWReporting> reporter;
+@property (nonatomic, readonly) id<KWFailureReporting> reporter;
 
 @property (nonatomic, strong) KWCallSite *callSite;
 
@@ -24,7 +24,7 @@
 
 #pragma mark - Initializing
 
-- (id)initWithExpectationType:(KWExpectationType)anExpectationType callSite:(KWCallSite *)aCallSite reporter:(id<KWReporting>)aReporter {
+- (id)initWithExpectationType:(KWExpectationType)anExpectationType callSite:(KWCallSite *)aCallSite reporter:(id<KWFailureReporting>)aReporter {
     self = [super init];
     if (self) {
         _expectationType = anExpectationType;
@@ -35,7 +35,7 @@
     return self;
 }
 
-+ (id)existVerifierWithExpectationType:(KWExpectationType)anExpectationType callSite:(KWCallSite *)aCallSite reporter:(id<KWReporting>)aReporter {
++ (id)existVerifierWithExpectationType:(KWExpectationType)anExpectationType callSite:(KWCallSite *)aCallSite reporter:(id<KWFailureReporting>)aReporter {
     return [[self alloc] initWithExpectationType:anExpectationType callSite:aCallSite reporter:aReporter];
 }
 

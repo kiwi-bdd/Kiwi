@@ -33,28 +33,28 @@
 
 #pragma mark - Initializing
 
-- (id)initForShouldWithCallSite:(KWCallSite *)aCallSite matcherFactory:(KWMatcherFactory *)aMatcherFactory reporter:(id<KWReporting>)aReporter {
+- (id)initForShouldWithCallSite:(KWCallSite *)aCallSite matcherFactory:(KWMatcherFactory *)aMatcherFactory reporter:(id<KWFailureReporting>)aReporter {
     return [self initWithExpectationType:KWExpectationTypeShould callSite:aCallSite matcherFactory:aMatcherFactory reporter:aReporter];
 }
 
-- (id)initForShouldNotWithCallSite:(KWCallSite *)aCallSite matcherFactory:(KWMatcherFactory *)aMatcherFactory reporter:(id<KWReporting>)aReporter {
+- (id)initForShouldNotWithCallSite:(KWCallSite *)aCallSite matcherFactory:(KWMatcherFactory *)aMatcherFactory reporter:(id<KWFailureReporting>)aReporter {
     return [self initWithExpectationType:KWExpectationTypeShouldNot callSite:aCallSite matcherFactory:aMatcherFactory reporter:aReporter];
 }
 
-- (id)initWithExpectationType:(KWExpectationType)anExpectationType callSite:(KWCallSite *)aCallSite matcherFactory:(KWMatcherFactory *)aMatcherFactory reporter:(id<KWReporting>)aReporter {
+- (id)initWithExpectationType:(KWExpectationType)anExpectationType callSite:(KWCallSite *)aCallSite matcherFactory:(KWMatcherFactory *)aMatcherFactory reporter:(id<KWFailureReporting>)aReporter {
     self = [super init];
     if (self) {
         _expectationType = anExpectationType;
         _callSite = aCallSite;
         _matcherFactory = aMatcherFactory;
-        _reporter = aReporter;
+        _failureReporter = aReporter;
         _example = (KWExample *)aReporter;
     }
 
     return self;
 }
 
-+ (id<KWVerifying>)matchVerifierWithExpectationType:(KWExpectationType)anExpectationType callSite:(KWCallSite *)aCallSite matcherFactory:(KWMatcherFactory *)aMatcherFactory reporter:(id<KWReporting>)aReporter {
++ (id<KWVerifying>)matchVerifierWithExpectationType:(KWExpectationType)anExpectationType callSite:(KWCallSite *)aCallSite matcherFactory:(KWMatcherFactory *)aMatcherFactory reporter:(id<KWFailureReporting>)aReporter {
     return [[self alloc] initWithExpectationType:anExpectationType callSite:aCallSite matcherFactory:aMatcherFactory reporter:aReporter];
 }
 
@@ -97,7 +97,7 @@
     @finally {
         if (specFailed) {
             KWFailure *failure = [KWFailure failureWithCallSite:self.callSite message:failureMessage];
-            [self.reporter reportFailure:failure];
+            [self.failureReporter reportFailure:failure];
         }
     }
 }
@@ -139,7 +139,7 @@
     if (self.matcher == nil) {
       KWFailure *failure = [KWFailure failureWithCallSite:self.callSite format:@"could not create matcher for -%@",
                  NSStringFromSelector(anInvocation.selector)];
-      [self.reporter reportFailure:failure];
+      [self.failureReporter reportFailure:failure];
     }
 
     if (self.example.unresolvedVerifier == self) {
@@ -166,7 +166,7 @@
 #if KW_TARGET_HAS_INVOCATION_EXCEPTION_BUG
     } @catch (NSException *exception) {
         KWFailure *failure = [KWFailure failureWithCallSite:self.callSite format:[exception reason]];
-        [self.reporter reportFailure:failure];
+        [self.failureReporter reportFailure:failure];
         return;
     }
 #endif // #if KW_TARGET_HAS_INVOCATION_EXCEPTION_BUG

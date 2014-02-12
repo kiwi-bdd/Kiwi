@@ -20,7 +20,7 @@
 @class KWSpec;
 @class KWMatcherFactory;
 
-@interface KWExample : NSObject <KWExampleNodeVisitor, KWReporting>
+@interface KWExample : NSObject <KWExampleNodeVisitor, KWFailureReporting>
 
 @property (nonatomic, strong, readonly) NSMutableArray *lastInContexts;
 @property (nonatomic, weak) KWExampleSuite *suite;
