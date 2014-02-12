@@ -19,10 +19,11 @@
 #pragma mark - Matching
 
 - (BOOL)evaluate {
-    if (![self.subject respondsToSelector:@selector(boolValue)])
-        [NSException raise:@"KWMatcherException" format:@"subject does not respond to -numberValue"];
-
-    return [[self.subject numberValue] isEqualToNumber:@0];
+    if ([self.subject respondsToSelector:@selector(numberValue)]) {
+        return [[self.subject numberValue] isEqualToNumber:@0];
+    }
+    
+    return NO;
 }
 
 #pragma mark - Getting Failure Messages

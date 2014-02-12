@@ -22,6 +22,12 @@
     STAssertEqualObjects(matcherStrings, expectedStrings, @"expected beZero in the matcher strings");
 }
 
+- (void)testItShouldNotMatchNil {
+    id matcher = [KWBeZeroMatcher matcherWithSubject:nil];
+    [matcher beZero];
+    STAssertFalse([matcher evaluate], @"expected negative match for nil subject");
+}
+
 - (void)testItShouldMatchZeroAsAPrimitive {
     id subject = [KWValue valueWithInt:0];
     id matcher = [KWBeZeroMatcher matcherWithSubject:subject];
