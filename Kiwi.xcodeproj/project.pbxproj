@@ -785,8 +785,10 @@
 		DA35A2FE18AA9337000C875B /* KWListener.h in Headers */ = {isa = PBXBuildFile; fileRef = DA35A2FD18AA9337000C875B /* KWListener.h */; };
 		DA35A30118AA9355000C875B /* KWEventNotification.h in Headers */ = {isa = PBXBuildFile; fileRef = DA35A2FF18AA9355000C875B /* KWEventNotification.h */; };
 		DA35A30218AA9355000C875B /* KWEventNotification.m in Sources */ = {isa = PBXBuildFile; fileRef = DA35A30018AA9355000C875B /* KWEventNotification.m */; };
-		DA35A30518AA99E3000C875B /* KWFormatterLoader.h in Headers */ = {isa = PBXBuildFile; fileRef = DA35A30318AA99E3000C875B /* KWFormatterLoader.h */; };
-		DA35A30618AA99E3000C875B /* KWFormatterLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = DA35A30418AA99E3000C875B /* KWFormatterLoader.m */; };
+		DA35A30A18AB3969000C875B /* KWClassLoading.h in Headers */ = {isa = PBXBuildFile; fileRef = DA35A30818AB3969000C875B /* KWClassLoading.h */; };
+		DA35A30B18AB3969000C875B /* KWClassLoading.m in Sources */ = {isa = PBXBuildFile; fileRef = DA35A30918AB3969000C875B /* KWClassLoading.m */; };
+		DA35A30E18AB3D13000C875B /* KWFormatterLoader.h in Headers */ = {isa = PBXBuildFile; fileRef = DA35A30C18AB3D13000C875B /* KWFormatterLoader.h */; };
+		DA35A30F18AB3D13000C875B /* KWFormatterLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = DA35A30D18AB3D13000C875B /* KWFormatterLoader.m */; };
 		DA92B2A617E6A3EF0062F84D /* SenTestSuite+KiwiAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = DA92B2A417E6A3EF0062F84D /* SenTestSuite+KiwiAdditions.h */; };
 		DA92B2A717E6A3EF0062F84D /* SenTestSuite+KiwiAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = DA92B2A517E6A3EF0062F84D /* SenTestSuite+KiwiAdditions.m */; };
 		DAA35A2317E3CF6600C41AE2 /* libKiwi-XCTest.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DA084E7317E3838100592D5A /* libKiwi-XCTest.a */; };
@@ -1289,8 +1291,10 @@
 		DA35A2FD18AA9337000C875B /* KWListener.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KWListener.h; sourceTree = "<group>"; };
 		DA35A2FF18AA9355000C875B /* KWEventNotification.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KWEventNotification.h; sourceTree = "<group>"; };
 		DA35A30018AA9355000C875B /* KWEventNotification.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KWEventNotification.m; sourceTree = "<group>"; };
-		DA35A30318AA99E3000C875B /* KWFormatterLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KWFormatterLoader.h; sourceTree = "<group>"; };
-		DA35A30418AA99E3000C875B /* KWFormatterLoader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KWFormatterLoader.m; sourceTree = "<group>"; };
+		DA35A30818AB3969000C875B /* KWClassLoading.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KWClassLoading.h; sourceTree = "<group>"; };
+		DA35A30918AB3969000C875B /* KWClassLoading.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KWClassLoading.m; sourceTree = "<group>"; };
+		DA35A30C18AB3D13000C875B /* KWFormatterLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KWFormatterLoader.h; sourceTree = "<group>"; };
+		DA35A30D18AB3D13000C875B /* KWFormatterLoader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KWFormatterLoader.m; sourceTree = "<group>"; };
 		DA92B2A417E6A3EF0062F84D /* SenTestSuite+KiwiAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SenTestSuite+KiwiAdditions.h"; sourceTree = "<group>"; };
 		DA92B2A517E6A3EF0062F84D /* SenTestSuite+KiwiAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SenTestSuite+KiwiAdditions.m"; sourceTree = "<group>"; };
 		DAAC61CA17E75B50000165F6 /* KWObjCUtilitiesTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KWObjCUtilitiesTest.m; sourceTree = "<group>"; };
@@ -1734,8 +1738,8 @@
 		DA35A2F318AA9254000C875B /* Formatters */ = {
 			isa = PBXGroup;
 			children = (
-				DA35A30318AA99E3000C875B /* KWFormatterLoader.h */,
-				DA35A30418AA99E3000C875B /* KWFormatterLoader.m */,
+				DA35A30C18AB3D13000C875B /* KWFormatterLoader.h */,
+				DA35A30D18AB3D13000C875B /* KWFormatterLoader.m */,
 				DA35A2F418AA92A7000C875B /* KWTextFormatter.h */,
 				DA35A2F518AA92A7000C875B /* KWTextFormatter.m */,
 			);
@@ -1752,6 +1756,15 @@
 				DA35A30018AA9355000C875B /* KWEventNotification.m */,
 			);
 			path = Reporters;
+			sourceTree = "<group>";
+		};
+		DA35A30718AB390D000C875B /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				DA35A30818AB3969000C875B /* KWClassLoading.h */,
+				DA35A30918AB3969000C875B /* KWClassLoading.m */,
+			);
+			path = Utilities;
 			sourceTree = "<group>";
 		};
 		DA92B2A317E6A3EF0062F84D /* SenTestingKit */ = {
@@ -1774,6 +1787,7 @@
 				37B0BAFE177F640700E07085 /* Verifiers */,
 				DA35A2F818AA92F9000C875B /* Reporters */,
 				DA35A2F318AA9254000C875B /* Formatters */,
+				DA35A30718AB390D000C875B /* Utilities */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -2099,6 +2113,7 @@
 				9F982D0616A802920030A0B1 /* KWBeforeEachNode.h in Headers */,
 				9F982D0A16A802920030A0B1 /* KWBeIdenticalToMatcher.h in Headers */,
 				9F982D0E16A802920030A0B1 /* KWBeKindOfClassMatcher.h in Headers */,
+				DA35A30A18AB3969000C875B /* KWClassLoading.h in Headers */,
 				9F982D1216A802920030A0B1 /* KWBeMemberOfClassMatcher.h in Headers */,
 				9F982D1616A802920030A0B1 /* KWNilMatcher.h in Headers */,
 				9F982D1E16A802920030A0B1 /* KWBeSubclassOfClassMatcher.h in Headers */,
@@ -2108,6 +2123,7 @@
 				4AD1307E185BFE5E003E7145 /* KWSuiteConfigurationBase.h in Headers */,
 				9F982D2E16A802920030A0B1 /* KWBlock.h in Headers */,
 				9F982D3216A802920030A0B1 /* KWBlockNode.h in Headers */,
+				DA35A30E18AB3D13000C875B /* KWFormatterLoader.h in Headers */,
 				9F982D3616A802920030A0B1 /* KWBlockRaiseMatcher.h in Headers */,
 				9F982D3A16A802920030A0B1 /* KWCallSite.h in Headers */,
 				9F982D3E16A802920030A0B1 /* KWCaptureSpy.h in Headers */,
@@ -2184,7 +2200,6 @@
 				4A6A09EF185F93D70053DAE2 /* TestSuiteConfigurationAdditions.h in Headers */,
 				C533F7D317462CAA000CAB02 /* KWSymbolicator.h in Headers */,
 				37828763177F860B00BCD40F /* Kiwi-Prefix.pch in Headers */,
-				DA35A30518AA99E3000C875B /* KWFormatterLoader.h in Headers */,
 				4A71048017CC016600A7B718 /* KWLetNode.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2628,6 +2643,7 @@
 				9F982D6C16A802920030A0B1 /* KWExistVerifier.m in Sources */,
 				9F982D7216A802920030A0B1 /* KWFailure.m in Sources */,
 				4AD13081185BFE5E003E7145 /* KWSuiteConfigurationBase.m in Sources */,
+				DA35A30F18AB3D13000C875B /* KWFormatterLoader.m in Sources */,
 				9F982D7616A802920030A0B1 /* KWFormatter.m in Sources */,
 				9F982D7A16A802920030A0B1 /* KWFutureObject.m in Sources */,
 				9F982D7E16A802920030A0B1 /* KWGenericMatcher.m in Sources */,
@@ -2647,7 +2663,6 @@
 				9F982DB816A802920030A0B1 /* KWMessageTracker.m in Sources */,
 				9F982DBC16A802920030A0B1 /* KWMock.m in Sources */,
 				9F982DC016A802920030A0B1 /* KWNull.m in Sources */,
-				DA35A30618AA99E3000C875B /* KWFormatterLoader.m in Sources */,
 				9F982DC416A802920030A0B1 /* KWObjCUtilities.m in Sources */,
 				9F982DC816A802920030A0B1 /* KWPendingNode.m in Sources */,
 				9F982DCE16A802920030A0B1 /* KWProbePoller.m in Sources */,
@@ -2674,6 +2689,7 @@
 				9F982E2A16A802920030A0B1 /* NSValue+KiwiAdditions.m in Sources */,
 				511901A716A95CDE006E7359 /* KWChangeMatcher.m in Sources */,
 				9F90FBF216BA5FF20057426D /* KWGenericMatchEvaluator.m in Sources */,
+				DA35A30B18AB3969000C875B /* KWClassLoading.m in Sources */,
 				DA35A2F718AA92A7000C875B /* KWTextFormatter.m in Sources */,
 				9F820DBA16BB6748003A1BA5 /* NSProxy+KiwiVerifierAdditions.m in Sources */,
 				4E3C5DB41716C34900835B62 /* KWRegularExpressionPatternMatcher.m in Sources */,

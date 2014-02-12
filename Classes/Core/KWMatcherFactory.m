@@ -5,11 +5,11 @@
 //
 
 #import "KWMatcherFactory.h"
-#import <objc/runtime.h>
 #import "KWMatching.h"
 #import "KWStringUtilities.h"
 #import "KWUserDefinedMatcher.h"
 #import "KWMatchers.h"
+#import "KWClassLoading.h"
 
 @interface KWMatcherFactory()
 
@@ -58,28 +58,7 @@
     // Cache all classes that conform to KWMatching.
     if (matcherClasses == nil) {
         matcherClasses = [[NSMutableArray alloc] init];
-        int numberOfClasses = objc_getClassList(NULL, 0);
-        Class *classes = (Class *)malloc(sizeof(Class) * numberOfClasses);
-        numberOfClasses = objc_getClassList(classes, numberOfClasses);
-
-        if (numberOfClasses == 0) {
-            free(classes);
-            return;
-        }
-
-        for (int i = 0; i < numberOfClasses; ++i) {
-            Class candidateClass = classes[i];
-
-            if (!class_respondsToSelector(candidateClass, @selector(conformsToProtocol:)))
-                continue;
-
-            if (![candidateClass conformsToProtocol:@protocol(KWMatching)])
-                continue;
-
-            [matcherClasses addObject:candidateClass];
-        }
-
-        free(classes);
+        loadClassesConformingToProtocol(matcherClasses, @protocol(KWMatching));
     }
 
     for (Class matcherClass in matcherClasses) {
@@ -89,13 +68,6 @@
             [self registerMatcherClass:matcherClass];
     }
 }
-
-#pragma mark - Registering User Defined Matchers
-
-//- (void)registerUserDefinedMatcherWithBuilder:(KWUserDefinedMatcherBuilder *)aBuilder
-//{
-//
-//}
 
 #pragma mark - Getting Method Signatures
 

@@ -10,6 +10,7 @@
 #import "KWListener.h"
 #import "KWEventNotification.h"
 #import "KWTextFormatter.h"
+#import "KWFormatterLoader.h"
 
 @interface KWReporter ()
 @property (nonatomic, strong) NSMutableArray *listeners;
@@ -33,7 +34,7 @@
     self = [super init];
     if (self) {
         _listeners = [NSMutableArray array];
-        [self registerListener:[KWTextFormatter new]];
+        [self registerFormatters];
     }
     return self;
 }
@@ -83,6 +84,14 @@
         if ([listener respondsToSelector:@selector(exampleFailed:)]) {
             [listener exampleFailed:[[KWEventNotification alloc] initWithExample:example]];
         }
+    }
+}
+
+#pragma mark - Internal Methods
+
+- (void)registerFormatters {
+    for (id<KWListener> formatter in [KWFormatterLoader formatters]) {
+        [self registerListener:formatter];
     }
 }
 
