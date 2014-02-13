@@ -17,8 +17,6 @@
 @class KWCallSite;
 @class KWExampleSuite;
 @class KWContextNode;
-@class KWSpec;
-@class KWMatcherFactory;
 
 typedef NS_ENUM(NSInteger, KWExampleResult) {
     KWExampleResultPassed = 1,

@@ -501,6 +501,7 @@
 		C533F7D517462CAA000CAB02 /* KWSymbolicator.m in Sources */ = {isa = PBXBuildFile; fileRef = C533F7D217462CAA000CAB02 /* KWSymbolicator.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		C533F7D617462CAA000CAB02 /* KWSymbolicator.m in Sources */ = {isa = PBXBuildFile; fileRef = C533F7D217462CAA000CAB02 /* KWSymbolicator.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		C922D1DD158045FC00995B43 /* KWStringContainsMatcherTest.m in Sources */ = {isa = PBXBuildFile; fileRef = C922D1DC158045FC00995B43 /* KWStringContainsMatcherTest.m */; };
+		C931D36E18AB2DEB005BC184 /* KWBeZeroMatcherTest.m in Sources */ = {isa = PBXBuildFile; fileRef = C931D36D18AB2DEB005BC184 /* KWBeZeroMatcherTest.m */; };
 		DA084D4017E3804200592D5A /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA084D3F17E3804200592D5A /* XCTest.framework */; };
 		DA084D4117E3804200592D5A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
 		DA084D4317E3804200592D5A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA084D4217E3804200592D5A /* UIKit.framework */; };
@@ -1277,6 +1278,7 @@
 		C533F7D117462CAA000CAB02 /* KWSymbolicator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KWSymbolicator.h; sourceTree = "<group>"; };
 		C533F7D217462CAA000CAB02 /* KWSymbolicator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KWSymbolicator.m; sourceTree = "<group>"; };
 		C922D1DC158045FC00995B43 /* KWStringContainsMatcherTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KWStringContainsMatcherTest.m; sourceTree = "<group>"; };
+		C931D36D18AB2DEB005BC184 /* KWBeZeroMatcherTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KWBeZeroMatcherTest.m; sourceTree = "<group>"; };
 		DA084D3E17E3804200592D5A /* KiwiXCTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = KiwiXCTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		DA084D3F17E3804200592D5A /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		DA084D4217E3804200592D5A /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
@@ -1889,6 +1891,8 @@
 				4E3C5DB71716C68000835B62 /* KWRegularExpressionPatternMatcherTest.m */,
 				F553B6641175D48C004FCA2E /* KWRespondToSelectorMatcherTest.m */,
 				A385CAE713AA7EA200DCA951 /* KWUserDefinedMatcherTest.m */,
+				C931D36D18AB2DEB005BC184 /* KWBeZeroMatcherTest.m */,
+				DA3EAD0918A86E5600EBBF57 /* KWUserDefinedMatcherFunctionalTest.m */,
 			);
 			name = Matchers;
 			sourceTree = "<group>";
@@ -2410,7 +2414,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "SIMULATOR_HEADERS_DIR=\"${BUILD_DIR}/${CONFIGURATION}-iphonesimulator/${PRODUCT_NAME}\" &&\nSIMULATOR_LIBRARY_PATH=\"${BUILD_DIR}/${CONFIGURATION}-iphonesimulator/lib${PROJECT_NAME}.a\" &&\nDEVICE_LIBRARY_PATH=\"${BUILD_DIR}/${CONFIGURATION}-iphoneos/lib${PROJECT_NAME}.a\" &&\nUNIVERSAL_LIBRARY_DIR=\"${BUILD_DIR}/${CONFIGURATION}-iphoneuniversal\" &&\nUNIVERSAL_LIBRARY_PATH=\"${UNIVERSAL_LIBRARY_DIR}/lib${PRODUCT_NAME}.a\" &&\nFRAMEWORK=\"${UNIVERSAL_LIBRARY_DIR}/${PRODUCT_NAME}.framework\" &&\n\n# Create framework directory structure.\nrm -rf \"${FRAMEWORK}\" &&\nmkdir -p \"${UNIVERSAL_LIBRARY_DIR}\" &&\nmkdir -p \"${FRAMEWORK}/Versions/A/Resources\" &&\n\n# Generate universal binary from desktop, device, and simulator builds.\nlipo \"${SIMULATOR_LIBRARY_PATH}\" \"${DEVICE_LIBRARY_PATH}\" -create -output \"${UNIVERSAL_LIBRARY_PATH}\" &&\n\n# Copy public headers to Framework headers\n# (had to use move because wildcard matching gave me an error)\ncp -r \"${SIMULATOR_HEADERS_DIR}\" \"${UNIVERSAL_LIBRARY_DIR}\" &&\nmv \"${UNIVERSAL_LIBRARY_DIR}/${PRODUCT_NAME}\" \"${FRAMEWORK}/Versions/A/Headers\" &&\n# Copy public headers to output (doesn't matter which architecture)\ncp -r \"${SIMULATOR_HEADERS_DIR}\" \"${UNIVERSAL_LIBRARY_DIR}\" &&\n\n# Move files to appropriate locations in framework paths.\ncp \"${UNIVERSAL_LIBRARY_PATH}\" \"${FRAMEWORK}/Versions/A/${PRODUCT_NAME}\" &&\nln -s \"A\" \"${FRAMEWORK}/Versions/Current\" &&\nln -s \"Versions/Current/Headers\" \"${FRAMEWORK}/Headers\" &&\nln -s \"Versions/Current/Resources\" \"${FRAMEWORK}/Resources\" &&\nln -s \"Versions/Current/${PRODUCT_NAME}\" \"${FRAMEWORK}/${PRODUCT_NAME}\" &&\ncp \"${SRCROOT}/Resources/KiwiDriver-Info.plist\" \"${FRAMEWORK}/Resources/Info.plist\"\n\n# Open Products (output) directory\nopen \"${UNIVERSAL_LIBRARY_DIR}\"";
+			shellScript = "SIMULATOR_HEADERS_DIR=\"${BUILD_DIR}/${CONFIGURATION}-iphonesimulator/${PRODUCT_NAME}\" &&\nSIMULATOR_LIBRARY_PATH=\"${BUILD_DIR}/${CONFIGURATION}-iphonesimulator/lib${PROJECT_NAME}.a\" &&\nDEVICE_LIBRARY_PATH=\"${BUILD_DIR}/${CONFIGURATION}-iphoneos/lib${PROJECT_NAME}.a\" &&\nUNIVERSAL_LIBRARY_DIR=\"${BUILD_DIR}/${CONFIGURATION}-iphoneuniversal\" &&\nUNIVERSAL_LIBRARY_PATH=\"${UNIVERSAL_LIBRARY_DIR}/lib${PRODUCT_NAME}.a\" &&\nFRAMEWORK=\"${UNIVERSAL_LIBRARY_DIR}/${PRODUCT_NAME}.framework\" &&\n\n# Create framework directory structure.\nrm -rf \"${FRAMEWORK}\" &&\nmkdir -p \"${UNIVERSAL_LIBRARY_DIR}\" &&\nmkdir -p \"${FRAMEWORK}/Versions/A/Resources\" &&\n\n# Generate universal binary from desktop, device, and simulator builds.\nlipo \"${SIMULATOR_LIBRARY_PATH}\" \"${DEVICE_LIBRARY_PATH}\" -create -output \"${UNIVERSAL_LIBRARY_PATH}\" &&\n\n# Copy public headers to Framework headers\n# (had to use move because wildcard matching gave me an error)\ncp -r \"${SIMULATOR_HEADERS_DIR}\" \"${UNIVERSAL_LIBRARY_DIR}\" &&\nmv \"${UNIVERSAL_LIBRARY_DIR}/${PRODUCT_NAME}\" \"${FRAMEWORK}/Versions/A/Headers\" &&\n# Copy public headers to output (doesn't matter which architecture)\ncp -r \"${SIMULATOR_HEADERS_DIR}\" \"${UNIVERSAL_LIBRARY_DIR}\" &&\n\n# Move files to appropriate locations in framework paths.\ncp \"${UNIVERSAL_LIBRARY_PATH}\" \"${FRAMEWORK}/Versions/A/${PRODUCT_NAME}\" &&\nln -s \"A\" \"${FRAMEWORK}/Versions/Current\" &&\nln -s \"Versions/Current/Headers\" \"${FRAMEWORK}/Headers\" &&\nln -s \"Versions/Current/Resources\" \"${FRAMEWORK}/Resources\" &&\nln -s \"Versions/Current/${PRODUCT_NAME}\" \"${FRAMEWORK}/${PRODUCT_NAME}\"\n\n# Open Products (output) directory\nopen \"${UNIVERSAL_LIBRARY_DIR}\"";
 			showEnvVarsInLog = 0;
 		};
 		C938A69A165A64A100F0E508 /* ShellScript */ = {
@@ -2732,6 +2736,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F53B5E43115B33FC0022BC0B /* KWContainMatcherTest.m in Sources */,
+				DA3EAD0A18A86E5600EBBF57 /* KWUserDefinedMatcherFunctionalTest.m in Sources */,
 				F53B5E66115B36EB0022BC0B /* KWEqualMatcherTest.m in Sources */,
 				F53B5EC6115B3D180022BC0B /* KWRaiseMatcherTest.m in Sources */,
 				F5C36E93115C9F0700425FDA /* KWReceiveMatcherTest.m in Sources */,
@@ -2762,6 +2767,7 @@
 				A352E9E812EDC30A0049C691 /* KWHaveValueMatcherTest.m in Sources */,
 				A352EA1B12EDC8380049C691 /* KWGenericMatcherTest.m in Sources */,
 				A385CAE813AA7EA200DCA951 /* KWUserDefinedMatcherTest.m in Sources */,
+				C931D36E18AB2DEB005BC184 /* KWBeZeroMatcherTest.m in Sources */,
 				4BA52D0115487F0C00FC957B /* KWCaptureTest.m in Sources */,
 				C922D1DD158045FC00995B43 /* KWStringContainsMatcherTest.m in Sources */,
 				9F982A3816A801800030A0B1 /* Carrier.m in Sources */,
