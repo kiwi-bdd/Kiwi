@@ -29,6 +29,6 @@ void loadClassesConformingToProtocol(NSMutableArray *destination,
 
         [destination addObject:candidateClass];
     }
-    
+
     free(classes);
 }
