@@ -5,8 +5,8 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "KWListener.h"
+#import "KWBaseFormatter.h"
 
-@interface KWJSONFormatter : NSObject <KWListener>
+@interface KWJSONFormatter : KWBaseFormatter
 
 @end

@@ -5,8 +5,8 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "KWListener.h"
+#import "KWBaseFormatter.h"
 
-@interface KWTextFormatter : NSObject <KWListener>
+@interface KWTextFormatter : KWBaseFormatter
 
 @end

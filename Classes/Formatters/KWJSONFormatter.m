@@ -16,8 +16,8 @@
 
 #pragma mark - Initializing
 
-- (id)init {
-    self = [super init];
+- (id)initWithFileHandle:(NSFileHandle *)fileHandle {
+    self = [super initWithFileHandle:fileHandle];
     if (self) {
         _output = [NSMutableDictionary dictionary];
         _examples = [NSMutableArray array];
@@ -63,7 +63,7 @@
     NSData *jsonData = [NSJSONSerialization dataWithJSONObject:self.output
                                                        options:NSJSONWritingPrettyPrinted
                                                          error:nil];
-    NSLog(@"%@", [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding]);
+    [self log:@"%@", [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding]];
 }
 
 #pragma mark - Internal Methods

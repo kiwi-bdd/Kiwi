@@ -791,6 +791,8 @@
 		DA35A32518ABD766000C875B /* NSObject+KWStringRepresentation.m in Sources */ = {isa = PBXBuildFile; fileRef = DA35A32418ABD766000C875B /* NSObject+KWStringRepresentation.m */; };
 		DA35A32C18ABED51000C875B /* KWJSONFormatter.h in Headers */ = {isa = PBXBuildFile; fileRef = DA35A32A18ABED51000C875B /* KWJSONFormatter.h */; };
 		DA35A32D18ABED51000C875B /* KWJSONFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = DA35A32B18ABED51000C875B /* KWJSONFormatter.m */; };
+		DA35A33F18AD1ADC000C875B /* KWBaseFormatter.h in Headers */ = {isa = PBXBuildFile; fileRef = DA35A33D18AD1ADC000C875B /* KWBaseFormatter.h */; };
+		DA35A34018AD1ADC000C875B /* KWBaseFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = DA35A33E18AD1ADC000C875B /* KWBaseFormatter.m */; };
 		DA92B2A617E6A3EF0062F84D /* SenTestSuite+KiwiAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = DA92B2A417E6A3EF0062F84D /* SenTestSuite+KiwiAdditions.h */; };
 		DA92B2A717E6A3EF0062F84D /* SenTestSuite+KiwiAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = DA92B2A517E6A3EF0062F84D /* SenTestSuite+KiwiAdditions.m */; };
 		DAA35A2317E3CF6600C41AE2 /* libKiwi-XCTest.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DA084E7317E3838100592D5A /* libKiwi-XCTest.a */; };
@@ -1303,6 +1305,8 @@
 		DA35A32418ABD766000C875B /* NSObject+KWStringRepresentation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+KWStringRepresentation.m"; sourceTree = "<group>"; };
 		DA35A32A18ABED51000C875B /* KWJSONFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KWJSONFormatter.h; sourceTree = "<group>"; };
 		DA35A32B18ABED51000C875B /* KWJSONFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KWJSONFormatter.m; sourceTree = "<group>"; };
+		DA35A33D18AD1ADC000C875B /* KWBaseFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KWBaseFormatter.h; sourceTree = "<group>"; };
+		DA35A33E18AD1ADC000C875B /* KWBaseFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KWBaseFormatter.m; sourceTree = "<group>"; };
 		DA92B2A417E6A3EF0062F84D /* SenTestSuite+KiwiAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SenTestSuite+KiwiAdditions.h"; sourceTree = "<group>"; };
 		DA92B2A517E6A3EF0062F84D /* SenTestSuite+KiwiAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SenTestSuite+KiwiAdditions.m"; sourceTree = "<group>"; };
 		DAAC61CA17E75B50000165F6 /* KWObjCUtilitiesTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KWObjCUtilitiesTest.m; sourceTree = "<group>"; };
@@ -1750,6 +1754,8 @@
 			children = (
 				DA35A30C18AB3D13000C875B /* KWFormatterLoader.h */,
 				DA35A30D18AB3D13000C875B /* KWFormatterLoader.m */,
+				DA35A33D18AD1ADC000C875B /* KWBaseFormatter.h */,
+				DA35A33E18AD1ADC000C875B /* KWBaseFormatter.m */,
 				DA35A2F418AA92A7000C875B /* KWTextFormatter.h */,
 				DA35A2F518AA92A7000C875B /* KWTextFormatter.m */,
 				DA35A32A18ABED51000C875B /* KWJSONFormatter.h */,
@@ -2140,6 +2146,7 @@
 				9F982D3216A802920030A0B1 /* KWBlockNode.h in Headers */,
 				DA35A30E18AB3D13000C875B /* KWFormatterLoader.h in Headers */,
 				9F982D3616A802920030A0B1 /* KWBlockRaiseMatcher.h in Headers */,
+				DA35A33F18AD1ADC000C875B /* KWBaseFormatter.h in Headers */,
 				9F982D3A16A802920030A0B1 /* KWCallSite.h in Headers */,
 				9F982D3E16A802920030A0B1 /* KWCaptureSpy.h in Headers */,
 				9F982D4216A802920030A0B1 /* KWConformToProtocolMatcher.h in Headers */,
@@ -2671,6 +2678,7 @@
 				9F982D9416A802920030A0B1 /* KWIntercept.m in Sources */,
 				9F982D9816A802920030A0B1 /* KWInvocationCapturer.m in Sources */,
 				9F982D9C16A802920030A0B1 /* KWItNode.m in Sources */,
+				DA35A34018AD1ADC000C875B /* KWBaseFormatter.m in Sources */,
 				9F982DA016A802920030A0B1 /* KWMatcher.m in Sources */,
 				9F982DA416A802920030A0B1 /* KWMatcherFactory.m in Sources */,
 				9F982DA816A802920030A0B1 /* KWMatchers.m in Sources */,

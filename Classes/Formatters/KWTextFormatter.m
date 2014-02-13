@@ -14,24 +14,24 @@
 #pragma mark - KWListener Protocol Methods
 
 - (void)examplePassed:(KWExampleNotification *)notification {
-    [self reportResultForExample:notification.example
-                           label:@"PASSED"];
+    [self logResultForExample:notification.example label:@"PASSED"];
 }
 
 - (void)examplePending:(KWExampleNotification *)notification {
-    [self reportResultForExample:notification.example
-                           label:@"PENDING"];
+    [self logResultForExample:notification.example label:@"PENDING"];
 }
 
 - (void)exampleFailed:(KWExampleNotification *)notification {
-    [self reportResultForExample:notification.example
-                           label:@"FAILED"];
+    [self logResultForExample:notification.example label:@"FAILED"];
 }
 
 #pragma mark - Internal Methods
 
-- (void)reportResultForExample:(KWExample *)example label:(NSString *)label {
-    NSLog(@"+ '%@' [%@]", [example descriptionWithContext], label);
+- (void)logResultForExample:(KWExample *)example label:(NSString *)label {
+    [self log:@"+ '%@ %@' [%@]",
+              [example descriptionWithContext],
+              [example.exampleNode description],
+              label];
 }
 
 @end

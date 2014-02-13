@@ -53,6 +53,7 @@
         _matcherFactory = [[KWMatcherFactory alloc] init];
         _verifiers = [[NSMutableArray alloc] init];
         _lastInContexts = [[NSMutableArray alloc] init];
+        _result = KWExampleResultPassed;
     }
     return self;
 }
@@ -208,8 +209,7 @@
     aNode.block();
 }
 
-- (void)visitLetNode:(KWLetNode *)aNode
-{
+- (void)visitLetNode:(KWLetNode *)aNode {
     [aNode evaluateTree];
 }
 

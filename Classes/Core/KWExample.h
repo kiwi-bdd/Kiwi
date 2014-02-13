@@ -21,7 +21,7 @@
 @class KWMatcherFactory;
 
 typedef NS_ENUM(NSInteger, KWExampleResult) {
-    KWExampleResultPassed = 0,
+    KWExampleResultPassed = 1,
     KWExampleResultFailed,
     KWExampleResultPending
 };
@@ -32,6 +32,7 @@ typedef NS_ENUM(NSInteger, KWExampleResult) {
 @property (nonatomic, weak) KWExampleSuite *suite;
 @property (nonatomic, strong) id<KWVerifying> unresolvedVerifier;
 
+@property (nonatomic, strong, readonly) id<KWExampleNode> exampleNode;
 @property (nonatomic, strong, readonly) KWFailure *failure;
 @property (nonatomic, strong, readonly) NSException *exception;
 @property (nonatomic, assign, readonly) KWExampleResult result;
