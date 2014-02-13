@@ -79,6 +79,8 @@ extern "C" {
 #import "KWCaptureSpy.h"
 #import "KWStringPrefixMatcher.h"
 #import "KWStringContainsMatcher.h"
+#import "KWTextFormatter.h"
+#import "KWJSONFormatter.h"
 
   
 // Public Foundation Categories

@@ -41,8 +41,8 @@ static NSString * const kKWConfigurationPlistName = @"KiwiConfiguration";
 #pragma mark - Internal Methods
 
 + (NSOrderedSet *)formatterNamesInPlist {
-    NSString *path = [[NSBundle mainBundle] pathForResource:kKWConfigurationPlistName
-                                                     ofType:@"plist"];
+    NSBundle *bundle = [NSBundle bundleForClass:[self class]];
+    NSString *path = [bundle pathForResource:kKWConfigurationPlistName ofType:@"plist"];
     if (![[NSFileManager defaultManager] fileExistsAtPath:path]) {
         return nil;
     }

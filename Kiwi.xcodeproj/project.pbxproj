@@ -789,6 +789,8 @@
 		DA35A32218ABD19A000C875B /* NSObject+KWStringRepresentation.h in Headers */ = {isa = PBXBuildFile; fileRef = DA35A32018ABD19A000C875B /* NSObject+KWStringRepresentation.h */; };
 		DA35A32318ABD19A000C875B /* NSObject+KWStringRepresentation.m in Sources */ = {isa = PBXBuildFile; fileRef = DA35A32118ABD19A000C875B /* NSObject+KWStringRepresentation.m */; };
 		DA35A32518ABD766000C875B /* NSObject+KWStringRepresentation.m in Sources */ = {isa = PBXBuildFile; fileRef = DA35A32418ABD766000C875B /* NSObject+KWStringRepresentation.m */; };
+		DA35A32C18ABED51000C875B /* KWJSONFormatter.h in Headers */ = {isa = PBXBuildFile; fileRef = DA35A32A18ABED51000C875B /* KWJSONFormatter.h */; };
+		DA35A32D18ABED51000C875B /* KWJSONFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = DA35A32B18ABED51000C875B /* KWJSONFormatter.m */; };
 		DA92B2A617E6A3EF0062F84D /* SenTestSuite+KiwiAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = DA92B2A417E6A3EF0062F84D /* SenTestSuite+KiwiAdditions.h */; };
 		DA92B2A717E6A3EF0062F84D /* SenTestSuite+KiwiAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = DA92B2A517E6A3EF0062F84D /* SenTestSuite+KiwiAdditions.m */; };
 		DAA35A2317E3CF6600C41AE2 /* libKiwi-XCTest.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DA084E7317E3838100592D5A /* libKiwi-XCTest.a */; };
@@ -1299,6 +1301,8 @@
 		DA35A32018ABD19A000C875B /* NSObject+KWStringRepresentation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+KWStringRepresentation.h"; sourceTree = "<group>"; };
 		DA35A32118ABD19A000C875B /* NSObject+KWStringRepresentation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+KWStringRepresentation.m"; sourceTree = "<group>"; };
 		DA35A32418ABD766000C875B /* NSObject+KWStringRepresentation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+KWStringRepresentation.m"; sourceTree = "<group>"; };
+		DA35A32A18ABED51000C875B /* KWJSONFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KWJSONFormatter.h; sourceTree = "<group>"; };
+		DA35A32B18ABED51000C875B /* KWJSONFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KWJSONFormatter.m; sourceTree = "<group>"; };
 		DA92B2A417E6A3EF0062F84D /* SenTestSuite+KiwiAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SenTestSuite+KiwiAdditions.h"; sourceTree = "<group>"; };
 		DA92B2A517E6A3EF0062F84D /* SenTestSuite+KiwiAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SenTestSuite+KiwiAdditions.m"; sourceTree = "<group>"; };
 		DAAC61CA17E75B50000165F6 /* KWObjCUtilitiesTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KWObjCUtilitiesTest.m; sourceTree = "<group>"; };
@@ -1748,6 +1752,8 @@
 				DA35A30D18AB3D13000C875B /* KWFormatterLoader.m */,
 				DA35A2F418AA92A7000C875B /* KWTextFormatter.h */,
 				DA35A2F518AA92A7000C875B /* KWTextFormatter.m */,
+				DA35A32A18ABED51000C875B /* KWJSONFormatter.h */,
+				DA35A32B18ABED51000C875B /* KWJSONFormatter.m */,
 			);
 			path = Formatters;
 			sourceTree = "<group>";
@@ -2127,6 +2133,7 @@
 				9F982D1E16A802920030A0B1 /* KWBeSubclassOfClassMatcher.h in Headers */,
 				9F982D2216A802920030A0B1 /* KWBeTrueMatcher.h in Headers */,
 				9F982D2616A802920030A0B1 /* KWBeWithinMatcher.h in Headers */,
+				DA35A32C18ABED51000C875B /* KWJSONFormatter.h in Headers */,
 				9F982D2A16A802920030A0B1 /* KWBeZeroMatcher.h in Headers */,
 				4AD1307E185BFE5E003E7145 /* KWSuiteConfigurationBase.h in Headers */,
 				9F982D2E16A802920030A0B1 /* KWBlock.h in Headers */,
@@ -2637,6 +2644,7 @@
 				9F982D3016A802920030A0B1 /* KWBlock.m in Sources */,
 				9F982D3416A802920030A0B1 /* KWBlockNode.m in Sources */,
 				9F982D3816A802920030A0B1 /* KWBlockRaiseMatcher.m in Sources */,
+				DA35A32D18ABED51000C875B /* KWJSONFormatter.m in Sources */,
 				9F982D3C16A802920030A0B1 /* KWCallSite.m in Sources */,
 				9F982D4016A802920030A0B1 /* KWCaptureSpy.m in Sources */,
 				DA92B2A717E6A3EF0062F84D /* SenTestSuite+KiwiAdditions.m in Sources */,
