@@ -1,9 +1,7 @@
 //
-//  KWFormatterLoader.m
-//  Kiwi
+// Licensed under the terms in License.txt
 //
-//  Created by Brian Ivan Gesiak on 2/12/14.
-//  Copyright (c) 2014 Allen Ding. All rights reserved.
+// Copyright 2014 Allen Ding. All rights reserved.
 //
 
 #import "KWFormatterLoader.h"
