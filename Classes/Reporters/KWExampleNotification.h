@@ -7,8 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-
-@class KWExample;
+#import "KWExample.h"
 
 @interface KWExampleNotification : NSObject
 

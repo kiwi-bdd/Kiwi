@@ -8,7 +8,7 @@
 
 #import "KWCallSite.h"
 #import "KWFailure.h"
-#import "KWReporting.h"
+#import "KWFailureReporting.h"
 #import "NSObject+KWStringRepresentation.h"
 
 @interface KWExistVerifier()

@@ -9,7 +9,7 @@
 #import "KWAsyncVerifier.h"
 #import "KWFailure.h"
 #import "KWMatching.h"
-#import "KWReporting.h"
+#import "KWFailureReporting.h"
 #import "KWProbePoller.h"
 
 @implementation KWAsyncVerifier

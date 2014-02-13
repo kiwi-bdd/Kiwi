@@ -79,10 +79,11 @@ extern "C" {
 #import "KWCaptureSpy.h"
 #import "KWStringPrefixMatcher.h"
 #import "KWStringContainsMatcher.h"
+#import "KWReporter.h"
 #import "KWTextFormatter.h"
 #import "KWJSONFormatter.h"
 
-  
+
 // Public Foundation Categories
 #import "NSObject+KiwiMockAdditions.h"
 #import "NSObject+KiwiSpyAdditions.h"

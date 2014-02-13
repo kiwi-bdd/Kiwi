@@ -33,4 +33,26 @@
     return self;
 }
 
+- (NSString *)summaryLine {
+    NSString *examples = [self pluralize:@"example" count:self.exampleCount];
+    NSMutableString *line = [NSMutableString stringWithString:examples];
+    if (self.failureCount > 0) {
+        NSString *failures = [self pluralize:@"failure" count:self.failureCount];
+        [line appendString:[NSString stringWithFormat:@", %@", failures]];
+    }
+    if (self.pendingCount > 0) {
+        NSString *pending = [self pluralize:@"pending" count:self.pendingCount];
+        [line appendString:[NSString stringWithFormat:@", %@", pending]];
+    }
+    return [line copy];
+}
+
+- (NSString *)pluralize:(NSString *)string count:(NSInteger)count {
+    if (count == 1) {
+        return [NSString stringWithFormat:@"%d %@", count, string];
+    } else {
+        return [NSString stringWithFormat:@"%d %@s", count, string];
+    }
+}
+
 @end

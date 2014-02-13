@@ -5,7 +5,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "KWReporting.h"
+#import "KWFailureReporting.h"
 
 @class KWFailure;
 

@@ -36,7 +36,11 @@
 @property (nonatomic, weak) id<KWExampleDelegate> delegate;
 @property (nonatomic, assign) BOOL didNotFinish;
 @property (nonatomic, strong) id<KWExampleNode> exampleNode;
-@property (nonatomic, assign) BOOL passed;
+
+@property (nonatomic, strong) KWFailure *failure;
+@property (nonatomic, readonly) KWFailure *outputReadyFailure;
+@property (nonatomic, strong) NSException *exception;
+@property (nonatomic, assign) KWExampleResult result;
 
 @end
 
@@ -49,7 +53,6 @@
         _matcherFactory = [[KWMatcherFactory alloc] init];
         _verifiers = [[NSMutableArray alloc] init];
         _lastInContexts = [[NSMutableArray alloc] init];
-        _passed = YES;
     }
     return self;
 }
@@ -124,10 +127,10 @@
     return [parts componentsJoinedByString:@" "];
 }
 
-- (KWFailure *)outputReadyFailureWithFailure:(KWFailure *)aFailure {
+- (KWFailure *)outputReadyFailure {
     NSString *annotatedFailureMessage = [NSString stringWithFormat:@"'%@ %@' [FAILED], %@",
                                          [self descriptionForExampleContext], [self.exampleNode description],
-                                         aFailure.message];
+                                         self.failure.message];
   
 #if TARGET_IPHONE_SIMULATOR
     // \uff1a is the unicode for a fill width colon, as opposed to a regular
@@ -137,14 +140,19 @@
     annotatedFailureMessage = [annotatedFailureMessage stringByReplacingOccurrencesOfString:@":" withString:@"\uff1a"];
 #endif // #if TARGET_IPHONE_SIMULATOR
   
-    return [KWFailure failureWithCallSite:aFailure.callSite message:annotatedFailureMessage];
+    return [KWFailure failureWithCallSite:self.failure.callSite
+                                  message:annotatedFailureMessage];
+}
+
+- (void)setFailure:(KWFailure *)failure {
+    _failure = failure;
+    self.result = KWExampleResultFailed;
 }
 
 - (void)reportFailure:(KWFailure *)failure {
-    self.passed = NO;
+    self.failure = failure;
     [[KWReporter sharedReporter] exampleFailed:self];
-    [self.delegate example:self
-        didFailWithFailure:[self outputReadyFailureWithFailure:failure]];
+    [self.delegate example:self didFailWithFailure:self.outputReadyFailure];
 }
 
 #pragma mark - Full description with context
@@ -228,18 +236,21 @@
             }
             
             if (self.unresolvedVerifier) {
-                KWFailure *failure = [KWFailure failureWithCallSite:self.unresolvedVerifier.callSite format:@"expected subject not to be nil"];
+                KWFailure *failure = [KWFailure failureWithCallSite:self.unresolvedVerifier.callSite
+                                                             format:@"expected subject not to be nil"];
                 [self reportFailure:failure];
             }
             
         } @catch (NSException *exception) {
-            KWFailure *failure = [KWFailure failureWithCallSite:aNode.callSite format:@"%@ \"%@\" raised",
-                                  [exception name],
-                                  [exception reason]];
+            self.exception = exception;
+            KWFailure *failure = [KWFailure failureWithCallSite:aNode.callSite
+                                                         format:@"%@ \"%@\" raised",
+                                                                [exception name],
+                                                                [exception reason]];
             [self reportFailure:failure];
         }
         
-        if (self.passed) {
+        if (self.result == KWExampleResultPassed) {
             [[KWReporter sharedReporter] examplePassed:self];
         }
 
@@ -253,6 +264,8 @@
     if (aNode != self.exampleNode)
         return;
 
+    [[KWReporter sharedReporter] exampleStarted:self];
+    self.result = KWExampleResultPending;
     [[KWReporter sharedReporter] examplePending:self];
 }
 

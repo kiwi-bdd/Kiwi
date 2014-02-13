@@ -91,7 +91,7 @@
 		44FC0EAB16B6377D0050D616 /* KWRaiseMatcher.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9F982CB216A802920030A0B1 /* KWRaiseMatcher.h */; };
 		44FC0EAC16B6377D0050D616 /* KWReceiveMatcher.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9F982CB416A802920030A0B1 /* KWReceiveMatcher.h */; };
 		44FC0EAD16B6377D0050D616 /* KWRegisterMatchersNode.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9F982CB616A802920030A0B1 /* KWRegisterMatchersNode.h */; };
-		44FC0EAE16B6377D0050D616 /* KWReporting.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9F982CB816A802920030A0B1 /* KWReporting.h */; };
+		44FC0EAE16B6377D0050D616 /* KWFailureReporting.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9F982CB816A802920030A0B1 /* KWFailureReporting.h */; };
 		44FC0EAF16B6377D0050D616 /* KWRespondToSelectorMatcher.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9F982CB916A802920030A0B1 /* KWRespondToSelectorMatcher.h */; };
 		44FC0EB016B6377D0050D616 /* KWSpec.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9F982CBB16A802920030A0B1 /* KWSpec.h */; };
 		44FC0EB116B6377D0050D616 /* KWStringContainsMatcher.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9F982CBD16A802920030A0B1 /* KWStringContainsMatcher.h */; };
@@ -416,8 +416,8 @@
 		9F982DD916A802920030A0B1 /* KWRegisterMatchersNode.h in Headers */ = {isa = PBXBuildFile; fileRef = 9F982CB616A802920030A0B1 /* KWRegisterMatchersNode.h */; };
 		9F982DDA16A802920030A0B1 /* KWRegisterMatchersNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F982CB716A802920030A0B1 /* KWRegisterMatchersNode.m */; settings = {COMPILER_FLAGS = ""; }; };
 		9F982DDB16A802920030A0B1 /* KWRegisterMatchersNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F982CB716A802920030A0B1 /* KWRegisterMatchersNode.m */; };
-		9F982DDC16A802920030A0B1 /* KWReporting.h in Headers */ = {isa = PBXBuildFile; fileRef = 9F982CB816A802920030A0B1 /* KWReporting.h */; };
-		9F982DDD16A802920030A0B1 /* KWReporting.h in Headers */ = {isa = PBXBuildFile; fileRef = 9F982CB816A802920030A0B1 /* KWReporting.h */; };
+		9F982DDC16A802920030A0B1 /* KWFailureReporting.h in Headers */ = {isa = PBXBuildFile; fileRef = 9F982CB816A802920030A0B1 /* KWFailureReporting.h */; };
+		9F982DDD16A802920030A0B1 /* KWFailureReporting.h in Headers */ = {isa = PBXBuildFile; fileRef = 9F982CB816A802920030A0B1 /* KWFailureReporting.h */; };
 		9F982DDE16A802920030A0B1 /* KWRespondToSelectorMatcher.h in Headers */ = {isa = PBXBuildFile; fileRef = 9F982CB916A802920030A0B1 /* KWRespondToSelectorMatcher.h */; };
 		9F982DDF16A802920030A0B1 /* KWRespondToSelectorMatcher.h in Headers */ = {isa = PBXBuildFile; fileRef = 9F982CB916A802920030A0B1 /* KWRespondToSelectorMatcher.h */; };
 		9F982DE016A802920030A0B1 /* KWRespondToSelectorMatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F982CBA16A802920030A0B1 /* KWRespondToSelectorMatcher.m */; settings = {COMPILER_FLAGS = ""; }; };
@@ -572,7 +572,7 @@
 		DA084DA017E3838100592D5A /* KWRaiseMatcher.h in Headers */ = {isa = PBXBuildFile; fileRef = 9F982CB216A802920030A0B1 /* KWRaiseMatcher.h */; };
 		DA084DA117E3838100592D5A /* KWReceiveMatcher.h in Headers */ = {isa = PBXBuildFile; fileRef = 9F982CB416A802920030A0B1 /* KWReceiveMatcher.h */; };
 		DA084DA217E3838100592D5A /* KWRegisterMatchersNode.h in Headers */ = {isa = PBXBuildFile; fileRef = 9F982CB616A802920030A0B1 /* KWRegisterMatchersNode.h */; };
-		DA084DA317E3838100592D5A /* KWReporting.h in Headers */ = {isa = PBXBuildFile; fileRef = 9F982CB816A802920030A0B1 /* KWReporting.h */; };
+		DA084DA317E3838100592D5A /* KWFailureReporting.h in Headers */ = {isa = PBXBuildFile; fileRef = 9F982CB816A802920030A0B1 /* KWFailureReporting.h */; };
 		DA084DA417E3838100592D5A /* KWRespondToSelectorMatcher.h in Headers */ = {isa = PBXBuildFile; fileRef = 9F982CB916A802920030A0B1 /* KWRespondToSelectorMatcher.h */; };
 		DA084DA517E3838100592D5A /* KWSpec.h in Headers */ = {isa = PBXBuildFile; fileRef = 9F982CBB16A802920030A0B1 /* KWSpec.h */; };
 		DA084DA617E3838100592D5A /* KWStringContainsMatcher.h in Headers */ = {isa = PBXBuildFile; fileRef = 9F982CBD16A802920030A0B1 /* KWStringContainsMatcher.h */; };
@@ -744,7 +744,7 @@
 		DA084E5317E3838100592D5A /* KWRaiseMatcher.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9F982CB216A802920030A0B1 /* KWRaiseMatcher.h */; };
 		DA084E5417E3838100592D5A /* KWReceiveMatcher.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9F982CB416A802920030A0B1 /* KWReceiveMatcher.h */; };
 		DA084E5517E3838100592D5A /* KWRegisterMatchersNode.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9F982CB616A802920030A0B1 /* KWRegisterMatchersNode.h */; };
-		DA084E5617E3838100592D5A /* KWReporting.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9F982CB816A802920030A0B1 /* KWReporting.h */; };
+		DA084E5617E3838100592D5A /* KWFailureReporting.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9F982CB816A802920030A0B1 /* KWFailureReporting.h */; };
 		DA084E5717E3838100592D5A /* KWRespondToSelectorMatcher.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9F982CB916A802920030A0B1 /* KWRespondToSelectorMatcher.h */; };
 		DA084E5817E3838100592D5A /* KWSpec.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9F982CBB16A802920030A0B1 /* KWSpec.h */; };
 		DA084E5917E3838100592D5A /* KWStringContainsMatcher.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9F982CBD16A802920030A0B1 /* KWStringContainsMatcher.h */; };
@@ -917,7 +917,7 @@
 				44FC0EAB16B6377D0050D616 /* KWRaiseMatcher.h in CopyFiles */,
 				44FC0EAC16B6377D0050D616 /* KWReceiveMatcher.h in CopyFiles */,
 				44FC0EAD16B6377D0050D616 /* KWRegisterMatchersNode.h in CopyFiles */,
-				44FC0EAE16B6377D0050D616 /* KWReporting.h in CopyFiles */,
+				44FC0EAE16B6377D0050D616 /* KWFailureReporting.h in CopyFiles */,
 				44FC0EAF16B6377D0050D616 /* KWRespondToSelectorMatcher.h in CopyFiles */,
 				44FC0EB016B6377D0050D616 /* KWSpec.h in CopyFiles */,
 				44FC0EB116B6377D0050D616 /* KWStringContainsMatcher.h in CopyFiles */,
@@ -1019,7 +1019,7 @@
 				DA084E5317E3838100592D5A /* KWRaiseMatcher.h in CopyFiles */,
 				DA084E5417E3838100592D5A /* KWReceiveMatcher.h in CopyFiles */,
 				DA084E5517E3838100592D5A /* KWRegisterMatchersNode.h in CopyFiles */,
-				DA084E5617E3838100592D5A /* KWReporting.h in CopyFiles */,
+				DA084E5617E3838100592D5A /* KWFailureReporting.h in CopyFiles */,
 				DA084E5717E3838100592D5A /* KWRespondToSelectorMatcher.h in CopyFiles */,
 				DA084E5817E3838100592D5A /* KWSpec.h in CopyFiles */,
 				DA084E5917E3838100592D5A /* KWStringContainsMatcher.h in CopyFiles */,
@@ -1229,7 +1229,7 @@
 		9F982CB516A802920030A0B1 /* KWReceiveMatcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KWReceiveMatcher.m; sourceTree = "<group>"; };
 		9F982CB616A802920030A0B1 /* KWRegisterMatchersNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KWRegisterMatchersNode.h; sourceTree = "<group>"; };
 		9F982CB716A802920030A0B1 /* KWRegisterMatchersNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KWRegisterMatchersNode.m; sourceTree = "<group>"; };
-		9F982CB816A802920030A0B1 /* KWReporting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KWReporting.h; sourceTree = "<group>"; };
+		9F982CB816A802920030A0B1 /* KWFailureReporting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KWFailureReporting.h; sourceTree = "<group>"; };
 		9F982CB916A802920030A0B1 /* KWRespondToSelectorMatcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KWRespondToSelectorMatcher.h; sourceTree = "<group>"; };
 		9F982CBA16A802920030A0B1 /* KWRespondToSelectorMatcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KWRespondToSelectorMatcher.m; sourceTree = "<group>"; };
 		9F982CBB16A802920030A0B1 /* KWSpec.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KWSpec.h; sourceTree = "<group>"; };
@@ -1517,7 +1517,7 @@
 				9F982CAF16A802920030A0B1 /* KWProbe.h */,
 				9F982CB016A802920030A0B1 /* KWProbePoller.h */,
 				9F982CB116A802920030A0B1 /* KWProbePoller.m */,
-				9F982CB816A802920030A0B1 /* KWReporting.h */,
+				9F982CB816A802920030A0B1 /* KWFailureReporting.h */,
 				9F982CBB16A802920030A0B1 /* KWSpec.h */,
 				9F982CBC16A802920030A0B1 /* KWSpec.m */,
 				9F982CC116A802920030A0B1 /* KWStringUtilities.h */,
@@ -1973,7 +1973,7 @@
 				9F982DD116A802920030A0B1 /* KWRaiseMatcher.h in Headers */,
 				9F982DD516A802920030A0B1 /* KWReceiveMatcher.h in Headers */,
 				9F982DD916A802920030A0B1 /* KWRegisterMatchersNode.h in Headers */,
-				9F982DDD16A802920030A0B1 /* KWReporting.h in Headers */,
+				9F982DDD16A802920030A0B1 /* KWFailureReporting.h in Headers */,
 				9F982DDF16A802920030A0B1 /* KWRespondToSelectorMatcher.h in Headers */,
 				9F982DE316A802920030A0B1 /* KWSpec.h in Headers */,
 				9F982DE716A802920030A0B1 /* KWStringContainsMatcher.h in Headers */,
@@ -2073,7 +2073,7 @@
 				DA084DA017E3838100592D5A /* KWRaiseMatcher.h in Headers */,
 				DA084DA117E3838100592D5A /* KWReceiveMatcher.h in Headers */,
 				DA084DA217E3838100592D5A /* KWRegisterMatchersNode.h in Headers */,
-				DA084DA317E3838100592D5A /* KWReporting.h in Headers */,
+				DA084DA317E3838100592D5A /* KWFailureReporting.h in Headers */,
 				DA084DA417E3838100592D5A /* KWRespondToSelectorMatcher.h in Headers */,
 				DA084DA517E3838100592D5A /* KWSpec.h in Headers */,
 				DA084DA617E3838100592D5A /* KWStringContainsMatcher.h in Headers */,
@@ -2189,7 +2189,7 @@
 				9F982DD016A802920030A0B1 /* KWRaiseMatcher.h in Headers */,
 				9F982DD416A802920030A0B1 /* KWReceiveMatcher.h in Headers */,
 				9F982DD816A802920030A0B1 /* KWRegisterMatchersNode.h in Headers */,
-				9F982DDC16A802920030A0B1 /* KWReporting.h in Headers */,
+				9F982DDC16A802920030A0B1 /* KWFailureReporting.h in Headers */,
 				9F982DDE16A802920030A0B1 /* KWRespondToSelectorMatcher.h in Headers */,
 				9F982DE216A802920030A0B1 /* KWSpec.h in Headers */,
 				9F982DE616A802920030A0B1 /* KWStringContainsMatcher.h in Headers */,

@@ -13,18 +13,6 @@
 
 #pragma mark - KWListener Protocol Methods
 
-- (void)start {
-    NSLog(@"%@:%@", [self class], NSStringFromSelector(_cmd));
-}
-
-- (void)message:(KWMessageNotification *)notification {
-    NSLog(@"%@:%@", [self class], NSStringFromSelector(_cmd));
-}
-
-- (void)exampleStarted:(KWExampleNotification *)notification {
-    NSLog(@"%@:%@", [self class], NSStringFromSelector(_cmd));
-}
-
 - (void)examplePassed:(KWExampleNotification *)notification {
     [self reportResultForExample:notification.example
                            label:@"PASSED"];
@@ -38,30 +26,6 @@
 - (void)exampleFailed:(KWExampleNotification *)notification {
     [self reportResultForExample:notification.example
                            label:@"FAILED"];
-}
-
-- (void)stop {
-    NSLog(@"%@:%@", [self class], NSStringFromSelector(_cmd));
-}
-
-- (void)startDump {
-    NSLog(@"%@:%@", [self class], NSStringFromSelector(_cmd));
-}
-
-- (void)dumpPending {
-    NSLog(@"%@:%@", [self class], NSStringFromSelector(_cmd));
-}
-
-- (void)dumpFailures {
-    NSLog(@"%@:%@", [self class], NSStringFromSelector(_cmd));
-}
-
-- (void)dumpSummary:(KWSummaryNotification *)notification {
-    NSLog(@"%@:%@", [self class], NSStringFromSelector(_cmd));
-}
-
-- (void)close {
-    NSLog(@"%@:%@", [self class], NSStringFromSelector(_cmd));
 }
 
 #pragma mark - Internal Methods

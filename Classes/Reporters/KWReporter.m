@@ -8,12 +8,8 @@
 
 #import "KWReporter.h"
 #import "KWListener.h"
-#import "KiwiConfiguration.h"
 #import "KWExampleNotification.h"
-#import "KWTextFormatter.h"
 #import "KWFormatterLoader.h"
-#import "KWClassLoading.h"
-#import "KWSpec.h"
 
 @interface KWReporter ()
 @property (nonatomic, strong) NSMutableArray *specClasses;

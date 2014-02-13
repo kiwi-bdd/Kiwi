@@ -11,7 +11,7 @@
 #import "KWFailure.h"
 #import "KWInvocationCapturer.h"
 #import "KWMatcherFactory.h"
-#import "KWReporting.h"
+#import "KWFailureReporting.h"
 #import "KWStringUtilities.h"
 #import "KWWorkarounds.h"
 #import "NSInvocation+KiwiAdditions.h"

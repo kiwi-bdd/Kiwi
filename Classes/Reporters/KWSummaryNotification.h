@@ -14,6 +14,7 @@
 @property (nonatomic, assign, readonly) NSUInteger exampleCount;
 @property (nonatomic, assign, readonly) NSUInteger failureCount;
 @property (nonatomic, assign, readonly) NSUInteger pendingCount;
+@property (nonatomic, readonly) NSString *summaryLine;
 
 - (id)initWithDuration:(NSTimeInterval)duration
           exampleCount:(NSUInteger)exampleCount
