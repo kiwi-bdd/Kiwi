@@ -37,7 +37,7 @@
     va_end(args);
     string = [string stringByAppendingString:@"\n"];
 
-    [self.fileHandle writeData:[string dataUsingEncoding:NSUTF8StringEncoding]];
+    [self.fileHandle writeData:[string dataUsingEncoding:NSASCIIStringEncoding]];
 }
 
 @end
