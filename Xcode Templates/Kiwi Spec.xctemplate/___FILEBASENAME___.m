@@ -7,7 +7,6 @@
 //
 
 #import <Kiwi/Kiwi.h>
-#import "___VARIABLE_testedClass:identifier___.h"
 
 
 SPEC_BEGIN(___FILEBASENAMEASIDENTIFIER___)
