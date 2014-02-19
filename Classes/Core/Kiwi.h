@@ -82,6 +82,7 @@ extern "C" {
 #import "KWReporter.h"
 #import "KWTextFormatter.h"
 #import "KWJSONFormatter.h"
+#import "KWNotificationMatcher.h"
 
 
 // Public Foundation Categories
