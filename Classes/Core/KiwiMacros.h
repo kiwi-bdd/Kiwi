@@ -51,8 +51,8 @@
 #define shouldAfterWaitOf(timeout) attachToVerifier:KW_ADD_ASYNC_VERIFIER(KWExpectationTypeShould, timeout, YES)
 #define shouldNotAfterWaitOf(timeout) attachToVerifier:KW_ADD_ASYNC_VERIFIER(KWExpectationTypeShouldNot, timeout, YES)
 
-#define beNil beNil:[KWBeNilMatcher verifyNilSubject]
-#define beNonNil beNonNil:[KWBeNonNilMatcher verifyNilSubject]
+#define beNil beNil:[KWNilMatcher verifyNilSubject]
+#define beNonNil beNonNil:[KWNilMatcher verifyNonNilSubject]
 
 // used to wrap a pointer to an object that will change in the future (used with shouldEventually)
 #define expectFutureValue(futureValue) [KWFutureObject futureObjectWithBlock:^{ return futureValue; }]
@@ -91,6 +91,21 @@
     + (void)buildExampleGroups { \
 
 #define SPEC_END \
+    } \
+    \
+    @end
+
+// Test suite configuration declaration
+#define CONFIG_START \
+    @interface KWSuiteConfiguration : KWSuiteConfigurationBase \
+    \
+    @end \
+    \
+    @implementation KWSuiteConfiguration \
+    \
+    - (void)configureSuite {
+
+#define CONFIG_END \
     } \
     \
     @end

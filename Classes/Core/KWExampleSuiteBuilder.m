@@ -10,6 +10,7 @@
 #import "KWAfterEachNode.h"
 #import "KWBeforeAllNode.h"
 #import "KWBeforeEachNode.h"
+#import "KWLetNode.h"
 #import "KWCallSite.h"
 #import "KWContextNode.h"
 #import "KWExample.h"
@@ -18,6 +19,8 @@
 #import "KWPendingNode.h"
 #import "KWRegisterMatchersNode.h"
 #import "KWSymbolicator.h"
+
+static NSString * const KWExampleSuiteBuilderException = @"KWExampleSuiteBuilderException";
 
 @interface KWExampleSuiteBuilder()
 
@@ -132,24 +135,24 @@
     
     [self.currentExampleSuite markLastExampleAsLastInContext:contextNode];
     
-    if ([self.contextNodeStack count] == 1)
-        [NSException raise:@"KWExampleSuiteBuilderException" format:@"there is no open context to pop"];
+    if ([self.contextNodeStack count] == 1) {
+        [NSException raise:KWExampleSuiteBuilderException
+                    format:@"there is no open context to pop"];
+    }
 
     [self.contextNodeStack removeLastObject];
 }
 
 - (void)setRegisterMatchersNodeWithCallSite:(KWCallSite *)aCallSite namespacePrefix:(NSString *)aNamespacePrefix {
-    if ([self.contextNodeStack count] == 0)
-        [NSException raise:@"KWExampleSuiteBuilderException" format:@"an example group has not been started"];
+    [self raiseIfExampleGroupNotStarted];
 
     KWContextNode *contextNode = [self.contextNodeStack lastObject];
     KWRegisterMatchersNode *registerMatchersNode = [KWRegisterMatchersNode registerMatchersNodeWithCallSite:aCallSite namespacePrefix:aNamespacePrefix];
-    [contextNode setRegisterMatchersNode:registerMatchersNode];
+    [contextNode addRegisterMatchersNode:registerMatchersNode];
 }
 
 - (void)setBeforeAllNodeWithCallSite:(KWCallSite *)aCallSite block:(void (^)(void))block {
-    if ([self.contextNodeStack count] == 0)
-        [NSException raise:@"KWExampleSuiteBuilderException" format:@"an example group has not been started"];
+    [self raiseIfExampleGroupNotStarted];
 
     KWContextNode *contextNode = [self.contextNodeStack lastObject];
     KWBeforeAllNode *beforeAllNode = [KWBeforeAllNode beforeAllNodeWithCallSite:aCallSite block:block];
@@ -157,8 +160,7 @@
 }
 
 - (void)setAfterAllNodeWithCallSite:(KWCallSite *)aCallSite block:(void (^)(void))block {
-    if ([self.contextNodeStack count] == 0)
-        [NSException raise:@"KWExampleSuiteBuilderException" format:@"an example group has not been started"];
+    [self raiseIfExampleGroupNotStarted];
 
     KWContextNode *contextNode = [self.contextNodeStack lastObject];
     KWAfterAllNode *afterAllNode = [KWAfterAllNode afterAllNodeWithCallSite:aCallSite block:block];
@@ -166,8 +168,7 @@
 }
 
 - (void)setBeforeEachNodeWithCallSite:(KWCallSite *)aCallSite block:(void (^)(void))block {
-    if ([self.contextNodeStack count] == 0)
-        [NSException raise:@"KWExampleSuiteBuilderException" format:@"an example group has not been started"];
+    [self raiseIfExampleGroupNotStarted];
 
     KWContextNode *contextNode = [self.contextNodeStack lastObject];
     KWBeforeEachNode *beforeEachNode = [KWBeforeEachNode beforeEachNodeWithCallSite:aCallSite block:block];
@@ -175,17 +176,22 @@
 }
 
 - (void)setAfterEachNodeWithCallSite:(KWCallSite *)aCallSite block:(void (^)(void))block {
-    if ([self.contextNodeStack count] == 0)
-        [NSException raise:@"KWExampleSuiteBuilderException" format:@"an example group has not been started"];
+    [self raiseIfExampleGroupNotStarted];
 
     KWContextNode *contextNode = [self.contextNodeStack lastObject];
     KWAfterEachNode *afterEachNode = [KWAfterEachNode afterEachNodeWithCallSite:aCallSite block:block];
     [contextNode setAfterEachNode:afterEachNode];
 }
 
+- (void)addLetNodeWithCallSite:(KWCallSite *)aCallSite objectRef:(__autoreleasing id *)anObjectRef symbolName:(NSString *)aSymbolName block:(id (^)(void))block {
+    [self raiseIfExampleGroupNotStarted];
+
+    KWContextNode *contextNode = [self.contextNodeStack lastObject];
+    [contextNode addLetNode:[KWLetNode letNodeWithSymbolName:aSymbolName objectRef:anObjectRef block:block]];
+}
+
 - (void)addItNodeWithCallSite:(KWCallSite *)aCallSite description:(NSString *)aDescription block:(void (^)(void))block {
-    if ([self.contextNodeStack count] == 0)
-        [NSException raise:@"KWExampleSuiteBuilderException" format:@"an example group has not been started"];
+    [self raiseIfExampleGroupNotStarted];
 
     KWContextNode *contextNode = [self.contextNodeStack lastObject];
 
@@ -212,14 +218,20 @@
 }
 
 - (void)addPendingNodeWithCallSite:(KWCallSite *)aCallSite description:(NSString *)aDescription {
-    if ([self.contextNodeStack count] == 0)
-        [NSException raise:@"KWExampleSuiteBuilderException" format:@"an example group has not been started"];
+    [self raiseIfExampleGroupNotStarted];
 
     KWContextNode *contextNode = [self.contextNodeStack lastObject];
     KWPendingNode *pendingNode = [KWPendingNode pendingNodeWithCallSite:aCallSite context:contextNode description:aDescription];
     [contextNode addPendingNode:pendingNode];
     KWExample *example = [[KWExample alloc] initWithExampleNode:pendingNode];
     [self.currentExampleSuite addExample:example];
+}
+
+- (void)raiseIfExampleGroupNotStarted {
+    if ([self.contextNodeStack count] == 0) {
+        [NSException raise:KWExampleSuiteBuilderException
+                    format:@"an example group has not been started"];
+    }
 }
 
 @end

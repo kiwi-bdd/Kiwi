@@ -48,7 +48,7 @@
     [stub processInvocation:invocation];
     NSUInteger crewComplement = 0;
     [invocation getReturnValue:&crewComplement];
-    STAssertEquals(crewComplement, 42u, @"expected stub to write return value");
+    STAssertEquals(crewComplement, (NSUInteger)42, @"expected stub to write return value");
 }
 
 - (void)testItShouldWriteObjectInvocationReturnValues {
@@ -70,6 +70,26 @@
         return fighter;
     }];
     NSInvocation *invocation = [NSInvocation invocationWithTarget:subject selector:@selector(fighterWithCallsign:) messageArguments:@"Random callsign"];
+    [stub processInvocation:invocation];
+    id outcome = nil;
+    [invocation getReturnValue:&outcome];
+    Fighter *result = (Fighter *)outcome;
+    STAssertEquals(result.callsign, @"Red Leader", @"expected stub to perform given block");
+}
+
+
+- (void)testItShouldPerformStubbedBlockAndAppropriatelyWrapParameterOfCharacterStreamType {
+    id subject = [Cruiser cruiser];
+    Fighter *fighter = [[Fighter alloc] initWithCallsign:@"Red Leader"];
+    KWMessagePattern *messagePattern = [KWMessagePattern messagePatternWithSelector:@selector(fighterWithCallsignUTF8CString:)];
+	const char *messageArgument = "Random callsign";
+    id stub  = [KWStub stubWithMessagePattern:messagePattern block: (id) ^(NSArray *params) {
+		const char *passedArgumentValue = [params[0] pointerValue];
+		STAssertTrue(strncmp(messageArgument, passedArgumentValue, strlen(messageArgument)), @"expected appropriate value in parameters to stub block");
+
+        return fighter;
+    }];
+    NSInvocation *invocation = [NSInvocation invocationWithTarget:subject selector:@selector(fighterWithCallsignUTF8CString:) messageArguments:@"Random callsign"];
     [stub processInvocation:invocation];
     id outcome = nil;
     [invocation getReturnValue:&outcome];
@@ -131,6 +151,13 @@
     [stub processInvocation:invocation];
     retainCountAfter = [subject retainCount];
     STAssertEquals(retainCountAfter, retainCountBefore + 1, @"expected stub to retain value");
+}
+
+- (void)testItShouldUseIdAsDefaultReturnType{
+    id mock = [Cruiser mock];
+    SEL selector = NSSelectorFromString(@"unknownMethod");
+    [mock stub:selector];
+    STAssertEqualObjects(@([mock methodSignatureForSelector:selector].methodReturnType), @"@", @"expected id as default return type");
 }
 
 @end

@@ -1,5 +1,4 @@
 language: objective-c
 before_install:
-  - brew update
-  - brew install xctool
-script: xctool test -project Kiwi.xcodeproj -scheme Kiwi
+  - gem install xcpretty
+script: make ci | xcpretty -c

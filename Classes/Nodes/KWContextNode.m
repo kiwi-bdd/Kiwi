@@ -8,6 +8,7 @@
 #import "KWAfterEachNode.h"
 #import "KWBeforeAllNode.h"
 #import "KWBeforeEachNode.h"
+#import "KWLetNode.h"
 #import "KWCallSite.h"
 #import "KWContextNode.h"
 #import "KWExampleNodeVisitor.h"
@@ -15,6 +16,8 @@
 #import "KWFailure.h"
 #import "KWRegisterMatchersNode.h"
 #import "KWSymbolicator.h"
+
+static NSString * const KWContextNodeException = @"KWContextNodeException";
 
 @interface KWContextNode()
 
@@ -32,7 +35,9 @@
         _parentContext = node;
         _callSite = aCallSite;
         _description = [aDescription copy];
-        _nodes = [[NSMutableArray alloc] init];
+        _nodes = [NSMutableArray array];
+        _registerMatchersNodes = [NSMutableArray array];
+        _letNodes = [NSMutableArray array];
         _performedExampleCount = 0;
     }
 
@@ -47,25 +52,35 @@
     [(NSMutableArray *)self.nodes addObject:aNode];
 }
 
-- (void)setRegisterMatchersNode:(KWRegisterMatchersNode *)aNode {
-    if (self.registerMatchersNode != nil)
-        [NSException raise:@"KWContextNodeException" format:@"a register matchers node already exists"];
-
-    _registerMatchersNode = aNode;
-}
-
 - (void)setBeforeEachNode:(KWBeforeEachNode *)aNode {
-    if (self.beforeEachNode != nil)
-        [NSException raise:@"KWContextNodeException" format:@"a before each node already exists"];
-
+    [self raiseIfNodeAlreadyExists:self.beforeEachNode];
     _beforeEachNode = aNode;
 }
 
 - (void)setAfterEachNode:(KWAfterEachNode *)aNode {
-    if (self.afterEachNode != nil)
-        [NSException raise:@"KWContextNodeException" format:@"an after each node already exists"];
-
+    [self raiseIfNodeAlreadyExists:self.afterEachNode];
     _afterEachNode = aNode;
+}
+
+- (void)addLetNode:(KWLetNode *)aNode {
+    [(NSMutableArray *)self.letNodes addObject:aNode];
+}
+
+- (void)addRegisterMatchersNode:(KWRegisterMatchersNode *)aNode {
+    [(NSMutableArray *)self.registerMatchersNodes addObject:aNode];
+}
+
+- (KWLetNode *)letNodeTree {
+    KWLetNode *tree = [self.parentContext letNodeTree];
+    for (KWLetNode *letNode in self.letNodes) {
+        if (!tree) {
+            tree = letNode;
+        }
+        else {
+            [tree addLetNode:letNode];
+        }
+    }
+    return tree;
 }
 
 - (void)addItNode:(KWItNode *)aNode {
@@ -82,22 +97,28 @@
     
     void (^outerExampleBlock)(void) = ^{
         @try {
-            [self.registerMatchersNode acceptExampleNodeVisitor:example];
-            
+            for (KWRegisterMatchersNode *registerNode in self.registerMatchersNodes) {
+                [registerNode acceptExampleNodeVisitor:example];
+            }
+
             if (self.performedExampleCount == 0) {
                 [self.beforeAllNode acceptExampleNodeVisitor:example];
             }
-            
+
+            KWLetNode *letNodeTree = [self letNodeTree];
+            [letNodeTree acceptExampleNodeVisitor:example];
+
             [self.beforeEachNode acceptExampleNodeVisitor:example];
-            
+
             innerExampleBlock();
-            
+
             [self.afterEachNode acceptExampleNodeVisitor:example];
 
             if ([example isLastInContext:self]) {
                 [self.afterAllNode acceptExampleNodeVisitor:example];
+                [letNodeTree unlink];
             }
-            
+
         } @catch (NSException *exception) {
             KWFailure *failure = [KWFailure failureWithCallSite:self.callSite format:@"%@ \"%@\" raised", [exception name], [exception reason]];
             [example reportFailure:failure];
@@ -110,6 +131,13 @@
     }
     else {
         [self.parentContext performExample:example withBlock:outerExampleBlock];
+    }
+}
+
+- (void)raiseIfNodeAlreadyExists:(id<KWExampleNode>)node {
+    if (node) {
+        [NSException raise:KWContextNodeException
+                    format:@"A %@ already exists in this context.", NSStringFromClass([node class])];
     }
 }
 

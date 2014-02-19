@@ -70,19 +70,24 @@
         argumentFilters = [[NSMutableArray alloc] initWithCapacity:numberOfMessageArguments];
 
         for (NSUInteger i = 0; i < numberOfMessageArguments; ++i) {
-            const char *type = [signature messageArgumentTypeAtIndex:i];
-            id object = nil;
-
-            if (KWObjCTypeIsObject(type)) {
-                [anInvocation getMessageArgument:&object atIndex:i];
-            } else {
+			const char *type = [signature messageArgumentTypeAtIndex:i];
+			void* argumentDataBuffer = malloc(KWObjCTypeLength(type));
+			[anInvocation getMessageArgument:argumentDataBuffer atIndex:i];
+			id object = nil;
+			if(*(id*)argumentDataBuffer != [KWAny any] && !KWObjCTypeIsObject(type)) {
                 NSData *data = [anInvocation messageArgumentDataAtIndex:i];
                 object = [KWValue valueWithBytes:[data bytes] objCType:type];
-            }
+            } else {
+				object = *(id*)argumentDataBuffer;
 
+				if (object != [KWAny any] && KWObjCTypeIsBlock(type)) {
+					object = [[object copy] autorelease]; // Converting NSStackBlock to NSMallocBlock
+				}
+			}
 			
-			if (strcmp(type, "@?") == 0) object = [[object copy] autorelease]; // Converting NSStackBlock to NSMallocBlock
             [argumentFilters addObject:(object != nil) ? object : [KWNull null]];
+
+			free(argumentDataBuffer);
         }
     }
 

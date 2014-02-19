@@ -6,18 +6,13 @@
 
 #import "Kiwi.h"
 
-@interface TestVerifier : NSObject<KWVerifying> {
-@private
-    BOOL notifiedOfEndOfExample;
-}
+@interface TestVerifier : NSObject<KWVerifying>
 
-#pragma mark -
-#pragma mark Properties
+#pragma mark - Properties
 
 @property (nonatomic, readonly) BOOL notifiedOfEndOfExample;
 
-#pragma mark -
-#pragma mark Verifying
+#pragma mark - Verifying
 
 - (void)exampleWillEnd;
 

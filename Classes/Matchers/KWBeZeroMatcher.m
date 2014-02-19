@@ -19,10 +19,15 @@
 #pragma mark - Matching
 
 - (BOOL)evaluate {
-    if (![self.subject respondsToSelector:@selector(boolValue)])
-        [NSException raise:@"KWMatcherException" format:@"subject does not respond to -numberValue"];
-
-    return [[self.subject numberValue] isEqualToNumber:@0];
+    if ([self.subject isKindOfClass:[NSNumber class]]) {
+        return [self.subject isEqualToNumber:@0];
+    }
+    
+    if ([self.subject respondsToSelector:@selector(numberValue)]) {
+        return [[self.subject numberValue] isEqualToNumber:@0];
+    }
+    
+    return NO;
 }
 
 #pragma mark - Getting Failure Messages
@@ -34,6 +39,10 @@
 
 - (NSString *)failureMessageForShouldNot {
     return [NSString stringWithFormat:@"expected subject not to be zero"];
+}
+
+- (NSString *)description {
+    return @"be zero";
 }
 
 #pragma mark - Configuring Matchers

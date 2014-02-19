@@ -41,6 +41,10 @@ BOOL KWObjCTypeIsUnsignedIntegral(const char *objCType) {
            strcmp(objCType, @encode(unsigned long long)) == 0;
 }
 
+BOOL KWObjCTypeIsBool(const char *objCType) {
+    return strcmp(objCType, @encode(BOOL)) == 0;
+}
+
 BOOL KWObjCTypeIsObject(const char *objCType) {
     return strcmp(objCType, @encode(id)) == 0 || strcmp(objCType, "@?") == 0;
 }
@@ -74,9 +78,9 @@ BOOL KWObjCTypeIsUnknown(const char *objCType) {
 }
 
 NSUInteger KWObjCTypeLength(const char *objCType) {
-    NSString *encoding = KWEncodingWithObjCTypes(objCType, @encode(id), @encode(SEL), nil);
-    NSMethodSignature *signature = [NSMethodSignature signatureWithObjCTypes:[encoding UTF8String]];
-    return [signature methodReturnLength];
+	NSUInteger typeSize = 0;
+	NSGetSizeAndAlignment(objCType, &typeSize, NULL);
+	return typeSize;
 }
 
 BOOL KWObjCTypeIsBlock(const char *objCType) {

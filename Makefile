@@ -9,3 +9,9 @@ ios:
 
 install:
 	xcodebuild -project Kiwi.xcodeproj -scheme Kiwi-iOS install
+
+test:
+	xcodebuild -project Kiwi.xcodeproj -scheme Kiwi -sdk iphonesimulator test
+
+ci: test
+

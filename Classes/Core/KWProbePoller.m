@@ -10,7 +10,7 @@
 
 @interface KWTimeout : NSObject
 
-@property (nonatomic, strong) NSDate *timeoutDate;
+@property (nonatomic) CFTimeInterval timeoutDateStamp;
 
 @end
 
@@ -20,14 +20,14 @@
 {
     self = [super init];
     if (self) {
-        _timeoutDate = [[NSDate alloc] initWithTimeIntervalSinceNow:timeout];
+		_timeoutDateStamp = CFAbsoluteTimeGetCurrent() + timeout;
     }
     return self;
 }
 
 
 - (BOOL)hasTimedOut {
-    return [self.timeoutDate timeIntervalSinceDate:[NSDate date]] < 0;
+	return (_timeoutDateStamp - CFAbsoluteTimeGetCurrent()) < 0;
 }
 
 @end
@@ -62,7 +62,7 @@
         if ([timeout hasTimedOut]) {
             return [probe isSatisfied];
         }
-        [[NSRunLoop currentRunLoop] runUntilDate:[NSDate dateWithTimeIntervalSinceNow:self.delayInterval]];
+		CFRunLoopRunInMode(kCFRunLoopDefaultMode, _delayInterval, false);
         [probe sample];
     }
     

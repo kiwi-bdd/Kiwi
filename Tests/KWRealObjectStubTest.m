@@ -170,13 +170,13 @@
 }
 
 - (void)testSpyWorksOnRealInterfaces {
-    Cruiser *cruiser = [Cruiser mock];
-    STAssertNoThrow([cruiser captureArgument:@selector(foo) atIndex:0], @"expected not to throw exception");
+    Fighter *cruiser = [Fighter mock];
+    STAssertNoThrow([cruiser captureArgument:@selector(cruiser) atIndex:0], @"expected not to throw exception");
 }
 
 - (void)testCallingCaptureArgumentOnRealObjectThrowsException {
-    Cruiser *cruiser = [Cruiser cruiser];
-    STAssertThrows([cruiser captureArgument:@selector(foo) atIndex:0], @"expected to throw exception");
+    Fighter *cruiser = [Fighter fighter];
+    STAssertThrows([cruiser captureArgument:@selector(cruiser) atIndex:0], @"expected to throw exception");
 }
 
 - (void)testItShouldStubWithBlock {

@@ -56,7 +56,7 @@
     // Add a single dummy invocation for each example group
     
     for (KWExample *exampleGroup in self.examples) {
-        NSMethodSignature *methodSignature = [NSMethodSignature signatureWithObjCTypes:[KWEncodingForVoidMethod() UTF8String]];
+        NSMethodSignature *methodSignature = [NSMethodSignature signatureWithObjCTypes:[KWEncodingForDefaultMethod() UTF8String]];
         NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:methodSignature];
         [invocations addObject:invocation];
         [invocation kw_setExample:exampleGroup];

@@ -11,7 +11,7 @@
 
 @interface KWGenericMatcher ()
 
-@property (nonatomic, strong) id matcher;
+@property (nonatomic, strong) id<KWGenericMatching> matcher;
 
 @end
 

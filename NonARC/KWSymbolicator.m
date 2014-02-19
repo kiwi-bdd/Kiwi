@@ -11,6 +11,7 @@
 #import <libunwind.h>
 
 long kwCallerAddress (void){
+#if !__arm__
 	unw_cursor_t cursor; unw_context_t uc;
 	unw_word_t ip;
 
@@ -22,6 +23,7 @@ long kwCallerAddress (void){
 		unw_get_reg (&cursor, UNW_REG_IP, &ip);
         if(pos == 0) return (NSUInteger)(ip - 4);
 	}
+#endif
     return 0;
 }
 

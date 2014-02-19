@@ -119,6 +119,12 @@
             [self getArgument:&value atIndex:argIndex];
             return [NSValue valueWithPointer:value];
         }
+		case '*':
+		{
+			char *value = NULL;
+			[self getArgument:&value atIndex:argIndex];
+			return [NSValue valueWithPointer:value];
+		}
 		case '{': // structure
 		{
 			NSUInteger maxArgSize = [[self methodSignature] frameLength];

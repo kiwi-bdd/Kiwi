@@ -70,6 +70,10 @@
     return nil;
 }
 
+- (Fighter *)fighterWithCallsignUTF8CString:(const char *)aCallsign {
+	return [self fighterWithCallsign:[NSString stringWithCString:aCallsign encoding:NSUTF8StringEncoding]];
+}
+
 - (NSArray *)fightersInSquadron:(NSString *)aSquadron {
     NSMutableArray *fightersInSquadron = [[[NSMutableArray alloc] init] autorelease];
 

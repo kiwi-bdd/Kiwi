@@ -23,8 +23,7 @@ extern "C" {
 #import "KWBeMemberOfClassMatcher.h"
 #import "KWBeSubclassOfClassMatcher.h"
 #import "KWBeTrueMatcher.h"
-#import "KWBeNilMatcher.h"
-#import "KWBeNonNilMatcher.h"
+#import "KWNilMatcher.h"
 #import "KWBeWithinMatcher.h"
 #import "KWBeZeroMatcher.h"
 #import "KWBeforeAllNode.h"
@@ -74,12 +73,14 @@ extern "C" {
 #import "KWSpec.h"
 #import "KWStringUtilities.h"
 #import "KWStub.h"
+#import "KWSuiteConfigurationBase.h"
 #import "KWUserDefinedMatcher.h"
 #import "KWValue.h"
 #import "KWVerifying.h"
 #import "KWCaptureSpy.h"
 #import "KWStringPrefixMatcher.h"
 #import "KWStringContainsMatcher.h"
+#import "KWNotificationMatcher.h"
 
   
 // Public Foundation Categories

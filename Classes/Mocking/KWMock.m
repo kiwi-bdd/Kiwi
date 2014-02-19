@@ -411,7 +411,7 @@ static NSString * const ChangeStubValueAfterTimesKey = @"ChangeStubValueAfterTim
     if (methodSignature != nil)
         return methodSignature;
 
-    NSString *encoding = KWEncodingForVoidMethod();
+    NSString *encoding = KWEncodingForDefaultMethod();
     return [NSMethodSignature signatureWithObjCTypes:[encoding UTF8String]];
 }
 

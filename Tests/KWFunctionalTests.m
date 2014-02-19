@@ -134,6 +134,78 @@ describe(@"FocusedItCheck", ^{
 
 SPEC_END
 
+SPEC_BEGIN(FunctionalLet)
+
+describe(@"Greeting", ^{
+    let(subject, ^{ return @""; });
+    let(greeting, ^{ return [NSString stringWithFormat:@"Hello, %@!", subject]; });
+
+    describe(@"default subject", ^{
+        specify(^{ [[subject should] beEmpty]; });
+    });
+
+    context(@"with the subject \"world\"", ^{
+        let(subject, ^{ return @"world"; });
+
+        specify(^{ [[greeting should] equal:@"Hello, world!"]; });
+    });
+
+    context(@"with the subject \"Kiwi\"", ^{
+        let(subject, ^{ return @"Kiwi"; });
+
+        specify(^{ [[greeting should] equal:@"Hello, Kiwi!"]; });
+    });
+});
+
+describe(@"Let context tree", ^{
+    let(number, ^{ return @0; });
+    let(string, ^{ return [number stringValue]; });
+
+    describe(@"number 1", ^{
+        let(number, ^{ return @1; });
+
+        context(@"number 2", ^{
+            let(number, ^{ return @2; });
+
+            context(@"number 3", ^{
+                let(number, ^{ return @3; });
+
+                context(@"number 4", ^{
+                    let(number, ^{ return @4; });
+
+                    specify(^{ [[number should] equal:@4]; });
+                    specify(^{ [[string should] equal:@"4"]; });
+                });
+
+                specify(^{ [[number should] equal:@3]; });
+                specify(^{ [[string should] equal:@"3"]; });
+            });
+
+            specify(^{ [[number should] equal:@2];});
+            specify(^{ [[string should] equal:@"2"]; });
+        });
+
+        context(@"number 5", ^{
+            let(number, ^{ return @5; });
+
+            context(@"number 6", ^{
+                let(number, ^{ return @6; });
+
+                specify(^{ [[number should] equal:@6]; });
+                specify(^{ [[string should] equal:@"6"]; });
+            });
+
+            specify(^{ [[number should] equal:@5]; });
+            specify(^{ [[string should] equal:@"5"]; });
+        });
+
+        specify(^{ [[number should] equal:@1]; });
+        specify(^{ [[string should] equal:@"1"]; });
+    });
+});
+
+SPEC_END
+
 SPEC_BEGIN(NilMatchers)
 
 describe(@"nil matchers", ^{
@@ -169,6 +241,26 @@ describe(@"nil matchers", ^{
             [object shouldNotBeNil];
         });
     });
+});
+
+SPEC_END
+
+SPEC_BEGIN(NSDateStub)
+
+describe(@"NSDate stubs", ^{
+	__block id dateMock = nil;
+	context(@"shouldEventually should work when [NSDate date] is mocked and stubbed", ^{
+		beforeEach(^{
+			dateMock = [NSDate mock];
+			[dateMock stub: @selector(timeIntervalSince1970) andReturn: [KWValue valueWithDouble: 1.0f]];
+			[NSDate stub: @selector(date) andReturn: dateMock];
+		});
+		
+		it(@"should not hang", ^{
+			[[theValue([[NSDate date] timeIntervalSince1970]) shouldNotEventually] equal: 5.0f withDelta: 0.5f];
+		});
+	});
+	
 });
 
 SPEC_END

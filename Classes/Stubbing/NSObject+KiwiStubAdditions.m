@@ -5,6 +5,7 @@
 //
 
 #import "NSObject+KiwiStubAdditions.h"
+#import "KWCaptureSpy.h"
 #import "KWIntercept.h"
 #import "KWInvocationCapturer.h"
 #import "KWMessagePattern.h"
@@ -26,7 +27,7 @@ static NSString * const ChangeStubValueAfterTimesKey = @"ChangeStubValueAfterTim
     if (signature != nil)
         return signature;
 
-    NSString *encoding = KWEncodingForVoidMethod();
+    NSString *encoding = KWEncodingForDefaultMethod();
     return [NSMethodSignature signatureWithObjCTypes:[encoding UTF8String]];
 }
 
@@ -235,6 +236,12 @@ static NSString * const ChangeStubValueAfterTimesKey = @"ChangeStubValueAfterTim
     KWClearObjectSpy(self, aSpy, aMessagePattern);
 }
 
+- (KWCaptureSpy *)captureArgument:(SEL)selector atIndex:(NSUInteger)index {
+    KWCaptureSpy *spy = [[KWCaptureSpy alloc] initWithArgumentIndex:index];
+    [self addMessageSpy:spy forMessagePattern:[KWMessagePattern messagePatternWithSelector:selector]];
+    return spy;
+}
+
 + (void)addMessageSpy:(id<KWMessageSpying>)aSpy forMessagePattern:(KWMessagePattern *)aMessagePattern {
     if ([self methodSignatureForSelector:aMessagePattern.selector] == nil) {
         [NSException raise:@"KWSpyException" format:@"cannot add spy for -%@ because no such method exists",
@@ -248,6 +255,12 @@ static NSString * const ChangeStubValueAfterTimesKey = @"ChangeStubValueAfterTim
 
 + (void)removeMessageSpy:(id<KWMessageSpying>)aSpy forMessagePattern:(KWMessagePattern *)aMessagePattern {
     KWClearObjectSpy(self, aSpy, aMessagePattern);
+}
+
++ (KWCaptureSpy *)captureArgument:(SEL)selector atIndex:(NSUInteger)index {
+    KWCaptureSpy *spy = [[KWCaptureSpy alloc] initWithArgumentIndex:index];
+    [self addMessageSpy:spy forMessagePattern:[KWMessagePattern messagePatternWithSelector:selector]];
+    return spy;
 }
 
 @end

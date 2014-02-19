@@ -10,17 +10,17 @@
 #import "KWStringUtilities.h"
 #import "KWObjCUtilities.h"
 #import <objc/runtime.h>
+#import "KWGenericMatcher.h"
 
 @implementation KWGenericMatchEvaluator
 
-// Returns true only if the object has a method with the signature "- (void)matches:(id)object"
+// Returns true only if the object has a method with the signature "- (BOOL)matches:(id)object"
 + (BOOL)isGenericMatcher:(id)object {
     Class theClass = object_getClass(object);
 
     if (theClass == NULL) {
         return NO;
     }
-
     Method method = class_getInstanceMethod(theClass, @selector(matches:));
 
     if (method == NULL) {

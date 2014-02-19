@@ -199,7 +199,7 @@ static NSString * const CountKey = @"CountKey";
 
     // Arbitrary selectors are allowed as expectation expression terminals when
     // the subject itself is a collection, so return a dummy method signature.
-    NSString *encoding = KWEncodingForVoidMethod();
+    NSString *encoding = KWEncodingForDefaultMethod();
     return [NSMethodSignature signatureWithObjCTypes:[encoding UTF8String]];
 }
 

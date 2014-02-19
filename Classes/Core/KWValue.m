@@ -108,8 +108,10 @@
 #pragma mark - Accessing Numeric Values
 
 - (NSNumber *)numberValue {
-    if (!KWObjCTypeIsNumeric(self.objCType))
-        [NSException raise:NSInternalInconsistencyException format:@"cannot return number value because wrapped value is non-numeric"];
+    if (!KWObjCTypeIsNumeric(self.objCType) && !KWObjCTypeIsBool(self.objCType)) {
+        [NSException raise:NSInternalInconsistencyException
+                    format:@"cannot return number value because wrapped value is non-numeric"];
+    }
 
     NSData *data = [self dataValue];
     return [NSNumber numberWithBytes:[data bytes] objCType:self.objCType];

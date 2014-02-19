@@ -24,6 +24,14 @@
     return [anObject description];
 }
 
++ (NSString *)formatObjectIncludingClass:(id)anObject {
+    NSString *classString = [[anObject class] description];
+    
+    if ([anObject isKindOfClass:[NSString class]])
+        classString = @"NSString";
+    
+    return [NSString stringWithFormat:@"(%@) %@", classString, [self formatObject:anObject]];
+}
 
 
 #pragma mark - Private

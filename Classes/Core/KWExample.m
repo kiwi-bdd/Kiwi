@@ -15,6 +15,7 @@
 #import "KWContextNode.h"
 #import "KWBeforeEachNode.h"
 #import "KWBeforeAllNode.h"
+#import "KWLetNode.h"
 #import "KWItNode.h"
 #import "KWAfterEachNode.h"
 #import "KWAfterAllNode.h"
@@ -84,14 +85,14 @@
 }
 
 - (id)addMatchVerifierWithExpectationType:(KWExpectationType)anExpectationType callSite:(KWCallSite *)aCallSite {
-    if (self.unassignedVerifier) {
+    if (self.unresolvedVerifier) {
         @throw [NSException exceptionWithName:NSInternalInconsistencyException
                                        reason:@"Trying to add another verifier without specifying a matcher for the previous one."
                                      userInfo:nil];
     }
     id<KWVerifying> verifier = [KWMatchVerifier matchVerifierWithExpectationType:anExpectationType callSite:aCallSite matcherFactory:self.matcherFactory reporter:self];
     [self addVerifier:verifier];
-    self.unassignedVerifier = verifier;
+    self.unresolvedVerifier = verifier;
     return verifier;
 }
 
@@ -202,6 +203,11 @@
     aNode.block();
 }
 
+- (void)visitLetNode:(KWLetNode *)aNode
+{
+    [aNode evaluateTree];
+}
+
 - (void)visitItNode:(KWItNode *)aNode {
     if (aNode.block == nil || aNode != self.exampleNode)
         return;
@@ -222,6 +228,11 @@
             // Finish verifying and clear
             for (id<KWVerifying> verifier in self.verifiers) {
                 [verifier exampleWillEnd];
+            }
+            
+            if (self.unresolvedVerifier) {
+                KWFailure *failure = [KWFailure failureWithCallSite:self.unresolvedVerifier.callSite format:@"expected subject not to be nil"];
+                [self reportFailure:failure];
             }
             
         } @catch (NSException *exception) {
@@ -265,7 +276,8 @@ KWCallSite *callSiteAtAddressIfNecessary(long address){
 }
 
 KWCallSite *callSiteWithAddress(long address){
-    NSArray *args =@[@"-p", @(getpid()).stringValue, [NSString stringWithFormat:@"%lx", address]];
+    NSArray *args = @[@"-d",
+                      @"-p", @(getpid()).stringValue, [NSString stringWithFormat:@"%lx", address]];
     NSString *callSite = [NSString stringWithShellCommand:@"/usr/bin/atos" arguments:args];
 
     NSString *pattern = @".+\\((.+):([0-9]+)\\)";
@@ -321,6 +333,12 @@ void it(NSString *aDescription, void (^block)(void)) {
     itWithCallSite(callSite, aDescription, block);
 }
 
+void let_(__autoreleasing id *anObjectRef, const char *aSymbolName, id (^block)(void))
+{
+    NSString *aDescription = [NSString stringWithUTF8String:aSymbolName];
+    letWithCallSite(nil, anObjectRef, aDescription, block);
+}
+
 void specify(void (^block)(void))
 {
     itWithCallSite(nil, nil, block);
@@ -359,6 +377,11 @@ void beforeEachWithCallSite(KWCallSite *aCallSite, void (^block)(void)) {
 
 void afterEachWithCallSite(KWCallSite *aCallSite, void (^block)(void)) {
     [[KWExampleSuiteBuilder sharedExampleSuiteBuilder] setAfterEachNodeWithCallSite:aCallSite block:block];
+}
+
+void letWithCallSite(KWCallSite *aCallSite, __autoreleasing id *anObjectRef, NSString *aSymbolName, id (^block)(void))
+{
+    [[KWExampleSuiteBuilder sharedExampleSuiteBuilder] addLetNodeWithCallSite:aCallSite objectRef:anObjectRef symbolName:aSymbolName block:block];
 }
 
 void itWithCallSite(KWCallSite *aCallSite, NSString *aDescription, void (^block)(void)) {
