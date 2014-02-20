@@ -11,9 +11,9 @@
 
 #pragma mark - Configuring Matchers
 
-- (void)raiseWhenSent:(SEL)aSelector;
-- (void)raiseWithName:(NSString *)aName whenSent:(SEL)aSelector;
-- (void)raiseWithReason:(NSString *)aReason whenSent:(SEL)aSelector;
-- (void)raiseWithName:(NSString *)aName reason:(NSString *)aReason whenSent:(SEL)aSelector;
+- (void)raiseWhenSent:(SEL)aSelector DEPRECATED_ATTRIBUTE; 
+- (void)raiseWithName:(NSString *)aName whenSent:(SEL)aSelector DEPRECATED_ATTRIBUTE;
+- (void)raiseWithReason:(NSString *)aReason whenSent:(SEL)aSelector DEPRECATED_ATTRIBUTE;
+- (void)raiseWithName:(NSString *)aName reason:(NSString *)aReason whenSent:(SEL)aSelector DEPRECATED_ATTRIBUTE;
 
 @end

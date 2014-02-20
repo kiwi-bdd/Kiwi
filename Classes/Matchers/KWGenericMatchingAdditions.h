@@ -10,25 +10,25 @@
 
 @interface NSObject (KiwiGenericMatchingAdditions)
 
-- (BOOL)isEqualOrMatches:(id)object;
+- (BOOL)isEqualOrMatches:(id)object DEPRECATED_ATTRIBUTE;
 
 @end
 
 @interface NSArray (KiwiGenericMatchingAdditions)
 
-- (BOOL)containsObjectEqualToOrMatching:(id)object;
-- (BOOL)containsObjectMatching:(id)matcher;
+- (BOOL)containsObjectEqualToOrMatching:(id)object DEPRECATED_ATTRIBUTE;
+- (BOOL)containsObjectMatching:(id)matcher DEPRECATED_ATTRIBUTE;
 
 @end
 
 @interface NSSet (KiwiGenericMatchingAdditions)
 
-- (BOOL)containsObjectEqualToOrMatching:(id)object;
+- (BOOL)containsObjectEqualToOrMatching:(id)object DEPRECATED_ATTRIBUTE;
 
 @end
 
 @interface NSOrderedSet (KiwiGenericMatchingAdditions)
 
-- (BOOL)containsObjectEqualToOrMatching:(id)object;
+- (BOOL)containsObjectEqualToOrMatching:(id)object DEPRECATED_ATTRIBUTE;
 
 @end

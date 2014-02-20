@@ -11,9 +11,8 @@
 
 @interface KWStringContainsMatcher : NSObject <KWGenericMatching>
 
-+ (id)matcherWithSubstring:(NSString *)aSubstring;
-- (id)initWithSubstring:(NSString *)aSubstring;
-- (BOOL)matches:(id)object;
++ (id)matcherWithSubstring:(NSString *)aSubstring DEPRECATED_ATTRIBUTE;
+- (id)initWithSubstring:(NSString *)aSubstring DEPRECATED_ATTRIBUTE;
 
 @end
 

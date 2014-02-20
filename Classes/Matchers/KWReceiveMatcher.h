@@ -26,6 +26,8 @@
 - (void)receive:(SEL)aSelector andReturn:(id)aValue withCount:(NSUInteger)aCount;
 - (void)receive:(SEL)aSelector andReturn:(id)aValue withCountAtLeast:(NSUInteger)aCount;
 - (void)receive:(SEL)aSelector andReturn:(id)aValue withCountAtMost:(NSUInteger)aCount;
+
+// These methods will become private
 - (void)receiveMessagePattern:(KWMessagePattern *)aMessagePattern countType:(KWCountType)aCountType count:(NSUInteger)aCount;
 - (void)receiveMessagePattern:(KWMessagePattern *)aMessagePattern andReturn:(id)aValue countType:(KWCountType)aCountType count:(NSUInteger)aCount;
 
@@ -46,13 +48,13 @@
 
 #pragma mark Invocation Capturing Methods
 
-- (id)receive;
-- (id)receiveWithCount:(NSUInteger)aCount;
-- (id)receiveWithCountAtLeast:(NSUInteger)aCount;
-- (id)receiveWithCountAtMost:(NSUInteger)aCount;
-- (id)receiveAndReturn:(id)aValue;
-- (id)receiveAndReturn:(id)aValue withCount:(NSUInteger)aCount;
-- (id)receiveAndReturn:(id)aValue withCountAtLeast:(NSUInteger)aCount;
-- (id)receiveAndReturn:(id)aValue withCountAtMost:(NSUInteger)aCount;
+- (id)receive DEPRECATED_ATTRIBUTE;
+- (id)receiveWithCount:(NSUInteger)aCount DEPRECATED_ATTRIBUTE;
+- (id)receiveWithCountAtLeast:(NSUInteger)aCount DEPRECATED_ATTRIBUTE;
+- (id)receiveWithCountAtMost:(NSUInteger)aCount DEPRECATED_ATTRIBUTE;
+- (id)receiveAndReturn:(id)aValue DEPRECATED_ATTRIBUTE;
+- (id)receiveAndReturn:(id)aValue withCount:(NSUInteger)aCount DEPRECATED_ATTRIBUTE;
+- (id)receiveAndReturn:(id)aValue withCountAtLeast:(NSUInteger)aCount DEPRECATED_ATTRIBUTE;
+- (id)receiveAndReturn:(id)aValue withCountAtMost:(NSUInteger)aCount DEPRECATED_ATTRIBUTE;
 
 @end
