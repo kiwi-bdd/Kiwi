@@ -5,7 +5,6 @@
 //
 
 #import "KWBeSubclassOfClassMatcher.h"
-#import "KWFormatter.h"
 
 @interface KWBeSubclassOfClassMatcher()
 

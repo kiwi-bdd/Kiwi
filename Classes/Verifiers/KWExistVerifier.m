@@ -8,13 +8,13 @@
 
 #import "KWCallSite.h"
 #import "KWFailure.h"
-#import "KWFormatter.h"
-#import "KWReporting.h"
+#import "KWFailureReporting.h"
+#import "NSObject+KWStringRepresentation.h"
 
 @interface KWExistVerifier()
 
 @property (nonatomic, readonly) KWExpectationType expectationType;
-@property (nonatomic, readonly) id<KWReporting> reporter;
+@property (nonatomic, readonly) id<KWFailureReporting> reporter;
 
 @property (nonatomic, strong) KWCallSite *callSite;
 
@@ -24,7 +24,7 @@
 
 #pragma mark - Initializing
 
-- (id)initWithExpectationType:(KWExpectationType)anExpectationType callSite:(KWCallSite *)aCallSite reporter:(id<KWReporting>)aReporter {
+- (id)initWithExpectationType:(KWExpectationType)anExpectationType callSite:(KWCallSite *)aCallSite reporter:(id<KWFailureReporting>)aReporter {
     self = [super init];
     if (self) {
         _expectationType = anExpectationType;
@@ -35,7 +35,7 @@
     return self;
 }
 
-+ (id)existVerifierWithExpectationType:(KWExpectationType)anExpectationType callSite:(KWCallSite *)aCallSite reporter:(id<KWReporting>)aReporter {
++ (id)existVerifierWithExpectationType:(KWExpectationType)anExpectationType callSite:(KWCallSite *)aCallSite reporter:(id<KWFailureReporting>)aReporter {
     return [[self alloc] initWithExpectationType:anExpectationType callSite:aCallSite reporter:aReporter];
 }
 
@@ -51,11 +51,13 @@
 
 - (void)exampleWillEnd {
     if (self.expectationType == KWExpectationTypeShould && self.subject == nil) {
-        KWFailure *failure = [KWFailure failureWithCallSite:self.callSite message:@"expected subject not to be nil"];
+        KWFailure *failure = [KWFailure failureWithCallSite:self.callSite
+                                                    message:@"expected subject not to be nil"];
         [self.reporter reportFailure:failure];
     } else if (self.expectationType == KWExpectationTypeShouldNot && self.subject != nil) {
-        KWFailure *failure = [KWFailure failureWithCallSite:self.callSite format:@"expected subject to be nil, got %@",
-                                                                                 [KWFormatter formatObject:self.subject]];
+        KWFailure *failure = [KWFailure failureWithCallSite:self.callSite
+                                                     format:@"expected subject to be nil, got %@",
+                                                            [self.subject kw_stringRepresentation]];
         [self.reporter reportFailure:failure];
     }
 }

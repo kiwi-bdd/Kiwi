@@ -9,19 +9,19 @@
 #import "KWAsyncVerifier.h"
 #import "KWFailure.h"
 #import "KWMatching.h"
-#import "KWReporting.h"
+#import "KWFailureReporting.h"
 #import "KWProbePoller.h"
 
 @implementation KWAsyncVerifier
 
-+ (id)asyncVerifierWithExpectationType:(KWExpectationType)anExpectationType callSite:(KWCallSite *)aCallSite matcherFactory:(KWMatcherFactory *)aMatcherFactory reporter:(id<KWReporting>)aReporter probeTimeout:(NSTimeInterval)probeTimeout shouldWait:(BOOL)shouldWait {
++ (id)asyncVerifierWithExpectationType:(KWExpectationType)anExpectationType callSite:(KWCallSite *)aCallSite matcherFactory:(KWMatcherFactory *)aMatcherFactory reporter:(id<KWFailureReporting>)aReporter probeTimeout:(NSTimeInterval)probeTimeout shouldWait:(BOOL)shouldWait {
     KWAsyncVerifier *verifier = [[self alloc] initWithExpectationType:anExpectationType callSite:aCallSite matcherFactory:aMatcherFactory reporter:aReporter];
     verifier.timeout = probeTimeout;
     verifier.shouldWait = shouldWait;
     return verifier;
 }
 
-- (id)initWithExpectationType:(KWExpectationType)anExpectationType callSite:(KWCallSite *)aCallSite matcherFactory:(KWMatcherFactory *)aMatcherFactory reporter:(id<KWReporting>)aReporter {
+- (id)initWithExpectationType:(KWExpectationType)anExpectationType callSite:(KWCallSite *)aCallSite matcherFactory:(KWMatcherFactory *)aMatcherFactory reporter:(id<KWFailureReporting>)aReporter {
     self = [super initWithExpectationType:anExpectationType callSite:aCallSite matcherFactory:aMatcherFactory reporter:aReporter];
     if (self) {
         self.timeout = kKW_DEFAULT_PROBE_TIMEOUT;
@@ -37,21 +37,21 @@
             if (self.expectationType == KWExpectationTypeShould) {
                 NSString *message = [aProbe.matcher failureMessageForShould];
                 KWFailure *failure = [KWFailure failureWithCallSite:self.callSite message:message];
-                [self.reporter reportFailure:failure];
+                [self.failureReporter reportFailure:failure];
             }
         } else {
             // poller returned YES -- fail if expectation is NOT
             if (self.expectationType == KWExpectationTypeShouldNot) {
                 NSString *message = [aProbe.matcher failureMessageForShouldNot];
                 KWFailure *failure = [KWFailure failureWithCallSite:self.callSite message:message];
-                [self.reporter reportFailure:failure];
+                [self.failureReporter reportFailure:failure];
             }
         }
 		
         
     } @catch (NSException *exception) {
         KWFailure *failure = [KWFailure failureWithCallSite:self.callSite message:[exception description]];
-        [self.reporter reportFailure:failure];
+        [self.failureReporter reportFailure:failure];
     }
 }
 

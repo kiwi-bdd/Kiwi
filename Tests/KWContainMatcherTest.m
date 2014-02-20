@@ -28,7 +28,7 @@
     id subject = [[[NSObject alloc] init] autorelease];
     id matcher = [KWContainMatcher matcherWithSubject:subject];
     [matcher contain:@"liger"];
-    STAssertThrowsSpecificNamed([matcher evaluate], NSException, @"KWMatcherException", @"expected raised exception");
+    STAssertThrowsSpecificNamed([matcher evaluate], NSException, KWMatcherException, @"expected raised exception");
 }
 
 - (void)testItShouldMatchContainedElements {

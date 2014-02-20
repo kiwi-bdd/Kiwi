@@ -27,6 +27,7 @@
 #import "KWExampleSuite.h"
 #import "KWCallSite.h"
 #import "KWSymbolicator.h"
+#import "KWReporter.h"
 
 @interface KWExample ()
 
@@ -35,9 +36,11 @@
 @property (nonatomic, weak) id<KWExampleDelegate> delegate;
 @property (nonatomic, assign) BOOL didNotFinish;
 @property (nonatomic, strong) id<KWExampleNode> exampleNode;
-@property (nonatomic, assign) BOOL passed;
 
-- (void)reportResultForExampleNodeWithLabel:(NSString *)label;
+@property (nonatomic, strong) KWFailure *failure;
+@property (nonatomic, readonly) KWFailure *outputReadyFailure;
+@property (nonatomic, strong) NSException *exception;
+@property (nonatomic, assign) KWExampleResult result;
 
 @end
 
@@ -50,7 +53,7 @@
         _matcherFactory = [[KWMatcherFactory alloc] init];
         _verifiers = [[NSMutableArray alloc] init];
         _lastInContexts = [[NSMutableArray alloc] init];
-        _passed = YES;
+        _result = KWExampleResultPassed;
     }
     return self;
 }
@@ -115,20 +118,20 @@
 
 - (NSString *)descriptionForExampleContext {
     NSMutableArray *parts = [NSMutableArray array];
-    
+
     for (KWContextNode *context in [[self.exampleNode contextStack] reverseObjectEnumerator]) {
         if ([context description] != nil) {
             [parts addObject:[[context description] stringByAppendingString:@","]];
         }
     }
-    
+
     return [parts componentsJoinedByString:@" "];
 }
 
-- (KWFailure *)outputReadyFailureWithFailure:(KWFailure *)aFailure {
+- (KWFailure *)outputReadyFailure {
     NSString *annotatedFailureMessage = [NSString stringWithFormat:@"'%@ %@' [FAILED], %@",
                                          [self descriptionForExampleContext], [self.exampleNode description],
-                                         aFailure.message];
+                                         self.failure.message];
   
 #if TARGET_IPHONE_SIMULATOR
     // \uff1a is the unicode for a fill width colon, as opposed to a regular
@@ -138,16 +141,19 @@
     annotatedFailureMessage = [annotatedFailureMessage stringByReplacingOccurrencesOfString:@":" withString:@"\uff1a"];
 #endif // #if TARGET_IPHONE_SIMULATOR
   
-    return [KWFailure failureWithCallSite:aFailure.callSite message:annotatedFailureMessage];
+    return [KWFailure failureWithCallSite:self.failure.callSite
+                                  message:annotatedFailureMessage];
+}
+
+- (void)setFailure:(KWFailure *)failure {
+    _failure = failure;
+    self.result = KWExampleResultFailed;
 }
 
 - (void)reportFailure:(KWFailure *)failure {
-    self.passed = NO;
-    [self.delegate example:self didFailWithFailure:[self outputReadyFailureWithFailure:failure]];
-}
-
-- (void)reportResultForExampleNodeWithLabel:(NSString *)label {
-    NSLog(@"+ '%@ %@' [%@]", [self descriptionForExampleContext], [self.exampleNode description], label);
+    self.failure = failure;
+    [[KWReporter sharedReporter] exampleFailed:self];
+    [self.delegate example:self didFailWithFailure:self.outputReadyFailure];
 }
 
 #pragma mark - Full description with context
@@ -203,21 +209,20 @@
     aNode.block();
 }
 
-- (void)visitLetNode:(KWLetNode *)aNode
-{
+- (void)visitLetNode:(KWLetNode *)aNode {
     [aNode evaluateTree];
 }
 
 - (void)visitItNode:(KWItNode *)aNode {
     if (aNode.block == nil || aNode != self.exampleNode)
         return;
-    
+
+    [[KWReporter sharedReporter] exampleStarted:self];
     aNode.example = self;
     
     [aNode.context performExample:self withBlock:^{
         
         @try {
-            
             aNode.block();
             
 #if KW_TARGET_HAS_INVOCATION_EXCEPTION_BUG
@@ -231,21 +236,25 @@
             }
             
             if (self.unresolvedVerifier) {
-                KWFailure *failure = [KWFailure failureWithCallSite:self.unresolvedVerifier.callSite format:@"expected subject not to be nil"];
+                KWFailure *failure = [KWFailure failureWithCallSite:self.unresolvedVerifier.callSite
+                                                             format:@"expected subject not to be nil"];
                 [self reportFailure:failure];
             }
             
         } @catch (NSException *exception) {
-            KWFailure *failure = [KWFailure failureWithCallSite:aNode.callSite format:@"%@ \"%@\" raised",
-                                  [exception name],
-                                  [exception reason]];
+            self.exception = exception;
+            KWFailure *failure = [KWFailure failureWithCallSite:aNode.callSite
+                                                         format:@"%@ \"%@\" raised",
+                                                                [exception name],
+                                                                [exception reason]];
             [self reportFailure:failure];
         }
         
-        if (self.passed) {
-            [self reportResultForExampleNodeWithLabel:@"PASSED"];
+        if (self.result == KWExampleResultPassed) {
+            [[KWReporter sharedReporter] examplePassed:self];
         }
-        
+
+        [[KWReporter sharedReporter] exampleFinished:self];
         // Always clear stubs and spies at the end of it blocks
         KWClearStubsAndSpies();
     }];
@@ -254,8 +263,10 @@
 - (void)visitPendingNode:(KWPendingNode *)aNode {
     if (aNode != self.exampleNode)
         return;
-    
-    [self reportResultForExampleNodeWithLabel:@"PENDING"];
+
+    [[KWReporter sharedReporter] exampleStarted:self];
+    self.result = KWExampleResultPending;
+    [[KWReporter sharedReporter] examplePending:self];
 }
 
 - (NSString *)generateDescriptionForAnonymousItNode {
@@ -333,14 +344,12 @@ void it(NSString *aDescription, void (^block)(void)) {
     itWithCallSite(callSite, aDescription, block);
 }
 
-void let_(__autoreleasing id *anObjectRef, const char *aSymbolName, id (^block)(void))
-{
+void let_(__autoreleasing id *anObjectRef, const char *aSymbolName, id (^block)(void)) {
     NSString *aDescription = [NSString stringWithUTF8String:aSymbolName];
     letWithCallSite(nil, anObjectRef, aDescription, block);
 }
 
-void specify(void (^block)(void))
-{
+void specify(void (^block)(void)) {
     itWithCallSite(nil, nil, block);
 }
 
@@ -349,7 +358,6 @@ void pending_(NSString *aDescription, void (^ignoredBlock)(void)) {
 }
 
 void describeWithCallSite(KWCallSite *aCallSite, NSString *aDescription, void (^block)(void)) {
-
     contextWithCallSite(aCallSite, aDescription, block);
 }
 

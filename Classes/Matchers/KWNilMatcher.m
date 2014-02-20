@@ -9,9 +9,9 @@
 #import "KWNilMatcher.h"
 #import "KWExample.h"
 #import "KWExampleSuiteBuilder.h"
-#import "KWFormatter.h"
 #import "KWMatchVerifier.h"
 #import "KWVerifying.h"
+#import "NSObject+KWStringRepresentation.h"
 
 @interface KWNilMatcher ()
 
@@ -57,7 +57,7 @@
 - (NSString *)failureMessageForShould {
     if (self.expectsNil) {
         return [NSString stringWithFormat:@"expected subject to be nil, got %@",
-                [KWFormatter formatObject:self.subject]];
+                                          [self.subject kw_stringRepresentation]];
     } else {
         return [NSString stringWithFormat:@"expected subject not to be nil"];
     }
@@ -65,10 +65,10 @@
 
 - (NSString *)failureMessageForShouldNot {
     if (self.expectsNil) {
-    return [NSString stringWithFormat:@"expected subject not to be nil"];
+        return [NSString stringWithFormat:@"expected subject not to be nil"];
     } else {
         return [NSString stringWithFormat:@"expected subject to be nil, got %@",
-                [KWFormatter formatObject:self.subject]];
+                                          [self.subject kw_stringRepresentation]];
     }
 }
 

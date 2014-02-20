@@ -10,15 +10,15 @@
 
 @class KWCallSite;
 
-@protocol KWReporting;
+@protocol KWFailureReporting;
 
 @interface KWExistVerifier : NSObject<KWVerifying>
 
 #pragma mark - Initializing
 
-- (id)initWithExpectationType:(KWExpectationType)anExpectationType callSite:(KWCallSite *)aCallSite reporter:(id<KWReporting>)aReporter;
+- (id)initWithExpectationType:(KWExpectationType)anExpectationType callSite:(KWCallSite *)aCallSite reporter:(id<KWFailureReporting>)aReporter;
 
-+ (id)existVerifierWithExpectationType:(KWExpectationType)anExpectationType callSite:(KWCallSite *)aCallSite reporter:(id<KWReporting>)aReporter;
++ (id)existVerifierWithExpectationType:(KWExpectationType)anExpectationType callSite:(KWCallSite *)aCallSite reporter:(id<KWFailureReporting>)aReporter;
 
 #pragma mark - Properties
 

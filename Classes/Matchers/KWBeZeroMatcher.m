@@ -5,8 +5,8 @@
 //
 
 #import "KWBeZeroMatcher.h"
-#import "KWFormatter.h"
 #import "KWValue.h"
+#import "NSObject+KWStringRepresentation.h"
 
 @implementation KWBeZeroMatcher
 
@@ -34,7 +34,7 @@
 
 - (NSString *)failureMessageForShould {
     return [NSString stringWithFormat:@"expected subject to be zero, got %@",
-                                      [KWFormatter formatObject:self.subject]];
+                                      [self.subject kw_stringRepresentation]];
 }
 
 - (NSString *)failureMessageForShouldNot {

@@ -11,19 +11,29 @@
 #import "KWExpectationType.h"
 #import "KWExampleNode.h"
 #import "KWExampleNodeVisitor.h"
-#import "KWReporting.h"
+#import "KWFailureReporting.h"
 #import "KWExampleDelegate.h"
 
 @class KWCallSite;
 @class KWExampleSuite;
 @class KWContextNode;
 
-@interface KWExample : NSObject <KWExampleNodeVisitor, KWReporting>
+typedef NS_ENUM(NSInteger, KWExampleResult) {
+    KWExampleResultPassed = 1,
+    KWExampleResultFailed,
+    KWExampleResultPending
+};
+
+@interface KWExample : NSObject <KWExampleNodeVisitor, KWFailureReporting>
 
 @property (nonatomic, strong, readonly) NSMutableArray *lastInContexts;
 @property (nonatomic, weak) KWExampleSuite *suite;
 @property (nonatomic, strong) id<KWVerifying> unresolvedVerifier;
 
+@property (nonatomic, strong, readonly) id<KWExampleNode> exampleNode;
+@property (nonatomic, strong, readonly) KWFailure *failure;
+@property (nonatomic, strong, readonly) NSException *exception;
+@property (nonatomic, assign, readonly) KWExampleResult result;
 
 - (id)initWithExampleNode:(id<KWExampleNode>)node;
 

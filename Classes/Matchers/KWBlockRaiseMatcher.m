@@ -28,8 +28,9 @@
 #pragma mark - Matching
 
 - (BOOL)evaluate {
-    if (![self.subject isKindOfClass:[KWBlock class]])
-        [NSException raise:@"KWMatcherException" format:@"subject must be a KWBlock"];
+    if (![self.subject isKindOfClass:[KWBlock class]]) {
+        [NSException raise:KWMatcherException format:@"subject must be a KWBlock"];
+    }
 
     @try {
         [self.subject call];

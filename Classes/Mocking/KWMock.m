@@ -6,7 +6,6 @@
 
 #import "KWMock.h"
 #import <objc/runtime.h>
-#import "KWFormatter.h"
 #import "KWMessagePattern.h"
 #import "KWMessageSpying.h"
 #import "KWStringUtilities.h"

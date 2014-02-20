@@ -7,6 +7,8 @@
 #import "KiwiConfiguration.h"
 #import "KWMatching.h"
 
+extern NSString * const KWMatcherException;
+
 @interface KWMatcher : NSObject<KWMatching>
 
 #pragma mark - Initializing

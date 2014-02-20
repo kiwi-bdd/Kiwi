@@ -12,7 +12,7 @@
 @class KWMatcherFactory;
 
 @protocol KWMatching;
-@protocol KWReporting;
+@protocol KWFailureReporting;
 
 @interface KWMatchVerifier : NSObject<KWVerifying>
 
@@ -21,18 +21,18 @@
 @property (nonatomic, readonly) KWExpectationType expectationType;
 
 @property (nonatomic, readonly) KWMatcherFactory *matcherFactory;
-@property (nonatomic, readonly) id<KWReporting> reporter;
+@property (nonatomic, readonly) id<KWFailureReporting> failureReporter;
 
 @property (nonatomic, strong) id subject;
 
 
 #pragma mark - Initializing
 
-- (id)initForShouldWithCallSite:(KWCallSite *)aCallSite matcherFactory:(KWMatcherFactory *)aMatcherFactory reporter:(id<KWReporting>)aReporter;
-- (id)initForShouldNotWithCallSite:(KWCallSite *)aCallSite matcherFactory:(KWMatcherFactory *)aMatcherFactory reporter:(id<KWReporting>)aReporter;
-- (id)initWithExpectationType:(KWExpectationType)anExpectationType callSite:(KWCallSite *)aCallSite matcherFactory:(KWMatcherFactory *)aMatcherFactory reporter:(id<KWReporting>)aReporter;
+- (id)initForShouldWithCallSite:(KWCallSite *)aCallSite matcherFactory:(KWMatcherFactory *)aMatcherFactory reporter:(id<KWFailureReporting>)aReporter;
+- (id)initForShouldNotWithCallSite:(KWCallSite *)aCallSite matcherFactory:(KWMatcherFactory *)aMatcherFactory reporter:(id<KWFailureReporting>)aReporter;
+- (id)initWithExpectationType:(KWExpectationType)anExpectationType callSite:(KWCallSite *)aCallSite matcherFactory:(KWMatcherFactory *)aMatcherFactory reporter:(id<KWFailureReporting>)aReporter;
 
-+ (id<KWVerifying>)matchVerifierWithExpectationType:(KWExpectationType)anExpectationType callSite:(KWCallSite *)aCallSite matcherFactory:(KWMatcherFactory *)aMatcherFactory reporter:(id<KWReporting>)aReporter;
++ (id<KWVerifying>)matchVerifierWithExpectationType:(KWExpectationType)anExpectationType callSite:(KWCallSite *)aCallSite matcherFactory:(KWMatcherFactory *)aMatcherFactory reporter:(id<KWFailureReporting>)aReporter;
 
 - (void)verifyWithMatcher:(id<KWMatching>)aMatcher;
 

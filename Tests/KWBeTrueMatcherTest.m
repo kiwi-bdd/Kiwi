@@ -28,7 +28,7 @@
     id subject = @[];
     id matcher = [KWBeTrueMatcher matcherWithSubject:subject];
     [matcher beTrue];
-    STAssertThrowsSpecificNamed([matcher evaluate], NSException, @"KWMatcherException", @"expected raised exception");
+    STAssertThrowsSpecificNamed([matcher evaluate], NSException, KWMatcherException, @"expected raised exception");
 }
 
 - (void)testItShouldMatchTrueObjectsToBeTrue {

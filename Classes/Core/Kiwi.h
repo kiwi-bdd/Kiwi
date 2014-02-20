@@ -46,7 +46,6 @@ extern "C" {
 #import "KWExistVerifier.h"
 #import "KWExpectationType.h"
 #import "KWFailure.h"
-#import "KWFormatter.h"
 #import "KWFutureObject.h"
 #import "KWGenericMatcher.h"
 #import "KWHaveMatcher.h"
@@ -80,9 +79,12 @@ extern "C" {
 #import "KWCaptureSpy.h"
 #import "KWStringPrefixMatcher.h"
 #import "KWStringContainsMatcher.h"
+#import "KWReporter.h"
+#import "KWTextFormatter.h"
+#import "KWJSONFormatter.h"
 #import "KWNotificationMatcher.h"
 
-  
+
 // Public Foundation Categories
 #import "NSObject+KiwiMockAdditions.h"
 #import "NSObject+KiwiSpyAdditions.h"

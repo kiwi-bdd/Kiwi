@@ -6,7 +6,7 @@
 //
 
 #import "KWNotificationMatcher.h"
-#import "KWFormatter.h"
+#import "NSObject+KWStringRepresentation.h"
 
 @interface KWNotificationMatcher ()
 @property (nonatomic, strong) NSNotification *notification;
@@ -63,7 +63,7 @@
 #pragma mark - Getting Failure Messages
 
 - (NSString *)receiveNotificationMessage {
-    NSMutableString *message = [NSMutableString stringWithFormat:@"receive %@ notification", [KWFormatter formatObject:self.subject]];
+    NSMutableString *message = [NSMutableString stringWithFormat:@"receive %@ notification", [self.subject kw_stringRepresentation]];
     if (self.expectedObject && self.expectedUserInfo) {
         [message appendFormat:@" with object: %@ and user info: %@", self.expectedObject, self.expectedUserInfo];
     } else if (self.expectedObject) {

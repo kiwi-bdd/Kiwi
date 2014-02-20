@@ -5,7 +5,7 @@
 //
 
 #import "KWBeBetweenMatcher.h"
-#import "KWFormatter.h"
+#import "NSObject+KWStringRepresentation.h"
 
 @interface KWBeBetweenMatcher()
 
@@ -27,8 +27,9 @@
 #pragma mark - Matching
 
 - (BOOL)evaluate {
-    if (![self.subject respondsToSelector:@selector(compare:)])
-        [NSException raise:@"KWMatcherException" format:@"subject does not respond to -compare:"];
+    if (![self.subject respondsToSelector:@selector(compare:)]) {
+        [NSException raise:KWMatcherException format:@"subject does not respond to -compare:"];
+    }
 
     NSComparisonResult lowerResult = [self.subject compare:self.lowerEndpoint];
     NSComparisonResult upperResult = [self.subject compare:self.upperEndpoint];
@@ -40,9 +41,9 @@
 
 - (NSString *)failureMessageForShould {
     return [NSString stringWithFormat:@"expected subject to be in the interval [%@, %@], got %@",
-                                      [KWFormatter formatObject:self.lowerEndpoint],
-                                      [KWFormatter formatObject:self.upperEndpoint],
-                                      [KWFormatter formatObject:self.subject]];
+                                      [self.lowerEndpoint kw_stringRepresentation],
+                                      [self.upperEndpoint kw_stringRepresentation],
+                                      [self.subject kw_stringRepresentation]];
 }
 
 - (NSString *)description {

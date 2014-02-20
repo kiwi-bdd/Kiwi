@@ -11,7 +11,6 @@
 
 @class KWContextNode;
 @class KWExample;
-@class SenTestCase;
 
 @interface KWExampleSuite : NSObject <KWExampleNodeVisitor>
 
@@ -19,9 +18,4 @@
 - (void)addExample:(KWExample *)example;
 - (void)markLastExampleAsLastInContext:(KWContextNode *)context;
 - (NSArray *)invocationsForTestCase;
-@end
-
-@interface NSInvocation (KWExampleGroup)
-- (void)kw_setExample:(KWExample *)exampleGroup;
-- (KWExample *)kw_example;
 @end

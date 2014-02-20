@@ -7,7 +7,7 @@
 //
 
 #import "KWRegularExpressionPatternMatcher.h"
-#import "KWFormatter.h"
+#import "NSObject+KWStringRepresentation.h"
 
 
 @interface KWRegularExpressionPatternMatcher ()
@@ -56,7 +56,7 @@
 
 - (NSString *)failureMessageForShould {
     return [NSString stringWithFormat:@"%@ did not match pattern \"%@\"",
-            [KWFormatter formatObject:self.subject],
+            [self.subject kw_stringRepresentation],
             self.pattern];
 }
 

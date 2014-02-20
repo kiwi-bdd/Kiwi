@@ -5,11 +5,11 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "KWReporting.h"
+#import "KWFailureReporting.h"
 
 @class KWFailure;
 
-@interface TestReporter : NSObject<KWReporting> {
+@interface TestReporter : NSObject<KWFailureReporting> {
 @private
     BOOL hasUnmetExpectations;
     NSMutableArray *failures;

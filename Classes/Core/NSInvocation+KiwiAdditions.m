@@ -5,7 +5,6 @@
 //
 
 #import "NSInvocation+KiwiAdditions.h"
-#import "KWFormatter.h"
 #import "KWObjCUtilities.h"
 #import "NSMethodSignature+KiwiAdditions.h"
 

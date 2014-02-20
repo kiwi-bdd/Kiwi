@@ -5,7 +5,6 @@
 //
 
 #import "KWRespondToSelectorMatcher.h"
-#import "KWFormatter.h"
 
 @interface KWRespondToSelectorMatcher()
 
