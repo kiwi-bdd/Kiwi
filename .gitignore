@@ -20,3 +20,5 @@ output
 xcodebuild.log
 xcodebuild_error.log
 
+
+/UniversalXCTestKiwiFramework/
