@@ -28,6 +28,9 @@
 - (void)speak:(NSString *)message afterDelay:(NSTimeInterval)delay whenDone:(void(^)(void))handler
 {
     NSLog(@"Robot will say %@ after a %f second delay", message, delay);
+
+    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC));
+    dispatch_after(popTime, dispatch_get_main_queue(), handler);
 }
 
 @end

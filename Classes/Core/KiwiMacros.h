@@ -26,6 +26,12 @@
 
 @end
 
+#ifndef KW_MACROS_ENABLED
+#define KW_MACROS_ENABLED 1
+#endif
+
+#if KW_MACROS_ENABLED
+
 #pragma mark - Support Macros
 
 #define KW_THIS_CALLSITE [KWCallSite callSiteWithFilename:@__FILE__ lineNumber:__LINE__]
@@ -62,6 +68,17 @@
 
 // used for message patterns to allow matching any value
 #define any() [KWAny any]
+
+struct kiwiReserved_objOrNil { __unsafe_unretained id obj; };
+static inline id kiwiReserved_objOrNil(struct kiwiReserved_objOrNil args) { return args.obj ?: nil; };
+
+// Create a block proxy: use for setting expectations re. calling blocks.
+//
+//    block();                            // proxy for void (^)(void)
+//    block(^id{ return nil; });          // proxy for id   (^)(void)
+//    block(^BOOL(id, id){ return NO; }); // proxy for BOOL (^)(id, id)
+//
+#define block(...) [[KWBlockProxy alloc] initWithBlock:kiwiReserved_objOrNil((struct kiwiReserved_objOrNil){__VA_ARGS__})]
 
 // If a gcc compatible compiler is available, use the statement and
 // declarations in expression extension to provide a convenient catch-all macro
@@ -109,3 +126,5 @@
     } \
     \
     @end
+
+#endif /* KW_MACROS_ENABLED */

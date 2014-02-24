@@ -8,6 +8,8 @@
 
 #import "Kiwi.h"
 #import "KiwiTestConfiguration.h"
+#import "Robot.h"
+#import "KWBlockProxy.h"
 
 @interface KWExampleSuiteBuilder ()
 
@@ -73,7 +75,7 @@ NSMutableArray *focusedContextCalls = @[@"InnerBeforeAll", @"InnerAfterAll", @"I
 NSMutableArray *unFocusedContextCalls = @[ @"OuterTestCase", @"BeforeAll", @"AfterAll", @"BeforeEach", @"AfterEach"
 ].mutableCopy;
 
-[[KWExampleSuiteBuilder sharedExampleSuiteBuilder] setFocusedCallSite:[KWCallSite callSiteWithFilename:@"KWFunctionalTests.m" lineNumber:84]];
+[[KWExampleSuiteBuilder sharedExampleSuiteBuilder] setFocusedCallSite:[KWCallSite callSiteWithFilename:@"KWFunctionalTests.m" lineNumber:86]];
 
 describe(@"UnFocusedContext", ^{
     it(@"OuterTestCase", ^{ [unFocusedContextCalls removeObject:@"OuterTestCase"]; });
@@ -116,7 +118,7 @@ NSMutableArray *focusedItCalls = @[@"FocusedTestCase"].mutableCopy;
 
 NSMutableArray *unFocusedItCalls = @[@"UnFocusedTestCase"].mutableCopy;
 
-[[KWExampleSuiteBuilder sharedExampleSuiteBuilder] setFocusedCallSite:[KWCallSite callSiteWithFilename:@"KWFunctionalTests.m" lineNumber:122]];
+[[KWExampleSuiteBuilder sharedExampleSuiteBuilder] setFocusedCallSite:[KWCallSite callSiteWithFilename:@"KWFunctionalTests.m" lineNumber:124]];
 
 describe(@"FocusedIt", ^{
     it(@"FocusedTestCase", ^{ [focusedItCalls removeObject:@"FocusedTestCase"]; });
@@ -202,6 +204,29 @@ describe(@"Let context tree", ^{
         specify(^{ [[number should] equal:@1]; });
         specify(^{ [[string should] equal:@"1"]; });
     });
+});
+
+SPEC_END
+
+SPEC_BEGIN(BlockMatchers)
+
+describe(@"block expectations", ^{
+
+    describe(@"beCalled matcher", ^{
+        let(handler, ^{ return block(); });
+        let(robot,   ^{ return [Robot new]; });
+
+        it(@"matches if the block is called", ^{
+            [[handler shouldEventually] beCalled];
+            [robot speak:@"xyzzy" afterDelay:0 whenDone:handler];
+        });
+
+        it(@"doesn't match if the block isn't called", ^{
+            [[handler shouldNot] beCalled];
+            [robot speak:@"yolo" afterDelay:0 whenDone:^{}];
+        });
+    });
+
 });
 
 SPEC_END
