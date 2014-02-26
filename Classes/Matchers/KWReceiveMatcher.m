@@ -174,11 +174,11 @@ static NSString * const StubValueKey = @"StubValueKey";
     id verifier = userInfo[MatchVerifierKey];
     KWCountType countType = [userInfo[CountTypeKey] unsignedIntegerValue];
     NSUInteger count = [userInfo[CountKey] unsignedIntegerValue];
-    NSValue *stubValue = userInfo[StubValueKey];
+    id stubValue = userInfo[StubValueKey];
     KWMessagePattern *messagePattern = [KWMessagePattern messagePatternFromInvocation:anInvocation];
 
     if (stubValue != nil)
-        [verifier receiveMessagePattern:messagePattern andReturn:[stubValue nonretainedObjectValue] countType:countType count:count];
+        [verifier receiveMessagePattern:messagePattern andReturn:stubValue countType:countType count:count];
     else
         [verifier receiveMessagePattern:messagePattern countType:countType count:count];
 }
@@ -248,16 +248,20 @@ static NSString * const StubValueKey = @"StubValueKey";
 #pragma mark Invocation Capturing Methods
 
 - (NSDictionary *)userInfoForReceiveMatcherWithCountType:(KWCountType)aCountType count:(NSUInteger)aCount {
-    return @{MatchVerifierKey: self,
-                                                      CountTypeKey: @(aCountType),
-                                                      CountKey: @(aCount)};
+    return @{
+        MatchVerifierKey: self,
+        CountTypeKey:     @(aCountType),
+        CountKey:         @(aCount)
+    };
 }
 
 - (NSDictionary *)userInfoForReceiveMatcherWithCountType:(KWCountType)aCountType count:(NSUInteger)aCount value:(id)aValue {
-    return @{MatchVerifierKey: self,
-                                                      CountTypeKey: @(aCountType),
-                                                      CountKey: @(aCount),
-                                                      StubValueKey: [NSValue valueWithNonretainedObject:aValue]};
+    return @{
+        MatchVerifierKey: self,
+        CountTypeKey:     @(aCountType),
+        CountKey:         @(aCount),
+        StubValueKey:     aValue
+    };
 }
 
 - (id)receive {
