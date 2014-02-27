@@ -64,6 +64,17 @@
     STAssertTrue([messagePattern matchesInvocation:invocation], @"expected matching invocation");
 }
 
+- (void)testItShouldMatchInvocationsWithClassArgument {
+    KWMessagePattern *messagePattern = [self messagePatternWithSelector:@selector(isKindOfClass:)
+                                                              arguments:[NSObject class], nil];
+    NSMethodSignature *signature = [NSObject instanceMethodSignatureForSelector:@selector(isKindOfClass:)];
+    NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:signature];
+    [invocation setSelector:@selector(isKindOfClass:)];
+    Class objectClass = [NSObject class];
+    [invocation setMessageArguments:&objectClass];
+    STAssertTrue([messagePattern matchesInvocation:invocation], @"expected matching invocation");
+}
+
 - (void)testItShouldMatchInvocationsWithAnyArgumentsWhenCreatedWithMessagePatternFromInvocation {
     NSMethodSignature *signature = [NSObject instanceMethodSignatureForSelector:@selector(addObserver:forKeyPath:options:context:)];
     NSInvocation *creationInvocation = [NSInvocation invocationWithMethodSignature:signature];
