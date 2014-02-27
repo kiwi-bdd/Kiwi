@@ -93,8 +93,10 @@ Class KWInterceptClassForCanonicalClass(Class canonicalClass) {
     objc_registerClassPair(interceptClass);
 
     class_addMethod(interceptClass, @selector(forwardInvocation:), (IMP)KWInterceptedForwardInvocation, "v@:@");
-    class_addMethod(interceptClass, @selector(dealloc), (IMP)KWInterceptedDealloc, "v@:");
     class_addMethod(interceptClass, @selector(class), (IMP)KWInterceptedClass, "#@:");
+    //TODO: potentially get rid of this?
+    class_addMethod(interceptClass, NSSelectorFromString(@"dealloc"), (IMP)KWInterceptedDealloc, "v@:");
+    //
     class_addMethod(interceptClass, @selector(superclass), (IMP)KWInterceptedSuperclass, "#@:");
 
     Class interceptMetaClass = object_getClass(interceptClass);
@@ -203,7 +205,7 @@ void KWInterceptedDealloc(id anObject, SEL aSelector) {
     [KWObjectStubs removeObjectForKey:anObject];
 
     KWRestoreOriginalClass(anObject);
-    [anObject dealloc];
+    [anObject performSelector:NSSelectorFromString(@"dealloc")];
 }
 
 Class KWInterceptedClass(id anObject, SEL aSelector) {
@@ -234,12 +236,12 @@ void KWAssociateObjectStub(id anObject, KWStub *aStub, BOOL overrideExisting) {
     if (KWObjectStubs == nil)
         KWObjectStubs = [NSMapTable mapTableWithKeyOptions:NSMapTableStrongMemory valueOptions:NSMapTableStrongMemory];
 
-    NSMutableArray *stubs = [KWObjectStubs valueForKey:anObject];
+    NSMutableArray *stubs = [KWObjectStubs objectForKey:anObject];
+
 
     if (stubs == nil) {
         stubs = [[NSMutableArray alloc] init];
-        [KWObjectStubs setValue:stubs forKey:anObject];
-        [stubs release];
+        [KWObjectStubs setObject:stubs forKey:anObject];
     }
 
     NSUInteger stubCount = [stubs count];
@@ -286,7 +288,6 @@ void KWAssociateMessageSpy(id anObject, id aSpy, KWMessagePattern *aMessagePatte
     if (spies == nil) {
         spies = [NSMapTable mapTableWithKeyOptions:NSMapTableStrongMemory valueOptions:NSMapTableStrongMemory];
         [KWMessageSpies setObject:spies forKey:anObject];
-        [spies release];
     }
 
     NSMutableArray *messagePatternSpies = [spies objectForKey:aMessagePattern];
@@ -294,7 +295,6 @@ void KWAssociateMessageSpy(id anObject, id aSpy, KWMessagePattern *aMessagePatte
     if (messagePatternSpies == nil) {
         messagePatternSpies = [[NSMutableArray alloc] init];
         [spies setObject:messagePatternSpies forKey:aMessagePattern];
-        [messagePatternSpies release];
     }
 
 
