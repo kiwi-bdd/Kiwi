@@ -35,11 +35,11 @@ EOS
       arc.source_files = 'Classes/**/*.{h,m}'
       arc.requires_arc = true
   end
-  
+
   s.subspec 'NonARC' do |nonarc|
       nonarc.source_files = 'NonARC/**/*.{h,m}'
 	  nonarc.compiler_flags = '-fno-objc-arc'
   end
-  
+
 end
 
