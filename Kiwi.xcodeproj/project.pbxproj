@@ -1197,8 +1197,8 @@
 		9F982C8F16A802920030A0B1 /* KWHaveValueMatcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KWHaveValueMatcher.m; sourceTree = "<group>"; };
 		9F982C9116A802920030A0B1 /* KWInequalityMatcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KWInequalityMatcher.h; sourceTree = "<group>"; };
 		9F982C9216A802920030A0B1 /* KWInequalityMatcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KWInequalityMatcher.m; sourceTree = "<group>"; };
-		9F982C9316A802920030A0B1 /* KWIntercept.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KWIntercept.h; path = ../Classes/Stubbing/KWIntercept.h; sourceTree = "<group>"; };
-		9F982C9416A802920030A0B1 /* KWIntercept.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = KWIntercept.m; path = ../Classes/Stubbing/KWIntercept.m; sourceTree = "<group>"; };
+		9F982C9316A802920030A0B1 /* KWIntercept.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KWIntercept.h; sourceTree = "<group>"; };
+		9F982C9416A802920030A0B1 /* KWIntercept.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KWIntercept.m; sourceTree = "<group>"; };
 		9F982C9516A802920030A0B1 /* KWInvocationCapturer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KWInvocationCapturer.h; sourceTree = "<group>"; };
 		9F982C9616A802920030A0B1 /* KWInvocationCapturer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KWInvocationCapturer.m; sourceTree = "<group>"; };
 		9F982C9716A802920030A0B1 /* KWItNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KWItNode.h; sourceTree = "<group>"; };
@@ -1555,6 +1555,8 @@
 		37934CE5177F67BE00D07AE8 /* Stubbing */ = {
 			isa = PBXGroup;
 			children = (
+				9F982C9316A802920030A0B1 /* KWIntercept.h */,
+				9F982C9416A802920030A0B1 /* KWIntercept.m */,
 				9F982CDA16A802920030A0B1 /* NSObject+KiwiStubAdditions.h */,
 				9F982CDB16A802920030A0B1 /* NSObject+KiwiStubAdditions.m */,
 			);
@@ -1564,8 +1566,6 @@
 		37B0BAF8177F42E800E07085 /* NonARC */ = {
 			isa = PBXGroup;
 			children = (
-				9F982C9316A802920030A0B1 /* KWIntercept.h */,
-				9F982C9416A802920030A0B1 /* KWIntercept.m */,
 				9F982CA216A802920030A0B1 /* KWMessagePattern.h */,
 				9F982CA316A802920030A0B1 /* KWMessagePattern.m */,
 				9F982CC316A802920030A0B1 /* KWStub.h */,
