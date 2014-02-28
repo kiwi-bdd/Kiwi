@@ -99,12 +99,6 @@
     [super dealloc];
 }
 
-#pragma mark - Copying
-
-- (id)copyWithZone:(NSZone *)zone {
-    return [self retain];
-}
-
 #pragma mark - Properties
 
 @synthesize selector;
