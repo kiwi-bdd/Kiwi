@@ -87,7 +87,7 @@
 - (void)testItShouldStubTheNextMessage {
     NSString *callsign = @"Galactica";
     Cruiser *cruiser = [Cruiser cruiserWithCallsign:@"Avenger"];
-    [[cruiser stubAndReturn:callsign] callsign];
+    [cruiser stub:@selector(callsign) andReturn:callsign];
     STAssertEqualObjects([cruiser callsign], callsign, @"expected method to be stubbed");
 }
 
@@ -95,7 +95,7 @@
     NSString *callsign = @"Galactica";
     NSString *secondCallsign = @"Andromeda";
     Cruiser *cruiser = [Cruiser cruiserWithCallsign:@"Avenger"];
-    [[cruiser stubAndReturn: callsign times:[KWValue valueWithInt:2] afterThatReturn:secondCallsign] callsign];
+    [cruiser stub:@selector(callsign) andReturn:callsign times:@2 afterThatReturn:secondCallsign];
     STAssertEqualObjects([cruiser callsign], callsign, @"expected method to be stubbed");
     STAssertEqualObjects([cruiser callsign], callsign, @"expected method to be stubbed");
     STAssertEqualObjects([cruiser callsign], secondCallsign, @"expected method to be stubbed and change return value");

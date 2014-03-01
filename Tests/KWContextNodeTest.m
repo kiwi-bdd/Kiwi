@@ -33,6 +33,25 @@
     STAssertThrows([node setAfterEachNode:[KWAfterEachNode afterEachNodeWithCallSite:nil block:block]], @"expected exception");
 }
 
+#pragma mark - Context registerMatchers nodes
+
+- (void)testItAddsNewRegisterMatchersNodesToAnArray {
+    KWRegisterMatchersNode *nodeAbc = [[KWRegisterMatchersNode alloc] initWithCallSite:nil
+                                                                       namespacePrefix:@"ABC"];
+    KWRegisterMatchersNode *nodeXyz = [[KWRegisterMatchersNode alloc] initWithCallSite:nil
+                                                                       namespacePrefix:@"XYZ"];
+    KWContextNode *context = [KWContextNode contextNodeWithCallSite:nil
+                                                      parentContext:nil
+                                                        description:nil];
+    [context addRegisterMatchersNode:nodeAbc];
+    [context addRegisterMatchersNode:nodeXyz];
+
+    NSArray *expectedRegisterMatchersNodes = @[nodeAbc, nodeXyz];
+    STAssertEqualObjects(context.registerMatchersNodes,
+                         expectedRegisterMatchersNodes,
+                         @"register matchers nodes not stored in the order they were added");
+}
+
 #pragma mark - Context let nodes
 
 - (void)testItAddsNewLetNodesToAnArray {

@@ -8,7 +8,13 @@
 
 @class KWCaptureSpy;
 
-@interface NSObject (KiwiSpyAdditions)
+@protocol KiwiSpyAdditions <NSObject>
+
 - (KWCaptureSpy *)captureArgument:(SEL)selector atIndex:(NSUInteger)index;
 + (KWCaptureSpy *)captureArgument:(SEL)selector atIndex:(NSUInteger)index;
+
+@end
+
+@interface NSObject (KiwiSpyAdditions) <KiwiSpyAdditions>
+
 @end

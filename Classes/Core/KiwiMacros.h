@@ -55,8 +55,6 @@
 #define beNonNil beNonNil:[KWNilMatcher verifyNonNilSubject]
 
 // used to wrap a pointer to an object that will change in the future (used with shouldEventually)
-#define theObject(objectPtr) [KWFutureObject objectWithObjectPointer:objectPtr] // DEPRECATED
-#define theReturnValueOfBlock(block) [KWFutureObject futureObjectWithBlock:block] // DEPRECATED
 #define expectFutureValue(futureValue) [KWFutureObject futureObjectWithBlock:^{ return futureValue; }]
 
 // `fail` triggers a failure report when called

@@ -27,32 +27,29 @@
 - (id)initWithMessagePattern:(KWMessagePattern *)aMessagePattern value:(id)aValue {
     self = [super init];
     if (self) {
-        messagePattern = [aMessagePattern retain];
-        value = [aValue retain];
+        messagePattern = aMessagePattern;
+        value = aValue;
     }
-
     return self;
 }
 
 - (id)initWithMessagePattern:(KWMessagePattern *)aMessagePattern block:(id (^)(NSArray *params))aBlock {
     self = [super init];
     if (self) {
-        messagePattern = [aMessagePattern retain];
-        _block = [aBlock copy];
+        messagePattern = aMessagePattern;
+        _block = aBlock;
     }
-	
     return self;
 }
 
 - (id)initWithMessagePattern:(KWMessagePattern *)aMessagePattern value:(id)aValue times:(id)times afterThatReturn:(id)aSecondValue {
     self = [super init];
     if (self) {
-        messagePattern = [aMessagePattern retain];
-        value = [aValue retain];
-        returnValueTimes = [times retain];
-        secondValue = [aSecondValue retain];
+        messagePattern = aMessagePattern;
+        value = aValue;
+        returnValueTimes = times;
+        secondValue = aSecondValue;
     }
-    
     return self;
 }
 
@@ -61,24 +58,15 @@
 }
 
 + (id)stubWithMessagePattern:(KWMessagePattern *)aMessagePattern value:(id)aValue {
-    return [[[self alloc] initWithMessagePattern:aMessagePattern value:aValue] autorelease];
+    return [[self alloc] initWithMessagePattern:aMessagePattern value:aValue];
 }
 
 + (id)stubWithMessagePattern:(KWMessagePattern *)aMessagePattern block:(id (^)(NSArray *params))aBlock {
-    return [[[self alloc] initWithMessagePattern:aMessagePattern block:aBlock] autorelease];
+    return [[self alloc] initWithMessagePattern:aMessagePattern block:aBlock];
 }
 
 + (id)stubWithMessagePattern:(KWMessagePattern *)aMessagePattern value:(id)aValue times:(id)times afterThatReturn:(id)aSecondValue {
-    return [[[self alloc] initWithMessagePattern:aMessagePattern value:aValue times:times afterThatReturn:aSecondValue] autorelease];
-}
-
-- (void)dealloc {
-    [messagePattern release];
-    [value release];
-    [returnValueTimes release];
-    [secondValue release];
-	[_block release];
-    [super dealloc];
+    return [[self alloc] initWithMessagePattern:aMessagePattern value:aValue times:times afterThatReturn:aSecondValue];
 }
 
 #pragma mark - Properties
@@ -172,7 +160,12 @@
         KWStringHasWordPrefix(selectorString, @"new") ||
         KWStringHasWord(selectorString, @"copy") ||
         KWStringHasWord(selectorString, @"Copy")) {
-        [self.value retain];
+
+        // NOTE: this should be done in a better way.
+        // If you don't understand it, it's basically just a -performSelector: call
+        // Currently, I'm rather doing this than suppressing the warnings with #pragma
+        SEL selector = NSSelectorFromString(@"retain");
+        ((void (*)(id, SEL))[self.value methodForSelector:selector])(self.value, selector);
     }
 #endif
 }
@@ -188,7 +181,7 @@
 			id arg = [anInvocation getArgumentAtIndexAsObject:(int)i];
 			
 			const char *argType = [[anInvocation methodSignature] getArgumentTypeAtIndex:i];
-			if (strcmp(argType, "@?") == 0) arg = [[arg copy] autorelease];
+			if (strcmp(argType, "@?") == 0) arg = [arg copy];
             
             if (arg == nil)
                 arg = [NSNull null];
@@ -198,8 +191,7 @@
 		
 		id newValue = self.block(args);
 		if (newValue != value) {
-			[value release];
-			value = [newValue retain];
+			value = newValue;
 		}
 		
 		[args removeAllObjects]; // We don't want these objects to be in autorelease pool

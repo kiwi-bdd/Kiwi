@@ -74,6 +74,11 @@ static NSString * const ChangeStubValueAfterTimesKey = @"ChangeStubValueAfterTim
     [self stubMessagePattern:messagePattern andReturn:aValue];
 }
 
+- (void)stub:(SEL)aSelector andReturn:(id)aValue times:(NSNumber *)times afterThatReturn:(id)aSecondValue {
+    KWMessagePattern *messagePattern = [KWMessagePattern messagePatternWithSelector:aSelector];
+    [self stubMessagePattern:messagePattern andReturn:aValue times:times afterThatReturn:aSecondValue];
+}
+
 + (void)stub:(SEL)aSelector {
     KWMessagePattern *messagePattern = [KWMessagePattern messagePatternWithSelector:aSelector];
     [self stubMessagePattern:messagePattern andReturn:nil];
@@ -101,6 +106,11 @@ static NSString * const ChangeStubValueAfterTimesKey = @"ChangeStubValueAfterTim
     va_start(argumentList, firstArgument);
     KWMessagePattern *messagePattern = [KWMessagePattern messagePatternWithSelector:aSelector firstArgumentFilter:firstArgument argumentList:argumentList];
     [self stubMessagePattern:messagePattern andReturn:aValue];
+}
+
++ (void)stub:(SEL)aSelector andReturn:(id)aValue times:(NSNumber *)times afterThatReturn:(id)aSecondValue {
+    KWMessagePattern *messagePattern = [KWMessagePattern messagePatternWithSelector:aSelector];
+    [self stubMessagePattern:messagePattern andReturn:aValue times:times afterThatReturn:aSecondValue];
 }
 
 - (id)stub {

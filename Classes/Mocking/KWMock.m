@@ -26,7 +26,7 @@ static NSString * const ChangeStubValueAfterTimesKey = @"ChangeStubValueAfterTim
 
 @property (nonatomic, readonly) NSMutableArray *stubs;
 @property (nonatomic, readonly) NSMutableArray *expectedMessagePatterns;
-@property (nonatomic, readonly) NSMutableDictionary *messageSpies;
+@property (nonatomic, readonly) NSMapTable *messageSpies;
 
 @end
 
@@ -94,7 +94,7 @@ static NSString * const ChangeStubValueAfterTimesKey = @"ChangeStubValueAfterTim
         _mockedProtocol = aProtocol;
         _stubs = [[NSMutableArray alloc] init];
         _expectedMessagePatterns = [[NSMutableArray alloc] init];
-        _messageSpies = [[NSMutableDictionary alloc] init];
+        _messageSpies = [NSMapTable mapTableWithKeyOptions:NSMapTableStrongMemory valueOptions:NSMapTableStrongMemory];
     }
 
     return self;
@@ -290,22 +290,20 @@ static NSString * const ChangeStubValueAfterTimesKey = @"ChangeStubValueAfterTim
 
 - (void)addMessageSpy:(id<KWMessageSpying>)aSpy forMessagePattern:(KWMessagePattern *)aMessagePattern {
     [self expectMessagePattern:aMessagePattern];
-    NSMutableArray *messagePatternSpies = (self.messageSpies)[aMessagePattern];
+    NSMutableArray *messagePatternSpies = [self.messageSpies objectForKey:aMessagePattern];
 
     if (messagePatternSpies == nil) {
         messagePatternSpies = [[NSMutableArray alloc] init];
-        (self.messageSpies)[aMessagePattern] = messagePatternSpies;
+        [self.messageSpies setObject:messagePatternSpies forKey:aMessagePattern];
     }
-    NSValue *spyWrapper = [NSValue valueWithNonretainedObject:aSpy];
 
-    if (![messagePatternSpies containsObject:spyWrapper])
-        [messagePatternSpies addObject:spyWrapper];
+    if (![messagePatternSpies containsObject:aSpy])
+        [messagePatternSpies addObject:aSpy];
 }
 
 - (void)removeMessageSpy:(id<KWMessageSpying>)aSpy forMessagePattern:(KWMessagePattern *)aMessagePattern {
-    NSValue *spyWrapper = [NSValue valueWithNonretainedObject:aSpy];
-    NSMutableArray *messagePatternSpies = (self.messageSpies)[aMessagePattern];
-    [messagePatternSpies removeObject:spyWrapper];
+    NSMutableArray *messagePatternSpies = [self.messageSpies objectForKey:aMessagePattern];
+    [messagePatternSpies removeObject:aSpy];
 }
 
 #pragma mark - Expecting Message Patterns
@@ -355,6 +353,7 @@ static NSString * const ChangeStubValueAfterTimesKey = @"ChangeStubValueAfterTim
     }
 }
 
+
 #pragma mark - Handling Invocations
 
 - (NSString *)namePhrase {
@@ -367,12 +366,11 @@ static NSString * const ChangeStubValueAfterTimesKey = @"ChangeStubValueAfterTim
 - (BOOL)processReceivedInvocation:(NSInvocation *)invocation {
     for (KWMessagePattern *messagePattern in self.messageSpies) {
         if ([messagePattern matchesInvocation:invocation]) {
-            NSArray *spies = (self.messageSpies)[messagePattern];
+            NSArray *spies = [self.messageSpies objectForKey:messagePattern];
 
-            for (NSValue *spyWrapper in spies) {
-                id spy = [spyWrapper nonretainedObjectValue];
+              for (id<KWMessageSpying> spy in spies) {
                 [spy object:self didReceiveInvocation:invocation];
-            }
+              }
         }
     }
 
