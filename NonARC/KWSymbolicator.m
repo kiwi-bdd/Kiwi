@@ -27,13 +27,23 @@ long kwCallerAddress (void){
     return 0;
 }
 
+// Used to suppress compiler warnings by
+// casting receivers to this protocol
+@protocol NSTask_KWWarningSuppressor
+
+- (void)setLaunchPath:(NSString *)path;
+- (void)setArguments:(NSArray *)arguments;
+- (void)setEnvironment:(NSDictionary *)dict;
+- (void)setStandardOutput:(id)output;
+- (void)launch;
+- (void)waitUntilExit;
+
+@end
+
 @implementation NSString (KWShellCommand)
 
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wobjc-method-access"
-
 + (NSString *)stringWithShellCommand:(NSString *)command arguments:(NSArray *)arguments {
-    id task = [[NSClassFromString(@"NSTask") alloc] init];
+    id<NSTask_KWWarningSuppressor> task = [[NSClassFromString(@"NSTask") alloc] init];
     [task setEnvironment:[NSDictionary dictionary]];
     [task setLaunchPath:command];
     [task setArguments:arguments];
@@ -45,11 +55,8 @@ long kwCallerAddress (void){
     [task waitUntilExit];
 
     NSData *data = [[pipe fileHandleForReading] readDataToEndOfFile];
-    NSString *string = [[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding] autorelease];
-    [task release];
+    NSString *string = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
     return string;
 }
-
-#pragma clang diagnostic pop
 
 @end
