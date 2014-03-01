@@ -1458,6 +1458,8 @@
 		37934CE3177F661400D07AE8 /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				C533F7D117462CAA000CAB02 /* KWSymbolicator.h */,
+				C533F7D217462CAA000CAB02 /* KWSymbolicator.m */,
 				9F982C3A16A802920030A0B1 /* Kiwi.h */,
 				9F982C3B16A802920030A0B1 /* KiwiBlockMacros.h */,
 				9F982C3C16A802920030A0B1 /* KiwiConfiguration.h */,
@@ -1570,8 +1572,6 @@
 			children = (
 				9F982CA216A802920030A0B1 /* KWMessagePattern.h */,
 				9F982CA316A802920030A0B1 /* KWMessagePattern.m */,
-				C533F7D117462CAA000CAB02 /* KWSymbolicator.h */,
-				C533F7D217462CAA000CAB02 /* KWSymbolicator.m */,
 			);
 			path = NonARC;
 			sourceTree = "<group>";
