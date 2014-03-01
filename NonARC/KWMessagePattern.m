@@ -25,10 +25,10 @@
 - (id)initWithSelector:(SEL)aSelector argumentFilters:(NSArray *)anArray {
     self = [super init];
     if (self) {
-        selector = aSelector;
+        _selector = aSelector;
 
         if ([anArray count] > 0)
-            argumentFilters = [anArray copy];
+            _argumentFilters = [anArray copy];
     }
 
     return self;
@@ -54,11 +54,15 @@
 }
 
 + (id)messagePatternWithSelector:(SEL)aSelector argumentFilters:(NSArray *)anArray {
-    return [[[self alloc] initWithSelector:aSelector argumentFilters:anArray] autorelease];
+    return [[self alloc] initWithSelector:aSelector argumentFilters:anArray];
 }
 
-+ (id)messagePatternWithSelector:(SEL)aSelector firstArgumentFilter:(id)firstArgumentFilter argumentList:(va_list)argumentList {
-    return [[[self alloc] initWithSelector:aSelector firstArgumentFilter:firstArgumentFilter argumentList:argumentList] autorelease];
++ (id)messagePatternWithSelector:(SEL)aSelector
+             firstArgumentFilter:(id)firstArgumentFilter
+                    argumentList:(va_list)argumentList {
+    return [[self alloc] initWithSelector:aSelector
+                      firstArgumentFilter:firstArgumentFilter
+                             argumentList:argumentList];
 }
 
 + (id)messagePatternFromInvocation:(NSInvocation *)anInvocation {
@@ -71,38 +75,27 @@
 
         for (NSUInteger i = 0; i < numberOfMessageArguments; ++i) {
 			const char *type = [signature messageArgumentTypeAtIndex:i];
-			void* argumentDataBuffer = malloc(KWObjCTypeLength(type));
-			[anInvocation getMessageArgument:argumentDataBuffer atIndex:i];
-			id object = nil;
-			if(*(id*)argumentDataBuffer != [KWAny any] && !KWObjCTypeIsObject(type)) {
+            void *argumentDataBuffer = malloc(KWObjCTypeLength(type));
+            [anInvocation getMessageArgument:argumentDataBuffer atIndex:i];
+
+            id object = nil;
+            if(*(__autoreleasing id *)argumentDataBuffer != [KWAny any] && !KWObjCTypeIsObject(type)) {
                 NSData *data = [anInvocation messageArgumentDataAtIndex:i];
                 object = [KWValue valueWithBytes:[data bytes] objCType:type];
             } else {
-				object = *(id*)argumentDataBuffer;
-
+                object = *(__autoreleasing id *)argumentDataBuffer;
 				if (object != [KWAny any] && KWObjCTypeIsBlock(type)) {
-					object = [[object copy] autorelease]; // Converting NSStackBlock to NSMallocBlock
+					object = [object copy];
 				}
 			}
-			
-            [argumentFilters addObject:(object != nil) ? object : [KWNull null]];
 
-			free(argumentDataBuffer);
+            [argumentFilters addObject:(object != nil) ? object : [KWNull null]];
+            free(argumentDataBuffer);
         }
     }
 
-    return [self messagePatternWithSelector:[anInvocation selector] argumentFilters:[argumentFilters autorelease]];
+    return [self messagePatternWithSelector:[anInvocation selector] argumentFilters:argumentFilters];
 }
-
-- (void)dealloc {
-    [argumentFilters release];
-    [super dealloc];
-}
-
-#pragma mark - Properties
-
-@synthesize selector;
-@synthesize argumentFilters;
 
 #pragma mark - Matching Invocations
 
@@ -193,7 +186,7 @@
 }
 
 - (NSString *)selectorAndArgumentFiltersString {
-    NSMutableString *description = [[[NSMutableString alloc] init] autorelease];
+    NSMutableString *description = [NSMutableString string];
     NSArray *components = [NSStringFromSelector(self.selector) componentsSeparatedByString:@":"];
     NSUInteger count = [components count] - 1;
 
