@@ -10,12 +10,12 @@ Pod::Spec.new do |s|
   s.osx.xcconfig    = { 'FRAMEWORK_SEARCH_PATHS' => '$(inherited) "$(DEVELOPER_LIBRARY_DIR)/Frameworks"' }
   s.ios.deployment_target = '5.0'
   s.osx.deployment_target = '10.7'
+  s.source_files = 'Classes/**/*.{h,m}'
+  s.requires_arc = true
   s.default_subspec = 'SenTestingKit'
 
   s.subspec 'SenTestingKit' do |sentest|
       sentest.framework = 'SenTestingKit'
-      sentest.dependency 'Kiwi/ARC'
-      sentest.dependency 'Kiwi/NonARC'
       sentest.source_files = 'SenTestingKit/**/*.{h,m}'
       sentest.prefix_header_contents = <<-EOS
 #import <SenTestingKit/SenTestingKit.h>
@@ -24,22 +24,9 @@ EOS
 
   s.subspec 'XCTest' do |xctest|
       xctest.framework = 'XCTest'
-      xctest.dependency 'Kiwi/ARC'
-      xctest.dependency 'Kiwi/NonARC'
       xctest.prefix_header_contents = <<-EOS
 #import <XCTest/XCTest.h>
 EOS
   end
-
-  s.subspec 'ARC' do |arc|
-      arc.source_files = 'Classes/**/*.{h,m}'
-      arc.requires_arc = true
-  end
-
-  s.subspec 'NonARC' do |nonarc|
-      nonarc.source_files = 'NonARC/**/*.{h,m}'
-	  nonarc.compiler_flags = '-fno-objc-arc'
-  end
-
 end
 
