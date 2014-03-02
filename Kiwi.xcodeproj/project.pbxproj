@@ -155,6 +155,8 @@
 		511901A616A95CDE006E7359 /* KWChangeMatcher.h in Headers */ = {isa = PBXBuildFile; fileRef = 511901A316A95CDE006E7359 /* KWChangeMatcher.h */; };
 		511901A716A95CDE006E7359 /* KWChangeMatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 511901A416A95CDE006E7359 /* KWChangeMatcher.m */; settings = {COMPILER_FLAGS = ""; }; };
 		511901A816A95CDE006E7359 /* KWChangeMatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 511901A416A95CDE006E7359 /* KWChangeMatcher.m */; };
+		881B8F6E18C30AC800541AA3 /* KWSuiteConfigurationBase.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4AD1307C185BFE5E003E7145 /* KWSuiteConfigurationBase.h */; };
+		881B8F7018C3CE7200541AA3 /* SenTestSuite+KiwiAdditions.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = DA92B2A417E6A3EF0062F84D /* SenTestSuite+KiwiAdditions.h */; };
 		88E0EC551852D27F008E998A /* KWLet.h in Headers */ = {isa = PBXBuildFile; fileRef = 4A03096618448E800086F533 /* KWLet.h */; };
 		88E0EC561852D280008E998A /* KWLet.h in Headers */ = {isa = PBXBuildFile; fileRef = 4A03096618448E800086F533 /* KWLet.h */; };
 		88E0EC571852D281008E998A /* KWLet.h in Headers */ = {isa = PBXBuildFile; fileRef = 4A03096618448E800086F533 /* KWLet.h */; };
@@ -651,7 +653,7 @@
 		DA084DE317E3838100592D5A /* KWHaveMatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F982C8D16A802920030A0B1 /* KWHaveMatcher.m */; settings = {COMPILER_FLAGS = ""; }; };
 		DA084DE417E3838100592D5A /* KWHaveValueMatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F982C8F16A802920030A0B1 /* KWHaveValueMatcher.m */; settings = {COMPILER_FLAGS = ""; }; };
 		DA084DE517E3838100592D5A /* KWInequalityMatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F982C9216A802920030A0B1 /* KWInequalityMatcher.m */; settings = {COMPILER_FLAGS = ""; }; };
-		DA084DE617E3838100592D5A /* KWIntercept.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F982C9416A802920030A0B1 /* KWIntercept.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		DA084DE617E3838100592D5A /* KWIntercept.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F982C9416A802920030A0B1 /* KWIntercept.m */; };
 		DA084DE717E3838100592D5A /* KWInvocationCapturer.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F982C9616A802920030A0B1 /* KWInvocationCapturer.m */; settings = {COMPILER_FLAGS = ""; }; };
 		DA084DE817E3838100592D5A /* KWItNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F982C9816A802920030A0B1 /* KWItNode.m */; settings = {COMPILER_FLAGS = ""; }; };
 		DA084DE917E3838100592D5A /* KWMatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F982C9A16A802920030A0B1 /* KWMatcher.m */; };
@@ -673,7 +675,7 @@
 		DA084DF917E3838100592D5A /* KWStringContainsMatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F982CBE16A802920030A0B1 /* KWStringContainsMatcher.m */; settings = {COMPILER_FLAGS = ""; }; };
 		DA084DFA17E3838100592D5A /* KWStringPrefixMatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F982CC016A802920030A0B1 /* KWStringPrefixMatcher.m */; settings = {COMPILER_FLAGS = ""; }; };
 		DA084DFB17E3838100592D5A /* KWStringUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F982CC216A802920030A0B1 /* KWStringUtilities.m */; settings = {COMPILER_FLAGS = ""; }; };
-		DA084DFC17E3838100592D5A /* KWStub.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F982CC416A802920030A0B1 /* KWStub.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		DA084DFC17E3838100592D5A /* KWStub.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F982CC416A802920030A0B1 /* KWStub.m */; };
 		DA084DFD17E3838100592D5A /* KWUserDefinedMatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F982CC816A802920030A0B1 /* KWUserDefinedMatcher.m */; settings = {COMPILER_FLAGS = ""; }; };
 		DA084DFE17E3838100592D5A /* KWValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F982CCA16A802920030A0B1 /* KWValue.m */; settings = {COMPILER_FLAGS = ""; }; };
 		DA084DFF17E3838100592D5A /* KWWorkarounds.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F982CCD16A802920030A0B1 /* KWWorkarounds.m */; settings = {COMPILER_FLAGS = ""; }; };
@@ -949,6 +951,8 @@
 			dstPath = "${PRODUCT_NAME}";
 			dstSubfolderSpec = 16;
 			files = (
+				881B8F7018C3CE7200541AA3 /* SenTestSuite+KiwiAdditions.h in CopyFiles */,
+				881B8F6E18C30AC800541AA3 /* KWSuiteConfigurationBase.h in CopyFiles */,
 				88E0EC581852D514008E998A /* KWLet.h in CopyFiles */,
 				DA084E1217E3838100592D5A /* Kiwi.h in CopyFiles */,
 				DA084E1317E3838100592D5A /* KiwiBlockMacros.h in CopyFiles */,
