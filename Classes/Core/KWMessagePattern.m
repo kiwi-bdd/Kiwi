@@ -109,7 +109,7 @@
 
     for (NSUInteger i = 0; i < numberOfMessageArguments && i < numberOfArgumentFilters; ++i) {
         const char *objCType = [signature messageArgumentTypeAtIndex:i];
-        id object = nil;
+        __unsafe_unretained id object = nil;
 
         // Extract message argument into object (wrapping values if neccesary)
         if (KWObjCTypeIsObject(objCType) || KWObjCTypeIsClass(objCType)) {
@@ -120,7 +120,7 @@
         }
 
         // Match argument filter to object
-        id argumentFilter = (self.argumentFilters)[i];
+        id argumentFilter = self.argumentFilters[i];
 
         if ([argumentFilter isEqual:[KWAny any]]) {
             continue;
@@ -138,7 +138,10 @@
             }
         } else if ([argumentFilter isEqual:[KWNull null]]) {
             if (!KWObjCTypeIsPointerLike(objCType)) {
-                [NSException raise:@"KWMessagePatternException" format:@"nil was specified as an argument filter, but argument(%d) is not a pointer for @selector(%@)", (int)(i + 1), NSStringFromSelector([anInvocation selector])];
+                [NSException raise:@"KWMessagePatternException"
+                            format:@"nil was specified as an argument filter, but argument(%d) "
+                                   @"is not a pointer for @selector(%@)",
+                                   (int)(i + 1), NSStringFromSelector([anInvocation selector])];
             }
             void *p = nil;
             [anInvocation getMessageArgument:&p atIndex:i];
