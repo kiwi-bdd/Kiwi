@@ -205,7 +205,9 @@ void KWInterceptedDealloc(id anObject, SEL aSelector) {
     [KWObjectStubs removeObjectForKey:anObject];
 
     KWRestoreOriginalClass(anObject);
-    [anObject performSelector:NSSelectorFromString(@"dealloc")];
+
+    SEL selector = NSSelectorFromString(@"dealloc");
+    ((void (*)(id, SEL))[anObject methodForSelector:selector])(anObject, selector);
 }
 
 Class KWInterceptedClass(id anObject, SEL aSelector) {
