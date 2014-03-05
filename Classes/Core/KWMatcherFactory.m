@@ -117,7 +117,7 @@
     return [[matcherClass alloc] initWithSubject:subject];
 }
 
-#pragma mark - Private methods
+#pragma mark - Internal Methods
 
 - (Class)matcherClassForSelector:(SEL)aSelector subject:(id)anObject {
     NSArray *matcherClassChain = self.matcherClassChains[NSStringFromSelector(aSelector)];

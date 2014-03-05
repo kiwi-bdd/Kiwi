@@ -83,10 +83,6 @@ NSString *KWEncodingWithObjCTypes(const char *firstType, ...) {
     return encoding;
 }
 
-NSString *KWEncodingForVoidMethod(void) {
-    return KWEncodingWithObjCTypes(@encode(void), @encode(id), @encode(SEL), nil);
-}
-
 NSString *KWEncodingForDefaultMethod(void) {
     return KWEncodingWithObjCTypes(@encode(id), @encode(id), @encode(SEL), nil);
 }
