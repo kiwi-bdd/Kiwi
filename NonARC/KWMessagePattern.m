@@ -99,12 +99,6 @@
     [super dealloc];
 }
 
-#pragma mark - Copying
-
-- (id)copyWithZone:(NSZone *)zone {
-    return [self retain];
-}
-
 #pragma mark - Properties
 
 @synthesize selector;
@@ -125,7 +119,7 @@
         id object = nil;
 
         // Extract message argument into object (wrapping values if neccesary)
-        if (KWObjCTypeIsObject(objCType)) {
+        if (KWObjCTypeIsObject(objCType) || KWObjCTypeIsClass(objCType)) {
             [anInvocation getMessageArgument:&object atIndex:i];
         } else {
             NSData *data = [anInvocation messageArgumentDataAtIndex:i];

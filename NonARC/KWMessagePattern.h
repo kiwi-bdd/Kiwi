@@ -6,7 +6,7 @@
 
 #import "KiwiConfiguration.h"
 
-@interface KWMessagePattern : NSObject<NSCopying>
+@interface KWMessagePattern : NSObject
 
 #pragma mark - Initializing
 
