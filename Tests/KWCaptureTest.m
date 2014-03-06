@@ -4,6 +4,8 @@
 // Copyright 2010 Allen Ding. All rights reserved.
 //
 
+#define KW_MACROS_ENABLED 0
+
 #import "Kiwi.h"
 #import "KiwiTestConfiguration.h"
 #import "TestClasses.h"
