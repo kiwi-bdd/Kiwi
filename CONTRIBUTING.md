@@ -20,7 +20,7 @@ Kiwi currently uses two channels for reporting bugs:
    has [already reported the issue](https://github.com/allending/Kiwi/issues?state=open),
    please [submit a new issue](https://github.com/allending/Kiwi/issues/new),
    and include any and all information maintainers might need to fix the problem.
-   It's not easy to find bugs, but detailed reports help!
+   It's not easy to fix bugs, but detailed reports help!
 
 ## Pull Requests
 
