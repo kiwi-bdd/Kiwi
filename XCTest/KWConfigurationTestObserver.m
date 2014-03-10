@@ -12,10 +12,12 @@
 @implementation KWConfigurationTestObserver
 
 - (void)startObserving {
+    [super startObserving];
     [[KWSuiteConfigurationBase defaultConfiguration] setUp];
 }
 
 - (void)stopObserving {
+    [super stopObserving];
     [[KWSuiteConfigurationBase defaultConfiguration] tearDown];
 }
 
