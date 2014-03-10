@@ -6,6 +6,7 @@
 //  Copyright (c) 2013 Allen Ding. All rights reserved.
 //
 
+#import <XCTest/XCTest.h>
 #import "Kiwi.h"
 
 SPEC_BEGIN(XCFunctionalTest)

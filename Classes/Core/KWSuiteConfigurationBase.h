@@ -20,7 +20,20 @@
 @property (nonatomic, copy) void (^beforeAllSpecsBlock)(void);
 @property (nonatomic, copy) void (^afterAllSpecsBlock)(void);
 
+#ifdef XCT_EXPORT
+- (void)specDidStart:(XCTestRun *)testRun;
+- (void)specDidStop:(XCTestRun *)testRun;
+
+@property (nonatomic, copy) void (^beforeEachSpecBlock)(void);
+@property (nonatomic, copy) void (^afterEachSpecBlock)(void);
+#endif
+
 @end
 
 void beforeAllSpecs(void (^block)(void));
 void afterAllSpecs(void (^block)(void));
+
+#ifdef XCT_EXPORT
+void beforeEachSpec(void (^block)(void));
+void afterEachSpec(void (^block)(void));
+#endif

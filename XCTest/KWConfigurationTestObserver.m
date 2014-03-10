@@ -7,6 +7,7 @@
 //
 
 #import "KWConfigurationTestObserver.h"
+#import "KWSpec.h"
 #import "KWSuiteConfigurationBase.h"
 
 @implementation KWConfigurationTestObserver
@@ -19,6 +20,22 @@
 - (void)stopObserving {
     [super stopObserving];
     [[KWSuiteConfigurationBase defaultConfiguration] tearDown];
+}
+
+- (void)testSuiteDidStart:(XCTestRun *)testRun {
+    if ([self testSuiteIsKiwiSpec:NSClassFromString(testRun.test.name)]) {
+        [[KWSuiteConfigurationBase defaultConfiguration] specDidStart:testRun];
+    }
+}
+
+- (void)testSuiteDidStop:(XCTestRun *)testRun {
+    if ([self testSuiteIsKiwiSpec:NSClassFromString(testRun.test.name)]) {
+        [[KWSuiteConfigurationBase defaultConfiguration] specDidStop:testRun];
+    }
+}
+
+- (BOOL)testSuiteIsKiwiSpec:(Class)testSuiteClass {
+    return ![testSuiteClass isEqual:[KWSpec class]] && [testSuiteClass isSubclassOfClass:[KWSpec class]];
 }
 
 @end

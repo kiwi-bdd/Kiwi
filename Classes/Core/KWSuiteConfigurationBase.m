@@ -8,6 +8,8 @@
 
 #import "KWSuiteConfigurationBase.h"
 
+#define INVOKE(block) if((block)) { (block)(); }
+
 @implementation KWSuiteConfigurationBase
 
 + (instancetype)defaultConfiguration
@@ -30,17 +32,22 @@
 
 - (void)setUp {
     [self configureSuite];
-
-    if (self.beforeAllSpecsBlock) {
-        self.beforeAllSpecsBlock();
-    }
+    INVOKE(self.beforeAllSpecsBlock);
 }
 
 - (void)tearDown {
-    if (self.afterAllSpecsBlock) {
-        self.afterAllSpecsBlock();
-    }
+    INVOKE(self.afterAllSpecsBlock);
 }
+
+#ifdef XCT_EXPORT
+- (void)specDidStart:(XCTestRun *)testRun {
+    INVOKE(self.beforeEachSpecBlock);
+}
+
+- (void)specDidStop:(XCTestRun *)testRun {
+    INVOKE(self.afterEachSpecBlock);
+}
+#endif
 
 @end
 
@@ -51,3 +58,13 @@ void beforeAllSpecs(void (^block)(void)) {
 void afterAllSpecs(void (^block)(void)) {
     [[KWSuiteConfigurationBase defaultConfiguration] setAfterAllSpecsBlock:block];
 }
+
+#ifdef XCT_EXPORT
+void beforeEachSpec(void (^block)(void)) {
+    [[KWSuiteConfigurationBase defaultConfiguration] setBeforeEachSpecBlock:block];
+}
+
+void afterEachSpec(void (^block)(void)) {
+    [[KWSuiteConfigurationBase defaultConfiguration] setAfterEachSpecBlock:block];
+}
+#endif
