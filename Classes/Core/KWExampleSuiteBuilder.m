@@ -20,6 +20,10 @@
 #import "KWRegisterMatchersNode.h"
 #import "KWSymbolicator.h"
 
+#ifdef XCT_EXPORT
+#import "KWConfigurationTestObserver.h"
+#endif
+
 static NSString * const KWExampleSuiteBuilderException = @"KWExampleSuiteBuilderException";
 
 @interface KWExampleSuiteBuilder()
@@ -40,6 +44,15 @@ static NSString * const KWExampleSuiteBuilderException = @"KWExampleSuiteBuilder
 
 
 #pragma mark - Initializing
+
+#ifdef XCT_EXPORT
++ (void)initialize {
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSString *observers = [defaults objectForKey:XCTestObserverClassKey];
+    NSString *kiwiObservers = [NSString stringWithFormat:@"%@,%@", observers, NSStringFromClass([KWConfigurationTestObserver class])];
+    [defaults setObject:kiwiObservers forKey:XCTestObserverClassKey];
+}
+#endif
 
 
 - (id)init {

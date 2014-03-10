@@ -26,6 +26,7 @@ EOS
       xctest.framework = 'XCTest'
       xctest.dependency 'Kiwi/ARC'
       xctest.dependency 'Kiwi/NonARC'
+      xctest.source_files = 'XCTest/**/*.{h,m}'
       xctest.prefix_header_contents = <<-EOS
 #import <XCTest/XCTest.h>
 EOS
