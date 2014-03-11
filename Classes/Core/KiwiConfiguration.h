@@ -16,15 +16,3 @@
 #if TARGET_IPHONE_SIMULATOR
     #define KW_TARGET_HAS_INVOCATION_EXCEPTION_BUG 1
 #endif
-
-// As XCTest is still largely API-compatible with SenTestingKit, these macros
-// can be used when subclassing or extending via a category to target either
-// framework using the same code.
-#ifdef XCT_EXPORT
-    #define KW_TEST_CASE XCTestCase
-    #define KW_TEST_SUITE XCTestSuite
-#else
-    #import <SenTestingKit/SenTestingKit.h>
-    #define KW_TEST_CASE SenTestCase
-    #define KW_TEST_SUITE SenTestSuite
-#endif
