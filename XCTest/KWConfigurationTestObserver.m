@@ -12,6 +12,13 @@
 
 @implementation KWConfigurationTestObserver
 
++ (void)load {
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSString *observers = [NSString stringWithFormat:@"%@,%@", NSStringFromClass([XCTestLog class]),
+                                                               NSStringFromClass([KWConfigurationTestObserver class])];
+    [defaults registerDefaults:@{XCTestObserverClassKey: observers}];
+}
+
 - (void)startObserving {
     [super startObserving];
     [[KWSuiteConfigurationBase defaultConfiguration] setUp];
