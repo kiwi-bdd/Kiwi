@@ -9,6 +9,91 @@
 #import "Kiwi.h"
 #import "KiwiTestConfiguration.h"
 
+@interface NSString (KWNotCalledAnyWhereElse)
+
+- (void)kwNotCalledElseWhere;
+
+@end
+
+@implementation NSString (KWNotCalledAnyWhereElse)
+
+- (void)kwNotCalledElseWhere {}
+
+@end
+
+@interface NSDictionary (KWNotCalledAnyWhereElse)
+
+- (void)kwNotCalledElseWhere;
+
+@end
+
+@implementation NSDictionary (KWNotCalledAnyWhereElse)
+
+- (void)kwNotCalledElseWhere {}
+
+@end
+
+
+//TODO (JM) : remove only for anyInstance declaration
+#import "KWFutureInstanceAttacher.h"
+
+SPEC_BEGIN(KWAnyInstanceSupportSpec)
+
+describe(@"Any instance support", ^{
+    it(@"should assert invocations", ^{
+        [[[NSString anyInstance] should] receive:@selector(kwNotCalledElseWhere)];
+        NSString *subject = [[[NSString alloc] init] autorelease];
+        assert(subject);
+        [subject kwNotCalledElseWhere];
+    });
+
+    it(@"should assert multiple invocations with different selectors", ^{
+        [[[NSString anyInstance] should] receive:@selector(kwNotCalledElseWhere)];
+        NSString *subject = [[[NSString alloc] init] autorelease];
+        [subject kwNotCalledElseWhere];
+        [subject kwNotCalledElseWhere];
+        [subject kwNotCalledElseWhere];
+
+        NSString *subject2 = [[[NSString alloc] init] autorelease];
+        [subject2 kwNotCalledElseWhere];
+        [subject2 kwNotCalledElseWhere];
+
+        [[[NSString anyInstance] should] receive:@selector(description) withCount:2];
+        NSString *subject3 = [[[NSString alloc] init] autorelease];
+        [subject3 kwNotCalledElseWhere];
+        [subject3 description];
+        [subject3 description];
+    });
+
+    it(@"shouldn't assert false invocations", ^{
+        [[[NSString anyInstance] shouldNot] receive:@selector(kwNotCalledElseWhere)];
+        NSString *subject = [[[NSString alloc] init] autorelease];
+        assert(subject);
+   
+        [[[NSDictionary anyInstance] should] receive:@selector(kwNotCalledElseWhere)];
+
+        NSDictionary *subject1 = [[[NSDictionary alloc] init] autorelease];
+        [subject1 kwNotCalledElseWhere];
+
+        //TODO (JM): since this doesn't call -init this will not work
+        // what is the best support for this situation?
+        NSDictionary *subject2 = [NSDictionary dictionaryWithObject:@"Foo" forKey:@"Bar"];
+        [subject2 kwNotCalledElseWhere];
+        [subject2 kwNotCalledElseWhere];
+    });
+
+//TODO (JM) : test the above specs aren't reporting false positives
+// (this will obviouly fail if everything is working)
+    it(@"should legitimately fail", ^{
+        [[[NSString anyInstance] shouldNot] receive:@selector(kwNotCalledElseWhere)];
+        NSString *subject = [[[NSString alloc] init] autorelease];
+        assert(subject);
+        [subject kwNotCalledElseWhere];
+    });
+});
+
+SPEC_END
+
 @interface KWExampleSuiteBuilder ()
 
 @property (nonatomic, retain, readwrite) NSString *focusedContextNodeDescription;
@@ -17,6 +102,8 @@
 @end
 
 static BOOL tests_were_run = NO;
+
+
 
 SPEC_BEGIN(Functional)
 

@@ -792,6 +792,8 @@
 		DAA35A2317E3CF6600C41AE2 /* libKiwi-XCTest.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DA084E7317E3838100592D5A /* libKiwi-XCTest.a */; };
 		DAAC61CB17E75B50000165F6 /* KWObjCUtilitiesTest.m in Sources */ = {isa = PBXBuildFile; fileRef = DAAC61CA17E75B50000165F6 /* KWObjCUtilitiesTest.m */; };
 		DABFFFEC17E3CC3800E79FB4 /* Kiwi-XCTest-Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = DABFFFEB17E3CC2B00E79FB4 /* Kiwi-XCTest-Prefix.pch */; };
+		DD72DFCB18D171DD00943C07 /* KWFutureInstanceAttacher.h in Headers */ = {isa = PBXBuildFile; fileRef = DD72DFC918D171DD00943C07 /* KWFutureInstanceAttacher.h */; };
+		DD72DFCC18D171DD00943C07 /* KWFutureInstanceAttacher.m in Sources */ = {isa = PBXBuildFile; fileRef = DD72DFCA18D171DD00943C07 /* KWFutureInstanceAttacher.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		F5015CBD1158404E002E9A98 /* libKiwi.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F5015B9F11583A77002E9A98 /* libKiwi.a */; };
 		F53B5E43115B33FC0022BC0B /* KWContainMatcherTest.m in Sources */ = {isa = PBXBuildFile; fileRef = F53B5E42115B33FC0022BC0B /* KWContainMatcherTest.m */; };
 		F53B5E66115B36EB0022BC0B /* KWEqualMatcherTest.m in Sources */ = {isa = PBXBuildFile; fileRef = F53B5E65115B36EB0022BC0B /* KWEqualMatcherTest.m */; };
@@ -1293,6 +1295,8 @@
 		DA92B2A517E6A3EF0062F84D /* SenTestSuite+KiwiAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SenTestSuite+KiwiAdditions.m"; sourceTree = "<group>"; };
 		DAAC61CA17E75B50000165F6 /* KWObjCUtilitiesTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KWObjCUtilitiesTest.m; sourceTree = "<group>"; };
 		DABFFFEB17E3CC2B00E79FB4 /* Kiwi-XCTest-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Kiwi-XCTest-Prefix.pch"; sourceTree = "<group>"; };
+		DD72DFC918D171DD00943C07 /* KWFutureInstanceAttacher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KWFutureInstanceAttacher.h; sourceTree = "<group>"; };
+		DD72DFCA18D171DD00943C07 /* KWFutureInstanceAttacher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KWFutureInstanceAttacher.m; sourceTree = "<group>"; };
 		F5015B9F11583A77002E9A98 /* libKiwi.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libKiwi.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		F5015C9E11584017002E9A98 /* KiwiTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = KiwiTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F508565011BE61A1000EAD4E /* KiwiTestConfiguration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KiwiTestConfiguration.h; sourceTree = "<group>"; };
@@ -1534,6 +1538,8 @@
 				9F982CD816A802920030A0B1 /* NSObject+KiwiSpyAdditions.h */,
 				9F982CD916A802920030A0B1 /* NSObject+KiwiSpyAdditions.m */,
 				9F982CDC16A802920030A0B1 /* NSObject+KiwiVerifierAdditions.h */,
+				DD72DFC918D171DD00943C07 /* KWFutureInstanceAttacher.h */,
+				DD72DFCA18D171DD00943C07 /* KWFutureInstanceAttacher.m */,
 				9F982CDD16A802920030A0B1 /* NSObject+KiwiVerifierAdditions.m */,
 				9F820DB616BB6748003A1BA5 /* NSProxy+KiwiVerifierAdditions.h */,
 				9F820DB716BB6748003A1BA5 /* NSProxy+KiwiVerifierAdditions.m */,
@@ -2133,6 +2139,7 @@
 				9F982DDC16A802920030A0B1 /* KWReporting.h in Headers */,
 				9F982DDE16A802920030A0B1 /* KWRespondToSelectorMatcher.h in Headers */,
 				9F982DE216A802920030A0B1 /* KWSpec.h in Headers */,
+				DD72DFCB18D171DD00943C07 /* KWFutureInstanceAttacher.h in Headers */,
 				9F982DE616A802920030A0B1 /* KWStringContainsMatcher.h in Headers */,
 				9F982DEA16A802920030A0B1 /* KWStringPrefixMatcher.h in Headers */,
 				9F982DEE16A802920030A0B1 /* KWStringUtilities.h in Headers */,
@@ -2577,6 +2584,7 @@
 				9F982D0416A802920030A0B1 /* KWBeforeAllNode.m in Sources */,
 				9F982D0816A802920030A0B1 /* KWBeforeEachNode.m in Sources */,
 				9F982D0C16A802920030A0B1 /* KWBeIdenticalToMatcher.m in Sources */,
+				DD72DFCC18D171DD00943C07 /* KWFutureInstanceAttacher.m in Sources */,
 				9F982D1016A802920030A0B1 /* KWBeKindOfClassMatcher.m in Sources */,
 				9F982D1416A802920030A0B1 /* KWBeMemberOfClassMatcher.m in Sources */,
 				9F982D1816A802920030A0B1 /* KWNilMatcher.m in Sources */,
