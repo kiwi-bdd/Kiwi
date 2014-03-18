@@ -1,5 +1,5 @@
 //
-//  KWFutureInstanceAttacher.h
+//  KWAnyInstanceSupport.h
 //  Kiwi
 //
 //  Created by Jerry Marino on 3/12/14.
@@ -17,7 +17,6 @@
 @interface KWFutureInstanceAttacher : NSObject <KWVerifying>
 
 @property (nonatomic, strong) KWCallSite *callSite;
-@property (nonatomic, assign) Class instanceClass;
 
 //TODO (JM) : write some unit tests
 - (id)attachToVerifier:(id<KWVerifying>)aVerifier;

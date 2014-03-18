@@ -27,7 +27,7 @@
 #import "KWExampleSuite.h"
 #import "KWCallSite.h"
 #import "KWSymbolicator.h"
-#import "KWFutureInstanceAttacher.h"
+#import "KWAnyInstanceSupport.h"
 
 @interface KWExample ()
 
