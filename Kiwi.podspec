@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name            = 'Kiwi'
-  s.version         = '2.2.3'
+  s.version         = '2.2.4'
   s.summary         = 'A Behavior Driven Development library for iOS and OS X.'
   s.homepage        = 'https://github.com/allending/Kiwi'
   s.authors         = { 'Allen Ding' => 'alding@gmail.com', 'Luke Redpath' => 'luke@lukeredpath.co.uk', 'Marin Usalj' => 'mneorr@gmail.com', 'Stepan Hruda' => 'stepan.hruda@gmail.com' }

@@ -122,14 +122,18 @@
 
 - (void)example:(KWExample *)example didFailWithFailure:(KWFailure *)failure {
     if ([self respondsToSelector:@selector(recordFailureWithDescription:inFile:atLine:expected:)]) {
-        objc_msgSend(self,
-                     @selector(recordFailureWithDescription:inFile:atLine:expected:),
-                     [[failure exceptionValue] description],
-                     failure.callSite.filename,
-                     failure.callSite.lineNumber,
-                     NO);
+        void (*recordFailure)(id, SEL, NSString *, NSString *, NSUInteger, BOOL) =
+            (void (*)(id, SEL, NSString *, NSString *, NSUInteger, BOOL))objc_msgSend;
+        recordFailure(self,
+                      @selector(recordFailureWithDescription:inFile:atLine:expected:),
+                      [[failure exceptionValue] description],
+                      failure.callSite.filename,
+                      failure.callSite.lineNumber,
+                      NO);
     } else {
-        objc_msgSend(self, @selector(failWithException:), [failure exceptionValue]);
+        void (*failWithException)(id, SEL, NSException *) =
+            (void (*)(id, SEL, NSException *))objc_msgSend;
+        failWithException(self, @selector(failWithException:), [failure exceptionValue]);
     }
 }
 

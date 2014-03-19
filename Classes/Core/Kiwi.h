@@ -73,7 +73,6 @@ extern "C" {
 #import "KWSpec.h"
 #import "KWStringUtilities.h"
 #import "KWStub.h"
-#import "KWSuiteConfigurationBase.h"
 #import "KWUserDefinedMatcher.h"
 #import "KWValue.h"
 #import "KWVerifying.h"
