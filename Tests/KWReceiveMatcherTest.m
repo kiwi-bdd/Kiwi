@@ -41,6 +41,26 @@
     STAssertTrue([matcher evaluate], @"expected positive match");
 }
 
+- (void)testItShouldMatchMultipleReceivedMessagesForReceiveWhenAttachedToNegativeVerifier {
+    id subject = [Cruiser cruiser];
+    KWReceiveMatcher *matcher = [KWReceiveMatcher matcherWithSubject:subject];
+    matcher.negativeMatcherBehavior = YES;
+    [matcher receive:@selector(raiseShields)];
+    [subject raiseShields];
+    [subject raiseShields];
+    STAssertTrue([matcher evaluate], @"expected positive match");
+}
+
+- (void)testItShouldNotMatchMultipleReceivedMessagesForReceiveWhenNotAttachedToNegativeVerifier {
+    id subject = [Cruiser cruiser];
+    KWReceiveMatcher *matcher = [KWReceiveMatcher matcherWithSubject:subject];
+    [matcher receive:@selector(raiseShields)];
+    [matcher receive:@selector(raiseShields)];
+    [subject raiseShields];
+    [subject raiseShields];
+    STAssertFalse([matcher evaluate], @"expected negative match");
+}
+
 - (void)testItShouldNotMatchNonReceivedMessagesForReceive {
     id subject = [Cruiser cruiser];
     id matcher = [KWReceiveMatcher matcherWithSubject:subject];
