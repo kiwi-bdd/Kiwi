@@ -15,7 +15,7 @@
 @interface KWReceiveMatcher : KWMatcher
 
 @property (nonatomic, assign) BOOL willEvaluateMultipleTimes;
-@property (nonatomic, assign) BOOL negativeMatcherBehavior;
+@property (nonatomic, assign) BOOL willEvaluateAgainstNegativeExpectation;
 
 #pragma mark - Configuring Matchers
 

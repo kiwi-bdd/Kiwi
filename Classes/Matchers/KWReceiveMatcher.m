@@ -90,7 +90,7 @@ static NSString * const StubValueKey = @"StubValueKey";
 - (void)receive:(SEL)aSelector {
     KWMessagePattern *messagePattern = [KWMessagePattern messagePatternWithSelector:aSelector];
     
-    if (self.negativeMatcherBehavior) {
+    if (self.willEvaluateAgainstNegativeExpectation) {
         [self receiveMessagePattern:messagePattern countType:KWCountTypeAtLeast count:1];
     } else {
         [self receiveMessagePattern:messagePattern countType:KWCountTypeExact count:1];

@@ -143,8 +143,8 @@
       [self.reporter reportFailure:failure];
     }
         
-    if (self.expectationType == KWExpectationTypeShouldNot &&[self.matcher respondsToSelector:@selector(setNegativeMatcherBehavior:)]) {
-        [self.matcher setNegativeMatcherBehavior:YES];
+    if (self.expectationType == KWExpectationTypeShouldNot &&[self.matcher respondsToSelector:@selector(setWillEvaluateAgainstNegativeExpectation:)]) {
+        [self.matcher setWillEvaluateAgainstNegativeExpectation:YES];
     }
 
     if (self.example.unresolvedVerifier == self) {

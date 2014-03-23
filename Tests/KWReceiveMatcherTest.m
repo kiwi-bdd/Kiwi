@@ -44,7 +44,7 @@
 - (void)testItShouldMatchMultipleReceivedMessagesForReceiveWhenAttachedToNegativeVerifier {
     id subject = [Cruiser cruiser];
     KWReceiveMatcher *matcher = [KWReceiveMatcher matcherWithSubject:subject];
-    matcher.negativeMatcherBehavior = YES;
+    matcher.willEvaluateAgainstNegativeExpectation = YES;
     [matcher receive:@selector(raiseShields)];
     [subject raiseShields];
     [subject raiseShields];
