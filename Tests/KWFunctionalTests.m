@@ -204,6 +204,27 @@ describe(@"Let context tree", ^{
     });
 });
 
+describe(@"a let node set up in an outer context with a beforeEach block", ^{
+
+    let(number, ^{ return @123; });
+    let(array,  ^{ return [NSMutableArray array]; });
+
+    beforeEach(^{
+        [array addObject:number];
+    });
+
+    context(@"when referenced in an inner context with a beforeEach block", ^{
+        beforeEach(^{
+            [array addObject:@456];
+        });
+
+        it(@"retains state from the outer context", ^{
+            [[array should] equal:@[ @123, @456 ]];
+        });
+    });
+
+});
+
 SPEC_END
 
 SPEC_BEGIN(NilMatchers)
