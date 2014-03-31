@@ -16,6 +16,7 @@ Pod::Spec.new do |s|
       sentest.framework = 'SenTestingKit'
       sentest.dependency 'Kiwi/ARC'
       sentest.dependency 'Kiwi/NonARC'
+      sentest.dependency 'Kiwi/MAFuture'
       sentest.source_files = 'SenTestingKit/**/*.{h,m}'
       sentest.prefix_header_contents = <<-EOS
 #import <SenTestingKit/SenTestingKit.h>
@@ -26,6 +27,7 @@ EOS
       xctest.framework = 'XCTest'
       xctest.dependency 'Kiwi/ARC'
       xctest.dependency 'Kiwi/NonARC'
+      xctest.dependency 'Kiwi/MAFuture'
       xctest.prefix_header_contents = <<-EOS
 #import <XCTest/XCTest.h>
 EOS
@@ -38,8 +40,12 @@ EOS
 
   s.subspec 'NonARC' do |nonarc|
       nonarc.source_files = 'NonARC/**/*.{h,m}'
-	  nonarc.compiler_flags = '-fno-objc-arc'
+      nonarc.compiler_flags = '-fno-objc-arc'
   end
 
+  s.subspec 'MAFuture' do |mafuture|
+      mafuture.source_files = 'MAFuture/**/*.{h,m}'
+      mafuture.exclude_files = 'MAFuture/tester.m'
+      mafuture.compiler_flags = '-fno-objc-arc'
+  end
 end
-

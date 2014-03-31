@@ -7,6 +7,9 @@
 #import "MAMethodSignatureCache.h"
 
 
+extern NSString *const UIApplicationDidReceiveMemoryWarningNotification;
+
+
 #define ENABLE_LOGGING 0
 
 #if ENABLE_LOGGING
