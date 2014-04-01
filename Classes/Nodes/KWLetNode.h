@@ -13,7 +13,6 @@
 + (instancetype)letNodeWithSymbolName:(NSString *)aSymbolName objectRef:(id *)anObjectRef block:(id (^)(void))block;
 
 @property (nonatomic, copy) NSString *symbolName;
-@property (nonatomic, copy) id (^block)(void);
 @property (nonatomic, readonly) __autoreleasing id *objectRef;
 
 - (id)evaluate;

@@ -6,8 +6,12 @@
 
 #import "KWLetNode.h"
 #import "KWExampleNodeVisitor.h"
+#import "MAFuture.h"
 
 @interface KWLetNode ()
+
+@property (nonatomic, copy) id (^block)(void);
+@property (nonatomic, strong) id value;
 
 @property (nonatomic, weak) KWLetNode *parent;
 @property (nonatomic, strong) KWLetNode *child;
@@ -19,6 +23,7 @@
 
 @implementation KWLetNode
 
+@synthesize value = _value;
 @synthesize objectRef = _objectRef;
 
 - (instancetype)initWithSymbolName:(NSString *)aSymbolName objectRef:(__autoreleasing id *)anObjectRef block:(id (^)(void))block
@@ -27,6 +32,7 @@
         _symbolName = [aSymbolName copy];
         _objectRef = anObjectRef;
         _block = [block copy];
+        [self clearValue];
     }
     return self;
 }
@@ -36,26 +42,35 @@
     return [[self alloc] initWithSymbolName:aSymbolName objectRef:anObjectRef block:block];
 }
 
+- (id (^)(void))block
+{
+    if (!_block) {
+        _block = [^{ return nil; } copy];
+    }
+    return _block;
+}
+
 #pragma mark - Evaluating nodes
 
 - (id)evaluate
 {
-    id result = nil;
-    if (self.child) {
-        result = [self.child evaluate];
-    }
-    else if (self.block) {
-        result = self.block();
-    }
-
-    *self.objectRef = result;
-    return result;
+    id value = [self.child evaluate] ?: self.value;
+    *self.objectRef = value;
+    return value;
 }
 
 - (void)evaluateTree
 {
     [self evaluate];
     [self.next evaluateTree];
+}
+
+- (void)clearValue
+{
+    if (self.objectRef) {
+        *self.objectRef = nil;
+    }
+    self.value = MALazyFuture(self.block);
 }
 
 #pragma mark - Managing node relationships
@@ -99,6 +114,8 @@
 
 - (void)unlink
 {
+    [self clearValue];
+
     [self.next unlink];
     self.previous.next = nil;
     self.previous = nil;
@@ -124,7 +141,7 @@
 
 - (NSString *)nodeDescription
 {
-    return [NSString stringWithFormat:@"<%@ \"%@\">", [[self class] description], self.block ? self.block() : nil];
+    return [NSString stringWithFormat:@"<%@ \"%@\">", [[self class] description], self.value];
 }
 
 - (NSString *)recursiveDescription
