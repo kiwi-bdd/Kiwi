@@ -1,3 +1,4 @@
+NS_ROOT_CLASS
 @interface MAProxy
 {
     Class isa;
