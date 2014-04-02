@@ -59,7 +59,7 @@
 
 @end
 
-NSString* IKMemoryAwareFuturesDirectory();
+NSString* IKMemoryAwareFuturesDirectory(void);
 
 NSString* IKMemoryAwareFuturePath(id future);
 

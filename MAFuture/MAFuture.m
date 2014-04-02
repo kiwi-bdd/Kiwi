@@ -258,7 +258,7 @@ void IKInvalidateMemoryAwareFuture(id future) {
     [future invalidate];
 }
 
-NSString* IKMemoryAwareFuturesDirectory() {
+NSString* IKMemoryAwareFuturesDirectory(void) {
     static NSString* FuturesDirectory = nil;
     if (FuturesDirectory == nil) {
         FuturesDirectory = [[NSTemporaryDirectory() stringByAppendingPathComponent:@"futures"] retain];
