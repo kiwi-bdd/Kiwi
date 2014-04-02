@@ -13,7 +13,6 @@
 #pragma mark - Initializing
 
 - (id)initWithCallSite:(KWCallSite *)aCallSite message:(NSString *)aMessage;
-- (id)initWithCallSite:(KWCallSite *)aCallSite format:(NSString *)format, ...;
 
 + (id)failureWithCallSite:(KWCallSite *)aCallSite message:(NSString *)aMessage;
 + (id)failureWithCallSite:(KWCallSite *)aCallSite format:(NSString *)format, ...;

@@ -10,9 +10,7 @@
 
 #pragma mark - Initializing
 
-- (id)initWithSelector:(SEL)aSelector;
 - (id)initWithSelector:(SEL)aSelector argumentFilters:(NSArray *)anArray;
-- (id)initWithSelector:(SEL)aSelector firstArgumentFilter:(id)firstArgumentFilter argumentList:(va_list)argumentList;
 
 + (id)messagePatternWithSelector:(SEL)aSelector;
 + (id)messagePatternWithSelector:(SEL)aSelector argumentFilters:(NSArray *)anArray;

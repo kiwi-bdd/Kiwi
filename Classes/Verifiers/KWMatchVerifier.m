@@ -34,14 +34,6 @@
 
 #pragma mark - Initializing
 
-- (id)initForShouldWithCallSite:(KWCallSite *)aCallSite matcherFactory:(KWMatcherFactory *)aMatcherFactory reporter:(id<KWReporting>)aReporter {
-    return [self initWithExpectationType:KWExpectationTypeShould callSite:aCallSite matcherFactory:aMatcherFactory reporter:aReporter];
-}
-
-- (id)initForShouldNotWithCallSite:(KWCallSite *)aCallSite matcherFactory:(KWMatcherFactory *)aMatcherFactory reporter:(id<KWReporting>)aReporter {
-    return [self initWithExpectationType:KWExpectationTypeShouldNot callSite:aCallSite matcherFactory:aMatcherFactory reporter:aReporter];
-}
-
 - (id)initWithExpectationType:(KWExpectationType)anExpectationType callSite:(KWCallSite *)aCallSite matcherFactory:(KWMatcherFactory *)aMatcherFactory reporter:(id<KWReporting>)aReporter {
     self = [super init];
     if (self) {
@@ -53,6 +45,14 @@
     }
 
     return self;
+}
+
++ (id<KWVerifying>)matchVerifierForShouldWithCallSite:(KWCallSite *)aCallSite matcherFactory:(KWMatcherFactory *)aMatcherFactory reporter:(id<KWReporting>)aReporter {
+    return [[self alloc ] initWithExpectationType:KWExpectationTypeShould callSite:aCallSite matcherFactory:aMatcherFactory reporter:aReporter];
+}
+
++ (id<KWVerifying>)matchVerifierForShouldNotWithCallSite:(KWCallSite *)aCallSite matcherFactory:(KWMatcherFactory *)aMatcherFactory reporter:(id<KWReporting>)aReporter {
+    return [[self alloc] initWithExpectationType:KWExpectationTypeShouldNot callSite:aCallSite matcherFactory:aMatcherFactory reporter:aReporter];
 }
 
 + (id<KWVerifying>)matchVerifierWithExpectationType:(KWExpectationType)anExpectationType callSite:(KWCallSite *)aCallSite matcherFactory:(KWMatcherFactory *)aMatcherFactory reporter:(id<KWReporting>)aReporter {

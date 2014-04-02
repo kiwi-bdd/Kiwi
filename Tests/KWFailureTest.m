@@ -22,4 +22,12 @@
     STAssertEquals([failure exceptionValue].reason, @"a message", @"the reason of the exception should be the same as the one used to create the failure");
 }
 
+- (void)testFailureWithCallSiteConvenienceMethod{
+    KWCallSite *aCallSite= [KWCallSite callSiteWithFilename:@"aFilename" lineNumber:15];
+    KWFailure *failure = [KWFailure failureWithCallSite:aCallSite format:@"Test %@, %d", @"string1", 6];
+    STAssertEqualObjects(failure.callSite.filename, @"aFilename", @"Unexpected call site filename");
+    STAssertEquals(failure.callSite.lineNumber, (NSUInteger)15, @"Unexpected call site line number");
+    STAssertEqualObjects(failure.message, @"Test string1, 6", @"Unexpected call site message");
+}
+
 @end
