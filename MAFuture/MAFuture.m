@@ -347,7 +347,7 @@ NSString* IKMemoryAwareFuturePath(id future) {
 
 
 - (BOOL)unarchiveValueUnlocked {
-    id value = [[NSKeyedUnarchiver unarchiveObjectWithFile:IKMemoryAwareFuturePath(self)] retain];
+    id value = [[[NSKeyedUnarchiver unarchiveObjectWithFile:IKMemoryAwareFuturePath(self)] retain] autorelease];
     if (value != nil) {
         [self setFutureValueUnlocked:value];
     }
