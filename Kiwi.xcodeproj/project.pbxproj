@@ -490,8 +490,7 @@
 		A352E9E812EDC30A0049C691 /* KWHaveValueMatcherTest.m in Sources */ = {isa = PBXBuildFile; fileRef = A352E9E712EDC30A0049C691 /* KWHaveValueMatcherTest.m */; };
 		A352EA1B12EDC8380049C691 /* KWGenericMatcherTest.m in Sources */ = {isa = PBXBuildFile; fileRef = A352EA1A12EDC8380049C691 /* KWGenericMatcherTest.m */; };
 		A385CAE813AA7EA200DCA951 /* KWUserDefinedMatcherTest.m in Sources */ = {isa = PBXBuildFile; fileRef = A385CAE713AA7EA200DCA951 /* KWUserDefinedMatcherTest.m */; };
-		BA94F59518B90D1500984C43 /* KWSuiteConfigurationBase.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4AD1307C185BFE5E003E7145 /* KWSuiteConfigurationBase.h */; };
-		BA94F59618B928ED00984C43 /* KWNotificationMatcher.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4B0439BF18616B170083F852 /* KWNotificationMatcher.h */; };
+		BA8BD49C18E25AE400B6A8DA /* KWNotificationMatcher.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = DAA1B3AD18CF25C00015CF7A /* KWNotificationMatcher.h */; };
 		C10F0370170C7C2D0031FE64 /* KWBeSubclassOfClassMatcherTest.m in Sources */ = {isa = PBXBuildFile; fileRef = C10F036D170C7C190031FE64 /* KWBeSubclassOfClassMatcherTest.m */; };
 		C533F7D317462CAA000CAB02 /* KWSymbolicator.h in Headers */ = {isa = PBXBuildFile; fileRef = C533F7D117462CAA000CAB02 /* KWSymbolicator.h */; };
 		C533F7D417462CAA000CAB02 /* KWSymbolicator.h in Headers */ = {isa = PBXBuildFile; fileRef = C533F7D117462CAA000CAB02 /* KWSymbolicator.h */; };
@@ -935,8 +934,7 @@
 			dstPath = "${PRODUCT_NAME}";
 			dstSubfolderSpec = 16;
 			files = (
-				BA94F59618B928ED00984C43 /* KWNotificationMatcher.h in CopyFiles */,
-				881B8F6E18C30AC800541AA3 /* KWSuiteConfigurationBase.h in CopyFiles */,
+				BA8BD49C18E25AE400B6A8DA /* KWNotificationMatcher.h in CopyFiles */,
 				88E0EC581852D514008E998A /* KWLet.h in CopyFiles */,
 				DA084E1217E3838100592D5A /* Kiwi.h in CopyFiles */,
 				DA084E1317E3838100592D5A /* KiwiBlockMacros.h in CopyFiles */,
