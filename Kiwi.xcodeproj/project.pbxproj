@@ -2296,7 +2296,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "xcodebuild -project ${PROJECT_NAME}.xcodeproj -sdk iphonesimulator7.0 -scheme ${PROJECT_NAME} -configuration ${CONFIGURATION} build ARCHS=i386\nxcodebuild -project ${PROJECT_NAME}.xcodeproj -sdk iphonesimulator7.0 -scheme ${PROJECT_NAME} -configuration ${CONFIGURATION} build ARCHS='x86_64' VALID_ARCHS='x86_64' IPHONEOS_DEPLOYMENT_TARGET='7.0' TARGET_BUILD_DIR=\"${BUILD_DIR}/${CONFIGURATION}-iphonesimulator-64\" BUILT_PRODUCTS_DIR=\"${BUILD_DIR}/${CONFIGURATION}-iphonesimulator-64\"\nxcodebuild -project ${PROJECT_NAME}.xcodeproj -sdk iphoneos -scheme ${PROJECT_NAME} -configuration ${CONFIGURATION} build ARCHS=\"${ARCHS_STANDARD_INCLUDING_64_BIT}\"";
+			shellScript = "xcodebuild -project ${PROJECT_NAME}.xcodeproj -sdk iphonesimulator -scheme ${PROJECT_NAME} -configuration ${CONFIGURATION} build ARCHS=i386\nxcodebuild -project ${PROJECT_NAME}.xcodeproj -sdk iphonesimulator -scheme ${PROJECT_NAME} -configuration ${CONFIGURATION} build ARCHS='x86_64' VALID_ARCHS='x86_64' IPHONEOS_DEPLOYMENT_TARGET='7.0' TARGET_BUILD_DIR=\"${BUILD_DIR}/${CONFIGURATION}-iphonesimulator-64\" BUILT_PRODUCTS_DIR=\"${BUILD_DIR}/${CONFIGURATION}-iphonesimulator-64\"\nxcodebuild -project ${PROJECT_NAME}.xcodeproj -sdk iphoneos -scheme ${PROJECT_NAME} -configuration ${CONFIGURATION} build ARCHS=\"${ARCHS_STANDARD_INCLUDING_64_BIT}\"";
 			showEnvVarsInLog = 0;
 		};
 		6BC17EC9155E3A84000B3AA4 /* Assemble Framework */ = {
