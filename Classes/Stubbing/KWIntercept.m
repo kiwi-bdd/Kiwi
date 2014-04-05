@@ -261,7 +261,9 @@ void KWAssociateObjectStub(id anObject, KWStub *aStub, BOOL overrideExisting) {
         }
     }
 
-    [stubs addObject:aStub];
+    if (overrideExisting == YES) {
+        [stubs addObject:aStub];
+    }
 }
 
 void KWClearObjectStubs(id anObject) {
