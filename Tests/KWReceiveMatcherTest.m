@@ -107,11 +107,11 @@
 }
 
 - (void)testItShouldNotStubForReceive {
-  id subject  = [Cruiser cruiser];
-  id matcher = [KWReceiveMatcher matcherWithSubject:subject];
-  [matcher receive:@selector(crewComplement)];
-  NSUInteger value = [subject crewComplement];
-  STAssertTrue(value == 1010, @"expected method to not be stubbed");
+    id subject  = [Cruiser cruiser];
+    id matcher = [KWReceiveMatcher matcherWithSubject:subject];
+    [matcher receive:@selector(crewComplement)];
+    NSUInteger value = [subject crewComplement];
+    STAssertTrue(value == 1010, @"expected method to not be stubbed");
 }
 
 - (void)testItShouldNotOverrideExistingStub {
