@@ -35,8 +35,9 @@ static NSString * const ChangeStubValueAfterTimesKey = @"ChangeStubValueAfterTim
 #pragma mark - Initializing
 
 - (id)init {
+    self = [super init];
     // May already have been initialized since stubbing -init is allowed!
-    if (self.stubs != nil) {
+    if (self && self.stubs != nil) {
         KWMessagePattern *messagePattern = [KWMessagePattern messagePatternWithSelector:_cmd];
         [self expectMessagePattern:messagePattern];
         NSInvocation *invocation = [NSInvocation invocationWithTarget:self selector:_cmd];
@@ -49,108 +50,71 @@ static NSString * const ChangeStubValueAfterTimesKey = @"ChangeStubValueAfterTim
             return self;
         }
     }
-
-    return [self initAsNullMock:NO withName:nil forClass:nil protocol:nil];
-}
-
-- (id)initForClass:(Class)aClass {
-    return [self initAsNullMock:NO withName:nil forClass:aClass protocol:nil];
-}
-
-- (id)initForProtocol:(Protocol *)aProtocol {
-    return [self initAsNullMock:NO withName:nil forClass:nil protocol:aProtocol];
-}
-
-- (id)initWithName:(NSString *)aName forClass:(Class)aClass {
-    return [self initAsNullMock:NO withName:aName forClass:aClass protocol:nil];
-}
-
-- (id)initWithName:(NSString *)aName forProtocol:(Protocol *)aProtocol {
-    return [self initAsNullMock:NO withName:aName forClass:nil protocol:aProtocol];
-}
-
-- (id)initAsNullMockForClass:(Class)aClass {
-    return [self initAsNullMock:YES withName:nil forClass:aClass protocol:nil];
-}
-
-- (id)initAsNullMockForProtocol:(Protocol *)aProtocol {
-    return [self initAsNullMock:YES withName:nil forClass:nil protocol:aProtocol];
-}
-
-- (id)initAsNullMockWithName:(NSString *)aName forClass:(Class)aClass {
-    return [self initAsNullMock:YES withName:aName forClass:aClass protocol:nil];
-}
-
-- (id)initAsNullMockWithName:(NSString *)aName forProtocol:(Protocol *)aProtocol {
-    return [self initAsNullMock:YES withName:aName forClass:nil protocol:aProtocol];
+    [self setupAsNullMock:NO withName:nil forClass:nil protocol:nil];
+    return self;
 }
 
 - (id)initAsNullMock:(BOOL)nullMockFlag withName:(NSString *)aName forClass:(Class)aClass protocol:(Protocol *)aProtocol {
     self = [super init];
     if (self) {
-        _isNullMock = nullMockFlag;
-        _mockName = [aName copy];
-        _mockedClass = aClass;
-        _mockedProtocol = aProtocol;
-        _stubs = [[NSMutableArray alloc] init];
-        _expectedMessagePatterns = [[NSMutableArray alloc] init];
-        _messageSpies = [NSMapTable mapTableWithKeyOptions:NSMapTableStrongMemory valueOptions:NSMapTableStrongMemory];
+        [self setupAsNullMock:nullMockFlag withName:aName forClass:aClass protocol:aProtocol];
     }
-
     return self;
 }
 
-- (id)initAsPartialMockForObject:(id)object {
-    return [self initAsPartialMockWithName:nil forObject:object];
-}
-
-- (id)initAsPartialMockWithName:(NSString *)aName forObject:(id)object {
-    self = [self initAsNullMock:YES withName:aName forClass:[object class] protocol:nil];
-    if (self) {
-        _isPartialMock = YES;
-        _mockedObject = object;
-    }
-    return self;
+- (void)setupAsNullMock:(BOOL)nullMockFlag withName:(NSString *)aName forClass:(Class)aClass protocol:(Protocol *)aProtocol {
+    _isNullMock = nullMockFlag;
+    _mockName = [aName copy];
+    _mockedClass = aClass;
+    _mockedProtocol = aProtocol;
+    _stubs = [[NSMutableArray alloc] init];
+    _expectedMessagePatterns = [[NSMutableArray alloc] init];
+    _messageSpies = [NSMapTable mapTableWithKeyOptions:NSMapTableStrongMemory valueOptions:NSMapTableStrongMemory];
 }
 
 + (id)mockForClass:(Class)aClass {
-    return [[self alloc] initForClass:aClass];
+    return [[self alloc] initAsNullMock:NO withName:nil forClass:aClass protocol:nil];
 }
 
 + (id)mockForProtocol:(Protocol *)aProtocol {
-    return [[self alloc] initForProtocol:aProtocol];
+    return [[self alloc] initAsNullMock:NO withName:nil forClass:nil protocol:aProtocol];
 }
 
 + (id)mockWithName:(NSString *)aName forClass:(Class)aClass {
-    return [[self alloc] initWithName:aName forClass:aClass];
+    return [[self alloc] initAsNullMock:NO withName:aName forClass:aClass protocol:nil];
 }
 
 + (id)mockWithName:(NSString *)aName forProtocol:(Protocol *)aProtocol {
-    return [[self alloc] initWithName:aName forProtocol:aProtocol];
+    return [[self alloc] initAsNullMock:NO withName:aName forClass:nil protocol:aProtocol];
 }
 
 + (id)nullMockForClass:(Class)aClass {
-    return [[self alloc] initAsNullMockForClass:aClass];
+    return [[self alloc] initAsNullMock:YES withName:nil forClass:aClass protocol:nil];
 }
 
 + (id)nullMockForProtocol:(Protocol *)aProtocol {
-    return [[self alloc] initAsNullMockForProtocol:aProtocol];
+    return [[self alloc] initAsNullMock:YES withName:nil forClass:nil protocol:aProtocol];
 }
 
 + (id)nullMockWithName:(NSString *)aName forClass:(Class)aClass {
-    return [[self alloc] initAsNullMockWithName:aName forClass:aClass];
+    return [[self alloc] initAsNullMock:YES withName:aName forClass:aClass protocol:nil];
 }
 
 + (id)nullMockWithName:(NSString *)aName forProtocol:(Protocol *)aProtocol {
-    return [[self alloc] initAsNullMockWithName:aName forProtocol:aProtocol];
+    return [[self alloc] initAsNullMock:YES withName:aName forClass:nil protocol:aProtocol];
 }
 
 + (id)partialMockWithName:(NSString *)aName forObject:(id)object {
-    return [[self alloc] initAsPartialMockWithName:aName forObject:object];
+    KWMock *result  = [[self alloc ] initAsNullMock:YES withName:aName forClass:[object class] protocol:nil];
+    if (result) {
+        result->_isPartialMock = YES;
+        result->_mockedObject = object;
+    }
+    return result;
 }
 
 + (id)partialMockForObject:(id)object {
-    return [[self alloc] initAsPartialMockForObject:object];
+    return [self partialMockWithName:nil forObject:object];
 }
 
 #pragma mark - Getting Transitive Closure For Mocked Protocols

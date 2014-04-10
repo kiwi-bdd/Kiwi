@@ -17,19 +17,6 @@
 
 #pragma mark - Initializing
 
-- (id)initForClass:(Class)aClass;
-- (id)initForProtocol:(Protocol *)aProtocol;
-- (id)initWithName:(NSString *)aName forClass:(Class)aClass;
-- (id)initWithName:(NSString *)aName forProtocol:(Protocol *)aProtocol;
-
-- (id)initAsNullMockForClass:(Class)aClass;
-- (id)initAsNullMockForProtocol:(Protocol *)aProtocol;
-- (id)initAsNullMockWithName:(NSString *)aName forClass:(Class)aClass;
-- (id)initAsNullMockWithName:(NSString *)aName forProtocol:(Protocol *)aProtocol;
-
-- (id)initAsPartialMockForObject:(id)object;
-- (id)initAsPartialMockWithName:(NSString *)aName forObject:(id)object;
-
 + (id)mockForClass:(Class)aClass;
 + (id)mockForProtocol:(Protocol *)aProtocol;
 + (id)mockWithName:(NSString *)aName forClass:(Class)aClass;

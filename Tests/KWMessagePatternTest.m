@@ -175,6 +175,12 @@
     STAssertFalse([messagePattern2 isEqual:messagePattern1], @"expected message patterns to compare as not equal");
 }
 
+- (void)testMessagePatternWithSelectorConvenienceMethod{
+    KWMessagePattern *messagePattern = [KWMessagePattern messagePatternWithSelector:@selector(characterAtIndex:)];
+    STAssertEquals(messagePattern.selector, @selector(characterAtIndex:), @"Unexpected selector");
+    STAssertEquals(messagePattern.argumentFilters.count, (NSUInteger)0, @"Unexpected argument filter count");
+}
+
 @end
 
 #endif // #if KW_TESTS_ENABLED

@@ -18,10 +18,6 @@
 
 #pragma mark - Initializing
 
-- (id)initWithSelector:(SEL)aSelector {
-    return [self initWithSelector:aSelector argumentFilters:nil];
-}
-
 - (id)initWithSelector:(SEL)aSelector argumentFilters:(NSArray *)anArray {
     self = [super init];
     if (self) {
@@ -34,23 +30,8 @@
     return self;
 }
 
-- (id)initWithSelector:(SEL)aSelector firstArgumentFilter:(id)firstArgumentFilter argumentList:(va_list)argumentList {
-    NSUInteger count = KWSelectorParameterCount(aSelector);
-    NSMutableArray *array = [NSMutableArray arrayWithCapacity:count];
-    [array addObject:(firstArgumentFilter != nil) ? firstArgumentFilter : [KWNull null]];
-
-    for (NSUInteger i = 1; i < count; ++i)
-    {
-        id object = va_arg(argumentList, id);
-        [array addObject:(object != nil) ? object : [KWNull null]];
-    }
-
-    va_end(argumentList);
-    return [self initWithSelector:aSelector argumentFilters:array];
-}
-
 + (id)messagePatternWithSelector:(SEL)aSelector {
-    return [self messagePatternWithSelector:aSelector argumentFilters:nil];
+    return [[self alloc] initWithSelector:aSelector argumentFilters:nil];
 }
 
 + (id)messagePatternWithSelector:(SEL)aSelector argumentFilters:(NSArray *)anArray {
@@ -58,7 +39,18 @@
 }
 
 + (id)messagePatternWithSelector:(SEL)aSelector firstArgumentFilter:(id)firstArgumentFilter argumentList:(va_list)argumentList {
-    return [[[self alloc] initWithSelector:aSelector firstArgumentFilter:firstArgumentFilter argumentList:argumentList] autorelease];
+    NSUInteger count = KWSelectorParameterCount(aSelector);
+    NSMutableArray *array = [NSMutableArray arrayWithCapacity:count];
+    [array addObject:(firstArgumentFilter != nil) ? firstArgumentFilter : [KWNull null]];
+    
+    for (NSUInteger i = 1; i < count; ++i)
+    {
+        id object = va_arg(argumentList, id);
+        [array addObject:(object != nil) ? object : [KWNull null]];
+    }
+    
+    va_end(argumentList);
+    return [[[self alloc] initWithSelector:aSelector argumentFilters:array] autorelease];
 }
 
 + (id)messagePatternFromInvocation:(NSInvocation *)anInvocation {
@@ -74,7 +66,7 @@
 			void* argumentDataBuffer = malloc(KWObjCTypeLength(type));
 			[anInvocation getMessageArgument:argumentDataBuffer atIndex:i];
 			id object = nil;
-			if(*(id*)argumentDataBuffer != [KWAny any] && !KWObjCTypeIsObject(type)) {
+			if(*(id*)argumentDataBuffer != [KWAny any] && !KWObjCTypeIsObject(type) && !KWObjCTypeIsClass(type)) {
                 NSData *data = [anInvocation messageArgumentDataAtIndex:i];
                 object = [KWValue valueWithBytes:[data bytes] objCType:type];
             } else {

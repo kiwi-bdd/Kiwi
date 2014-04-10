@@ -22,13 +22,6 @@
     return self;
 }
 
-- (id)initWithCallSite:(KWCallSite *)aCallSite format:(NSString *)format, ... {
-    va_list argumentList;
-    va_start(argumentList, format);
-    NSString *aMessage = [[NSString alloc] initWithFormat:format arguments:argumentList];
-    return [self initWithCallSite:aCallSite message:aMessage];
-}
-
 + (id)failureWithCallSite:(KWCallSite *)aCallSite message:(NSString *)aMessage {
     return [[self alloc] initWithCallSite:aCallSite message:aMessage];
 }
@@ -37,7 +30,7 @@
     va_list argumentList;
     va_start(argumentList, format);
     NSString *message = [[NSString alloc] initWithFormat:format arguments:argumentList];
-    return [self failureWithCallSite:aCallSite message:message];
+    return [[self alloc] initWithCallSite:aCallSite message:message];
 }
 
 #pragma mark - Getting Exception Representations

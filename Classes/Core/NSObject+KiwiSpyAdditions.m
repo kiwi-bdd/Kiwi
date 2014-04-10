@@ -14,14 +14,14 @@
 
 - (KWCaptureSpy *)captureArgument:(SEL)selector atIndex:(NSUInteger)index {
     KWCaptureSpy *spy = [[KWCaptureSpy alloc] initWithArgumentIndex:index];
-    KWMessagePattern *pattern = [[KWMessagePattern alloc] initWithSelector:selector];
+    KWMessagePattern *pattern = [KWMessagePattern messagePatternWithSelector:selector];
     [self addMessageSpy:spy forMessagePattern:pattern];
     return spy;
 }
 
 + (KWCaptureSpy *)captureArgument:(SEL)selector atIndex:(NSUInteger)index {
     KWCaptureSpy *spy = [[KWCaptureSpy alloc] initWithArgumentIndex:index];
-    KWMessagePattern *pattern = [[KWMessagePattern alloc] initWithSelector:selector];
+    KWMessagePattern *pattern = [KWMessagePattern messagePatternWithSelector:selector];
     [self addMessageSpy:spy forMessagePattern:pattern];
     return spy;
 }

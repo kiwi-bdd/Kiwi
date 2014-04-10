@@ -12,10 +12,6 @@
 
 #pragma mark - Initializing
 
-- (id)initWithDelegate:(id)aDelegate {
-    return [self initWithDelegate:aDelegate userInfo:nil];
-}
-
 - (id)initWithDelegate:(id)aDelegate userInfo:(NSDictionary *)aUserInfo {
     delegate = aDelegate;
     userInfo = aUserInfo;
@@ -23,7 +19,7 @@
 }
 
 + (id)invocationCapturerWithDelegate:(id)aDelegate {
-    return [self invocationCapturerWithDelegate:aDelegate userInfo:nil];
+    return [[self alloc] initWithDelegate:aDelegate userInfo:nil];
 }
 
 + (id)invocationCapturerWithDelegate:(id)aDelegate userInfo:(NSDictionary *)aUserInfo {

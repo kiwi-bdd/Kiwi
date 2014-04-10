@@ -12,7 +12,6 @@
 
 #pragma mark - Initializing
 
-- (id)initWithDelegate:(id)aDelegate;
 - (id)initWithDelegate:(id)aDelegate userInfo:(NSDictionary *)aUserInfo;
 
 + (id)invocationCapturerWithDelegate:(id)aDelegate;

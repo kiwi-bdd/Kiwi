@@ -379,6 +379,116 @@
     STAssertTrue(called, @"expected setValue:forKeyPath: to be stubbed");
 }
 
+- (void)testMockForClassConvenienceMethod{
+    Class aClass = [self class];
+    KWMock *mock = [KWMock mockForClass:aClass];
+    STAssertNotNil(mock, @"Expected mock to not be nil");
+    STAssertFalse(mock.isNullMock, @"Expected a not null mock");
+    STAssertFalse(mock.isPartialMock, @"Expected a not partial mock");
+    STAssertNil(mock.mockName, @"Expected a nil mock name");
+    STAssertEquals(mock.mockedClass, aClass, @"Unexpected mocked class");
+    STAssertNil(mock.mockedProtocol, @"Expected a nil mocked protocol");
+}
+
+- (void)testMockForProtocolConvenienceMethod{
+    Protocol *aProtocol = @protocol(NSObject);
+    KWMock *mock = [KWMock mockForProtocol:aProtocol];
+    STAssertNotNil(mock, @"Expected mock to not be nil");
+    STAssertFalse(mock.isNullMock, @"Expected a not null mock");
+    STAssertFalse(mock.isPartialMock, @"Expected a not partial mock");
+    STAssertNil(mock.mockName, @"Expected a nil mock name");
+    STAssertNil(mock.mockedClass, @"Expected a nil mocked class");
+    STAssertEquals(mock.mockedProtocol, aProtocol, @"Unexpected mocked protocol");
+}
+
+- (void)testMockWithNameForClassConvenienceMethod{
+    Class aClass = [self class];
+    KWMock *mock = [KWMock mockWithName:@"mockName" forClass:aClass];
+    STAssertNotNil(mock, @"Expected mock to not be nil");
+    STAssertFalse(mock.isNullMock, @"Expected a not null mock");
+    STAssertFalse(mock.isPartialMock, @"Expected a not partial mock");
+    STAssertEqualObjects(mock.mockName, @"mockName", @"Unexpected mock name");
+    STAssertEquals(mock.mockedClass, aClass, @"Unexpected mocked class");
+    STAssertNil(mock.mockedProtocol, @"Expected a nil mocked protocol");
+}
+
+- (void)testMockWithNameForProtocolConvenienceMethod{
+    Protocol *aProtocol = @protocol(NSObject);
+    KWMock *mock = [KWMock mockWithName:@"mockName2" forProtocol:aProtocol];
+    STAssertNotNil(mock, @"Expected mock to not be nil");
+    STAssertFalse(mock.isNullMock, @"Expected a not null mock");
+    STAssertFalse(mock.isPartialMock, @"Expected a not partial mock");
+    STAssertEqualObjects(mock.mockName, @"mockName2", @"Unexpected mock name");
+    STAssertNil(mock.mockedClass, @"Expected a nil mocked class");
+    STAssertEquals(mock.mockedProtocol, aProtocol, @"Unexpected mocked protocol");
+}
+
+- (void)testNullMockForClassConvenienceMethod{
+    Class aClass = [self class];
+    KWMock *mock = [KWMock nullMockForClass:aClass];
+    STAssertNotNil(mock, @"Expected mock to not be nil");
+    STAssertTrue(mock.isNullMock, @"Expected a null mock");
+    STAssertFalse(mock.isPartialMock, @"Expected a not partial mock");
+    STAssertNil(mock.mockName, @"Expected a nil mock name");
+    STAssertEquals(mock.mockedClass, aClass, @"Unexpected mocked class");
+    STAssertNil(mock.mockedProtocol, @"Expected a nil mocked protocol");
+}
+
+- (void)testNullMockForProtocolConvenienceMethod{
+    Protocol *aProtocol = @protocol(NSObject);
+    KWMock *mock = [KWMock nullMockForProtocol:aProtocol];
+    STAssertNotNil(mock, @"Expected mock to not be nil");
+    STAssertTrue(mock.isNullMock, @"Expected a null mock");
+    STAssertFalse(mock.isPartialMock, @"Expected a not partial mock");
+    STAssertNil(mock.mockName, @"Expected a nil mock name");
+    STAssertNil(mock.mockedClass, @"Expected a nil mocked class");
+    STAssertEquals(mock.mockedProtocol, aProtocol, @"Unexpected mocked protocol");
+}
+
+- (void)testNullMockWithNameForClassConvenienceMethod{
+    Class aClass = [self class];
+    KWMock *mock = [KWMock nullMockWithName:@"mockName3" forClass:aClass];
+    STAssertNotNil(mock, @"Expected mock to not be nil");
+    STAssertTrue(mock.isNullMock, @"Expected a null mock");
+    STAssertFalse(mock.isPartialMock, @"Expected a not partial mock");
+    STAssertEqualObjects(mock.mockName, @"mockName3", @"Unexpected mock name");
+    STAssertEquals(mock.mockedClass, aClass, @"Unexpected mocked class");
+    STAssertNil(mock.mockedProtocol, @"Expected a nil mocked protocol");
+}
+
+- (void)testNullMockWithNameForProtocolConvenienceMethod{
+    Protocol *aProtocol = @protocol(NSObject);
+    KWMock *mock = [KWMock nullMockWithName:@"mockName4" forProtocol:aProtocol];
+    STAssertNotNil(mock, @"Expected mock to not be nil");
+    STAssertTrue(mock.isNullMock, @"Expected not null mock");
+    STAssertFalse(mock.isPartialMock, @"Expected a not partial mock");
+    STAssertEqualObjects(mock.mockName, @"mockName4", @"Unexpected mock name");
+    STAssertNil(mock.mockedClass, @"Expected a nil mocked class");
+    STAssertEquals(mock.mockedProtocol, aProtocol, @"Unexpected mocked protocol");
+}
+
+- (void)testPartialMockWithNameForObjectConvenienceMethod{
+    Cruiser *cruiser = [Cruiser new];
+    KWMock *mock = [KWMock partialMockWithName:@"mockName5" forObject:cruiser];
+    STAssertNotNil(mock, @"Expected mock to not be nil");
+    STAssertTrue(mock.isNullMock, @"Expected a null mock");
+    STAssertTrue(mock.isPartialMock, @"Expected a partial mock");
+    STAssertEqualObjects(mock.mockName, @"mockName5", @"Unexpected mock name");
+    STAssertEquals(mock.mockedObject, cruiser, @"Unexpected mocked class");
+    STAssertNil(mock.mockedProtocol, @"Expected a nil mocked protocol");
+}
+
+- (void)testPartialMockForObjectConvenienceMethod{
+    Cruiser *cruiser = [Cruiser new];
+    KWMock *mock = [KWMock partialMockForObject:cruiser];
+    STAssertNotNil(mock, @"Expected mock to not be nil");
+    STAssertTrue(mock.isNullMock, @"Expected a null mock");
+    STAssertTrue(mock.isPartialMock, @"Expected a partial mock");
+    STAssertNil(mock.mockName, @"Expected a nil mock name");
+    STAssertEquals(mock.mockedObject, cruiser, @"Unexpected mocked class");
+    STAssertNil(mock.mockedProtocol, @"Expected a nil mocked protocol");
+}
+
 @end
 
 #endif // #if KW_TESTS_ENABLED

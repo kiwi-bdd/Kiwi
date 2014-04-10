@@ -11,6 +11,7 @@
 #import "KWValue.h"
 
 #import "NSInvocation+OCMAdditions.h"
+#import "NSString+KiwiAdditions.h"
 
 @interface KWStub(){}
 @property (nonatomic, copy) id (^block)(NSArray *params);
@@ -19,10 +20,6 @@
 @implementation KWStub
 
 #pragma mark - Initializing
-
-- (id)initWithMessagePattern:(KWMessagePattern *)aMessagePattern {
-    return [self initWithMessagePattern:aMessagePattern value:nil];
-}
 
 - (id)initWithMessagePattern:(KWMessagePattern *)aMessagePattern value:(id)aValue {
     self = [super init];
@@ -37,7 +34,7 @@
     self = [super init];
     if (self) {
         messagePattern = aMessagePattern;
-        _block = aBlock;
+        _block = [aBlock copy];
     }
     return self;
 }
@@ -54,7 +51,7 @@
 }
 
 + (id)stubWithMessagePattern:(KWMessagePattern *)aMessagePattern {
-    return [self stubWithMessagePattern:aMessagePattern value:nil];
+    return [[self alloc] initWithMessagePattern:aMessagePattern value:nil];
 }
 
 + (id)stubWithMessagePattern:(KWMessagePattern *)aMessagePattern value:(id)aValue {
@@ -156,10 +153,10 @@
     // To conform to memory management conventions, retain if writing a result
     // that begins with alloc, new or contains copy. This shows up as a false
     // positive in clang due to the runtime conditional, so ignore it.
-    if (KWStringHasWordPrefix(selectorString, @"alloc") ||
-        KWStringHasWordPrefix(selectorString, @"new") ||
-        KWStringHasWord(selectorString, @"copy") ||
-        KWStringHasWord(selectorString, @"Copy")) {
+    if ([selectorString belongsToMethodFamily:@"alloc"] ||
+        [selectorString belongsToMethodFamily:@"new"] ||
+        [selectorString belongsToMethodFamily:@"copy"] ||
+        [selectorString belongsToMethodFamily:@"mutableCopy"]) {
 
         // NOTE: this should be done in a better way.
         // If you don't understand it, it's basically just a -performSelector: call
