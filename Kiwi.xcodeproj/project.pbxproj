@@ -490,12 +490,12 @@
 		A352E9E812EDC30A0049C691 /* KWHaveValueMatcherTest.m in Sources */ = {isa = PBXBuildFile; fileRef = A352E9E712EDC30A0049C691 /* KWHaveValueMatcherTest.m */; };
 		A352EA1B12EDC8380049C691 /* KWGenericMatcherTest.m in Sources */ = {isa = PBXBuildFile; fileRef = A352EA1A12EDC8380049C691 /* KWGenericMatcherTest.m */; };
 		A385CAE813AA7EA200DCA951 /* KWUserDefinedMatcherTest.m in Sources */ = {isa = PBXBuildFile; fileRef = A385CAE713AA7EA200DCA951 /* KWUserDefinedMatcherTest.m */; };
-		BA8BD49C18E25AE400B6A8DA /* KWNotificationMatcher.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = DAA1B3AD18CF25C00015CF7A /* KWNotificationMatcher.h */; };
 		C10F0370170C7C2D0031FE64 /* KWBeSubclassOfClassMatcherTest.m in Sources */ = {isa = PBXBuildFile; fileRef = C10F036D170C7C190031FE64 /* KWBeSubclassOfClassMatcherTest.m */; };
 		C533F7D317462CAA000CAB02 /* KWSymbolicator.h in Headers */ = {isa = PBXBuildFile; fileRef = C533F7D117462CAA000CAB02 /* KWSymbolicator.h */; };
 		C533F7D417462CAA000CAB02 /* KWSymbolicator.h in Headers */ = {isa = PBXBuildFile; fileRef = C533F7D117462CAA000CAB02 /* KWSymbolicator.h */; };
 		C533F7D517462CAA000CAB02 /* KWSymbolicator.m in Sources */ = {isa = PBXBuildFile; fileRef = C533F7D217462CAA000CAB02 /* KWSymbolicator.m */; };
 		C533F7D617462CAA000CAB02 /* KWSymbolicator.m in Sources */ = {isa = PBXBuildFile; fileRef = C533F7D217462CAA000CAB02 /* KWSymbolicator.m */; };
+		C5B529F918EEF6D50065384C /* KWNotificationMatcher.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = DAA1B3AD18CF25C00015CF7A /* KWNotificationMatcher.h */; };
 		C931D36E18AB2DEB005BC184 /* KWBeZeroMatcherTest.m in Sources */ = {isa = PBXBuildFile; fileRef = C931D36D18AB2DEB005BC184 /* KWBeZeroMatcherTest.m */; };
 		DA084D4017E3804200592D5A /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA084D3F17E3804200592D5A /* XCTest.framework */; };
 		DA084D4117E3804200592D5A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
@@ -934,7 +934,7 @@
 			dstPath = "${PRODUCT_NAME}";
 			dstSubfolderSpec = 16;
 			files = (
-				BA8BD49C18E25AE400B6A8DA /* KWNotificationMatcher.h in CopyFiles */,
+				C5B529F918EEF6D50065384C /* KWNotificationMatcher.h in CopyFiles */,
 				88E0EC581852D514008E998A /* KWLet.h in CopyFiles */,
 				DA084E1217E3838100592D5A /* Kiwi.h in CopyFiles */,
 				DA084E1317E3838100592D5A /* KiwiBlockMacros.h in CopyFiles */,
@@ -2318,7 +2318,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "xcodebuild -project ${PROJECT_NAME}.xcodeproj -sdk iphonesimulator7.0 -scheme ${PROJECT_NAME} -configuration ${CONFIGURATION} build ARCHS=i386\nxcodebuild -project ${PROJECT_NAME}.xcodeproj -sdk iphonesimulator7.0 -scheme ${PROJECT_NAME} -configuration ${CONFIGURATION} build ARCHS='x86_64' VALID_ARCHS='x86_64' IPHONEOS_DEPLOYMENT_TARGET='7.0' TARGET_BUILD_DIR=\"${BUILD_DIR}/${CONFIGURATION}-iphonesimulator-64\" BUILT_PRODUCTS_DIR=\"${BUILD_DIR}/${CONFIGURATION}-iphonesimulator-64\"\nxcodebuild -project ${PROJECT_NAME}.xcodeproj -sdk iphoneos -scheme ${PROJECT_NAME} -configuration ${CONFIGURATION} build ARCHS=\"${ARCHS_STANDARD_INCLUDING_64_BIT}\"";
+			shellScript = "xcodebuild -project ${PROJECT_NAME}.xcodeproj -sdk iphonesimulator -scheme ${PROJECT_NAME} -configuration ${CONFIGURATION} build ARCHS=i386\nxcodebuild -project ${PROJECT_NAME}.xcodeproj -sdk iphonesimulator -scheme ${PROJECT_NAME} -configuration ${CONFIGURATION} build ARCHS='x86_64' VALID_ARCHS='x86_64' IPHONEOS_DEPLOYMENT_TARGET='7.0' TARGET_BUILD_DIR=\"${BUILD_DIR}/${CONFIGURATION}-iphonesimulator-64\" BUILT_PRODUCTS_DIR=\"${BUILD_DIR}/${CONFIGURATION}-iphonesimulator-64\"\nxcodebuild -project ${PROJECT_NAME}.xcodeproj -sdk iphoneos -scheme ${PROJECT_NAME} -configuration ${CONFIGURATION} build ARCHS=\"${ARCHS_STANDARD_INCLUDING_64_BIT}\"";
 			showEnvVarsInLog = 0;
 		};
 		6BC17EC9155E3A84000B3AA4 /* Assemble Framework */ = {
