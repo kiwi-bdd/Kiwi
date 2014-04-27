@@ -14,7 +14,7 @@ BOOL KWObjCTypeIsFloatingPoint(const char *objCType);
 BOOL KWObjCTypeIsIntegral(const char *objCType);
 BOOL KWObjCTypeIsSignedIntegral(const char *objCType);
 BOOL KWObjCTypeIsUnsignedIntegral(const char *objCType);
-BOOL KWObjCTypeIsBool(const char *objCType);
+BOOL KWObjCTypeIsBoolean(const char *objCType);
 BOOL KWObjCTypeIsObject(const char *objCType);
 BOOL KWObjCTypeIsCharString(const char *objCType);
 BOOL KWObjCTypeIsClass(const char *objCType);

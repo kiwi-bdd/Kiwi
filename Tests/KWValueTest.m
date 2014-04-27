@@ -93,10 +93,23 @@
     STAssertEquals(boolValue, (BOOL)value, @"expected value to convert wrapped value to bool");
 }
 
+- (void)testItShouldRaiseIfConvertingNonNumericToBool {
+    NSRange range = (NSRange){ .location = 1, .length = 2 };
+    KWValue *value = [KWValue valueWithBytes:&range objCType:@encode(NSRange)];
+    STAssertThrows([value boolValue], @"expected value to raise when comvertic non-numeric wrapped value to BOOL");
+}
+
+- (void)testItShouldConvertStdBoolToBoolValues {
+    bool value = true;
+    KWValue *wrappedValue = [KWValue valueWithBytes:&value objCType:@encode(bool)];
+    BOOL boolValue = [wrappedValue boolValue];
+    STAssertEquals(boolValue, (BOOL)value, @"expected value to convert stdbool value to BOOL");
+}
+
 - (void)testItShouldReturnStructDataValues {
     NSRange range;
     range.location = 0;
-    range.location = 1;
+    range.length = 1;
     KWValue *wrappedValue = [KWValue valueWithBytes:&range objCType:@encode(NSRange)];
     NSData *data = [wrappedValue dataValue];
     NSRange result = *(NSRange *)[data bytes];
