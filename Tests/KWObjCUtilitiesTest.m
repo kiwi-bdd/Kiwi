@@ -17,16 +17,21 @@
 
 @implementation KWObjCUtilitiesTest
 
-#pragma mark KWObjCTypeIsBool
+#pragma mark KWObjCTypeIsBoolean
 
-- (void)testItRecognizesBoolObjCTypes {
-    STAssertTrue(KWObjCTypeIsBool(@encode(BOOL)),
-                 @"Expected BOOL type to be evaluated as a BOOL.");
+- (void)testBOOLIsABoolean {
+    STAssertTrue(KWObjCTypeIsBoolean(@encode(BOOL)),
+                 @"Expected BOOL to be evaluated as a boolean.");
 }
 
-- (void)testItRecognizesNonBoolObjCTypes {
-    STAssertFalse(KWObjCTypeIsBool(@encode(int)),
-                  @"Did not expect int type to be evaluated as a BOOL.");
+- (void)testStdBoolIsABoolean {
+    STAssertTrue(KWObjCTypeIsBoolean(@encode(bool)),
+                 @"Expected bool to be evaluated as a boolean.");
+}
+
+- (void)testIntIsNotABoolean {
+    STAssertFalse(KWObjCTypeIsBoolean(@encode(int)),
+                  @"Did not expect int type to be evaluated as a boolean.");
 }
 
 #pragma mark KWSelectorParameterCount

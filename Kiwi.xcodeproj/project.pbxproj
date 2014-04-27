@@ -771,6 +771,7 @@
 		DA3EAD0A18A86E5600EBBF57 /* KWUserDefinedMatcherFunctionalTest.m in Sources */ = {isa = PBXBuildFile; fileRef = DA3EAD0918A86E5600EBBF57 /* KWUserDefinedMatcherFunctionalTest.m */; };
 		DA92B2A617E6A3EF0062F84D /* SenTestSuite+KiwiAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = DA92B2A417E6A3EF0062F84D /* SenTestSuite+KiwiAdditions.h */; };
 		DA92B2A717E6A3EF0062F84D /* SenTestSuite+KiwiAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = DA92B2A517E6A3EF0062F84D /* SenTestSuite+KiwiAdditions.m */; };
+		DA9C69F8190CA6EE002C4DC0 /* NSNumber_KiwiAdditionsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = DA9C69F7190CA6EE002C4DC0 /* NSNumber_KiwiAdditionsTests.m */; };
 		DAA1B3AF18CF25C00015CF7A /* KWNotificationMatcher.h in Headers */ = {isa = PBXBuildFile; fileRef = DAA1B3AD18CF25C00015CF7A /* KWNotificationMatcher.h */; };
 		DAA1B3B018CF25C00015CF7A /* KWNotificationMatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = DAA1B3AE18CF25C00015CF7A /* KWNotificationMatcher.m */; };
 		DAA1B3B118CF29770015CF7A /* KWNotificationMatcher.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = DAA1B3AD18CF25C00015CF7A /* KWNotificationMatcher.h */; };
@@ -1269,6 +1270,7 @@
 		DA3EAD0918A86E5600EBBF57 /* KWUserDefinedMatcherFunctionalTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KWUserDefinedMatcherFunctionalTest.m; sourceTree = "<group>"; };
 		DA92B2A417E6A3EF0062F84D /* SenTestSuite+KiwiAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SenTestSuite+KiwiAdditions.h"; sourceTree = "<group>"; };
 		DA92B2A517E6A3EF0062F84D /* SenTestSuite+KiwiAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SenTestSuite+KiwiAdditions.m"; sourceTree = "<group>"; };
+		DA9C69F7190CA6EE002C4DC0 /* NSNumber_KiwiAdditionsTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSNumber_KiwiAdditionsTests.m; sourceTree = "<group>"; };
 		DAA1B3AD18CF25C00015CF7A /* KWNotificationMatcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KWNotificationMatcher.h; sourceTree = "<group>"; };
 		DAA1B3AE18CF25C00015CF7A /* KWNotificationMatcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KWNotificationMatcher.m; sourceTree = "<group>"; };
 		DAAC61CA17E75B50000165F6 /* KWObjCUtilitiesTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KWObjCUtilitiesTest.m; sourceTree = "<group>"; };
@@ -1691,13 +1693,6 @@
 			path = "Xcode Templates/Kiwi Spec.xctemplate";
 			sourceTree = "<group>";
 		};
-		C922D1DB158045DD00995B43 /* Classes */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = Classes;
-			sourceTree = "<group>";
-		};
 		DA084D5517E3831E00592D5A /* KiwiXCTests */ = {
 			isa = PBXGroup;
 			children = (
@@ -1731,14 +1726,13 @@
 		F5015BE211583C27002E9A98 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
+				F5A9EFD211741E7700E9EDA3 /* Matchers */,
+				F5A1E6081174322A002223E1 /* Mocks, Stubs, and Spying */,
 				89F9CB7816B1BE0E00E87D34 /* Functional */,
 				080E96DDFE201D6D7F000001 /* Test Classes */,
 				F5A1E60711743223002223E1 /* Specs */,
 				F5BDB84711C0C8CE00DD3474 /* Example Groups */,
-				F5A9EFD211741E7700E9EDA3 /* Matchers */,
-				F5A1E6081174322A002223E1 /* Mocks, Stubs, and Spying */,
 				F5A1E612117432AC002223E1 /* Support */,
-				C922D1DB158045DD00995B43 /* Classes */,
 				F508565011BE61A1000EAD4E /* KiwiTestConfiguration.h */,
 			);
 			path = Tests;
@@ -1773,6 +1767,7 @@
 				F5FC83B511B100B100BF98A2 /* KWStringUtilitiesTest.m */,
 				F5C6FD2311782A290068BBC8 /* KWValueTest.m */,
 				89861D9316FE0EE5008CE99D /* KWFormatterTest.m */,
+				DA9C69F7190CA6EE002C4DC0 /* NSNumber_KiwiAdditionsTests.m */,
 			);
 			name = Support;
 			sourceTree = "<group>";
@@ -2658,6 +2653,7 @@
 				9F982A3916A801800030A0B1 /* Cruiser.m in Sources */,
 				9F982A3A16A801800030A0B1 /* Engine.m in Sources */,
 				9F982A3B16A801800030A0B1 /* Fighter.m in Sources */,
+				DA9C69F8190CA6EE002C4DC0 /* NSNumber_KiwiAdditionsTests.m in Sources */,
 				9F982A3C16A801800030A0B1 /* Galaxy.m in Sources */,
 				9F982A3D16A801800030A0B1 /* KiwiAppDelegate.m in Sources */,
 				9F982A3E16A801800030A0B1 /* KiwiViewController.m in Sources */,
