@@ -27,6 +27,7 @@
 #import "KWExampleSuite.h"
 #import "KWCallSite.h"
 #import "KWSymbolicator.h"
+#import "KWAnyInstanceSupport.h"
 
 @interface KWExample ()
 
@@ -247,6 +248,7 @@
         
         // Always clear stubs and spies at the end of it blocks
         KWClearStubsAndSpies();
+        KWClearFutureInstanceAttachment();
     }];
 }
 

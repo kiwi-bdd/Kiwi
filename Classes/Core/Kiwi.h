@@ -15,6 +15,7 @@ extern "C" {
 #import "KWAfterAllNode.h"
 #import "KWAfterEachNode.h"
 #import "KWAny.h"
+#import "KWAnyInstanceSupport.h"
 #import "KWAsyncVerifier.h"
 #import "KWBeBetweenMatcher.h"
 #import "KWBeEmptyMatcher.h"

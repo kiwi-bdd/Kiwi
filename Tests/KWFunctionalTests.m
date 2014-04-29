@@ -8,6 +8,19 @@
 
 #import "Kiwi.h"
 #import "KiwiTestConfiguration.h"
+#import "Cruiser.h"
+
+SPEC_BEGIN(KWAnyInstanceSupportSpec)
+
+describe(@"Any instance support", ^{
+    it(@"should assert invocations", ^{
+        [[[Cruiser anyInstance] shouldNot] receive:@selector(crewComplement)];
+        id subject = [[[Cruiser alloc] init] autorelease];
+        [subject crewComplement];
+    });
+});
+
+SPEC_END
 
 @interface KWExampleSuiteBuilder ()
 
@@ -17,6 +30,8 @@
 @end
 
 static BOOL tests_were_run = NO;
+
+
 
 SPEC_BEGIN(Functional)
 
