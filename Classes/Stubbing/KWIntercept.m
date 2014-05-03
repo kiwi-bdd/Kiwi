@@ -310,10 +310,11 @@ void KWClearAllMessageSpies(void) {
 }
 
 
-
-#pragma mark Object stubs
+#pragma mark KWObjectStubs
 
 static NSMapTable *KWObjectStubs = nil;
+typedef id (^KWStubbedObjectBlock)(void);
+KWStubbedObjectBlock KWObjectStubsKey(id anObject);
 
 void KWObjectStubsInit(void) {
     if (KWObjectStubs == nil) {
@@ -322,19 +323,20 @@ void KWObjectStubsInit(void) {
 }
 
 NSMutableArray *KWObjectStubsForObject(id anObject) {
-    return [KWObjectStubs objectForKey:anObject];
+    return [KWObjectStubs objectForKey:KWObjectStubsKey(anObject)];
 }
 
 void KWObjectStubsSet(id anObject, NSMutableArray *stubs) {
-    [KWObjectStubs setObject:stubs forKey:anObject];
+    [KWObjectStubs setObject:stubs forKey:KWObjectStubsKey(anObject)];
 }
 
 void KWClearObjectStubs(id anObject) {
-    [KWObjectStubs removeObjectForKey:anObject];
+    [KWObjectStubs removeObjectForKey:KWObjectStubsKey(anObject)];
 }
 
 void KWClearAllObjectStubs(void) {
-    for (id stubbedObject in KWObjectStubs) {
+    for (KWStubbedObjectBlock key in KWObjectStubs) {
+        id stubbedObject = key();
         if ([KWRestoredObjects containsObject:stubbedObject]) {
             continue;
         }
@@ -342,4 +344,14 @@ void KWClearAllObjectStubs(void) {
         [KWRestoredObjects addObject:stubbedObject];
     }
     [KWObjectStubs removeAllObjects];
+}
+
+KWStubbedObjectBlock KWObjectStubsKey(id anObject) {
+    KWStubbedObjectBlock key = objc_getAssociatedObject(anObject, (__bridge void *)KWObjectStubs);
+    if (key == nil) {
+        __weak id weakobj = anObject;
+        key = ^{ return weakobj; };
+        objc_setAssociatedObject(anObject, (__bridge void *)KWObjectStubs, [key copy], OBJC_ASSOCIATION_COPY);
+    }
+    return key;
 }
