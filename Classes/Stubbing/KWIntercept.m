@@ -10,7 +10,13 @@
 #import "KWStub.h"
 
 static const char * const KWInterceptClassSuffix = "_KWIntercept";
-static NSMapTable *KWObjectStubs = nil;
+
+void KWObjectStubsInit(void);
+void KWClearObjectStubs(id anObject);
+void KWClearAllObjectStubs(void);
+NSMutableArray *KWObjectStubsForObject(id anObject);
+void KWObjectStubsSet(id anObject, NSMutableArray *stubs);
+
 static NSMapTable *KWMessageSpies = nil;
 static NSMutableArray *KWRestoredObjects = nil;
 
@@ -187,9 +193,7 @@ void KWInterceptedForwardInvocation(id anObject, SEL aSelector, NSInvocation* an
         }
     }
 
-    NSMutableArray *stubs = [KWObjectStubs objectForKey:anObject];
-
-    for (KWStub *stub in stubs) {
+    for (KWStub *stub in KWObjectStubsForObject(anObject)) {
         if ([stub processInvocation:anInvocation])
             return;
     }
@@ -202,7 +206,7 @@ void KWInterceptedForwardInvocation(id anObject, SEL aSelector, NSInvocation* an
 
 void KWInterceptedDealloc(id anObject, SEL aSelector) {
     [KWMessageSpies removeObjectForKey:anObject];
-    [KWObjectStubs removeObjectForKey:anObject];
+    KWClearObjectStubs(anObject);
 
     KWRestoreOriginalClass(anObject);
 
@@ -235,15 +239,12 @@ void KWClearStubsAndSpies(void) {
 #pragma mark - Managing Objects Stubs
 
 void KWAssociateObjectStub(id anObject, KWStub *aStub, BOOL overrideExisting) {
-    if (KWObjectStubs == nil)
-        KWObjectStubs = [NSMapTable mapTableWithKeyOptions:NSMapTableStrongMemory valueOptions:NSMapTableStrongMemory];
+    KWObjectStubsInit();
 
-    NSMutableArray *stubs = [KWObjectStubs objectForKey:anObject];
-
-
+    NSMutableArray *stubs = KWObjectStubsForObject(anObject);
     if (stubs == nil) {
         stubs = [[NSMutableArray alloc] init];
-        [KWObjectStubs setObject:stubs forKey:anObject];
+        KWObjectStubsSet(anObject, stubs);
     }
 
     NSUInteger stubCount = [stubs count];
@@ -262,21 +263,6 @@ void KWAssociateObjectStub(id anObject, KWStub *aStub, BOOL overrideExisting) {
     }
 
     [stubs addObject:aStub];
-}
-
-void KWClearObjectStubs(id anObject) {
-    [KWObjectStubs removeObjectForKey:anObject];
-}
-
-void KWClearAllObjectStubs(void) {
-    for (id stubbedObject in KWObjectStubs) {
-        if ([KWRestoredObjects containsObject:stubbedObject]) {
-            continue;
-        }
-        KWRestoreOriginalClass(stubbedObject);
-        [KWRestoredObjects addObject:stubbedObject];
-    }
-    [KWObjectStubs removeAllObjects];
 }
 
 #pragma mark - Managing Message Spies
@@ -321,4 +307,39 @@ void KWClearAllMessageSpies(void) {
         [KWRestoredObjects addObject:spiedObject];
     }
     [KWMessageSpies removeAllObjects];
+}
+
+
+
+#pragma mark Object stubs
+
+static NSMapTable *KWObjectStubs = nil;
+
+void KWObjectStubsInit(void) {
+    if (KWObjectStubs == nil) {
+        KWObjectStubs = [NSMapTable mapTableWithKeyOptions:NSMapTableStrongMemory valueOptions:NSMapTableStrongMemory];
+    }
+}
+
+NSMutableArray *KWObjectStubsForObject(id anObject) {
+    return [KWObjectStubs objectForKey:anObject];
+}
+
+void KWObjectStubsSet(id anObject, NSMutableArray *stubs) {
+    [KWObjectStubs setObject:stubs forKey:anObject];
+}
+
+void KWClearObjectStubs(id anObject) {
+    [KWObjectStubs removeObjectForKey:anObject];
+}
+
+void KWClearAllObjectStubs(void) {
+    for (id stubbedObject in KWObjectStubs) {
+        if ([KWRestoredObjects containsObject:stubbedObject]) {
+            continue;
+        }
+        KWRestoreOriginalClass(stubbedObject);
+        [KWRestoredObjects addObject:stubbedObject];
+    }
+    [KWObjectStubs removeAllObjects];
 }
