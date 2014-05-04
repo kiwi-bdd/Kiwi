@@ -335,8 +335,8 @@ void KWClearAllMessageSpies(void) {
 #pragma mark KWObjectStubs
 
 static NSMapTable *KWObjectStubs = nil;
-typedef id (^KWStubbedObjectBlock)(void);
-KWStubbedObjectBlock KWObjectStubsKey(id anObject);
+typedef id (^KWInterceptedObjectBlock)(void);
+KWInterceptedObjectBlock KWInterceptedObjectKey(id anObject);
 
 void KWObjectStubsInit(void) {
     if (KWObjectStubs == nil) {
@@ -345,19 +345,19 @@ void KWObjectStubsInit(void) {
 }
 
 NSMutableArray *KWObjectStubsForObject(id anObject) {
-    return [KWObjectStubs objectForKey:KWObjectStubsKey(anObject)];
+    return [KWObjectStubs objectForKey:KWInterceptedObjectKey(anObject)];
 }
 
 void KWObjectStubsSet(id anObject, NSMutableArray *stubs) {
-    [KWObjectStubs setObject:stubs forKey:KWObjectStubsKey(anObject)];
+    [KWObjectStubs setObject:stubs forKey:KWInterceptedObjectKey(anObject)];
 }
 
 void KWClearObjectStubs(id anObject) {
-    [KWObjectStubs removeObjectForKey:KWObjectStubsKey(anObject)];
+    [KWObjectStubs removeObjectForKey:KWInterceptedObjectKey(anObject)];
 }
 
 void KWClearAllObjectStubs(void) {
-    for (KWStubbedObjectBlock key in KWObjectStubs) {
+    for (KWInterceptedObjectBlock key in KWObjectStubs) {
         id stubbedObject = key();
         if ([KWRestoredObjects containsObject:stubbedObject]) {
             continue;
@@ -368,12 +368,16 @@ void KWClearAllObjectStubs(void) {
     [KWObjectStubs removeAllObjects];
 }
 
-KWStubbedObjectBlock KWObjectStubsKey(id anObject) {
-    KWStubbedObjectBlock key = objc_getAssociatedObject(anObject, (__bridge void *)KWObjectStubs);
+#pragma mark KWInterceptedObjectKey
+
+static void *kKWInterceptedObjectKey = &kKWInterceptedObjectKey;
+
+KWInterceptedObjectBlock KWInterceptedObjectKey(id anObject) {
+    KWInterceptedObjectBlock key = objc_getAssociatedObject(anObject, kKWInterceptedObjectKey);
     if (key == nil) {
         __weak id weakobj = anObject;
         key = ^{ return weakobj; };
-        objc_setAssociatedObject(anObject, (__bridge void *)KWObjectStubs, [key copy], OBJC_ASSOCIATION_COPY);
+        objc_setAssociatedObject(anObject, kKWInterceptedObjectKey, [key copy], OBJC_ASSOCIATION_COPY);
     }
     return key;
 }
