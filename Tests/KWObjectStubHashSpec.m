@@ -15,7 +15,7 @@
 }
 @end
 
-SPEC_BEGIN(Issue509Spec)
+SPEC_BEGIN(KWObjectStubHashSpec)
 it(@"won't enter an infinite loop", ^{
     TDD *tdd = [TDD new];
     [tdd stub:@selector(isDead) andReturn:theValue(NO)];
