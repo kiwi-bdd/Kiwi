@@ -37,6 +37,10 @@
     [super dealloc];
 }
 
+- (NSUInteger)hash {
+    return self.crewComplement + [super hash];
+}
+
 #pragma mark -
 #pragma mark Properties
 

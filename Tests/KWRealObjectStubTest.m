@@ -187,6 +187,12 @@
     STAssertEquals([cruiser classification], @"Enterprise", @"expected method to be stubbed with block");
 }
 
+- (void)testItShouldStubAnObjectCallingTheStubInHash {
+    Cruiser *cruiser = [Cruiser cruiser];
+    [cruiser stub:@selector(crewComplement) andReturn:theValue(5)];
+    STAssertEquals(5U, cruiser.crewComplement, @"expected to successfully stub -crewComplement");
+}
+
 @end
 
 #endif // #if KW_TESTS_ENABLED

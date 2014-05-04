@@ -22,6 +22,9 @@ NSMapTable *KWMessageSpiesForObject(id anObject);
 void KWClearMessageSpies(id anObject);
 void KWMessageSpiesSet(id anObject, NSMapTable *spies);
 
+typedef id (^KWInterceptedObjectBlock)(void);
+KWInterceptedObjectBlock KWInterceptedObjectKey(id anObject);
+
 static NSMutableArray *KWRestoredObjects = nil;
 
 #pragma mark - Intercept Enabled Method Implementations
@@ -303,11 +306,11 @@ void KWMessageSpiesInit(void) {
 }
 
 NSMapTable *KWMessageSpiesForObject(id anObject) {
-    return [KWMessageSpies objectForKey:anObject];
+    return [KWMessageSpies objectForKey:KWInterceptedObjectKey(anObject)];
 }
 
 void KWMessageSpiesSet(id anObject, NSMapTable *spies) {
-    [KWMessageSpies setObject:spies forKey:anObject];
+    [KWMessageSpies setObject:spies forKey:KWInterceptedObjectKey(anObject)];
 }
 
 void KWClearObjectSpy(id anObject, id aSpy, KWMessagePattern *aMessagePattern) {
@@ -317,11 +320,12 @@ void KWClearObjectSpy(id anObject, id aSpy, KWMessagePattern *aMessagePattern) {
 }
 
 void KWClearMessageSpies(id anObject) {
-    [KWMessageSpies removeObjectForKey:anObject];
+    [KWMessageSpies removeObjectForKey:KWInterceptedObjectKey(anObject)];
 }
 
 void KWClearAllMessageSpies(void) {
-    for (id spiedObject in KWMessageSpies) {
+    for (KWInterceptedObjectBlock key in KWMessageSpies) {
+        id spiedObject = key();
         if ([KWRestoredObjects containsObject:spiedObject]) {
             continue;
         }
@@ -335,8 +339,6 @@ void KWClearAllMessageSpies(void) {
 #pragma mark KWObjectStubs
 
 static NSMapTable *KWObjectStubs = nil;
-typedef id (^KWInterceptedObjectBlock)(void);
-KWInterceptedObjectBlock KWInterceptedObjectKey(id anObject);
 
 void KWObjectStubsInit(void) {
     if (KWObjectStubs == nil) {
