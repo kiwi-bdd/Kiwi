@@ -17,7 +17,11 @@ void KWClearAllObjectStubs(void);
 NSMutableArray *KWObjectStubsForObject(id anObject);
 void KWObjectStubsSet(id anObject, NSMutableArray *stubs);
 
-static NSMapTable *KWMessageSpies = nil;
+void KWMessageSpiesInit(void);
+NSMapTable *KWMessageSpiesForObject(id anObject);
+void KWClearMessageSpies(id anObject);
+void KWMessageSpiesSet(id anObject, NSMapTable *spies);
+
 static NSMutableArray *KWRestoredObjects = nil;
 
 #pragma mark - Intercept Enabled Method Implementations
@@ -181,8 +185,7 @@ Class KWRestoreOriginalClass(id anObject) {
 }
 
 void KWInterceptedForwardInvocation(id anObject, SEL aSelector, NSInvocation* anInvocation) {
-    NSMapTable *spiesMap = [KWMessageSpies objectForKey:anObject];
-
+    NSMapTable *spiesMap = KWMessageSpiesForObject(anObject);
     for (KWMessagePattern *messagePattern in spiesMap) {
         if ([messagePattern matchesInvocation:anInvocation]) {
             NSArray *spies = [spiesMap objectForKey:messagePattern];
@@ -205,7 +208,7 @@ void KWInterceptedForwardInvocation(id anObject, SEL aSelector, NSInvocation* an
 }
 
 void KWInterceptedDealloc(id anObject, SEL aSelector) {
-    [KWMessageSpies removeObjectForKey:anObject];
+    KWClearMessageSpies(anObject);
     KWClearObjectStubs(anObject);
 
     KWRestoreOriginalClass(anObject);
@@ -268,18 +271,15 @@ void KWAssociateObjectStub(id anObject, KWStub *aStub, BOOL overrideExisting) {
 #pragma mark - Managing Message Spies
 
 void KWAssociateMessageSpy(id anObject, id aSpy, KWMessagePattern *aMessagePattern) {
-    if (KWMessageSpies == nil)
-        KWMessageSpies = [NSMapTable mapTableWithKeyOptions:NSMapTableStrongMemory valueOptions:NSMapTableStrongMemory];
+    KWMessageSpiesInit();
 
-    NSMapTable *spies = [KWMessageSpies objectForKey:anObject];
-
+    NSMapTable *spies = KWMessageSpiesForObject(anObject);
     if (spies == nil) {
         spies = [NSMapTable mapTableWithKeyOptions:NSMapTableStrongMemory valueOptions:NSMapTableStrongMemory];
-        [KWMessageSpies setObject:spies forKey:anObject];
+        KWMessageSpiesSet(anObject, spies);
     }
 
     NSMutableArray *messagePatternSpies = [spies objectForKey:aMessagePattern];
-
     if (messagePatternSpies == nil) {
         messagePatternSpies = [[NSMutableArray alloc] init];
         [spies setObject:messagePatternSpies forKey:aMessagePattern];
@@ -292,10 +292,32 @@ void KWAssociateMessageSpy(id anObject, id aSpy, KWMessagePattern *aMessagePatte
     [messagePatternSpies addObject:aSpy];
 }
 
+#pragma mark - KWMessageSpies
+
+static NSMapTable *KWMessageSpies = nil;
+
+void KWMessageSpiesInit(void) {
+    if (KWMessageSpies == nil) {
+        KWMessageSpies = [NSMapTable mapTableWithKeyOptions:NSMapTableStrongMemory valueOptions:NSMapTableStrongMemory];
+    };
+}
+
+NSMapTable *KWMessageSpiesForObject(id anObject) {
+    return [KWMessageSpies objectForKey:anObject];
+}
+
+void KWMessageSpiesSet(id anObject, NSMapTable *spies) {
+    [KWMessageSpies setObject:spies forKey:anObject];
+}
+
 void KWClearObjectSpy(id anObject, id aSpy, KWMessagePattern *aMessagePattern) {
-    NSMapTable *spyArrayDictionary = [KWMessageSpies objectForKey:anObject];
+    NSMapTable *spyArrayDictionary = KWMessageSpiesForObject(anObject);
     NSMutableArray *spies = [spyArrayDictionary objectForKey:aMessagePattern];
     [spies removeObject:aSpy];
+}
+
+void KWClearMessageSpies(id anObject) {
+    [KWMessageSpies removeObjectForKey:anObject];
 }
 
 void KWClearAllMessageSpies(void) {
