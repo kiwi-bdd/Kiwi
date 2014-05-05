@@ -26,6 +26,9 @@ Class KWRestoreOriginalClass(id anObject);
 BOOL KWObjectClassRestored(id anObject);
 
 typedef id (^KWInterceptedObjectBlock)(void);
+// Use KWInterceptedObjectKey, instead of the object itself, when
+// registering an object in a global map table, to prevent an infinite
+// loop when the object is hashed.
 KWInterceptedObjectBlock KWInterceptedObjectKey(id anObject);
 
 #pragma mark - Intercept Enabled Method Implementations
