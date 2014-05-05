@@ -53,6 +53,12 @@
     STAssertEquals(fighter, [cruiser fighterWithCallsign:@"Foo"], @"expected method to be stubbed");
 }
 
+- (void)testItShouldStubInstanceMethodsThatAreUsedInTheObjectsHashMethod {
+    Cruiser *cruiser = [Cruiser cruiser];
+    [cruiser stub:@selector(crewComplement) andReturn:theValue(5)];
+    STAssertEquals(5U, cruiser.crewComplement, @"expected to be able to stub -[Cruiser crewComplement], which is used in -[Cruiser hash]");
+}
+
 - (void)testItShouldClearStubbedRecursiveMethods {
     NSUInteger starHash = 8 + 4 + 2 + 1;
     Cruiser *cruiser = [Cruiser cruiserWithCallsign:@"Galactica"];
