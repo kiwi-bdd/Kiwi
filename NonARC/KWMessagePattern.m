@@ -74,7 +74,7 @@
 			void* argumentDataBuffer = malloc(KWObjCTypeLength(type));
 			[anInvocation getMessageArgument:argumentDataBuffer atIndex:i];
 			id object = nil;
-			if(*(id*)argumentDataBuffer != [KWAny any] && !KWObjCTypeIsObject(type)) {
+			if(*(id*)argumentDataBuffer != [KWAny any] && !KWObjCTypeIsObject(type) && !KWObjCTypeIsClass(type)) {
                 NSData *data = [anInvocation messageArgumentDataAtIndex:i];
                 object = [KWValue valueWithBytes:[data bytes] objCType:type];
             } else {

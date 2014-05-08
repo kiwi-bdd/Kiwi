@@ -273,6 +273,18 @@ describe(@"NSDate stubs", ^{
 
 SPEC_END
 
+SPEC_BEGIN(FunctionalMatchers)
+
+describe(@"receive matcher",^{
+    it(@"Recognizes params with classes",^{
+        NSMutableArray *array = [NSMutableArray array];
+        [[[array should] receive] isKindOfClass:[NSArray class]];
+        [array isKindOfClass:[NSArray class]];
+    });
+});
+
+SPEC_END
+
 #if KW_TESTS_ENABLED
 @interface KWFunctionalTests : SenTestCase
 @end
