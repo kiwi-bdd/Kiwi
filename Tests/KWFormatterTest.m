@@ -32,6 +32,14 @@
     STAssertEqualObjects([sampleDict description], [KWFormatter formatObject:sampleDict], @"Dictionaries should be not treated as NSEnumerable");
 }
 
+- (void)testClassObjects{
+    STAssertEqualObjects([KWFormatter formatObject:[NSNumber class]], @"NSNumber", @"Classes should get outputted with their name");
+}
+
+- (void)testTreatsNSEnumerableClassObjectAsClass{
+    STAssertNoThrow([KWFormatter formatObject:[NSArray class]], @"Enumerable classes should not be threated as their instances");
+}
+
 @end
 
 #endif // #if KW_TESTS_ENABLED
