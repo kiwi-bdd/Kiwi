@@ -28,7 +28,7 @@ describe(@"Team", ^{
 ```
 
 # Documentation #
-The [Kiwi Wiki](https://github.com/allending/Kiwi/wiki) is the official documentation source.
+The [Kiwi Wiki](https://github.com/kiwi-bdd/Kiwi/wiki) is the official documentation source.
 
 # Getting it #
 The best way to get Kiwi is by using [CocoaPods](https://github.com/cocoapods/cocoapods).
