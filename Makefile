@@ -1,3 +1,5 @@
+TEST_SDK?="iphonesimulator"
+
 default: clean ios
 
 clean:
@@ -11,7 +13,7 @@ install:
 	xcodebuild -project Kiwi.xcodeproj -scheme Kiwi-iOS install
 
 test:
-	xcodebuild -project Kiwi.xcodeproj -scheme Kiwi -sdk iphonesimulator test
+	xcodebuild -project Kiwi.xcodeproj -scheme Kiwi -sdk $(TEST_SDK) test
 
 ci: test
 

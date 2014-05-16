@@ -1,5 +1,9 @@
 language: objective-c
 before_install:
   - gem install xcpretty
-script: make ci | xcpretty -c
+env:
+  matrix:
+    - TEST_SDK=iphonesimulator6.1
+    - TEST_SDK=iphonesimulator
+script: make ci $TEST_SDK | xcpretty -c
 
