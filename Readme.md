@@ -1,4 +1,7 @@
 # Simple BDD for iOS #
+
+## Kiwi has moved to the kiwi-bdd organization here: (https://github.com/kiwi-bdd/Kiwi). Please go there. allending/Kiwi is now a personal fork used to submit PRs.
+
 [![Build Status](https://travis-ci.org/allending/Kiwi.svg?branch=master)](https://travis-ci.org/allending/Kiwi)
 
 Kiwi is a Behavior Driven Development library for iOS development.
