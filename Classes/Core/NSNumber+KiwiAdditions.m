@@ -15,6 +15,8 @@
     // Yeah, this is ugly.
     if (KWObjCTypeEqualToObjCType(anObjCType, @encode(BOOL)))
         return [self numberWithBoolBytes:bytes];
+    else if (KWObjCTypeEqualToObjCType(anObjCType, @encode(bool)))
+        return [self numberWithStdBoolBytes:bytes];
     else if (KWObjCTypeEqualToObjCType(anObjCType, @encode(char)))
         return [self numberWithCharBytes:bytes];
     else if (KWObjCTypeEqualToObjCType(anObjCType, @encode(double)))
@@ -49,6 +51,10 @@
 
 + (id)numberWithBoolBytes:(const void *)bytes {
     return @(*(const BOOL *)bytes);
+}
+
++ (id)numberWithStdBoolBytes:(const void *)bytes {
+    return @(*(const bool *)bytes);
 }
 
 + (id)numberWithCharBytes:(const void *)bytes {
