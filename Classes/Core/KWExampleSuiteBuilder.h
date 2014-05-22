@@ -35,6 +35,7 @@
 - (void)setBeforeAllNodeWithCallSite:(KWCallSite *)aCallSite block:(void (^)(void))block;
 - (void)setAfterAllNodeWithCallSite:(KWCallSite *)aCallSite block:(void (^)(void))block;
 - (void)setBeforeEachNodeWithCallSite:(KWCallSite *)aCallSite block:(void (^)(void))block;
+- (void)setSubjectActionWithCallSite:(KWCallSite *)aCallSite block:(void (^)(void))block;
 - (void)setAfterEachNodeWithCallSite:(KWCallSite *)aCallSite block:(void (^)(void))block;
 - (void)addLetNodeWithCallSite:(KWCallSite *)aCallSite objectRef:(id *)anObjectRef symbolName:(NSString *)aSymbolName block:(id (^)(void))block;
 - (void)addItNodeWithCallSite:(KWCallSite *)aCallSite description:(NSString *)aDescription block:(void (^)(void))block;

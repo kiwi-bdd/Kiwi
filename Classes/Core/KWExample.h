@@ -73,6 +73,7 @@ void let_(id *anObjectRef, const char *aSymbolName, id (^block)(void));
 void it(NSString *aDescription, void (^block)(void));
 void specify(void (^block)(void));
 void pending_(NSString *aDescription, void (^block)(void));
+void subjectAction(void (^block)(void));
 
 void describeWithCallSite(KWCallSite *aCallSite, NSString *aDescription, void (^block)(void));
 void contextWithCallSite(KWCallSite *aCallSite, NSString *aDescription, void (^block)(void));
@@ -83,6 +84,7 @@ void beforeEachWithCallSite(KWCallSite *aCallSite, void (^block)(void));
 void afterEachWithCallSite(KWCallSite *aCallSite, void (^block)(void));
 void letWithCallSite(KWCallSite *aCallSite, id *anObjectRef, NSString *aSymbolName, id (^block)(void));
 void itWithCallSite(KWCallSite *aCallSite, NSString *aDescription, void (^block)(void));
+void subjectActionWithCallSite(KWCallSite *aCallSite, void (^block)(void));
 void pendingWithCallSite(KWCallSite *aCallSite, NSString *aDescription, void (^block)(void));
 
 /**

@@ -1,0 +1,30 @@
+Contents of /Users/suzy/Works/Kiwi/Supporting Files/Kiwi-XCTest-Prefix.pch
+-x
+objective-c
+-arch
+arm64
+-fretain-comments-from-system-headers
+-std=c99
+-fobjc-arc
+-fpascal-strings
+-O0
+-isysroot
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS7.1.sdk
+-g
+-miphoneos-version-min=5.0
+-iquote
+-iquote
+-I/Users/suzy/Works/Kiwi/DerivedData/Kiwi/Build/Products/Debug-iphoneos/include
+-I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include
+-F/Users/suzy/Works/Kiwi/DerivedData/Kiwi/Build/Products/Debug-iphoneos
+-F/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS7.1.sdk/Developer/Library/Frameworks
+-F/Applications/Xcode.app/Contents/Developer/Library/Frameworks
+-ferror-limit=10
+-working-directory=/Users/suzy/Works/Kiwi
+-Xclang
+-detailed-preprocessing-record
+-fno-objc-arc
+arm64-apple-darwin13.1.0
+"4.2.1 Compatible Apple LLVM 5.1 (clang-503.0.38)"
+SDK_PRODUCT_BUILD_VERSION=11D167
+11D167

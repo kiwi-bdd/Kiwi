@@ -10,6 +10,7 @@
 #import "KWBeforeEachNode.h"
 #import "KWLetNode.h"
 #import "KWCallSite.h"
+#import "KWSubjectActionNode.h"
 #import "KWContextNode.h"
 #import "KWExampleNodeVisitor.h"
 #import "KWExample.h"
@@ -112,6 +113,7 @@ static NSString * const KWContextNodeException = @"KWContextNodeException";
 
             [self.beforeEachNode acceptExampleNodeVisitor:example];
 
+            [self.subjectActionNode acceptExampleNodeVisitor:example];
             innerExampleBlock();
 
             [self.afterEachNode acceptExampleNodeVisitor:example];

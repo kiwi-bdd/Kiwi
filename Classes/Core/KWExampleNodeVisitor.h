@@ -10,11 +10,13 @@
 @class KWAfterEachNode;
 @class KWBeforeAllNode;
 @class KWBeforeEachNode;
+@class KWSubjectActionNode;
 @class KWContextNode;
 @class KWLetNode;
 @class KWItNode;
 @class KWPendingNode;
 @class KWRegisterMatchersNode;
+
 
 @protocol KWExampleNodeVisitor<NSObject>
 
@@ -31,5 +33,6 @@
 - (void)visitLetNode:(KWLetNode *)aNode;
 - (void)visitItNode:(KWItNode *)aNode;
 - (void)visitPendingNode:(KWPendingNode *)aNode;
+- (void)visitSubjectActionNode:(KWSubjectActionNode *)node;
 
 @end

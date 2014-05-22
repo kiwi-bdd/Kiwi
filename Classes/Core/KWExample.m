@@ -17,6 +17,7 @@
 #import "KWBeforeAllNode.h"
 #import "KWLetNode.h"
 #import "KWItNode.h"
+#import "KWSubjectActionNode.h"
 #import "KWAfterEachNode.h"
 #import "KWAfterAllNode.h"
 #import "KWPendingNode.h"
@@ -294,6 +295,11 @@
     [self reportResultForExampleNodeWithLabel:@"PENDING"];
 }
 
+- (void)visitSubjectActionNode:(KWSubjectActionNode *)aNode
+{
+    aNode.block();
+}
+
 - (NSString *)generateDescriptionForAnonymousItNode {
     // anonymous specify blocks should only have one verifier, but use the first in any case
     return [(self.verifiers)[0] descriptionForAnonymousItNode];
@@ -363,6 +369,10 @@ void afterEach(void (^block)(void)) {
     afterEachWithCallSite(nil, block);
 }
 
+void subjectAction(void (^block)(void)) {
+    subjectActionWithCallSite(nil, block);
+}
+
 void it(NSString *aDescription, void (^block)(void)) {
     KWCallSite *callSite = callSiteAtAddressIfNecessary(kwCallerAddress());
     itWithCallSite(callSite, aDescription, block);
@@ -421,6 +431,10 @@ void letWithCallSite(KWCallSite *aCallSite, __autoreleasing id *anObjectRef, NSS
 
 void itWithCallSite(KWCallSite *aCallSite, NSString *aDescription, void (^block)(void)) {
     [[KWExampleSuiteBuilder sharedExampleSuiteBuilder] addItNodeWithCallSite:aCallSite description:aDescription block:block];
+}
+
+void subjectActionWithCallSite(KWCallSite *aCallSite, void (^block)(void)) {
+    [[KWExampleSuiteBuilder sharedExampleSuiteBuilder] setSubjectActionWithCallSite:aCallSite block:block];
 }
 
 void pendingWithCallSite(KWCallSite *aCallSite, NSString *aDescription, void (^ignoredBlock)(void)) {

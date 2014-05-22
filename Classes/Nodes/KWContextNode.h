@@ -16,6 +16,7 @@
 @class KWItNode;
 @class KWPendingNode;
 @class KWRegisterMatchersNode;
+@class KWSubjectActionNode;
 @class KWExample;
 
 @interface KWContextNode : NSObject<KWExampleNode>
@@ -40,6 +41,7 @@
 @property (nonatomic, strong) KWAfterAllNode *afterAllNode;
 @property (nonatomic, strong) KWBeforeEachNode *beforeEachNode;
 @property (nonatomic, strong) KWAfterEachNode *afterEachNode;
+@property (nonatomic, strong) KWSubjectActionNode *subjectActionNode;
 @property (nonatomic, readonly) NSArray *nodes;
 @property (nonatomic, readonly) NSArray *registerMatchersNodes;
 @property (nonatomic, readonly) NSArray *letNodes;

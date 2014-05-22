@@ -10,6 +10,7 @@
 #import "KWAfterEachNode.h"
 #import "KWBeforeAllNode.h"
 #import "KWBeforeEachNode.h"
+#import "KWSubjectActionNode.h"
 #import "KWLetNode.h"
 #import "KWCallSite.h"
 #import "KWContextNode.h"
@@ -173,6 +174,15 @@ static NSString * const KWExampleSuiteBuilderException = @"KWExampleSuiteBuilder
     KWContextNode *contextNode = [self.contextNodeStack lastObject];
     KWBeforeEachNode *beforeEachNode = [KWBeforeEachNode beforeEachNodeWithCallSite:aCallSite block:block];
     [contextNode setBeforeEachNode:beforeEachNode];
+}
+
+- (void)setSubjectActionWithCallSite:(KWCallSite *)aCallSite block:(void (^)(void))block
+{
+    [self raiseIfExampleGroupNotStarted];
+    
+    KWContextNode *contextNode = [self.contextNodeStack lastObject];
+    KWSubjectActionNode *subjectActionNode = [KWSubjectActionNode subjectActionNodeWithCallSite:aCallSite block:block];
+    [contextNode setSubjectActionNode:subjectActionNode];
 }
 
 - (void)setAfterEachNodeWithCallSite:(KWCallSite *)aCallSite block:(void (^)(void))block {
