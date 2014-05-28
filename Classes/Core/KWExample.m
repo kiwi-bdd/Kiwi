@@ -245,6 +245,16 @@
     [aNode evaluateTree];
 }
 
+
+- (KWSubjectActionNode *)findClosestSubjectActionNode:(KWItNode *)itNode {
+    KWContextNode *node = [itNode context];
+    while (node) {
+        if ([node subjectActionNode]) return [node subjectActionNode];
+        else node = [node parentContext];
+    }
+    return nil;
+}
+
 - (void)visitItNode:(KWItNode *)aNode {
     if (aNode.block == nil || aNode != self.exampleNode)
         return;
@@ -254,6 +264,7 @@
     [aNode.context performExample:self withBlock:^{
         
         @try {
+            [[self findClosestSubjectActionNode:aNode] acceptExampleNodeVisitor:self];
             
             aNode.block();
             
