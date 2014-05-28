@@ -112,8 +112,6 @@ static NSString * const KWContextNodeException = @"KWContextNodeException";
             [letNodeTree acceptExampleNodeVisitor:example];
 
             [self.beforeEachNode acceptExampleNodeVisitor:example];
-
-            [self.subjectActionNode acceptExampleNodeVisitor:example];
             innerExampleBlock();
 
             [self.afterEachNode acceptExampleNodeVisitor:example];
@@ -137,6 +135,7 @@ static NSString * const KWContextNodeException = @"KWContextNodeException";
         [self.parentContext performExample:example withBlock:outerExampleBlock];
     }
 }
+
 
 - (void)raiseIfNodeAlreadyExists:(id<KWExampleNode>)node {
     if (node) {
