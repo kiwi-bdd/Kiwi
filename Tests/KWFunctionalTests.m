@@ -205,6 +205,13 @@ describe(@"Let context tree", ^{
     });
 });
 
+describe(@"using property notation", ^{
+    let(cruiser, ^{ return [[Cruiser alloc] initWithCallsign:@"let"]; });
+    specify(^{
+        [[cruiser.callsign should] equal:@"let"];
+    });
+});
+
 SPEC_END
 
 SPEC_BEGIN(NilMatchers)
