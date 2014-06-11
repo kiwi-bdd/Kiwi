@@ -5,6 +5,7 @@
 //
 
 #import "KWFormatter.h"
+#import <objc/runtime.h>
 
 @implementation KWFormatter
 
@@ -18,7 +19,7 @@
     else if ([anObject isKindOfClass:[NSDictionary class]])
         return [anObject description]; // NSDictionary conforms to NSFastEnumeration
 
-    else if ([anObject conformsToProtocol:@protocol(NSFastEnumeration)])
+    else if ([anObject conformsToProtocol:@protocol(NSFastEnumeration)] && !class_isMetaClass(object_getClass(anObject)))
         return [self formattedCollection:anObject];
 
     return [anObject description];
