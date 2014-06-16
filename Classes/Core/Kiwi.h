@@ -91,11 +91,6 @@ extern "C" {
 
 #import "KiwiMacros.h"
 
-// Some Foundation headers use Kiwi keywords (e.g. 'should') as identifiers for
-// parameter names. Including this last allows the use of Kiwi keywords without
-// conflicting with these headers (hopefully!).
-#import "KiwiBlockMacros.h"
-
 #if defined(__cplusplus)
 }
 #endif
