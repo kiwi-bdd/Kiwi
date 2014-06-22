@@ -33,7 +33,7 @@
 /* Use camel case to make method friendly names from example description. */
 
 - (NSString *)description {
-    KWExample *currentExample = self.currentExample ? self.currentExample : [[self invocation] kw_example];
+    KWExample *currentExample = self.currentExample ?: self.invocation.kw_example;
     NSString *name = [currentExample descriptionWithContext];
     
     // CamelCase the string
@@ -81,7 +81,7 @@
 #pragma mark - Running Specs
 
 - (void)invokeTest {
-    self.currentExample = [[self invocation] kw_example];
+    self.currentExample = self.invocation.kw_example;
 
     @autoreleasepool {
         @try {
@@ -90,8 +90,7 @@
             [self recordFailureWithDescription:exception.description inFile:@"" atLine:0 expected:NO];
         }
 
-        [[self invocation] kw_setExample:nil];
-
+        self.invocation.kw_example = nil;
     }
 }
 

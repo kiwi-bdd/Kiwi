@@ -59,7 +59,7 @@
         NSMethodSignature *methodSignature = [NSMethodSignature signatureWithObjCTypes:[KWEncodingForDefaultMethod() UTF8String]];
         NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:methodSignature];
         [invocations addObject:invocation];
-        [invocation kw_setExample:exampleGroup];
+        invocation.kw_example = exampleGroup;
     }
     
     return invocations;
@@ -75,7 +75,7 @@
 @implementation NSInvocation (KWExampleGroup)
 
 - (void)kw_setExample:(KWExample *)exampleGroup {
-  objc_setAssociatedObject(self, kKWINVOCATION_EXAMPLE_GROUP_KEY, exampleGroup, OBJC_ASSOCIATION_RETAIN);    
+    objc_setAssociatedObject(self, kKWINVOCATION_EXAMPLE_GROUP_KEY, exampleGroup, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
 - (KWExample *)kw_example {
