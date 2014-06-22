@@ -56,7 +56,7 @@
 - (void)testItShouldStubInstanceMethodsThatAreUsedInTheObjectsHashMethod {
     Cruiser *cruiser = [Cruiser cruiser];
     [cruiser stub:@selector(crewComplement) andReturn:theValue(5)];
-    STAssertEquals(5U, cruiser.crewComplement, @"expected to be able to stub -[Cruiser crewComplement], which is used in -[Cruiser hash]");
+    STAssertEquals((NSUInteger)5, cruiser.crewComplement, @"expected to be able to stub -[Cruiser crewComplement], which is used in -[Cruiser hash]");
 }
 
 - (void)testItShouldClearStubbedRecursiveMethods {
