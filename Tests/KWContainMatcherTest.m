@@ -26,21 +26,21 @@
 
 - (void)testItShouldRaiseWhenTheSubjectIsInvalid {
     id subject = [[[NSObject alloc] init] autorelease];
-    id matcher = [KWContainMatcher matcherWithSubject:subject];
+    KWContainMatcher *matcher = [KWContainMatcher matcherWithSubject:subject];
     [matcher contain:@"liger"];
     XCTAssertThrowsSpecificNamed([matcher evaluate], NSException, @"KWMatcherException", @"expected raised exception");
 }
 
 - (void)testItShouldMatchContainedElements {
     id subject = @[@"dog", @"cat", @"tiger", @"liger"];
-    id matcher = [KWContainMatcher matcherWithSubject:subject];
+    KWContainMatcher *matcher = [KWContainMatcher matcherWithSubject:subject];
     [matcher contain:@"liger"];
     XCTAssertTrue([matcher evaluate], @"expected positive match");
 }
 
 - (void)testitShouldNotMatchNonContainedElements {
     id subject = @[@"dog", @"cat", @"tiger", @"liger"];
-    id matcher = [KWContainMatcher matcherWithSubject:subject];
+    KWContainMatcher *matcher = [KWContainMatcher matcherWithSubject:subject];
     [matcher contain:@"lion"];
     XCTAssertFalse([matcher evaluate], @"expected negative match");
 }
@@ -48,7 +48,7 @@
 - (void)testItShouldMatchContainedArrayObjects {
     id subject = @[@"dog", @"cat", @"tiger", @"liger"];
     id objects = @[@"cat", @"liger"];
-    id matcher = [KWContainMatcher matcherWithSubject:subject];
+    KWContainMatcher *matcher = [KWContainMatcher matcherWithSubject:subject];
     [matcher containObjectsInArray:objects];
     XCTAssertTrue([matcher evaluate], @"expected positive match");
 }
@@ -56,7 +56,7 @@
 - (void)testItShouldNotMatchNonContainedArrayObjects {
     id subject = @[@"dog", @"cat", @"tiger", @"liger"];
     id objects = @[@"cat", @"lion"];
-    id matcher = [KWContainMatcher matcherWithSubject:subject];
+    KWContainMatcher *matcher = [KWContainMatcher matcherWithSubject:subject];
     [matcher containObjectsInArray:objects];
     XCTAssertFalse([matcher evaluate], @"expected negative match");
 }
@@ -64,7 +64,7 @@
 - (void)testItShouldMatchContainedElementsWithGenericMatcher
 {
     id subject = @[@"dog", @"cat", @"tiger", @"liger"];
-    id matcher = [KWContainMatcher matcherWithSubject:subject];
+    KWContainMatcher *matcher = [KWContainMatcher matcherWithSubject:subject];
     [matcher contain:hasPrefix(@"li")];
     XCTAssertTrue([matcher evaluate], @"expected positive match");
 }
@@ -72,14 +72,14 @@
 - (void)testItShouldNotMatchContainedElementsWithGenericMatcher
 {
     id subject = @[@"dog", @"cat", @"tiger", @"liger"];
-    id matcher = [KWContainMatcher matcherWithSubject:subject];
+    KWContainMatcher *matcher = [KWContainMatcher matcherWithSubject:subject];
     [matcher contain:hasPrefix(@"ele")];
     XCTAssertFalse([matcher evaluate], @"expected negative match");
 }
 
 - (void)testItShouldHaveHumanReadableDescription
 {
-    id matcher = [KWContainMatcher matcherWithSubject:nil];
+    KWContainMatcher *matcher = [KWContainMatcher matcherWithSubject:nil];
 
     [matcher contain:@"liger"];
     XCTAssertEqualObjects(@"contain \"liger\"", [matcher description], @"description should match");

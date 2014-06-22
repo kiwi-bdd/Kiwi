@@ -26,21 +26,21 @@
 
 - (void)testItShouldMatchKindOfClass {
     id subject = [Cruiser cruiser];
-    id matcher = [KWBeKindOfClassMatcher matcherWithSubject:subject];
+    KWBeKindOfClassMatcher *matcher = [KWBeKindOfClassMatcher matcherWithSubject:subject];
     [matcher beKindOfClass:[SpaceShip class]];
     XCTAssertTrue([matcher evaluate], @"expected positive match");
 }
 
 - (void)testItShouldNotMatchNonKindOfClass {
     id subject = [Cruiser cruiser];
-    id matcher = [KWBeKindOfClassMatcher matcherWithSubject:subject];
+    KWBeKindOfClassMatcher *matcher = [KWBeKindOfClassMatcher matcherWithSubject:subject];
     [matcher beKindOfClass:[Fighter class]];
     XCTAssertFalse([matcher evaluate], @"expected negative match");
 }
 
 - (void)testItShouldHaveHumanReadableDescription
 {
-  id matcher = [KWBeKindOfClassMatcher matcherWithSubject:nil];
+  KWBeKindOfClassMatcher *matcher = [KWBeKindOfClassMatcher matcherWithSubject:nil];
   [matcher beKindOfClass:[Fighter class]];
   XCTAssertEqualObjects(@"be kind of Fighter", [matcher description], @"description should match");
 }
@@ -48,7 +48,7 @@
 - (void)testItShouldHaveInformativeFailureMessageForShould
 {
     id subject = [Cruiser cruiser];
-    id matcher = [KWBeKindOfClassMatcher matcherWithSubject:subject];
+    KWBeKindOfClassMatcher *matcher = [KWBeKindOfClassMatcher matcherWithSubject:subject];
     [matcher beKindOfClass:[Fighter class]];
     XCTAssertEqualObjects([matcher failureMessageForShould], @"expected subject to be kind of Fighter, got Cruiser", @"failure message should match");
 }
@@ -56,7 +56,7 @@
 - (void)testItShouldHaveInformativeFailureMessageForShouldNot
 {
     id subject = [Cruiser cruiser];
-    id matcher = [KWBeKindOfClassMatcher matcherWithSubject:subject];
+    KWBeKindOfClassMatcher *matcher = [KWBeKindOfClassMatcher matcherWithSubject:subject];
     [matcher beKindOfClass:[Fighter class]];
     XCTAssertEqualObjects([matcher failureMessageForShouldNot], @"expected subject not to be kind of Fighter, got Cruiser", @"failure message should match");
 }

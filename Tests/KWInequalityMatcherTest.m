@@ -29,7 +29,7 @@
 
 - (void)testItShouldMatchGreaterValuesForGreaterThan {
     id subject = [KWValue valueWithInt:42];
-    id matcher = [KWInequalityMatcher matcherWithSubject:subject];
+    KWInequalityMatcher *matcher = [KWInequalityMatcher matcherWithSubject:subject];
     [matcher beGreaterThan:[KWValue valueWithInt:40]];
     XCTAssertTrue([matcher evaluate], @"expected positive match");
 
@@ -44,7 +44,7 @@
 
 - (void)testItShouldNotMatchNonGreaterValuesForGreaterThan {
     id subject = [KWValue valueWithInt:42];
-    id matcher = [KWInequalityMatcher matcherWithSubject:subject];
+    KWInequalityMatcher *matcher = [KWInequalityMatcher matcherWithSubject:subject];
     [matcher beGreaterThan:[KWValue valueWithInt:43]];
     XCTAssertFalse([matcher evaluate], @"expected negative match");
 
@@ -55,7 +55,7 @@
 
 - (void)testItShouldMatchLesserValuesForLessThan {
     id subject = [KWValue valueWithInt:42];
-    id matcher = [KWInequalityMatcher matcherWithSubject:subject];
+    KWInequalityMatcher *matcher = [KWInequalityMatcher matcherWithSubject:subject];
     [matcher beLessThan:[KWValue valueWithInt:43]];
     XCTAssertTrue([matcher evaluate], @"expected positive match");
 
@@ -70,7 +70,7 @@
 
 - (void)testItShouldNotMatchNonLesserValuesForLessThan {
     id subject = [KWValue valueWithInt:42];
-    id matcher = [KWInequalityMatcher matcherWithSubject:subject];
+    KWInequalityMatcher *matcher = [KWInequalityMatcher matcherWithSubject:subject];
     [matcher beLessThan:[KWValue valueWithInt:41]];
     XCTAssertFalse([matcher evaluate], @"expected negative match");
 
@@ -81,7 +81,7 @@
 
 - (void)testItShouldHaveHumanReadableDescription
 {
-  id matcher = [KWInequalityMatcher matcherWithSubject:theValue(123)];
+  KWInequalityMatcher *matcher = [KWInequalityMatcher matcherWithSubject:theValue(123)];
 
   [matcher beLessThan:[KWValue valueWithInt:10]];
   XCTAssertEqualObjects(@"be < 10", [matcher description], @"description should match");

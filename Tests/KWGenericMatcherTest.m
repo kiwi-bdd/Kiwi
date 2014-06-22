@@ -20,21 +20,21 @@
 
 - (void)testItShouldMatchObjectsThatMatchGenericMatchers
 {
-    id matcher = [KWGenericMatcher matcherWithSubject:@"Alpha Bravo"];
+    KWGenericMatcher *matcher = [KWGenericMatcher matcherWithSubject:@"Alpha Bravo"];
     [matcher match:hasPrefix(@"Alpha")];
     XCTAssertTrue([matcher evaluate], @"expected positive match");
 }
 
 - (void)testItShouldNotMatchObjectsThatMatchGenericMatchers
 {
-    id matcher = [KWGenericMatcher matcherWithSubject:@"Charlie Bravo"];
+    KWGenericMatcher *matcher = [KWGenericMatcher matcherWithSubject:@"Charlie Bravo"];
     [matcher match:hasPrefix(@"Alpha")];
     XCTAssertFalse([matcher evaluate], @"expected negative match");
 }
 
 - (void)testItShouldHaveHumanReadableDescription
 {
-    id matcher = [KWGenericMatcher matcherWithSubject:nil];
+    KWGenericMatcher *matcher = [KWGenericMatcher matcherWithSubject:nil];
     [matcher match:hasPrefix(@"Alpha")];
     XCTAssertEqualObjects(@"match a string with prefix 'Alpha'", [matcher description], @"description should match");
 }

@@ -29,49 +29,49 @@
 
 - (void)testItShouldMatchForRaisingSelectors {
     id subject = [Cruiser cruiser];
-    id matcher = [KWRaiseMatcher matcherWithSubject:subject];
+    KWRaiseMatcher *matcher = [KWRaiseMatcher matcherWithSubject:subject];
     [matcher raiseWhenSent:@selector(raise)];
     XCTAssertTrue([matcher evaluate], @"expected positive match");
 }
 
 - (void)testItShouldNotMatchForNonRaisingSelectors {
     id subject = [Cruiser cruiser];
-    id matcher = [KWRaiseMatcher matcherWithSubject:subject];
+    KWRaiseMatcher *matcher = [KWRaiseMatcher matcherWithSubject:subject];
     [matcher raiseWhenSent:@selector(fighters)];
     XCTAssertFalse([matcher evaluate], @"expected negative match");
 }
 
 - (void)testItShouldMatchNamedExceptionsForRaisingSelectors{
     id subject = [Cruiser cruiser];
-    id matcher = [KWRaiseMatcher matcherWithSubject:subject];
+    KWRaiseMatcher *matcher = [KWRaiseMatcher matcherWithSubject:subject];
     [matcher raiseWithName:@"CruiserException" whenSent:@selector(raise)];
     XCTAssertTrue([matcher evaluate], @"expected positive match");
 }
 
 - (void)testItShouldNotMatchNamedExceptionsForRaisingSelectors {
     id subject = [Cruiser cruiser];
-    id matcher = [KWRaiseMatcher matcherWithSubject:subject];
+    KWRaiseMatcher *matcher = [KWRaiseMatcher matcherWithSubject:subject];
     [matcher raiseWithName:@"FighterException" whenSent:@selector(raise)];
     XCTAssertFalse([matcher evaluate], @"expected negative match");
 }
 
 - (void)testItShouldMatchNamedDescribedExceptionsForRaisingSelectors {
     id subject = [Cruiser cruiser];
-    id matcher = [KWRaiseMatcher matcherWithSubject:subject];
+    KWRaiseMatcher *matcher = [KWRaiseMatcher matcherWithSubject:subject];
     [matcher raiseWithName:@"CruiserException" reason:@"-[Cruiser raise]" whenSent:@selector(raise)];
     XCTAssertTrue([matcher evaluate], @"expected positive match");
 }
 
 - (void)testItShouldNotMatchNamedDescribedExceptionsForRaisingSelectors {
     id subject = [Cruiser cruiser];
-    id matcher = [KWRaiseMatcher matcherWithSubject:subject];
+    KWRaiseMatcher *matcher = [KWRaiseMatcher matcherWithSubject:subject];
     [matcher raiseWithName:@"CruiserException" reason:@"-[Fighter raise]" whenSent:@selector(raise)];
     XCTAssertFalse([matcher evaluate], @"expected negative match");
 }
 
 - (void)testItShouldHaveHumanReadableDescription
 {
-    id matcher = [KWRaiseMatcher matcherWithSubject:theValue(123)];
+    KWRaiseMatcher *matcher = [KWRaiseMatcher matcherWithSubject:theValue(123)];
 
     [matcher raiseWhenSent:@selector(raise)];
     XCTAssertEqualObjects(@"raise exception when sent raise", [matcher description], @"description should match");

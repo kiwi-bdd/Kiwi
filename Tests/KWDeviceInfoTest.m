@@ -21,7 +21,7 @@
     XCTAssertTrue(isSimulator, @"expected simulator device to be positive");
 #else
     BOOL isSimulator = [KWDeviceInfo isSimulator];
-    STAssertFalse(isSimulator, @"expected simulator device to be negative");
+    XCTAssertFalse(isSimulator, @"expected simulator device to be negative");
 #endif // #if TARGET_IPHONE_SIMULATOR
 }
 
@@ -31,7 +31,7 @@
     XCTAssertFalse(isPhysical, @"expected physical device to be negative");
 #else
     BOOL isPhysical = [KWDeviceInfo isPhysical];
-    STAssertTrue(isPhysical, @"expected physical device to be positive");
+    XCTAssertTrue(isPhysical, @"expected physical device to be positive");
 #endif // #if TARGET_IPHONE_SIMULATOR
 }
 

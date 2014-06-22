@@ -26,21 +26,21 @@
 
 - (void)testItShouldMatchConformingObjects {
     id subject = [Cruiser cruiser];
-    id matcher = [KWConformToProtocolMatcher matcherWithSubject:subject];
+    KWConformToProtocolMatcher *matcher = [KWConformToProtocolMatcher matcherWithSubject:subject];
     [matcher conformToProtocol:@protocol(JumpCapable)];
     XCTAssertTrue([matcher evaluate], @"expected positive match");
 }
 
 - (void)testItShouldNotMatchNonConformingObjects {
     id subject = [Fighter fighter];
-    id matcher = [KWConformToProtocolMatcher matcherWithSubject:subject];
+    KWConformToProtocolMatcher *matcher = [KWConformToProtocolMatcher matcherWithSubject:subject];
     [matcher conformToProtocol:@protocol(JumpCapable)];
     XCTAssertFalse([matcher evaluate], @"expected negative match");
 }
 
 - (void)testItShouldHaveHumanReadableDescription
 {
-    id matcher = [KWConformToProtocolMatcher matcherWithSubject:nil];
+    KWConformToProtocolMatcher *matcher = [KWConformToProtocolMatcher matcherWithSubject:nil];
     [matcher conformToProtocol:@protocol(JumpCapable)];
     XCTAssertEqualObjects(@"conform to JumpCapable protocol", [matcher description], @"description should match");
 }

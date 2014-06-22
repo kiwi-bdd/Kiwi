@@ -31,7 +31,7 @@
 - (void)testItShouldMatchPositiveChanges {
     __block NSInteger value = 21;
     id subject = theBlock(^{ value = 42; });
-    id matcher = [KWChangeMatcher matcherWithSubject:subject];
+    KWChangeMatcher *matcher = [KWChangeMatcher matcherWithSubject:subject];
     [matcher change:^{ return value; } by:+21];
     XCTAssertTrue([matcher evaluate], @"expected positive match");
 }
@@ -39,7 +39,7 @@
 - (void)testItShouldMatchNegativeChanges {
     __block NSInteger value = 42;
     id subject = theBlock(^{ value = 21; });
-    id matcher = [KWChangeMatcher matcherWithSubject:subject];
+    KWChangeMatcher *matcher = [KWChangeMatcher matcherWithSubject:subject];
     [matcher change:^{ return value; } by:-21];
     XCTAssertTrue([matcher evaluate], @"expected positive match");
 }
@@ -47,7 +47,7 @@
 - (void)testItShouldNotMatchUnexpectedChanges {
     __block NSInteger value = 21;
     id subject = theBlock(^{ value = 42; });
-    id matcher = [KWChangeMatcher matcherWithSubject:subject];
+    KWChangeMatcher *matcher = [KWChangeMatcher matcherWithSubject:subject];
     [matcher change:^{ return value; } by:+1];
     XCTAssertFalse([matcher evaluate], @"expected negative match");
 }
@@ -55,7 +55,7 @@
 - (void)testItShouldNotMatchWhenExactChangeIsExpected {
     __block NSInteger value = 42;
     id subject = theBlock(^{ value = 42; });
-    id matcher = [KWChangeMatcher matcherWithSubject:subject];
+    KWChangeMatcher *matcher = [KWChangeMatcher matcherWithSubject:subject];
     [matcher change:^{ return value; } by:-21];
     XCTAssertFalse([matcher evaluate], @"expected negative match");
 }
@@ -65,7 +65,7 @@
 - (void)testItShouldMatchAnyChange {
     __block NSInteger value = 21;
     id subject = theBlock(^{ value = 42; });
-    id matcher = [KWChangeMatcher matcherWithSubject:subject];
+    KWChangeMatcher *matcher = [KWChangeMatcher matcherWithSubject:subject];
     [matcher change:^{ return value; }];
     XCTAssertTrue([matcher evaluate], @"expected positive match");
 }
@@ -73,7 +73,7 @@
 - (void)testItShouldNotMatchNoChangeWhenAnyChangeIsExpected {
     __block NSInteger value = 42;
     id subject = theBlock(^{ value = 42; });
-    id matcher = [KWChangeMatcher matcherWithSubject:subject];
+    KWChangeMatcher *matcher = [KWChangeMatcher matcherWithSubject:subject];
     [matcher change:^{ return value; }];
     XCTAssertFalse([matcher evaluate], @"expected negative match");
 }

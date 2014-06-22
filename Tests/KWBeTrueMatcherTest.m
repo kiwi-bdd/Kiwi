@@ -26,42 +26,42 @@
 
 - (void)testItShouldRaiseWhenTheSubjectIsInvalid {
     id subject = @[];
-    id matcher = [KWBeTrueMatcher matcherWithSubject:subject];
+    KWBeTrueMatcher *matcher = [KWBeTrueMatcher matcherWithSubject:subject];
     [matcher beTrue];
     XCTAssertThrowsSpecificNamed([matcher evaluate], NSException, @"KWMatcherException", @"expected raised exception");
 }
 
 - (void)testItShouldMatchTrueObjectsToBeTrue {
     id subject = [KWValue valueWithBool:YES];
-    id matcher = [KWBeTrueMatcher matcherWithSubject:subject];
+    KWBeTrueMatcher *matcher = [KWBeTrueMatcher matcherWithSubject:subject];
     [matcher beTrue];
     XCTAssertTrue([matcher evaluate], @"expected positive match");
 }
 
 - (void)testItShouldNotMatchFalseObjectsToBeTrue {
     id subject = [KWValue valueWithBool:NO];
-    id matcher = [KWBeTrueMatcher matcherWithSubject:subject];
+    KWBeTrueMatcher *matcher = [KWBeTrueMatcher matcherWithSubject:subject];
     [matcher beTrue];
     XCTAssertFalse([matcher evaluate], @"expected negative match");
 }
 
 - (void)testItShouldNotMatchTrueObjectsToBeFalse {
     id subject = [KWValue valueWithBool:YES];
-    id matcher = [KWBeTrueMatcher matcherWithSubject:subject];
+    KWBeTrueMatcher *matcher = [KWBeTrueMatcher matcherWithSubject:subject];
     [matcher beFalse];
     XCTAssertFalse([matcher evaluate], @"expected negative match");
 }
 
 - (void)testItShouldMatchFalseObjectsToBeFalse {
     id subject = [KWValue valueWithBool:NO];
-    id matcher = [KWBeTrueMatcher matcherWithSubject:subject];
+    KWBeTrueMatcher *matcher = [KWBeTrueMatcher matcherWithSubject:subject];
     [matcher beFalse];
     XCTAssertTrue([matcher evaluate], @"expected positive match");
 }
 
 - (void)testItShouldHaveHumanReadableDescription
 {
-  id matcher = [KWBeTrueMatcher matcherWithSubject:nil];
+  KWBeTrueMatcher *matcher = [KWBeTrueMatcher matcherWithSubject:nil];
   [matcher beTrue];
   XCTAssertEqualObjects(@"be true", [matcher description], @"description should match");
   [matcher beFalse];

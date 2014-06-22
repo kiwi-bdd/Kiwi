@@ -37,7 +37,7 @@
 
 - (void)testItShouldMatchReceivedMessagesForReceive {
     id subject = [Cruiser cruiser];
-    id matcher = [KWReceiveMatcher matcherWithSubject:subject];
+    KWReceiveMatcher *matcher = [KWReceiveMatcher matcherWithSubject:subject];
     [matcher receive:@selector(raiseShields)];
     [subject raiseShields];
     XCTAssertTrue([matcher evaluate], @"expected positive match");
@@ -65,7 +65,7 @@
 
 - (void)testItShouldNotMatchNonReceivedMessagesForReceive {
     id subject = [Cruiser cruiser];
-    id matcher = [KWReceiveMatcher matcherWithSubject:subject];
+    KWReceiveMatcher *matcher = [KWReceiveMatcher matcherWithSubject:subject];
     [matcher receive:@selector(raiseShields)];
     [subject fighters];
     XCTAssertFalse([matcher evaluate], @"expected negative match");
@@ -73,7 +73,7 @@
 
 - (void)testItShouldMatchReceivedMessagesForReceiveWithCount {
     id subject = [Cruiser cruiser];
-    id matcher = [KWReceiveMatcher matcherWithSubject:subject];
+    KWReceiveMatcher *matcher = [KWReceiveMatcher matcherWithSubject:subject];
     [matcher receive:@selector(raiseShields) withCount:2];
     [subject raiseShields];
     [subject raiseShields];
@@ -82,7 +82,7 @@
 
 - (void)testItShouldNotMatchNonReceivedMessagesForReceiveWithCount {
     id subject = [Cruiser cruiser];
-    id matcher = [KWReceiveMatcher matcherWithSubject:subject];
+    KWReceiveMatcher *matcher = [KWReceiveMatcher matcherWithSubject:subject];
     [matcher receive:@selector(raiseShields) withCount:2];
     [subject fighters];
     XCTAssertFalse([matcher evaluate], @"expected negative match");
@@ -90,7 +90,7 @@
 
 - (void)testItShouldMatchReceivedMessagesForReceiveWithCountAtLeast {
     id subject = [Cruiser cruiser];
-    id matcher = [KWReceiveMatcher matcherWithSubject:subject];
+    KWReceiveMatcher *matcher = [KWReceiveMatcher matcherWithSubject:subject];
     [matcher receive:@selector(raiseShields) withCountAtLeast:2];
     [subject raiseShields];
     [subject raiseShields];
@@ -100,7 +100,7 @@
 
 - (void)testItShouldNotMatchNonReceivedMessagesForReceiveWithCountAtLeast {
     id subject = [Cruiser cruiser];
-    id matcher = [KWReceiveMatcher matcherWithSubject:subject];
+    KWReceiveMatcher *matcher = [KWReceiveMatcher matcherWithSubject:subject];
     [matcher receive:@selector(raiseShields) withCountAtLeast:2];
     [subject fighters];
     XCTAssertFalse([matcher evaluate], @"expected negative match");
@@ -108,7 +108,7 @@
 
 - (void)testItShouldStubForReceive {
     id subject  = [Cruiser cruiser];
-    id matcher = [KWReceiveMatcher matcherWithSubject:subject];
+    KWReceiveMatcher *matcher = [KWReceiveMatcher matcherWithSubject:subject];
     [matcher receive:@selector(crewComplement)];
     NSUInteger value = [subject crewComplement];
     XCTAssertTrue(value == 0, @"expected method to be stubbed");
@@ -117,7 +117,7 @@
 - (void)testItShouldNotOverrideExistingStub {
     id subject  = [Cruiser cruiser];
     [subject stub:@selector(crewComplement) andReturn:[KWValue valueWithUnsignedInt:333]];
-    id matcher = [KWReceiveMatcher matcherWithSubject:subject];
+    KWReceiveMatcher *matcher = [KWReceiveMatcher matcherWithSubject:subject];
     [matcher receive:@selector(crewComplement)];
     NSUInteger value = [subject crewComplement];
     XCTAssertTrue(value == 333, @"expected receive not to override existing stub");
@@ -125,7 +125,7 @@
 
 - (void)testItShouldStubForReceiveAndReturn {
     id subject = [Cruiser cruiser];
-    id matcher = [KWReceiveMatcher matcherWithSubject:subject];
+    KWReceiveMatcher *matcher = [KWReceiveMatcher matcherWithSubject:subject];
     [matcher receive:@selector(crewComplement) andReturn:[KWValue valueWithUnsignedInt:42]];
     NSUInteger value = [subject crewComplement];
     XCTAssertTrue([matcher evaluate], @"expected positive match");
@@ -153,7 +153,7 @@
 
 - (void)testItShouldStubForReceiveAndReturnWithCount {
     id subject = [Cruiser cruiser];
-    id matcher = [KWReceiveMatcher matcherWithSubject:subject];
+    KWReceiveMatcher *matcher = [KWReceiveMatcher matcherWithSubject:subject];
     [matcher receive:@selector(crewComplement) andReturn:[KWValue valueWithUnsignedInt:42] withCount:2];
     [subject crewComplement];
     NSUInteger value = [subject crewComplement];
@@ -163,7 +163,7 @@
 
 - (void)testItShouldStubForReceiveAndReturnWithCountAtLeast {
     id subject = [Cruiser cruiser];
-    id matcher = [KWReceiveMatcher matcherWithSubject:subject];
+    KWReceiveMatcher *matcher = [KWReceiveMatcher matcherWithSubject:subject];
     [matcher receive:@selector(crewComplement) andReturn:[KWValue valueWithUnsignedInt:42] withCountAtLeast:2];
     [subject crewComplement];
     [subject crewComplement];
@@ -174,7 +174,7 @@
 
 - (void)testItShouldStubForReceiveAndReturnWithCountAtMost {
     id subject = [Cruiser cruiser];
-    id matcher = [KWReceiveMatcher matcherWithSubject:subject];
+    KWReceiveMatcher *matcher = [KWReceiveMatcher matcherWithSubject:subject];
     [matcher receive:@selector(crewComplement) andReturn:[KWValue valueWithUnsignedInt:42] withCountAtMost:2];
     [subject crewComplement];
     NSUInteger value = [subject crewComplement];

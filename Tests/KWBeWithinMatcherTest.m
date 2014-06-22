@@ -26,21 +26,21 @@
 
 - (void)testItShouldMatchCloseObjects {
     id subject = [KWValue valueWithInt:42];
-    id matcher = [KWBeWithinMatcher matcherWithSubject:subject];
+    KWBeWithinMatcher *matcher = [KWBeWithinMatcher matcherWithSubject:subject];
     [matcher beWithin:[KWValue valueWithInt:2] of:[KWValue valueWithInt:40]];
     XCTAssertTrue([matcher evaluate], @"expected positive match");
 }
 
 - (void)testItShouldNotMatchNonCloseObjects {
     id subject = [KWValue valueWithInt:42];
-    id matcher = [KWBeWithinMatcher matcherWithSubject:subject];
+    KWBeWithinMatcher *matcher = [KWBeWithinMatcher matcherWithSubject:subject];
     [matcher beWithin:[KWValue valueWithInt:1] of:[KWValue valueWithInt:40]];
     XCTAssertFalse([matcher evaluate], @"expected negative match");
 }
 
 - (void)testItShouldHaveHumanReadableDescription
 {
-  id matcher = [KWBeWithinMatcher matcherWithSubject:nil];
+  KWBeWithinMatcher *matcher = [KWBeWithinMatcher matcherWithSubject:nil];
   [matcher beWithin:[KWValue valueWithInt:1] of:[KWValue valueWithInt:40]];
   XCTAssertEqualObjects(@"be within 1 of 40", [matcher description], @"description should match");
 }

@@ -26,7 +26,7 @@
 
 - (void)testItShouldMatchIdenticalObjects {
     id subject = [Cruiser cruiser];
-    id matcher = [KWBeIdenticalToMatcher matcherWithSubject:subject];
+    KWBeIdenticalToMatcher *matcher = [KWBeIdenticalToMatcher matcherWithSubject:subject];
     [matcher beIdenticalTo:subject];
     XCTAssertTrue([matcher evaluate], @"expected positive match");
 }
@@ -34,14 +34,14 @@
 - (void)testItShouldNotMatchDifferentObjects {
     id subject = [Cruiser cruiser];
     id otherSubject = [Cruiser cruiser];
-    id matcher = [KWBeIdenticalToMatcher matcherWithSubject:subject];
+    KWBeIdenticalToMatcher *matcher = [KWBeIdenticalToMatcher matcherWithSubject:subject];
     [matcher beIdenticalTo:otherSubject];
     XCTAssertFalse([matcher evaluate], @"expected negative match");
 }
 
 - (void)testItShouldHaveHumanReadableDescription
 {
-  id matcher = [KWBeIdenticalToMatcher matcherWithSubject:nil];
+  KWBeIdenticalToMatcher *matcher = [KWBeIdenticalToMatcher matcherWithSubject:nil];
   [matcher beIdenticalTo:@"foo"];
   XCTAssertEqualObjects(@"be identical to foo", [matcher description], @"description should match");
 }

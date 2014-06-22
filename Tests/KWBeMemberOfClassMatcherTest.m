@@ -26,21 +26,21 @@
 
 - (void)testItShouldMatchMembersOfAClass {
     id subject = [Cruiser cruiser];
-    id matcher = [KWBeMemberOfClassMatcher matcherWithSubject:subject];
+    KWBeMemberOfClassMatcher *matcher = [KWBeMemberOfClassMatcher matcherWithSubject:subject];
     [matcher beMemberOfClass:[Cruiser class]];
     XCTAssertTrue([matcher evaluate], @"expected positive match");
 }
 
 - (void)testItShouldNotMatchNonMembersOfAClass {
     id subject = [Cruiser cruiser];
-    id matcher = [KWBeMemberOfClassMatcher matcherWithSubject:subject];
+    KWBeMemberOfClassMatcher *matcher = [KWBeMemberOfClassMatcher matcherWithSubject:subject];
     [matcher beMemberOfClass:[Fighter class]];
     XCTAssertFalse([matcher evaluate], @"expected negative match");
 }
 
 - (void)testItShouldHaveHumanReadableDescription
 {
-  id matcher = [KWBeMemberOfClassMatcher matcherWithSubject:nil];
+  KWBeMemberOfClassMatcher *matcher = [KWBeMemberOfClassMatcher matcherWithSubject:nil];
   [matcher beMemberOfClass:[Cruiser class]];
   XCTAssertEqualObjects(@"be member of Cruiser", [matcher description], @"description should match");
 }
@@ -48,7 +48,7 @@
 - (void)testItShouldHaveInformativeFailureMessageForShould
 {
     id subject = [Cruiser cruiser];
-    id matcher = [KWBeMemberOfClassMatcher matcherWithSubject:subject];
+    KWBeMemberOfClassMatcher *matcher = [KWBeMemberOfClassMatcher matcherWithSubject:subject];
     [matcher beMemberOfClass:[Fighter class]];
     XCTAssertEqualObjects([matcher failureMessageForShould], @"expected subject to be member of Fighter, got Cruiser", @"failure message should match");
 }
@@ -56,7 +56,7 @@
 - (void)testItShouldHaveInformativeFailureMessageForShouldNot
 {
     id subject = [Cruiser cruiser];
-    id matcher = [KWBeMemberOfClassMatcher matcherWithSubject:subject];
+    KWBeMemberOfClassMatcher *matcher = [KWBeMemberOfClassMatcher matcherWithSubject:subject];
     [matcher beMemberOfClass:[Fighter class]];
     XCTAssertEqualObjects([matcher failureMessageForShouldNot], @"expected subject not to be member of Fighter, got Cruiser", @"failure message should match");
 }

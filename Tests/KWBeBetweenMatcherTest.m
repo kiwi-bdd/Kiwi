@@ -26,21 +26,21 @@
 
 - (void)testItShouldMatchIncludedElements {
     id subject = [KWValue valueWithInt:42];
-    id matcher = [KWBeBetweenMatcher matcherWithSubject:subject];
+    KWBeBetweenMatcher *matcher = [KWBeBetweenMatcher matcherWithSubject:subject];
     [matcher beBetween:[KWValue valueWithInt:40] and:[KWValue valueWithInt:50]];
     XCTAssertTrue([matcher evaluate], @"expected positive match");
 }
 
 - (void)testItShouldNotMatchIncludedElements {
     id subject = [KWValue valueWithInt:42];
-    id matcher = [KWBeBetweenMatcher matcherWithSubject:subject];
+    KWBeBetweenMatcher *matcher = [KWBeBetweenMatcher matcherWithSubject:subject];
     [matcher beBetween:[KWValue valueWithInt:50] and:[KWValue valueWithInt:60]];
     XCTAssertFalse([matcher evaluate], @"expected negative match");
 }
 
 - (void)testItShouldHaveHumanReadableDescription
 {
-  id matcher = [KWBeBetweenMatcher matcherWithSubject:[KWValue valueWithInt:0]];
+  KWBeBetweenMatcher *matcher = [KWBeBetweenMatcher matcherWithSubject:[KWValue valueWithInt:0]];
   [matcher beBetween:[KWValue valueWithInt:10] and:[KWValue valueWithInt:20]];
   XCTAssertEqualObjects([matcher description], @"be between 10 and 20", @"expected description to match");
 }

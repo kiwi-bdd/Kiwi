@@ -37,56 +37,56 @@
 
 - (void)testItShouldMatchExactCounts {
     id subject = @[@"dog", @"cat", @"tiger", @"liger"];
-    id matcher = [KWHaveMatcher matcherWithSubject:subject];
+    KWHaveMatcher *matcher = [KWHaveMatcher matcherWithSubject:subject];
     [matcher haveCountOf:4];
     XCTAssertTrue([matcher evaluate], @"expected positive match");
 }
 
 - (void)testItShouldMatchExactLengths {
     id subject = [NSMutableData dataWithLength:4];
-    id matcher = [KWHaveMatcher matcherWithSubject:subject];
+    KWHaveMatcher *matcher = [KWHaveMatcher matcherWithSubject:subject];
     [matcher haveLengthOf:4];
     XCTAssertTrue([matcher evaluate], @"expected positive match");
 }
 
 - (void)testItShouldNotMatchNonExactCounts {
     id subject = @[@"dog", @"cat", @"tiger", @"liger"];
-    id matcher = [KWHaveMatcher matcherWithSubject:subject];
+    KWHaveMatcher *matcher = [KWHaveMatcher matcherWithSubject:subject];
     [matcher haveCountOf:3];
     XCTAssertFalse([matcher evaluate], @"expected negative match");
 }
 
 - (void)testItShouldNotMatchNonExactLengths {
     id subject = [NSMutableData dataWithLength:4];
-    id matcher = [KWHaveMatcher matcherWithSubject:subject];
+    KWHaveMatcher *matcher = [KWHaveMatcher matcherWithSubject:subject];
     [matcher haveLengthOf:3];
     XCTAssertFalse([matcher evaluate], @"expected negative match");
 }
 
 - (void)testItShouldMatchAtLeastCounts {
     id subject = @[@"dog", @"cat", @"tiger", @"liger"];
-    id matcher = [KWHaveMatcher matcherWithSubject:subject];
+    KWHaveMatcher *matcher = [KWHaveMatcher matcherWithSubject:subject];
     [matcher haveCountOfAtLeast:3];
     XCTAssertTrue([matcher evaluate], @"expected positive match");
 }
 
 - (void)testItShouldMatchAtLeastLengths {
     id subject = [NSMutableData dataWithLength:4];
-    id matcher = [KWHaveMatcher matcherWithSubject:subject];
+    KWHaveMatcher *matcher = [KWHaveMatcher matcherWithSubject:subject];
     [matcher haveLengthOfAtLeast:3];
     XCTAssertTrue([matcher evaluate], @"expected positive match");
 }
 
 - (void)testItShouldMatchAtMostCounts {
     id subject = @[@"dog", @"cat", @"tiger", @"liger"];
-    id matcher = [KWHaveMatcher matcherWithSubject:subject];
+    KWHaveMatcher *matcher = [KWHaveMatcher matcherWithSubject:subject];
     [matcher haveCountOfAtMost:5];
     XCTAssertTrue([matcher evaluate], @"expected positive match");
 }
 
 - (void)testItShouldMatchAtMostLengths {
     id subject = [NSMutableData dataWithLength:4];
-    id matcher = [KWHaveMatcher matcherWithSubject:subject];
+    KWHaveMatcher *matcher = [KWHaveMatcher matcherWithSubject:subject];
     [matcher haveLengthOfAtMost:5];
     XCTAssertTrue([matcher evaluate], @"expected positive match");
 }
@@ -97,7 +97,7 @@
                                                    [Fighter fighterWithCallsign:@"Viper 2"],
                                                    [Fighter fighterWithCallsign:@"Viper 3"]]];
     NSInvocation *invocation = [NSInvocation invocationWithTarget:subject selector:@selector(fighters)];
-    id matcher = [KWHaveMatcher matcherWithSubject:subject];
+    KWHaveMatcher *matcher = [KWHaveMatcher matcherWithSubject:subject];
     [matcher have:3 itemsForInvocation:invocation];
     XCTAssertTrue([matcher evaluate], @"expected positive match");
 }
@@ -108,7 +108,7 @@
                                                    [Fighter fighterWithCallsign:@"Viper 2"],
                                                    [Fighter fighterWithCallsign:@"Viper 3"]]];
     NSInvocation *invocation = [NSInvocation invocationWithTarget:subject selector:@selector(fighters)];
-    id matcher = [KWHaveMatcher matcherWithSubject:subject];
+    KWHaveMatcher *matcher = [KWHaveMatcher matcherWithSubject:subject];
     [matcher haveAtLeast:2 itemsForInvocation:invocation];
     XCTAssertTrue([matcher evaluate], @"expected positive match");
 }
@@ -119,7 +119,7 @@
                                                    [Fighter fighterWithCallsign:@"Viper 2"],
                                                    [Fighter fighterWithCallsign:@"Viper 3"]]];
     NSInvocation *invocation = [NSInvocation invocationWithTarget:subject selector:@selector(fighters)];
-    id matcher = [KWHaveMatcher matcherWithSubject:subject];
+    KWHaveMatcher *matcher = [KWHaveMatcher matcherWithSubject:subject];
     [matcher haveAtMost:4 itemsForInvocation:invocation];
     XCTAssertTrue([matcher evaluate], @"expected positive match");
 }
@@ -127,7 +127,7 @@
 - (void)testItShouldRaiseWhenInvocationDoesNotReturnAnObject {
     id subject = [Cruiser cruiser];
     NSInvocation *invocation = [NSInvocation invocationWithTarget:subject selector:@selector(crewComplement)];
-    id matcher = [KWHaveMatcher matcherWithSubject:subject];
+    KWHaveMatcher *matcher = [KWHaveMatcher matcherWithSubject:subject];
     [matcher have:1010 itemsForInvocation:invocation];
     XCTAssertThrows([matcher evaluate], @"expected raised exception");
 }
@@ -135,14 +135,14 @@
 - (void)testItShouldTreatNilTargetObjectsAsEmptyCollections {
     id subject = [Cruiser cruiser];
     NSInvocation *invocation = [NSInvocation invocationWithTarget:subject selector:@selector(fighters)];
-    id matcher = [KWHaveMatcher matcherWithSubject:subject];
+    KWHaveMatcher *matcher = [KWHaveMatcher matcherWithSubject:subject];
     [matcher have:0 itemsForInvocation:invocation];
     XCTAssertTrue([matcher evaluate], @"expected positive match");
 }
 
 - (void)testItShouldHaveHumanReadableDescription
 {
-    id matcher = [KWHaveMatcher matcherWithSubject:nil];
+    KWHaveMatcher *matcher = [KWHaveMatcher matcherWithSubject:nil];
 
     // simple matchers
 

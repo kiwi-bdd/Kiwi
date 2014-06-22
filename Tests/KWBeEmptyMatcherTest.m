@@ -26,14 +26,14 @@
 
 - (void)testItShouldMatchEmptyCollections {
     id subject = @{};
-    id matcher = [KWBeEmptyMatcher matcherWithSubject:subject];
+    KWBeEmptyMatcher *matcher = [KWBeEmptyMatcher matcherWithSubject:subject];
     [matcher beEmpty];
     XCTAssertTrue([matcher evaluate], @"expected positive match");
 }
 
 - (void)testItShouldNotMatchNonEmptyCollections {
     id subject = @{@"foo": @"bar"};
-    id matcher = [KWBeEmptyMatcher matcherWithSubject:subject];
+    KWBeEmptyMatcher *matcher = [KWBeEmptyMatcher matcherWithSubject:subject];
     [matcher beEmpty];
     XCTAssertFalse([matcher evaluate], @"expected negative match");
 }
@@ -41,7 +41,7 @@
 
 - (void)testItShouldHaveHumanReadableDescription
 {
-  id matcher = [KWBeEmptyMatcher matcherWithSubject:nil];
+  KWBeEmptyMatcher *matcher = [KWBeEmptyMatcher matcherWithSubject:nil];
   XCTAssertEqualObjects(@"be empty", [matcher description], @"description should match");
 }
 

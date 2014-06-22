@@ -27,63 +27,63 @@
 }
 
 - (void)testItShouldHaveHumanReadableDescription {
-    id matcher = [KWContainStringMatcher matcherWithSubject:@"test subject"];
+    KWContainStringMatcher *matcher = [KWContainStringMatcher matcherWithSubject:@"test subject"];
     [matcher containString:@"foo"];
     XCTAssertEqualObjects([matcher description], @"contain substring \"foo\"", @"expected description to match");
 }
 
 - (void)testItShouldMatchSubstring {
     id subject = @"Transylvania";
-    id matcher = [KWContainStringMatcher matcherWithSubject:subject];
+    KWContainStringMatcher *matcher = [KWContainStringMatcher matcherWithSubject:subject];
     [matcher containString:@"sylvan"];
     XCTAssertTrue([matcher evaluate], @"expected positive match");
 }
 
 - (void)testItShouldNotMatchIfNoSuchSubstring {
     id subject = @"Hot dog";
-    id matcher = [KWContainStringMatcher matcherWithSubject:subject];
+    KWContainStringMatcher *matcher = [KWContainStringMatcher matcherWithSubject:subject];
     [matcher containString:@"pup"];
     XCTAssertFalse([matcher evaluate], @"expected negative match");
 }
 
 - (void)testItShouldNotMatchIfCaseDoesNotMatch {
     id subject = @"Transylvania";
-    id matcher = [KWContainStringMatcher matcherWithSubject:subject];
+    KWContainStringMatcher *matcher = [KWContainStringMatcher matcherWithSubject:subject];
     [matcher containString:@"SYLVAN"];
     XCTAssertFalse([matcher evaluate], @"expected negative match");
 }
 
 - (void)testItShouldMatchSubstringWithCaseInsensitiveOption {
     id subject = @"Transylvania";
-    id matcher = [KWContainStringMatcher matcherWithSubject:subject];
+    KWContainStringMatcher *matcher = [KWContainStringMatcher matcherWithSubject:subject];
     [matcher containString:@"SYLVAN" options:NSCaseInsensitiveSearch];
     XCTAssertTrue([matcher evaluate], @"expected positive match");
 }
 
 - (void)testItShouldMatchPrefix {
     id subject = @"Hot dog";
-    id matcher = [KWContainStringMatcher matcherWithSubject:subject];
+    KWContainStringMatcher *matcher = [KWContainStringMatcher matcherWithSubject:subject];
     [matcher startWithString:@"Hot"];
     XCTAssertTrue([matcher evaluate], @"expected positive match");
 }
 
 - (void)testItShouldNotMatchMissingPrefix {
     id subject = @"Hot dog";
-    id matcher = [KWContainStringMatcher matcherWithSubject:subject];
+    KWContainStringMatcher *matcher = [KWContainStringMatcher matcherWithSubject:subject];
     [matcher startWithString:@"ot"];
     XCTAssertFalse([matcher evaluate], @"expected negative match");
 }
 
 - (void)testItShouldMatchSuffix {
     id subject = @"Hot dog";
-    id matcher = [KWContainStringMatcher matcherWithSubject:subject];
+    KWContainStringMatcher *matcher = [KWContainStringMatcher matcherWithSubject:subject];
     [matcher endWithString:@"dog"];
     XCTAssertTrue([matcher evaluate], @"expected positive match");
 }
 
 - (void)testItShouldNotMatchMissingSuffix {
     id subject = @"Hot dog";
-    id matcher = [KWContainStringMatcher matcherWithSubject:subject];
+    KWContainStringMatcher *matcher = [KWContainStringMatcher matcherWithSubject:subject];
     [matcher endWithString:@"do"];
     XCTAssertFalse([matcher evaluate], @"expected negative match");
 }

@@ -30,7 +30,7 @@
 - (void)testItShouldMatchForRaisingBlocks {
     id cruiser = [Cruiser cruiser];
     id subject = [KWBlock blockWithBlock:^{ [cruiser raise]; }];
-    id matcher = [KWBlockRaiseMatcher matcherWithSubject:subject];
+    KWBlockRaiseMatcher *matcher = [KWBlockRaiseMatcher matcherWithSubject:subject];
     [matcher raise];
     XCTAssertTrue([matcher evaluate], @"expected positive match");
 }
@@ -38,14 +38,14 @@
 - (void)testItShouldNotMatchForNonRaisingBlocks {
     id cruiser = [Cruiser cruiser];
     id subject = [KWBlock blockWithBlock:^{ [cruiser raiseShields]; }];
-    id matcher = [KWBlockRaiseMatcher matcherWithSubject:subject];
+    KWBlockRaiseMatcher *matcher = [KWBlockRaiseMatcher matcherWithSubject:subject];
     [matcher raise];
     XCTAssertFalse([matcher evaluate], @"expected negative match");
 }
 
 - (void)testItShouldHaveHumanReadableDescription
 {
-    id matcher = [KWBlockRaiseMatcher matcherWithSubject:nil];
+    KWBlockRaiseMatcher *matcher = [KWBlockRaiseMatcher matcherWithSubject:nil];
     XCTAssertEqualObjects(@"raise nothing", [matcher description], @"description should match");
 
     [matcher raise];

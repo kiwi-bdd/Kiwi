@@ -28,48 +28,48 @@
 
 - (void)testItShouldMatchLiteralStrings {
     id subject = @"Hello";
-    id matcher = [KWRegularExpressionPatternMatcher matcherWithSubject:subject];
+    KWRegularExpressionPatternMatcher *matcher = [KWRegularExpressionPatternMatcher matcherWithSubject:subject];
     [matcher matchPattern:@"Hello"];
     XCTAssertTrue([matcher evaluate], @"expected positive match");
 }
 
 - (void)testItShouldNotMatchLiteralStrings {
     id subject = @"Hello";
-    id matcher = [KWRegularExpressionPatternMatcher matcherWithSubject:subject];
+    KWRegularExpressionPatternMatcher *matcher = [KWRegularExpressionPatternMatcher matcherWithSubject:subject];
     [matcher matchPattern:@"Goodbye"];
     XCTAssertFalse([matcher evaluate], @"expected negative match");
 }
 
 - (void)testItShouldMatchGroups {
     id subject = @"ababab";
-    id matcher = [KWRegularExpressionPatternMatcher matcherWithSubject:subject];
+    KWRegularExpressionPatternMatcher *matcher = [KWRegularExpressionPatternMatcher matcherWithSubject:subject];
     [matcher matchPattern:@"(ab)+"];
     XCTAssertTrue([matcher evaluate], @"expected positive match");
 }
 
 - (void)testItShouldNotMatchGroups {
     id subject = @"ababab";
-    id matcher = [KWRegularExpressionPatternMatcher matcherWithSubject:subject];
+    KWRegularExpressionPatternMatcher *matcher = [KWRegularExpressionPatternMatcher matcherWithSubject:subject];
     [matcher matchPattern:@"(abc)+"];
     XCTAssertFalse([matcher evaluate], @"expected negative match");
 }
 
 - (void)testItShouldMatchCaseInsensitive {
     id subject = @"abABab";
-    id matcher = [KWRegularExpressionPatternMatcher matcherWithSubject:subject];
+    KWRegularExpressionPatternMatcher *matcher = [KWRegularExpressionPatternMatcher matcherWithSubject:subject];
     [matcher matchPattern:@"(ab)+" options:NSRegularExpressionCaseInsensitive];
     XCTAssertTrue([matcher evaluate], @"expected positive match");
 }
 
 - (void)testItShouldNotMatchCaseInsensitive {
     id subject = @"abABab";
-    id matcher = [KWRegularExpressionPatternMatcher matcherWithSubject:subject];
+    KWRegularExpressionPatternMatcher *matcher = [KWRegularExpressionPatternMatcher matcherWithSubject:subject];
     [matcher matchPattern:@"(abc)+" options:NSRegularExpressionCaseInsensitive];
     XCTAssertFalse([matcher evaluate], @"expected negative match");
 }
 
 - (void)testItShouldHaveHumanReadableDescription {
-    id matcher = [KWRegularExpressionPatternMatcher matcherWithSubject:@"foobar"];
+    KWRegularExpressionPatternMatcher *matcher = [KWRegularExpressionPatternMatcher matcherWithSubject:@"foobar"];
     [matcher matchPattern:@"(foo)(bar)"];
     XCTAssertEqualObjects([matcher description], @"match pattern \"(foo)(bar)\"", @"expected description to match");
 }
