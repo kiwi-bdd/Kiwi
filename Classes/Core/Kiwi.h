@@ -65,7 +65,6 @@ extern "C" {
 #import "KWNull.h"
 #import "KWObjCUtilities.h"
 #import "KWPendingNode.h"
-#import "KWRaiseMatcher.h"
 #import "KWReceiveMatcher.h"
 #import "KWRegisterMatchersNode.h"
 #import "KWRegularExpressionPatternMatcher.h"
