@@ -69,7 +69,7 @@
 
 #pragma mark -
 
-// because SenTest will modify the invocation target, we'll have to store 
+// because XCTest will modify the invocation target, we'll have to store
 // another reference to the example group so we can retrieve it later
 
 @implementation NSInvocation (KWExampleGroup)

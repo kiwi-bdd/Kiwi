@@ -113,7 +113,6 @@
 		44FC0EC016B6377D0050D616 /* NSObject+KiwiStubAdditions.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9F982CDA16A802920030A0B1 /* NSObject+KiwiStubAdditions.h */; };
 		44FC0EC116B6377D0050D616 /* NSObject+KiwiVerifierAdditions.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9F982CDC16A802920030A0B1 /* NSObject+KiwiVerifierAdditions.h */; };
 		44FC0EC216B6377D0050D616 /* NSValue+KiwiAdditions.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9F982CDE16A802920030A0B1 /* NSValue+KiwiAdditions.h */; };
-		492F3A7A16D5F7DC008E3C49 /* KWFailureTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 492F3A7916D5F7DC008E3C49 /* KWFailureTest.m */; };
 		4A71048017CC016600A7B718 /* KWLetNode.h in Headers */ = {isa = PBXBuildFile; fileRef = 4A71047E17CC016600A7B718 /* KWLetNode.h */; };
 		4A8699B817E9B399007F250E /* KWLetNodeTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A0941AB17E7A6A800FD0EB7 /* KWLetNodeTest.m */; };
 		4A8699B917E9B3CE007F250E /* KWLetNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A71047F17CC016600A7B718 /* KWLetNode.m */; };
@@ -164,7 +163,6 @@
 		4A9866BF1956F08800636827 /* TestVerifier.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F982A3716A801800030A0B1 /* TestVerifier.m */; };
 		4A9866C01956F08800636827 /* KWFunctionalTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 89F9CB7B16B1C2C400E87D34 /* KWFunctionalTests.m */; };
 		4A9866C11956F08800636827 /* KWChangeMatcherTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 511901A016A95803006E7359 /* KWChangeMatcherTest.m */; };
-		4A9866C21956F08800636827 /* KWFailureTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 492F3A7916D5F7DC008E3C49 /* KWFailureTest.m */; };
 		4A9866C31956F08800636827 /* KWFormatterTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 89861D9316FE0EE5008CE99D /* KWFormatterTest.m */; };
 		4A9866C41956F08800636827 /* KWExampleTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AD0490218D8C4CA00D12A08 /* KWExampleTest.m */; };
 		4A9866C51956F08800636827 /* KWBeSubclassOfClassMatcherTest.m in Sources */ = {isa = PBXBuildFile; fileRef = C10F036D170C7C190031FE64 /* KWBeSubclassOfClassMatcherTest.m */; };
@@ -710,7 +708,6 @@
 		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		37828762177F860B00BCD40F /* Kiwi-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Kiwi-Prefix.pch"; sourceTree = "<group>"; };
 		3AD0490218D8C4CA00D12A08 /* KWExampleTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KWExampleTest.m; sourceTree = "<group>"; };
-		492F3A7916D5F7DC008E3C49 /* KWFailureTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KWFailureTest.m; sourceTree = "<group>"; };
 		4A03096618448E800086F533 /* KWLet.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KWLet.h; sourceTree = "<group>"; };
 		4A0941AB17E7A6A800FD0EB7 /* KWLetNodeTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KWLetNodeTest.m; sourceTree = "<group>"; };
 		4A71047E17CC016600A7B718 /* KWLetNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KWLetNode.h; sourceTree = "<group>"; };
@@ -1362,20 +1359,11 @@
 				F5A1E6081174322A002223E1 /* Mocks, Stubs, and Spying */,
 				89F9CB7816B1BE0E00E87D34 /* Functional */,
 				080E96DDFE201D6D7F000001 /* Test Classes */,
-				F5A1E60711743223002223E1 /* Specs */,
 				F5BDB84711C0C8CE00DD3474 /* Example Groups */,
 				F5A1E612117432AC002223E1 /* Support */,
 				F508565011BE61A1000EAD4E /* KiwiTestConfiguration.h */,
 			);
 			path = Tests;
-			sourceTree = "<group>";
-		};
-		F5A1E60711743223002223E1 /* Specs */ = {
-			isa = PBXGroup;
-			children = (
-				492F3A7916D5F7DC008E3C49 /* KWFailureTest.m */,
-			);
-			name = Specs;
 			sourceTree = "<group>";
 		};
 		F5A1E6081174322A002223E1 /* Mocks, Stubs, and Spying */ = {
@@ -1910,7 +1898,6 @@
 				4A9866BF1956F08800636827 /* TestVerifier.m in Sources */,
 				4A9866C01956F08800636827 /* KWFunctionalTests.m in Sources */,
 				4A9866C11956F08800636827 /* KWChangeMatcherTest.m in Sources */,
-				4A9866C21956F08800636827 /* KWFailureTest.m in Sources */,
 				4A9866C31956F08800636827 /* KWFormatterTest.m in Sources */,
 				4A9866C41956F08800636827 /* KWExampleTest.m in Sources */,
 				4A9866C51956F08800636827 /* KWBeSubclassOfClassMatcherTest.m in Sources */,
@@ -2147,7 +2134,6 @@
 				9F982A4316A801800030A0B1 /* TestVerifier.m in Sources */,
 				89F9CB7C16B1C2C400E87D34 /* KWFunctionalTests.m in Sources */,
 				9F820DBC16BB6808003A1BA5 /* KWChangeMatcherTest.m in Sources */,
-				492F3A7A16D5F7DC008E3C49 /* KWFailureTest.m in Sources */,
 				89861D9416FE0EE5008CE99D /* KWFormatterTest.m in Sources */,
 				3AD0490318D8C4CA00D12A08 /* KWExampleTest.m in Sources */,
 				C10F0370170C7C2D0031FE64 /* KWBeSubclassOfClassMatcherTest.m in Sources */,

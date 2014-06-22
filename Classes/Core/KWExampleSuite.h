@@ -11,7 +11,6 @@
 
 @class KWContextNode;
 @class KWExample;
-@class SenTestCase;
 
 @interface KWExampleSuite : NSObject <KWExampleNodeVisitor>
 
