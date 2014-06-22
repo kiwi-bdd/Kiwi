@@ -672,7 +672,7 @@
 		9F820DB716BB6748003A1BA5 /* NSProxy+KiwiVerifierAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSProxy+KiwiVerifierAdditions.m"; sourceTree = "<group>"; };
 		9F90FBEE16BA5FF20057426D /* KWGenericMatchEvaluator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KWGenericMatchEvaluator.h; sourceTree = "<group>"; };
 		9F90FBEF16BA5FF20057426D /* KWGenericMatchEvaluator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KWGenericMatchEvaluator.m; sourceTree = "<group>"; };
-		9F982A1616A7FCD00030A0B1 /* Kiwi.podspec */ = {isa = PBXFileReference; lastKnownFileType = text; path = Kiwi.podspec; sourceTree = "<group>"; };
+		9F982A1616A7FCD00030A0B1 /* Kiwi.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; indentWidth = 2; path = Kiwi.podspec; sourceTree = "<group>"; tabWidth = 2; };
 		9F982A1D16A801800030A0B1 /* Carrier.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Carrier.h; path = "Test Classes/Carrier.h"; sourceTree = "<group>"; };
 		9F982A1E16A801800030A0B1 /* Carrier.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Carrier.m; path = "Test Classes/Carrier.m"; sourceTree = "<group>"; };
 		9F982A1F16A801800030A0B1 /* Cruiser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Cruiser.h; path = "Test Classes/Cruiser.h"; sourceTree = "<group>"; };
@@ -986,12 +986,12 @@
 			isa = PBXGroup;
 			children = (
 				F5015B4D1158396B002E9A98 /* Classes */,
-				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				37B0BAF8177F42E800E07085 /* NonARC */,
-				19C28FACFE9D520D11CA2CBB /* Products */,
-				37828761177F85EB00BCD40F /* Supporting Files */,
 				F5015BE211583C27002E9A98 /* Tests */,
+				37828761177F85EB00BCD40F /* Supporting Files */,
 				9F982A1716A7FCF20030A0B1 /* Xcode Templates */,
+				29B97323FDCFA39411CA2CEA /* Frameworks */,
+				19C28FACFE9D520D11CA2CBB /* Products */,
 				9F982A1616A7FCD00030A0B1 /* Kiwi.podspec */,
 				F5F5C69F117CAA9900C5F133 /* License.txt */,
 				F5F5C69E117CAA8800C5F133 /* Readme.md */,
