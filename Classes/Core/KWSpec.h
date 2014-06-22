@@ -5,7 +5,7 @@
 //
 
 #import "KiwiConfiguration.h"
-#import <SenTestingKit/SenTestingKit.h>
+#import <XCTest/XCTest.h>
 #import "KWExpectationType.h"
 #import "KWVerifying.h"
 #import "KWExampleDelegate.h"

@@ -10,7 +10,7 @@
 
 #if KW_TESTS_ENABLED
 
-@interface KWConformToProtocolMatcherTest : SenTestCase
+@interface KWConformToProtocolMatcherTest : XCTestCase
 
 @end
 
@@ -19,30 +19,30 @@
 - (void)testItShouldHaveTheRightMatcherStrings {
     NSArray *matcherStrings = [KWConformToProtocolMatcher matcherStrings];
     NSArray *expectedStrings = @[@"conformToProtocol:"];
-    STAssertEqualObjects([matcherStrings sortedArrayUsingSelector:@selector(compare:)],
-                         [expectedStrings sortedArrayUsingSelector:@selector(compare:)],
-                         @"expected specific matcher strings");
+    XCTAssertEqualObjects([matcherStrings sortedArrayUsingSelector:@selector(compare:)],
+                          [expectedStrings sortedArrayUsingSelector:@selector(compare:)],
+                          @"expected specific matcher strings");
 }
 
 - (void)testItShouldMatchConformingObjects {
     id subject = [Cruiser cruiser];
     id matcher = [KWConformToProtocolMatcher matcherWithSubject:subject];
     [matcher conformToProtocol:@protocol(JumpCapable)];
-    STAssertTrue([matcher evaluate], @"expected positive match");
+    XCTAssertTrue([matcher evaluate], @"expected positive match");
 }
 
 - (void)testItShouldNotMatchNonConformingObjects {
     id subject = [Fighter fighter];
     id matcher = [KWConformToProtocolMatcher matcherWithSubject:subject];
     [matcher conformToProtocol:@protocol(JumpCapable)];
-    STAssertFalse([matcher evaluate], @"expected negative match");
+    XCTAssertFalse([matcher evaluate], @"expected negative match");
 }
 
 - (void)testItShouldHaveHumanReadableDescription
 {
     id matcher = [KWConformToProtocolMatcher matcherWithSubject:nil];
     [matcher conformToProtocol:@protocol(JumpCapable)];
-    STAssertEqualObjects(@"conform to JumpCapable protocol", [matcher description], @"description should match");
+    XCTAssertEqualObjects(@"conform to JumpCapable protocol", [matcher description], @"description should match");
 }
 
 @end

@@ -10,7 +10,7 @@
 
 #if KW_TESTS_ENABLED
 
-@interface KWChangeMatcherTest : SenTestCase
+@interface KWChangeMatcherTest : XCTestCase
 
 @end
 
@@ -21,9 +21,9 @@
 - (void)testItShouldHaveTheRightMatcherStrings {
     NSArray *matcherStrings = [KWChangeMatcher matcherStrings];
     NSArray *expectedStrings = @[@"change:", @"change:by:"];
-    STAssertEqualObjects([matcherStrings sortedArrayUsingSelector:@selector(compare:)],
-                         [expectedStrings sortedArrayUsingSelector:@selector(compare:)],
-                         @"expected specific matcher strings");
+    XCTAssertEqualObjects([matcherStrings sortedArrayUsingSelector:@selector(compare:)],
+                          [expectedStrings sortedArrayUsingSelector:@selector(compare:)],
+                          @"expected specific matcher strings");
 }
 
 #pragma mark - Exact changes
@@ -33,7 +33,7 @@
     id subject = theBlock(^{ value = 42; });
     id matcher = [KWChangeMatcher matcherWithSubject:subject];
     [matcher change:^{ return value; } by:+21];
-    STAssertTrue([matcher evaluate], @"expected positive match");
+    XCTAssertTrue([matcher evaluate], @"expected positive match");
 }
 
 - (void)testItShouldMatchNegativeChanges {
@@ -41,7 +41,7 @@
     id subject = theBlock(^{ value = 21; });
     id matcher = [KWChangeMatcher matcherWithSubject:subject];
     [matcher change:^{ return value; } by:-21];
-    STAssertTrue([matcher evaluate], @"expected positive match");
+    XCTAssertTrue([matcher evaluate], @"expected positive match");
 }
 
 - (void)testItShouldNotMatchUnexpectedChanges {
@@ -49,7 +49,7 @@
     id subject = theBlock(^{ value = 42; });
     id matcher = [KWChangeMatcher matcherWithSubject:subject];
     [matcher change:^{ return value; } by:+1];
-    STAssertFalse([matcher evaluate], @"expected negative match");
+    XCTAssertFalse([matcher evaluate], @"expected negative match");
 }
 
 - (void)testItShouldNotMatchWhenExactChangeIsExpected {
@@ -57,7 +57,7 @@
     id subject = theBlock(^{ value = 42; });
     id matcher = [KWChangeMatcher matcherWithSubject:subject];
     [matcher change:^{ return value; } by:-21];
-    STAssertFalse([matcher evaluate], @"expected negative match");
+    XCTAssertFalse([matcher evaluate], @"expected negative match");
 }
 
 #pragma mark - Any changes
@@ -67,7 +67,7 @@
     id subject = theBlock(^{ value = 42; });
     id matcher = [KWChangeMatcher matcherWithSubject:subject];
     [matcher change:^{ return value; }];
-    STAssertTrue([matcher evaluate], @"expected positive match");
+    XCTAssertTrue([matcher evaluate], @"expected positive match");
 }
 
 - (void)testItShouldNotMatchNoChangeWhenAnyChangeIsExpected {
@@ -75,7 +75,7 @@
     id subject = theBlock(^{ value = 42; });
     id matcher = [KWChangeMatcher matcherWithSubject:subject];
     [matcher change:^{ return value; }];
-    STAssertFalse([matcher evaluate], @"expected negative match");
+    XCTAssertFalse([matcher evaluate], @"expected negative match");
 }
 
 @end

@@ -9,7 +9,7 @@
 
 #if KW_TESTS_ENABLED
 
-@interface KWStringUtilitiesTest : SenTestCase
+@interface KWStringUtilitiesTest : XCTestCase
 
 @end
 
@@ -18,26 +18,26 @@
 - (void)testItShouldDetectStringsWithStrictWordPrefixes {
     NSString *string = @"KWEqualMatcher";
     NSString *prefix = @"KW";
-    STAssertTrue(KWStringHasStrictWordPrefix(string, prefix), @"expected string to pass test");
+    XCTAssertTrue(KWStringHasStrictWordPrefix(string, prefix), @"expected string to pass test");
 
     string = @"KWarElephant";
-    STAssertFalse(KWStringHasStrictWordPrefix(string, prefix), @"expected string to fail test");
+    XCTAssertFalse(KWStringHasStrictWordPrefix(string, prefix), @"expected string to fail test");
 
     string = @"itShouldOpenDoors";
     prefix = @"it";
-    STAssertTrue(KWStringHasStrictWordPrefix(string, prefix), @"expected string to pass test");
+    XCTAssertTrue(KWStringHasStrictWordPrefix(string, prefix), @"expected string to pass test");
 
     string = @"itsyBitsy";
-    STAssertFalse(KWStringHasStrictWordPrefix(string, prefix), @"expected string to fail test");
+    XCTAssertFalse(KWStringHasStrictWordPrefix(string, prefix), @"expected string to fail test");
 }
 
 - (void)testItShouldDetectStringsWithWords {
-    STAssertTrue(KWStringHasWord(@"copy", @"copy"), @"expected string to pass test");
-    STAssertTrue(KWStringHasWord(@"mutableCopy", @"Copy"), @"expected string to pass test");
-    STAssertTrue(KWStringHasWord(@"mutableCopyWithAccoutrement", @"Copy"), @"expected string to pass test");
-    STAssertFalse(KWStringHasWord(@"copyright", @"copy"), @"expected string to pass test");
-    STAssertFalse(KWStringHasWord(@"rightcopy", @"copy"), @"expected string to pass test");
-    STAssertFalse(KWStringHasWord(@"copyright", @"copy"), @"expected string to pass test");
+    XCTAssertTrue(KWStringHasWord(@"copy", @"copy"), @"expected string to pass test");
+    XCTAssertTrue(KWStringHasWord(@"mutableCopy", @"Copy"), @"expected string to pass test");
+    XCTAssertTrue(KWStringHasWord(@"mutableCopyWithAccoutrement", @"Copy"), @"expected string to pass test");
+    XCTAssertFalse(KWStringHasWord(@"copyright", @"copy"), @"expected string to pass test");
+    XCTAssertFalse(KWStringHasWord(@"rightcopy", @"copy"), @"expected string to pass test");
+    XCTAssertFalse(KWStringHasWord(@"copyright", @"copy"), @"expected string to pass test");
 }
 
 @end

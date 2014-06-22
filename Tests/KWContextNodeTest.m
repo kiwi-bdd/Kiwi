@@ -11,7 +11,7 @@
 
 #if KW_TESTS_ENABLED
 
-@interface KWContextNodeTest : SenTestCase
+@interface KWContextNodeTest : XCTestCase
 
 @end
 
@@ -22,7 +22,7 @@
     __block NSUInteger tag = 0;
     void (^block)(void) = ^{ ++tag; };
     [node setBeforeEachNode:[KWBeforeEachNode beforeEachNodeWithCallSite:nil block:block]];
-    STAssertThrows([node setBeforeEachNode:[KWBeforeEachNode beforeEachNodeWithCallSite:nil block:block]], @"expected exception");
+    XCTAssertThrows([node setBeforeEachNode:[KWBeforeEachNode beforeEachNodeWithCallSite:nil block:block]], @"expected exception");
 }
 
 - (void)testItShouldAllowOnlyOneAfterEachBlock {
@@ -30,7 +30,7 @@
     __block NSUInteger tag = 0;
     void (^block)(void) = ^{ ++tag; };
     [node setAfterEachNode:[KWAfterEachNode afterEachNodeWithCallSite:nil block:block]];
-    STAssertThrows([node setAfterEachNode:[KWAfterEachNode afterEachNodeWithCallSite:nil block:block]], @"expected exception");
+    XCTAssertThrows([node setAfterEachNode:[KWAfterEachNode afterEachNodeWithCallSite:nil block:block]], @"expected exception");
 }
 
 #pragma mark - Context registerMatchers nodes
@@ -47,9 +47,9 @@
     [context addRegisterMatchersNode:nodeXyz];
 
     NSArray *expectedRegisterMatchersNodes = @[nodeAbc, nodeXyz];
-    STAssertEqualObjects(context.registerMatchersNodes,
-                         expectedRegisterMatchersNodes,
-                         @"register matchers nodes not stored in the order they were added");
+    XCTAssertEqualObjects(context.registerMatchersNodes,
+                          expectedRegisterMatchersNodes,
+                          @"register matchers nodes not stored in the order they were added");
 }
 
 #pragma mark - Context let nodes
@@ -61,7 +61,7 @@
     [context addLetNode:letNode1];
     [context addLetNode:letNode2];
     NSArray *expectedLetNodes = [NSArray arrayWithObjects:letNode1, letNode2, nil];
-    STAssertEqualObjects(context.letNodes, expectedLetNodes, @"expected an array of let nodes in the order they were added");
+    XCTAssertEqualObjects(context.letNodes, expectedLetNodes, @"expected an array of let nodes in the order they were added");
 }
 
 - (void)testNewLetNodesHaveNoRelationships {
@@ -70,14 +70,14 @@
     KWContextNode *context = [KWContextNode contextNodeWithCallSite:nil parentContext:nil description:nil];
     [context addLetNode:letNode1];
     [context addLetNode:letNode2];
-    STAssertNil(letNode1.child, @"expected first let node to have no child");
-    STAssertNil(letNode1.next, @"expected first let node to have no next node");
-    STAssertNil(letNode1.parent, @"expected first let node to have no parent");
-    STAssertNil(letNode1.previous, @"expected first let node to have no previous node");
-    STAssertNil(letNode2.child, @"expected second let node to have no child");
-    STAssertNil(letNode2.next, @"expected second let node to have no next node");
-    STAssertNil(letNode2.parent, @"expected second let node to have no parent");
-    STAssertNil(letNode2.previous, @"expected second let node to have no previous node");
+    XCTAssertNil(letNode1.child, @"expected first let node to have no child");
+    XCTAssertNil(letNode1.next, @"expected first let node to have no next node");
+    XCTAssertNil(letNode1.parent, @"expected first let node to have no parent");
+    XCTAssertNil(letNode1.previous, @"expected first let node to have no previous node");
+    XCTAssertNil(letNode2.child, @"expected second let node to have no child");
+    XCTAssertNil(letNode2.next, @"expected second let node to have no next node");
+    XCTAssertNil(letNode2.parent, @"expected second let node to have no parent");
+    XCTAssertNil(letNode2.previous, @"expected second let node to have no previous node");
 }
 
 - (void)testItBuildsATreeOfItsLetNodesWithoutAParentContext {
@@ -87,8 +87,8 @@
     [context addLetNode:letNode1];
     [context addLetNode:letNode2];
     KWLetNode *tree = [context letNodeTree];
-    STAssertEqualObjects(tree, letNode1, @"expected the root of the tree to be the first let node");
-    STAssertEqualObjects(tree.next, letNode2, @"expected the root's next node to be the second let node");
+    XCTAssertEqualObjects(tree, letNode1, @"expected the root of the tree to be the first let node");
+    XCTAssertEqualObjects(tree.next, letNode2, @"expected the root's next node to be the second let node");
 }
 
 - (void)testItBuildsATreeBasedOnItsParentsTreeWithAParentContext {
@@ -104,9 +104,9 @@
     [context1 addContextNode:context2];
 
     KWLetNode *tree = [context2 letNodeTree];
-    STAssertEqualObjects(tree, letNode1, @"expected the root of the tree to be the first let node");
-    STAssertEqualObjects(tree.next, letNode2, @"expected the root's next node to be the second let node");
-    STAssertEqualObjects(tree.child, letNode3, @"expected the root's child node to be the third let node");
+    XCTAssertEqualObjects(tree, letNode1, @"expected the root of the tree to be the first let node");
+    XCTAssertEqualObjects(tree.next, letNode2, @"expected the root's next node to be the second let node");
+    XCTAssertEqualObjects(tree.child, letNode3, @"expected the root's child node to be the third let node");
 }
 
 @end

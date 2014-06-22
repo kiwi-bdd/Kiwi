@@ -10,7 +10,7 @@
 #import "TestClasses.h"
 #import "KWFailure.h"
 
-@interface KWFailureTest : SenTestCase
+@interface KWFailureTest : XCTestCase
 
 @end
 
@@ -18,8 +18,8 @@
 
 - (void)testExceptionValue {
     KWFailure *failure = [KWFailure failureWithCallSite:nil message:@"a message"];
-    STAssertNil([failure exceptionValue].userInfo, @"userInfo should be nil since there was no callSite");
-    STAssertEquals([failure exceptionValue].reason, @"a message", @"the reason of the exception should be the same as the one used to create the failure");
+    XCTAssertNil([failure exceptionValue].userInfo, @"userInfo should be nil since there was no callSite");
+    XCTAssertEqual([failure exceptionValue].reason, @"a message", @"the reason of the exception should be the same as the one used to create the failure");
 }
 
 @end

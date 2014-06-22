@@ -10,7 +10,7 @@
 
 #if KW_TESTS_ENABLED
 
-@interface KWBlockRaiseMatcherTest : SenTestCase
+@interface KWBlockRaiseMatcherTest : XCTestCase
 
 @end
 
@@ -22,9 +22,9 @@
                                                          @"raiseWithName:",
                                                          @"raiseWithReason:",
                                                          @"raiseWithName:reason:"];
-    STAssertEqualObjects([matcherStrings sortedArrayUsingSelector:@selector(compare:)],
-                         [expectedStrings sortedArrayUsingSelector:@selector(compare:)],
-                         @"expected specific matcher strings");
+    XCTAssertEqualObjects([matcherStrings sortedArrayUsingSelector:@selector(compare:)],
+                          [expectedStrings sortedArrayUsingSelector:@selector(compare:)],
+                          @"expected specific matcher strings");
 }
 
 - (void)testItShouldMatchForRaisingBlocks {
@@ -32,7 +32,7 @@
     id subject = [KWBlock blockWithBlock:^{ [cruiser raise]; }];
     id matcher = [KWBlockRaiseMatcher matcherWithSubject:subject];
     [matcher raise];
-    STAssertTrue([matcher evaluate], @"expected positive match");
+    XCTAssertTrue([matcher evaluate], @"expected positive match");
 }
 
 - (void)testItShouldNotMatchForNonRaisingBlocks {
@@ -40,25 +40,25 @@
     id subject = [KWBlock blockWithBlock:^{ [cruiser raiseShields]; }];
     id matcher = [KWBlockRaiseMatcher matcherWithSubject:subject];
     [matcher raise];
-    STAssertFalse([matcher evaluate], @"expected negative match");
+    XCTAssertFalse([matcher evaluate], @"expected negative match");
 }
 
 - (void)testItShouldHaveHumanReadableDescription
 {
     id matcher = [KWBlockRaiseMatcher matcherWithSubject:nil];
-    STAssertEqualObjects(@"raise nothing", [matcher description], @"description should match");
+    XCTAssertEqualObjects(@"raise nothing", [matcher description], @"description should match");
 
     [matcher raise];
-    STAssertEqualObjects(@"raise exception", [matcher description], @"description should match");
+    XCTAssertEqualObjects(@"raise exception", [matcher description], @"description should match");
 
     [matcher raiseWithName:@"DummyException"];
-    STAssertEqualObjects(@"raise DummyException", [matcher description], @"description should match");
+    XCTAssertEqualObjects(@"raise DummyException", [matcher description], @"description should match");
 
     [matcher raiseWithReason:@"for testing purposes"];
-    STAssertEqualObjects(@"raise exception \"for testing purposes\"", [matcher description], @"description should match");
+    XCTAssertEqualObjects(@"raise exception \"for testing purposes\"", [matcher description], @"description should match");
 
     [matcher raiseWithName:@"DummyException" reason:@"for testing purposes"];
-    STAssertEqualObjects(@"raise DummyException \"for testing purposes\"", [matcher description], @"description should match");
+    XCTAssertEqualObjects(@"raise DummyException \"for testing purposes\"", [matcher description], @"description should match");
 }
 
 @end

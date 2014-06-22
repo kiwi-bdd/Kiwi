@@ -1257,10 +1257,10 @@
 		A352E9E712EDC30A0049C691 /* KWHaveValueMatcherTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KWHaveValueMatcherTest.m; sourceTree = "<group>"; };
 		A352EA1A12EDC8380049C691 /* KWGenericMatcherTest.m */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 4; lastKnownFileType = sourcecode.c.objc; path = KWGenericMatcherTest.m; sourceTree = "<group>"; tabWidth = 4; };
 		A385CAE713AA7EA200DCA951 /* KWUserDefinedMatcherTest.m */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 4; lastKnownFileType = sourcecode.c.objc; path = KWUserDefinedMatcherTest.m; sourceTree = "<group>"; tabWidth = 4; };
-		C10F036D170C7C190031FE64 /* KWBeSubclassOfClassMatcherTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KWBeSubclassOfClassMatcherTest.m; sourceTree = "<group>"; };
+		C10F036D170C7C190031FE64 /* KWBeSubclassOfClassMatcherTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = KWBeSubclassOfClassMatcherTest.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		C533F7D117462CAA000CAB02 /* KWSymbolicator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KWSymbolicator.h; sourceTree = "<group>"; };
 		C533F7D217462CAA000CAB02 /* KWSymbolicator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KWSymbolicator.m; sourceTree = "<group>"; };
-		C931D36D18AB2DEB005BC184 /* KWBeZeroMatcherTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KWBeZeroMatcherTest.m; sourceTree = "<group>"; };
+		C931D36D18AB2DEB005BC184 /* KWBeZeroMatcherTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = KWBeZeroMatcherTest.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		DA084D3E17E3804200592D5A /* KiwiXCTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = KiwiXCTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		DA084D3F17E3804200592D5A /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		DA084D4217E3804200592D5A /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
@@ -1276,24 +1276,24 @@
 		DAAC61CA17E75B50000165F6 /* KWObjCUtilitiesTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KWObjCUtilitiesTest.m; sourceTree = "<group>"; };
 		DABFFFEB17E3CC2B00E79FB4 /* Kiwi-XCTest-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Kiwi-XCTest-Prefix.pch"; sourceTree = "<group>"; };
 		F5015B9F11583A77002E9A98 /* libKiwi.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libKiwi.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		F5015C9E11584017002E9A98 /* KiwiTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = KiwiTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
+		F5015C9E11584017002E9A98 /* KiwiTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = KiwiTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F508565011BE61A1000EAD4E /* KiwiTestConfiguration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KiwiTestConfiguration.h; sourceTree = "<group>"; };
 		F51A59BE1191D45500598B04 /* KWRealObjectStubTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KWRealObjectStubTest.m; sourceTree = "<group>"; };
 		F53B5E42115B33FC0022BC0B /* KWContainMatcherTest.m */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 4; lastKnownFileType = sourcecode.c.objc; path = KWContainMatcherTest.m; sourceTree = "<group>"; tabWidth = 4; };
 		F53B5E65115B36EB0022BC0B /* KWEqualMatcherTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KWEqualMatcherTest.m; sourceTree = "<group>"; };
 		F53B5EC5115B3D180022BC0B /* KWRaiseMatcherTest.m */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 4; lastKnownFileType = sourcecode.c.objc; path = KWRaiseMatcherTest.m; sourceTree = "<group>"; tabWidth = 4; };
-		F54A4B1D11733D98002442C5 /* KWBeKindOfClassMatcherTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KWBeKindOfClassMatcherTest.m; sourceTree = "<group>"; };
-		F54A4BD411734750002442C5 /* KWBeMemberOfClassMatcherTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KWBeMemberOfClassMatcherTest.m; sourceTree = "<group>"; };
+		F54A4B1D11733D98002442C5 /* KWBeKindOfClassMatcherTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = KWBeKindOfClassMatcherTest.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		F54A4BD411734750002442C5 /* KWBeMemberOfClassMatcherTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = KWBeMemberOfClassMatcherTest.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		F54A4C0011734975002442C5 /* KWConformToProtocolMatcherTest.m */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 4; lastKnownFileType = sourcecode.c.objc; path = KWConformToProtocolMatcherTest.m; sourceTree = "<group>"; tabWidth = 4; };
 		F553B29D11755A00004FCA2E /* KWInequalityMatcherTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KWInequalityMatcherTest.m; sourceTree = "<group>"; };
-		F553B2D211756157004FCA2E /* KWBeBetweenMatcherTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KWBeBetweenMatcherTest.m; sourceTree = "<group>"; };
-		F553B4411175A190004FCA2E /* KWBeEmptyMatcherTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KWBeEmptyMatcherTest.m; sourceTree = "<group>"; };
+		F553B2D211756157004FCA2E /* KWBeBetweenMatcherTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = KWBeBetweenMatcherTest.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		F553B4411175A190004FCA2E /* KWBeEmptyMatcherTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = KWBeEmptyMatcherTest.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		F553B48A1175B238004FCA2E /* KWHaveMatcherTest.m */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 4; lastKnownFileType = sourcecode.c.objc; path = KWHaveMatcherTest.m; sourceTree = "<group>"; tabWidth = 4; };
 		F553B6641175D48C004FCA2E /* KWRespondToSelectorMatcherTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KWRespondToSelectorMatcherTest.m; sourceTree = "<group>"; };
 		F55E61CD119B74D600F30B42 /* KWMessagePatternTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KWMessagePatternTest.m; sourceTree = "<group>"; };
-		F58F5877117DAC1800D05908 /* KWBeTrueMatcherTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KWBeTrueMatcherTest.m; sourceTree = "<group>"; };
+		F58F5877117DAC1800D05908 /* KWBeTrueMatcherTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = KWBeTrueMatcherTest.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		F59E241111880AD400D008C2 /* KWMockTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KWMockTest.m; sourceTree = "<group>"; };
-		F5A1E67811743B92002223E1 /* KWBeWithinMatcherTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KWBeWithinMatcherTest.m; sourceTree = "<group>"; };
+		F5A1E67811743B92002223E1 /* KWBeWithinMatcherTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = KWBeWithinMatcherTest.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		F5B168D911BCC58200200D1D /* KWExampleSuiteBuilderTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KWExampleSuiteBuilderTest.m; sourceTree = "<group>"; };
 		F5B169AD11BCF96E00200D1D /* KWContextNodeTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KWContextNodeTest.m; sourceTree = "<group>"; };
 		F5C36E91115C9F0700425FDA /* KWReceiveMatcherTest.m */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = sourcecode.c.objc; path = KWReceiveMatcherTest.m; sourceTree = "<group>"; tabWidth = 2; };
@@ -1301,7 +1301,7 @@
 		F5C6FD2311782A290068BBC8 /* KWValueTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KWValueTest.m; sourceTree = "<group>"; };
 		F5CC5B6D119798D400004E69 /* KWRealObjectSpyTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KWRealObjectSpyTest.m; sourceTree = "<group>"; };
 		F5D7C8D311643C2900758FEA /* KWDeviceInfoTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KWDeviceInfoTest.m; sourceTree = "<group>"; };
-		F5E50320119EA22F00F5D05F /* KWBeIndenticalToMatcherTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KWBeIndenticalToMatcherTest.m; sourceTree = "<group>"; };
+		F5E50320119EA22F00F5D05F /* KWBeIndenticalToMatcherTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = KWBeIndenticalToMatcherTest.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		F5E9FC8411AE6E740089BACE /* KWBlockRaiseMatcherTest.m */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 4; lastKnownFileType = sourcecode.c.objc; path = KWBlockRaiseMatcherTest.m; sourceTree = "<group>"; tabWidth = 4; };
 		F5F5C69E117CAA8800C5F133 /* Readme.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Readme.md; sourceTree = "<group>"; };
 		F5F5C69F117CAA9900C5F133 /* License.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = License.txt; sourceTree = "<group>"; };
@@ -1391,7 +1391,7 @@
 			isa = PBXGroup;
 			children = (
 				F5015B9F11583A77002E9A98 /* libKiwi.a */,
-				F5015C9E11584017002E9A98 /* KiwiTests.octest */,
+				F5015C9E11584017002E9A98 /* KiwiTests.xctest */,
 				832C83C7157263B300F160D5 /* libKiwi-OSX.a */,
 				DA084D3E17E3804200592D5A /* KiwiXCTests.xctest */,
 				DA084E7317E3838100592D5A /* libKiwi-XCTest.a */,
@@ -2221,8 +2221,8 @@
 			);
 			name = KiwiTests;
 			productName = KiwiBuildTests;
-			productReference = F5015C9E11584017002E9A98 /* KiwiTests.octest */;
-			productType = "com.apple.product-type.bundle";
+			productReference = F5015C9E11584017002E9A98 /* KiwiTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
 
@@ -2230,6 +2230,7 @@
 		29B97313FDCFA39411CA2CEA /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastTestingUpgradeCheck = 0600;
 				LastUpgradeCheck = 0500;
 				ORGANIZATIONNAME = "Allen Ding";
 				TargetAttributes = {
@@ -2991,6 +2992,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
 					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
+					"$(inherited)",
 				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
@@ -3002,14 +3004,13 @@
 					"-framework",
 					Foundation,
 					"-framework",
-					SenTestingKit,
+					XCTest,
 					"-framework",
 					UIKit,
 				);
 				PRODUCT_NAME = KiwiTests;
 				RUN_CLANG_STATIC_ANALYZER = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				WRAPPER_EXTENSION = octest;
 			};
 			name = Debug;
 		};
@@ -3023,6 +3024,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
 					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
+					"$(inherited)",
 				);
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_MODEL_TUNING = "";
@@ -3032,14 +3034,13 @@
 					"-framework",
 					Foundation,
 					"-framework",
-					SenTestingKit,
+					XCTest,
 					"-framework",
 					UIKit,
 				);
 				PRODUCT_NAME = KiwiTests;
 				RUN_CLANG_STATIC_ANALYZER = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				WRAPPER_EXTENSION = octest;
 				ZERO_LINK = NO;
 			};
 			name = Release;

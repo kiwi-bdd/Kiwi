@@ -274,12 +274,12 @@ describe(@"NSDate stubs", ^{
 SPEC_END
 
 #if KW_TESTS_ENABLED
-@interface KWFunctionalTests : SenTestCase
+@interface KWFunctionalTests : XCTestCase
 @end
 @implementation KWFunctionalTests
 
 - (void)testSuiteWasExecuted {
-    STAssertEquals(YES, tests_were_run, @"Test suite hasn't run!");
+    XCTAssertEqual(YES, tests_were_run, @"Test suite hasn't run!");
 }
 
 @end

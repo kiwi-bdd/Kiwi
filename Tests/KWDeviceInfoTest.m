@@ -9,7 +9,7 @@
 
 #if KW_TESTS_ENABLED
 
-@interface KWDeviceInfoTest : SenTestCase
+@interface KWDeviceInfoTest : XCTestCase
 
 @end
 
@@ -18,7 +18,7 @@
 - (void)testItShouldDetectWhenRunningOnSimulator {
 #if TARGET_IPHONE_SIMULATOR
     BOOL isSimulator = [KWDeviceInfo isSimulator];
-    STAssertTrue(isSimulator, @"expected simulator device to be positive");
+    XCTAssertTrue(isSimulator, @"expected simulator device to be positive");
 #else
     BOOL isSimulator = [KWDeviceInfo isSimulator];
     STAssertFalse(isSimulator, @"expected simulator device to be negative");
@@ -28,7 +28,7 @@
 - (void)testItShouldDetectWhenRunningOnDevice {
 #if TARGET_IPHONE_SIMULATOR
     BOOL isPhysical = [KWDeviceInfo isPhysical];
-    STAssertFalse(isPhysical, @"expected physical device to be negative");
+    XCTAssertFalse(isPhysical, @"expected physical device to be negative");
 #else
     BOOL isPhysical = [KWDeviceInfo isPhysical];
     STAssertTrue(isPhysical, @"expected physical device to be positive");
