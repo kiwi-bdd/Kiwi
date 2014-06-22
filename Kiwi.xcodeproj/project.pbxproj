@@ -2773,7 +2773,6 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
-				ONLY_ACTIVE_ARCH = YES;
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				RUN_CLANG_STATIC_ANALYZER = YES;
@@ -2806,7 +2805,6 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
-				ONLY_ACTIVE_ARCH = YES;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
@@ -2904,7 +2902,6 @@
 				GCC_PREFIX_HEADER = "Supporting Files/Kiwi-XCTest-Prefix.pch";
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_ABOUT_MISSING_NEWLINE = YES;
-				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = "Kiwi-XCTest";
 				PUBLIC_HEADERS_FOLDER_PATH = "$(PROJECT_NAME)";
 				RUN_CLANG_STATIC_ANALYZER = YES;
@@ -2929,7 +2926,6 @@
 				GCC_PREFIX_HEADER = "Supporting Files/Kiwi-XCTest-Prefix.pch";
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_ABOUT_MISSING_NEWLINE = YES;
-				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = "Kiwi-XCTest";
 				PUBLIC_HEADERS_FOLDER_PATH = "$(PROJECT_NAME)";
 				RUN_CLANG_STATIC_ANALYZER = YES;
@@ -2954,7 +2950,6 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_ABOUT_MISSING_NEWLINE = YES;
-				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PUBLIC_HEADERS_FOLDER_PATH = "$(PROJECT_NAME)";
@@ -2978,7 +2973,6 @@
 				GCC_MODEL_TUNING = "";
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_ABOUT_MISSING_NEWLINE = YES;
-				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PUBLIC_HEADERS_FOLDER_PATH = "$(PROJECT_NAME)";
@@ -3003,7 +2997,6 @@
 				GCC_MODEL_TUNING = "";
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
-				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = (
 					"-all_load",
 					"-framework",
@@ -3016,7 +3009,6 @@
 				PRODUCT_NAME = KiwiTests;
 				RUN_CLANG_STATIC_ANALYZER = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				VALID_ARCHS = "$(NATIVE_ARCH_ACTUAL) $(ARCHS_STANDARD_32_BIT)";
 				WRAPPER_EXTENSION = octest;
 			};
 			name = Debug;
@@ -3035,7 +3027,6 @@
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_MODEL_TUNING = "";
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
-				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = (
 					"-all_load",
 					"-framework",
@@ -3048,7 +3039,6 @@
 				PRODUCT_NAME = KiwiTests;
 				RUN_CLANG_STATIC_ANALYZER = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				VALID_ARCHS = "$(NATIVE_ARCH_ACTUAL) $(ARCHS_STANDARD_32_BIT)";
 				WRAPPER_EXTENSION = octest;
 				ZERO_LINK = NO;
 			};
