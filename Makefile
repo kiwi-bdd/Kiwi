@@ -16,15 +16,18 @@ ios:
 install:
 	$(XCODEBUILD) -scheme Kiwi-iOS install
 
-test:
+test: test-iphone32 test-iphone64 test-macosx
+
+test-iphone32:
 	@echo "Running 32 bit iPhone tests..."
 	$(XCODEBUILD) $(IPHONE32) test | tee xcodebuild.log | xcpretty -c
-	#
+
+test-iphone64:
 	@echo "Running 64 bit iPhone tests..."
 	$(XCODEBUILD) $(IPHONE64) test | tee xcodebuild.log | xcpretty -c
-	#
+
+test-macosx:
 	@echo "Running 32 bit OS X tests..."
 	$(XCODEBUILD) $(MACOSX) test | tee xcodebuild.log | xcpretty -c
 
 ci: test
-
