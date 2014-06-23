@@ -1627,7 +1627,6 @@
 				4A9866901956F08800636827 /* Resources */,
 				4A9866911956F08800636827 /* Sources */,
 				4A9866C91956F08800636827 /* Frameworks */,
-				4A9866CB1956F08800636827 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -1684,7 +1683,6 @@
 				F5015C9911584017002E9A98 /* Resources */,
 				F5015C9A11584017002E9A98 /* Sources */,
 				F5015C9B11584017002E9A98 /* Frameworks */,
-				F5015C9C11584017002E9A98 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -1749,19 +1747,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		4A9866CB1956F08800636827 /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
-		};
 		6BC17EC7155E3A50000B3AA4 /* Build library */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1805,19 +1790,6 @@
 			shellPath = /bin/sh;
 			shellScript = "mkdir -p ${PROJECT_DIR}/output &&\ncp -r ${BUILD_DIR}/${CONFIGURATION}-iphoneuniversal ${PROJECT_DIR}/output";
 			showEnvVarsInLog = 0;
-		};
-		F5015C9C11584017002E9A98 /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -2146,6 +2118,7 @@
 				GCC_MODEL_TUNING = "";
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = (
 					"-all_load",
 					"-framework",
@@ -2379,6 +2352,7 @@
 				GCC_MODEL_TUNING = "";
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = (
 					"-all_load",
 					"-framework",
