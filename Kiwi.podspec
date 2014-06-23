@@ -21,24 +21,10 @@ Pod::Spec.new do |s|
   s.ios.deployment_target = '5.0'
   s.osx.deployment_target = '10.7'
 
-  s.default_subspec = 'Core'
-
-  s.subspec 'Core' do |core|
-    core.framework = 'XCTest'
-    core.dependency 'Kiwi/ARC'
-    core.dependency 'Kiwi/NonARC'
-    core.prefix_header_contents = '#import <XCTest/XCTest.h>'
-  end
-
-  s.subspec 'ARC' do |arc|
-    arc.source_files = 'Classes/**/*.{h,m}'
-    arc.requires_arc = true
-  end
-
-  s.subspec 'NonARC' do |nonarc|
-    nonarc.source_files = 'NonARC/**/*.{h,m}'
-    nonarc.compiler_flags = '-fno-objc-arc'
-  end
+  s.framework = 'XCTest'
+  s.source_files = 'Classes/**/*.{h,m}'
+  s.requires_arc = true
+  s.prefix_header_contents = '#import <XCTest/XCTest.h>'
 
 end
 
