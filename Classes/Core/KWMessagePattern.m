@@ -111,7 +111,7 @@
 
     for (NSUInteger i = 0; i < numberOfMessageArguments && i < numberOfArgumentFilters; ++i) {
         const char *objCType = [signature messageArgumentTypeAtIndex:i];
-        id object = nil;
+        id __autoreleasing object = nil;
 
         // Extract message argument into object (wrapping values if neccesary)
         if (KWObjCTypeIsObject(objCType) || KWObjCTypeIsClass(objCType)) {
