@@ -27,7 +27,7 @@ test-iphone64:
 	$(XCODEBUILD) $(IPHONE64) test | tee xcodebuild.log | xcpretty -c
 
 test-macosx:
-	@echo "Running 32 bit OS X tests..."
+	@echo "Running OS X tests..."
 	$(XCODEBUILD) $(MACOSX) test | tee xcodebuild.log | xcpretty -c
 
 ci: test
