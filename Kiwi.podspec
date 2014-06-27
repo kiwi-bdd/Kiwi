@@ -6,7 +6,7 @@ Pod::Spec.new do |s|
   s.authors         = { 'Allen Ding' => 'alding@gmail.com', 'Luke Redpath' => 'luke@lukeredpath.co.uk', 'Marin Usalj' => 'mneorr@gmail.com', 'Stepan Hruda' => 'stepan.hruda@gmail.com' }
   s.license         = { :type => 'MIT', :file => 'License.txt' }
   s.source          = { :git => 'https://github.com/allending/Kiwi.git', :tag => s.version.to_s }
-  s.ios.xcconfig    = { 'FRAMEWORK_SEARCH_PATHS' => '$(inherited) "$(SDKROOT)/Developer/Library/Frameworks" "$(DEVELOPER_LIBRARY_DIR)/Frameworks"' }
+  s.ios.xcconfig    = { 'FRAMEWORK_SEARCH_PATHS' => '"$(SDKROOT)/Developer/Library/Frameworks" "$(inherited)" "$(DEVELOPER_FRAMEWORKS_DIR)" "$(DEVELOPER_DIR)/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks"' }
   s.osx.xcconfig    = { 'FRAMEWORK_SEARCH_PATHS' => '$(inherited) "$(DEVELOPER_LIBRARY_DIR)/Frameworks"' }
   s.ios.deployment_target = '5.0'
   s.osx.deployment_target = '10.7'
