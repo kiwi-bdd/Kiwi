@@ -8,7 +8,7 @@
 #import "KiwiTestConfiguration.h"
 #import "NSNumber+KiwiAdditions.h"
 
-@interface NSNumber_KiwiAdditionsTests : SenTestCase
+@interface NSNumber_KiwiAdditionsTests : XCTestCase
 
 @end
 
@@ -19,7 +19,7 @@
 - (void)testNumberWithBoolBytesReturnsANumberFromBoolBytes {
     BOOL value = YES;
     NSNumber *number = [NSNumber numberWithBoolBytes:&value];
-    STAssertEqualObjects(number, @1, @"Expected +numberWithBoolBytes: to convert YES to @1.");
+    XCTAssertEqualObjects(number, @1, @"Expected +numberWithBoolBytes: to convert YES to @1.");
 }
 
 #pragma mark numberWithStdBoolBytes
@@ -27,7 +27,7 @@
 - (void)testNumberWithStdBoolBytesReturnsANumberFromStdBoolBytes {
     bool value = true;
     NSNumber *number = [NSNumber numberWithStdBoolBytes:&value];
-    STAssertEqualObjects(number, @1, @"Expected +numberWithStdBoolBytes: to convert true to @1.");
+    XCTAssertEqualObjects(number, @1, @"Expected +numberWithStdBoolBytes: to convert true to @1.");
 }
 
 @end

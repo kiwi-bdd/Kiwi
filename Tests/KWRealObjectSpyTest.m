@@ -11,7 +11,7 @@
 
 #if KW_TESTS_ENABLED
 
-@interface KWRealObjectSpyTest : SenTestCase
+@interface KWRealObjectSpyTest : XCTestCase
 
 @end
 
@@ -26,7 +26,7 @@
     TestSpy *spy = [TestSpy testSpy];
     [cruiser addMessageSpy:spy forMessagePattern:[KWMessagePattern messagePatternWithSelector:@selector(raiseShields)]];
     [cruiser raiseShields];
-    STAssertTrue(spy.wasNotified, @"expected object to notify spies");
+    XCTAssertTrue(spy.wasNotified, @"expected object to notify spies");
 }
 
 - (void)testItShouldRemoveSpies {
@@ -36,7 +36,7 @@
     [cruiser addMessageSpy:spy forMessagePattern:messagePattern];
     [cruiser removeMessageSpy:spy forMessagePattern:messagePattern];
     [cruiser raiseShields];
-    STAssertFalse(spy.wasNotified, @"expected object to remove spies");
+    XCTAssertFalse(spy.wasNotified, @"expected object to remove spies");
 }
 
 - (void)testItShouldNotifyMultipleSpiesWithDifferentMessagePatterns {
@@ -51,8 +51,8 @@
     [cruiser addMessageSpy:spy2 forMessagePattern:messagePattern2];
     [cruiser energyLevelInWarpCore:2];
 
-    STAssertTrue(spy1.wasNotified, @"expected object to notify spies");
-    STAssertTrue(spy2.wasNotified, @"expected object to notify spies");
+    XCTAssertTrue(spy1.wasNotified, @"expected object to notify spies");
+    XCTAssertTrue(spy2.wasNotified, @"expected object to notify spies");
 }
 
 @end

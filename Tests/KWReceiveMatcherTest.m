@@ -10,7 +10,7 @@
 
 #if KW_TESTS_ENABLED
 
-@interface KWReceiveMatcherTest : SenTestCase
+@interface KWReceiveMatcherTest : XCTestCase
 
 @end
 
@@ -30,17 +30,17 @@
                                                    @"receiveMessagePattern:andReturn:countType:count:",
                                                    @"receiveUnspecifiedCountOfMessagePattern:",
                                                    @"receiveUnspecifiedCountOfMessagePattern:andReturn:"];
-    STAssertEqualObjects([matcherStrings sortedArrayUsingSelector:@selector(compare:)],
-                         [expectedStrings sortedArrayUsingSelector:@selector(compare:)],
-                         @"expected specific matcher strings");
+    XCTAssertEqualObjects([matcherStrings sortedArrayUsingSelector:@selector(compare:)],
+                          [expectedStrings sortedArrayUsingSelector:@selector(compare:)],
+                          @"expected specific matcher strings");
 }
 
 - (void)testItShouldMatchReceivedMessagesForReceive {
     id subject = [Cruiser cruiser];
-    id matcher = [KWReceiveMatcher matcherWithSubject:subject];
+    KWReceiveMatcher *matcher = [KWReceiveMatcher matcherWithSubject:subject];
     [matcher receive:@selector(raiseShields)];
     [subject raiseShields];
-    STAssertTrue([matcher evaluate], @"expected positive match");
+    XCTAssertTrue([matcher evaluate], @"expected positive match");
 }
 
 - (void)testItShouldMatchMultipleReceivedMessagesForReceiveWhenAttachedToNegativeVerifier {
@@ -50,7 +50,7 @@
     [matcher receive:@selector(raiseShields)];
     [subject raiseShields];
     [subject raiseShields];
-    STAssertTrue([matcher evaluate], @"expected positive match");
+    XCTAssertTrue([matcher evaluate], @"expected positive match");
 }
 
 - (void)testItShouldNotMatchMultipleReceivedMessagesForReceiveWhenNotAttachedToNegativeVerifier {
@@ -60,76 +60,76 @@
     [matcher receive:@selector(raiseShields)];
     [subject raiseShields];
     [subject raiseShields];
-    STAssertFalse([matcher evaluate], @"expected negative match");
+    XCTAssertFalse([matcher evaluate], @"expected negative match");
 }
 
 - (void)testItShouldNotMatchNonReceivedMessagesForReceive {
     id subject = [Cruiser cruiser];
-    id matcher = [KWReceiveMatcher matcherWithSubject:subject];
+    KWReceiveMatcher *matcher = [KWReceiveMatcher matcherWithSubject:subject];
     [matcher receive:@selector(raiseShields)];
     [subject fighters];
-    STAssertFalse([matcher evaluate], @"expected negative match");
+    XCTAssertFalse([matcher evaluate], @"expected negative match");
 }
 
 - (void)testItShouldMatchReceivedMessagesForReceiveWithCount {
     id subject = [Cruiser cruiser];
-    id matcher = [KWReceiveMatcher matcherWithSubject:subject];
+    KWReceiveMatcher *matcher = [KWReceiveMatcher matcherWithSubject:subject];
     [matcher receive:@selector(raiseShields) withCount:2];
     [subject raiseShields];
     [subject raiseShields];
-    STAssertTrue([matcher evaluate], @"expected positive match");
+    XCTAssertTrue([matcher evaluate], @"expected positive match");
 }
 
 - (void)testItShouldNotMatchNonReceivedMessagesForReceiveWithCount {
     id subject = [Cruiser cruiser];
-    id matcher = [KWReceiveMatcher matcherWithSubject:subject];
+    KWReceiveMatcher *matcher = [KWReceiveMatcher matcherWithSubject:subject];
     [matcher receive:@selector(raiseShields) withCount:2];
     [subject fighters];
-    STAssertFalse([matcher evaluate], @"expected negative match");
+    XCTAssertFalse([matcher evaluate], @"expected negative match");
 }
 
 - (void)testItShouldMatchReceivedMessagesForReceiveWithCountAtLeast {
     id subject = [Cruiser cruiser];
-    id matcher = [KWReceiveMatcher matcherWithSubject:subject];
+    KWReceiveMatcher *matcher = [KWReceiveMatcher matcherWithSubject:subject];
     [matcher receive:@selector(raiseShields) withCountAtLeast:2];
     [subject raiseShields];
     [subject raiseShields];
     [subject raiseShields];
-    STAssertTrue([matcher evaluate], @"expected positive match");
+    XCTAssertTrue([matcher evaluate], @"expected positive match");
 }
 
 - (void)testItShouldNotMatchNonReceivedMessagesForReceiveWithCountAtLeast {
     id subject = [Cruiser cruiser];
-    id matcher = [KWReceiveMatcher matcherWithSubject:subject];
+    KWReceiveMatcher *matcher = [KWReceiveMatcher matcherWithSubject:subject];
     [matcher receive:@selector(raiseShields) withCountAtLeast:2];
     [subject fighters];
-    STAssertFalse([matcher evaluate], @"expected negative match");
+    XCTAssertFalse([matcher evaluate], @"expected negative match");
 }
 
 - (void)testItShouldStubForReceive {
     id subject  = [Cruiser cruiser];
-    id matcher = [KWReceiveMatcher matcherWithSubject:subject];
+    KWReceiveMatcher *matcher = [KWReceiveMatcher matcherWithSubject:subject];
     [matcher receive:@selector(crewComplement)];
     NSUInteger value = [subject crewComplement];
-    STAssertTrue(value == 0, @"expected method to be stubbed");
+    XCTAssertTrue(value == 0, @"expected method to be stubbed");
 }
 
 - (void)testItShouldNotOverrideExistingStub {
     id subject  = [Cruiser cruiser];
     [subject stub:@selector(crewComplement) andReturn:[KWValue valueWithUnsignedInt:333]];
-    id matcher = [KWReceiveMatcher matcherWithSubject:subject];
+    KWReceiveMatcher *matcher = [KWReceiveMatcher matcherWithSubject:subject];
     [matcher receive:@selector(crewComplement)];
     NSUInteger value = [subject crewComplement];
-    STAssertTrue(value == 333, @"expected receive not to override existing stub");
+    XCTAssertTrue(value == 333, @"expected receive not to override existing stub");
 }
 
 - (void)testItShouldStubForReceiveAndReturn {
     id subject = [Cruiser cruiser];
-    id matcher = [KWReceiveMatcher matcherWithSubject:subject];
+    KWReceiveMatcher *matcher = [KWReceiveMatcher matcherWithSubject:subject];
     [matcher receive:@selector(crewComplement) andReturn:[KWValue valueWithUnsignedInt:42]];
     NSUInteger value = [subject crewComplement];
-    STAssertTrue([matcher evaluate], @"expected positive match");
-    STAssertTrue(value == 42u, @"expected stubbed value");
+    XCTAssertTrue([matcher evaluate], @"expected positive match");
+    XCTAssertTrue(value == 42u, @"expected stubbed value");
 }
 
 - (void)testItShouldMatchMultipleReceivedMessagesForReceiveAndReturnWhenAttachedToNegativeVerifier {
@@ -139,7 +139,7 @@
     [matcher receive:@selector(crewComplement) andReturn:[KWValue valueWithBool:123]];
     [subject crewComplement];
     [subject crewComplement];
-    STAssertTrue([matcher evaluate], @"expected positive match");
+    XCTAssertTrue([matcher evaluate], @"expected positive match");
 }
 
 - (void)testItShouldNotMatchMultipleReceivedMessagesForReceiveAndReturnWhenNotAttachedToNegativeVerifier {
@@ -148,38 +148,38 @@
     [matcher receive:@selector(crewComplement) andReturn:[KWValue valueWithBool:123]];
     [subject crewComplement];
     [subject crewComplement];
-    STAssertFalse([matcher evaluate], @"expected negative match");
+    XCTAssertFalse([matcher evaluate], @"expected negative match");
 }
 
 - (void)testItShouldStubForReceiveAndReturnWithCount {
     id subject = [Cruiser cruiser];
-    id matcher = [KWReceiveMatcher matcherWithSubject:subject];
+    KWReceiveMatcher *matcher = [KWReceiveMatcher matcherWithSubject:subject];
     [matcher receive:@selector(crewComplement) andReturn:[KWValue valueWithUnsignedInt:42] withCount:2];
     [subject crewComplement];
     NSUInteger value = [subject crewComplement];
-    STAssertTrue([matcher evaluate], @"expected positive match");
-    STAssertTrue(value == 42u, @"expected stubbed value");
+    XCTAssertTrue([matcher evaluate], @"expected positive match");
+    XCTAssertTrue(value == 42u, @"expected stubbed value");
 }
 
 - (void)testItShouldStubForReceiveAndReturnWithCountAtLeast {
     id subject = [Cruiser cruiser];
-    id matcher = [KWReceiveMatcher matcherWithSubject:subject];
+    KWReceiveMatcher *matcher = [KWReceiveMatcher matcherWithSubject:subject];
     [matcher receive:@selector(crewComplement) andReturn:[KWValue valueWithUnsignedInt:42] withCountAtLeast:2];
     [subject crewComplement];
     [subject crewComplement];
     NSUInteger value = [subject crewComplement];
-    STAssertTrue([matcher evaluate], @"expected positive match");
-    STAssertTrue(value == 42u, @"expected stubbed value");
+    XCTAssertTrue([matcher evaluate], @"expected positive match");
+    XCTAssertTrue(value == 42u, @"expected stubbed value");
 }
 
 - (void)testItShouldStubForReceiveAndReturnWithCountAtMost {
     id subject = [Cruiser cruiser];
-    id matcher = [KWReceiveMatcher matcherWithSubject:subject];
+    KWReceiveMatcher *matcher = [KWReceiveMatcher matcherWithSubject:subject];
     [matcher receive:@selector(crewComplement) andReturn:[KWValue valueWithUnsignedInt:42] withCountAtMost:2];
     [subject crewComplement];
     NSUInteger value = [subject crewComplement];
-    STAssertTrue([matcher evaluate], @"expected positive match");
-    STAssertTrue(value == 42u, @"expected stubbed value");
+    XCTAssertTrue([matcher evaluate], @"expected positive match");
+    XCTAssertTrue(value == 42u, @"expected stubbed value");
 }
 
 @end

@@ -89,6 +89,13 @@
     return fightersInSquadron;
 }
 
+- (void)loadFighter:(Fighter *)fighter
+{
+    NSMutableArray *newFighters = [[self.fighters mutableCopy] autorelease];
+    [newFighters addObject:fighter];
+    self.fighters = newFighters;
+}
+
 #pragma mark -
 #pragma mark Managing Systems
 
