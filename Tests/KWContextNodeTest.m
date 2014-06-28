@@ -33,6 +33,11 @@
     XCTAssertThrows([node setAfterEachNode:[KWAfterEachNode afterEachNodeWithCallSite:nil block:block]], @"expected exception");
 }
 
+- (void)testDescription {
+    KWContextNode *node = [[KWContextNode alloc] initWithCallSite:nil parentContext:nil description:@"a description"];
+    XCTAssertEqualObjects(@"a description", node.description, @"expected node description to be set by the initializer");
+}
+
 #pragma mark - Context registerMatchers nodes
 
 - (void)testItAddsNewRegisterMatchersNodesToAnArray {

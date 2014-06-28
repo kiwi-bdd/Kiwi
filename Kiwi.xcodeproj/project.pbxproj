@@ -169,10 +169,14 @@
 		4A9866C71956F08800636827 /* KWContainStringMatcherTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E7659AF172DAE4D00105B93 /* KWContainStringMatcherTest.m */; };
 		4A9866C81956F08800636827 /* KWLetNodeTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A0941AB17E7A6A800FD0EB7 /* KWLetNodeTest.m */; };
 		4A9866D21956F0B500636827 /* libKiwi-OSX.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 832C83C7157263B300F160D5 /* libKiwi-OSX.a */; };
+		4ACDA433195EC73C006B385D /* KWPendingNodeTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ACDA432195EC73C006B385D /* KWPendingNodeTest.m */; };
+		4ACDA434195EC73C006B385D /* KWPendingNodeTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ACDA432195EC73C006B385D /* KWPendingNodeTest.m */; };
 		4AE3345A195820DC00CDE895 /* KWMessagePattern.h in Headers */ = {isa = PBXBuildFile; fileRef = 4AE33458195820DC00CDE895 /* KWMessagePattern.h */; };
 		4AE3345B195820DC00CDE895 /* KWMessagePattern.h in Headers */ = {isa = PBXBuildFile; fileRef = 4AE33458195820DC00CDE895 /* KWMessagePattern.h */; };
 		4AE3345C195820DC00CDE895 /* KWMessagePattern.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AE33459195820DC00CDE895 /* KWMessagePattern.m */; };
 		4AE3345D195820DC00CDE895 /* KWMessagePattern.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AE33459195820DC00CDE895 /* KWMessagePattern.m */; };
+		4AF96EF1195E98880010D605 /* KWBlockNodeTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AD550FA195E951D00063806 /* KWBlockNodeTest.m */; };
+		4AF96EF2195E98890010D605 /* KWBlockNodeTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AD550FA195E951D00063806 /* KWBlockNodeTest.m */; };
 		4BA52D0115487F0C00FC957B /* KWCaptureTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BA52D0015487F0C00FC957B /* KWCaptureTest.m */; };
 		4C23EBE01752F72700505782 /* KWContainStringMatcher.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4E7659A8172DAC6500105B93 /* KWContainStringMatcher.h */; };
 		4C23EBE11752F76700505782 /* KWGenericMatchEvaluator.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9F90FBEE16BA5FF20057426D /* KWGenericMatchEvaluator.h */; };
@@ -706,6 +710,8 @@
 		4A71047E17CC016600A7B718 /* KWLetNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KWLetNode.h; sourceTree = "<group>"; };
 		4A71047F17CC016600A7B718 /* KWLetNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KWLetNode.m; sourceTree = "<group>"; };
 		4A9866CF1956F08800636827 /* KiwiTests-OSX.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "KiwiTests-OSX.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		4ACDA432195EC73C006B385D /* KWPendingNodeTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KWPendingNodeTest.m; sourceTree = "<group>"; };
+		4AD550FA195E951D00063806 /* KWBlockNodeTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KWBlockNodeTest.m; sourceTree = "<group>"; };
 		4AE33458195820DC00CDE895 /* KWMessagePattern.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KWMessagePattern.h; sourceTree = "<group>"; };
 		4AE33459195820DC00CDE895 /* KWMessagePattern.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KWMessagePattern.m; sourceTree = "<group>"; };
 		4BA52D0015487F0C00FC957B /* KWCaptureTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KWCaptureTest.m; sourceTree = "<group>"; };
@@ -1407,10 +1413,12 @@
 		F5BDB84711C0C8CE00DD3474 /* Example Groups */ = {
 			isa = PBXGroup;
 			children = (
+				4AD550FA195E951D00063806 /* KWBlockNodeTest.m */,
 				F5B169AD11BCF96E00200D1D /* KWContextNodeTest.m */,
 				F5B168D911BCC58200200D1D /* KWExampleSuiteBuilderTest.m */,
 				3AD0490218D8C4CA00D12A08 /* KWExampleTest.m */,
 				4A0941AB17E7A6A800FD0EB7 /* KWLetNodeTest.m */,
+				4ACDA432195EC73C006B385D /* KWPendingNodeTest.m */,
 			);
 			name = "Example Groups";
 			sourceTree = "<group>";
@@ -1841,6 +1849,7 @@
 				4A9866B71956F08800636827 /* NSNumber_KiwiAdditionsTests.m in Sources */,
 				4A9866B81956F08800636827 /* Galaxy.m in Sources */,
 				4A9866BB1956F08800636827 /* Robot.m in Sources */,
+				4ACDA434195EC73C006B385D /* KWPendingNodeTest.m in Sources */,
 				4A9866BC1956F08800636827 /* SpaceShip.m in Sources */,
 				4A9866BD1956F08800636827 /* TestReporter.m in Sources */,
 				4A9866BE1956F08800636827 /* TestSpy.m in Sources */,
@@ -1850,6 +1859,7 @@
 				4A9866C31956F08800636827 /* KWFormatterTest.m in Sources */,
 				4A9866C41956F08800636827 /* KWExampleTest.m in Sources */,
 				4A9866C51956F08800636827 /* KWBeSubclassOfClassMatcherTest.m in Sources */,
+				4AF96EF2195E98890010D605 /* KWBlockNodeTest.m in Sources */,
 				4A9866C61956F08800636827 /* KWRegularExpressionPatternMatcherTest.m in Sources */,
 				4A4AA327195B7C5800423CD6 /* KWMessagePatternFunctionalTests.m in Sources */,
 				4A9866C71956F08800636827 /* KWContainStringMatcherTest.m in Sources */,
@@ -2038,6 +2048,7 @@
 				DA3EAD0A18A86E5600EBBF57 /* KWUserDefinedMatcherFunctionalTest.m in Sources */,
 				F53B5E66115B36EB0022BC0B /* KWEqualMatcherTest.m in Sources */,
 				F5C36E93115C9F0700425FDA /* KWReceiveMatcherTest.m in Sources */,
+				4ACDA433195EC73C006B385D /* KWPendingNodeTest.m in Sources */,
 				F5D7C8D411643C2900758FEA /* KWDeviceInfoTest.m in Sources */,
 				F54A4B1E11733D98002442C5 /* KWBeKindOfClassMatcherTest.m in Sources */,
 				F54A4BD511734750002442C5 /* KWBeMemberOfClassMatcherTest.m in Sources */,
@@ -2082,6 +2093,7 @@
 				9F982A4316A801800030A0B1 /* TestVerifier.m in Sources */,
 				89F9CB7C16B1C2C400E87D34 /* KWFunctionalTests.m in Sources */,
 				9F820DBC16BB6808003A1BA5 /* KWChangeMatcherTest.m in Sources */,
+				4AF96EF1195E98880010D605 /* KWBlockNodeTest.m in Sources */,
 				89861D9416FE0EE5008CE99D /* KWFormatterTest.m in Sources */,
 				3AD0490318D8C4CA00D12A08 /* KWExampleTest.m in Sources */,
 				C10F0370170C7C2D0031FE64 /* KWBeSubclassOfClassMatcherTest.m in Sources */,
