@@ -12,7 +12,7 @@
 
 #if KW_TESTS_ENABLED
 
-@interface KWStubTest : SenTestCase
+@interface KWStubTest : XCTestCase
 
 @end
 
@@ -27,7 +27,7 @@
     KWMessagePattern *messagePattern = [KWMessagePattern messagePatternWithSelector:@selector(crewComplement)];
     id stub = [KWStub stubWithMessagePattern:messagePattern value:[KWValue valueWithUnsignedInt:42]];
     id invocation = [NSInvocation invocationWithTarget:subject selector:@selector(crewComplement)];
-    STAssertTrue([stub processInvocation:invocation], @"expected stub to process invocation");
+    XCTAssertTrue([stub processInvocation:invocation], @"expected stub to process invocation");
 }
 
 - (void)testItShouldNotProcessNonMatchedInvocations {
@@ -37,7 +37,7 @@
     id stub = [KWStub stubWithMessagePattern:messagePattern value:[KWValue valueWithFloat:13.0f]];
     NSUInteger index = 17;
     id invocation = [NSInvocation invocationWithTarget:subject selector:@selector(energyLevelInWarpCore:) messageArguments:&index];
-    STAssertFalse([stub processInvocation:invocation], @"expected stub not to process invocation");
+    XCTAssertFalse([stub processInvocation:invocation], @"expected stub not to process invocation");
 }
 
 - (void)testItShouldWriteWrappedInvocationReturnValues {
@@ -48,7 +48,7 @@
     [stub processInvocation:invocation];
     NSUInteger crewComplement = 0;
     [invocation getReturnValue:&crewComplement];
-    STAssertEquals(crewComplement, (NSUInteger)42, @"expected stub to write return value");
+    XCTAssertEqual(crewComplement, (NSUInteger)42, @"expected stub to write return value");
 }
 
 - (void)testItShouldWriteObjectInvocationReturnValues {
@@ -59,7 +59,7 @@
     [stub processInvocation:invocation];
     id callsign = nil;
     [invocation getReturnValue:&callsign];
-    STAssertEqualObjects(callsign, @"Green 1", @"expected stub to write return value");
+    XCTAssertEqualObjects(callsign, @"Green 1", @"expected stub to write return value");
 }
 
 - (void)testItShouldPerformStubbedBlock {
@@ -74,7 +74,7 @@
     id outcome = nil;
     [invocation getReturnValue:&outcome];
     Fighter *result = (Fighter *)outcome;
-    STAssertEquals(result.callsign, @"Red Leader", @"expected stub to perform given block");
+    XCTAssertEqual(result.callsign, @"Red Leader", @"expected stub to perform given block");
 }
 
 
@@ -85,7 +85,7 @@
 	const char *messageArgument = "Random callsign";
     id stub  = [KWStub stubWithMessagePattern:messagePattern block: (id) ^(NSArray *params) {
 		const char *passedArgumentValue = [params[0] pointerValue];
-		STAssertTrue(strncmp(messageArgument, passedArgumentValue, strlen(messageArgument)), @"expected appropriate value in parameters to stub block");
+		XCTAssertTrue(strncmp(messageArgument, passedArgumentValue, strlen(messageArgument)), @"expected appropriate value in parameters to stub block");
 
         return fighter;
     }];
@@ -94,7 +94,7 @@
     id outcome = nil;
     [invocation getReturnValue:&outcome];
     Fighter *result = (Fighter *)outcome;
-    STAssertEquals(result.callsign, @"Red Leader", @"expected stub to perform given block");
+    XCTAssertEqual(result.callsign, @"Red Leader", @"expected stub to perform given block");
 }
 
 - (void)testItShouldPerformStubbedBlockWhenInvocationHasNilArguments {
@@ -108,7 +108,7 @@
     id outcome = nil;
     [invocation getReturnValue:&outcome];
     NSArray *result = (NSArray *)outcome;
-    STAssertEquals([result objectAtIndex:0], [NSNull null], @"expected stub convert nil arguments to NSNull");
+    XCTAssertEqual([result objectAtIndex:0], [NSNull null], @"expected stub convert nil arguments to NSNull");
 }
 
 - (void)testItShouldRetainValueWhenProcessingInvocationsThatBeginsWithAlloc {
@@ -119,7 +119,7 @@
     NSUInteger retainCountBefore = [subject retainCount];
     [stub processInvocation:invocation];
     NSUInteger retainCountAfter = [subject retainCount];
-    STAssertEquals(retainCountAfter, retainCountBefore + 1, @"expected stub to retain value");
+    XCTAssertEqual(retainCountAfter, retainCountBefore + 1, @"expected stub to retain value");
 }
 
 - (void)testItShouldRetainValueWhenProcessingInvocationsThatBeginsWithNew {
@@ -130,7 +130,7 @@
     NSUInteger retainCountBefore = [subject retainCount];
     [stub processInvocation:invocation];
     NSUInteger retainCountAfter = [subject retainCount];
-    STAssertEquals(retainCountAfter, retainCountBefore + 1, @"expected stub to retain value");
+    XCTAssertEqual(retainCountAfter, retainCountBefore + 1, @"expected stub to retain value");
 }
 
 - (void)testItShouldRetainValueWhenProcessingInvocationsThatContainsCopy {
@@ -141,7 +141,7 @@
     NSUInteger retainCountBefore = [subject retainCount];
     [stub processInvocation:invocation];
     NSUInteger retainCountAfter = [subject retainCount];
-    STAssertEquals(retainCountAfter, retainCountBefore + 1, @"expected stub to retain value");
+    XCTAssertEqual(retainCountAfter, retainCountBefore + 1, @"expected stub to retain value");
 
     subject = [Cruiser mock];
     messagePattern = [KWMessagePattern messagePatternWithSelector:@selector(mutableCopy)];
@@ -150,14 +150,14 @@
     retainCountBefore = [subject retainCount];
     [stub processInvocation:invocation];
     retainCountAfter = [subject retainCount];
-    STAssertEquals(retainCountAfter, retainCountBefore + 1, @"expected stub to retain value");
+    XCTAssertEqual(retainCountAfter, retainCountBefore + 1, @"expected stub to retain value");
 }
 
 - (void)testItShouldUseIdAsDefaultReturnType{
     id mock = [Cruiser mock];
     SEL selector = NSSelectorFromString(@"unknownMethod");
     [mock stub:selector];
-    STAssertEqualObjects(@([mock methodSignatureForSelector:selector].methodReturnType), @"@", @"expected id as default return type");
+    XCTAssertEqualObjects(@([mock methodSignatureForSelector:selector].methodReturnType), @"@", @"expected id as default return type");
 }
 
 @end

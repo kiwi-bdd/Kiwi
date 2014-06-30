@@ -134,9 +134,9 @@ void pendingWithCallSite(KWCallSite *aCallSite, NSString *aDescription, void (^b
     variable in a `beforeAll` block, as its value is undefined at this point.
 */
 void let(id name, id (^block)(void)); // coax Xcode into autocompleting
-#define let(var, args...) \
-    __block id var = nil; \
-    let_(KW_LET_REF(var), #var, ## args)
+#define let(var, ...) \
+    __block __typeof__((__VA_ARGS__)()) var = nil; \
+    let_(KW_LET_REF(var), #var, __VA_ARGS__)
 
 #define PRAGMA(x) _Pragma (#x)
 #define PENDING(x) PRAGMA(message ( "Pending: " #x ))

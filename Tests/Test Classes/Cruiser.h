@@ -44,6 +44,8 @@
 - (Fighter *)fighterWithCallsignUTF8CString:(const char *)aCallsign;
 - (NSArray *)fightersInSquadron:(NSString *)aSquadron;
 
+- (void)loadFighter:(Fighter *)fighter;
+
 #pragma mark -
 #pragma mark Managing Systems
 

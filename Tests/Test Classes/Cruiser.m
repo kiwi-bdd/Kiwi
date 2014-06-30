@@ -37,6 +37,10 @@
     [super dealloc];
 }
 
+- (NSUInteger)hash {
+    return self.crewComplement + [super hash];
+}
+
 #pragma mark -
 #pragma mark Properties
 
@@ -83,6 +87,13 @@
     }
 
     return fightersInSquadron;
+}
+
+- (void)loadFighter:(Fighter *)fighter
+{
+    NSMutableArray *newFighters = [[self.fighters mutableCopy] autorelease];
+    [newFighters addObject:fighter];
+    self.fighters = newFighters;
 }
 
 #pragma mark -

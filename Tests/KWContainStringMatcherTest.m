@@ -12,7 +12,7 @@
 
 #if KW_TESTS_ENABLED
 
-@interface KWContainStringMatcherTest : SenTestCase
+@interface KWContainStringMatcherTest : XCTestCase
 
 @end
 
@@ -21,71 +21,71 @@
 - (void)testItShouldHaveTheRightMatcherStrings {
     NSArray *matcherStrings = [KWContainStringMatcher matcherStrings];
     NSArray *expectedStrings = @[@"containString:", @"containString:options:", @"startWithString:", @"endWithString:"];
-    STAssertEqualObjects([matcherStrings sortedArrayUsingSelector:@selector(compare:)],
-                         [expectedStrings sortedArrayUsingSelector:@selector(compare:)],
-                         @"expected specific matcher strings");
+    XCTAssertEqualObjects([matcherStrings sortedArrayUsingSelector:@selector(compare:)],
+                          [expectedStrings sortedArrayUsingSelector:@selector(compare:)],
+                          @"expected specific matcher strings");
 }
 
 - (void)testItShouldHaveHumanReadableDescription {
-    id matcher = [KWContainStringMatcher matcherWithSubject:@"test subject"];
+    KWContainStringMatcher *matcher = [KWContainStringMatcher matcherWithSubject:@"test subject"];
     [matcher containString:@"foo"];
-    STAssertEqualObjects([matcher description], @"contain substring \"foo\"", @"expected description to match");
+    XCTAssertEqualObjects([matcher description], @"contain substring \"foo\"", @"expected description to match");
 }
 
 - (void)testItShouldMatchSubstring {
     id subject = @"Transylvania";
-    id matcher = [KWContainStringMatcher matcherWithSubject:subject];
+    KWContainStringMatcher *matcher = [KWContainStringMatcher matcherWithSubject:subject];
     [matcher containString:@"sylvan"];
-    STAssertTrue([matcher evaluate], @"expected positive match");
+    XCTAssertTrue([matcher evaluate], @"expected positive match");
 }
 
 - (void)testItShouldNotMatchIfNoSuchSubstring {
     id subject = @"Hot dog";
-    id matcher = [KWContainStringMatcher matcherWithSubject:subject];
+    KWContainStringMatcher *matcher = [KWContainStringMatcher matcherWithSubject:subject];
     [matcher containString:@"pup"];
-    STAssertFalse([matcher evaluate], @"expected negative match");
+    XCTAssertFalse([matcher evaluate], @"expected negative match");
 }
 
 - (void)testItShouldNotMatchIfCaseDoesNotMatch {
     id subject = @"Transylvania";
-    id matcher = [KWContainStringMatcher matcherWithSubject:subject];
+    KWContainStringMatcher *matcher = [KWContainStringMatcher matcherWithSubject:subject];
     [matcher containString:@"SYLVAN"];
-    STAssertFalse([matcher evaluate], @"expected negative match");
+    XCTAssertFalse([matcher evaluate], @"expected negative match");
 }
 
 - (void)testItShouldMatchSubstringWithCaseInsensitiveOption {
     id subject = @"Transylvania";
-    id matcher = [KWContainStringMatcher matcherWithSubject:subject];
+    KWContainStringMatcher *matcher = [KWContainStringMatcher matcherWithSubject:subject];
     [matcher containString:@"SYLVAN" options:NSCaseInsensitiveSearch];
-    STAssertTrue([matcher evaluate], @"expected positive match");
+    XCTAssertTrue([matcher evaluate], @"expected positive match");
 }
 
 - (void)testItShouldMatchPrefix {
     id subject = @"Hot dog";
-    id matcher = [KWContainStringMatcher matcherWithSubject:subject];
+    KWContainStringMatcher *matcher = [KWContainStringMatcher matcherWithSubject:subject];
     [matcher startWithString:@"Hot"];
-    STAssertTrue([matcher evaluate], @"expected positive match");
+    XCTAssertTrue([matcher evaluate], @"expected positive match");
 }
 
 - (void)testItShouldNotMatchMissingPrefix {
     id subject = @"Hot dog";
-    id matcher = [KWContainStringMatcher matcherWithSubject:subject];
+    KWContainStringMatcher *matcher = [KWContainStringMatcher matcherWithSubject:subject];
     [matcher startWithString:@"ot"];
-    STAssertFalse([matcher evaluate], @"expected negative match");
+    XCTAssertFalse([matcher evaluate], @"expected negative match");
 }
 
 - (void)testItShouldMatchSuffix {
     id subject = @"Hot dog";
-    id matcher = [KWContainStringMatcher matcherWithSubject:subject];
+    KWContainStringMatcher *matcher = [KWContainStringMatcher matcherWithSubject:subject];
     [matcher endWithString:@"dog"];
-    STAssertTrue([matcher evaluate], @"expected positive match");
+    XCTAssertTrue([matcher evaluate], @"expected positive match");
 }
 
 - (void)testItShouldNotMatchMissingSuffix {
     id subject = @"Hot dog";
-    id matcher = [KWContainStringMatcher matcherWithSubject:subject];
+    KWContainStringMatcher *matcher = [KWContainStringMatcher matcherWithSubject:subject];
     [matcher endWithString:@"do"];
-    STAssertFalse([matcher evaluate], @"expected negative match");
+    XCTAssertFalse([matcher evaluate], @"expected negative match");
 }
 
 @end

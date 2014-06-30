@@ -1,5 +1,5 @@
 language: objective-c
 before_install:
-  - gem install xcpretty
-script: make ci | xcpretty -c
+  - gem install xcpretty # this will go away soon when Travis installs xcpretty
+script: make ci
 

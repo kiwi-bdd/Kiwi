@@ -12,7 +12,7 @@
 
 #if KW_TESTS_ENABLED
 
-@interface KWUserDefinedMatcherTest : SenTestCase
+@interface KWUserDefinedMatcherTest : XCTestCase
 @end
 
 @implementation KWUserDefinedMatcherTest
@@ -27,7 +27,7 @@
     }];
     [matcher evaluate];
 
-    STAssertEquals(@"subject", blockSubject, @"expected subject to be passed into matcher block");
+    XCTAssertEqual(@"subject", blockSubject, @"expected subject to be passed into matcher block");
 }
 
 - (void)testShouldPassWhenBlockSpecificationReturnsYes
@@ -35,7 +35,7 @@
     KWUserDefinedMatcher *matcher = [KWUserDefinedMatcher matcherWithSubject:nil block:^(id subject) {
         return YES;
     }];
-    STAssertTrue([matcher evaluate], @"expected positive match");
+    XCTAssertTrue([matcher evaluate], @"expected positive match");
 }
 
 - (void)testShouldFailWhenBlockSpecificationReturnsNo
@@ -43,7 +43,7 @@
     KWUserDefinedMatcher *matcher = [KWUserDefinedMatcher matcherWithSubject:nil block:^(id subject) {
         return NO;
     }];
-    STAssertFalse([matcher evaluate], @"expected negative match");
+    XCTAssertFalse([matcher evaluate], @"expected negative match");
 }
 
 - (void)testShouldYieldMessageArgumentToTheBlock
@@ -54,14 +54,14 @@
     matcher.selector = NSSelectorFromString(@"matchTheString:");
     [matcher performSelector:matcher.selector withObject:@"string"];
 
-    STAssertTrue([matcher evaluate], @"expected subject to match yielded argument");
+    XCTAssertTrue([matcher evaluate], @"expected subject to match yielded argument");
 }
 
 @end
 
 #pragma mark -
 
-@interface KWUserDefinedMatcherBuilderTest : SenTestCase
+@interface KWUserDefinedMatcherBuilderTest : XCTestCase
 @end
 
 @implementation KWUserDefinedMatcherBuilderTest
@@ -75,14 +75,14 @@
     }];
 
     KWUserDefinedMatcher *matcher = [builder buildMatcherWithSubject:@"foo"];
-    STAssertTrue([matcher evaluate], @"expected positive match");
+    XCTAssertTrue([matcher evaluate], @"expected positive match");
 }
 
 - (void)testShouldSetTheSelectorForTheMatcher
 {
     KWUserDefinedMatcherBuilder *builder = [KWUserDefinedMatcherBuilder builderForSelector:NSSelectorFromString(@"dummySelector")];
     KWUserDefinedMatcher *matcher = [builder buildMatcherWithSubject:@"foo"];
-    STAssertEquals(NSSelectorFromString(@"dummySelector"), matcher.selector, @"should set selector");
+    XCTAssertEqual(NSSelectorFromString(@"dummySelector"), matcher.selector, @"should set selector");
 
 }
 
@@ -95,7 +95,7 @@
     }];
 
     KWUserDefinedMatcher *matcher = [builder buildMatcherWithSubject:@"foo"];
-    STAssertEqualObjects(@"failure message containing subject foo", [matcher failureMessageForShould], @"should set failure message for should");
+    XCTAssertEqualObjects(@"failure message containing subject foo", [matcher failureMessageForShould], @"should set failure message for should");
 }
 
 - (void)testCanSetTheFailureMessageForShouldNot
@@ -107,7 +107,7 @@
     }];
 
     KWUserDefinedMatcher *matcher = [builder buildMatcherWithSubject:@"foo"];
-    STAssertEqualObjects(@"failure message containing subject foo", [matcher failureMessageForShouldNot], @"should set failure message for should");
+    XCTAssertEqualObjects(@"failure message containing subject foo", [matcher failureMessageForShouldNot], @"should set failure message for should");
 }
 
 @end

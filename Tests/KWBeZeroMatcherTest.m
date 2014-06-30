@@ -10,7 +10,7 @@
 
 #if KW_TESTS_ENABLED
 
-@interface KWBeZeroMatcherTest : SenTestCase
+@interface KWBeZeroMatcherTest : XCTestCase
 
 @end
 
@@ -19,46 +19,46 @@
 - (void)testItShouldHaveTheRightMatcherStrings {
     NSArray *matcherStrings = [KWBeZeroMatcher matcherStrings];
     NSArray *expectedStrings = @[@"beZero"];
-    STAssertEqualObjects(matcherStrings, expectedStrings, @"expected beZero in the matcher strings");
+    XCTAssertEqualObjects(matcherStrings, expectedStrings, @"expected beZero in the matcher strings");
 }
 
 - (void)testItShouldNotMatchNil {
-    id matcher = [KWBeZeroMatcher matcherWithSubject:nil];
+    KWBeZeroMatcher *matcher = [KWBeZeroMatcher matcherWithSubject:nil];
     [matcher beZero];
-    STAssertFalse([matcher evaluate], @"expected negative match for nil subject");
+    XCTAssertFalse([matcher evaluate], @"expected negative match for nil subject");
 }
 
 - (void)testItShouldMatchZeroAsAPrimitive {
     id subject = [KWValue valueWithInt:0];
-    id matcher = [KWBeZeroMatcher matcherWithSubject:subject];
+    KWBeZeroMatcher *matcher = [KWBeZeroMatcher matcherWithSubject:subject];
     [matcher beZero];
-    STAssertTrue([matcher evaluate], @"expected positive match for zero as a value");
+    XCTAssertTrue([matcher evaluate], @"expected positive match for zero as a value");
 }
 
 - (void)testItShouldNotMatchNonZeroPrimitiveValues {
     id subject = [KWValue valueWithInt:42];
-    id matcher = [KWBeZeroMatcher matcherWithSubject:subject];
+    KWBeZeroMatcher *matcher = [KWBeZeroMatcher matcherWithSubject:subject];
     [matcher beZero];
-    STAssertFalse([matcher evaluate], @"expected negative match for primitive non-zero value");
+    XCTAssertFalse([matcher evaluate], @"expected negative match for primitive non-zero value");
 }
 
 - (void)testItShouldMatchZeroAsAnNSNumber {
     id subject = @0;
-    id matcher = [KWBeZeroMatcher matcherWithSubject:subject];
+    KWBeZeroMatcher *matcher = [KWBeZeroMatcher matcherWithSubject:subject];
     [matcher beZero];
-    STAssertTrue([matcher evaluate], @"expected positive match for zero as an NSNumber");
+    XCTAssertTrue([matcher evaluate], @"expected positive match for zero as an NSNumber");
 }
 
 - (void)testItShouldNotMatchNonZeroNSNumberValues {
     id subject = @42;
-    id matcher = [KWBeZeroMatcher matcherWithSubject:subject];
+    KWBeZeroMatcher *matcher = [KWBeZeroMatcher matcherWithSubject:subject];
     [matcher beZero];
-    STAssertFalse([matcher evaluate], @"expected negative match for non-zero NSNumber values");
+    XCTAssertFalse([matcher evaluate], @"expected negative match for non-zero NSNumber values");
 }
 
 - (void)testItShouldHaveHumanReadableDescription {
-    id matcher = [KWBeZeroMatcher matcherWithSubject:nil];
-    STAssertEqualObjects(@"be zero", [matcher description], @"description should match");
+    KWBeZeroMatcher *matcher = [KWBeZeroMatcher matcherWithSubject:nil];
+    XCTAssertEqualObjects(@"be zero", [matcher description], @"description should match");
 }
 
 @end

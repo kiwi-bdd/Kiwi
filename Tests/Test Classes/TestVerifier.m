@@ -14,14 +14,16 @@
 
 @implementation TestVerifier
 
+@synthesize callSite = _callSite;
+
 #pragma mark - Properties
 
 @synthesize notifiedOfEndOfExample;
 
 #pragma mark - Setting Subjects
 
-- (void)setSubject:(id)anObject {
-}
+- (id)subject { return nil; }
+- (void)setSubject:(id)anObject {}
 
 #pragma mark - Verifying
 
