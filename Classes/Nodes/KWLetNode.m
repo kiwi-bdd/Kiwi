@@ -6,7 +6,7 @@
 
 #import "KWLetNode.h"
 #import "KWExampleNodeVisitor.h"
-#import "MAFuture.h"
+#import "KW_MAFuture.h"
 
 @interface KWLetNode ()
 
@@ -70,7 +70,7 @@
     if (self.objectRef) {
         *self.objectRef = nil;
     }
-    self.value = MALazyFuture(self.block);
+    self.value = KW_MALazyFuture(self.block);
 }
 
 #pragma mark - Managing node relationships

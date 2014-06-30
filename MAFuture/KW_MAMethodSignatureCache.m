@@ -1,6 +1,6 @@
 #import <objc/runtime.h>
 
-#import "MAMethodSignatureCache.h"
+#import "KW_MAMethodSignatureCache.h"
 
 
 @interface NSRecursiveLock (BlockAdditions)
@@ -21,11 +21,11 @@
 @end
 
 
-@implementation MAMethodSignatureCache
+@implementation KW_MAMethodSignatureCache
 
-+ (MAMethodSignatureCache *)sharedCache
++ (KW_MAMethodSignatureCache *)sharedCache
 {
-    static MAMethodSignatureCache *cache;
+    static KW_MAMethodSignatureCache *cache;
     static dispatch_once_t pred;
     dispatch_once(&pred, ^{ cache = [[self alloc] init]; });
     return cache;

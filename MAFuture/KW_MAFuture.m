@@ -1,10 +1,10 @@
 #import <dispatch/dispatch.h>
 #import <Foundation/Foundation.h>
 
-#import "MABaseFuture.h"
-#import "MAFuture.h"
-#import "MAFutureInternal.h"
-#import "MAMethodSignatureCache.h"
+#import "KW_MABaseFuture.h"
+#import "KW_MAFuture.h"
+#import "KW_MAFutureInternal.h"
+#import "KW_MAMethodSignatureCache.h"
 
 
 extern NSString *const UIApplicationDidReceiveMemoryWarningNotification;
@@ -18,7 +18,7 @@ extern NSString *const UIApplicationDidReceiveMemoryWarningNotification;
 #define LOG(...)
 #endif
 
-@implementation _MASimpleFuture
+@implementation _KW_MASimpleFuture
 
 - (id)forwardingTargetForSelector: (SEL)sel
 {
@@ -36,7 +36,7 @@ extern NSString *const UIApplicationDidReceiveMemoryWarningNotification;
 
 - (NSMethodSignature *)methodSignatureForSelector: (SEL)sel
 {
-    return [[MAMethodSignatureCache sharedCache] cachedMethodSignatureForSelector: sel];
+    return [[KW_MAMethodSignatureCache sharedCache] cachedMethodSignatureForSelector: sel];
 }
 
 - (void)forwardInvocation: (NSInvocation *)inv
@@ -51,12 +51,12 @@ extern NSString *const UIApplicationDidReceiveMemoryWarningNotification;
 @end
 
 
-@interface _MABackgroundBlockFuture : _MASimpleFuture
+@interface _KW_MABackgroundBlockFuture : _KW_MASimpleFuture
 {
 }
 @end
 
-@implementation _MABackgroundBlockFuture
+@implementation _KW_MABackgroundBlockFuture
 
 - (id)initWithBlock: (id (^)(void))block
 {
@@ -77,7 +77,7 @@ extern NSString *const UIApplicationDidReceiveMemoryWarningNotification;
 @end
 
 
-@implementation _MALazyBlockFuture
+@implementation _KW_MALazyBlockFuture
 
 - (id)initWithBlock: (id (^)(void))block
 {
@@ -109,16 +109,16 @@ extern NSString *const UIApplicationDidReceiveMemoryWarningNotification;
 
 @end
 
-#undef MABackgroundFuture
-id MABackgroundFuture(id (^block)(void))
+#undef KW_MABackgroundFuture
+id KW_MABackgroundFuture(id (^block)(void))
 {
-    return [[[_MABackgroundBlockFuture alloc] initWithBlock: block] autorelease];
+    return [[[_KW_MABackgroundBlockFuture alloc] initWithBlock: block] autorelease];
 }
 
-#undef MALazyFuture
-id MALazyFuture(id (^block)(void))
+#undef KW_MALazyFuture
+id KW_MALazyFuture(id (^block)(void))
 {
-    return [[[_MALazyBlockFuture alloc] initWithBlock: block] autorelease];
+    return [[[_KW_MALazyBlockFuture alloc] initWithBlock: block] autorelease];
 }
 
 #pragma mark -
@@ -128,7 +128,7 @@ id MALazyFuture(id (^block)(void))
 
 #ifdef __IPHONE_4_0
 
-@implementation _IKMemoryAwareFuture
+@implementation _KW_IKMemoryAwareFuture
 @synthesize isObserving;
 @dynamic countOfUsers;
 
@@ -232,33 +232,33 @@ id MALazyFuture(id (^block)(void))
 
 @end
 
-#undef IKMemoryAwareFutureCreate
-id IKMemoryAwareFutureCreate(id (^block)(void)) {
-    return [[_IKMemoryAwareFuture alloc] initWithBlock:block];
+#undef KW_IKMemoryAwareFutureCreate
+id KW_IKMemoryAwareFutureCreate(id (^block)(void)) {
+    return [[_KW_IKMemoryAwareFuture alloc] initWithBlock:block];
 }
 
-#undef IKMemoryAwareFuture
-id IKMemoryAwareFuture(id (^block)(void)) {
-    return [IKMemoryAwareFutureCreate(block) autorelease];
+#undef KW_IKMemoryAwareFuture
+id KW_IKMemoryAwareFuture(id (^block)(void)) {
+    return [KW_IKMemoryAwareFutureCreate(block) autorelease];
 }
 
-void IKMemoryAwareFutureBeginContentAccess(id future) {
-    ((_IKMemoryAwareFuture *)future).countOfUsers += 1;
+void KW_IKMemoryAwareFutureBeginContentAccess(id future) {
+    ((_KW_IKMemoryAwareFuture *)future).countOfUsers += 1;
 }
 
-void IKMemoryAwareFutureEndContentAccess(id future) {
-    ((_IKMemoryAwareFuture *)future).countOfUsers -= 1;
+void KW_IKMemoryAwareFutureEndContentAccess(id future) {
+    ((_KW_IKMemoryAwareFuture *)future).countOfUsers -= 1;
 }
 
-BOOL IKMemoryAwareFutureIsObserving(id future) {
+BOOL KW_IKMemoryAwareFutureIsObserving(id future) {
     return [future isObserving];
 }
 
-void IKInvalidateMemoryAwareFuture(id future) {
+void KW_IKInvalidateMemoryAwareFuture(id future) {
     [future invalidate];
 }
 
-NSString* IKMemoryAwareFuturesDirectory(void) {
+NSString* KW_IKMemoryAwareFuturesDirectory(void) {
     static NSString* FuturesDirectory = nil;
     if (FuturesDirectory == nil) {
         FuturesDirectory = [[NSTemporaryDirectory() stringByAppendingPathComponent:@"futures"] retain];
@@ -266,16 +266,16 @@ NSString* IKMemoryAwareFuturesDirectory(void) {
     return FuturesDirectory;
 }
 
-NSString* IKMemoryAwareFuturePath(id future) {
-    return [IKMemoryAwareFuturesDirectory() stringByAppendingPathComponent:[NSString stringWithFormat:@"%p", future]];
+NSString* KW_IKMemoryAwareFuturePath(id future) {
+    return [KW_IKMemoryAwareFuturesDirectory() stringByAppendingPathComponent:[NSString stringWithFormat:@"%p", future]];
 }
 
-@implementation _IKAutoArchivingMemoryAwareFuture
+@implementation _KW_IKAutoArchivingMemoryAwareFuture
 
 + (void)initialize {
-    if ([NSStringFromClass(self) isEqualToString:@"_IKAutoArchivingMemoryAwareFuture"]) {
+    if ([NSStringFromClass(self) isEqualToString:@"KW_IKAutoArchivingMemoryAwareFuture"]) {
         NSFileManager *fileManager = [NSFileManager defaultManager];
-        NSString *futuresDirectory = IKMemoryAwareFuturesDirectory();
+        NSString *futuresDirectory = KW_IKMemoryAwareFuturesDirectory();
 #if ENABLE_LOGGING
         NSError *error = nil;
         if (![fileManager removeItemAtPath:futuresDirectory error:&error]) {
@@ -297,12 +297,12 @@ NSString* IKMemoryAwareFuturePath(id future) {
 - (void)dealloc {
 #if ENABLE_LOGGING
     NSError *error = nil;
-    if (![[NSFileManager defaultManager] removeItemAtPath:IKMemoryAwareFuturePath(self) error:&error]) {
+    if (![[NSFileManager defaultManager] removeItemAtPath:KW_IKMemoryAwareFuturePath(self) error:&error]) {
         LOG(@"IKAAMAF: Error is occured while trying to delete file for future %@ at path \"%@\": %@", 
-            self, IKMemoryAwareFuturePath(self), [error localizedDescription]);
+            self, KW_IKMemoryAwareFuturePath(self), [error localizedDescription]);
     }
 #else
-    [[NSFileManager defaultManager] removeItemAtPath:IKMemoryAwareFuturePath(self) error:NULL];
+    [[NSFileManager defaultManager] removeItemAtPath:KW_IKMemoryAwareFuturePath(self) error:NULL];
 #endif
     [super dealloc];
 }
@@ -335,25 +335,25 @@ NSString* IKMemoryAwareFuturePath(id future) {
 
 - (BOOL)archiveValueUnlocked {
 #if ENABLE_LOGGING
-    BOOL result = [NSKeyedArchiver archiveRootObject:_value toFile:IKMemoryAwareFuturePath(self)];
+    BOOL result = [NSKeyedArchiver archiveRootObject:_value toFile:KW_IKMemoryAwareFuturePath(self)];
     if (!result) {
-        LOG(@"IKAAMAF: Cannot encode value at path \"%@\"", IKMemoryAwareFuturePath(self));
+        LOG(@"IKAAMAF: Cannot encode value at path \"%@\"", KW_IKMemoryAwareFuturePath(self));
     }
     return result;
 #else
-    return [NSKeyedArchiver archiveRootObject:_value toFile:IKMemoryAwareFuturePath(self)];
+    return [NSKeyedArchiver archiveRootObject:_value toFile:KW_IKMemoryAwareFuturePath(self)];
 #endif
 }
 
 
 - (BOOL)unarchiveValueUnlocked {
-    id value = [[[NSKeyedUnarchiver unarchiveObjectWithFile:IKMemoryAwareFuturePath(self)] retain] autorelease];
+    id value = [[[NSKeyedUnarchiver unarchiveObjectWithFile:KW_IKMemoryAwareFuturePath(self)] retain] autorelease];
     if (value != nil) {
         [self setFutureValueUnlocked:value];
     }
 #if ENABLE_LOGGING
     else {
-        LOG(@"IKAAMAF: Cannot decode value at path \"%@\"", IKMemoryAwareFuturePath(self));
+        LOG(@"IKAAMAF: Cannot decode value at path \"%@\"", KW_IKMemoryAwareFuturePath(self));
     }
 #endif
     return [self futureHasResolved];
@@ -362,20 +362,20 @@ NSString* IKMemoryAwareFuturePath(id future) {
 
 - (void)invalidateUnlocked {
     [super invalidateUnlocked];
-    [[NSFileManager defaultManager] removeItemAtPath:IKMemoryAwareFuturePath(self) error:NULL];
+    [[NSFileManager defaultManager] removeItemAtPath:KW_IKMemoryAwareFuturePath(self) error:NULL];
 }
 
 @end
 
-#undef IKAutoArchivingMemoryAwareFutureCreate
-id IKAutoArchivingMemoryAwareFutureCreate(id (^block)(void)) {
+#undef KW_IKAutoArchivingMemoryAwareFutureCreate
+id KW_IKAutoArchivingMemoryAwareFutureCreate(id (^block)(void)) {
     // TODO: Find a way to check up the object is returned by the block conforms to the NSCoding protocol.
-    return [[_IKAutoArchivingMemoryAwareFuture alloc] initWithBlock:block];
+    return [[_KW_IKAutoArchivingMemoryAwareFuture alloc] initWithBlock:block];
 }
 
-#undef IKAutoArchivingMemoryAwareFuture
-id IKAutoArchivingMemoryAwareFuture(id (^block)(void)) {
-    return [IKAutoArchivingMemoryAwareFutureCreate(block) autorelease];
+#undef KW_IKAutoArchivingMemoryAwareFuture
+id KW_IKAutoArchivingMemoryAwareFuture(id (^block)(void)) {
+    return [KW_IKAutoArchivingMemoryAwareFutureCreate(block) autorelease];
 }
 
 #endif // __IPHONE_4_0

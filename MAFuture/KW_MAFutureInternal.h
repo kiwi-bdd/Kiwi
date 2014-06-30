@@ -1,12 +1,12 @@
-#import "MABaseFuture.h"
+#import "KW_MABaseFuture.h"
 
 
-@interface _MASimpleFuture : MABaseFuture
+@interface _KW_MASimpleFuture : KW_MABaseFuture
 {
 }
 @end
 
-@interface _MALazyBlockFuture : _MASimpleFuture
+@interface _KW_MALazyBlockFuture : _KW_MASimpleFuture
 {
     id (^_block)(void);
 }
@@ -17,7 +17,7 @@
 
 #ifdef __IPHONE_4_0
 
-@interface _IKMemoryAwareFuture : _MALazyBlockFuture {
+@interface _KW_IKMemoryAwareFuture : _KW_MALazyBlockFuture {
     BOOL isObserving;
     BOOL isManuallyStopped;
     NSInteger countOfUsers;
@@ -59,11 +59,11 @@
 
 @end
 
-NSString* IKMemoryAwareFuturesDirectory(void);
+NSString* KW_IKMemoryAwareFuturesDirectory(void);
 
-NSString* IKMemoryAwareFuturePath(id future);
+NSString* KW_IKMemoryAwareFuturePath(id future);
 
-@interface _IKAutoArchivingMemoryAwareFuture : _IKMemoryAwareFuture
+@interface _KW_IKAutoArchivingMemoryAwareFuture : _KW_IKMemoryAwareFuture
 
 /*
   @abstract Archives value to the disk.

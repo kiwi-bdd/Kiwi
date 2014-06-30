@@ -1,10 +1,10 @@
 #import <Foundation/Foundation.h>
 #import <objc/runtime.h>
 
-#import "MAFuture.h"
-#import "MAFutureInternal.h"
-#import "MAMethodSignatureCache.h"
-#import "MACompoundFuture.h"
+#import "KW_MAFuture.h"
+#import "KW_MAFutureInternal.h"
+#import "KW_MAMethodSignatureCache.h"
+#import "KW_MACompoundFuture.h"
 
 
 #define ENABLE_LOGGING 0
@@ -16,16 +16,16 @@
 #endif
 
 
-@interface _MACompoundFuture : _MALazyBlockFuture
+@interface _KW_MACompoundFuture : _KW_MALazyBlockFuture
 {
 }
 @end
 
-@implementation _MACompoundFuture
+@implementation _KW_MACompoundFuture
 
 - (BOOL)_canFutureSelector: (SEL)sel
 {
-    NSMethodSignature *sig = [[MAMethodSignatureCache sharedCache] cachedMethodSignatureForSelector: sel];
+    NSMethodSignature *sig = [[KW_MAMethodSignatureCache sharedCache] cachedMethodSignatureForSelector: sel];
     
     if(!sig) return NO;
     else if([sig methodReturnType][0] != @encode(id)[0]) return NO;
@@ -64,7 +64,7 @@
     NSMethodSignature *sig = [[self futureValue] methodSignatureForSelector: sel];
     
     if(!sig)
-        sig = [[MAMethodSignatureCache sharedCache] cachedMethodSignatureForSelector: sel];
+        sig = [[KW_MAMethodSignatureCache sharedCache] cachedMethodSignatureForSelector: sel];
     
     if(!sig)
         sig = [[self resolveFuture] methodSignatureForSelector: sel];
@@ -89,7 +89,7 @@
     else
     {
         // look for return-by-reference objects
-        _MALazyBlockFuture *invocationFuture = nil;
+        _KW_MALazyBlockFuture *invocationFuture = nil;
         NSMutableArray *parameterDatas = nil;
         NSMethodSignature *sig = [invocation methodSignature];
         NSUInteger num = [sig numberOfArguments];
@@ -120,7 +120,7 @@
                     if(!invocationFuture)
                     {
                         parameterDatas = [NSMutableArray array];
-                        invocationFuture = [[_MALazyBlockFuture alloc] initWithBlock: ^{
+                        invocationFuture = [[_KW_MALazyBlockFuture alloc] initWithBlock: ^{
                             [invocation invokeWithTarget: [self resolveFuture]];
                             // keep all parameter datas alive until the invocation is resolved
                             // by capturing the variable
@@ -132,7 +132,7 @@
                     [parameterDatas addObject: newParameterSpace];
                     
                     // create the compound future that we'll "return" in this argument
-                    _MACompoundFuture *parameterFuture = [[_MACompoundFuture alloc] initWithBlock: ^{
+                    _KW_MACompoundFuture *parameterFuture = [[_KW_MACompoundFuture alloc] initWithBlock: ^{
                         [invocationFuture resolveFuture];
                         // capture the NSMutableData to ensure that it stays live
                         // interior pointer problem
@@ -150,7 +150,7 @@
         }
         
         [invocation retainArguments];
-        _MACompoundFuture *returnFuture = [[_MACompoundFuture alloc] initWithBlock:^{
+        _KW_MACompoundFuture *returnFuture = [[_KW_MACompoundFuture alloc] initWithBlock:^{
             id value = nil;
             if(invocationFuture)
                 [invocationFuture resolveFuture];
@@ -167,22 +167,22 @@
 
 @end
 
-#undef MACompoundBackgroundFuture
-id MACompoundBackgroundFuture(id (^block)(void))
+#undef KW_MACompoundBackgroundFuture
+id KW_MACompoundBackgroundFuture(id (^block)(void))
 {
-    id blockFuture = MABackgroundFuture(block);
+    id blockFuture = KW_MABackgroundFuture(block);
     
-    _MACompoundFuture *compoundFuture = [[_MACompoundFuture alloc] initWithBlock: ^{
+    _KW_MACompoundFuture *compoundFuture = [[_KW_MACompoundFuture alloc] initWithBlock: ^{
         return [blockFuture resolveFuture];
     }];
     
     return [compoundFuture autorelease];
 }
 
-#undef MACompoundLazyFuture
-id MACompoundLazyFuture(id (^block)(void))
+#undef KW_MACompoundLazyFuture
+id KW_MACompoundLazyFuture(id (^block)(void))
 {
-    _MACompoundFuture *compoundFuture = [[_MACompoundFuture alloc] initWithBlock: block];
+    _KW_MACompoundFuture *compoundFuture = [[_KW_MACompoundFuture alloc] initWithBlock: block];
     
     return [compoundFuture autorelease];
 }

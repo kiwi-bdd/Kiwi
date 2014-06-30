@@ -1,5 +1,5 @@
 NS_ROOT_CLASS
-@interface MAProxy
+@interface KW_MAProxy
 {
     Class isa;
     int32_t _refcountMinusOne;

@@ -1,10 +1,10 @@
 #import <Foundation/Foundation.h>
 #import <libkern/OSAtomic.h>
 
-#import "MAProxy.h"
+#import "KW_MAProxy.h"
 
 
-@implementation MAProxy
+@implementation KW_MAProxy
 
 + (void)initialize
 {

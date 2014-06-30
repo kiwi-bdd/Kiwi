@@ -1,7 +1,7 @@
 #import <Foundation/Foundation.h>
 
 
-@interface MAMethodSignatureCache : NSObject
+@interface KW_MAMethodSignatureCache : NSObject
 {
 #ifdef __IPHONE_4_0
     CFMutableDictionaryRef _cache;
@@ -11,7 +11,7 @@
     NSRecursiveLock *_lock;
 }
 
-+ (MAMethodSignatureCache *)sharedCache;
++ (KW_MAMethodSignatureCache *)sharedCache;
 - (NSMethodSignature *)cachedMethodSignatureForSelector: (SEL)sel;
 
 @end

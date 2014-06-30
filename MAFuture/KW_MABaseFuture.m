@@ -1,9 +1,9 @@
-#import "MABaseFuture.h"
+#import "KW_MABaseFuture.h"
 
 #import <objc/runtime.h>
 
 
-@implementation MABaseFuture
+@implementation KW_MABaseFuture
 
 - (id)init
 {
@@ -63,7 +63,7 @@
 
 - (id)resolveFuture
 {
-    NSAssert1(NO, @"-[MABaseFuture resolveFuture] called, this should never happen! Did you forget to implement -[%@ resolveFuture]?", object_getClass(self));
+    NSAssert1(NO, @"-[KW_MABaseFuture resolveFuture] called, this should never happen! Did you forget to implement -[%@ resolveFuture]?", object_getClass(self));
     __builtin_unreachable();
 }
 
