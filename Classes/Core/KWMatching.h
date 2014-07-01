@@ -28,6 +28,7 @@
 - (BOOL)shouldBeEvaluatedAtEndOfExample;
 - (BOOL)willEvaluateMultipleTimes;
 - (void)setWillEvaluateMultipleTimes:(BOOL)shouldEvaluateMultipleTimes;
+- (void)setWillEvaluateAgainstNegativeExpectation:(BOOL)willEvaluateAgainstNegativeExpectation;
 
 @required
 

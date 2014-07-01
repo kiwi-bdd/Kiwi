@@ -5,15 +5,9 @@
 //
 
 #import "KWSpec.h"
-#import <objc/runtime.h>
-#import <objc/message.h>
 #import "KWCallSite.h"
 #import "KWExample.h"
 #import "KWExampleSuiteBuilder.h"
-#import "KWIntercept.h"
-#import "KWObjCUtilities.h"
-#import "KWStringUtilities.h"
-#import "NSMethodSignature+KiwiAdditions.h"
 #import "KWFailure.h"
 #import "KWExampleSuite.h"
 
@@ -32,16 +26,14 @@
 
 + (void)buildExampleGroups {}
 
-/* SenTestingKit uses -description, XCTest uses -name when displaying tests
- in test navigator. Use camel case to make method friendly names from example description.
- */
-
 - (NSString *)name {
     return [self description];
 }
 
+/* Use camel case to make method friendly names from example description. */
+
 - (NSString *)description {
-    KWExample *currentExample = self.currentExample ? self.currentExample : [[self invocation] kw_example];
+    KWExample *currentExample = self.currentExample ?: self.invocation.kw_example;
     NSString *name = [currentExample descriptionWithContext];
     
     // CamelCase the string
@@ -69,7 +61,7 @@
 
 #pragma mark - Getting Invocations
 
-/* Called by the SenTestingKit test suite to get an array of invocations that
+/* Called by the XCTest to get an array of invocations that
    should be run on instances of test cases. */
 
 + (NSArray *)testInvocations {
@@ -88,52 +80,28 @@
 
 #pragma mark - Running Specs
 
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wundeclared-selector"
-
 - (void)invokeTest {
-    self.currentExample = [[self invocation] kw_example];
+    self.currentExample = self.invocation.kw_example;
 
     @autoreleasepool {
-
         @try {
             [self.currentExample runWithDelegate:self];
         } @catch (NSException *exception) {
-            if ([self respondsToSelector:@selector(recordFailureWithDescription:inFile:atLine:expected:)]) {
-                objc_msgSend(self,
-                             @selector(recordFailureWithDescription:inFile:atLine:expected:),
-                             [exception description], @"", 0, NO);
-            } else {
-                objc_msgSend(self, @selector(failWithException:), exception);
-            }
+            [self recordFailureWithDescription:exception.description inFile:@"" atLine:0 expected:NO];
         }
 
-        [[self invocation] kw_setExample:nil];
-
+        self.invocation.kw_example = nil;
     }
 }
-
-#pragma clang diagnostic pop
 
 #pragma mark - KWExampleGroupDelegate methods
 
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wundeclared-selector"
-
 - (void)example:(KWExample *)example didFailWithFailure:(KWFailure *)failure {
-    if ([self respondsToSelector:@selector(recordFailureWithDescription:inFile:atLine:expected:)]) {
-        objc_msgSend(self,
-                     @selector(recordFailureWithDescription:inFile:atLine:expected:),
-                     [[failure exceptionValue] description],
-                     failure.callSite.filename,
-                     failure.callSite.lineNumber,
-                     NO);
-    } else {
-        objc_msgSend(self, @selector(failWithException:), [failure exceptionValue]);
-    }
+    [self recordFailureWithDescription:failure.message
+                                inFile:failure.callSite.filename
+                                atLine:failure.callSite.lineNumber
+                              expected:NO];
 }
-
-#pragma clang diagnostic pop
 
 #pragma mark - Verification proxies
 
