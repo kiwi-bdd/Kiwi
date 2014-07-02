@@ -205,11 +205,7 @@ void KWInterceptedForwardInvocation(id anObject, SEL aSelector, NSInvocation* an
 void KWInterceptedDealloc(id anObject, SEL aSelector) {
     KWClearMessageSpies(anObject);
     KWClearObjectStubs(anObject);
-
     KWRestoreOriginalClass(anObject);
-
-    SEL selector = NSSelectorFromString(@"dealloc");
-    ((void (*)(id, SEL))[anObject methodForSelector:selector])(anObject, selector);
 }
 
 Class KWInterceptedClass(id anObject, SEL aSelector) {

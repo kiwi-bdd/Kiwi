@@ -8,6 +8,7 @@
 
 #import "Kiwi.h"
 #import "KiwiTestConfiguration.h"
+#import "TestClasses.h"
 
 @interface KWExampleSuiteBuilder ()
 
@@ -73,7 +74,7 @@ NSMutableArray *focusedContextCalls = @[@"InnerBeforeAll", @"InnerAfterAll", @"I
 NSMutableArray *unFocusedContextCalls = @[ @"OuterTestCase", @"BeforeAll", @"AfterAll", @"BeforeEach", @"AfterEach"
 ].mutableCopy;
 
-[[KWExampleSuiteBuilder sharedExampleSuiteBuilder] setFocusedCallSite:[KWCallSite callSiteWithFilename:@"KWFunctionalTests.m" lineNumber:84]];
+[[KWExampleSuiteBuilder sharedExampleSuiteBuilder] setFocusedCallSite:[KWCallSite callSiteWithFilename:@"KWFunctionalTests.m" lineNumber:85]];
 
 describe(@"UnFocusedContext", ^{
     it(@"OuterTestCase", ^{ [unFocusedContextCalls removeObject:@"OuterTestCase"]; });
@@ -116,7 +117,7 @@ NSMutableArray *focusedItCalls = @[@"FocusedTestCase"].mutableCopy;
 
 NSMutableArray *unFocusedItCalls = @[@"UnFocusedTestCase"].mutableCopy;
 
-[[KWExampleSuiteBuilder sharedExampleSuiteBuilder] setFocusedCallSite:[KWCallSite callSiteWithFilename:@"KWFunctionalTests.m" lineNumber:122]];
+[[KWExampleSuiteBuilder sharedExampleSuiteBuilder] setFocusedCallSite:[KWCallSite callSiteWithFilename:@"KWFunctionalTests.m" lineNumber:123]];
 
 describe(@"FocusedIt", ^{
     it(@"FocusedTestCase", ^{ [focusedItCalls removeObject:@"FocusedTestCase"]; });
@@ -204,6 +205,13 @@ describe(@"Let context tree", ^{
     });
 });
 
+describe(@"using property notation", ^{
+    let(cruiser, ^{ return [[Cruiser alloc] initWithCallsign:@"let"]; });
+    specify(^{
+        [[cruiser.callsign should] equal:@"let"];
+    });
+});
+
 SPEC_END
 
 SPEC_BEGIN(NilMatchers)
@@ -266,12 +274,12 @@ describe(@"NSDate stubs", ^{
 SPEC_END
 
 #if KW_TESTS_ENABLED
-@interface KWFunctionalTests : SenTestCase
+@interface KWFunctionalTests : XCTestCase
 @end
 @implementation KWFunctionalTests
 
 - (void)testSuiteWasExecuted {
-    STAssertEquals(YES, tests_were_run, @"Test suite hasn't run!");
+    XCTAssertEqual(YES, tests_were_run, @"Test suite hasn't run!");
 }
 
 @end

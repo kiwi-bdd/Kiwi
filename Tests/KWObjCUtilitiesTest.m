@@ -11,7 +11,7 @@
 
 #if KW_TESTS_ENABLED
 
-@interface KWObjCUtilitiesTest : SenTestCase
+@interface KWObjCUtilitiesTest : XCTestCase
 
 @end
 
@@ -20,29 +20,29 @@
 #pragma mark KWObjCTypeIsBoolean
 
 - (void)testBOOLIsABoolean {
-    STAssertTrue(KWObjCTypeIsBoolean(@encode(BOOL)),
+    XCTAssertTrue(KWObjCTypeIsBoolean(@encode(BOOL)),
                  @"Expected BOOL to be evaluated as a boolean.");
 }
 
 - (void)testStdBoolIsABoolean {
-    STAssertTrue(KWObjCTypeIsBoolean(@encode(bool)),
+    XCTAssertTrue(KWObjCTypeIsBoolean(@encode(bool)),
                  @"Expected bool to be evaluated as a boolean.");
 }
 
 - (void)testIntIsNotABoolean {
-    STAssertFalse(KWObjCTypeIsBoolean(@encode(int)),
+    XCTAssertFalse(KWObjCTypeIsBoolean(@encode(int)),
                   @"Did not expect int type to be evaluated as a boolean.");
 }
 
 #pragma mark KWSelectorParameterCount
 
 - (void)testNumberOfParametersInMethodThatTakesNoParametersIsZero {
-    STAssertEquals(KWSelectorParameterCount(@selector(description)), (NSUInteger)0,
+    XCTAssertEqual(KWSelectorParameterCount(@selector(description)), (NSUInteger)0,
                    @"Expected -description to have a parameter count of 0.");
 }
 
 - (void)testNumberOfParametersInMethodThatTakesTwoParametersIsTwo {
-    STAssertEquals(KWSelectorParameterCount(@selector(performSelector:withObject:)), (NSUInteger)2,
+    XCTAssertEqual(KWSelectorParameterCount(@selector(performSelector:withObject:)), (NSUInteger)2,
                    @"Expected -performSelector:withObject: to have a parameter count of 2.");
 }
 

@@ -9,7 +9,7 @@
 
 #if KW_TESTS_ENABLED
 
-@interface KWExampleTest : SenTestCase
+@interface KWExampleTest : XCTestCase
 
 @end
 
@@ -21,7 +21,7 @@
         [[(id)nil attachToVerifier:[example addMatchVerifierWithExpectationType:KWExpectationTypeShould callSite:nil]] equal:@"foo"];
         [[(id)nil attachToVerifier:[example addMatchVerifierWithExpectationType:KWExpectationTypeShouldNot callSite:nil]] containString:@"bar"];
     };
-    STAssertNoThrow(itNodeImitation(), @"expected no exception");
+    XCTAssertNoThrow(itNodeImitation(), @"expected no exception");
 }
 
 @end

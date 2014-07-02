@@ -9,7 +9,7 @@
 
 #if KW_TESTS_ENABLED
 
-@interface KWValueTest : SenTestCase
+@interface KWValueTest : XCTestCase
 
 @end
 
@@ -19,55 +19,55 @@
     int value = 42;
     KWValue *wrappedValue = [KWValue valueWithBytes:&value objCType:@encode(int)];
     const char *objCType = [wrappedValue objCType];
-    STAssertTrue(strcmp(objCType, @encode(int)) == 0, @"expected value to preserve Objective-C type for ints");
-    STAssertTrue(objCType != nil, @"expected value to return valid Objective-C type");
+    XCTAssertTrue(strcmp(objCType, @encode(int)) == 0, @"expected value to preserve Objective-C type for ints");
+    XCTAssertTrue(objCType != nil, @"expected value to return valid Objective-C type");
 }
 
 - (void)testItShouldPreserveDataObjCTypeForUnsignedInts {
     unsigned int value = 42;
     KWValue *wrappedValue = [KWValue valueWithBytes:&value objCType:@encode(unsigned int)];
     const char *objCType = [wrappedValue objCType];
-    STAssertTrue(strcmp(objCType, @encode(unsigned int)) == 0, @"expected value to preserve Objective-C type for unsigned ints");
-    STAssertTrue(objCType != nil, @"expected value to return valid Objective-C type");
+    XCTAssertTrue(strcmp(objCType, @encode(unsigned int)) == 0, @"expected value to preserve Objective-C type for unsigned ints");
+    XCTAssertTrue(objCType != nil, @"expected value to return valid Objective-C type");
 }
 
 - (void)testItShouldPreserveDataObjCTypeForLongs {
     long value = 42;
     KWValue *wrappedValue = [KWValue valueWithBytes:&value objCType:@encode(long)];
     const char *objCType = [wrappedValue objCType];
-    STAssertTrue(strcmp(objCType, @encode(long)) == 0, @"expected value to preserve Objective-C type for longs");
-    STAssertTrue(objCType != nil, @"expected value to return valid Objective-C type");
+    XCTAssertTrue(strcmp(objCType, @encode(long)) == 0, @"expected value to preserve Objective-C type for longs");
+    XCTAssertTrue(objCType != nil, @"expected value to return valid Objective-C type");
 }
 
 - (void)testItShouldPreserveDataObjCTypeForUnsignedLongs {
     unsigned long value = 42;
     KWValue *wrappedValue = [KWValue valueWithBytes:&value objCType:@encode(unsigned long)];
     const char *objCType = [wrappedValue objCType];
-    STAssertTrue(strcmp(objCType, @encode(unsigned long)) == 0, @"expected value to preserve Objective-C type for unsigned longs");
-    STAssertTrue(objCType != nil, @"expected value to return valid Objective-C type");
+    XCTAssertTrue(strcmp(objCType, @encode(unsigned long)) == 0, @"expected value to preserve Objective-C type for unsigned longs");
+    XCTAssertTrue(objCType != nil, @"expected value to return valid Objective-C type");
 }
 
 - (void)testItShouldPreserveDataObjCTypeForFloats {
     float value = 42.0f;
     KWValue *wrappedValue = [KWValue valueWithBytes:&value objCType:@encode(float)];
     const char *objCType = [wrappedValue objCType];
-    STAssertTrue(strcmp(objCType, @encode(float)) == 0, @"expected value to preserve Objective-C type for floats");
-    STAssertTrue(objCType != nil, @"expected value to return valid Objective-C type");
+    XCTAssertTrue(strcmp(objCType, @encode(float)) == 0, @"expected value to preserve Objective-C type for floats");
+    XCTAssertTrue(objCType != nil, @"expected value to return valid Objective-C type");
 }
 
 - (void)testItShouldPreserveDataObjCTypeForDoubles {
     double value = 42.0f;
     KWValue *wrappedValue = [KWValue valueWithBytes:&value objCType:@encode(double)];
     const char *objCType = [wrappedValue objCType];
-    STAssertTrue(strcmp(objCType, @encode(double)) == 0, @"expected value to preserve Objective-C type for doubles");
-    STAssertTrue(objCType != nil, @"expected value to return valid Objective-C type");
+    XCTAssertTrue(strcmp(objCType, @encode(double)) == 0, @"expected value to preserve Objective-C type for doubles");
+    XCTAssertTrue(objCType != nil, @"expected value to return valid Objective-C type");
 }
 
 - (void)testItShouldConvertToIntValues {
     double value = 15.0f;
     KWValue *wrappedValue = [KWValue valueWithBytes:&value objCType:@encode(double)];
     int intValue = [wrappedValue intValue];
-    STAssertEquals(intValue, (int)value, @"expected value to convert wrapped value to int");
+    XCTAssertEqual(intValue, (int)value, @"expected value to convert wrapped value to int");
 }
 
 - (void)testItShouldRaiseIfConvertingNonNumericToInt {
@@ -76,34 +76,34 @@
     range.location = 1;
     KWValue *wrappedValue = [KWValue valueWithBytes:&range objCType:@encode(NSRange)];
     int intValue = 0;
-    STAssertThrows(intValue = [wrappedValue intValue], @"expected value to raise when converting non-numeric wrapped value to int");
+    XCTAssertThrows(intValue = [wrappedValue intValue], @"expected value to raise when converting non-numeric wrapped value to int");
 }
 
 - (void)testItShouldConvertToFloatValues {
     int value = 33;
     KWValue *wrappedValue = [KWValue valueWithBytes:&value objCType:@encode(int)];
     float floatValue = [wrappedValue floatValue];
-    STAssertEquals(floatValue, (float)value, @"expected value to convert wrapped value to float");
+    XCTAssertEqual(floatValue, (float)value, @"expected value to convert wrapped value to float");
 }
 
 - (void)testItShouldConvertToBoolValues {
     int value = 1;
     KWValue *wrappedValue = [KWValue valueWithBytes:&value objCType:@encode(int)];
     BOOL boolValue = [wrappedValue boolValue];
-    STAssertEquals(boolValue, (BOOL)value, @"expected value to convert wrapped value to bool");
+    XCTAssertEqual(boolValue, (BOOL)value, @"expected value to convert wrapped value to bool");
 }
 
 - (void)testItShouldRaiseIfConvertingNonNumericToBool {
     NSRange range = (NSRange){ .location = 1, .length = 2 };
     KWValue *value = [KWValue valueWithBytes:&range objCType:@encode(NSRange)];
-    STAssertThrows([value boolValue], @"expected value to raise when comvertic non-numeric wrapped value to BOOL");
+    XCTAssertThrows([value boolValue], @"expected value to raise when comvertic non-numeric wrapped value to BOOL");
 }
 
 - (void)testItShouldConvertStdBoolToBoolValues {
     bool value = true;
     KWValue *wrappedValue = [KWValue valueWithBytes:&value objCType:@encode(bool)];
     BOOL boolValue = [wrappedValue boolValue];
-    STAssertEquals(boolValue, (BOOL)value, @"expected value to convert stdbool value to BOOL");
+    XCTAssertEqual(boolValue, (BOOL)value, @"expected value to convert stdbool value to BOOL");
 }
 
 - (void)testItShouldReturnStructDataValues {
@@ -113,8 +113,8 @@
     KWValue *wrappedValue = [KWValue valueWithBytes:&range objCType:@encode(NSRange)];
     NSData *data = [wrappedValue dataValue];
     NSRange result = *(NSRange *)[data bytes];
-    STAssertEquals(range.location, result.location, @"expected value to return struct data values");
-    STAssertEquals(range.length, result.length, @"expected value to return struct data values");
+    XCTAssertEqual(range.location, result.location, @"expected value to return struct data values");
+    XCTAssertEqual(range.length, result.length, @"expected value to return struct data values");
 }
 
 - (void)testItShouldWriteIntValues {
@@ -122,7 +122,7 @@
     KWValue *wrappedValue = [KWValue valueWithBytes:&value objCType:@encode(int)];
     int result = 0;
     [wrappedValue getValue:&result];
-    STAssertEquals(value, result, @"expected value to write int values");
+    XCTAssertEqual(value, result, @"expected value to write int values");
 }
 
 - (void)testItShouldWriteUnsignedIntValues {
@@ -130,7 +130,7 @@
     KWValue *wrappedValue = [KWValue valueWithBytes:&value objCType:@encode(int)];
     unsigned int result = 0;
     [wrappedValue getValue:&result];
-    STAssertEquals(value, result, @"expected value to write unsigned int values");
+    XCTAssertEqual(value, result, @"expected value to write unsigned int values");
 }
 
 - (void)testItShouldWriteShortValues {
@@ -138,7 +138,7 @@
     KWValue *wrappedValue = [KWValue valueWithBytes:&value objCType:@encode(short)];
     short result = 0;
     [wrappedValue getValue:&result];
-    STAssertEquals(value, result, @"expected value to write short values");
+    XCTAssertEqual(value, result, @"expected value to write short values");
 }
 
 - (void)testItShouldWriteDoubleValues {
@@ -146,7 +146,7 @@
     KWValue *wrappedValue = [KWValue valueWithBytes:&value objCType:@encode(double)];
     double result = 0;
     [wrappedValue getValue:&result];
-    STAssertEquals(value, result, @"expected value to write double values");
+    XCTAssertEqual(value, result, @"expected value to write double values");
 }
 
 - (void)testItShouldIdentifyEqualStructValues {
@@ -156,42 +156,42 @@
     KWValue *wrappedValue = [KWValue valueWithBytes:&range objCType:@encode(NSRange)];
     KWValue *otherWrappedValue = [KWValue valueWithBytes:&range objCType:@encode(NSRange)];
     BOOL isEqual = [wrappedValue isEqual:otherWrappedValue];
-    STAssertTrue(isEqual, @"expected wrapped values to be equal");
+    XCTAssertTrue(isEqual, @"expected wrapped values to be equal");
 }
 
 - (void)testItShouldIdentifyEqualFloatValues {
     KWValue *wrappedValue = [KWValue valueWithFloat:42.0f];
     KWValue *otherWrappedValue = [KWValue valueWithInt:42];
     BOOL isEqual = [wrappedValue isEqual:otherWrappedValue];
-    STAssertTrue(isEqual, @"expected wrapped values to be equal");
+    XCTAssertTrue(isEqual, @"expected wrapped values to be equal");
 }
 
 - (void)testItShouldIdentifyUnequalValues {
     KWValue *wrappedValue = [KWValue valueWithFloat:42.0f];
     KWValue *otherWrappedValue = [KWValue valueWithInt:1010];
     BOOL isEqual = [wrappedValue isEqual:otherWrappedValue];
-    STAssertFalse(isEqual, @"expected wrapped values not to be equal");
+    XCTAssertFalse(isEqual, @"expected wrapped values not to be equal");
 }
 
 - (void)testItShouldCompareAscendingOrderedValues {
     KWValue *wrappedValue = [KWValue valueWithFloat:42.0f];
     KWValue *otherWrappedValue = [KWValue valueWithInt:43];
     NSComparisonResult comparison = [wrappedValue compare:otherWrappedValue];
-    STAssertEquals(comparison, NSOrderedAscending, @"expected value to compare ascending ordered wrapped values");
+    XCTAssertEqual(comparison, NSOrderedAscending, @"expected value to compare ascending ordered wrapped values");
 }
 
 - (void)testItShouldCompareSameOrderedValues {
     KWValue *wrappedValue = [KWValue valueWithFloat:42.0f];
     KWValue *otherWrappedValue = [KWValue valueWithInt:42];
     NSComparisonResult comparison = [wrappedValue compare:otherWrappedValue];
-    STAssertEquals(comparison, NSOrderedSame, @"expected value to compare same ordered wrapped values");
+    XCTAssertEqual(comparison, NSOrderedSame, @"expected value to compare same ordered wrapped values");
 }
 
 - (void)testItShouldCompareDescendingOrderedValues {
     KWValue *wrappedValue = [KWValue valueWithFloat:43.0f];
     KWValue *otherWrappedValue = [KWValue valueWithInt:42];
     NSComparisonResult comparison = [wrappedValue compare:otherWrappedValue];
-    STAssertEquals(comparison, NSOrderedDescending, @"expected value to compare descending ordered wrapped values");
+    XCTAssertEqual(comparison, NSOrderedDescending, @"expected value to compare descending ordered wrapped values");
 }
 
 - (void)testItShouldRaiseIfComparingNonNumericValues {
@@ -200,7 +200,7 @@
     range.location = 1;
     KWValue *wrappedValue = [KWValue valueWithBytes:&range objCType:@encode(NSRange)];
     KWValue *otherWrappedValue = [KWValue valueWithBytes:&range objCType:@encode(NSRange)];
-    STAssertThrows([wrappedValue compare:otherWrappedValue], @"expected value to raise when comparing non-numeric wrapped values");
+    XCTAssertThrows([wrappedValue compare:otherWrappedValue], @"expected value to raise when comparing non-numeric wrapped values");
 }
 
 @end
