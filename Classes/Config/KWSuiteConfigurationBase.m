@@ -7,8 +7,17 @@
 //
 
 #import "KWSuiteConfigurationBase.h"
+#import "KWSpec.h"
 
 #define INVOKE(block) if((block)) { (block)(); }
+
+void beforeEachSpec(void (^block)(void));
+void afterEachSpec(void (^block)(void));
+
+@interface KWSuiteConfigurationBase ()
+@property (nonatomic, copy) void (^beforeEachSpecBlock)(void);
+@property (nonatomic, copy) void (^afterEachSpecBlock)(void);
+@end
 
 @implementation KWSuiteConfigurationBase
 
@@ -39,11 +48,13 @@
     INVOKE(self.afterAllSpecsBlock);
 }
 
-- (void)specDidStart:(XCTestRun *)testRun {
+#pragma mark - Unused methods
+
+- (void)setUpSpec:(KWSpec *)spec {
     INVOKE(self.beforeEachSpecBlock);
 }
 
-- (void)specDidStop:(XCTestRun *)testRun {
+- (void)tearDownSpec:(KWSpec *)spec {
     INVOKE(self.afterEachSpecBlock);
 }
 

@@ -15,12 +15,4 @@ afterAllSpecs(^{
     NSAssert(++called == 1, @"expected afterAllSpecs to be called only once");
 });
 
-beforeEachSpec(^{
-    NSLog(@"beforeEachSpec");
-});
-
-afterEachSpec(^{
-    NSLog(@"afterEachSpec");
-});
-
 CONFIG_END
