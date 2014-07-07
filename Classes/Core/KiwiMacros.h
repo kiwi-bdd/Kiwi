@@ -94,3 +94,18 @@
     } \
     \
     @end
+
+// Test suite configuration declaration
+#define CONFIG_START \
+    @interface KWSuiteConfiguration : KWSuiteConfigurationBase \
+    \
+    @end \
+    \
+    @implementation KWSuiteConfiguration \
+    \
+    - (void)configureSuite {
+
+#define CONFIG_END \
+    } \
+    \
+    @end
