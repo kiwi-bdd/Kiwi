@@ -1,23 +1,25 @@
 Pod::Spec.new do |s|
 
   s.name            = 'Kiwi'
-  s.version         = '2.2.4'
+  s.version         = '2.3.0'
   s.summary         = 'A Behavior Driven Development library for iOS and OS X.'
   s.homepage        = 'https://github.com/kiwi-bdd/Kiwi'
   s.source          = { :git => 'https://github.com/kiwi-bdd/Kiwi.git', :tag => s.version.to_s }
   s.license         = { :type => 'MIT', :file => 'License.txt' }
 
   s.authors = {
-    'Allen Ding' => 'alding@gmail.com',
+    'Allen Ding'   => 'alding@gmail.com',
     'Luke Redpath' => 'luke@lukeredpath.co.uk',
-    'Marin Usalj' => 'mneorr@gmail.com',
+    'Marin Usalj'  => 'mneorr@gmail.com',
     'Stepan Hruda' => 'stepan.hruda@gmail.com',
     'Brian Gesiak' => 'modocache@gmail.com',
-    'Adam Sharp' => 'adsharp@me.com',
+    'Adam Sharp'   => 'adsharp@me.com',
   }
 
+  # TODO: clean this up once Apple gets their stuff together
   s.ios.xcconfig = { 'FRAMEWORK_SEARCH_PATHS' => '"$(SDKROOT)/Developer/Library/Frameworks" $(inherited) "$(DEVELOPER_FRAMEWORKS_DIR)" "$(DEVELOPER_DIR)/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks"' }
   s.osx.xcconfig = { 'FRAMEWORK_SEARCH_PATHS' => '"$(SDKROOT)/Developer/Library/Frameworks" $(inherited) "$(DEVELOPER_FRAMEWORKS_DIR)" "$(DEVELOPER_DIR)/Platforms/MacOSX.platform/Developer/Library/Frameworks"' }
+
   s.ios.deployment_target = '5.0'
   s.osx.deployment_target = '10.7'
 
