@@ -100,4 +100,18 @@ describe(@"a let node set up in an outer context with a beforeEach block", ^{
 
 });
 
+describe(@"future string comparisons", ^{
+
+    let(futureString, ^{ return @"from the future"; });
+
+    it(@"can use a future string as the subject of a matcher", ^{
+        [[futureString should] equal:@"from the future"];
+    });
+
+    it(@"can use a future string as the expected value of a matcher", ^{
+        [[@"from the future" should] equal:futureString];
+    });
+
+});
+
 SPEC_END
