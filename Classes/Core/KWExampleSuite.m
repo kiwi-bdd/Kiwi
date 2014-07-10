@@ -52,14 +52,13 @@
 
 - (NSArray *)invocationsForTestCase {
     NSMutableArray *invocations = [NSMutableArray array];
-    
-    // Add a single dummy invocation for each example group
-    
+
     for (KWExample *exampleGroup in self.examples) {
         NSMethodSignature *methodSignature = [NSMethodSignature signatureWithObjCTypes:[KWEncodingForDefaultMethod() UTF8String]];
         NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:methodSignature];
         [invocations addObject:invocation];
         invocation.kw_example = exampleGroup;
+        invocation.selector = @selector(invokeTest);
     }
     
     return invocations;
