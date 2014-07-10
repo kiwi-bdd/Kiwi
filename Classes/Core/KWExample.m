@@ -168,6 +168,32 @@
     return isPending ? [descriptionWithContext stringByAppendingString:[self pendingNotFinished]] : descriptionWithContext;
 }
 
+- (NSString *)selectorName {
+    NSString *name = [self descriptionWithContext];
+
+    // CamelCase the string
+    NSArray *words = [name componentsSeparatedByString:@" "];
+    name = @"";
+    for (NSString *word in words) {
+        if ([word length] < 1)
+        {
+            continue;
+        }
+        name = [name stringByAppendingString:[[word substringToIndex:1] uppercaseString]];
+        name = [name stringByAppendingString:[word substringFromIndex:1]];
+    }
+
+    // Replace the commas with underscores to separate the levels of context
+    name = [name stringByReplacingOccurrencesOfString:@"," withString:@"_"];
+
+    // Strip out characters not legal in function names
+    NSError *error = nil;
+    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"[^a-zA-Z0-9_]*" options:0 error:&error];
+    name = [regex stringByReplacingMatchesInString:name options:0 range:NSMakeRange(0, name.length) withTemplate:@""];
+
+    return name;
+}
+
 #pragma mark - Visiting Nodes
 
 - (void)visitRegisterMatchersNode:(KWRegisterMatchersNode *)aNode {
