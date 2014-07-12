@@ -12,7 +12,7 @@
 @class KWContextNode;
 @class KWExample;
 
-@interface KWExampleSuite : NSObject <KWExampleNodeVisitor>
+@interface KWExampleSuite : NSObject <KWExampleNodeVisitor, NSFastEnumeration>
 
 - (id)initWithRootNode:(KWContextNode *)contextNode;
 - (void)addExample:(KWExample *)example;

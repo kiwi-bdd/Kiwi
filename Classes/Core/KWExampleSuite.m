@@ -50,18 +50,10 @@
     }
 }
 
-- (NSArray *)invocationsForTestCase {
-    NSMutableArray *invocations = [NSMutableArray array];
+#pragma mark - NSFastEnumeration
 
-    for (KWExample *exampleGroup in self.examples) {
-        NSMethodSignature *methodSignature = [NSMethodSignature signatureWithObjCTypes:[KWEncodingForDefaultMethod() UTF8String]];
-        NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:methodSignature];
-        [invocations addObject:invocation];
-        invocation.kw_example = exampleGroup;
-        invocation.selector = @selector(invokeTest);
-    }
-    
-    return invocations;
+- (NSUInteger)countByEnumeratingWithState:(NSFastEnumerationState *)state objects:(__unsafe_unretained id [])buffer count:(NSUInteger)len {
+    return [self.examples countByEnumeratingWithState:state objects:buffer count:len];
 }
 
 @end

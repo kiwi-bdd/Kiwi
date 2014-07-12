@@ -11,6 +11,7 @@
 #import "KWFailure.h"
 #import "KWExampleSuite.h"
 
+#import <objc/runtime.h>
 
 @interface KWSpec()
 
@@ -52,13 +53,37 @@
     KWExampleSuite *exampleSuite = [[KWExampleSuiteBuilder sharedExampleSuiteBuilder] buildExampleSuite:^{
         [self buildExampleGroups];
     }];
-  
-    return [exampleSuite invocationsForTestCase];
+
+    NSMutableArray *invocations = [NSMutableArray new];
+    for (KWExample *example in exampleSuite) {
+        SEL selector = [self addInstanceMethodForExample:example];
+        NSInvocation *invocation = [self invocationForExample:example selector:selector];
+        [invocations addObject:invocation];
+    }
+
+    return invocations;
+}
+
++ (SEL)addInstanceMethodForExample:(KWExample *)example {
+    Method method = class_getInstanceMethod(self, @selector(runExample));
+    SEL selector = NSSelectorFromString(example.selectorName);
+    IMP implementation = method_getImplementation(method);
+    const char *types = method_getTypeEncoding(method);
+    class_addMethod(self, selector, implementation, types);
+    return selector;
+}
+
++ (NSInvocation *)invocationForExample:(KWExample *)example selector:(SEL)selector {
+    NSMethodSignature *signature = [NSMethodSignature signatureWithObjCTypes:"v@:"];
+    NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:signature];
+    invocation.kw_example = example;
+    invocation.selector = selector;
+    return invocation;
 }
 
 #pragma mark - Running Specs
 
-- (void)invokeTest {
+- (void)runExample {
     self.currentExample = self.invocation.kw_example;
 
     @autoreleasepool {
