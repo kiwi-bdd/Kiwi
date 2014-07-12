@@ -22,6 +22,7 @@
 
 @property (nonatomic, strong) KWContextNode *rootNode;
 @property (nonatomic, strong) NSMutableArray *examples;
+@property (nonatomic, strong) NSMutableDictionary *selectorNameCache;
 
 @end
 
@@ -32,6 +33,7 @@
     if (self) {
         _rootNode = contextNode;
         _examples = [[NSMutableArray alloc] init];
+        _selectorNameCache = [[NSMutableDictionary alloc] init];
     }
     return self;
 }
@@ -48,6 +50,19 @@
         KWExample *lastExample = (KWExample *)[self.examples lastObject];
         [lastExample.lastInContexts addObject:context];
     }
+}
+
+#pragma mark - Example selector names
+
+- (NSString *)nextUniqueSelectorName:(NSString *)name {
+    NSUInteger count = [(self.selectorNameCache[name] ?: @1) integerValue];
+    NSString *uniqueName = name;
+    if (count > 1) {
+        NSString *format = [name hasSuffix:@"_"] ? @"%lu" : @"_%lu";
+        uniqueName = [name stringByAppendingFormat:format, (unsigned long)count];
+    }
+    self.selectorNameCache[name] = @(++count);
+    return uniqueName;
 }
 
 #pragma mark - NSFastEnumeration

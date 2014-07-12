@@ -17,7 +17,13 @@
 - (id)initWithRootNode:(KWContextNode *)contextNode;
 - (void)addExample:(KWExample *)example;
 - (void)markLastExampleAsLastInContext:(KWContextNode *)context;
-- (NSArray *)invocationsForTestCase;
+
+@property (nonatomic, readonly) NSMutableArray *examples;
+
+#pragma mark - Example selector names
+
+- (NSString *)nextUniqueSelectorName:(NSString *)name;
+
 @end
 
 @interface NSInvocation (KWExampleGroup)

@@ -43,6 +43,8 @@
 
 @implementation KWExample
 
+@synthesize selectorName = _selectorName;
+
 - (id)initWithExampleNode:(id<KWExampleNode>)node {
     self = [super init];
     if (self) {
@@ -169,6 +171,10 @@
 }
 
 - (NSString *)selectorName {
+    if (_selectorName) {
+        return _selectorName;
+    }
+
     NSString *name = [self descriptionWithContext];
 
     // CamelCase the string
@@ -191,7 +197,12 @@
     NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"[^a-zA-Z0-9_]*" options:0 error:&error];
     name = [regex stringByReplacingMatchesInString:name options:0 range:NSMakeRange(0, name.length) withTemplate:@""];
 
-    return name;
+    // Ensure examples in the same suite have unique selector names
+    if (self.suite) {
+        name = [self.suite nextUniqueSelectorName:name];
+    }
+
+    return (_selectorName = name);
 }
 
 #pragma mark - Visiting Nodes
