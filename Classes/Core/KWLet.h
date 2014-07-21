@@ -4,7 +4,7 @@
 // Copyright 2010 Allen Ding. All rights reserved.
 //
 
-#if __has_feature(objc_arr)
+#if __has_feature(objc_arc)
 #   define KW_ARC_AUTORELEASE(obj) obj
 #else
 #   define KW_ARC_AUTORELEASE(obj) [obj autorelease]
