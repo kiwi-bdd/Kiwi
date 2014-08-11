@@ -79,9 +79,18 @@
 - (void)testShouldBeAbleToCaptureNils {
     id robotMock = [KWMock nullMockForClass:[Robot class]];
     KWCaptureSpy *spy = [robotMock captureArgument:@selector(speak:afterDelay:whenDone:) atIndex:0];
-    
+
     [robotMock speak:nil afterDelay:2 whenDone:^{}];
-    
+
+    XCTAssertNil(spy.argument, @"Captured argument should be nil");
+}
+
+- (void)testShouldBeAbleToCaptureNilBlocks {
+    id robotMock = [KWMock nullMockForClass:[Robot class]];
+    KWCaptureSpy *spy = [robotMock captureArgument:@selector(speak:afterDelay:whenDone:) atIndex:2];
+
+    [robotMock speak:@"Hello" afterDelay:2 whenDone:nil];
+
     XCTAssertNil(spy.argument, @"Captured argument should be nil");
 }
 
