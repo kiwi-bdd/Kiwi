@@ -92,19 +92,23 @@ static NSString * const KWExampleSuiteBuilderException = @"KWExampleSuiteBuilder
     return [self.contextNodeStack count] > 0;
 }
 
-- (KWExampleSuite *)buildExampleSuite:(void (^)(void))buildingBlock
-{
+- (KWExampleSuite *)buildExampleSuite:(void (^)(void))buildingBlock {
     KWContextNode *rootNode = [KWContextNode contextNodeWithCallSite:nil parentContext:nil description:nil];
-
-    self.currentExampleSuite = [[KWExampleSuite alloc] initWithRootNode:rootNode];
+    KWExampleSuite *exampleSuite = [[KWExampleSuite alloc] initWithRootNode:rootNode];
     
-    [self.suites addObject:self.currentExampleSuite];
-
+    self.currentExampleSuite = exampleSuite;
     [self.contextNodeStack addObject:rootNode];
     buildingBlock();
     [self.contextNodeStack removeAllObjects];
+    self.currentExampleSuite = nil;
     
-    return self.currentExampleSuite;
+    [self.suites addObject:exampleSuite];
+    
+    return exampleSuite;
+}
+
+- (void)removeExampleSuite:(KWExampleSuite *)suite {
+    [self.suites removeObject:suite];
 }
 
 - (void)pushContextNodeWithCallSite:(KWCallSite *)aCallSite description:(NSString *)aDescription {

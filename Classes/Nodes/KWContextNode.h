@@ -44,7 +44,7 @@
 @property (nonatomic, readonly) NSArray *registerMatchersNodes;
 @property (nonatomic, readonly) NSArray *letNodes;
 
-@property (nonatomic, readonly) KWContextNode *parentContext;
+@property (nonatomic, weak, readonly) KWContextNode *parentContext;
 
 @property (nonatomic, assign) BOOL isFocused;
 
