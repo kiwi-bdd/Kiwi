@@ -101,7 +101,6 @@
 
 - (void)cleanupExample {
     [self.currentExample cleanup];
-    self.currentExample = nil;
 }
 
 #pragma mark - KWExampleGroupDelegate methods
