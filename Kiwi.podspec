@@ -25,7 +25,7 @@ Pod::Spec.new do |s|
     ].join(' '),
     "FRAMEWORK_SEARCH_PATHS[sdk=iphoneos8.0]" => %w[
       $(inherited)
-      $(DEVELOPER_DIR)/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks
+      $(DEVELOPER_DIR)/Platforms/iPhoneOS.platform/Developer/Library/Frameworks
     ].join(' '),
     "FRAMEWORK_SEARCH_PATHS[sdk=iphonesimulator8.0]" => %w[
       $(inherited)
