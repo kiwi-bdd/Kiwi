@@ -2346,7 +2346,7 @@
 				);
 				"FRAMEWORK_SEARCH_PATHS[sdk=iphoneos8.0]" = (
 					"$(inherited)",
-					"$(DEVELOPER_DIR)/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks",
+					"$(DEVELOPER_DIR)/Platforms/iPhoneOS.platform/Developer/Library/Frameworks",
 				);
 				"FRAMEWORK_SEARCH_PATHS[sdk=iphonesimulator8.0]" = (
 					"$(inherited)",
@@ -2380,7 +2380,7 @@
 				);
 				"FRAMEWORK_SEARCH_PATHS[sdk=iphoneos8.0]" = (
 					"$(inherited)",
-					"$(DEVELOPER_DIR)/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks",
+					"$(DEVELOPER_DIR)/Platforms/iPhoneOS.platform/Developer/Library/Frameworks",
 				);
 				"FRAMEWORK_SEARCH_PATHS[sdk=iphonesimulator8.0]" = (
 					"$(inherited)",
