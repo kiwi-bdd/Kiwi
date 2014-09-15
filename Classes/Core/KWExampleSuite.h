@@ -15,7 +15,10 @@
 @interface KWExampleSuite : NSObject <KWExampleNodeVisitor>
 
 - (id)initWithRootNode:(KWContextNode *)contextNode;
+
 - (void)addExample:(KWExample *)example;
+- (void)removeExample:(KWExample *)example;
+
 - (void)markLastExampleAsLastInContext:(KWContextNode *)context;
 - (NSArray *)invocationsForTestCase;
 @end

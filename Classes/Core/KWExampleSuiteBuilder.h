@@ -27,7 +27,9 @@
 
 //spec file name:line number of callsite
 - (void)focusWithURI:(NSString *)nodeUrl;
+
 - (KWExampleSuite *)buildExampleSuite:(void (^)(void))buildingBlock;
+- (void)removeExampleSuite:(KWExampleSuite *)suite;
 
 - (void)pushContextNodeWithCallSite:(KWCallSite *)aCallSite description:(NSString *)aDescription;
 - (void)popContextNode;

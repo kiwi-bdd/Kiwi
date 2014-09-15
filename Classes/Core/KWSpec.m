@@ -81,7 +81,7 @@
 #pragma mark - Running Specs
 
 - (void)invokeTest {
-    self.currentExample = self.invocation.kw_example;
+    [self initExample];
 
     @autoreleasepool {
         @try {
@@ -89,9 +89,18 @@
         } @catch (NSException *exception) {
             [self recordFailureWithDescription:exception.description inFile:@"" atLine:0 expected:NO];
         }
-
-        self.invocation.kw_example = nil;
     }
+    
+    [self cleanupExample];
+}
+
+- (void)initExample {
+    self.currentExample = [[self invocation] kw_example];
+    [[self invocation] kw_setExample:nil];
+}
+
+- (void)cleanupExample {
+    [self.currentExample cleanup];
 }
 
 #pragma mark - KWExampleGroupDelegate methods

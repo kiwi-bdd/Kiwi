@@ -26,6 +26,7 @@
 
 
 - (id)initWithExampleNode:(id<KWExampleNode>)node;
+- (void)cleanup;
 
 #pragma mark - Adding Verifiers
 

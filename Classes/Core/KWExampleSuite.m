@@ -12,6 +12,7 @@
 #import "KWBeforeAllNode.h"
 #import "KWContextNode.h"
 #import "KWExample.h"
+#import "KWExampleSuiteBuilder.h"
 #import "KWStringUtilities.h"
 #import "NSMethodSignature+KiwiAdditions.h"
 #import <objc/runtime.h>
@@ -40,6 +41,19 @@
 - (void)addExample:(KWExample *)example {
     [self.examples addObject:example];
     example.suite = self;
+}
+
+- (void)removeExample:(KWExample *)example {
+    example.suite = nil;
+    [self.examples removeObject:example];
+    
+    [self cleanupIfAppropriate];
+}
+
+- (void)cleanupIfAppropriate {
+    if ([self.examples count] == 0) {
+        [[KWExampleSuiteBuilder sharedExampleSuiteBuilder] removeExampleSuite:self];
+    }
 }
 
 - (void)markLastExampleAsLastInContext:(KWContextNode *)context

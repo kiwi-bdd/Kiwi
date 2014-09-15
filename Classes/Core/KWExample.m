@@ -55,6 +55,9 @@
     return self;
 }
 
+- (void)cleanup {
+    [self.suite removeExample:self];
+}
 
 - (BOOL)isLastInContext:(KWContextNode *)context {
   for (KWContextNode *contextWhereItLast in self.lastInContexts) {
@@ -108,6 +111,7 @@
     [self.matcherFactory registerMatcherClassesWithNamespacePrefix:@"KW"];
     [[KWExampleSuiteBuilder sharedExampleSuiteBuilder] setCurrentExample:self];
     [self.exampleNode acceptExampleNodeVisitor:self];
+    [[KWExampleSuiteBuilder sharedExampleSuiteBuilder] setCurrentExample:nil];
 }
 
 #pragma mark - Reporting failure
@@ -248,6 +252,8 @@
         // Always clear stubs and spies at the end of it blocks
         KWClearStubsAndSpies();
     }];
+    
+    aNode.example = nil;
 }
 
 - (void)visitPendingNode:(KWPendingNode *)aNode {
