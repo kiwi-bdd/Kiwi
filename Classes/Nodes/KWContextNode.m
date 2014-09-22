@@ -118,8 +118,9 @@ static NSString * const KWContextNodeException = @"KWContextNodeException";
 
             if ([example isLastInContext:self]) {
                 [self.afterAllNode acceptExampleNodeVisitor:example];
-                [letNodeTree unlink];
             }
+
+            [letNodeTree unlink];
 
         } @catch (NSException *exception) {
             KWFailure *failure = [KWFailure failureWithCallSite:self.callSite format:@"%@ \"%@\" raised", [exception name], [exception reason]];

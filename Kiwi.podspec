@@ -44,9 +44,19 @@ Pod::Spec.new do |s|
   s.osx.deployment_target = '10.7'
 
   s.framework = 'XCTest'
-  s.source_files = 'Classes/**/*.{h,m}'
   s.requires_arc = true
-  s.prefix_header_contents = '#import <XCTest/XCTest.h>'
+
+  s.subspec 'Core' do |core|
+    s.source_files = 'Classes/**/*.{h,m}'
+    s.prefix_header_contents = '#import <XCTest/XCTest.h>'
+    s.dependency 'Kiwi/MAFuture'
+  end
+
+  s.subspec 'MAFuture' do |mafuture|
+    mafuture.source_files = 'MAFuture/**/*.{h,m}'
+    mafuture.exclude_files = 'MAFuture/tester.m'
+    mafuture.compiler_flags = '-fno-objc-arc'
+    mafuture.requires_arc = false
+  end
 
 end
-
