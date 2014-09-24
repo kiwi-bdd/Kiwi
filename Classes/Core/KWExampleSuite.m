@@ -22,6 +22,7 @@
 
 @property (nonatomic, strong) KWContextNode *rootNode;
 @property (nonatomic, strong) NSMutableArray *examples;
+@property (nonatomic, strong) NSMutableDictionary *selectorNameCache;
 
 @end
 
@@ -32,6 +33,7 @@
     if (self) {
         _rootNode = contextNode;
         _examples = [[NSMutableArray alloc] init];
+        _selectorNameCache = [[NSMutableDictionary alloc] init];
     }
     return self;
 }
@@ -50,19 +52,23 @@
     }
 }
 
-- (NSArray *)invocationsForTestCase {
-    NSMutableArray *invocations = [NSMutableArray array];
-    
-    // Add a single dummy invocation for each example group
-    
-    for (KWExample *exampleGroup in self.examples) {
-        NSMethodSignature *methodSignature = [NSMethodSignature signatureWithObjCTypes:[KWEncodingForDefaultMethod() UTF8String]];
-        NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:methodSignature];
-        [invocations addObject:invocation];
-        invocation.kw_example = exampleGroup;
+#pragma mark - Example selector names
+
+- (NSString *)nextUniqueSelectorName:(NSString *)name {
+    NSUInteger count = [(self.selectorNameCache[name] ?: @1) integerValue];
+    NSString *uniqueName = name;
+    if (count > 1) {
+        NSString *format = [name hasSuffix:@"_"] ? @"%lu" : @"_%lu";
+        uniqueName = [name stringByAppendingFormat:format, (unsigned long)count];
     }
-    
-    return invocations;
+    self.selectorNameCache[name] = @(++count);
+    return uniqueName;
+}
+
+#pragma mark - NSFastEnumeration
+
+- (NSUInteger)countByEnumeratingWithState:(NSFastEnumerationState *)state objects:(__unsafe_unretained id [])buffer count:(NSUInteger)len {
+    return [self.examples countByEnumeratingWithState:state objects:buffer count:len];
 }
 
 @end

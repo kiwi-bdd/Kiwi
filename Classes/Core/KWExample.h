@@ -54,6 +54,10 @@
 
 - (NSString *)descriptionWithContext;
 
+#pragma mark - Format description as a valid selector
+
+@property (readonly) NSString *selectorName;
+
 @end
 
 #pragma mark - Building Example Groups
