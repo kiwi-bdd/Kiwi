@@ -2353,6 +2353,7 @@
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
+					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
 				);
 				"FRAMEWORK_SEARCH_PATHS[sdk=iphoneos8.0]" = (
 					"$(inherited)",
@@ -2387,6 +2388,7 @@
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
+					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
 				);
 				"FRAMEWORK_SEARCH_PATHS[sdk=iphoneos8.0]" = (
 					"$(inherited)",
