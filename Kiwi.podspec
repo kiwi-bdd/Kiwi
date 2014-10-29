@@ -19,24 +19,16 @@ Pod::Spec.new do |s|
   # TODO: clean this up once Apple gets their stuff together
   s.ios.xcconfig = {
     "FRAMEWORK_SEARCH_PATHS" => %w[
-      $(SDKROOT)/Developer/Library/Frameworks
+      $(PLATFORM_DIR)/Developer/Library/Frameworks
       $(inherited)
       $(DEVELOPER_FRAMEWORKS_DIR)
-    ].join(' '),
-    "FRAMEWORK_SEARCH_PATHS[sdk=iphoneos8.0]" => %w[
-      $(inherited)
-      $(DEVELOPER_DIR)/Platforms/iPhoneOS.platform/Developer/Library/Frameworks
-    ].join(' '),
-    "FRAMEWORK_SEARCH_PATHS[sdk=iphonesimulator8.0]" => %w[
-      $(inherited)
-      $(DEVELOPER_DIR)/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks
     ].join(' '),
   }
   s.osx.xcconfig = {
     "FRAMEWORK_SEARCH_PATHS" => "$(DEVELOPER_FRAMEWORKS_DIR)",
     "FRAMEWORK_SEARCH_PATHS[sdk=macosx10.10]" => %w[
       $(inherited)
-      $(DEVELOPER_DIR)/Platforms/MacOSX.platform/Developer/Library/Frameworks
+      $(PLATFORM_DIR)/Developer/Library/Frameworks
     ].join(' '),
   }
 
