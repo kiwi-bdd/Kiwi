@@ -1,7 +1,7 @@
 SHELL = /bin/bash -e -o pipefail
 IPHONE32 = -scheme Kiwi -sdk iphonesimulator -destination 'name=iPhone 4s'
 IPHONE64 = -scheme Kiwi -sdk iphonesimulator -destination 'name=iPhone 6'
-MACOSX = -scheme Kiwi-OSX -sdk macosx
+MACOSX = -scheme Kiwi-OSX -sdk macosx10.10
 XCODEBUILD = xcodebuild -project Kiwi.xcodeproj
 
 default: clean ios
