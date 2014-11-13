@@ -143,6 +143,7 @@ describe(@"Greeting", ^{
 
     describe(@"default subject", ^{
         specify(^{ [[subject should] beEmpty]; });
+        specify(^{ [[subject should] beNilOrEmpty]; });
     });
 
     context(@"with the subject \"world\"", ^{
