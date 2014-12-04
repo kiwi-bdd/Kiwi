@@ -10,7 +10,7 @@ Pod::Spec.new do |s|
   s.authors = {
     'Allen Ding'   => 'alding@gmail.com',
     'Luke Redpath' => 'luke@lukeredpath.co.uk',
-    'Marin Usalj'  => 'mneorr@gmail.com',
+    'Marin Usalj'  => 'marin2211@gmail.com',
     'Stepan Hruda' => 'stepan.hruda@gmail.com',
     'Brian Gesiak' => 'modocache@gmail.com',
     'Adam Sharp'   => 'adsharp@me.com',
