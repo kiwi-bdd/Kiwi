@@ -11,6 +11,7 @@
 #import "KWFailure.h"
 #import "KWExampleSuite.h"
 
+#import <objc/runtime.h>
 
 @interface KWSpec()
 
@@ -34,29 +35,7 @@
 
 - (NSString *)description {
     KWExample *currentExample = self.currentExample ?: self.invocation.kw_example;
-    NSString *name = [currentExample descriptionWithContext];
-    
-    // CamelCase the string
-    NSArray *words = [name componentsSeparatedByString:@" "];
-    name = @"";
-    for (NSString *word in words) {
-        if ([word length] < 1)
-        {
-            continue;
-        }
-        name = [name stringByAppendingString:[[word substringToIndex:1] uppercaseString]];
-        name = [name stringByAppendingString:[word substringFromIndex:1]];
-    }
-    
-    // Replace the commas with underscores to separate the levels of context
-    name = [name stringByReplacingOccurrencesOfString:@"," withString:@"_"];
-    
-    // Strip out characters not legal in function names
-    NSError *error = nil;
-    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"[^a-zA-Z0-9_]*" options:0 error:&error];
-    name = [regex stringByReplacingMatchesInString:name options:0 range:NSMakeRange(0, name.length) withTemplate:@""];
-
-    return [NSString stringWithFormat:@"-[%@ %@]", NSStringFromClass([self class]), name];
+    return [NSString stringWithFormat:@"-[%@ %@]", NSStringFromClass([self class]), currentExample.selectorName];
 }
 
 #pragma mark - Getting Invocations
@@ -74,13 +53,37 @@
     KWExampleSuite *exampleSuite = [[KWExampleSuiteBuilder sharedExampleSuiteBuilder] buildExampleSuite:^{
         [self buildExampleGroups];
     }];
-  
-    return [exampleSuite invocationsForTestCase];
+
+    NSMutableArray *invocations = [NSMutableArray new];
+    for (KWExample *example in exampleSuite) {
+        SEL selector = [self addInstanceMethodForExample:example];
+        NSInvocation *invocation = [self invocationForExample:example selector:selector];
+        [invocations addObject:invocation];
+    }
+
+    return invocations;
+}
+
++ (SEL)addInstanceMethodForExample:(KWExample *)example {
+    Method method = class_getInstanceMethod(self, @selector(runExample));
+    SEL selector = NSSelectorFromString(example.selectorName);
+    IMP implementation = method_getImplementation(method);
+    const char *types = method_getTypeEncoding(method);
+    class_addMethod(self, selector, implementation, types);
+    return selector;
+}
+
++ (NSInvocation *)invocationForExample:(KWExample *)example selector:(SEL)selector {
+    NSMethodSignature *signature = [NSMethodSignature signatureWithObjCTypes:"v@:"];
+    NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:signature];
+    invocation.kw_example = example;
+    invocation.selector = selector;
+    return invocation;
 }
 
 #pragma mark - Running Specs
 
-- (void)invokeTest {
+- (void)runExample {
     self.currentExample = self.invocation.kw_example;
 
     @autoreleasepool {
