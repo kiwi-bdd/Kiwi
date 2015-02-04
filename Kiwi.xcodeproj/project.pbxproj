@@ -2350,17 +2350,10 @@
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 1.0;
 				FRAMEWORK_SEARCH_PATHS = (
-					"<Multiple",
-					"values>",
+					"$(inherited)",
+					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
-				);
-				"FRAMEWORK_SEARCH_PATHS[sdk=iphoneos8.0]" = (
-					"$(inherited)",
-					"$(DEVELOPER_DIR)/Platforms/iPhoneOS.platform/Developer/Library/Frameworks",
-				);
-				"FRAMEWORK_SEARCH_PATHS[sdk=iphonesimulator8.0]" = (
-					"$(inherited)",
-					"$(DEVELOPER_DIR)/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
 				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_MODEL_TUNING = "";
@@ -2384,17 +2377,10 @@
 				CURRENT_PROJECT_VERSION = 1.0;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				FRAMEWORK_SEARCH_PATHS = (
-					"<Multiple",
-					"values>",
+					"$(inherited)",
+					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
-				);
-				"FRAMEWORK_SEARCH_PATHS[sdk=iphoneos8.0]" = (
-					"$(inherited)",
-					"$(DEVELOPER_DIR)/Platforms/iPhoneOS.platform/Developer/Library/Frameworks",
-				);
-				"FRAMEWORK_SEARCH_PATHS[sdk=iphonesimulator8.0]" = (
-					"$(inherited)",
-					"$(DEVELOPER_DIR)/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
 				);
 				GCC_MODEL_TUNING = "";
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
