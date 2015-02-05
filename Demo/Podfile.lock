@@ -1,0 +1,14 @@
+PODS:
+  - Kiwi (2.3.1)
+
+DEPENDENCIES:
+  - Kiwi (from `..`)
+
+EXTERNAL SOURCES:
+  Kiwi:
+    :path: ..
+
+SPEC CHECKSUMS:
+  Kiwi: 19e2032f2a950942c5650bd603b93539a2f65d3c
+
+COCOAPODS: 0.35.0
