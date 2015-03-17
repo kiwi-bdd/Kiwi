@@ -4,33 +4,34 @@
 // Copyright 2014 Allen Ding. All rights reserved.
 //
 
-#import <SenTestingKit/SenTestingKit.h>
+#import "Kiwi.h"
+#import "KiwiTestConfiguration.h"
 #import "KWSharedExample.h"
 #import "KWSharedExampleRegistry.h"
 #import "KWExample.h"
 
-@interface KWSharedExampleTest : SenTestCase
+@interface KWSharedExampleTest : XCTestCase
 
 @end
 
 @implementation KWSharedExampleTest
 
 - (void)testSharedExampleMustHaveNameParameter {
-    STAssertThrows([[KWSharedExample alloc] initWithName:nil block:nil],
-                   @"Unnamed shared example was created");
+    XCTAssertThrows([[KWSharedExample alloc] initWithName:nil block:nil],
+                    @"Unnamed shared example was created");
 }
 
 - (void)testSharedExampleMustHaveBlockParameter {
-    STAssertThrows([[KWSharedExample alloc] initWithName:@"FTW"
-                                                   block:nil],
-                   @"Shared example was created without a corresponding context block");
+    XCTAssertThrows([[KWSharedExample alloc] initWithName:@"FTW"
+                                                    block:nil],
+                    @"Shared example was created without a corresponding context block");
 }
 
 - (void)testSharedExamplesForRegistersTheSharedExample {
     sharedExamplesFor(@"FTTP", ^(Class sharedExample) {});
-    STAssertEqualObjects([[KWSharedExampleRegistry sharedRegistry] sharedExampleForName:@"FTTP"].name,
-                         @"FTTP",
-                         @"Shared example was not registered.");
+    XCTAssertEqualObjects([[KWSharedExampleRegistry sharedRegistry] sharedExampleForName:@"FTTP"].name,
+                          @"FTTP",
+                          @"Shared example was not registered.");
 }
 
 - (void)testItBehavesLikeExecutesTheBlock {
@@ -43,9 +44,9 @@
             blockWasCalled = @YES;
         });
     });
-
-    STAssertFalse([blockWasCalled boolValue],
-                  @"Blocks in shared example were executed prematurely.");
+    
+    XCTAssertFalse([blockWasCalled boolValue],
+                   @"Blocks in shared example were executed prematurely.");
 }
 
 @end
