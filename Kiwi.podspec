@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
 
   s.name            = 'Kiwi'
-  s.version         = '2.3.0'
+  s.version         = '2.3.1'
   s.summary         = 'A Behavior Driven Development library for iOS and OS X.'
   s.homepage        = 'https://github.com/kiwi-bdd/Kiwi'
   s.source          = { :git => 'https://github.com/kiwi-bdd/Kiwi.git', :tag => s.version.to_s }
@@ -10,26 +10,10 @@ Pod::Spec.new do |s|
   s.authors = {
     'Allen Ding'   => 'alding@gmail.com',
     'Luke Redpath' => 'luke@lukeredpath.co.uk',
-    'Marin Usalj'  => 'mneorr@gmail.com',
+    'Marin Usalj'  => 'marin2211@gmail.com',
     'Stepan Hruda' => 'stepan.hruda@gmail.com',
     'Brian Gesiak' => 'modocache@gmail.com',
     'Adam Sharp'   => 'adsharp@me.com',
-  }
-
-  # TODO: clean this up once Apple gets their stuff together
-  s.ios.xcconfig = {
-    "FRAMEWORK_SEARCH_PATHS" => %w[
-      $(PLATFORM_DIR)/Developer/Library/Frameworks
-      $(inherited)
-      $(DEVELOPER_FRAMEWORKS_DIR)
-    ].join(' '),
-  }
-  s.osx.xcconfig = {
-    "FRAMEWORK_SEARCH_PATHS" => "$(DEVELOPER_FRAMEWORKS_DIR)",
-    "FRAMEWORK_SEARCH_PATHS[sdk=macosx10.10]" => %w[
-      $(inherited)
-      $(PLATFORM_DIR)/Developer/Library/Frameworks
-    ].join(' '),
   }
 
   s.ios.deployment_target = '5.0'

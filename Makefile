@@ -1,6 +1,6 @@
 SHELL = /bin/bash -e -o pipefail
-IPHONE32 = -scheme Kiwi -sdk iphonesimulator -destination 'name=iPhone Retina (4-inch)'
-IPHONE64 = -scheme Kiwi -sdk iphonesimulator -destination 'name=iPhone Retina (4-inch 64-bit)'
+IPHONE32 = -scheme Kiwi -sdk iphonesimulator -destination 'name=iPhone 4s'
+IPHONE64 = -scheme Kiwi -sdk iphonesimulator -destination 'name=iPhone 6'
 MACOSX = -scheme Kiwi-OSX -sdk macosx
 XCODEBUILD = xcodebuild -project Kiwi.xcodeproj
 
