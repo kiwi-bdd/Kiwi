@@ -13,7 +13,7 @@ Pod::Spec.new do |s|
     'Marin Usalj'  => 'marin2211@gmail.com',
     'Stepan Hruda' => 'stepan.hruda@gmail.com',
     'Brian Gesiak' => 'modocache@gmail.com',
-    'Adam Sharp'   => 'adsharp@me.com',
+    'Adam Sharp'   => 'adsharp@me.com'
   }
 
   s.ios.deployment_target = '5.0'
