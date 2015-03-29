@@ -11,21 +11,21 @@
 SPEC_BEGIN(KWSharedExampleFunctionalTest)
 
 describe(@"Cruiser", ^{
-    itBehavesLike(@"a cruiser", [Cruiser class]);
+    itBehavesLike(@"a cruiser", @{ @"class": [Cruiser class] });
 });
 
 describe(@"Carrier", ^{
-    itBehavesLike(@"a cruiser", [Carrier class]);
+    itBehavesLike(@"a cruiser", @{ @"class": [Carrier class] });
 });
 
 SPEC_END
 
 SHARED_EXAMPLES_BEGIN(TestClasses)
 
-sharedExamplesFor(@"a cruiser", ^(Class describedClass) {
+sharedExamplesFor(@"a cruiser", ^(NSDictionary *data) {
     __block Cruiser *cruiser = nil;
     beforeEach(^{
-        cruiser = [[describedClass alloc] initWithCallsign:@"Planet Express"];
+        cruiser = [[data[@"class"] alloc] initWithCallsign:@"Planet Express"];
     });
 
     it(@"has a callsign", ^{

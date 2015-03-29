@@ -33,8 +33,8 @@ void sharedExamplesFor(NSString *name, KWSharedExampleBlock block) {
     [[KWSharedExampleRegistry sharedRegistry] registerSharedExample:sharedExample];
 }
 
-void itBehavesLike(NSString *name, Class describedClass) {
+void itBehavesLike(NSString *name, NSDictionary *data) {
     KWSharedExample *sharedExample = [[KWSharedExampleRegistry sharedRegistry] sharedExampleForName:name];
     NSString *description = [NSString stringWithFormat:@"behaves like %@", sharedExample.name];
-    context(description, ^{ sharedExample.block(describedClass); });
+    context(description, ^{ sharedExample.block(data); });
 }

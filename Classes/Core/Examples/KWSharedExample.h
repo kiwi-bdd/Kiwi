@@ -6,7 +6,7 @@
 
 #import <Foundation/Foundation.h>
 
-typedef void (^KWSharedExampleBlock)(Class describedClass);
+typedef void (^KWSharedExampleBlock)(NSDictionary *data);
 
 @interface KWSharedExample : NSObject
 
@@ -20,4 +20,4 @@ typedef void (^KWSharedExampleBlock)(Class describedClass);
 #pragma mark - Building Shared Example Groups
 
 void sharedExamplesFor(NSString *name, KWSharedExampleBlock block);
-void itBehavesLike(NSString *name, Class describedClass);
+void itBehavesLike(NSString *name, NSDictionary *data);

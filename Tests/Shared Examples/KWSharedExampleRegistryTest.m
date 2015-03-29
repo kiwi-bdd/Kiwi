@@ -17,7 +17,7 @@
 
 - (void)testRegisterSharedExample {
     KWSharedExample *sharedExample = [[KWSharedExample alloc] initWithName:@"LGTM"
-                                                                     block:^(Class describedClass) {}];
+                                                                     block:^(NSDictionary *data) {}];
     [[KWSharedExampleRegistry sharedRegistry] registerSharedExample:sharedExample];
     
     XCTAssertEqualObjects([[KWSharedExampleRegistry sharedRegistry] sharedExampleForName:@"LGTM"],
@@ -28,12 +28,12 @@
 - (void)testRegisterSharedExampleWithSameNameRaises {
     KWSharedExample *firstSharedExample =
     [[KWSharedExample alloc] initWithName:@"ASAP"
-                                    block:^(Class describedClass) {
+                                    block:^(NSDictionary *data) {
                                         NSLog(@"This example will be registered.");
                                     }];
     KWSharedExample *secondSharedExample =
     [[KWSharedExample alloc] initWithName:@"ASAP"
-                                    block:^(Class describedClass) {
+                                    block:^(NSDictionary *data) {
                                         NSLog(@"This example will throw.");
                                     }];
     

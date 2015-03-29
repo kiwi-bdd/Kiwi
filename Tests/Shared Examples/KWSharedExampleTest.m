@@ -36,7 +36,7 @@
 
 - (void)testItBehavesLikeExecutesTheBlock {
     __block NSNumber *blockWasCalled = @NO;
-    sharedExamplesFor(@"ESP", ^(Class describedClass) {
+    sharedExamplesFor(@"ESP", ^(NSDictionary *data) {
         beforeAll(^{
             blockWasCalled = @YES;
         });
