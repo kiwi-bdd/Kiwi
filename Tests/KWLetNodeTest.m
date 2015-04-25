@@ -89,15 +89,15 @@
 
 - (void)testItSetsItsObjectRefWhenEvaluated {
     __block id number = nil;
-    KWLetNode *letNode = [KWLetNode letNodeWithSymbolName:@"number" objectRef:&number block:^{ return @5; }];
+    KWLetNode *letNode = [KWLetNode letNodeWithSymbolName:@"number" objectRef:KW_LET_REF(number) block:^{ return @5; }];
     [letNode evaluate];
     XCTAssertEqualObjects(number, @5, @"expected the object to be set to the block's return value after evaluation");
 }
 
 - (void)testItSetsAllObjectRefsToTheChildsValueWhenEvaluated {
     __block id number1 = nil, number2 = nil;
-    KWLetNode *letNode1 = [KWLetNode letNodeWithSymbolName:@"number" objectRef:&number1 block:^{ return @1; }];
-    KWLetNode *letNode2 = [KWLetNode letNodeWithSymbolName:@"number" objectRef:&number2 block:^{ return @2; }];
+    KWLetNode *letNode1 = [KWLetNode letNodeWithSymbolName:@"number" objectRef:KW_LET_REF(number1) block:^{ return @1; }];
+    KWLetNode *letNode2 = [KWLetNode letNodeWithSymbolName:@"number" objectRef:KW_LET_REF(number2) block:^{ return @2; }];
     [letNode1 addLetNode:letNode2];
     [letNode1 evaluate];
     XCTAssertEqualObjects(number2, @2, @"expected the child object to have the value '2' after evaluation");
@@ -107,9 +107,9 @@
 - (void)testItEvaluatesTheDeepestChild {
     __block NSNumber *number = nil;
     __block NSString *string = nil;
-    KWLetNode *letNode1 = [KWLetNode letNodeWithSymbolName:@"number" objectRef:&number block:^{ return @1; }];
-    KWLetNode *letNode2 = [KWLetNode letNodeWithSymbolName:@"string" objectRef:&string block:^{ return [number stringValue]; }];
-    KWLetNode *letNode3 = [KWLetNode letNodeWithSymbolName:@"number" objectRef:&number block:^{ return @2; }];
+    KWLetNode *letNode1 = [KWLetNode letNodeWithSymbolName:@"number" objectRef:KW_LET_REF(number) block:^{ return @1; }];
+    KWLetNode *letNode2 = [KWLetNode letNodeWithSymbolName:@"string" objectRef:KW_LET_REF(string) block:^{ return [number stringValue]; }];
+    KWLetNode *letNode3 = [KWLetNode letNodeWithSymbolName:@"number" objectRef:KW_LET_REF(number) block:^{ return @2; }];
     [letNode1 addLetNode:letNode2];
     [letNode1 addLetNode:letNode3];
     [letNode1 evaluateTree];

@@ -120,7 +120,7 @@
 		4A71048017CC016600A7B718 /* KWLetNode.h in Headers */ = {isa = PBXBuildFile; fileRef = 4A71047E17CC016600A7B718 /* KWLetNode.h */; };
 		4A8699B817E9B399007F250E /* KWLetNodeTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A0941AB17E7A6A800FD0EB7 /* KWLetNodeTest.m */; };
 		4A8699B917E9B3CE007F250E /* KWLetNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A71047F17CC016600A7B718 /* KWLetNode.m */; };
-		4AC1CD631AEB4FBC00CBD0B8 /* KWLetNodeTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A0941AB17E7A6A800FD0EB7 /* KWLetNodeTest.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		4AC1CD631AEB4FBC00CBD0B8 /* KWLetNodeTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A0941AB17E7A6A800FD0EB7 /* KWLetNodeTest.m */; };
 		4ACDA433195EC73C006B385D /* KWPendingNodeTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ACDA432195EC73C006B385D /* KWPendingNodeTest.m */; };
 		4AD7A20A1962AC8F005ED93F /* Config.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AD7A2091962AC8F005ED93F /* Config.m */; };
 		4AD7A21B1962B12A005ED93F /* KWSuiteConfigurationBase.h in Headers */ = {isa = PBXBuildFile; fileRef = 4AD7A20F1962B10B005ED93F /* KWSuiteConfigurationBase.h */; };
