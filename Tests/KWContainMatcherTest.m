@@ -25,7 +25,7 @@
 }
 
 - (void)testItShouldRaiseWhenTheSubjectIsInvalid {
-    id subject = [[[NSObject alloc] init] autorelease];
+    id subject = [NSObject new];
     KWContainMatcher *matcher = [KWContainMatcher matcherWithSubject:subject];
     [matcher contain:@"liger"];
     XCTAssertThrowsSpecificNamed([matcher evaluate], NSException, @"KWMatcherException", @"expected raised exception");

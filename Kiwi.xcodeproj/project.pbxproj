@@ -319,7 +319,7 @@
 		4AE030971AEB494400556381 /* KWBlockRaiseMatcherTest.m in Sources */ = {isa = PBXBuildFile; fileRef = F5E9FC8411AE6E740089BACE /* KWBlockRaiseMatcherTest.m */; };
 		4AE030981AEB494400556381 /* KWChangeMatcherTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 511901A016A95803006E7359 /* KWChangeMatcherTest.m */; };
 		4AE030991AEB494400556381 /* KWConformToProtocolMatcherTest.m in Sources */ = {isa = PBXBuildFile; fileRef = F54A4C0011734975002442C5 /* KWConformToProtocolMatcherTest.m */; };
-		4AE0309A1AEB494400556381 /* KWContainMatcherTest.m in Sources */ = {isa = PBXBuildFile; fileRef = F53B5E42115B33FC0022BC0B /* KWContainMatcherTest.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		4AE0309A1AEB494400556381 /* KWContainMatcherTest.m in Sources */ = {isa = PBXBuildFile; fileRef = F53B5E42115B33FC0022BC0B /* KWContainMatcherTest.m */; };
 		4AE0309B1AEB494400556381 /* KWContainStringMatcherTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E7659AF172DAE4D00105B93 /* KWContainStringMatcherTest.m */; };
 		4AE0309C1AEB494400556381 /* KWEqualMatcherTest.m in Sources */ = {isa = PBXBuildFile; fileRef = F53B5E65115B36EB0022BC0B /* KWEqualMatcherTest.m */; };
 		4AE0309D1AEB494400556381 /* KWGenericMatcherTest.m in Sources */ = {isa = PBXBuildFile; fileRef = A352EA1A12EDC8380049C691 /* KWGenericMatcherTest.m */; };
