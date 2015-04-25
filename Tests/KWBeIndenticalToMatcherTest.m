@@ -25,15 +25,15 @@
 }
 
 - (void)testItShouldMatchIdenticalObjects {
-    id subject = [Cruiser cruiser];
+    id subject = [Cruiser new];
     KWBeIdenticalToMatcher *matcher = [KWBeIdenticalToMatcher matcherWithSubject:subject];
     [matcher beIdenticalTo:subject];
     XCTAssertTrue([matcher evaluate], @"expected positive match");
 }
 
 - (void)testItShouldNotMatchDifferentObjects {
-    id subject = [Cruiser cruiser];
-    id otherSubject = [Cruiser cruiser];
+    id subject = [Cruiser new];
+    id otherSubject = [Cruiser new];
     KWBeIdenticalToMatcher *matcher = [KWBeIdenticalToMatcher matcherWithSubject:subject];
     [matcher beIdenticalTo:otherSubject];
     XCTAssertFalse([matcher evaluate], @"expected negative match");

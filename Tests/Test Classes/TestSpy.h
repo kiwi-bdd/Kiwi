@@ -12,11 +12,6 @@
 }
 
 #pragma mark -
-#pragma mark Initializing
-
-+ (id)testSpy;
-
-#pragma mark -
 #pragma mark Checking Notifications
 
 @property (nonatomic, readonly) BOOL wasNotified;

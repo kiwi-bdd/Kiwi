@@ -92,7 +92,7 @@
 }
 
 - (void)testItShouldMatchExactCountsForInvocation {
-    id subject = [Cruiser cruiser];
+    id subject = [Cruiser new];
     [subject setFighters:@[[Fighter fighterWithCallsign:@"Viper 1"],
                                                    [Fighter fighterWithCallsign:@"Viper 2"],
                                                    [Fighter fighterWithCallsign:@"Viper 3"]]];
@@ -103,7 +103,7 @@
 }
 
 - (void)testItShouldMatchAtLeastCountsForInvocation {
-    id subject = [Cruiser cruiser];
+    id subject = [Cruiser new];
     [subject setFighters:@[[Fighter fighterWithCallsign:@"Viper 1"],
                                                    [Fighter fighterWithCallsign:@"Viper 2"],
                                                    [Fighter fighterWithCallsign:@"Viper 3"]]];
@@ -114,7 +114,7 @@
 }
 
 - (void)testItShouldMatchAtMostCountsForInvocation {
-    id subject = [Cruiser cruiser];
+    id subject = [Cruiser new];
     [subject setFighters:@[[Fighter fighterWithCallsign:@"Viper 1"],
                                                    [Fighter fighterWithCallsign:@"Viper 2"],
                                                    [Fighter fighterWithCallsign:@"Viper 3"]]];
@@ -125,7 +125,7 @@
 }
 
 - (void)testItShouldRaiseWhenInvocationDoesNotReturnAnObject {
-    id subject = [Cruiser cruiser];
+    id subject = [Cruiser new];
     NSInvocation *invocation = [NSInvocation invocationWithTarget:subject selector:@selector(crewComplement)];
     KWHaveMatcher *matcher = [KWHaveMatcher matcherWithSubject:subject];
     [matcher have:1010 itemsForInvocation:invocation];
@@ -133,7 +133,7 @@
 }
 
 - (void)testItShouldTreatNilTargetObjectsAsEmptyCollections {
-    id subject = [Cruiser cruiser];
+    id subject = [Cruiser new];
     NSInvocation *invocation = [NSInvocation invocationWithTarget:subject selector:@selector(fighters)];
     KWHaveMatcher *matcher = [KWHaveMatcher matcherWithSubject:subject];
     [matcher have:0 itemsForInvocation:invocation];
@@ -157,7 +157,7 @@
 
     // invocation matchers
 
-    id subject = [Cruiser cruiser];
+    id subject = [Cruiser new];
     [subject setFighters:@[[Fighter fighterWithCallsign:@"Viper 1"],
                           [Fighter fighterWithCallsign:@"Viper 2"],
                           [Fighter fighterWithCallsign:@"Viper 3"]]];

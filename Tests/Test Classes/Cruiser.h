@@ -22,7 +22,6 @@
 
 - (id)initWithCallsign:(NSString *)aCallsign;
 
-+ (id)cruiser;
 + (id)cruiserWithCallsign:(NSString *)aCallsign;
 
 #pragma mark -

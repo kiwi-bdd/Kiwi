@@ -28,7 +28,7 @@
 }
 
 - (void)testItShouldMatchForRaisingBlocks {
-    id cruiser = [Cruiser cruiser];
+    id cruiser = [Cruiser new];
     id subject = [KWBlock blockWithBlock:^{ [cruiser raise]; }];
     KWBlockRaiseMatcher *matcher = [KWBlockRaiseMatcher matcherWithSubject:subject];
     [matcher raise];
@@ -36,7 +36,7 @@
 }
 
 - (void)testItShouldNotMatchForNonRaisingBlocks {
-    id cruiser = [Cruiser cruiser];
+    id cruiser = [Cruiser new];
     id subject = [KWBlock blockWithBlock:^{ [cruiser raiseShields]; }];
     KWBlockRaiseMatcher *matcher = [KWBlockRaiseMatcher matcherWithSubject:subject];
     [matcher raise];

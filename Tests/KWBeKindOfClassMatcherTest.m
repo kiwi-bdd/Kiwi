@@ -25,14 +25,14 @@
 }
 
 - (void)testItShouldMatchKindOfClass {
-    id subject = [Cruiser cruiser];
+    id subject = [Cruiser new];
     KWBeKindOfClassMatcher *matcher = [KWBeKindOfClassMatcher matcherWithSubject:subject];
     [matcher beKindOfClass:[SpaceShip class]];
     XCTAssertTrue([matcher evaluate], @"expected positive match");
 }
 
 - (void)testItShouldNotMatchNonKindOfClass {
-    id subject = [Cruiser cruiser];
+    id subject = [Cruiser new];
     KWBeKindOfClassMatcher *matcher = [KWBeKindOfClassMatcher matcherWithSubject:subject];
     [matcher beKindOfClass:[Fighter class]];
     XCTAssertFalse([matcher evaluate], @"expected negative match");
@@ -47,7 +47,7 @@
 
 - (void)testItShouldHaveInformativeFailureMessageForShould
 {
-    id subject = [Cruiser cruiser];
+    id subject = [Cruiser new];
     KWBeKindOfClassMatcher *matcher = [KWBeKindOfClassMatcher matcherWithSubject:subject];
     [matcher beKindOfClass:[Fighter class]];
     XCTAssertEqualObjects([matcher failureMessageForShould], @"expected subject to be kind of Fighter, got Cruiser", @"failure message should match");
@@ -55,7 +55,7 @@
 
 - (void)testItShouldHaveInformativeFailureMessageForShouldNot
 {
-    id subject = [Cruiser cruiser];
+    id subject = [Cruiser new];
     KWBeKindOfClassMatcher *matcher = [KWBeKindOfClassMatcher matcherWithSubject:subject];
     [matcher beKindOfClass:[Fighter class]];
     XCTAssertEqualObjects([matcher failureMessageForShouldNot], @"expected subject not to be kind of Fighter, got Cruiser", @"failure message should match");

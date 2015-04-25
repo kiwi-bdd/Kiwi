@@ -14,7 +14,7 @@
 {
   Engine *engine = [[[self class] alloc] init];
   engine.model = modelName;
-  return [engine autorelease];
+  return engine;
 }
 
 @end

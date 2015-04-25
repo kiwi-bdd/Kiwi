@@ -11,11 +11,6 @@
 
 @implementation Robot
 
-+ (id)robot;
-{
-  return [[[self alloc] init] autorelease];
-}
-
 - (void)speak:(NSString *)message
 {
   NSLog(@"Robot says %@", message);

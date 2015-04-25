@@ -30,15 +30,6 @@
     return self;
 }
 
-+ (id)testReporter {
-    return [[[self alloc] init] autorelease];
-}
-
-- (void)dealloc {
-    [failures release];
-    [super dealloc];
-}
-
 #pragma mark -
 #pragma mark Properties
 

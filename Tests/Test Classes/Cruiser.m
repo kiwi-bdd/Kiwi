@@ -22,19 +22,8 @@
     return self;
 }
 
-+ (id)cruiser {
-    return [self cruiserWithCallsign:nil];
-}
-
 + (id)cruiserWithCallsign:(NSString *)aCallsign {
-    return [[[self alloc] initWithCallsign:aCallsign] autorelease];
-}
-
-- (void)dealloc {
-    [callsign release];
-    [engine release];
-    [fighters release];
-    [super dealloc];
+    return [[self alloc] initWithCallsign:aCallsign];
 }
 
 - (NSUInteger)hash {
@@ -79,7 +68,7 @@
 }
 
 - (NSArray *)fightersInSquadron:(NSString *)aSquadron {
-    NSMutableArray *fightersInSquadron = [[[NSMutableArray alloc] init] autorelease];
+    NSMutableArray *fightersInSquadron = [NSMutableArray new];
 
     for (Fighter *fighter in self.fighters) {
         if ([fighter.callsign hasPrefix:aSquadron])
@@ -91,7 +80,7 @@
 
 - (void)loadFighter:(Fighter *)fighter
 {
-    NSMutableArray *newFighters = [[self.fighters mutableCopy] autorelease];
+    NSMutableArray *newFighters = [self.fighters mutableCopy];
     [newFighters addObject:fighter];
     self.fighters = newFighters;
 }

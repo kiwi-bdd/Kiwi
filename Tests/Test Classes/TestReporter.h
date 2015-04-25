@@ -16,11 +16,6 @@
 }
 
 #pragma mark -
-#pragma mark Initializing
-
-+ (id)testReporter;
-
-#pragma mark -
 #pragma mark Properties
 
 @property (nonatomic, readonly) BOOL hasUnmetExpectations;

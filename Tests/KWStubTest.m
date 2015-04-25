@@ -23,7 +23,7 @@
 }
 
 - (void)testItShouldProcessMatchedInvocations {
-    id subject = [Cruiser cruiser];
+    id subject = [Cruiser new];
     KWMessagePattern *messagePattern = [KWMessagePattern messagePatternWithSelector:@selector(crewComplement)];
     id stub = [KWStub stubWithMessagePattern:messagePattern value:[KWValue valueWithUnsignedInt:42]];
     id invocation = [NSInvocation invocationWithTarget:subject selector:@selector(crewComplement)];
@@ -31,7 +31,7 @@
 }
 
 - (void)testItShouldNotProcessNonMatchedInvocations {
-    id subject = [Cruiser cruiser];
+    id subject = [Cruiser new];
     id argumentFilters = @[[KWValue valueWithUnsignedInt:15]];
     KWMessagePattern *messagePattern = [KWMessagePattern messagePatternWithSelector:@selector(energyLevelInWarpCore:) argumentFilters:argumentFilters];
     id stub = [KWStub stubWithMessagePattern:messagePattern value:[KWValue valueWithFloat:13.0f]];
@@ -41,7 +41,7 @@
 }
 
 - (void)testItShouldWriteWrappedInvocationReturnValues {
-    id subject = [Cruiser cruiser];
+    id subject = [Cruiser new];
     KWMessagePattern *messagePattern = [KWMessagePattern messagePatternWithSelector:@selector(crewComplement)];
     id stub = [KWStub stubWithMessagePattern:messagePattern value:[KWValue valueWithUnsignedInt:42]];
     id invocation = [NSInvocation invocationWithTarget:subject selector:@selector(crewComplement)];
@@ -52,7 +52,7 @@
 }
 
 - (void)testItShouldWriteObjectInvocationReturnValues {
-    id subject = [Cruiser cruiser];
+    id subject = [Cruiser new];
     KWMessagePattern *messagePattern = [KWMessagePattern messagePatternWithSelector:@selector(callsign)];
     id stub = [KWStub stubWithMessagePattern:messagePattern value:@"Green 1"];
     id invocation = [NSInvocation invocationWithTarget:subject selector:@selector(callsign)];
@@ -63,7 +63,7 @@
 }
 
 - (void)testItShouldPerformStubbedBlock {
-    id subject = [Cruiser cruiser];
+    id subject = [Cruiser new];
     Fighter *fighter = [[Fighter alloc] initWithCallsign:@"Red Leader"];
     KWMessagePattern *messagePattern = [KWMessagePattern messagePatternWithSelector:@selector(fighterWithCallsign:)];
     id stub  = [KWStub stubWithMessagePattern:messagePattern block: (id) ^(NSArray *params) {
@@ -79,7 +79,7 @@
 
 
 - (void)testItShouldPerformStubbedBlockAndAppropriatelyWrapParameterOfCharacterStreamType {
-    id subject = [Cruiser cruiser];
+    id subject = [Cruiser new];
     Fighter *fighter = [[Fighter alloc] initWithCallsign:@"Red Leader"];
     KWMessagePattern *messagePattern = [KWMessagePattern messagePatternWithSelector:@selector(fighterWithCallsignUTF8CString:)];
 	const char *messageArgument = "Random callsign";
@@ -98,7 +98,7 @@
 }
 
 - (void)testItShouldPerformStubbedBlockWhenInvocationHasNilArguments {
-    id subject = [Cruiser cruiser];
+    id subject = [Cruiser new];
     KWMessagePattern *messagePattern = [KWMessagePattern messagePatternWithSelector:@selector(fighterWithCallsign:)];
     id stub = [KWStub stubWithMessagePattern:messagePattern block: (id) ^(NSArray *params) {
         return [[params copy] autorelease];

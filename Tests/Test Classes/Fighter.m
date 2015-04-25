@@ -20,17 +20,8 @@
     return self;
 }
 
-+ (id)fighter {
-    return [self fighterWithCallsign:nil];
-}
-
 + (id)fighterWithCallsign:(NSString *)aCallsign {
-    return [[[self alloc] initWithCallsign:aCallsign] autorelease];
-}
-
-- (void)dealloc {
-    [callsign release];
-    [super dealloc];
+    return [[self alloc] initWithCallsign:aCallsign];
 }
 
 #pragma mark -

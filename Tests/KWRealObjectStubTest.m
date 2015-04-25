@@ -54,7 +54,7 @@
 }
 
 - (void)testItShouldStubInstanceMethodsThatAreUsedInTheObjectsHashMethod {
-    Cruiser *cruiser = [Cruiser cruiser];
+    Cruiser *cruiser = [Cruiser new];
     [cruiser stub:@selector(crewComplement) andReturn:theValue(5)];
     XCTAssertEqual((NSUInteger)5, cruiser.crewComplement, @"expected to be able to stub -[Cruiser crewComplement], which is used in -[Cruiser hash]");
 }
@@ -109,7 +109,7 @@
 
 - (void)testItShouldSubstituteMethodImplementationWithBlock {
     __block BOOL shieldsRaised = NO;
-    Cruiser *cruiser = [Cruiser cruiser];
+    Cruiser *cruiser = [Cruiser new];
     [cruiser stub:@selector(raiseShields) withBlock:(id) ^(NSArray *params) {
         shieldsRaised = YES;
         return NO;
@@ -119,14 +119,14 @@
 }
 
 - (void)testItShouldPreserveClassResultWhenInstanceMethodStubbed {
-    id subject = [Cruiser cruiser];
+    id subject = [Cruiser new];
     Class originalClass = [subject class];
     [subject stub:@selector(raiseShields) andReturn:[KWValue valueWithBool:YES]];
     XCTAssertEqual([subject class], originalClass, @"expected class to be preserved");
 }
 
 - (void)testItShouldPreserveSuperclassResultWhenInstanceMethodStubbed {
-    id subject = [Cruiser cruiser];
+    id subject = [Cruiser new];
     Class originalSuperclass = [subject superclass];
     [subject stub:@selector(raiseShields) andReturn:[KWValue valueWithBool:YES]];
     XCTAssertEqual([subject superclass], originalSuperclass, @"expected superclass to be preserved");
@@ -167,8 +167,8 @@
 }
 
 - (void)testItShouldStubInit {
-    id subject = [Cruiser cruiser];
-    id otherCruiser = [Cruiser cruiser];
+    id subject = [Cruiser new];
+    id otherCruiser = [Cruiser new];
     [Cruiser stub:@selector(alloc) andReturn:subject];
     [subject stub:@selector(init) andReturn:otherCruiser];
     id cruiser = [[Cruiser alloc] init];
@@ -177,16 +177,18 @@
 
 - (void)testSpyWorksOnRealInterfaces {
     Fighter *cruiser = [Fighter mock];
-    XCTAssertNoThrow([cruiser captureArgument:@selector(cruiser) atIndex:0], @"expected not to throw exception");
+    SEL cruiserSEL = NSSelectorFromString(@"cruiser");
+    XCTAssertNoThrow([cruiser captureArgument:cruiserSEL atIndex:0], @"expected not to throw exception");
 }
 
 - (void)testCallingCaptureArgumentOnRealObjectThrowsException {
-    Fighter *cruiser = [Fighter fighter];
-    XCTAssertThrows([cruiser captureArgument:@selector(cruiser) atIndex:0], @"expected to throw exception");
+    Fighter *cruiser = [Fighter new];
+    SEL cruiserSEL = NSSelectorFromString(@"cruiser");
+    XCTAssertThrows([cruiser captureArgument:cruiserSEL atIndex:0], @"expected to throw exception");
 }
 
 - (void)testItShouldStubWithBlock {
-    Cruiser *cruiser = [Cruiser cruiser];
+    Cruiser *cruiser = [Cruiser new];
     [cruiser stub:@selector(classification) withBlock:^id(NSArray *params) {
         return @"Enterprise";
     }];

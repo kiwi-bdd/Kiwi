@@ -20,7 +20,6 @@
 
 - (id)initWithCallsign:(NSString *)aCallsign;
 
-+ (id)fighter;
 + (id)fighterWithCallsign:(NSString *)aCallsign;
 
 #pragma mark -

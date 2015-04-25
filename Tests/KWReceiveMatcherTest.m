@@ -36,7 +36,7 @@
 }
 
 - (void)testItShouldMatchReceivedMessagesForReceive {
-    id subject = [Cruiser cruiser];
+    id subject = [Cruiser new];
     KWReceiveMatcher *matcher = [KWReceiveMatcher matcherWithSubject:subject];
     [matcher receive:@selector(raiseShields)];
     [subject raiseShields];
@@ -44,7 +44,7 @@
 }
 
 - (void)testItShouldMatchMultipleReceivedMessagesForReceiveWhenAttachedToNegativeVerifier {
-    id subject = [Cruiser cruiser];
+    id subject = [Cruiser new];
     KWReceiveMatcher *matcher = [KWReceiveMatcher matcherWithSubject:subject];
     matcher.willEvaluateAgainstNegativeExpectation = YES;
     [matcher receive:@selector(raiseShields)];
@@ -54,7 +54,7 @@
 }
 
 - (void)testItShouldNotMatchMultipleReceivedMessagesForReceiveWhenNotAttachedToNegativeVerifier {
-    id subject = [Cruiser cruiser];
+    id subject = [Cruiser new];
     KWReceiveMatcher *matcher = [KWReceiveMatcher matcherWithSubject:subject];
     [matcher receive:@selector(raiseShields)];
     [matcher receive:@selector(raiseShields)];
@@ -64,7 +64,7 @@
 }
 
 - (void)testItShouldNotMatchNonReceivedMessagesForReceive {
-    id subject = [Cruiser cruiser];
+    id subject = [Cruiser new];
     KWReceiveMatcher *matcher = [KWReceiveMatcher matcherWithSubject:subject];
     [matcher receive:@selector(raiseShields)];
     [subject fighters];
@@ -72,7 +72,7 @@
 }
 
 - (void)testItShouldMatchReceivedMessagesForReceiveWithCount {
-    id subject = [Cruiser cruiser];
+    id subject = [Cruiser new];
     KWReceiveMatcher *matcher = [KWReceiveMatcher matcherWithSubject:subject];
     [matcher receive:@selector(raiseShields) withCount:2];
     [subject raiseShields];
@@ -81,7 +81,7 @@
 }
 
 - (void)testItShouldNotMatchNonReceivedMessagesForReceiveWithCount {
-    id subject = [Cruiser cruiser];
+    id subject = [Cruiser new];
     KWReceiveMatcher *matcher = [KWReceiveMatcher matcherWithSubject:subject];
     [matcher receive:@selector(raiseShields) withCount:2];
     [subject fighters];
@@ -89,7 +89,7 @@
 }
 
 - (void)testItShouldMatchReceivedMessagesForReceiveWithCountAtLeast {
-    id subject = [Cruiser cruiser];
+    id subject = [Cruiser new];
     KWReceiveMatcher *matcher = [KWReceiveMatcher matcherWithSubject:subject];
     [matcher receive:@selector(raiseShields) withCountAtLeast:2];
     [subject raiseShields];
@@ -99,7 +99,7 @@
 }
 
 - (void)testItShouldNotMatchNonReceivedMessagesForReceiveWithCountAtLeast {
-    id subject = [Cruiser cruiser];
+    id subject = [Cruiser new];
     KWReceiveMatcher *matcher = [KWReceiveMatcher matcherWithSubject:subject];
     [matcher receive:@selector(raiseShields) withCountAtLeast:2];
     [subject fighters];
@@ -107,7 +107,7 @@
 }
 
 - (void)testItShouldStubForReceive {
-    id subject  = [Cruiser cruiser];
+    id subject  = [Cruiser new];
     KWReceiveMatcher *matcher = [KWReceiveMatcher matcherWithSubject:subject];
     [matcher receive:@selector(crewComplement)];
     NSUInteger value = [subject crewComplement];
@@ -115,7 +115,7 @@
 }
 
 - (void)testItShouldNotOverrideExistingStub {
-    id subject  = [Cruiser cruiser];
+    id subject  = [Cruiser new];
     [subject stub:@selector(crewComplement) andReturn:[KWValue valueWithUnsignedInt:333]];
     KWReceiveMatcher *matcher = [KWReceiveMatcher matcherWithSubject:subject];
     [matcher receive:@selector(crewComplement)];
@@ -124,7 +124,7 @@
 }
 
 - (void)testItShouldStubForReceiveAndReturn {
-    id subject = [Cruiser cruiser];
+    id subject = [Cruiser new];
     KWReceiveMatcher *matcher = [KWReceiveMatcher matcherWithSubject:subject];
     [matcher receive:@selector(crewComplement) andReturn:[KWValue valueWithUnsignedInt:42]];
     NSUInteger value = [subject crewComplement];
@@ -133,7 +133,7 @@
 }
 
 - (void)testItShouldMatchMultipleReceivedMessagesForReceiveAndReturnWhenAttachedToNegativeVerifier {
-    id subject = [Cruiser cruiser];
+    id subject = [Cruiser new];
     KWReceiveMatcher *matcher = [KWReceiveMatcher matcherWithSubject:subject];
     matcher.willEvaluateAgainstNegativeExpectation = YES;
     [matcher receive:@selector(crewComplement) andReturn:[KWValue valueWithBool:123]];
@@ -143,7 +143,7 @@
 }
 
 - (void)testItShouldNotMatchMultipleReceivedMessagesForReceiveAndReturnWhenNotAttachedToNegativeVerifier {
-    id subject = [Cruiser cruiser];
+    id subject = [Cruiser new];
     KWReceiveMatcher *matcher = [KWReceiveMatcher matcherWithSubject:subject];
     [matcher receive:@selector(crewComplement) andReturn:[KWValue valueWithBool:123]];
     [subject crewComplement];
@@ -152,7 +152,7 @@
 }
 
 - (void)testItShouldStubForReceiveAndReturnWithCount {
-    id subject = [Cruiser cruiser];
+    id subject = [Cruiser new];
     KWReceiveMatcher *matcher = [KWReceiveMatcher matcherWithSubject:subject];
     [matcher receive:@selector(crewComplement) andReturn:[KWValue valueWithUnsignedInt:42] withCount:2];
     [subject crewComplement];
@@ -162,7 +162,7 @@
 }
 
 - (void)testItShouldStubForReceiveAndReturnWithCountAtLeast {
-    id subject = [Cruiser cruiser];
+    id subject = [Cruiser new];
     KWReceiveMatcher *matcher = [KWReceiveMatcher matcherWithSubject:subject];
     [matcher receive:@selector(crewComplement) andReturn:[KWValue valueWithUnsignedInt:42] withCountAtLeast:2];
     [subject crewComplement];
@@ -173,7 +173,7 @@
 }
 
 - (void)testItShouldStubForReceiveAndReturnWithCountAtMost {
-    id subject = [Cruiser cruiser];
+    id subject = [Cruiser new];
     KWReceiveMatcher *matcher = [KWReceiveMatcher matcherWithSubject:subject];
     [matcher receive:@selector(crewComplement) andReturn:[KWValue valueWithUnsignedInt:42] withCountAtMost:2];
     [subject crewComplement];

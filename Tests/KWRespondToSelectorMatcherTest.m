@@ -25,14 +25,14 @@
 }
 
 - (void)testItShouldMatchObjectsThatRespondToSelector {
-    id subject = [Cruiser cruiser];
+    id subject = [Cruiser new];
     KWRespondToSelectorMatcher *matcher = [KWRespondToSelectorMatcher matcherWithSubject:subject];
     [matcher respondToSelector:@selector(raiseShields)];
     XCTAssertTrue([matcher evaluate], @"expected positive match");
 }
 
 - (void)testItShouldNotMatchObjectsThatRespondToSelector {
-    id subject = [Cruiser cruiser];
+    id subject = [Cruiser new];
     KWRespondToSelectorMatcher *matcher = [KWRespondToSelectorMatcher matcherWithSubject:subject];
     [matcher respondToSelector:@selector(setObject:forKey:)];
     XCTAssertFalse([matcher evaluate], @"expected negative match");

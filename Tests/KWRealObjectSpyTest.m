@@ -22,16 +22,16 @@
 }
 
 - (void)testItShouldNotifySpies {
-    Cruiser *cruiser = [Cruiser cruiser];
-    TestSpy *spy = [TestSpy testSpy];
+    Cruiser *cruiser = [Cruiser new];
+    TestSpy *spy = [TestSpy new];
     [cruiser addMessageSpy:spy forMessagePattern:[KWMessagePattern messagePatternWithSelector:@selector(raiseShields)]];
     [cruiser raiseShields];
     XCTAssertTrue(spy.wasNotified, @"expected object to notify spies");
 }
 
 - (void)testItShouldRemoveSpies {
-    Cruiser *cruiser = [Cruiser cruiser];
-    TestSpy *spy = [TestSpy testSpy];
+    Cruiser *cruiser = [Cruiser new];
+    TestSpy *spy = [TestSpy new];
     KWMessagePattern *messagePattern = [KWMessagePattern messagePatternWithSelector:@selector(raiseShields)];
     [cruiser addMessageSpy:spy forMessagePattern:messagePattern];
     [cruiser removeMessageSpy:spy forMessagePattern:messagePattern];
@@ -40,9 +40,9 @@
 }
 
 - (void)testItShouldNotifyMultipleSpiesWithDifferentMessagePatterns {
-    Cruiser *cruiser = [Cruiser cruiser];
-    TestSpy *spy1 = [TestSpy testSpy];
-    TestSpy *spy2 = [TestSpy testSpy];
+    Cruiser *cruiser = [Cruiser new];
+    TestSpy *spy1 = [TestSpy new];
+    TestSpy *spy2 = [TestSpy new];
     KWMessagePattern *messagePattern1 = [KWMessagePattern messagePatternWithSelector:@selector(energyLevelInWarpCore:)];
     NSArray *argumentFilters = @[[KWValue valueWithUnsignedInt:2]];
     KWMessagePattern *messagePattern2 = [KWMessagePattern messagePatternWithSelector:@selector(energyLevelInWarpCore:) argumentFilters:argumentFilters];

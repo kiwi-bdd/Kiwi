@@ -47,7 +47,7 @@
 
 - (void)testItShouldHaveInformativeFailureMessageForShould
 {
-    id subject = [Cruiser cruiser];
+    id subject = [Cruiser new];
     KWBeSubclassOfClassMatcher *matcher = [KWBeSubclassOfClassMatcher matcherWithSubject:subject];
     [matcher beSubclassOfClass:[Fighter class]];
     XCTAssertEqualObjects([matcher failureMessageForShould], @"expected subject to be subclass of Fighter, got Cruiser", @"failure message should match");
@@ -55,7 +55,7 @@
 
 - (void)testItShouldHaveInformativeFailureMessageForShouldNot
 {
-    id subject = [Cruiser cruiser];
+    id subject = [Cruiser new];
     KWBeSubclassOfClassMatcher *matcher = [KWBeSubclassOfClassMatcher matcherWithSubject:subject];
     [matcher beSubclassOfClass:[Fighter class]];
     XCTAssertEqualObjects([matcher failureMessageForShouldNot], @"expected subject not to be subclass of Fighter, got Cruiser", @"failure message should match");
