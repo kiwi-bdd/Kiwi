@@ -1,4 +1,4 @@
-#import "Kiwi.h"
+#import <Kiwi/Kiwi.h>
 #import "KiwiTestConfiguration.h"
 #import "TestClasses.h"
 

@@ -4,7 +4,7 @@
 // Copyright 2014 Allen Ding. All rights reserved.
 //
 
-#import "Kiwi.h"
+#import <Kiwi/Kiwi.h>
 #import "Cruiser.h"
 #import "Carrier.h"
 
