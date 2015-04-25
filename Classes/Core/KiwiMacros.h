@@ -29,9 +29,9 @@
 #pragma mark - Support Macros
 
 #define KW_THIS_CALLSITE [KWCallSite callSiteWithFilename:@__FILE__ lineNumber:__LINE__]
-#define KW_ADD_EXIST_VERIFIER(expectationType) [self addExistVerifierWithExpectationType:expectationType callSite:KW_THIS_CALLSITE] 
-#define KW_ADD_MATCH_VERIFIER(expectationType) [self addMatchVerifierWithExpectationType:expectationType callSite:KW_THIS_CALLSITE]
-#define KW_ADD_ASYNC_VERIFIER(expectationType, timeOut, wait) [self addAsyncVerifierWithExpectationType:expectationType callSite:KW_THIS_CALLSITE timeout:timeOut shouldWait:wait]
+#define KW_ADD_EXIST_VERIFIER(expectationType) [KWSpec addExistVerifierWithExpectationType:expectationType callSite:KW_THIS_CALLSITE]
+#define KW_ADD_MATCH_VERIFIER(expectationType) [KWSpec addMatchVerifierWithExpectationType:expectationType callSite:KW_THIS_CALLSITE]
+#define KW_ADD_ASYNC_VERIFIER(expectationType, timeOut, wait) [KWSpec addAsyncVerifierWithExpectationType:expectationType callSite:KW_THIS_CALLSITE timeout:timeOut shouldWait:wait]
 
 #pragma mark - Keywords
 
@@ -109,3 +109,21 @@
     } \
     \
     @end
+
+// Used to ensure that shared examples are registered before any
+// examples are evaluated. The name parameter is not used except
+// to define a category. Therefore, it must be unique.
+#define SHARED_EXAMPLES_BEGIN(name) \
+    \
+    @interface KWSharedExample (name) \
+    \
+    @end \
+    \
+    @implementation KWSharedExample (name) \
+    \
+    + (void)load { \
+
+#define SHARED_EXAMPLES_END \
+    } \
+    \
+    @end \

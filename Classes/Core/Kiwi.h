@@ -43,6 +43,7 @@ extern "C" {
 #import "KWExampleSuiteBuilder.h"
 #import "KWExampleNode.h"
 #import "KWExampleNodeVisitor.h"
+#import "KWSharedExample.h"
 #import "KWExistVerifier.h"
 #import "KWExpectationType.h"
 #import "KWFailure.h"
