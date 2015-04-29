@@ -471,8 +471,6 @@
 		CE87C5181AF1994200310C07 /* Engine.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F982A2216A801800030A0B1 /* Engine.m */; };
 		CE87C5191AF1994200310C07 /* Fighter.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F982A2416A801800030A0B1 /* Fighter.m */; };
 		CE87C51A1AF1994200310C07 /* Galaxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F982A2616A801800030A0B1 /* Galaxy.m */; };
-		CE87C51B1AF1994200310C07 /* KiwiAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F982A2916A801800030A0B1 /* KiwiAppDelegate.m */; };
-		CE87C51C1AF1994200310C07 /* KiwiViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F982A2B16A801800030A0B1 /* KiwiViewController.m */; };
 		CE87C51D1AF1994200310C07 /* Robot.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F982A2E16A801800030A0B1 /* Robot.m */; };
 		CE87C51E1AF1994200310C07 /* SpaceShip.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F982A3016A801800030A0B1 /* SpaceShip.m */; };
 		CE87C51F1AF1994200310C07 /* TestReporter.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F982A3316A801800030A0B1 /* TestReporter.m */; };
@@ -566,10 +564,6 @@
 		9F982A2516A801800030A0B1 /* Galaxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Galaxy.h; path = "Test Classes/Galaxy.h"; sourceTree = "<group>"; };
 		9F982A2616A801800030A0B1 /* Galaxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Galaxy.m; path = "Test Classes/Galaxy.m"; sourceTree = "<group>"; };
 		9F982A2716A801800030A0B1 /* JumpCapable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JumpCapable.h; path = "Test Classes/JumpCapable.h"; sourceTree = "<group>"; };
-		9F982A2816A801800030A0B1 /* KiwiAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KiwiAppDelegate.h; path = "Test Classes/KiwiAppDelegate.h"; sourceTree = "<group>"; };
-		9F982A2916A801800030A0B1 /* KiwiAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = KiwiAppDelegate.m; path = "Test Classes/KiwiAppDelegate.m"; sourceTree = "<group>"; };
-		9F982A2A16A801800030A0B1 /* KiwiViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KiwiViewController.h; path = "Test Classes/KiwiViewController.h"; sourceTree = "<group>"; };
-		9F982A2B16A801800030A0B1 /* KiwiViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = KiwiViewController.m; path = "Test Classes/KiwiViewController.m"; sourceTree = "<group>"; };
 		9F982A2C16A801800030A0B1 /* OrbitCapable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OrbitCapable.h; path = "Test Classes/OrbitCapable.h"; sourceTree = "<group>"; };
 		9F982A2D16A801800030A0B1 /* Robot.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Robot.h; path = "Test Classes/Robot.h"; sourceTree = "<group>"; };
 		9F982A2E16A801800030A0B1 /* Robot.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Robot.m; path = "Test Classes/Robot.m"; sourceTree = "<group>"; };
@@ -840,10 +834,6 @@
 				9F982A2516A801800030A0B1 /* Galaxy.h */,
 				9F982A2616A801800030A0B1 /* Galaxy.m */,
 				9F982A2716A801800030A0B1 /* JumpCapable.h */,
-				9F982A2816A801800030A0B1 /* KiwiAppDelegate.h */,
-				9F982A2916A801800030A0B1 /* KiwiAppDelegate.m */,
-				9F982A2A16A801800030A0B1 /* KiwiViewController.h */,
-				9F982A2B16A801800030A0B1 /* KiwiViewController.m */,
 				9F982A2C16A801800030A0B1 /* OrbitCapable.h */,
 				9F982A2D16A801800030A0B1 /* Robot.h */,
 				9F982A2E16A801800030A0B1 /* Robot.m */,
@@ -1948,8 +1938,6 @@
 				CE87C5181AF1994200310C07 /* Engine.m in Sources */,
 				CE87C5191AF1994200310C07 /* Fighter.m in Sources */,
 				CE87C51A1AF1994200310C07 /* Galaxy.m in Sources */,
-				CE87C51B1AF1994200310C07 /* KiwiAppDelegate.m in Sources */,
-				CE87C51C1AF1994200310C07 /* KiwiViewController.m in Sources */,
 				CE87C51D1AF1994200310C07 /* Robot.m in Sources */,
 				CE87C51E1AF1994200310C07 /* SpaceShip.m in Sources */,
 				CE87C51F1AF1994200310C07 /* TestReporter.m in Sources */,
