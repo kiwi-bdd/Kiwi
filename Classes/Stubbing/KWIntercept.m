@@ -63,7 +63,7 @@ IMP KWForwardingImplementationForMethodEncoding(const char* encoding) {
 #elif TARGET_CPU_X86
     const NSUInteger stretLengthThreshold = 8;
 #elif TARGET_CPU_X86_64
-        const NSUInteger stretLengthThreshold = 16;
+    const NSUInteger stretLengthThreshold = 16;
 #else
     // TODO: This just makes an assumption right now. Expand to support all
     // official architectures correctly.
