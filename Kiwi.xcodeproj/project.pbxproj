@@ -336,7 +336,7 @@
 		4AE030A81AEB494400556381 /* KWRealObjectSpyTest.m in Sources */ = {isa = PBXBuildFile; fileRef = F5CC5B6D119798D400004E69 /* KWRealObjectSpyTest.m */; };
 		4AE030A91AEB494400556381 /* KWRealObjectStubTest.m in Sources */ = {isa = PBXBuildFile; fileRef = F51A59BE1191D45500598B04 /* KWRealObjectStubTest.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		4AE030AA1AEB494400556381 /* KWStubTest.m in Sources */ = {isa = PBXBuildFile; fileRef = F5C6FB1C1177CAF00068BBC8 /* KWStubTest.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		4AE030AB1AEB494400556381 /* KWCaptureTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BA52D0015487F0C00FC957B /* KWCaptureTest.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		4AE030AB1AEB494400556381 /* KWCaptureTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BA52D0015487F0C00FC957B /* KWCaptureTest.m */; };
 		4AE030AC1AEB494400556381 /* KWSharedExampleRegistryTest.m in Sources */ = {isa = PBXBuildFile; fileRef = DAB1AF9918A53E9900CACD90 /* KWSharedExampleRegistryTest.m */; };
 		4AE030AD1AEB494400556381 /* KWSharedExampleTest.m in Sources */ = {isa = PBXBuildFile; fileRef = DAB1AF9A18A53E9900CACD90 /* KWSharedExampleTest.m */; };
 		4AE030AE1AEB494400556381 /* KWSharedExampleFunctionalTest.m in Sources */ = {isa = PBXBuildFile; fileRef = DA3EAD0718A7A1D700EBBF57 /* KWSharedExampleFunctionalTest.m */; };

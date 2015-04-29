@@ -50,7 +50,6 @@
 	NSDictionary *value = [[NSDictionary alloc] initWithObjectsAndKeys:@"Value", @"Key", nil];
 
 	[mutableArrayMock addObject:value];
-	[value release];
 	value = nil;
 
 	NSDictionary *spyValue = spy.argument;
