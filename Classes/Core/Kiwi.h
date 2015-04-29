@@ -4,100 +4,107 @@
 // Copyright 2010 Allen Ding. All rights reserved.
 //
 
+#import <Foundation/Foundation.h>
+
+//! Project version number for Kiwi.
+FOUNDATION_EXPORT double KiwiVersionNumber;
+
+//! Project version string for Kiwi-OSX.
+FOUNDATION_EXPORT const unsigned char KiwiVersionString[];
+
 // This needs to come first.
-#import "KiwiConfiguration.h"
+#import <Kiwi/KiwiConfiguration.h>
 #import <XCTest/XCTest.h>
 
 #if defined(__cplusplus)
 extern "C" {
 #endif
 
-#import "KWAfterAllNode.h"
-#import "KWAfterEachNode.h"
-#import "KWAny.h"
-#import "KWAsyncVerifier.h"
-#import "KWBeBetweenMatcher.h"
-#import "KWBeEmptyMatcher.h"
-#import "KWBeIdenticalToMatcher.h"
-#import "KWBeKindOfClassMatcher.h"
-#import "KWBeMemberOfClassMatcher.h"
-#import "KWBeSubclassOfClassMatcher.h"
-#import "KWBeTrueMatcher.h"
-#import "KWNilMatcher.h"
-#import "KWBeWithinMatcher.h"
-#import "KWBeZeroMatcher.h"
-#import "KWBeforeAllNode.h"
-#import "KWBeforeEachNode.h"
-#import "KWBlock.h"
-#import "KWBlockNode.h"
-#import "KWBlockRaiseMatcher.h"
-#import "KWCallSite.h"
-#import "KWChangeMatcher.h"
-#import "KWConformToProtocolMatcher.h"
-#import "KWContainMatcher.h"
-#import "KWContainStringMatcher.h"
-#import "KWContextNode.h"
-#import "KWDeviceInfo.h"
-#import "KWEqualMatcher.h"
-#import "KWExample.h"
-#import "KWExampleSuiteBuilder.h"
-#import "KWExampleNode.h"
-#import "KWExampleNodeVisitor.h"
-#import "KWSharedExample.h"
-#import "KWExistVerifier.h"
-#import "KWExpectationType.h"
-#import "KWFailure.h"
-#import "KWFormatter.h"
-#import "KWFutureObject.h"
-#import "KWGenericMatcher.h"
-#import "KWHaveMatcher.h"
-#import "KWHaveValueMatcher.h"
-#import "KWInequalityMatcher.h"
-#import "KWInvocationCapturer.h"
-#import "KWItNode.h"
-#import "KWMatchVerifier.h"
-#import "KWMatcher.h"
-#import "KWMatchers.h"
-#import "KWMatcherFactory.h"
-#import "KWMatching.h"
-#import "KWMessagePattern.h"
-#import "KWMessageSpying.h"
-#import "KWMock.h"
-#import "KWNull.h"
-#import "KWObjCUtilities.h"
-#import "KWPendingNode.h"
-#import "KWReceiveMatcher.h"
-#import "KWRegisterMatchersNode.h"
-#import "KWRegularExpressionPatternMatcher.h"
-#import "KWRespondToSelectorMatcher.h"
-#import "KWSpec.h"
-#import "KWStringUtilities.h"
-#import "KWStub.h"
-#import "KWSuiteConfigurationBase.h"
-#import "KWUserDefinedMatcher.h"
-#import "KWValue.h"
-#import "KWVerifying.h"
-#import "KWCaptureSpy.h"
-#import "KWStringPrefixMatcher.h"
-#import "KWStringContainsMatcher.h"
-#import "KWNotificationMatcher.h"
+#import <Kiwi/KWAfterAllNode.h>
+#import <Kiwi/KWAfterEachNode.h>
+#import <Kiwi/KWAny.h>
+#import <Kiwi/KWAsyncVerifier.h>
+#import <Kiwi/KWBeBetweenMatcher.h>
+#import <Kiwi/KWBeEmptyMatcher.h>
+#import <Kiwi/KWBeIdenticalToMatcher.h>
+#import <Kiwi/KWBeKindOfClassMatcher.h>
+#import <Kiwi/KWBeMemberOfClassMatcher.h>
+#import <Kiwi/KWBeSubclassOfClassMatcher.h>
+#import <Kiwi/KWBeTrueMatcher.h>
+#import <Kiwi/KWNilMatcher.h>
+#import <Kiwi/KWBeWithinMatcher.h>
+#import <Kiwi/KWBeZeroMatcher.h>
+#import <Kiwi/KWBeforeAllNode.h>
+#import <Kiwi/KWBeforeEachNode.h>
+#import <Kiwi/KWBlock.h>
+#import <Kiwi/KWBlockNode.h>
+#import <Kiwi/KWBlockRaiseMatcher.h>
+#import <Kiwi/KWCallSite.h>
+#import <Kiwi/KWChangeMatcher.h>
+#import <Kiwi/KWConformToProtocolMatcher.h>
+#import <Kiwi/KWContainMatcher.h>
+#import <Kiwi/KWContainStringMatcher.h>
+#import <Kiwi/KWContextNode.h>
+#import <Kiwi/KWDeviceInfo.h>
+#import <Kiwi/KWEqualMatcher.h>
+#import <Kiwi/KWExample.h>
+#import <Kiwi/KWExampleSuiteBuilder.h>
+#import <Kiwi/KWExampleNode.h>
+#import <Kiwi/KWExampleNodeVisitor.h>
+#import <Kiwi/KWSharedExample.h>
+#import <Kiwi/KWExistVerifier.h>
+#import <Kiwi/KWExpectationType.h>
+#import <Kiwi/KWFailure.h>
+#import <Kiwi/KWFormatter.h>
+#import <Kiwi/KWFutureObject.h>
+#import <Kiwi/KWGenericMatcher.h>
+#import <Kiwi/KWHaveMatcher.h>
+#import <Kiwi/KWHaveValueMatcher.h>
+#import <Kiwi/KWInequalityMatcher.h>
+#import <Kiwi/KWInvocationCapturer.h>
+#import <Kiwi/KWItNode.h>
+#import <Kiwi/KWMatchVerifier.h>
+#import <Kiwi/KWMatcher.h>
+#import <Kiwi/KWMatchers.h>
+#import <Kiwi/KWMatcherFactory.h>
+#import <Kiwi/KWMatching.h>
+#import <Kiwi/KWMessagePattern.h>
+#import <Kiwi/KWMessageSpying.h>
+#import <Kiwi/KWMock.h>
+#import <Kiwi/KWNull.h>
+#import <Kiwi/KWObjCUtilities.h>
+#import <Kiwi/KWPendingNode.h>
+#import <Kiwi/KWReceiveMatcher.h>
+#import <Kiwi/KWRegisterMatchersNode.h>
+#import <Kiwi/KWRegularExpressionPatternMatcher.h>
+#import <Kiwi/KWRespondToSelectorMatcher.h>
+#import <Kiwi/KWSpec.h>
+#import <Kiwi/KWStringUtilities.h>
+#import <Kiwi/KWStub.h>
+#import <Kiwi/KWSuiteConfigurationBase.h>
+#import <Kiwi/KWUserDefinedMatcher.h>
+#import <Kiwi/KWValue.h>
+#import <Kiwi/KWVerifying.h>
+#import <Kiwi/KWCaptureSpy.h>
+#import <Kiwi/KWStringPrefixMatcher.h>
+#import <Kiwi/KWStringContainsMatcher.h>
+#import <Kiwi/KWNotificationMatcher.h>
 
-  
+
 // Public Foundation Categories
-#import "NSObject+KiwiMockAdditions.h"
-#import "NSObject+KiwiSpyAdditions.h"
-#import "NSObject+KiwiStubAdditions.h"
-#import "NSObject+KiwiVerifierAdditions.h"
-#import "NSProxy+KiwiVerifierAdditions.h"
+#import <Kiwi/NSObject+KiwiMockAdditions.h>
+#import <Kiwi/NSObject+KiwiSpyAdditions.h>
+#import <Kiwi/NSObject+KiwiStubAdditions.h>
+#import <Kiwi/NSObject+KiwiVerifierAdditions.h>
+#import <Kiwi/NSProxy+KiwiVerifierAdditions.h>
 
-#import "KiwiMacros.h"
+#import <Kiwi/KiwiMacros.h>
 
 // Some Foundation headers use Kiwi keywords (e.g. 'should') as identifiers for
 // parameter names. Including this last allows the use of Kiwi keywords without
 // conflicting with these headers (hopefully!).
-#import "KiwiBlockMacros.h"
+#import <Kiwi/KiwiBlockMacros.h>
 
 #if defined(__cplusplus)
 }
 #endif
-

@@ -14,8 +14,8 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "6BC17EC2155E3A47000B3AA4"
-               BuildableName = "Kiwi-iOS"
+               BlueprintIdentifier = "CE87C4221AF194E900310C07"
+               BuildableName = "Kiwi.framework"
                BlueprintName = "Kiwi-iOS"
                ReferencedContainer = "container:Kiwi.xcodeproj">
             </BuildableReference>
@@ -28,7 +28,26 @@
       shouldUseLaunchSchemeArgsEnv = "YES"
       buildConfiguration = "Debug">
       <Testables>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "CE87C42C1AF194EA00310C07"
+               BuildableName = "KiwiTests-iOS.xctest"
+               BlueprintName = "KiwiTests-iOS"
+               ReferencedContainer = "container:Kiwi.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "CE87C4221AF194E900310C07"
+            BuildableName = "Kiwi.framework"
+            BlueprintName = "Kiwi-iOS"
+            ReferencedContainer = "container:Kiwi.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
    </TestAction>
    <LaunchAction
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
@@ -42,8 +61,8 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "6BC17EC2155E3A47000B3AA4"
-            BuildableName = "Kiwi-iOS"
+            BlueprintIdentifier = "CE87C4221AF194E900310C07"
+            BuildableName = "Kiwi.framework"
             BlueprintName = "Kiwi-iOS"
             ReferencedContainer = "container:Kiwi.xcodeproj">
          </BuildableReference>
@@ -57,6 +76,15 @@
       useCustomWorkingDirectory = "NO"
       buildConfiguration = "Release"
       debugDocumentVersioning = "YES">
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "CE87C4221AF194E900310C07"
+            BuildableName = "Kiwi.framework"
+            BlueprintName = "Kiwi-iOS"
+            ReferencedContainer = "container:Kiwi.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">
