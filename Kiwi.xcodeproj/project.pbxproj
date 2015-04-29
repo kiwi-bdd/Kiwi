@@ -1105,8 +1105,11 @@
 				F5F5C69E117CAA8800C5F133 /* Readme.md */,
 				9F4C095816B16A6D00FCCCD3 /* Release.txt */,
 			);
+			indentWidth = 4;
 			name = CustomTemplate;
 			sourceTree = "<group>";
+			tabWidth = 4;
+			usesTabs = 0;
 		};
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
