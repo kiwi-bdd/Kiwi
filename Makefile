@@ -1,20 +1,16 @@
 SHELL = /bin/bash -e -o pipefail
-IPHONE32 = -scheme Kiwi -sdk iphonesimulator -destination 'name=iPhone 4s'
-IPHONE64 = -scheme Kiwi -sdk iphonesimulator -destination 'name=iPhone 6'
-MACOSX = -scheme Kiwi-OSX -sdk macosx
+IPHONE32 = -scheme Kiwi-iOS -destination 'platform=iOS Simulator,name=iPhone 5'
+IPHONE64 = -scheme Kiwi-iOS -destination 'platform=iOS Simulator,name=iPhone 6'
+MACOSX = -scheme Kiwi-OSX -destination 'generic/platform=OS X'
 XCODEBUILD = xcodebuild -project Kiwi.xcodeproj
 
 default: clean ios
 
 clean:
 	xcodebuild clean
-	rm -rf output
 
 ios:
 	$(XCODEBUILD) -scheme Kiwi-iOS build
-
-install:
-	$(XCODEBUILD) -scheme Kiwi-iOS install
 
 test: test-iphone32 test-iphone64 test-macosx
 
@@ -33,4 +29,4 @@ test-macosx:
 	$(XCODEBUILD) $(MACOSX) test | tee xcodebuild.log | xcpretty -c
 	ruby test_suite_configuration.rb xcodebuild.log
 
-ci: test
+ci: test-iphone64 test-macosx
