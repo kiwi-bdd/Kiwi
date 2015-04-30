@@ -33,7 +33,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "4AE02FC61AEB45EB00556381"
-               BuildableName = "KiwiTests-OSX.xctest"
+               BuildableName = "KiwiTests.xctest"
                BlueprintName = "KiwiTests-OSX"
                ReferencedContainer = "container:Kiwi.xcodeproj">
             </BuildableReference>

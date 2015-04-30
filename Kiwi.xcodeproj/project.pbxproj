@@ -530,7 +530,7 @@
 		4AD7A2101962B10B005ED93F /* KWSuiteConfigurationBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KWSuiteConfigurationBase.m; sourceTree = "<group>"; };
 		4AD7A2221962B145005ED93F /* KWAllTestsSuite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KWAllTestsSuite.m; sourceTree = "<group>"; };
 		4AE02FBD1AEB45EB00556381 /* Kiwi.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Kiwi.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		4AE02FC71AEB45EB00556381 /* KiwiTests-OSX.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "KiwiTests-OSX.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		4AE02FC71AEB45EB00556381 /* KiwiTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = KiwiTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4AE02FD61AEB466D00556381 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4AE02FD81AEB46D000556381 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4AE33458195820DC00CDE895 /* KWMessagePattern.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KWMessagePattern.h; sourceTree = "<group>"; };
@@ -745,7 +745,7 @@
 		C931D36D18AB2DEB005BC184 /* KWBeZeroMatcherTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = KWBeZeroMatcherTest.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		CE2287A51AF19CB100943816 /* Kiwi-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Kiwi-Prefix.pch"; sourceTree = "<group>"; };
 		CE87C4231AF194E900310C07 /* Kiwi.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Kiwi.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		CE87C42D1AF194EA00310C07 /* KiwiTests-iOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "KiwiTests-iOS.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		CE87C42D1AF194EA00310C07 /* KiwiTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = KiwiTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		DA084D3F17E3804200592D5A /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		DA084D4217E3804200592D5A /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
 		DA3EAD0718A7A1D700EBBF57 /* KWSharedExampleFunctionalTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KWSharedExampleFunctionalTest.m; sourceTree = "<group>"; };
@@ -854,9 +854,9 @@
 			isa = PBXGroup;
 			children = (
 				4AE02FBD1AEB45EB00556381 /* Kiwi.framework */,
-				4AE02FC71AEB45EB00556381 /* KiwiTests-OSX.xctest */,
+				4AE02FC71AEB45EB00556381 /* KiwiTests.xctest */,
 				CE87C4231AF194E900310C07 /* Kiwi.framework */,
-				CE87C42D1AF194EA00310C07 /* KiwiTests-iOS.xctest */,
+				CE87C42D1AF194EA00310C07 /* KiwiTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1529,7 +1529,7 @@
 			);
 			name = "KiwiTests-OSX";
 			productName = "Kiwi-OSXTests";
-			productReference = 4AE02FC71AEB45EB00556381 /* KiwiTests-OSX.xctest */;
+			productReference = 4AE02FC71AEB45EB00556381 /* KiwiTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 		CE87C4221AF194E900310C07 /* Kiwi-iOS */ = {
@@ -1565,7 +1565,7 @@
 			);
 			name = "KiwiTests-iOS";
 			productName = "Kiwi-iOSTests";
-			productReference = CE87C42D1AF194EA00310C07 /* KiwiTests-iOS.xctest */;
+			productReference = CE87C42D1AF194EA00310C07 /* KiwiTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -2102,7 +2102,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "$(KIWI_TESTS_PRODUCT_NAME)";
 				SDKROOT = macosx;
 			};
 			name = Debug;
@@ -2134,7 +2134,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "$(KIWI_TESTS_PRODUCT_NAME)";
 				SDKROOT = macosx;
 			};
 			name = Release;
@@ -2164,6 +2164,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				KIWI_PRODUCT_NAME = Kiwi;
+				KIWI_TESTS_PRODUCT_NAME = KiwiTests;
 				ONLY_ACTIVE_ARCH = YES;
 				RUN_CLANG_STATIC_ANALYZER = YES;
 				SDKROOT = iphoneos;
@@ -2196,6 +2197,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				KIWI_PRODUCT_NAME = Kiwi;
+				KIWI_TESTS_PRODUCT_NAME = KiwiTests;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -2317,7 +2319,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = YES;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "$(KIWI_TESTS_PRODUCT_NAME)";
 			};
 			name = Debug;
 		};
@@ -2346,7 +2348,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "$(KIWI_TESTS_PRODUCT_NAME)";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
