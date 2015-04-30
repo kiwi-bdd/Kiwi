@@ -4,8 +4,7 @@
 // Copyright 2010 Allen Ding. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
-#import "KWReporting.h"
+#import <Kiwi/Kiwi.h>
 
 @class KWFailure;
 

@@ -101,7 +101,6 @@
 		4AE030341AEB47FE00556381 /* KWBlock.h in Headers */ = {isa = PBXBuildFile; fileRef = 9F982C6116A802920030A0B1 /* KWBlock.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4AE030351AEB47FE00556381 /* KWCallSite.h in Headers */ = {isa = PBXBuildFile; fileRef = 9F982C6716A802920030A0B1 /* KWCallSite.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4AE030361AEB47FE00556381 /* KWCaptureSpy.h in Headers */ = {isa = PBXBuildFile; fileRef = 9F982C6916A802920030A0B1 /* KWCaptureSpy.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		4AE030371AEB47FE00556381 /* KWCountType.h in Headers */ = {isa = PBXBuildFile; fileRef = 9F982C7116A802920030A0B1 /* KWCountType.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4AE030381AEB47FE00556381 /* KWDeviceInfo.h in Headers */ = {isa = PBXBuildFile; fileRef = 9F982C7216A802920030A0B1 /* KWDeviceInfo.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4AE030391AEB47FE00556381 /* KWExample.h in Headers */ = {isa = PBXBuildFile; fileRef = 9F982C7616A802920030A0B1 /* KWExample.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4AE0303A1AEB47FE00556381 /* KWExampleSuiteBuilder.h in Headers */ = {isa = PBXBuildFile; fileRef = 9F982C7816A802920030A0B1 /* KWExampleSuiteBuilder.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -131,13 +130,13 @@
 		4AE030521AEB480000556381 /* KWMatchers.h in Headers */ = {isa = PBXBuildFile; fileRef = 9F982C9D16A802920030A0B1 /* KWMatchers.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4AE030531AEB480000556381 /* KWMatching.h in Headers */ = {isa = PBXBuildFile; fileRef = 9F982C9F16A802920030A0B1 /* KWMatching.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4AE030541AEB480100556381 /* NSInvocation+KiwiAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 9F982CCE16A802920030A0B1 /* NSInvocation+KiwiAdditions.h */; };
-		4AE030551AEB480100556381 /* NSInvocation+OCMAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 9F982CD016A802920030A0B1 /* NSInvocation+OCMAdditions.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		4AE030551AEB480100556381 /* NSInvocation+OCMAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 9F982CD016A802920030A0B1 /* NSInvocation+OCMAdditions.h */; };
 		4AE030561AEB480100556381 /* NSMethodSignature+KiwiAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 9F982CD216A802920030A0B1 /* NSMethodSignature+KiwiAdditions.h */; };
 		4AE030571AEB480100556381 /* NSNumber+KiwiAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 9F982CD416A802920030A0B1 /* NSNumber+KiwiAdditions.h */; };
 		4AE030581AEB480100556381 /* NSObject+KiwiSpyAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 9F982CD816A802920030A0B1 /* NSObject+KiwiSpyAdditions.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4AE030591AEB480100556381 /* NSObject+KiwiVerifierAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 9F982CDC16A802920030A0B1 /* NSObject+KiwiVerifierAdditions.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4AE0305A1AEB480100556381 /* NSProxy+KiwiVerifierAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 9F820DB616BB6748003A1BA5 /* NSProxy+KiwiVerifierAdditions.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		4AE0305B1AEB480100556381 /* NSValue+KiwiAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 9F982CDE16A802920030A0B1 /* NSValue+KiwiAdditions.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		4AE0305B1AEB480100556381 /* NSValue+KiwiAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 9F982CDE16A802920030A0B1 /* NSValue+KiwiAdditions.h */; };
 		4AE0305C1AEB480100556381 /* KWNotificationMatcher.h in Headers */ = {isa = PBXBuildFile; fileRef = DAA1B3AD18CF25C00015CF7A /* KWNotificationMatcher.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4AE0305D1AEB480200556381 /* KWBeBetweenMatcher.h in Headers */ = {isa = PBXBuildFile; fileRef = 9F982C4716A802920030A0B1 /* KWBeBetweenMatcher.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4AE0305E1AEB480200556381 /* KWBeEmptyMatcher.h in Headers */ = {isa = PBXBuildFile; fileRef = 9F982C4916A802920030A0B1 /* KWBeEmptyMatcher.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -248,6 +247,7 @@
 		4AE030C81AEB494400556381 /* KWValueTest.m in Sources */ = {isa = PBXBuildFile; fileRef = F5C6FD2311782A290068BBC8 /* KWValueTest.m */; };
 		4AE030C91AEB494400556381 /* NSNumber_KiwiAdditionsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = DA9C69F7190CA6EE002C4DC0 /* NSNumber_KiwiAdditionsTests.m */; };
 		4AE030CA1AEB4DCF00556381 /* NSObject+KiwiSpyAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F982CD916A802920030A0B1 /* NSObject+KiwiSpyAdditions.m */; };
+		CE80E4411AF239DB00D2F0D6 /* KWCountType.h in Headers */ = {isa = PBXBuildFile; fileRef = 9F982C7116A802920030A0B1 /* KWCountType.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		CE87C42E1AF194EA00310C07 /* Kiwi.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE87C4231AF194E900310C07 /* Kiwi.framework */; };
 		CE87C43D1AF195BE00310C07 /* KWSuiteConfigurationBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AD7A2101962B10B005ED93F /* KWSuiteConfigurationBase.m */; };
 		CE87C43E1AF195BE00310C07 /* KWAllTestsSuite.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AD7A2221962B145005ED93F /* KWAllTestsSuite.m */; };
@@ -379,7 +379,7 @@
 		CE87C4BC1AF1963B00310C07 /* NSObject+KiwiSpyAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 9F982CD816A802920030A0B1 /* NSObject+KiwiSpyAdditions.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		CE87C4BD1AF1963B00310C07 /* NSObject+KiwiVerifierAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 9F982CDC16A802920030A0B1 /* NSObject+KiwiVerifierAdditions.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		CE87C4BE1AF1963B00310C07 /* NSProxy+KiwiVerifierAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 9F820DB616BB6748003A1BA5 /* NSProxy+KiwiVerifierAdditions.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		CE87C4BF1AF1963B00310C07 /* NSValue+KiwiAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 9F982CDE16A802920030A0B1 /* NSValue+KiwiAdditions.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		CE87C4BF1AF1963B00310C07 /* NSValue+KiwiAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 9F982CDE16A802920030A0B1 /* NSValue+KiwiAdditions.h */; };
 		CE87C4C01AF1963B00310C07 /* KWNotificationMatcher.h in Headers */ = {isa = PBXBuildFile; fileRef = DAA1B3AD18CF25C00015CF7A /* KWNotificationMatcher.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		CE87C4C11AF1963B00310C07 /* KWBeBetweenMatcher.h in Headers */ = {isa = PBXBuildFile; fileRef = 9F982C4716A802920030A0B1 /* KWBeBetweenMatcher.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		CE87C4C21AF1963B00310C07 /* KWBeEmptyMatcher.h in Headers */ = {isa = PBXBuildFile; fileRef = 9F982C4916A802920030A0B1 /* KWBeEmptyMatcher.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -1288,7 +1288,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				4AE0302E1AEB47FE00556381 /* KWSuiteConfigurationBase.h in Headers */,
-				4AE0302F1AEB47FE00556381 /* KWSymbolicator.h in Headers */,
 				4AE030301AEB47FE00556381 /* KiwiBlockMacros.h in Headers */,
 				4AE030311AEB47FE00556381 /* KiwiConfiguration.h in Headers */,
 				4AE030321AEB47FE00556381 /* KiwiMacros.h in Headers */,
@@ -1296,13 +1295,10 @@
 				4AE030341AEB47FE00556381 /* KWBlock.h in Headers */,
 				4AE030351AEB47FE00556381 /* KWCallSite.h in Headers */,
 				4AE030361AEB47FE00556381 /* KWCaptureSpy.h in Headers */,
-				4AE030371AEB47FE00556381 /* KWCountType.h in Headers */,
 				4AE030381AEB47FE00556381 /* KWDeviceInfo.h in Headers */,
 				4AE030391AEB47FE00556381 /* KWExample.h in Headers */,
 				4AE0303A1AEB47FE00556381 /* KWExampleSuiteBuilder.h in Headers */,
-				4AE0303B1AEB47FE00556381 /* KWExampleDelegate.h in Headers */,
 				4AE0303C1AEB47FE00556381 /* KWExampleNodeVisitor.h in Headers */,
-				4AE0303D1AEB47FE00556381 /* KWExampleSuite.h in Headers */,
 				4AE0303E1AEB47FF00556381 /* KWExpectationType.h in Headers */,
 				4AE0303F1AEB47FF00556381 /* KWFailure.h in Headers */,
 				4AE030401AEB47FF00556381 /* KWFormatter.h in Headers */,
@@ -1311,28 +1307,18 @@
 				4AE030431AEB47FF00556381 /* KWLet.h in Headers */,
 				4AE030441AEB47FF00556381 /* KWMessagePattern.h in Headers */,
 				4AE030451AEB47FF00556381 /* KWMessageSpying.h in Headers */,
-				4AE030461AEB47FF00556381 /* KWMessageTracker.h in Headers */,
 				4AE030471AEB47FF00556381 /* KWNull.h in Headers */,
 				4AE030481AEB47FF00556381 /* KWObjCUtilities.h in Headers */,
-				4AE030491AEB47FF00556381 /* KWProbe.h in Headers */,
-				4AE0304A1AEB480000556381 /* KWProbePoller.h in Headers */,
-				4AE0304B1AEB480000556381 /* KWReporting.h in Headers */,
 				4AE0304C1AEB480000556381 /* KWSpec.h in Headers */,
 				4AE0304D1AEB480000556381 /* KWStringUtilities.h in Headers */,
 				4AE0304E1AEB480000556381 /* KWValue.h in Headers */,
-				4AE0304F1AEB480000556381 /* KWWorkarounds.h in Headers */,
 				4AE030501AEB480000556381 /* KWMatcher.h in Headers */,
 				4AE030511AEB480000556381 /* KWMatcherFactory.h in Headers */,
 				4AE030521AEB480000556381 /* KWMatchers.h in Headers */,
 				4AE030531AEB480000556381 /* KWMatching.h in Headers */,
-				4AE030541AEB480100556381 /* NSInvocation+KiwiAdditions.h in Headers */,
-				4AE030551AEB480100556381 /* NSInvocation+OCMAdditions.h in Headers */,
-				4AE030561AEB480100556381 /* NSMethodSignature+KiwiAdditions.h in Headers */,
-				4AE030571AEB480100556381 /* NSNumber+KiwiAdditions.h in Headers */,
 				4AE030581AEB480100556381 /* NSObject+KiwiSpyAdditions.h in Headers */,
 				4AE030591AEB480100556381 /* NSObject+KiwiVerifierAdditions.h in Headers */,
 				4AE0305A1AEB480100556381 /* NSProxy+KiwiVerifierAdditions.h in Headers */,
-				4AE0305B1AEB480100556381 /* NSValue+KiwiAdditions.h in Headers */,
 				4AE0305C1AEB480100556381 /* KWNotificationMatcher.h in Headers */,
 				4AE0305D1AEB480200556381 /* KWBeBetweenMatcher.h in Headers */,
 				4AE0305E1AEB480200556381 /* KWBeEmptyMatcher.h in Headers */,
@@ -1351,8 +1337,6 @@
 				4AE0306B1AEB480300556381 /* KWContainStringMatcher.h in Headers */,
 				4AE0306C1AEB480400556381 /* KWEqualMatcher.h in Headers */,
 				4AE0306D1AEB480400556381 /* KWGenericMatcher.h in Headers */,
-				4AE0306E1AEB480400556381 /* KWGenericMatchEvaluator.h in Headers */,
-				4AE0306F1AEB480400556381 /* KWGenericMatchingAdditions.h in Headers */,
 				4AE030701AEB480400556381 /* KWHaveMatcher.h in Headers */,
 				4AE030711AEB480400556381 /* KWHaveValueMatcher.h in Headers */,
 				4AE030721AEB480500556381 /* KWInequalityMatcher.h in Headers */,
@@ -1372,19 +1356,35 @@
 				4AE030801AEB480700556381 /* KWContextNode.h in Headers */,
 				4AE030811AEB480700556381 /* KWExampleNode.h in Headers */,
 				4AE030821AEB480700556381 /* KWItNode.h in Headers */,
-				4AE030831AEB480700556381 /* KWLetNode.h in Headers */,
+				CE80E4411AF239DB00D2F0D6 /* KWCountType.h in Headers */,
 				4AE030841AEB480800556381 /* KWPendingNode.h in Headers */,
 				CE87C4F31AF1990200310C07 /* Kiwi.h in Headers */,
 				4AE030851AEB480800556381 /* KWRegisterMatchersNode.h in Headers */,
 				4AE030861AEB480800556381 /* KWSharedExample.h in Headers */,
-				4AE030871AEB480800556381 /* KWSharedExampleRegistry.h in Headers */,
 				4AE030881AEB480800556381 /* KWStub.h in Headers */,
-				4AE030891AEB480900556381 /* KWIntercept.h in Headers */,
 				4AE0308A1AEB480900556381 /* NSObject+KiwiStubAdditions.h in Headers */,
 				4AE0308B1AEB480900556381 /* KWAsyncVerifier.h in Headers */,
+				4AE0303B1AEB47FE00556381 /* KWExampleDelegate.h in Headers */,
 				4AE0308C1AEB480900556381 /* KWExistVerifier.h in Headers */,
+				4AE0303D1AEB47FE00556381 /* KWExampleSuite.h in Headers */,
+				4AE0306E1AEB480400556381 /* KWGenericMatchEvaluator.h in Headers */,
+				4AE0306F1AEB480400556381 /* KWGenericMatchingAdditions.h in Headers */,
 				4AE0308D1AEB480900556381 /* KWMatchVerifier.h in Headers */,
+				4AE030891AEB480900556381 /* KWIntercept.h in Headers */,
+				4AE030831AEB480700556381 /* KWLetNode.h in Headers */,
 				4AE0308E1AEB480A00556381 /* KWVerifying.h in Headers */,
+				4AE030461AEB47FF00556381 /* KWMessageTracker.h in Headers */,
+				4AE030491AEB47FF00556381 /* KWProbe.h in Headers */,
+				4AE0304A1AEB480000556381 /* KWProbePoller.h in Headers */,
+				4AE0304B1AEB480000556381 /* KWReporting.h in Headers */,
+				4AE030871AEB480800556381 /* KWSharedExampleRegistry.h in Headers */,
+				4AE0302F1AEB47FE00556381 /* KWSymbolicator.h in Headers */,
+				4AE0304F1AEB480000556381 /* KWWorkarounds.h in Headers */,
+				4AE030551AEB480100556381 /* NSInvocation+OCMAdditions.h in Headers */,
+				4AE030541AEB480100556381 /* NSInvocation+KiwiAdditions.h in Headers */,
+				4AE030561AEB480100556381 /* NSMethodSignature+KiwiAdditions.h in Headers */,
+				4AE030571AEB480100556381 /* NSNumber+KiwiAdditions.h in Headers */,
+				4AE0305B1AEB480100556381 /* NSValue+KiwiAdditions.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1392,104 +1392,104 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CE87C4BC1AF1963B00310C07 /* NSObject+KiwiSpyAdditions.h in Headers */,
-				CE87C4C11AF1963B00310C07 /* KWBeBetweenMatcher.h in Headers */,
-				CE87C4A81AF1963B00310C07 /* KWMessagePattern.h in Headers */,
-				CE87C4EF1AF1963B00310C07 /* KWAsyncVerifier.h in Headers */,
-				CE87C4C91AF1963B00310C07 /* KWBeWithinMatcher.h in Headers */,
-				CE87C4C31AF1963B00310C07 /* KWBeIdenticalToMatcher.h in Headers */,
-				CE87C4D11AF1963B00310C07 /* KWGenericMatcher.h in Headers */,
-				CE87C4BD1AF1963B00310C07 /* NSObject+KiwiVerifierAdditions.h in Headers */,
-				CE87C4DC1AF1963B00310C07 /* KWUserDefinedMatcher.h in Headers */,
-				CE87C4C81AF1963B00310C07 /* KWBeTrueMatcher.h in Headers */,
-				CE87C4EE1AF1963B00310C07 /* NSObject+KiwiStubAdditions.h in Headers */,
-				CE87C4DB1AF1963B00310C07 /* KWStringPrefixMatcher.h in Headers */,
-				CE87C4E31AF1963B00310C07 /* KWBlockNode.h in Headers */,
-				CE87C4961AF1963B00310C07 /* KiwiConfiguration.h in Headers */,
-				CE87C4A01AF1963B00310C07 /* KWExampleDelegate.h in Headers */,
-				CE87C4A51AF1963B00310C07 /* KWFutureObject.h in Headers */,
-				CE87C4DE1AF1963B00310C07 /* NSObject+KiwiMockAdditions.h in Headers */,
-				CE87C4941AF1963B00310C07 /* Kiwi.h in Headers */,
-				CE87C4D91AF1963B00310C07 /* KWRespondToSelectorMatcher.h in Headers */,
-				CE87C4AD1AF1963B00310C07 /* KWProbe.h in Headers */,
-				CE87C4B51AF1963B00310C07 /* KWMatcherFactory.h in Headers */,
-				CE87C4E11AF1963B00310C07 /* KWBeforeAllNode.h in Headers */,
-				CE87C4BF1AF1963B00310C07 /* NSValue+KiwiAdditions.h in Headers */,
-				CE87C4A31AF1963B00310C07 /* KWFailure.h in Headers */,
-				CE87C4D71AF1963B00310C07 /* KWReceiveMatcher.h in Headers */,
-				CE87C4CB1AF1963B00310C07 /* KWBlockRaiseMatcher.h in Headers */,
 				CE87C4971AF1963B00310C07 /* KiwiMacros.h in Headers */,
-				CE87C4EC1AF1963B00310C07 /* KWStub.h in Headers */,
-				CE87C4CE1AF1963B00310C07 /* KWContainMatcher.h in Headers */,
-				CE87C4D81AF1963B00310C07 /* KWRegularExpressionPatternMatcher.h in Headers */,
-				CE87C4C41AF1963B00310C07 /* KWBeKindOfClassMatcher.h in Headers */,
-				CE87C4C71AF1963B00310C07 /* KWBeSubclassOfClassMatcher.h in Headers */,
-				CE87C4CF1AF1963B00310C07 /* KWContainStringMatcher.h in Headers */,
-				CE87C4AC1AF1963B00310C07 /* KWObjCUtilities.h in Headers */,
-				CE87C4DA1AF1963B00310C07 /* KWStringContainsMatcher.h in Headers */,
-				CE87C4A61AF1963B00310C07 /* KWInvocationCapturer.h in Headers */,
-				CE87C4B71AF1963B00310C07 /* KWMatching.h in Headers */,
-				CE87C4D51AF1963B00310C07 /* KWHaveValueMatcher.h in Headers */,
-				CE87C4DD1AF1963B00310C07 /* KWMock.h in Headers */,
-				CE87C4A11AF1963B00310C07 /* KWExampleNodeVisitor.h in Headers */,
-				CE87C4C01AF1963B00310C07 /* KWNotificationMatcher.h in Headers */,
-				CE87C4CD1AF1963B00310C07 /* KWConformToProtocolMatcher.h in Headers */,
-				CE87C4B41AF1963B00310C07 /* KWMatcher.h in Headers */,
-				CE87C4E51AF1963B00310C07 /* KWExampleNode.h in Headers */,
-				CE87C49B1AF1963B00310C07 /* KWCaptureSpy.h in Headers */,
-				CE87C4A71AF1963B00310C07 /* KWLet.h in Headers */,
-				CE87C4F11AF1963B00310C07 /* KWMatchVerifier.h in Headers */,
-				CE87C49C1AF1963B00310C07 /* KWCountType.h in Headers */,
-				CE87C4E91AF1963B00310C07 /* KWRegisterMatchersNode.h in Headers */,
-				CE87C4CA1AF1963B00310C07 /* KWBeZeroMatcher.h in Headers */,
-				CE87C4B01AF1963B00310C07 /* KWSpec.h in Headers */,
-				CE87C4A21AF1963B00310C07 /* KWExpectationType.h in Headers */,
-				CE87C4991AF1963B00310C07 /* KWBlock.h in Headers */,
-				CE87C4D41AF1963B00310C07 /* KWHaveMatcher.h in Headers */,
-				CE87C4C61AF1963B00310C07 /* KWNilMatcher.h in Headers */,
-				CE87C4981AF1963B00310C07 /* KWAny.h in Headers */,
-				CE87C49D1AF1963B00310C07 /* KWDeviceInfo.h in Headers */,
-				CE87C4F01AF1963B00310C07 /* KWExistVerifier.h in Headers */,
-				CE87C4E81AF1963B00310C07 /* KWPendingNode.h in Headers */,
-				CE87C4DF1AF1963B00310C07 /* KWAfterAllNode.h in Headers */,
-				CE87C4E21AF1963B00310C07 /* KWBeforeEachNode.h in Headers */,
-				CE87C4E41AF1963B00310C07 /* KWContextNode.h in Headers */,
-				CE87C4D01AF1963B00310C07 /* KWEqualMatcher.h in Headers */,
+				CE87C4951AF1963B00310C07 /* KiwiBlockMacros.h in Headers */,
+				CE87C4BE1AF1963B00310C07 /* NSProxy+KiwiVerifierAdditions.h in Headers */,
+				CE87C4BC1AF1963B00310C07 /* NSObject+KiwiSpyAdditions.h in Headers */,
+				CE87C4BD1AF1963B00310C07 /* NSObject+KiwiVerifierAdditions.h in Headers */,
+				CE87C4EE1AF1963B00310C07 /* NSObject+KiwiStubAdditions.h in Headers */,
+				CE87C4DE1AF1963B00310C07 /* NSObject+KiwiMockAdditions.h in Headers */,
 				CE87C4F21AF1963B00310C07 /* KWVerifying.h in Headers */,
+				CE87C4B21AF1963B00310C07 /* KWValue.h in Headers */,
+				CE87C4DC1AF1963B00310C07 /* KWUserDefinedMatcher.h in Headers */,
+				CE87C4D71AF1963B00310C07 /* KWReceiveMatcher.h in Headers */,
+				CE87C4B01AF1963B00310C07 /* KWSpec.h in Headers */,
+				CE87C4DA1AF1963B00310C07 /* KWStringContainsMatcher.h in Headers */,
+				CE87C4DB1AF1963B00310C07 /* KWStringPrefixMatcher.h in Headers */,
+				CE87C4EC1AF1963B00310C07 /* KWStub.h in Headers */,
+				CE87C4931AF1962500310C07 /* KWSuiteConfigurationBase.h in Headers */,
+				CE87C4B11AF1963B00310C07 /* KWStringUtilities.h in Headers */,
+				CE87C4E91AF1963B00310C07 /* KWRegisterMatchersNode.h in Headers */,
+				CE87C4D81AF1963B00310C07 /* KWRegularExpressionPatternMatcher.h in Headers */,
+				CE87C4D91AF1963B00310C07 /* KWRespondToSelectorMatcher.h in Headers */,
+				CE87C4E81AF1963B00310C07 /* KWPendingNode.h in Headers */,
+				CE87C4A71AF1963B00310C07 /* KWLet.h in Headers */,
+				CE87C4C01AF1963B00310C07 /* KWNotificationMatcher.h in Headers */,
+				CE87C4AB1AF1963B00310C07 /* KWNull.h in Headers */,
+				CE87C4B41AF1963B00310C07 /* KWMatcher.h in Headers */,
+				CE87C4B51AF1963B00310C07 /* KWMatcherFactory.h in Headers */,
+				CE87C4B71AF1963B00310C07 /* KWMatching.h in Headers */,
+				CE87C4A81AF1963B00310C07 /* KWMessagePattern.h in Headers */,
+				CE87C4B61AF1963B00310C07 /* KWMatchers.h in Headers */,
+				CE87C4DD1AF1963B00310C07 /* KWMock.h in Headers */,
+				CE87C4A91AF1963B00310C07 /* KWMessageSpying.h in Headers */,
+				CE87C4A61AF1963B00310C07 /* KWInvocationCapturer.h in Headers */,
 				CE87C4D61AF1963B00310C07 /* KWInequalityMatcher.h in Headers */,
+				CE87C4E61AF1963B00310C07 /* KWItNode.h in Headers */,
+				CE87C4D51AF1963B00310C07 /* KWHaveValueMatcher.h in Headers */,
+				CE87C4D41AF1963B00310C07 /* KWHaveMatcher.h in Headers */,
+				CE87C4D11AF1963B00310C07 /* KWGenericMatcher.h in Headers */,
+				CE87C4A51AF1963B00310C07 /* KWFutureObject.h in Headers */,
+				CE87C4A31AF1963B00310C07 /* KWFailure.h in Headers */,
+				CE87C4A41AF1963B00310C07 /* KWFormatter.h in Headers */,
+				CE87C4D01AF1963B00310C07 /* KWEqualMatcher.h in Headers */,
+				CE87C4A11AF1963B00310C07 /* KWExampleNodeVisitor.h in Headers */,
+				CE87C4E51AF1963B00310C07 /* KWExampleNode.h in Headers */,
+				CE87C4A21AF1963B00310C07 /* KWExpectationType.h in Headers */,
+				CE87C4F01AF1963B00310C07 /* KWExistVerifier.h in Headers */,
 				CE87C49E1AF1963B00310C07 /* KWExample.h in Headers */,
 				CE87C49F1AF1963B00310C07 /* KWExampleSuiteBuilder.h in Headers */,
+				CE87C49D1AF1963B00310C07 /* KWDeviceInfo.h in Headers */,
+				CE87C49B1AF1963B00310C07 /* KWCaptureSpy.h in Headers */,
 				CE87C49A1AF1963B00310C07 /* KWCallSite.h in Headers */,
-				CE87C4B61AF1963B00310C07 /* KWMatchers.h in Headers */,
-				CE87C4B21AF1963B00310C07 /* KWValue.h in Headers */,
-				CE87C4AB1AF1963B00310C07 /* KWNull.h in Headers */,
-				CE87C4C21AF1963B00310C07 /* KWBeEmptyMatcher.h in Headers */,
-				CE87C4E61AF1963B00310C07 /* KWItNode.h in Headers */,
-				CE87C4BE1AF1963B00310C07 /* NSProxy+KiwiVerifierAdditions.h in Headers */,
-				CE87C4C51AF1963B00310C07 /* KWBeMemberOfClassMatcher.h in Headers */,
 				CE87C4CC1AF1963B00310C07 /* KWChangeMatcher.h in Headers */,
-				CE87C4EA1AF1963B00310C07 /* KWSharedExample.h in Headers */,
-				CE87C4A41AF1963B00310C07 /* KWFormatter.h in Headers */,
+				CE87C4CE1AF1963B00310C07 /* KWContainMatcher.h in Headers */,
+				CE87C4CF1AF1963B00310C07 /* KWContainStringMatcher.h in Headers */,
+				CE87C4CD1AF1963B00310C07 /* KWConformToProtocolMatcher.h in Headers */,
+				CE87C4E41AF1963B00310C07 /* KWContextNode.h in Headers */,
+				CE87C4C11AF1963B00310C07 /* KWBeBetweenMatcher.h in Headers */,
+				CE87C4C21AF1963B00310C07 /* KWBeEmptyMatcher.h in Headers */,
+				CE87C4C31AF1963B00310C07 /* KWBeIdenticalToMatcher.h in Headers */,
+				CE87C4C41AF1963B00310C07 /* KWBeKindOfClassMatcher.h in Headers */,
+				CE87C4C51AF1963B00310C07 /* KWBeMemberOfClassMatcher.h in Headers */,
+				CE87C4C71AF1963B00310C07 /* KWBeSubclassOfClassMatcher.h in Headers */,
+				CE87C4C81AF1963B00310C07 /* KWBeTrueMatcher.h in Headers */,
+				CE87C4C91AF1963B00310C07 /* KWBeWithinMatcher.h in Headers */,
+				CE87C4CA1AF1963B00310C07 /* KWBeZeroMatcher.h in Headers */,
+				CE87C4E31AF1963B00310C07 /* KWBlockNode.h in Headers */,
+				CE87C4E11AF1963B00310C07 /* KWBeforeAllNode.h in Headers */,
+				CE87C4CB1AF1963B00310C07 /* KWBlockRaiseMatcher.h in Headers */,
+				CE87C4991AF1963B00310C07 /* KWBlock.h in Headers */,
+				CE87C4E21AF1963B00310C07 /* KWBeforeEachNode.h in Headers */,
+				CE87C4981AF1963B00310C07 /* KWAny.h in Headers */,
+				CE87C4DF1AF1963B00310C07 /* KWAfterAllNode.h in Headers */,
 				CE87C4E01AF1963B00310C07 /* KWAfterEachNode.h in Headers */,
-				CE87C4B81AF1963B00310C07 /* NSInvocation+KiwiAdditions.h in Headers */,
-				CE87C4B11AF1963B00310C07 /* KWStringUtilities.h in Headers */,
-				CE87C4A91AF1963B00310C07 /* KWMessageSpying.h in Headers */,
-				CE87C4951AF1963B00310C07 /* KiwiBlockMacros.h in Headers */,
-				CE87C4AF1AF1963B00310C07 /* KWReporting.h in Headers */,
-				CE87C4931AF1962500310C07 /* KWSuiteConfigurationBase.h in Headers */,
+				CE87C4EF1AF1963B00310C07 /* KWAsyncVerifier.h in Headers */,
 				CE87C4ED1AF1963B00310C07 /* KWIntercept.h in Headers */,
 				CE87C4EB1AF1963B00310C07 /* KWSharedExampleRegistry.h in Headers */,
 				CE87C4E71AF1963B00310C07 /* KWLetNode.h in Headers */,
 				CE87C4D21AF1963B00310C07 /* KWGenericMatchEvaluator.h in Headers */,
+				CE87C4961AF1963B00310C07 /* KiwiConfiguration.h in Headers */,
+				CE87C4A01AF1963B00310C07 /* KWExampleDelegate.h in Headers */,
+				CE87C4941AF1963B00310C07 /* Kiwi.h in Headers */,
+				CE87C4AD1AF1963B00310C07 /* KWProbe.h in Headers */,
+				CE87C4AC1AF1963B00310C07 /* KWObjCUtilities.h in Headers */,
+				CE87C4F11AF1963B00310C07 /* KWMatchVerifier.h in Headers */,
+				CE87C49C1AF1963B00310C07 /* KWCountType.h in Headers */,
+				CE87C4C61AF1963B00310C07 /* KWNilMatcher.h in Headers */,
+				CE87C4EA1AF1963B00310C07 /* KWSharedExample.h in Headers */,
+				CE87C4AF1AF1963B00310C07 /* KWReporting.h in Headers */,
 				CE87C4D31AF1963B00310C07 /* KWGenericMatchingAdditions.h in Headers */,
-				CE87C4BB1AF1963B00310C07 /* NSNumber+KiwiAdditions.h in Headers */,
-				CE87C4BA1AF1963B00310C07 /* NSMethodSignature+KiwiAdditions.h in Headers */,
-				CE87C4B91AF1963B00310C07 /* NSInvocation+OCMAdditions.h in Headers */,
 				CE87C4B31AF1963B00310C07 /* KWWorkarounds.h in Headers */,
 				CE87C4AE1AF1963B00310C07 /* KWProbePoller.h in Headers */,
 				CE87C4AA1AF1963B00310C07 /* KWMessageTracker.h in Headers */,
 				CE87C4921AF1960C00310C07 /* KWExampleSuite.h in Headers */,
 				CE87C4911AF195FC00310C07 /* KWSymbolicator.h in Headers */,
+				CE87C4B81AF1963B00310C07 /* NSInvocation+KiwiAdditions.h in Headers */,
+				CE87C4B91AF1963B00310C07 /* NSInvocation+OCMAdditions.h in Headers */,
+				CE87C4BA1AF1963B00310C07 /* NSMethodSignature+KiwiAdditions.h in Headers */,
+				CE87C4BB1AF1963B00310C07 /* NSNumber+KiwiAdditions.h in Headers */,
+				CE87C4BF1AF1963B00310C07 /* NSValue+KiwiAdditions.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2153,7 +2153,6 @@
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREFIX_HEADER = "Supporting Files/Kiwi-Prefix.pch";
 				GCC_TREAT_WARNINGS_AS_ERRORS = NO;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -2186,7 +2185,6 @@
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_PREFIX_HEADER = "Supporting Files/Kiwi-Prefix.pch";
 				GCC_TREAT_WARNINGS_AS_ERRORS = NO;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
