@@ -29,4 +29,10 @@ test-macosx:
 	$(XCODEBUILD) $(MACOSX) test | tee xcodebuild.log | xcpretty -c
 	ruby test_suite_configuration.rb xcodebuild.log
 
-ci: test-iphone64 test-macosx
+pod-lint-library:
+	pod lib lint --use-libraries
+
+pod-lint-framework:
+	pod lib lint
+
+ci: test-iphone32 test-iphone64 test-macosx pod-lint-library pod-lint-framework
