@@ -308,27 +308,7 @@ KWCallSite *callSiteAtAddressIfNecessary(long address);
 
 KWCallSite *callSiteAtAddressIfNecessary(long address){
     BOOL shouldLookup = [[KWExampleSuiteBuilder sharedExampleSuiteBuilder] isFocused] && ![[KWExampleSuiteBuilder sharedExampleSuiteBuilder] foundFocus];
-    return  shouldLookup ? callSiteWithAddress(address) : nil;
-}
-
-KWCallSite *callSiteWithAddress(long address){
-    NSArray *args = @[@"-p", @(getpid()).stringValue, [NSString stringWithFormat:@"%lx", address]];
-    NSString *callSite = [NSString stringWithShellCommand:@"/usr/bin/atos" arguments:args];
-
-    NSString *pattern = @".+\\((.+):([0-9]+)\\)";
-    NSError *e;
-    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:pattern options:NSRegularExpressionCaseInsensitive error:&e];
-    NSArray *res = [regex matchesInString:callSite options:0 range:NSMakeRange(0, callSite.length)];
-
-    NSString *fileName = nil;
-    NSInteger lineNumber = 0;
-
-    for (NSTextCheckingResult *ntcr in res) {
-        fileName = [callSite substringWithRange:[ntcr rangeAtIndex:1]];
-        NSString *lineNumberMatch = [callSite substringWithRange:[ntcr rangeAtIndex:2]];
-        lineNumber = lineNumberMatch.integerValue;
-    }
-    return [KWCallSite callSiteWithFilename:fileName lineNumber:lineNumber];
+    return  shouldLookup ? [KWCallSite callSiteWithCallerAddress:address] : nil;
 }
 
 #pragma mark - Building Example Groups
