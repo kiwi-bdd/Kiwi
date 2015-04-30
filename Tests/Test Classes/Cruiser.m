@@ -13,16 +13,15 @@
 #pragma mark -
 #pragma mark Initializing
 
-- (id)initWithCallsign:(NSString *)aCallsign {
+- (instancetype)initWithCallsign:(NSString *)aCallsign {
     self = [super init];
     if (self) {
-        callsign = [aCallsign copy];
+        _callsign = [aCallsign copy];
     }
-
     return self;
 }
 
-+ (id)cruiserWithCallsign:(NSString *)aCallsign {
++ (instancetype)cruiserWithCallsign:(NSString *)aCallsign {
     return [[self alloc] initWithCallsign:aCallsign];
 }
 
@@ -32,10 +31,6 @@
 
 #pragma mark -
 #pragma mark Properties
-
-@synthesize callsign;
-@synthesize engine;
-@dynamic classification;
 
 + (NSString *)classification {
     return @"Capital Ship";
@@ -51,8 +46,6 @@
 
 #pragma mark -
 #pragma mark Managing Fighters
-
-@synthesize fighters;
 
 - (Fighter *)fighterWithCallsign:(NSString *)aCallsign {
     for (Fighter *fighter in self.fighters) {

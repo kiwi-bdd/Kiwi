@@ -8,11 +8,7 @@
 
 @class KWFailure;
 
-@interface TestReporter : NSObject<KWReporting> {
-@private
-    BOOL hasUnmetExpectations;
-    NSMutableArray *failures;
-}
+@interface TestReporter : NSObject<KWReporting>
 
 #pragma mark -
 #pragma mark Properties

@@ -6,10 +6,7 @@
 
 #import <Kiwi/Kiwi.h>
 
-@interface TestSpy : NSObject<KWMessageSpying> {
-@private
-    BOOL wasNotified;
-}
+@interface TestSpy : NSObject<KWMessageSpying>
 
 #pragma mark -
 #pragma mark Checking Notifications

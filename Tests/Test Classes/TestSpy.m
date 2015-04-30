@@ -11,10 +11,8 @@
 #pragma mark -
 #pragma mark Checking Notifications
 
-@synthesize wasNotified;
-
 - (void)object:(id)anObject didReceiveInvocation:(NSInvocation *)anInvocation {
-    wasNotified = YES;
+    _wasNotified = YES;
 }
 
 @end

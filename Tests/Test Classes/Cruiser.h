@@ -11,28 +11,24 @@
 @class Engine;
 @class Fighter;
 
-@interface Cruiser : SpaceShip<JumpCapable> {
-@private
-    NSString *callsign;
-    Engine *engine;
-    NSArray *fighters;
-}
+@interface Cruiser : SpaceShip<JumpCapable>
+
 #pragma mark -
 #pragma mark Initializing
 
-- (id)initWithCallsign:(NSString *)aCallsign;
+- (instancetype)initWithCallsign:(NSString *)aCallsign;
 
-+ (id)cruiserWithCallsign:(NSString *)aCallsign;
++ (instancetype)cruiserWithCallsign:(NSString *)aCallsign;
 
 #pragma mark -
 #pragma mark Properties
 
-@property (nonatomic, readonly) NSString *callsign;
-@property (nonatomic, retain) Engine *engine;
-@property (nonatomic, readonly) NSString *classification;
-
 + (NSString *)classification;
-- (NSUInteger)crewComplement;
+
+@property (nonatomic, strong) Engine *engine;
+@property (nonatomic, copy, readonly) NSString *callsign;
+@property (nonatomic, copy, readonly) NSString *classification;
+@property (nonatomic, readonly) NSUInteger crewComplement;
 
 #pragma mark -
 #pragma mark Managing Fighters

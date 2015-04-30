@@ -9,23 +9,19 @@
 
 @class Engine;
 
-@interface Fighter : SpaceShip {
-@private
-    NSString *callsign;
-    Engine *engine;
-}
+@interface Fighter : SpaceShip
 
 #pragma mark -
 #pragma mark Initializing
 
-- (id)initWithCallsign:(NSString *)aCallsign;
+- (instancetype)initWithCallsign:(NSString *)aCallsign;
 
-+ (id)fighterWithCallsign:(NSString *)aCallsign;
++ (instancetype)fighterWithCallsign:(NSString *)aCallsign;
 
 #pragma mark -
 #pragma mark Properties
 
-@property (nonatomic, readonly) NSString *callsign;
+@property (nonatomic, copy, readonly) NSString *callsign;
 @property (nonatomic, readonly) Engine *engine;
 
 + (NSString *)classification;

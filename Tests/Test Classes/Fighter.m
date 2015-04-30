@@ -14,7 +14,7 @@
 
 - (id)initWithCallsign:(NSString *)aCallsign {
     if ((self = [super init])) {
-        callsign = [aCallsign copy];
+        _callsign = [aCallsign copy];
     }
 
     return self;
@@ -26,9 +26,6 @@
 
 #pragma mark -
 #pragma mark Properties
-
-@synthesize callsign;
-@synthesize engine;
 
 + (NSString *)classification {
     return @"Starfighter";

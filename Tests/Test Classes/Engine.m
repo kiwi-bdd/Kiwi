@@ -8,12 +8,10 @@
 
 @implementation Engine
 
-@synthesize model;
-
-+ (id)engineWithModel:(NSString *)modelName;
++ (instancetype)engineWithModel:(NSString *)modelName;
 {
   Engine *engine = [[[self class] alloc] init];
-  engine.model = modelName;
+  engine.model = [modelName copy];
   return engine;
 }
 
