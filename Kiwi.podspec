@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
     'Adam Sharp'   => 'adsharp@me.com',
   }
 
-  s.ios.deployment_target = '5.0'
+  s.ios.deployment_target = '5.1.1'
   s.osx.deployment_target = '10.7'
 
   s.framework = 'XCTest'
