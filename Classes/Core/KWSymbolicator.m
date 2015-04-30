@@ -8,7 +8,6 @@
 
 #import <objc/runtime.h>
 #import <libunwind.h>
-#import <pthread.h>
 #import <mach-o/dyld.h>
 #import "KWSymbolicator.h"
 #import "KWBackgroundTask.h"
