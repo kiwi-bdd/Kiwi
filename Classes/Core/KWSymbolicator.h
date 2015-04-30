@@ -7,11 +7,13 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "KWSymbolicator.h"
+#import "KWCallSite.h"
 
 long kwCallerAddress(void);
 
-@interface NSString (KWShellCommand)
+@interface KWCallSite (KWSymbolication)
 
-+ (NSString *)stringWithShellCommand:(NSString *)command arguments:(NSArray *)arguments;
++ (KWCallSite *)callSiteWithCallerAddress:(long)address;
 
 @end
