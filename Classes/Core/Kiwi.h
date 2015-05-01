@@ -10,7 +10,7 @@
 //! Project version number for Kiwi.
 FOUNDATION_EXPORT double KiwiVersionNumber;
 
-//! Project version string for Kiwi-OSX.
+//! Project version string for Kiwi.
 FOUNDATION_EXPORT const unsigned char KiwiVersionString[];
 
 // This needs to come first.
