@@ -4,7 +4,7 @@
 // Copyright 2010 Allen Ding. All rights reserved.
 //
 
-#import "Kiwi.h"
+#import <Kiwi/Kiwi.h>
 #import "KiwiTestConfiguration.h"
 #import "TestClasses.h"
 
@@ -28,7 +28,7 @@
 }
 
 - (void)testItShouldMatchForRaisingBlocks {
-    id cruiser = [Cruiser cruiser];
+    id cruiser = [Cruiser new];
     id subject = [KWBlock blockWithBlock:^{ [cruiser raise]; }];
     KWBlockRaiseMatcher *matcher = [KWBlockRaiseMatcher matcherWithSubject:subject];
     [matcher raise];
@@ -36,7 +36,7 @@
 }
 
 - (void)testItShouldNotMatchForNonRaisingBlocks {
-    id cruiser = [Cruiser cruiser];
+    id cruiser = [Cruiser new];
     id subject = [KWBlock blockWithBlock:^{ [cruiser raiseShields]; }];
     KWBlockRaiseMatcher *matcher = [KWBlockRaiseMatcher matcherWithSubject:subject];
     [matcher raise];

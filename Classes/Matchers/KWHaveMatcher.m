@@ -5,6 +5,7 @@
 //
 
 #import "KWHaveMatcher.h"
+#import "KWCountType.h"
 #import "KWFormatter.h"
 #import "KWInvocationCapturer.h"
 #import "KWObjCUtilities.h"

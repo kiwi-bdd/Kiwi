@@ -5,7 +5,6 @@
 //
 
 #import "KiwiConfiguration.h"
-#import "KWCountType.h"
 #import "KWMatcher.h"
 #import "KWMatchVerifier.h"
 

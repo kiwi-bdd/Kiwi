@@ -4,7 +4,7 @@
 // Created by Stewart Gleadow on 12/02/14.
 //
 
-#import "Kiwi.h"
+#import <Kiwi/Kiwi.h>
 #import "KiwiTestConfiguration.h"
 #import "TestClasses.h"
 

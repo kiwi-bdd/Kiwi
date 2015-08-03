@@ -5,6 +5,7 @@
 //
 
 #import "KWMessagePattern.h"
+#import "KWAny.h"
 #import "KWFormatter.h"
 #import "KWNull.h"
 #import "KWObjCUtilities.h"
@@ -12,7 +13,6 @@
 #import "NSInvocation+KiwiAdditions.h"
 #import "NSMethodSignature+KiwiAdditions.h"
 #import "KWGenericMatchEvaluator.h"
-#import "Kiwi.h"
 
 @implementation KWMessagePattern
 

@@ -4,7 +4,7 @@
 // Copyright 2010 Allen Ding. All rights reserved.
 //
 
-#import "Kiwi.h"
+#import <Kiwi/Kiwi.h>
 #import "KiwiTestConfiguration.h"
 #import "TestClasses.h"
 #import "KWIntercept.h"
@@ -82,13 +82,13 @@
 }
 
 - (void)testItShouldBeOkToStubOnSingletons {
-    TestSpy *firstSpy = [TestSpy testSpy];
+    TestSpy *firstSpy = [TestSpy new];
     KWMessagePattern *firstMessagePattern = [KWMessagePattern messagePatternWithSelector:@selector(notifyEarth)];
     [[Galaxy sharedGalaxy] addMessageSpy:firstSpy forMessagePattern:firstMessagePattern];
     
     KWClearStubsAndSpies();
     
-    TestSpy *secondSpy = [TestSpy testSpy];
+    TestSpy *secondSpy = [TestSpy new];
     KWMessagePattern *secondMessagePattern = [KWMessagePattern messagePatternWithSelector:@selector(notifyPlanet:)];
     [[Galaxy sharedGalaxy] addMessageSpy:secondSpy forMessagePattern:secondMessagePattern];
     
@@ -177,8 +177,8 @@
 
 - (void)testItShouldNotifyMultipleSpiesWithDifferentMessagePatterns {
     Cruiser *mock = [Cruiser mock];
-    TestSpy *spy1 = [TestSpy testSpy];
-    TestSpy *spy2 = [TestSpy testSpy];
+    TestSpy *spy1 = [TestSpy new];
+    TestSpy *spy2 = [TestSpy new];
     KWMessagePattern *messagePattern1 = [KWMessagePattern messagePatternWithSelector:@selector(energyLevelInWarpCore:)];
     NSArray *argumentFilters = @[[KWValue valueWithUnsignedInt:2]];
     KWMessagePattern *messagePattern2 = [KWMessagePattern messagePatternWithSelector:@selector(energyLevelInWarpCore:) argumentFilters:argumentFilters];

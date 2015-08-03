@@ -1,5 +1,4 @@
-#import <XCTest/XCTest.h>
-#import "Kiwi.h"
+#import <Kiwi/Kiwi.h>
 
 CONFIG_START
 

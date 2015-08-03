@@ -4,7 +4,7 @@
 // Copyright 2010 Allen Ding. All rights reserved.
 //
 
-#import "Kiwi.h"
+#import <Kiwi/Kiwi.h>
 #import "KiwiTestConfiguration.h"
 #import "TestClasses.h"
 
@@ -25,14 +25,14 @@
 }
 
 - (void)testItShouldMatchMembersOfAClass {
-    id subject = [Cruiser cruiser];
+    id subject = [Cruiser new];
     KWBeMemberOfClassMatcher *matcher = [KWBeMemberOfClassMatcher matcherWithSubject:subject];
     [matcher beMemberOfClass:[Cruiser class]];
     XCTAssertTrue([matcher evaluate], @"expected positive match");
 }
 
 - (void)testItShouldNotMatchNonMembersOfAClass {
-    id subject = [Cruiser cruiser];
+    id subject = [Cruiser new];
     KWBeMemberOfClassMatcher *matcher = [KWBeMemberOfClassMatcher matcherWithSubject:subject];
     [matcher beMemberOfClass:[Fighter class]];
     XCTAssertFalse([matcher evaluate], @"expected negative match");
@@ -47,7 +47,7 @@
 
 - (void)testItShouldHaveInformativeFailureMessageForShould
 {
-    id subject = [Cruiser cruiser];
+    id subject = [Cruiser new];
     KWBeMemberOfClassMatcher *matcher = [KWBeMemberOfClassMatcher matcherWithSubject:subject];
     [matcher beMemberOfClass:[Fighter class]];
     XCTAssertEqualObjects([matcher failureMessageForShould], @"expected subject to be member of Fighter, got Cruiser", @"failure message should match");
@@ -55,7 +55,7 @@
 
 - (void)testItShouldHaveInformativeFailureMessageForShouldNot
 {
-    id subject = [Cruiser cruiser];
+    id subject = [Cruiser new];
     KWBeMemberOfClassMatcher *matcher = [KWBeMemberOfClassMatcher matcherWithSubject:subject];
     [matcher beMemberOfClass:[Fighter class]];
     XCTAssertEqualObjects([matcher failureMessageForShouldNot], @"expected subject not to be member of Fighter, got Cruiser", @"failure message should match");

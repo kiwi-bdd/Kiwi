@@ -4,7 +4,7 @@
 // Copyright 2010 Allen Ding. All rights reserved.
 //
 
-#import "Kiwi.h"
+#import <Kiwi/Kiwi.h>
 #import "KiwiTestConfiguration.h"
 #import "TestClasses.h"
 
@@ -25,14 +25,14 @@
 }
 
 - (void)testItShouldMatchObjectsThatRespondToSelector {
-    id subject = [Cruiser cruiser];
+    id subject = [Cruiser new];
     KWRespondToSelectorMatcher *matcher = [KWRespondToSelectorMatcher matcherWithSubject:subject];
     [matcher respondToSelector:@selector(raiseShields)];
     XCTAssertTrue([matcher evaluate], @"expected positive match");
 }
 
 - (void)testItShouldNotMatchObjectsThatRespondToSelector {
-    id subject = [Cruiser cruiser];
+    id subject = [Cruiser new];
     KWRespondToSelectorMatcher *matcher = [KWRespondToSelectorMatcher matcherWithSubject:subject];
     [matcher respondToSelector:@selector(setObject:forKey:)];
     XCTAssertFalse([matcher evaluate], @"expected negative match");

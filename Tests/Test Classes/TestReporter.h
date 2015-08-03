@@ -4,21 +4,11 @@
 // Copyright 2010 Allen Ding. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
-#import "KWReporting.h"
+#import <Kiwi/Kiwi.h>
 
 @class KWFailure;
 
-@interface TestReporter : NSObject<KWReporting> {
-@private
-    BOOL hasUnmetExpectations;
-    NSMutableArray *failures;
-}
-
-#pragma mark -
-#pragma mark Initializing
-
-+ (id)testReporter;
+@interface TestReporter : NSObject<KWReporting>
 
 #pragma mark -
 #pragma mark Properties

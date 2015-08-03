@@ -4,7 +4,7 @@
 // Copyright 2014 Allen Ding. All rights reserved.
 //
 
-#import "Kiwi.h"
+#import <Kiwi/Kiwi.h>
 #import "KiwiTestConfiguration.h"
 #import "KWSharedExample.h"
 #import "KWSharedExampleRegistry.h"

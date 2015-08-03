@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "0510"
+   LastUpgradeVersion = "0630"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -14,8 +14,8 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "832C8323157263B300F160D5"
-               BuildableName = "libKiwi-OSX.a"
+               BlueprintIdentifier = "4AE02FBC1AEB45EB00556381"
+               BuildableName = "Kiwi.framework"
                BlueprintName = "Kiwi-OSX"
                ReferencedContainer = "container:Kiwi.xcodeproj">
             </BuildableReference>
@@ -32,13 +32,22 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "4A98668D1956F08800636827"
-               BuildableName = "KiwiTests-OSX.xctest"
+               BlueprintIdentifier = "4AE02FC61AEB45EB00556381"
+               BuildableName = "KiwiTests.xctest"
                BlueprintName = "KiwiTests-OSX"
                ReferencedContainer = "container:Kiwi.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "4AE02FBC1AEB45EB00556381"
+            BuildableName = "Kiwi.framework"
+            BlueprintName = "Kiwi-OSX"
+            ReferencedContainer = "container:Kiwi.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
    </TestAction>
    <LaunchAction
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
@@ -49,6 +58,15 @@
       ignoresPersistentStateOnLaunch = "NO"
       debugDocumentVersioning = "YES"
       allowLocationSimulation = "YES">
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "4AE02FBC1AEB45EB00556381"
+            BuildableName = "Kiwi.framework"
+            BlueprintName = "Kiwi-OSX"
+            ReferencedContainer = "container:Kiwi.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
       <AdditionalOptions>
       </AdditionalOptions>
    </LaunchAction>
@@ -58,6 +76,15 @@
       useCustomWorkingDirectory = "NO"
       buildConfiguration = "Release"
       debugDocumentVersioning = "YES">
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "4AE02FBC1AEB45EB00556381"
+            BuildableName = "Kiwi.framework"
+            BlueprintName = "Kiwi-OSX"
+            ReferencedContainer = "container:Kiwi.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">

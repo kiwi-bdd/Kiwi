@@ -14,11 +14,9 @@
 
 @implementation TestVerifier
 
-@synthesize callSite = _callSite;
-
 #pragma mark - Properties
 
-@synthesize notifiedOfEndOfExample;
+@synthesize callSite = _callSite;
 
 #pragma mark - Setting Subjects
 

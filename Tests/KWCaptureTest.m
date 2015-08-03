@@ -4,7 +4,7 @@
 // Copyright 2010 Allen Ding. All rights reserved.
 //
 
-#import "Kiwi.h"
+#import <Kiwi/Kiwi.h>
 #import "KiwiTestConfiguration.h"
 #import "TestClasses.h"
 #import "KWIntercept.h"
@@ -50,7 +50,6 @@
 	NSDictionary *value = [[NSDictionary alloc] initWithObjectsAndKeys:@"Value", @"Key", nil];
 
 	[mutableArrayMock addObject:value];
-	[value release];
 	value = nil;
 
 	NSDictionary *spyValue = spy.argument;

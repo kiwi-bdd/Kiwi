@@ -4,6 +4,8 @@
 // Copyright 2010 Allen Ding. All rights reserved.
 //
 
+#import <Foundation/Foundation.h>
+
 // As of iPhone SDK 4 GM, exceptions thrown across an NSInvocation -invoke or
 // forwardInvocation: boundary in the simulator will terminate the app instead
 // of being caught in @catch blocks from the caller side of the -invoke. Kiwi

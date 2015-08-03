@@ -1,5 +1,6 @@
 language: objective-c
 before_install:
   - gem install xcpretty # this will go away soon when Travis installs xcpretty
+  - gem install cocoapods # latest version of cocoapods
 script: make ci
 

@@ -14,7 +14,6 @@
 
 @class KWAsyncMatcherProbe;
 
-
 @interface KWAsyncVerifier : KWMatchVerifier
 
 @property (nonatomic, assign) NSTimeInterval timeout;

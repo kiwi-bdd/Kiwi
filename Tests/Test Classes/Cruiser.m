@@ -13,28 +13,16 @@
 #pragma mark -
 #pragma mark Initializing
 
-- (id)initWithCallsign:(NSString *)aCallsign {
+- (instancetype)initWithCallsign:(NSString *)aCallsign {
     self = [super init];
     if (self) {
-        callsign = [aCallsign copy];
+        _callsign = [aCallsign copy];
     }
-
     return self;
 }
 
-+ (id)cruiser {
-    return [self cruiserWithCallsign:nil];
-}
-
-+ (id)cruiserWithCallsign:(NSString *)aCallsign {
-    return [[[self alloc] initWithCallsign:aCallsign] autorelease];
-}
-
-- (void)dealloc {
-    [callsign release];
-    [engine release];
-    [fighters release];
-    [super dealloc];
++ (instancetype)cruiserWithCallsign:(NSString *)aCallsign {
+    return [[self alloc] initWithCallsign:aCallsign];
 }
 
 - (NSUInteger)hash {
@@ -43,10 +31,6 @@
 
 #pragma mark -
 #pragma mark Properties
-
-@synthesize callsign;
-@synthesize engine;
-@dynamic classification;
 
 + (NSString *)classification {
     return @"Capital Ship";
@@ -63,8 +47,6 @@
 #pragma mark -
 #pragma mark Managing Fighters
 
-@synthesize fighters;
-
 - (Fighter *)fighterWithCallsign:(NSString *)aCallsign {
     for (Fighter *fighter in self.fighters) {
         if ([fighter.callsign isEqualToString:aCallsign])
@@ -79,7 +61,7 @@
 }
 
 - (NSArray *)fightersInSquadron:(NSString *)aSquadron {
-    NSMutableArray *fightersInSquadron = [[[NSMutableArray alloc] init] autorelease];
+    NSMutableArray *fightersInSquadron = [NSMutableArray new];
 
     for (Fighter *fighter in self.fighters) {
         if ([fighter.callsign hasPrefix:aSquadron])
@@ -91,7 +73,7 @@
 
 - (void)loadFighter:(Fighter *)fighter
 {
-    NSMutableArray *newFighters = [[self.fighters mutableCopy] autorelease];
+    NSMutableArray *newFighters = [self.fighters mutableCopy];
     [newFighters addObject:fighter];
     self.fighters = newFighters;
 }

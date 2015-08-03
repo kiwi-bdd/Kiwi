@@ -10,7 +10,7 @@
 
 @interface Galaxy : NSObject
 
-+ (id)sharedGalaxy;
++ (instancetype)sharedGalaxy;
 - (void)notifyPlanet:(int)planet;
 - (void)notifyEarth;
 - (NSString *)name;

@@ -7,7 +7,9 @@
 #import "TestReporter.h"
 #import "KWFailure.h"
 
-@interface TestReporter()
+@interface TestReporter() {
+    NSMutableArray *_failures;
+}
 
 #pragma mark -
 #pragma mark Properties
@@ -24,26 +26,10 @@
 - (id)init {
     self = [super init];
     if (self) {
-        failures = [[NSMutableArray alloc] init];
+        _failures = [[NSMutableArray alloc] init];
     }
-
     return self;
 }
-
-+ (id)testReporter {
-    return [[[self alloc] init] autorelease];
-}
-
-- (void)dealloc {
-    [failures release];
-    [super dealloc];
-}
-
-#pragma mark -
-#pragma mark Properties
-
-@synthesize hasUnmetExpectations;
-@synthesize failures;
 
 #pragma mark -
 #pragma mark Reporting Failures
@@ -53,7 +39,7 @@
         return;
 
     self.hasUnmetExpectations = YES;
-    [failures addObject:aFailure];
+    [_failures addObject:aFailure];
 }
 
 #pragma mark -

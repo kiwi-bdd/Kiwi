@@ -4,7 +4,7 @@
 // Copyright 2010 Allen Ding. All rights reserved.
 //
 
-#import "Kiwi.h"
+#import <Kiwi/Kiwi.h>
 #import "KiwiTestConfiguration.h"
 #import "TestClasses.h"
 
@@ -25,14 +25,14 @@
 }
 
 - (void)testItShouldMatchConformingObjects {
-    id subject = [Cruiser cruiser];
+    id subject = [Cruiser new];
     KWConformToProtocolMatcher *matcher = [KWConformToProtocolMatcher matcherWithSubject:subject];
     [matcher conformToProtocol:@protocol(JumpCapable)];
     XCTAssertTrue([matcher evaluate], @"expected positive match");
 }
 
 - (void)testItShouldNotMatchNonConformingObjects {
-    id subject = [Fighter fighter];
+    id subject = [Fighter new];
     KWConformToProtocolMatcher *matcher = [KWConformToProtocolMatcher matcherWithSubject:subject];
     [matcher conformToProtocol:@protocol(JumpCapable)];
     XCTAssertFalse([matcher evaluate], @"expected negative match");

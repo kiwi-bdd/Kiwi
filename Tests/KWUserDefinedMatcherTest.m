@@ -6,7 +6,7 @@
 //  Copyright 2011 Allen Ding. All rights reserved.
 //
 
-#import "Kiwi.h"
+#import <Kiwi/Kiwi.h>
 #import "KiwiTestConfiguration.h"
 #import "TestClasses.h"
 
@@ -52,7 +52,10 @@
         return [(NSString *)object isEqualToString:subject];
     }];
     matcher.selector = NSSelectorFromString(@"matchTheString:");
-    [matcher performSelector:matcher.selector withObject:@"string"];
+
+    IMP imp = [matcher methodForSelector:matcher.selector];
+    BOOL (*func)(id, SEL, id) = (void *)imp;
+    func(matcher, matcher.selector, @"string");
 
     XCTAssertTrue([matcher evaluate], @"expected subject to match yielded argument");
 }
