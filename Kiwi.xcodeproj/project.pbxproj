@@ -90,7 +90,6 @@
 		4AE030291AEB47E600556381 /* KWIntercept.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F982C9416A802920030A0B1 /* KWIntercept.m */; };
 		4AE0302A1AEB47E600556381 /* NSObject+KiwiStubAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F982CDB16A802920030A0B1 /* NSObject+KiwiStubAdditions.m */; };
 		4AE0302B1AEB47E600556381 /* KWAsyncVerifier.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F982C4616A802920030A0B1 /* KWAsyncVerifier.m */; };
-		4AE0302C1AEB47E600556381 /* KWExistVerifier.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F982C8016A802920030A0B1 /* KWExistVerifier.m */; };
 		4AE0302D1AEB47E600556381 /* KWMatchVerifier.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F982CA116A802920030A0B1 /* KWMatchVerifier.m */; };
 		4AE0302E1AEB47FE00556381 /* KWSuiteConfigurationBase.h in Headers */ = {isa = PBXBuildFile; fileRef = 4AD7A20F1962B10B005ED93F /* KWSuiteConfigurationBase.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4AE0302F1AEB47FE00556381 /* KWSymbolicator.h in Headers */ = {isa = PBXBuildFile; fileRef = C533F7D117462CAA000CAB02 /* KWSymbolicator.h */; };
@@ -185,7 +184,6 @@
 		4AE030891AEB480900556381 /* KWIntercept.h in Headers */ = {isa = PBXBuildFile; fileRef = 9F982C9316A802920030A0B1 /* KWIntercept.h */; };
 		4AE0308A1AEB480900556381 /* NSObject+KiwiStubAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 9F982CDA16A802920030A0B1 /* NSObject+KiwiStubAdditions.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4AE0308B1AEB480900556381 /* KWAsyncVerifier.h in Headers */ = {isa = PBXBuildFile; fileRef = 9F982C4516A802920030A0B1 /* KWAsyncVerifier.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		4AE0308C1AEB480900556381 /* KWExistVerifier.h in Headers */ = {isa = PBXBuildFile; fileRef = 9F982C7F16A802920030A0B1 /* KWExistVerifier.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4AE0308D1AEB480900556381 /* KWMatchVerifier.h in Headers */ = {isa = PBXBuildFile; fileRef = 9F982CA016A802920030A0B1 /* KWMatchVerifier.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4AE0308E1AEB480A00556381 /* KWVerifying.h in Headers */ = {isa = PBXBuildFile; fileRef = 9F982CCB16A802920030A0B1 /* KWVerifying.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4AE0308F1AEB494400556381 /* KWBeBetweenMatcherTest.m in Sources */ = {isa = PBXBuildFile; fileRef = F553B2D211756157004FCA2E /* KWBeBetweenMatcherTest.m */; };
@@ -335,7 +333,6 @@
 		CE87C48C1AF195BE00310C07 /* KWIntercept.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F982C9416A802920030A0B1 /* KWIntercept.m */; };
 		CE87C48D1AF195BE00310C07 /* NSObject+KiwiStubAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F982CDB16A802920030A0B1 /* NSObject+KiwiStubAdditions.m */; };
 		CE87C48E1AF195BE00310C07 /* KWAsyncVerifier.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F982C4616A802920030A0B1 /* KWAsyncVerifier.m */; };
-		CE87C48F1AF195BE00310C07 /* KWExistVerifier.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F982C8016A802920030A0B1 /* KWExistVerifier.m */; };
 		CE87C4901AF195BE00310C07 /* KWMatchVerifier.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F982CA116A802920030A0B1 /* KWMatchVerifier.m */; };
 		CE87C4911AF195FC00310C07 /* KWSymbolicator.h in Headers */ = {isa = PBXBuildFile; fileRef = C533F7D117462CAA000CAB02 /* KWSymbolicator.h */; };
 		CE87C4921AF1960C00310C07 /* KWExampleSuite.h in Headers */ = {isa = PBXBuildFile; fileRef = 9F982C7D16A802920030A0B1 /* KWExampleSuite.h */; };
@@ -432,7 +429,6 @@
 		CE87C4ED1AF1963B00310C07 /* KWIntercept.h in Headers */ = {isa = PBXBuildFile; fileRef = 9F982C9316A802920030A0B1 /* KWIntercept.h */; };
 		CE87C4EE1AF1963B00310C07 /* NSObject+KiwiStubAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 9F982CDA16A802920030A0B1 /* NSObject+KiwiStubAdditions.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		CE87C4EF1AF1963B00310C07 /* KWAsyncVerifier.h in Headers */ = {isa = PBXBuildFile; fileRef = 9F982C4516A802920030A0B1 /* KWAsyncVerifier.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		CE87C4F01AF1963B00310C07 /* KWExistVerifier.h in Headers */ = {isa = PBXBuildFile; fileRef = 9F982C7F16A802920030A0B1 /* KWExistVerifier.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		CE87C4F11AF1963B00310C07 /* KWMatchVerifier.h in Headers */ = {isa = PBXBuildFile; fileRef = 9F982CA016A802920030A0B1 /* KWMatchVerifier.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		CE87C4F21AF1963B00310C07 /* KWVerifying.h in Headers */ = {isa = PBXBuildFile; fileRef = 9F982CCB16A802920030A0B1 /* KWVerifying.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		CE87C4F31AF1990200310C07 /* Kiwi.h in Headers */ = {isa = PBXBuildFile; fileRef = 9F982C3A16A802920030A0B1 /* Kiwi.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -649,8 +645,6 @@
 		9F982C7C16A802920030A0B1 /* KWExampleNodeVisitor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KWExampleNodeVisitor.h; sourceTree = "<group>"; };
 		9F982C7D16A802920030A0B1 /* KWExampleSuite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KWExampleSuite.h; sourceTree = "<group>"; };
 		9F982C7E16A802920030A0B1 /* KWExampleSuite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KWExampleSuite.m; sourceTree = "<group>"; };
-		9F982C7F16A802920030A0B1 /* KWExistVerifier.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KWExistVerifier.h; sourceTree = "<group>"; };
-		9F982C8016A802920030A0B1 /* KWExistVerifier.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KWExistVerifier.m; sourceTree = "<group>"; };
 		9F982C8116A802920030A0B1 /* KWExpectationType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KWExpectationType.h; sourceTree = "<group>"; };
 		9F982C8216A802920030A0B1 /* KWFailure.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KWFailure.h; sourceTree = "<group>"; };
 		9F982C8316A802920030A0B1 /* KWFailure.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KWFailure.m; sourceTree = "<group>"; };
@@ -1114,8 +1108,6 @@
 			children = (
 				9F982C4516A802920030A0B1 /* KWAsyncVerifier.h */,
 				9F982C4616A802920030A0B1 /* KWAsyncVerifier.m */,
-				9F982C7F16A802920030A0B1 /* KWExistVerifier.h */,
-				9F982C8016A802920030A0B1 /* KWExistVerifier.m */,
 				9F982CA016A802920030A0B1 /* KWMatchVerifier.h */,
 				9F982CA116A802920030A0B1 /* KWMatchVerifier.m */,
 				9F982CCB16A802920030A0B1 /* KWVerifying.h */,
@@ -1372,7 +1364,6 @@
 				CE80E4511AF255BF00D2F0D6 /* KWBackgroundTask.h in Headers */,
 				4AE0308B1AEB480900556381 /* KWAsyncVerifier.h in Headers */,
 				4AE0303B1AEB47FE00556381 /* KWExampleDelegate.h in Headers */,
-				4AE0308C1AEB480900556381 /* KWExistVerifier.h in Headers */,
 				4AE0303D1AEB47FE00556381 /* KWExampleSuite.h in Headers */,
 				4AE0306E1AEB480400556381 /* KWGenericMatchEvaluator.h in Headers */,
 				4AE0306F1AEB480400556381 /* KWGenericMatchingAdditions.h in Headers */,
@@ -1443,7 +1434,6 @@
 				CE87C4A11AF1963B00310C07 /* KWExampleNodeVisitor.h in Headers */,
 				CE87C4E51AF1963B00310C07 /* KWExampleNode.h in Headers */,
 				CE87C4A21AF1963B00310C07 /* KWExpectationType.h in Headers */,
-				CE87C4F01AF1963B00310C07 /* KWExistVerifier.h in Headers */,
 				CE87C49E1AF1963B00310C07 /* KWExample.h in Headers */,
 				CE87C49F1AF1963B00310C07 /* KWExampleSuiteBuilder.h in Headers */,
 				CE87C49D1AF1963B00310C07 /* KWDeviceInfo.h in Headers */,
@@ -1742,7 +1732,6 @@
 				4AE030291AEB47E600556381 /* KWIntercept.m in Sources */,
 				4AE0302A1AEB47E600556381 /* NSObject+KiwiStubAdditions.m in Sources */,
 				4AE0302B1AEB47E600556381 /* KWAsyncVerifier.m in Sources */,
-				4AE0302C1AEB47E600556381 /* KWExistVerifier.m in Sources */,
 				4AE0302D1AEB47E600556381 /* KWMatchVerifier.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1900,7 +1889,6 @@
 				CE87C48C1AF195BE00310C07 /* KWIntercept.m in Sources */,
 				CE87C48D1AF195BE00310C07 /* NSObject+KiwiStubAdditions.m in Sources */,
 				CE87C48E1AF195BE00310C07 /* KWAsyncVerifier.m in Sources */,
-				CE87C48F1AF195BE00310C07 /* KWExistVerifier.m in Sources */,
 				CE87C4901AF195BE00310C07 /* KWMatchVerifier.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

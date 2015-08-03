@@ -53,7 +53,6 @@ extern "C" {
 #import <Kiwi/KWExampleNode.h>
 #import <Kiwi/KWExampleNodeVisitor.h>
 #import <Kiwi/KWExampleSuiteBuilder.h>
-#import <Kiwi/KWExistVerifier.h>
 #import <Kiwi/KWExpectationType.h>
 #import <Kiwi/KWFailure.h>
 #import <Kiwi/KWFormatter.h>

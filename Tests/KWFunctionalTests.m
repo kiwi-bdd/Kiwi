@@ -230,9 +230,6 @@ describe(@"nil matchers", ^{
         it(@"passes a test for [[x shouldNot] beNonNil]", ^{
             [[object shouldNot] beNonNil];
         });
-        it(@"passes a test for [x shouldBeNil]", ^{
-            [object shouldBeNil];
-        });
     });
 
     context(@"when object is non-nil", ^{
@@ -244,9 +241,6 @@ describe(@"nil matchers", ^{
         });
         it(@"passes a test for [[x shouldNot] beNil]", ^{
             [[object shouldNot] beNil];
-        });
-        it(@"passes a test for [x shouldNotBeNil]", ^{
-            [object shouldNotBeNil];
         });
     });
 });
