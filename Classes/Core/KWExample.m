@@ -8,7 +8,6 @@
 #import "KWExampleSuiteBuilder.h"
 #import "KWContextNode.h"
 #import "KWMatcherFactory.h"
-#import "KWExistVerifier.h"
 #import "KWMatchVerifier.h"
 #import "KWAsyncVerifier.h"
 #import "KWFailure.h"
@@ -78,12 +77,6 @@
     [self.verifiers addObject:aVerifier];
   
   return aVerifier;
-}
-
-- (id)addExistVerifierWithExpectationType:(KWExpectationType)anExpectationType callSite:(KWCallSite *)aCallSite {
-  id verifier = [KWExistVerifier existVerifierWithExpectationType:anExpectationType callSite:aCallSite reporter:self];
-  [self addVerifier:verifier];
-  return verifier;
 }
 
 - (id)addMatchVerifierWithExpectationType:(KWExpectationType)anExpectationType callSite:(KWCallSite *)aCallSite {
