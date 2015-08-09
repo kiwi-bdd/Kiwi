@@ -223,7 +223,6 @@ describe(@"nil matchers", ^{
         beforeEach(^{
             object = nil;
         });
-
         it(@"passes a test for [[x should] beNil]", ^{
             [[object should] beNil];
         });
