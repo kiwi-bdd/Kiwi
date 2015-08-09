@@ -8,28 +8,22 @@
 
 @interface TestVerifier()
 
-#pragma mark -
-#pragma mark Properties
-
 @property (nonatomic, readwrite) BOOL notifiedOfEndOfExample;
 
 @end
 
 @implementation TestVerifier
 
-#pragma mark -
-#pragma mark Properties
+#pragma mark - Properties
 
-@synthesize notifiedOfEndOfExample;
+@synthesize callSite = _callSite;
 
-#pragma mark -
-#pragma mark Setting Subjects
+#pragma mark - Setting Subjects
 
-- (void)setSubject:(id)anObject {
-}
+- (id)subject { return nil; }
+- (void)setSubject:(id)anObject {}
 
-#pragma mark -
-#pragma mark Verifying
+#pragma mark - Verifying
 
 - (void)exampleWillEnd {
     self.notifiedOfEndOfExample = YES;

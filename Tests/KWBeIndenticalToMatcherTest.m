@@ -4,13 +4,13 @@
 // Copyright 2010 Allen Ding. All rights reserved.
 //
 
-#import "Kiwi.h"
+#import <Kiwi/Kiwi.h>
 #import "KiwiTestConfiguration.h"
 #import "TestClasses.h"
 
 #if KW_TESTS_ENABLED
 
-@interface KWBeIdenticalToMatcherTest : SenTestCase
+@interface KWBeIdenticalToMatcherTest : XCTestCase
 
 @end
 
@@ -19,31 +19,31 @@
 - (void)testItShouldHaveTheRightMatcherStrings {
     NSArray *matcherStrings = [KWBeIdenticalToMatcher matcherStrings];
     NSArray *expectedStrings = @[@"beIdenticalTo:"];
-    STAssertEqualObjects([matcherStrings sortedArrayUsingSelector:@selector(compare:)],
-                         [expectedStrings sortedArrayUsingSelector:@selector(compare:)],
-                         @"expected specific matcher strings");
+    XCTAssertEqualObjects([matcherStrings sortedArrayUsingSelector:@selector(compare:)],
+                          [expectedStrings sortedArrayUsingSelector:@selector(compare:)],
+                          @"expected specific matcher strings");
 }
 
 - (void)testItShouldMatchIdenticalObjects {
-    id subject = [Cruiser cruiser];
-    id matcher = [KWBeIdenticalToMatcher matcherWithSubject:subject];
+    id subject = [Cruiser new];
+    KWBeIdenticalToMatcher *matcher = [KWBeIdenticalToMatcher matcherWithSubject:subject];
     [matcher beIdenticalTo:subject];
-    STAssertTrue([matcher evaluate], @"expected positive match");
+    XCTAssertTrue([matcher evaluate], @"expected positive match");
 }
 
 - (void)testItShouldNotMatchDifferentObjects {
-    id subject = [Cruiser cruiser];
-    id otherSubject = [Cruiser cruiser];
-    id matcher = [KWBeIdenticalToMatcher matcherWithSubject:subject];
+    id subject = [Cruiser new];
+    id otherSubject = [Cruiser new];
+    KWBeIdenticalToMatcher *matcher = [KWBeIdenticalToMatcher matcherWithSubject:subject];
     [matcher beIdenticalTo:otherSubject];
-    STAssertFalse([matcher evaluate], @"expected negative match");
+    XCTAssertFalse([matcher evaluate], @"expected negative match");
 }
 
 - (void)testItShouldHaveHumanReadableDescription
 {
-  id matcher = [KWBeIdenticalToMatcher matcherWithSubject:nil];
+  KWBeIdenticalToMatcher *matcher = [KWBeIdenticalToMatcher matcherWithSubject:nil];
   [matcher beIdenticalTo:@"foo"];
-  STAssertEqualObjects(@"be identical to foo", [matcher description], @"description should match");
+  XCTAssertEqualObjects(@"be identical to foo", [matcher description], @"description should match");
 }
 
 @end

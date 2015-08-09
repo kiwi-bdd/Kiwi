@@ -6,13 +6,13 @@
 //  Copyright 2011 Allen Ding. All rights reserved.
 //
 
-#import "Kiwi.h"
+#import <Kiwi/Kiwi.h>
 #import "KiwiTestConfiguration.h"
 #import "TestClasses.h"
 
 #if KW_TESTS_ENABLED
 
-@interface KWGenericMatcherTest : SenTestCase
+@interface KWGenericMatcherTest : XCTestCase
 
 @end
 
@@ -20,23 +20,23 @@
 
 - (void)testItShouldMatchObjectsThatMatchGenericMatchers
 {
-    id matcher = [KWGenericMatcher matcherWithSubject:@"Alpha Bravo"];
+    KWGenericMatcher *matcher = [KWGenericMatcher matcherWithSubject:@"Alpha Bravo"];
     [matcher match:hasPrefix(@"Alpha")];
-    STAssertTrue([matcher evaluate], @"expected positive match");
+    XCTAssertTrue([matcher evaluate], @"expected positive match");
 }
 
 - (void)testItShouldNotMatchObjectsThatMatchGenericMatchers
 {
-    id matcher = [KWGenericMatcher matcherWithSubject:@"Charlie Bravo"];
+    KWGenericMatcher *matcher = [KWGenericMatcher matcherWithSubject:@"Charlie Bravo"];
     [matcher match:hasPrefix(@"Alpha")];
-    STAssertFalse([matcher evaluate], @"expected negative match");
+    XCTAssertFalse([matcher evaluate], @"expected negative match");
 }
 
 - (void)testItShouldHaveHumanReadableDescription
 {
-    id matcher = [KWGenericMatcher matcherWithSubject:nil];
+    KWGenericMatcher *matcher = [KWGenericMatcher matcherWithSubject:nil];
     [matcher match:hasPrefix(@"Alpha")];
-    STAssertEqualObjects(@"match a string with prefix 'Alpha'", [matcher description], @"description should match");
+    XCTAssertEqualObjects(@"match a string with prefix 'Alpha'", [matcher description], @"description should match");
 }
 
 @end

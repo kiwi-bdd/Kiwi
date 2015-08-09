@@ -14,30 +14,18 @@
 
 - (id)initWithCallsign:(NSString *)aCallsign {
     if ((self = [super init])) {
-        callsign = [aCallsign copy];
+        _callsign = [aCallsign copy];
     }
 
     return self;
 }
 
-+ (id)fighter {
-    return [self fighterWithCallsign:nil];
-}
-
 + (id)fighterWithCallsign:(NSString *)aCallsign {
-    return [[[self alloc] initWithCallsign:aCallsign] autorelease];
-}
-
-- (void)dealloc {
-    [callsign release];
-    [super dealloc];
+    return [[self alloc] initWithCallsign:aCallsign];
 }
 
 #pragma mark -
 #pragma mark Properties
-
-@synthesize callsign;
-@synthesize engine;
 
 + (NSString *)classification {
     return @"Starfighter";

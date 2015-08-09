@@ -11,14 +11,13 @@
 
 @implementation Robot
 
-+ (id)robot;
-{
-  return [[[self alloc] init] autorelease];
-}
-
 - (void)speak:(NSString *)message
 {
   NSLog(@"Robot says %@", message);
+}
+
+- (void)speak:(id)message ofType:(Class)messageType {
+	NSLog(@"Robot says %@ [Message Type:%@]", message, messageType);
 }
 
 - (void)speak:(NSString *)message afterDelay:(NSTimeInterval)delay whenDone:(void(^)(void))handler

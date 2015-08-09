@@ -6,10 +6,11 @@
 //  Copyright (c) 2013 Allen Ding. All rights reserved.
 //
 
-#import "Kiwi.h"
+#import <Kiwi/Kiwi.h>
 #import "KiwiTestConfiguration.h"
+#import "TestClasses.h"
 
-@interface KWExampleGroupBuilder ()
+@interface KWExampleSuiteBuilder ()
 
 @property (nonatomic, retain, readwrite) NSString *focusedContextNodeDescription;
 @property (nonatomic, retain, readwrite) NSString *focusedItNodeDescription;
@@ -27,7 +28,7 @@ NSMutableArray *calls = @[@"OuterTestCase",
 ].mutableCopy;
 
 //There should not be a focused call site at this point
-assert(![[KWExampleGroupBuilder sharedExampleGroupBuilder] focusedCallSite]);
+assert(![[KWExampleSuiteBuilder sharedExampleSuiteBuilder] focusedCallSite]);
 
 describe(@"OuterDescribe", ^{
     it(@"OuterTestCase", ^{ [calls removeObject:@"OuterTestCase"]; });
@@ -73,7 +74,7 @@ NSMutableArray *focusedContextCalls = @[@"InnerBeforeAll", @"InnerAfterAll", @"I
 NSMutableArray *unFocusedContextCalls = @[ @"OuterTestCase", @"BeforeAll", @"AfterAll", @"BeforeEach", @"AfterEach"
 ].mutableCopy;
 
-[[KWExampleGroupBuilder sharedExampleGroupBuilder] setFocusedCallSite:[KWCallSite callSiteWithFilename:@"KWFunctionalTests.m" lineNumber:84]];
+[[KWExampleSuiteBuilder sharedExampleSuiteBuilder] setFocusedCallSite:[KWCallSite callSiteWithFilename:@"KWFunctionalTests.m" lineNumber:85]];
 
 describe(@"UnFocusedContext", ^{
     it(@"OuterTestCase", ^{ [unFocusedContextCalls removeObject:@"OuterTestCase"]; });
@@ -97,7 +98,7 @@ describe(@"UnFocusedContext", ^{
     });
 });
 
-[[KWExampleGroupBuilder sharedExampleGroupBuilder] setFocusedCallSite:nil];
+[[KWExampleSuiteBuilder sharedExampleSuiteBuilder] setFocusedCallSite:nil];
 
 describe(@"FocusedContextCheck", ^{
     it(@"All the blocks were called", ^{
@@ -116,19 +117,98 @@ NSMutableArray *focusedItCalls = @[@"FocusedTestCase"].mutableCopy;
 
 NSMutableArray *unFocusedItCalls = @[@"UnFocusedTestCase"].mutableCopy;
 
-[[KWExampleGroupBuilder sharedExampleGroupBuilder] setFocusedCallSite:[KWCallSite callSiteWithFilename:@"KWFunctionalTests.m" lineNumber:122]];
+[[KWExampleSuiteBuilder sharedExampleSuiteBuilder] setFocusedCallSite:[KWCallSite callSiteWithFilename:@"KWFunctionalTests.m" lineNumber:123]];
 
 describe(@"FocusedIt", ^{
     it(@"FocusedTestCase", ^{ [focusedItCalls removeObject:@"FocusedTestCase"]; });
     it(@"UnFocusedTestCase", ^{ [unFocusedItCalls removeObject:@"UnFocusedTestCase"]; });
 });
 
-[[KWExampleGroupBuilder sharedExampleGroupBuilder] setFocusedCallSite:nil];
+[[KWExampleSuiteBuilder sharedExampleSuiteBuilder] setFocusedCallSite:nil];
 
 describe(@"FocusedItCheck", ^{
     it(@"All the blocks were called", ^{
         [[focusedItCalls should] haveCountOf:0];
         [[unFocusedItCalls should] haveCountOf:1];
+    });
+});
+
+SPEC_END
+
+SPEC_BEGIN(FunctionalLet)
+
+describe(@"Greeting", ^{
+    let(subject, ^{ return @""; });
+    let(greeting, ^{ return [NSString stringWithFormat:@"Hello, %@!", subject]; });
+
+    describe(@"default subject", ^{
+        specify(^{ [[subject should] beEmpty]; });
+    });
+
+    context(@"with the subject \"world\"", ^{
+        let(subject, ^{ return @"world"; });
+
+        specify(^{ [[greeting should] equal:@"Hello, world!"]; });
+    });
+
+    context(@"with the subject \"Kiwi\"", ^{
+        let(subject, ^{ return @"Kiwi"; });
+
+        specify(^{ [[greeting should] equal:@"Hello, Kiwi!"]; });
+    });
+});
+
+describe(@"Let context tree", ^{
+    let(number, ^{ return @0; });
+    let(string, ^{ return [number stringValue]; });
+
+    describe(@"number 1", ^{
+        let(number, ^{ return @1; });
+
+        context(@"number 2", ^{
+            let(number, ^{ return @2; });
+
+            context(@"number 3", ^{
+                let(number, ^{ return @3; });
+
+                context(@"number 4", ^{
+                    let(number, ^{ return @4; });
+
+                    specify(^{ [[number should] equal:@4]; });
+                    specify(^{ [[string should] equal:@"4"]; });
+                });
+
+                specify(^{ [[number should] equal:@3]; });
+                specify(^{ [[string should] equal:@"3"]; });
+            });
+
+            specify(^{ [[number should] equal:@2];});
+            specify(^{ [[string should] equal:@"2"]; });
+        });
+
+        context(@"number 5", ^{
+            let(number, ^{ return @5; });
+
+            context(@"number 6", ^{
+                let(number, ^{ return @6; });
+
+                specify(^{ [[number should] equal:@6]; });
+                specify(^{ [[string should] equal:@"6"]; });
+            });
+
+            specify(^{ [[number should] equal:@5]; });
+            specify(^{ [[string should] equal:@"5"]; });
+        });
+
+        specify(^{ [[number should] equal:@1]; });
+        specify(^{ [[string should] equal:@"1"]; });
+    });
+});
+
+describe(@"using property notation", ^{
+    let(cruiser, ^{ return [[Cruiser alloc] initWithCallsign:@"let"]; });
+    specify(^{
+        [[cruiser.callsign should] equal:@"let"];
     });
 });
 
@@ -172,13 +252,33 @@ describe(@"nil matchers", ^{
 
 SPEC_END
 
+SPEC_BEGIN(NSDateStub)
+
+describe(@"NSDate stubs", ^{
+	__block id dateMock = nil;
+	context(@"shouldEventually should work when [NSDate date] is mocked and stubbed", ^{
+		beforeEach(^{
+			dateMock = [NSDate mock];
+			[dateMock stub: @selector(timeIntervalSince1970) andReturn: [KWValue valueWithDouble: 1.0f]];
+			[NSDate stub: @selector(date) andReturn: dateMock];
+		});
+		
+		it(@"should not hang", ^{
+			[[theValue([[NSDate date] timeIntervalSince1970]) shouldNotEventually] equal: 5.0f withDelta: 0.5f];
+		});
+	});
+	
+});
+
+SPEC_END
+
 #if KW_TESTS_ENABLED
-@interface KWFunctionalTests : SenTestCase
+@interface KWFunctionalTests : XCTestCase
 @end
 @implementation KWFunctionalTests
 
 - (void)testSuiteWasExecuted {
-    STAssertEquals(YES, tests_were_run, @"Test suite hasn't run!");
+    XCTAssertEqual(YES, tests_were_run, @"Test suite hasn't run!");
 }
 
 @end

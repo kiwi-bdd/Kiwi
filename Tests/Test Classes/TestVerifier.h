@@ -4,20 +4,15 @@
 // Copyright 2010 Allen Ding. All rights reserved.
 //
 
-#import "Kiwi.h"
+#import <Kiwi/Kiwi.h>
 
-@interface TestVerifier : NSObject<KWVerifying> {
-@private
-    BOOL notifiedOfEndOfExample;
-}
+@interface TestVerifier : NSObject<KWVerifying>
 
-#pragma mark -
-#pragma mark Properties
+#pragma mark - Properties
 
 @property (nonatomic, readonly) BOOL notifiedOfEndOfExample;
 
-#pragma mark -
-#pragma mark Verifying
+#pragma mark - Verifying
 
 - (void)exampleWillEnd;
 

@@ -4,17 +4,9 @@
 // Copyright 2010 Allen Ding. All rights reserved.
 //
 
-#import "Kiwi.h"
+#import <Kiwi/Kiwi.h>
 
-@interface TestSpy : NSObject<KWMessageSpying> {
-@private
-    BOOL wasNotified;
-}
-
-#pragma mark -
-#pragma mark Initializing
-
-+ (id)testSpy;
+@interface TestSpy : NSObject<KWMessageSpying>
 
 #pragma mark -
 #pragma mark Checking Notifications

@@ -6,13 +6,13 @@
 //  Copyright (c) 2013 Allen Ding. All rights reserved.
 //
 
-#import "Kiwi.h"
+#import <Kiwi/Kiwi.h>
 #import "KiwiTestConfiguration.h"
 #import "TestClasses.h"
 
 #if KW_TESTS_ENABLED
 
-@interface KWRegularExpressionPatternMatcherTest : SenTestCase
+@interface KWRegularExpressionPatternMatcherTest : XCTestCase
 
 @end
 
@@ -21,57 +21,57 @@
 - (void)testItShouldHaveTheRightMatcherStrings {
     NSArray *matcherStrings = [KWRegularExpressionPatternMatcher matcherStrings];
     NSArray *expectedStrings = @[@"matchPattern:", @"matchPattern:options:"];
-    STAssertEqualObjects([matcherStrings sortedArrayUsingSelector:@selector(compare:)],
-                         [expectedStrings sortedArrayUsingSelector:@selector(compare:)],
-                         @"expected specific matcher strings");
+    XCTAssertEqualObjects([matcherStrings sortedArrayUsingSelector:@selector(compare:)],
+                          [expectedStrings sortedArrayUsingSelector:@selector(compare:)],
+                          @"expected specific matcher strings");
 }
 
 - (void)testItShouldMatchLiteralStrings {
     id subject = @"Hello";
-    id matcher = [KWRegularExpressionPatternMatcher matcherWithSubject:subject];
+    KWRegularExpressionPatternMatcher *matcher = [KWRegularExpressionPatternMatcher matcherWithSubject:subject];
     [matcher matchPattern:@"Hello"];
-    STAssertTrue([matcher evaluate], @"expected positive match");
+    XCTAssertTrue([matcher evaluate], @"expected positive match");
 }
 
 - (void)testItShouldNotMatchLiteralStrings {
     id subject = @"Hello";
-    id matcher = [KWRegularExpressionPatternMatcher matcherWithSubject:subject];
+    KWRegularExpressionPatternMatcher *matcher = [KWRegularExpressionPatternMatcher matcherWithSubject:subject];
     [matcher matchPattern:@"Goodbye"];
-    STAssertFalse([matcher evaluate], @"expected negative match");
+    XCTAssertFalse([matcher evaluate], @"expected negative match");
 }
 
 - (void)testItShouldMatchGroups {
     id subject = @"ababab";
-    id matcher = [KWRegularExpressionPatternMatcher matcherWithSubject:subject];
+    KWRegularExpressionPatternMatcher *matcher = [KWRegularExpressionPatternMatcher matcherWithSubject:subject];
     [matcher matchPattern:@"(ab)+"];
-    STAssertTrue([matcher evaluate], @"expected positive match");
+    XCTAssertTrue([matcher evaluate], @"expected positive match");
 }
 
 - (void)testItShouldNotMatchGroups {
     id subject = @"ababab";
-    id matcher = [KWRegularExpressionPatternMatcher matcherWithSubject:subject];
+    KWRegularExpressionPatternMatcher *matcher = [KWRegularExpressionPatternMatcher matcherWithSubject:subject];
     [matcher matchPattern:@"(abc)+"];
-    STAssertFalse([matcher evaluate], @"expected negative match");
+    XCTAssertFalse([matcher evaluate], @"expected negative match");
 }
 
 - (void)testItShouldMatchCaseInsensitive {
     id subject = @"abABab";
-    id matcher = [KWRegularExpressionPatternMatcher matcherWithSubject:subject];
+    KWRegularExpressionPatternMatcher *matcher = [KWRegularExpressionPatternMatcher matcherWithSubject:subject];
     [matcher matchPattern:@"(ab)+" options:NSRegularExpressionCaseInsensitive];
-    STAssertTrue([matcher evaluate], @"expected positive match");
+    XCTAssertTrue([matcher evaluate], @"expected positive match");
 }
 
 - (void)testItShouldNotMatchCaseInsensitive {
     id subject = @"abABab";
-    id matcher = [KWRegularExpressionPatternMatcher matcherWithSubject:subject];
+    KWRegularExpressionPatternMatcher *matcher = [KWRegularExpressionPatternMatcher matcherWithSubject:subject];
     [matcher matchPattern:@"(abc)+" options:NSRegularExpressionCaseInsensitive];
-    STAssertFalse([matcher evaluate], @"expected negative match");
+    XCTAssertFalse([matcher evaluate], @"expected negative match");
 }
 
 - (void)testItShouldHaveHumanReadableDescription {
-    id matcher = [KWRegularExpressionPatternMatcher matcherWithSubject:@"foobar"];
+    KWRegularExpressionPatternMatcher *matcher = [KWRegularExpressionPatternMatcher matcherWithSubject:@"foobar"];
     [matcher matchPattern:@"(foo)(bar)"];
-    STAssertEqualObjects([matcher description], @"match pattern \"(foo)(bar)\"", @"expected description to match");
+    XCTAssertEqualObjects([matcher description], @"match pattern \"(foo)(bar)\"", @"expected description to match");
 }
 
 @end

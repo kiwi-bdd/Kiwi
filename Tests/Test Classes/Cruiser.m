@@ -13,35 +13,24 @@
 #pragma mark -
 #pragma mark Initializing
 
-- (id)initWithCallsign:(NSString *)aCallsign {
-    if ((self = [super init])) {
-        callsign = [aCallsign copy];
+- (instancetype)initWithCallsign:(NSString *)aCallsign {
+    self = [super init];
+    if (self) {
+        _callsign = [aCallsign copy];
     }
-
     return self;
 }
 
-+ (id)cruiser {
-    return [self cruiserWithCallsign:nil];
++ (instancetype)cruiserWithCallsign:(NSString *)aCallsign {
+    return [[self alloc] initWithCallsign:aCallsign];
 }
 
-+ (id)cruiserWithCallsign:(NSString *)aCallsign {
-    return [[[self alloc] initWithCallsign:aCallsign] autorelease];
-}
-
-- (void)dealloc {
-    [callsign release];
-    [engine release];
-    [fighters release];
-    [super dealloc];
+- (NSUInteger)hash {
+    return self.crewComplement + [super hash];
 }
 
 #pragma mark -
 #pragma mark Properties
-
-@synthesize callsign;
-@synthesize engine;
-@dynamic classification;
 
 + (NSString *)classification {
     return @"Capital Ship";
@@ -58,8 +47,6 @@
 #pragma mark -
 #pragma mark Managing Fighters
 
-@synthesize fighters;
-
 - (Fighter *)fighterWithCallsign:(NSString *)aCallsign {
     for (Fighter *fighter in self.fighters) {
         if ([fighter.callsign isEqualToString:aCallsign])
@@ -69,8 +56,12 @@
     return nil;
 }
 
+- (Fighter *)fighterWithCallsignUTF8CString:(const char *)aCallsign {
+	return [self fighterWithCallsign:[NSString stringWithCString:aCallsign encoding:NSUTF8StringEncoding]];
+}
+
 - (NSArray *)fightersInSquadron:(NSString *)aSquadron {
-    NSMutableArray *fightersInSquadron = [[[NSMutableArray alloc] init] autorelease];
+    NSMutableArray *fightersInSquadron = [NSMutableArray new];
 
     for (Fighter *fighter in self.fighters) {
         if ([fighter.callsign hasPrefix:aSquadron])
@@ -78,6 +69,13 @@
     }
 
     return fightersInSquadron;
+}
+
+- (void)loadFighter:(Fighter *)fighter
+{
+    NSMutableArray *newFighters = [self.fighters mutableCopy];
+    [newFighters addObject:fighter];
+    self.fighters = newFighters;
 }
 
 #pragma mark -

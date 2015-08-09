@@ -10,7 +10,7 @@
 
 @implementation Galaxy
 
-+ (id)sharedGalaxy
++ (instancetype)sharedGalaxy
 {
 	static Galaxy *instance;
 	
