@@ -86,6 +86,12 @@
 #pragma mark -
 
 @implementation KWUserDefinedMatcherBuilder
+{
+    KWUserDefinedMatcher *matcher;
+    KWUserDefinedMatcherMessageBlock failureMessageForShouldBlock;
+    KWUserDefinedMatcherMessageBlock failureMessageForShouldNotBlock;
+    NSString *description;
+}
 
 + (id)builder {
     return [self builderForSelector:nil];
