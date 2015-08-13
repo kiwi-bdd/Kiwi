@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
 
   s.name            = 'Kiwi'
-  s.version         = '2.3.1'
+  s.version         = '2.4.0'
   s.summary         = 'A Behavior Driven Development library for iOS and OS X.'
   s.homepage        = 'https://github.com/kiwi-bdd/Kiwi'
   s.source          = { :git => 'https://github.com/kiwi-bdd/Kiwi.git', :tag => s.version.to_s }
