@@ -31,8 +31,19 @@ describe(@"Team", ^{
 The [Kiwi Wiki](https://github.com/kiwi-bdd/Kiwi/wiki) is the official documentation source.
 
 ## Getting it
-The best way to get Kiwi is by using [CocoaPods](https://github.com/cocoapods/cocoapods).
-For all the installation details, check out the [Wiki](https://github.com/kiwi-bdd/Kiwi/wiki)
+
+####
+To install via [CocoaPods](https://github.com/cocoapods/cocoapods), add this to your `Podfile`:
+
+```ruby
+pod "Kiwi"
+```
+
+Or via [Carthage](https://github.com/Carthage/Carthage), add this to `Cartfile.private`:
+
+```
+github "kiwi-bdd/Kiwi"
+```
 
 ## Support
 For all the questions / suggestions you have, that aren't bug reports please use our [Google Group](https://groups.google.com/forum/#!forum/kiwi-bdd)
