@@ -1,3 +1,5 @@
+![Kiwi Logo](Kiwi-Logo.png)
+
 # Simple BDD for iOS
 [![Build Status](https://travis-ci.org/kiwi-bdd/Kiwi.svg?branch=master)](https://travis-ci.org/kiwi-bdd/Kiwi)
 
