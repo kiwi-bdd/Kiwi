@@ -1,4 +1,6 @@
-# Simple BDD for iOS
+![Kiwi Logo](Kiwi-Logo.png)
+
+# Kiwi: Simple BDD for iOS
 [![Build Status](https://travis-ci.org/kiwi-bdd/Kiwi.svg?branch=master)](https://travis-ci.org/kiwi-bdd/Kiwi)
 
 Kiwi is a Behavior Driven Development library for iOS development.
