@@ -249,6 +249,8 @@
 		4AE030CA1AEB4DCF00556381 /* NSObject+KiwiSpyAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F982CD916A802920030A0B1 /* NSObject+KiwiSpyAdditions.m */; };
 		CE7EFF991B8475BD00FFE6D6 /* KWSwiftXCTestAssertionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7EFF981B8475BD00FFE6D6 /* KWSwiftXCTestAssertionTests.swift */; };
 		CE7EFF9A1B8475BD00FFE6D6 /* KWSwiftXCTestAssertionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7EFF981B8475BD00FFE6D6 /* KWSwiftXCTestAssertionTests.swift */; };
+		CE7EFF9C1B847AD700FFE6D6 /* KWObjCXCTestAssertionTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CE7EFF9B1B847AD700FFE6D6 /* KWObjCXCTestAssertionTests.m */; };
+		CE7EFF9D1B847AD700FFE6D6 /* KWObjCXCTestAssertionTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CE7EFF9B1B847AD700FFE6D6 /* KWObjCXCTestAssertionTests.m */; };
 		CE80E4411AF239DB00D2F0D6 /* KWCountType.h in Headers */ = {isa = PBXBuildFile; fileRef = 9F982C7116A802920030A0B1 /* KWCountType.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		CE80E4501AF255BF00D2F0D6 /* KWBackgroundTask.h in Headers */ = {isa = PBXBuildFile; fileRef = CE80E44E1AF255BF00D2F0D6 /* KWBackgroundTask.h */; };
 		CE80E4511AF255BF00D2F0D6 /* KWBackgroundTask.h in Headers */ = {isa = PBXBuildFile; fileRef = CE80E44E1AF255BF00D2F0D6 /* KWBackgroundTask.h */; };
@@ -750,6 +752,7 @@
 		C533F7D217462CAA000CAB02 /* KWSymbolicator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KWSymbolicator.m; sourceTree = "<group>"; };
 		C931D36D18AB2DEB005BC184 /* KWBeZeroMatcherTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = KWBeZeroMatcherTest.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		CE7EFF981B8475BD00FFE6D6 /* KWSwiftXCTestAssertionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KWSwiftXCTestAssertionTests.swift; sourceTree = "<group>"; };
+		CE7EFF9B1B847AD700FFE6D6 /* KWObjCXCTestAssertionTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KWObjCXCTestAssertionTests.m; sourceTree = "<group>"; };
 		CE80E44E1AF255BF00D2F0D6 /* KWBackgroundTask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KWBackgroundTask.h; sourceTree = "<group>"; };
 		CE80E44F1AF255BF00D2F0D6 /* KWBackgroundTask.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KWBackgroundTask.m; sourceTree = "<group>"; };
 		CE87C4231AF194E900310C07 /* Kiwi.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Kiwi.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1152,6 +1155,7 @@
 			children = (
 				89F9CB7B16B1C2C400E87D34 /* KWFunctionalTests.m */,
 				4A4AA324195B7C4E00423CD6 /* KWMessagePatternFunctionalTests.m */,
+				CE7EFF9B1B847AD700FFE6D6 /* KWObjCXCTestAssertionTests.m */,
 				CE7EFF981B8475BD00FFE6D6 /* KWSwiftXCTestAssertionTests.swift */,
 			);
 			name = Functional;
@@ -1795,6 +1799,7 @@
 				4AE030B11AEB494400556381 /* Carrier.m in Sources */,
 				4AE030B21AEB494400556381 /* Cruiser.m in Sources */,
 				4AE030B31AEB494400556381 /* Engine.m in Sources */,
+				CE7EFF9D1B847AD700FFE6D6 /* KWObjCXCTestAssertionTests.m in Sources */,
 				4AE030B41AEB494400556381 /* Fighter.m in Sources */,
 				4AE030B51AEB494400556381 /* Galaxy.m in Sources */,
 				4AE030B61AEB494400556381 /* Robot.m in Sources */,
@@ -1954,6 +1959,7 @@
 				CE87C5171AF1994200310C07 /* Cruiser.m in Sources */,
 				CE87C5181AF1994200310C07 /* Engine.m in Sources */,
 				CE87C5191AF1994200310C07 /* Fighter.m in Sources */,
+				CE7EFF9C1B847AD700FFE6D6 /* KWObjCXCTestAssertionTests.m in Sources */,
 				CE87C51A1AF1994200310C07 /* Galaxy.m in Sources */,
 				CE87C51D1AF1994200310C07 /* Robot.m in Sources */,
 				CE87C51E1AF1994200310C07 /* SpaceShip.m in Sources */,
