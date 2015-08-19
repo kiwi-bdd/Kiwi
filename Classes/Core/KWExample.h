@@ -14,6 +14,8 @@
 #import "KWReporting.h"
 #import "KWExampleDelegate.h"
 
+#import <XCTest/XCTestCase.h>
+
 @class KWCallSite;
 @class KWExampleSuite;
 @class KWContextNode;
@@ -40,7 +42,7 @@
 
 #pragma mark - Running
 
-- (void)runWithDelegate:(id<KWExampleDelegate>)delegate;
+- (void)runWithDelegate:(XCTestCase<KWExampleDelegate> *)delegate;
 
 #pragma mark - Anonymous It Node Descriptions
 
