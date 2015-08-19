@@ -1583,7 +1583,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastTestingUpgradeCheck = 0600;
-				LastUpgradeCheck = 0630;
+				LastUpgradeCheck = 0700;
 				ORGANIZATIONNAME = "Allen Ding";
 				TargetAttributes = {
 					4AE02FBC1AEB45EB00556381 = {
@@ -2160,6 +2160,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -2176,6 +2177,7 @@
 				KIWI_PRODUCT_NAME = Kiwi;
 				KIWI_TESTS_PRODUCT_NAME = KiwiTests;
 				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "org.kiwi-bdd.$(PRODUCT_NAME:rfc1034identifier)";
 				RUN_CLANG_STATIC_ANALYZER = YES;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -2209,6 +2211,7 @@
 				KIWI_PRODUCT_NAME = Kiwi;
 				KIWI_TESTS_PRODUCT_NAME = KiwiTests;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.kiwi-bdd.$(PRODUCT_NAME:rfc1034identifier)";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WARNING_CFLAGS = "-Wall";
