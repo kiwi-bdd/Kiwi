@@ -247,6 +247,8 @@
 		4AE030C81AEB494400556381 /* KWValueTest.m in Sources */ = {isa = PBXBuildFile; fileRef = F5C6FD2311782A290068BBC8 /* KWValueTest.m */; };
 		4AE030C91AEB494400556381 /* NSNumber_KiwiAdditionsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = DA9C69F7190CA6EE002C4DC0 /* NSNumber_KiwiAdditionsTests.m */; };
 		4AE030CA1AEB4DCF00556381 /* NSObject+KiwiSpyAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F982CD916A802920030A0B1 /* NSObject+KiwiSpyAdditions.m */; };
+		CE7EFF991B8475BD00FFE6D6 /* KWSwiftXCTestAssertionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7EFF981B8475BD00FFE6D6 /* KWSwiftXCTestAssertionTests.swift */; };
+		CE7EFF9A1B8475BD00FFE6D6 /* KWSwiftXCTestAssertionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7EFF981B8475BD00FFE6D6 /* KWSwiftXCTestAssertionTests.swift */; };
 		CE80E4411AF239DB00D2F0D6 /* KWCountType.h in Headers */ = {isa = PBXBuildFile; fileRef = 9F982C7116A802920030A0B1 /* KWCountType.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		CE80E4501AF255BF00D2F0D6 /* KWBackgroundTask.h in Headers */ = {isa = PBXBuildFile; fileRef = CE80E44E1AF255BF00D2F0D6 /* KWBackgroundTask.h */; };
 		CE80E4511AF255BF00D2F0D6 /* KWBackgroundTask.h in Headers */ = {isa = PBXBuildFile; fileRef = CE80E44E1AF255BF00D2F0D6 /* KWBackgroundTask.h */; };
@@ -747,6 +749,7 @@
 		C533F7D117462CAA000CAB02 /* KWSymbolicator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KWSymbolicator.h; sourceTree = "<group>"; };
 		C533F7D217462CAA000CAB02 /* KWSymbolicator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KWSymbolicator.m; sourceTree = "<group>"; };
 		C931D36D18AB2DEB005BC184 /* KWBeZeroMatcherTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = KWBeZeroMatcherTest.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		CE7EFF981B8475BD00FFE6D6 /* KWSwiftXCTestAssertionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KWSwiftXCTestAssertionTests.swift; sourceTree = "<group>"; };
 		CE80E44E1AF255BF00D2F0D6 /* KWBackgroundTask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KWBackgroundTask.h; sourceTree = "<group>"; };
 		CE80E44F1AF255BF00D2F0D6 /* KWBackgroundTask.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KWBackgroundTask.m; sourceTree = "<group>"; };
 		CE87C4231AF194E900310C07 /* Kiwi.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Kiwi.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1149,6 +1152,7 @@
 			children = (
 				89F9CB7B16B1C2C400E87D34 /* KWFunctionalTests.m */,
 				4A4AA324195B7C4E00423CD6 /* KWMessagePatternFunctionalTests.m */,
+				CE7EFF981B8475BD00FFE6D6 /* KWSwiftXCTestAssertionTests.swift */,
 			);
 			name = Functional;
 			sourceTree = "<group>";
@@ -1582,6 +1586,7 @@
 		29B97313FDCFA39411CA2CEA /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastSwiftUpdateCheck = 0700;
 				LastTestingUpgradeCheck = 0600;
 				LastUpgradeCheck = 0700;
 				ORGANIZATIONNAME = "Allen Ding";
@@ -1768,6 +1773,7 @@
 				4AE0309C1AEB494400556381 /* KWEqualMatcherTest.m in Sources */,
 				4AE0309D1AEB494400556381 /* KWGenericMatcherTest.m in Sources */,
 				4AE0309E1AEB494400556381 /* KWHaveMatcherTest.m in Sources */,
+				CE7EFF9A1B8475BD00FFE6D6 /* KWSwiftXCTestAssertionTests.swift in Sources */,
 				4AE0309F1AEB494400556381 /* KWHaveValueMatcherTest.m in Sources */,
 				4AE030A01AEB494400556381 /* KWInequalityMatcherTest.m in Sources */,
 				4AE030A11AEB494400556381 /* KWReceiveMatcherTest.m in Sources */,
@@ -1926,6 +1932,7 @@
 				CE87C5021AF1994100310C07 /* KWGenericMatcherTest.m in Sources */,
 				CE87C5031AF1994100310C07 /* KWHaveMatcherTest.m in Sources */,
 				CE87C5041AF1994100310C07 /* KWHaveValueMatcherTest.m in Sources */,
+				CE7EFF991B8475BD00FFE6D6 /* KWSwiftXCTestAssertionTests.swift in Sources */,
 				CE87C5051AF1994100310C07 /* KWInequalityMatcherTest.m in Sources */,
 				CE87C5061AF1994100310C07 /* KWReceiveMatcherTest.m in Sources */,
 				CE87C5071AF1994100310C07 /* KWRegularExpressionPatternMatcherTest.m in Sources */,
@@ -2110,6 +2117,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "$(KIWI_TESTS_PRODUCT_NAME)";
 				SDKROOT = macosx;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
@@ -2321,6 +2329,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = YES;
 				PRODUCT_NAME = "$(KIWI_TESTS_PRODUCT_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
