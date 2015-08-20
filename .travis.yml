@@ -2,6 +2,6 @@ language: objective-c
 before_install:
   - gem install xcpretty # this will go away soon when Travis installs xcpretty
   - gem install cocoapods # latest version of cocoapods
-  - brew install carthage
+  - brew update && brew install carthage
 script: make ci
 
