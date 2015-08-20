@@ -12,19 +12,22 @@ clean:
 ios:
 	$(XCODEBUILD) -scheme Kiwi-iOS build
 
+frameworks:
+	carthage bootstrap
+
 test: test-iphone32 test-iphone64 test-macosx
 
-test-iphone32:
+test-iphone32: frameworks
 	@echo "Running 32 bit iPhone tests..."
 	$(XCODEBUILD) $(IPHONE32) test | tee xcodebuild.log | xcpretty -c
 	ruby test_suite_configuration.rb xcodebuild.log
 
-test-iphone64:
+test-iphone64: frameworks
 	@echo "Running 64 bit iPhone tests..."
 	$(XCODEBUILD) $(IPHONE64) test | tee xcodebuild.log | xcpretty -c
 	ruby test_suite_configuration.rb xcodebuild.log
 
-test-macosx:
+test-macosx: frameworks
 	@echo "Running OS X tests..."
 	$(XCODEBUILD) $(MACOSX) test | tee xcodebuild.log | xcpretty -c
 	ruby test_suite_configuration.rb xcodebuild.log

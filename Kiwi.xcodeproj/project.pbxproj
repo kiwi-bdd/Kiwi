@@ -247,6 +247,12 @@
 		4AE030C81AEB494400556381 /* KWValueTest.m in Sources */ = {isa = PBXBuildFile; fileRef = F5C6FD2311782A290068BBC8 /* KWValueTest.m */; };
 		4AE030C91AEB494400556381 /* NSNumber_KiwiAdditionsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = DA9C69F7190CA6EE002C4DC0 /* NSNumber_KiwiAdditionsTests.m */; };
 		4AE030CA1AEB4DCF00556381 /* NSObject+KiwiSpyAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F982CD916A802920030A0B1 /* NSObject+KiwiSpyAdditions.m */; };
+		CE0736B41B8577140023EBEA /* Expecta.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE0736B31B8577140023EBEA /* Expecta.framework */; };
+		CE0736B61B85771E0023EBEA /* Expecta.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE0736B51B85771E0023EBEA /* Expecta.framework */; };
+		CE0736B81B8577490023EBEA /* KWExpectaTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CE0736B71B8577490023EBEA /* KWExpectaTests.m */; };
+		CE0736B91B8577490023EBEA /* KWExpectaTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CE0736B71B8577490023EBEA /* KWExpectaTests.m */; };
+		CE0736BD1B8577BE0023EBEA /* Expecta.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = CE0736B31B8577140023EBEA /* Expecta.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		CE0736BF1B8577CD0023EBEA /* Expecta.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = CE0736B51B85771E0023EBEA /* Expecta.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		CE7EFF991B8475BD00FFE6D6 /* KWSwiftXCTestAssertionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7EFF981B8475BD00FFE6D6 /* KWSwiftXCTestAssertionTests.swift */; };
 		CE7EFF9A1B8475BD00FFE6D6 /* KWSwiftXCTestAssertionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7EFF981B8475BD00FFE6D6 /* KWSwiftXCTestAssertionTests.swift */; };
 		CE7EFF9C1B847AD700FFE6D6 /* KWObjCXCTestAssertionTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CE7EFF9B1B847AD700FFE6D6 /* KWObjCXCTestAssertionTests.m */; };
@@ -518,6 +524,31 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		CE0736BB1B8577A80023EBEA /* Copy Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				CE0736BD1B8577BE0023EBEA /* Expecta.framework in Copy Frameworks */,
+			);
+			name = "Copy Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CE0736BE1B8577C30023EBEA /* Copy Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				CE0736BF1B8577CD0023EBEA /* Expecta.framework in Copy Frameworks */,
+			);
+			name = "Copy Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		3AD0490218D8C4CA00D12A08 /* KWExampleTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KWExampleTest.m; sourceTree = "<group>"; };
@@ -751,6 +782,9 @@
 		C533F7D117462CAA000CAB02 /* KWSymbolicator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KWSymbolicator.h; sourceTree = "<group>"; };
 		C533F7D217462CAA000CAB02 /* KWSymbolicator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KWSymbolicator.m; sourceTree = "<group>"; };
 		C931D36D18AB2DEB005BC184 /* KWBeZeroMatcherTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = KWBeZeroMatcherTest.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		CE0736B31B8577140023EBEA /* Expecta.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Expecta.framework; path = Carthage/Build/iOS/Expecta.framework; sourceTree = "<group>"; };
+		CE0736B51B85771E0023EBEA /* Expecta.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Expecta.framework; path = Carthage/Build/Mac/Expecta.framework; sourceTree = "<group>"; };
+		CE0736B71B8577490023EBEA /* KWExpectaTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KWExpectaTests.m; sourceTree = "<group>"; };
 		CE7EFF981B8475BD00FFE6D6 /* KWSwiftXCTestAssertionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KWSwiftXCTestAssertionTests.swift; sourceTree = "<group>"; };
 		CE7EFF9B1B847AD700FFE6D6 /* KWObjCXCTestAssertionTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KWObjCXCTestAssertionTests.m; sourceTree = "<group>"; };
 		CE80E44E1AF255BF00D2F0D6 /* KWBackgroundTask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KWBackgroundTask.h; sourceTree = "<group>"; };
@@ -810,6 +844,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4AE02FC81AEB45EB00556381 /* Kiwi.framework in Frameworks */,
+				CE0736B61B85771E0023EBEA /* Expecta.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -825,6 +860,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CE87C42E1AF194EA00310C07 /* Kiwi.framework in Frameworks */,
+				CE0736B41B8577140023EBEA /* Expecta.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -895,6 +931,8 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				CE0736B51B85771E0023EBEA /* Expecta.framework */,
+				CE0736B31B8577140023EBEA /* Expecta.framework */,
 				1D30AB110D05D00D00671497 /* Foundation.framework */,
 				DA084D3F17E3804200592D5A /* XCTest.framework */,
 				DA084D4217E3804200592D5A /* UIKit.framework */,
@@ -1153,6 +1191,7 @@
 		89F9CB7816B1BE0E00E87D34 /* Functional */ = {
 			isa = PBXGroup;
 			children = (
+				CE0736B71B8577490023EBEA /* KWExpectaTests.m */,
 				89F9CB7B16B1C2C400E87D34 /* KWFunctionalTests.m */,
 				4A4AA324195B7C4E00423CD6 /* KWMessagePatternFunctionalTests.m */,
 				CE7EFF9B1B847AD700FFE6D6 /* KWObjCXCTestAssertionTests.m */,
@@ -1537,6 +1576,7 @@
 				4AE02FC31AEB45EB00556381 /* Sources */,
 				4AE02FC41AEB45EB00556381 /* Frameworks */,
 				4AE02FC51AEB45EB00556381 /* Resources */,
+				CE0736BE1B8577C30023EBEA /* Copy Frameworks */,
 			);
 			buildRules = (
 			);
@@ -1573,6 +1613,7 @@
 				CE87C4291AF194EA00310C07 /* Sources */,
 				CE87C42A1AF194EA00310C07 /* Frameworks */,
 				CE87C42B1AF194EA00310C07 /* Resources */,
+				CE0736BB1B8577A80023EBEA /* Copy Frameworks */,
 			);
 			buildRules = (
 			);
@@ -1786,6 +1827,7 @@
 				4AE030A41AEB494400556381 /* KWUserDefinedMatcherTest.m in Sources */,
 				4AE030A51AEB494400556381 /* KWBeZeroMatcherTest.m in Sources */,
 				4AE030A61AEB494400556381 /* KWUserDefinedMatcherFunctionalTest.m in Sources */,
+				CE0736B91B8577490023EBEA /* KWExpectaTests.m in Sources */,
 				4AE030A71AEB494400556381 /* KWMockTest.m in Sources */,
 				4AE030A81AEB494400556381 /* KWRealObjectSpyTest.m in Sources */,
 				4AE030A91AEB494400556381 /* KWRealObjectStubTest.m in Sources */,
@@ -1946,6 +1988,7 @@
 				CE87C50A1AF1994100310C07 /* KWBeZeroMatcherTest.m in Sources */,
 				CE87C50B1AF1994100310C07 /* KWUserDefinedMatcherFunctionalTest.m in Sources */,
 				CE87C50C1AF1994100310C07 /* KWMockTest.m in Sources */,
+				CE0736B81B8577490023EBEA /* KWExpectaTests.m in Sources */,
 				CE87C50D1AF1994100310C07 /* KWRealObjectSpyTest.m in Sources */,
 				CE87C50E1AF1994200310C07 /* KWRealObjectStubTest.m in Sources */,
 				CE87C50F1AF1994200310C07 /* KWStubTest.m in Sources */,
@@ -2107,6 +2150,10 @@
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/Mac",
+				);
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -2143,6 +2190,10 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/Mac",
+				);
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
@@ -2321,6 +2372,10 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -2353,6 +2408,10 @@
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;

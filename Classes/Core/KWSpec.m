@@ -101,6 +101,15 @@
     }
 }
 
++ (BOOL)respondsToSelector:(SEL)aSelector {
+    if ([super respondsToSelector:aSelector]) {
+        return YES;
+    }
+
+    KWExample *example = [[KWExampleSuiteBuilder sharedExampleSuiteBuilder] currentExample];
+    return [example respondsToSelector:aSelector];
+}
+
 #pragma mark - Running Specs
 
 - (void)runExample {

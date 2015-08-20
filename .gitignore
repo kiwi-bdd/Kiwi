@@ -13,6 +13,9 @@ xcuserdata/
 *.pbxuser
 output
 
+# Carthage
+Carthage/
+
 # AppCode files
 .idea
 
