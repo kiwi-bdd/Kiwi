@@ -18,4 +18,6 @@ typedef void (^PostedNotificationBlock)(NSNotification* note);
 - (void)bePostedWithObject:(id)object userInfo:(NSDictionary *)userInfo;
 - (void)bePostedEvaluatingBlock:(PostedNotificationBlock)block;
 
+#pragma mark - KWMatching
+@property (nonatomic, assign) BOOL willEvaluateMultipleTimes;
 @end
