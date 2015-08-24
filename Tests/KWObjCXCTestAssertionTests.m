@@ -1,10 +1,14 @@
 #import <Kiwi/Kiwi.h>
+#import "KWFailureInterceptingSpec.h"
+#import "KiwiTestConfiguration.h"
 
-SPEC_BEGIN(KWObjCXCTestAssertionTests)
+CUSTOM_SPEC_BEGIN(KWObjCXCTestAssertionTests, KWFailureInterceptingSpec)
 
-describe(@"XCTest assertions in Objective C", ^{
-    it(@"supports XCTAssert", ^{
-        XCTAssert(1 + 1 == 2);
+describe(@"alternate matcher support in Objective-C", ^{
+    it(@"supports XCTest assertions", ^{
+        [[theBlock(^{
+            XCTAssert(1 + 1 == 3);
+        }) should] haveFailed];
     });
 });
 

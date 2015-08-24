@@ -1,11 +1,15 @@
 #import <Kiwi/Kiwi.h>
 #import <Nimble/Nimble.h>
+#import "KWFailureInterceptingSpec.h"
+#import "KiwiTestConfiguration.h"
 
-SPEC_BEGIN(KWObjCNimbleTests)
+CUSTOM_SPEC_BEGIN(KWObjCNimbleTests, KWFailureInterceptingSpec)
 
 describe(@"Nimble matchers", ^{
     it(@"supports nmb_expect()", ^{
-        expect(@(1 + 1)).to(equal(@2));
+        [[theBlock(^{
+            expect(@(1 + 1)).to(equal(@3));
+        }) should] haveFailed];
     });
 });
 

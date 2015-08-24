@@ -1,11 +1,15 @@
 #import <Kiwi/Kiwi.h>
 #import <Expecta/Expecta.h>
+#import "KWFailureInterceptingSpec.h"
+#import "KiwiTestConfiguration.h"
 
-SPEC_BEGIN(KWExpectaTests)
+CUSTOM_SPEC_BEGIN(KWExpectaTests, KWFailureInterceptingSpec)
 
-describe(@"expecta matchers", ^{
-    it(@"supports expect()", ^{
-        expect(1 + 1).to.equal(2);
+describe(@"alternate matcher support in Objective-C", ^{
+    it(@"supports Expecta matchers", ^{
+        [[theBlock(^{
+            expect(1 + 1).to.equal(3);
+        }) should] haveFailed];
     });
 });
 

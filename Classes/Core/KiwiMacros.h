@@ -89,6 +89,8 @@
     + (NSString *)file { return @__FILE__; } \
     \
     + (void)buildExampleGroups { \
+        [super buildExampleGroups]; \
+        \
         id _kw_test_case_class = self; \
         { \
             /* The shadow `self` must be declared inside a new scope to avoid compiler warnings. */ \

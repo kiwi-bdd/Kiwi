@@ -253,6 +253,8 @@
 		CE0736B91B8577490023EBEA /* KWExpectaTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CE0736B71B8577490023EBEA /* KWExpectaTests.m */; };
 		CE0736BD1B8577BE0023EBEA /* Expecta.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = CE0736B31B8577140023EBEA /* Expecta.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		CE0736BF1B8577CD0023EBEA /* Expecta.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = CE0736B51B85771E0023EBEA /* Expecta.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		CE16A3821B8BC79C0009DF25 /* KWFailureInterceptingSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = CE16A3811B8BC79C0009DF25 /* KWFailureInterceptingSpec.m */; };
+		CE16A3831B8BC79C0009DF25 /* KWFailureInterceptingSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = CE16A3811B8BC79C0009DF25 /* KWFailureInterceptingSpec.m */; };
 		CE39E6121B857C9900736C33 /* Nimble.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE39E6111B857C9900736C33 /* Nimble.framework */; };
 		CE39E6131B857CA200736C33 /* Nimble.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = CE39E6111B857C9900736C33 /* Nimble.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		CE39E6151B857CAB00736C33 /* Nimble.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE39E6141B857CAB00736C33 /* Nimble.framework */; };
@@ -795,10 +797,13 @@
 		CE0736B31B8577140023EBEA /* Expecta.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Expecta.framework; path = Carthage/Build/iOS/Expecta.framework; sourceTree = "<group>"; };
 		CE0736B51B85771E0023EBEA /* Expecta.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Expecta.framework; path = Carthage/Build/Mac/Expecta.framework; sourceTree = "<group>"; };
 		CE0736B71B8577490023EBEA /* KWExpectaTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KWExpectaTests.m; sourceTree = "<group>"; };
+		CE16A3801B8BC79C0009DF25 /* KWFailureInterceptingSpec.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KWFailureInterceptingSpec.h; sourceTree = "<group>"; };
+		CE16A3811B8BC79C0009DF25 /* KWFailureInterceptingSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KWFailureInterceptingSpec.m; sourceTree = "<group>"; };
 		CE39E6111B857C9900736C33 /* Nimble.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Nimble.framework; path = Carthage/Build/iOS/Nimble.framework; sourceTree = "<group>"; };
 		CE39E6141B857CAB00736C33 /* Nimble.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Nimble.framework; path = Carthage/Build/Mac/Nimble.framework; sourceTree = "<group>"; };
 		CE39E6171B857CE000736C33 /* KWObjCNimbleTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KWObjCNimbleTests.m; sourceTree = "<group>"; };
 		CE39E61A1B857DE300736C33 /* KWSwiftNimbleTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KWSwiftNimbleTests.swift; sourceTree = "<group>"; };
+		CE54493E1B8BDCB0002994B5 /* KiwiTests-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "KiwiTests-Bridging-Header.h"; sourceTree = "<group>"; };
 		CE7EFF981B8475BD00FFE6D6 /* KWSwiftXCTestAssertionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KWSwiftXCTestAssertionTests.swift; sourceTree = "<group>"; };
 		CE7EFF9B1B847AD700FFE6D6 /* KWObjCXCTestAssertionTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KWObjCXCTestAssertionTests.m; sourceTree = "<group>"; };
 		CE80E44E1AF255BF00D2F0D6 /* KWBackgroundTask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KWBackgroundTask.h; sourceTree = "<group>"; };
@@ -1216,6 +1221,8 @@
 				CE7EFF9B1B847AD700FFE6D6 /* KWObjCXCTestAssertionTests.m */,
 				CE39E61A1B857DE300736C33 /* KWSwiftNimbleTests.swift */,
 				CE7EFF981B8475BD00FFE6D6 /* KWSwiftXCTestAssertionTests.swift */,
+				CE16A3801B8BC79C0009DF25 /* KWFailureInterceptingSpec.h */,
+				CE16A3811B8BC79C0009DF25 /* KWFailureInterceptingSpec.m */,
 			);
 			name = Functional;
 			sourceTree = "<group>";
@@ -1823,6 +1830,7 @@
 			files = (
 				4AC1CD631AEB4FBC00CBD0B8 /* KWLetNodeTest.m in Sources */,
 				4AE0308F1AEB494400556381 /* KWBeBetweenMatcherTest.m in Sources */,
+				CE16A3831B8BC79C0009DF25 /* KWFailureInterceptingSpec.m in Sources */,
 				4AE030901AEB494400556381 /* KWBeEmptyMatcherTest.m in Sources */,
 				4AE030911AEB494400556381 /* KWBeIndenticalToMatcherTest.m in Sources */,
 				4AE030921AEB494400556381 /* KWBeKindOfClassMatcherTest.m in Sources */,
@@ -1986,6 +1994,7 @@
 			files = (
 				CE87C4F41AF1994100310C07 /* KWBeBetweenMatcherTest.m in Sources */,
 				CE87C4F51AF1994100310C07 /* KWBeEmptyMatcherTest.m in Sources */,
+				CE16A3821B8BC79C0009DF25 /* KWFailureInterceptingSpec.m in Sources */,
 				CE87C4F61AF1994100310C07 /* KWBeIndenticalToMatcherTest.m in Sources */,
 				CE87C4F71AF1994100310C07 /* KWBeKindOfClassMatcherTest.m in Sources */,
 				CE87C4F81AF1994100310C07 /* KWBeMemberOfClassMatcherTest.m in Sources */,
