@@ -2,7 +2,7 @@
 .localized
 
 # Build directory
-build/
+/build/
  
 # XCode user specific files
 xcuserdata/
@@ -12,6 +12,9 @@ xcuserdata/
 *.perspectivev3
 *.pbxuser
 output
+
+# Carthage
+/Carthage/Checkouts/
 
 # AppCode files
 .idea

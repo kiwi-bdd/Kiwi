@@ -89,8 +89,16 @@
     + (NSString *)file { return @__FILE__; } \
     \
     + (void)buildExampleGroups { \
+        [super buildExampleGroups]; \
+        \
+        id _kw_test_case_class = self; \
+        { \
+            /* The shadow `self` must be declared inside a new scope to avoid compiler warnings. */ \
+            /* The receiving class object delegates unrecognized selectors to the current example. */ \
+            __unused name *self = _kw_test_case_class;
 
 #define SPEC_END \
+        } \
     } \
     \
     @end

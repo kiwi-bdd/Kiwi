@@ -32,7 +32,7 @@
 
 @property (nonatomic, readonly) NSMutableArray *verifiers;
 @property (nonatomic, readonly) KWMatcherFactory *matcherFactory;
-@property (nonatomic, weak) id<KWExampleDelegate> delegate;
+@property (nonatomic, weak) XCTestCase<KWExampleDelegate> *delegate;
 @property (nonatomic, assign) BOOL didNotFinish;
 @property (nonatomic, strong) id<KWExampleNode> exampleNode;
 @property (nonatomic, assign) BOOL passed;
@@ -71,6 +71,20 @@
   return [NSString stringWithFormat:@"<KWExample: %@>", self.exampleNode.description];
 }
 
+#pragma mark - Message forwarding
+
+- (id)forwardingTargetForSelector:(SEL)aSelector {
+    if ([self.delegate respondsToSelector:aSelector]) {
+        return self.delegate;
+    } else {
+        return [super forwardingTargetForSelector:aSelector];
+    }
+}
+
+- (BOOL)respondsToSelector:(SEL)aSelector {
+    return [super respondsToSelector:aSelector] || [self.delegate respondsToSelector:aSelector];
+}
+
 #pragma mark - Adding Verifiers
 
 - (id)addVerifier:(id<KWVerifying>)aVerifier {
@@ -105,7 +119,7 @@
 
 #pragma mark - Running examples
 
-- (void)runWithDelegate:(id<KWExampleDelegate>)delegate; {
+- (void)runWithDelegate:(XCTestCase<KWExampleDelegate> *)delegate {
     self.delegate = delegate;
     [self.matcherFactory registerMatcherClassesWithNamespacePrefix:@"KW"];
     [[KWExampleSuiteBuilder sharedExampleSuiteBuilder] setCurrentExample:self];
