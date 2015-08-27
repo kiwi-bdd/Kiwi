@@ -87,10 +87,10 @@
 
 @interface KWUserDefinedMatcherBuilder ()
 
-@property(nonatomic, strong) KWUserDefinedMatcher *matcher;
-@property(nonatomic, copy) KWUserDefinedMatcherMessageBlock failureMessageForShouldBlock;
-@property(nonatomic, copy) KWUserDefinedMatcherMessageBlock failureMessageForShouldNotBlock;
-@property(nonatomic, copy) NSString *matcherBuilderDescription;
+@property (nonatomic, strong) KWUserDefinedMatcher *matcher;
+@property (nonatomic, copy) KWUserDefinedMatcherMessageBlock failureMessageForShouldBlock;
+@property (nonatomic, copy) KWUserDefinedMatcherMessageBlock failureMessageForShouldNotBlock;
+@property (nonatomic, copy) NSString *matcherBuilderDescription;
 
 @end
 
