@@ -28,12 +28,7 @@ typedef BOOL (^KWUserDefinedMatcherBlock)();
 typedef NSString * (^KWUserDefinedMatcherMessageBlock)(id);
 
 @interface KWUserDefinedMatcherBuilder : NSObject
-{
-    KWUserDefinedMatcher *matcher;
-    KWUserDefinedMatcherMessageBlock failureMessageForShouldBlock;
-    KWUserDefinedMatcherMessageBlock failureMessageForShouldNotBlock;
-    NSString *description;
-}
+
 @property (nonatomic, copy, readonly) NSString *key;
 
 + (id)builder;

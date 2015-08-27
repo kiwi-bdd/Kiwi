@@ -85,6 +85,15 @@
 
 #pragma mark -
 
+@interface KWUserDefinedMatcherBuilder ()
+
+@property (nonatomic, strong) KWUserDefinedMatcher *matcher;
+@property (nonatomic, copy) KWUserDefinedMatcherMessageBlock failureMessageForShouldBlock;
+@property (nonatomic, copy) KWUserDefinedMatcherMessageBlock failureMessageForShouldNotBlock;
+@property (nonatomic, copy) NSString *matcherBuilderDescription;
+
+@end
+
 @implementation KWUserDefinedMatcherBuilder
 
 + (id)builder {
@@ -98,53 +107,52 @@
 - (id)initWithSelector:(SEL)aSelector {
     self = [super init];
     if (self) {
-        matcher = [[KWUserDefinedMatcher alloc] init];
-        matcher.selector = aSelector;
+        _matcher = [[KWUserDefinedMatcher alloc] init];
+        _matcher.selector = aSelector;
     }
     return self;
 }
 
-
 - (NSString *)key {
-    return NSStringFromSelector(matcher.selector);
+    return NSStringFromSelector(self.matcher.selector);
 }
 
 #pragma mark - Configuring The Matcher
 
 - (void)match:(KWUserDefinedMatcherBlock)block {
-    matcher.matcherBlock = block;
+    self.matcher.matcherBlock = block;
 }
 
 - (void)failureMessageForShould:(KWUserDefinedMatcherMessageBlock)block {
-    failureMessageForShouldBlock = [block copy];
+    self.failureMessageForShouldBlock = block;
 }
 
 - (void)failureMessageForShouldNot:(KWUserDefinedMatcherMessageBlock)block {
-    failureMessageForShouldNotBlock = [block copy];
+    self.failureMessageForShouldNotBlock = block;
 }
 
 - (void)description:(NSString *)aDescription {
-    description = [aDescription copy];
+    self.matcherBuilderDescription = aDescription;
 }
 
 #pragma mark - Buiding The Matcher
 
 - (KWUserDefinedMatcher *)buildMatcherWithSubject:(id)subject {
-    [matcher setSubject:subject];
+    [self.matcher setSubject:subject];
 
-    if (failureMessageForShouldBlock) {
-        [matcher setFailureMessageForShould:failureMessageForShouldBlock(subject)];
+    if (self.failureMessageForShouldBlock) {
+        [self.matcher setFailureMessageForShould:self.failureMessageForShouldBlock(subject)];
     }
 
-    if (failureMessageForShouldNotBlock) {
-        [matcher setFailureMessageForShouldNot:failureMessageForShouldNotBlock(subject)];
+    if (self.failureMessageForShouldNotBlock) {
+        [self.matcher setFailureMessageForShouldNot:self.failureMessageForShouldNotBlock(subject)];
     }
 
-    if (description) {
-        [matcher setDescription:description];
+    if (self.matcherBuilderDescription) {
+        [self.matcher setDescription:self.matcherBuilderDescription];
     }
 
-    return matcher;
+    return self.matcher;
 }
 
 @end
