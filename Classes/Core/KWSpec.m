@@ -115,15 +115,13 @@
 - (void)runExample {
     self.currentExample = self.invocation.kw_example;
 
-    @autoreleasepool {
-        @try {
-            [self.currentExample runWithDelegate:self];
-        } @catch (NSException *exception) {
-            [self recordFailureWithDescription:exception.description inFile:@"" atLine:0 expected:NO];
-        }
-
-        self.invocation.kw_example = nil;
+    @try {
+        [self.currentExample runWithDelegate:self];
+    } @catch (NSException *exception) {
+        [self recordFailureWithDescription:exception.description inFile:@"" atLine:0 expected:NO];
     }
+    
+    self.invocation.kw_example = nil;
 }
 
 #pragma mark - KWExampleGroupDelegate methods
