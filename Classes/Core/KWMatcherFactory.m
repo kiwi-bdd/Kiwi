@@ -71,7 +71,7 @@
             Class candidateClass = classes[i];
 
             // GAITrackerModel blacklisted due to crash causes when +initialize called on this class 
-            if (candidateClass == NSClassFromString(@"GAITrackerModel"))
+            if ([NSStringFromClass(candidateClass) isEqualToString:@"GAITrackerModel"])
                 continue;
             
             if (!class_respondsToSelector(candidateClass, @selector(conformsToProtocol:)))
