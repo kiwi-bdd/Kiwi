@@ -96,9 +96,12 @@
     NSData *data = [self.value dataForObjCType:objCType];
 
     if (data == nil) {
-        [NSException raise:@"KWStubException" format:@"wrapped stub value type (%s) could not be converted to the target type (%s)",
-                                                     [self.value objCType],
-                                                     objCType];
+        [NSException raise:@"KWStubException"
+                    format:@"wrapped stub value type (%s) could not be converted to the target type (%s). "
+                        "This can happen, when ObjC-runtime doesn't have enough information about return type of the method being called. "
+                        "Try using `[KWMock mockForClass:]` instead of `[KWMock mock]`. ",
+                           [self.value objCType],
+                           objCType];
     }
 
     return data;
