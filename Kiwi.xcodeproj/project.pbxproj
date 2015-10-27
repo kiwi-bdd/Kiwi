@@ -1981,7 +1981,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastTestingUpgradeCheck = 0600;
-				LastUpgradeCheck = 0630;
+				LastUpgradeCheck = 0710;
 				ORGANIZATIONNAME = "Allen Ding";
 				TargetAttributes = {
 					4AE02FBC1AEB45EB00556381 = {
