@@ -20,7 +20,11 @@
 #pragma mark - Matching
 
 - (BOOL)evaluate {
-    return [KWGenericMatchEvaluator genericMatcher:self.matcher matches:self.subject];
+    if ([KWGenericMatchEvaluator isGenericMatcher:self.matcher]) {
+        return [KWGenericMatchEvaluator genericMatcher:self.matcher matches:self.subject];
+    } else {
+        return [self.matcher isEqual:self.subject];
+    }
 }
 
 - (NSString *)failureMessageForShould {
