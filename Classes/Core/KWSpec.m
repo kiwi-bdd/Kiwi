@@ -49,6 +49,17 @@
     // Only return invocation if the receiver is a concrete spec that has overridden -buildExampleGroups.
     if ([self methodForSelector:buildExampleGroups] == [KWSpec methodForSelector:buildExampleGroups])
         return nil;
+    
+    NSProcessInfo *processInfo = [NSProcessInfo processInfo];
+    NSDictionary *environment = [processInfo environment];
+    NSString *cedarSpecFile = environment[@"CEDAR_SPEC_FILE"];
+    
+    if (cedarSpecFile) {
+        NSString *focusFilePath = [[NSURL URLWithString:cedarSpecFile] path];
+        if (![self file] || ![focusFilePath hasPrefix:[self file]]) {
+            return nil;
+        }
+    }
 
     KWExampleSuite *exampleSuite = [[KWExampleSuiteBuilder sharedExampleSuiteBuilder] buildExampleSuite:^{
         [self buildExampleGroups];
