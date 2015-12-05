@@ -20,7 +20,12 @@
 @implementation KWNotificationMatcher
 
 + (NSArray *)matcherStrings {
-    return @[@"bePosted", @"bePostedWithObject:", @"bePostedWithUserInfo:", @"bePostedWithObject:andUserInfo:", @"bePostedEvaluatingBlock:"];
+    return @[@"bePosted",
+             @"bePostedWithObject:",
+             @"bePostedWithUserInfo:",
+             @"bePostedWithObject:andUserInfo:",
+             @"bePostedWithObject:userInfo:",
+             @"bePostedEvaluatingBlock:"];
 }
 
 - (void)addObserver {
@@ -105,6 +110,10 @@
 }
 
 - (void)bePostedWithObject:(id)object andUserInfo:(NSDictionary *)userInfo {
+    [self bePostedWithObject:object userInfo:userInfo];
+}
+
+- (void)bePostedWithObject:(id)object userInfo:(NSDictionary *)userInfo {
     [self addObserver];
     self.expectedObject = object;
     self.expectedUserInfo = userInfo;
