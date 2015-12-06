@@ -25,31 +25,40 @@
  * In Xcode 7, XCTest behaves like this:
  * First, it tries to find all invocations, and +testInvocations method is called
  * Secondly, KWSpec class is checked again for available tests and for each selector, +testCaseWithSelector: method called
- *   Default XCTest implementation creates it's own NSInvocation, differs from those were created in +testInvocations method
- *   Since this invocation wasn't created by Kiwi, it doesn't have associated kw_example, and incorrect name is returned [[KWSepc (null])
+ * Default XCTest implementation creates it's own NSInvocation, which differs from those were created in +testInvocations method
+ * Since this invocation wasn't created by Kiwi, it doesn't have associated kw_example, and incorrect name is returned [[KWSepc (null])
  *
  */
 + (id)testCaseWithSelector:(SEL)selector {
-    static NSMutableDictionary *testInvocationsPerClass;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        testInvocationsPerClass = [[NSMutableDictionary alloc] init];
-    });
-    NSArray *testInvocations = testInvocationsPerClass[NSStringFromClass(self)];
-    if (!testInvocations) {
-        testInvocations = [self testInvocations];
-        testInvocationsPerClass[NSStringFromClass(self)] = testInvocations;
-    }
-
-    for (NSInvocation *invocation in testInvocations) {
-        if (sel_isEqual(invocation.selector,selector)) {
-            return [[self alloc] initWithInvocation:invocation];
-        }
+    NSInvocation * invocation = [self testInvocationForSelector:selector];
+    if (invocation) {
+        return  [[self alloc] initWithInvocation:invocation];
     }
 
     // Falling back to default implementation, if we didn't found invocation for this selector
     return [super testCaseWithSelector:selector];
 }
+
+static char * _cachedTestInvocationsKey = "cachedInvocationsKey";
+
++ (NSInvocation *)testInvocationForSelector:(SEL)selector {
+    NSDictionary *cachedInvocationsPerSelector = objc_getAssociatedObject(self, _cachedTestInvocationsKey);
+
+    if (!cachedInvocationsPerSelector) {
+        NSMutableDictionary *cachedTestInvocations = [NSMutableDictionary dictionary];
+        for (NSInvocation *testInvocation in [self testInvocations]) {
+            NSString *selectorString = NSStringFromSelector(testInvocation.selector);
+            cachedTestInvocations[selectorString] = testInvocation;
+        }
+
+        objc_setAssociatedObject(self, _cachedTestInvocationsKey, cachedTestInvocations, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+        cachedInvocationsPerSelector = cachedTestInvocations;
+    }
+
+    NSString *selectorString = NSStringFromSelector(selector);
+    return cachedInvocationsPerSelector[selectorString];
+}
+
 
 /* Methods are only implemented by sub-classes */
 
