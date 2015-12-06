@@ -39,26 +39,6 @@
     return [super testCaseWithSelector:selector];
 }
 
-static char * _cachedTestInvocationsKey = "cachedInvocationsKey";
-
-+ (NSInvocation *)testInvocationForSelector:(SEL)selector {
-    NSDictionary *cachedInvocationsPerSelector = objc_getAssociatedObject(self, _cachedTestInvocationsKey);
-
-    if (!cachedInvocationsPerSelector) {
-        NSMutableDictionary *cachedTestInvocations = [NSMutableDictionary dictionary];
-        for (NSInvocation *testInvocation in [self testInvocations]) {
-            NSString *selectorString = NSStringFromSelector(testInvocation.selector);
-            cachedTestInvocations[selectorString] = testInvocation;
-        }
-
-        objc_setAssociatedObject(self, _cachedTestInvocationsKey, cachedTestInvocations, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-        cachedInvocationsPerSelector = cachedTestInvocations;
-    }
-
-    NSString *selectorString = NSStringFromSelector(selector);
-    return cachedInvocationsPerSelector[selectorString];
-}
-
 
 /* Methods are only implemented by sub-classes */
 
@@ -89,19 +69,66 @@ static char * _cachedTestInvocationsKey = "cachedInvocationsKey";
     if ([self methodForSelector:buildExampleGroups] == [KWSpec methodForSelector:buildExampleGroups])
         return nil;
 
+    // Return cached values if any
+    NSMutableArray *invocations = [self cachedTestInvocations];
+    if (invocations) {
+        return invocations;
+    }
+
     KWExampleSuite *exampleSuite = [[KWExampleSuiteBuilder sharedExampleSuiteBuilder] buildExampleSuite:^{
         [self buildExampleGroups];
     }];
 
-    NSMutableArray *invocations = [NSMutableArray new];
+    invocations = [NSMutableArray new];
     for (KWExample *example in exampleSuite) {
         SEL selector = [self addInstanceMethodForExample:example];
         NSInvocation *invocation = [self invocationForExample:example selector:selector];
         [invocations addObject:invocation];
     }
 
+    // Save cached values for later usage
+    self.cachedTestInvocations = invocations;
+
     return invocations;
 }
+
++ (NSInvocation *)testInvocationForSelector:(SEL)selector {
+    NSMutableDictionary *invocationsPerSelector = [self cachedTestInvocationsPerSelector];
+    NSString *selectorKey = NSStringFromSelector(selector);
+
+    // Return cached values if any
+    if (invocationsPerSelector) {
+        return invocationsPerSelector[selectorKey];
+    }
+
+    invocationsPerSelector = [NSMutableDictionary dictionary];
+    for (NSInvocation *testInvocation in [self testInvocations]) {
+        NSString *invocationSelectorString = NSStringFromSelector(testInvocation.selector);
+        invocationsPerSelector[invocationSelectorString] = testInvocation;
+    }
+
+    // Save cached values for later usage
+    [self setCachedTestInvocationsPerSelector:invocationsPerSelector];
+
+    return invocationsPerSelector[selectorKey];
+}
+
++ (id)cachedTestInvocations {
+    return objc_getAssociatedObject(self, @selector(cachedTestInvocations));
+}
+
++ (void)setCachedTestInvocations:(id)cachedTestInvocations {
+    objc_setAssociatedObject(self, @selector(cachedTestInvocations), cachedTestInvocations, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+}
+
++ (id)cachedTestInvocationsPerSelector {
+    return objc_getAssociatedObject(self, @selector(cachedTestInvocationsPerSelector));
+}
+
++ (void)setCachedTestInvocationsPerSelector:(id)cachedTestInvocationsPerSelector {
+    objc_setAssociatedObject(self, @selector(cachedTestInvocationsPerSelector), cachedTestInvocationsPerSelector, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+}
+
 
 + (SEL)addInstanceMethodForExample:(KWExample *)example {
     Method method = class_getInstanceMethod(self, @selector(runExample));
