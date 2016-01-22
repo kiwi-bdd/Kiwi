@@ -25,10 +25,12 @@
 
 - (void)addObserver {
     NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
+    __weak typeof(self) weakself = self;
     self.observer = [center addObserverForName:self.subject
                                         object:self.expectedObject
                                          queue:nil
                                     usingBlock:^(NSNotification *note) {
+                                        typeof(self) self = weakself;
                                         self.notification = note;
                                         self.didReceiveNotification = YES;
                                         if (self.expectedObject) {
@@ -41,6 +43,11 @@
                                             self.evaluationBlock(note);
                                         }
                                     }];
+}
+
+- (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self.observer];
+    NSLog(@"notification matcher deallocated");
 }
 
 #pragma mark - Matching

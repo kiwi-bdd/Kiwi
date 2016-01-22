@@ -263,6 +263,8 @@
 		CE39E6191B857CE000736C33 /* KWObjCNimbleTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CE39E6171B857CE000736C33 /* KWObjCNimbleTests.m */; };
 		CE39E61B1B857DE300736C33 /* KWSwiftNimbleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE39E61A1B857DE300736C33 /* KWSwiftNimbleTests.swift */; };
 		CE39E61C1B857DE300736C33 /* KWSwiftNimbleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE39E61A1B857DE300736C33 /* KWSwiftNimbleTests.swift */; };
+		CE729B5F1B8DACEE00FDB851 /* KWNotificationMatcherTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CE729B5E1B8DACEE00FDB851 /* KWNotificationMatcherTests.m */; };
+		CE729B601B8DACEE00FDB851 /* KWNotificationMatcherTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CE729B5E1B8DACEE00FDB851 /* KWNotificationMatcherTests.m */; };
 		CE7EFF991B8475BD00FFE6D6 /* KWSwiftXCTestAssertionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7EFF981B8475BD00FFE6D6 /* KWSwiftXCTestAssertionTests.swift */; };
 		CE7EFF9A1B8475BD00FFE6D6 /* KWSwiftXCTestAssertionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7EFF981B8475BD00FFE6D6 /* KWSwiftXCTestAssertionTests.swift */; };
 		CE7EFF9C1B847AD700FFE6D6 /* KWObjCXCTestAssertionTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CE7EFF9B1B847AD700FFE6D6 /* KWObjCXCTestAssertionTests.m */; };
@@ -803,7 +805,7 @@
 		CE39E6141B857CAB00736C33 /* Nimble.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Nimble.framework; path = Carthage/Build/Mac/Nimble.framework; sourceTree = "<group>"; };
 		CE39E6171B857CE000736C33 /* KWObjCNimbleTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KWObjCNimbleTests.m; sourceTree = "<group>"; };
 		CE39E61A1B857DE300736C33 /* KWSwiftNimbleTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KWSwiftNimbleTests.swift; sourceTree = "<group>"; };
-		CE54493E1B8BDCB0002994B5 /* KiwiTests-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "KiwiTests-Bridging-Header.h"; sourceTree = "<group>"; };
+		CE729B5E1B8DACEE00FDB851 /* KWNotificationMatcherTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KWNotificationMatcherTests.m; sourceTree = "<group>"; };
 		CE7EFF981B8475BD00FFE6D6 /* KWSwiftXCTestAssertionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KWSwiftXCTestAssertionTests.swift; sourceTree = "<group>"; };
 		CE7EFF9B1B847AD700FFE6D6 /* KWObjCXCTestAssertionTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KWObjCXCTestAssertionTests.m; sourceTree = "<group>"; };
 		CE80E44E1AF255BF00D2F0D6 /* KWBackgroundTask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KWBackgroundTask.h; sourceTree = "<group>"; };
@@ -1342,6 +1344,7 @@
 				A385CAE713AA7EA200DCA951 /* KWUserDefinedMatcherTest.m */,
 				C931D36D18AB2DEB005BC184 /* KWBeZeroMatcherTest.m */,
 				DA3EAD0918A86E5600EBBF57 /* KWUserDefinedMatcherFunctionalTest.m */,
+				CE729B5E1B8DACEE00FDB851 /* KWNotificationMatcherTests.m */,
 			);
 			name = Matchers;
 			sourceTree = "<group>";
@@ -1865,6 +1868,7 @@
 				4AE030AB1AEB494400556381 /* KWCaptureTest.m in Sources */,
 				4AE030AC1AEB494400556381 /* KWSharedExampleRegistryTest.m in Sources */,
 				4AE030AD1AEB494400556381 /* KWSharedExampleTest.m in Sources */,
+				CE729B601B8DACEE00FDB851 /* KWNotificationMatcherTests.m in Sources */,
 				4AE030AE1AEB494400556381 /* KWSharedExampleFunctionalTest.m in Sources */,
 				4AE030AF1AEB494400556381 /* KWFunctionalTests.m in Sources */,
 				4AE030B01AEB494400556381 /* KWMessagePatternFunctionalTests.m in Sources */,
@@ -2029,6 +2033,7 @@
 				CE87C5111AF1994200310C07 /* KWSharedExampleRegistryTest.m in Sources */,
 				CE87C5121AF1994200310C07 /* KWSharedExampleTest.m in Sources */,
 				CE87C5131AF1994200310C07 /* KWSharedExampleFunctionalTest.m in Sources */,
+				CE729B5F1B8DACEE00FDB851 /* KWNotificationMatcherTests.m in Sources */,
 				CE87C5141AF1994200310C07 /* KWFunctionalTests.m in Sources */,
 				CE87C5151AF1994200310C07 /* KWMessagePatternFunctionalTests.m in Sources */,
 				CE87C5161AF1994200310C07 /* Carrier.m in Sources */,
