@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "KWProbe.h"
 
-#define kKW_DEFAULT_PROBE_DELAY 0.1
+#define kKW_DEFAULT_PROBE_DELAY 0.01
 
 @interface KWProbePoller : NSObject
 
