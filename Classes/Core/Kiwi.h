@@ -36,6 +36,8 @@ extern "C" {
 #import <Kiwi/KWBeforeAllNode.h>
 #import <Kiwi/KWBeforeEachNode.h>
 #import <Kiwi/KWBlock.h>
+#import <Kiwi/KWBlockLayout.h>
+#import <Kiwi/KWProxyBlock.h>
 #import <Kiwi/KWBlockNode.h>
 #import <Kiwi/KWBlockRaiseMatcher.h>
 #import <Kiwi/KWCallSite.h>
@@ -71,6 +73,8 @@ extern "C" {
 #import <Kiwi/KWMatchers.h>
 #import <Kiwi/KWMatching.h>
 #import <Kiwi/KWMessagePattern.h>
+#import <Kiwi/KWBlockMessagePattern.h>
+#import <Kiwi/KWSelectorMessagePattern.h>
 #import <Kiwi/KWMessageSpying.h>
 #import <Kiwi/KWMock.h>
 #import <Kiwi/KWNilMatcher.h>
@@ -80,6 +84,7 @@ extern "C" {
 #import <Kiwi/KWPendingNode.h>
 #import <Kiwi/KWProbe.h>
 #import <Kiwi/KWReceiveMatcher.h>
+#import <Kiwi/KWBeEvaluatedMatcher.h>    
 #import <Kiwi/KWRegisterMatchersNode.h>
 #import <Kiwi/KWRegularExpressionPatternMatcher.h>
 #import <Kiwi/KWReporting.h>
@@ -94,6 +99,7 @@ extern "C" {
 #import <Kiwi/KWUserDefinedMatcher.h>
 #import <Kiwi/KWValue.h>
 #import <Kiwi/KWVerifying.h>
+#import <Kiwi/KWBlockSignature.h>
 
 // Public Foundation Categories
 #import <Kiwi/NSObject+KiwiMockAdditions.h>

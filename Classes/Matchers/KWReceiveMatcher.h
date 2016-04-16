@@ -6,16 +6,13 @@
 
 #import "KiwiConfiguration.h"
 #import "KWCountType.h"
-#import "KWMatcher.h"
+#import "KWMessageTrackerMatcher.h"
 #import "KWMatchVerifier.h"
 
 @class KWMessagePattern;
 @class KWMessageTracker;
 
-@interface KWReceiveMatcher : KWMatcher
-
-@property (nonatomic, assign) BOOL willEvaluateMultipleTimes;
-@property (nonatomic, assign) BOOL willEvaluateAgainstNegativeExpectation;
+@interface KWReceiveMatcher : KWMessageTrackerMatcher
 
 #pragma mark - Configuring Matchers
 
