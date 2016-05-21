@@ -42,7 +42,10 @@
             matched = YES;
             
             if (self.expectedValue) {
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated"
                 matched = [self.expectedValue isEqualOrMatches:value];
+#pragma clang diagnostic pop
             }
         }
     }
