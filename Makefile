@@ -2,12 +2,13 @@ SHELL = /bin/bash -e -o pipefail
 IPHONE32 = -scheme Kiwi-iOS -destination 'platform=iOS Simulator,name=iPhone 5'
 IPHONE64 = -scheme Kiwi-iOS -destination 'platform=iOS Simulator,name=iPhone 6'
 MACOSX = -scheme Kiwi-OSX -destination 'generic/platform=OS X'
+CARTHAGE_PLATFORM = --platform iphoneos,macosx
 XCODEBUILD = xcodebuild -project Kiwi.xcodeproj
 
 default: clean ios
 
 bootstrap:
-	carthage bootstrap --no-use-binaries --platform iphoneos,macosx
+	carthage bootstrap --no-use-binaries $(CARTHAGE_PLATFORM)
 
 clean:
 	xcodebuild clean
@@ -38,4 +39,7 @@ pod-lint-library:
 pod-lint-framework:
 	pod lib lint
 
-ci: bootstrap test-iphone32 test-iphone64 test-macosx pod-lint-library pod-lint-framework
+carthage-build:
+	carthage build --no-skip-current $(CARTHAGE_PLATFORM)
+
+ci: bootstrap test-iphone32 test-iphone64 test-macosx carthage-build pod-lint-library pod-lint-framework
