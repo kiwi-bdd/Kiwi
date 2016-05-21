@@ -803,7 +803,6 @@
 		CE39E6141B857CAB00736C33 /* Nimble.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Nimble.framework; path = Carthage/Build/Mac/Nimble.framework; sourceTree = "<group>"; };
 		CE39E6171B857CE000736C33 /* KWObjCNimbleTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KWObjCNimbleTests.m; sourceTree = "<group>"; };
 		CE39E61A1B857DE300736C33 /* KWSwiftNimbleTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KWSwiftNimbleTests.swift; sourceTree = "<group>"; };
-		CE54493E1B8BDCB0002994B5 /* KiwiTests-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "KiwiTests-Bridging-Header.h"; sourceTree = "<group>"; };
 		CE7EFF981B8475BD00FFE6D6 /* KWSwiftXCTestAssertionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KWSwiftXCTestAssertionTests.swift; sourceTree = "<group>"; };
 		CE7EFF9B1B847AD700FFE6D6 /* KWObjCXCTestAssertionTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KWObjCXCTestAssertionTests.m; sourceTree = "<group>"; };
 		CE80E44E1AF255BF00D2F0D6 /* KWBackgroundTask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KWBackgroundTask.h; sourceTree = "<group>"; };
@@ -2249,6 +2248,7 @@
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = c99;
@@ -2285,6 +2285,7 @@
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_NO_COMMON_BLOCKS = YES;
