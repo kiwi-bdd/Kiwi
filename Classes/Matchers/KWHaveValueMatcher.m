@@ -42,7 +42,9 @@
             matched = YES;
             
             if (self.expectedValue) {
-                matched = [self.expectedValue isEqualOrMatches:value];
+                KWGenericMatcher *matcher = [KWGenericMatcher matcherWithSubject:value];
+                [matcher match:self.expectedValue];
+                matched = [matcher evaluate];
             }
         }
     }
