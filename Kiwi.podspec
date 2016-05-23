@@ -23,6 +23,6 @@ Pod::Spec.new do |s|
   s.source_files = 'Classes/**/*.{h,m}'
   s.requires_arc = true
   s.prefix_header_contents = '#import <XCTest/XCTest.h>'
-
+  s.user_target_xcconfig = { 'FRAMEWORK_SEARCH_PATHS' => '$(PLATFORM_DIR)/Developer/Library/Frameworks' }
 end
 
