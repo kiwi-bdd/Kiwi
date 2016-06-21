@@ -1,5 +1,5 @@
 language: objective-c
-osx_image: xcode6.4
+osx_image: xcode7.3
 before_install:
   - gem install xcpretty # this will go away soon when Travis installs xcpretty
   - gem install cocoapods # latest version of cocoapods

@@ -247,6 +247,8 @@
 		4AE030C81AEB494400556381 /* KWValueTest.m in Sources */ = {isa = PBXBuildFile; fileRef = F5C6FD2311782A290068BBC8 /* KWValueTest.m */; };
 		4AE030C91AEB494400556381 /* NSNumber_KiwiAdditionsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = DA9C69F7190CA6EE002C4DC0 /* NSNumber_KiwiAdditionsTests.m */; };
 		4AE030CA1AEB4DCF00556381 /* NSObject+KiwiSpyAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F982CD916A802920030A0B1 /* NSObject+KiwiSpyAdditions.m */; };
+		50ACAF651BBA28D000F29B0F /* DoNotUseMe.m in Sources */ = {isa = PBXBuildFile; fileRef = 50ACAF641BBA28D000F29B0F /* DoNotUseMe.m */; settings = {ASSET_TAGS = (); }; };
+		50ACAF661BBA28D000F29B0F /* DoNotUseMe.m in Sources */ = {isa = PBXBuildFile; fileRef = 50ACAF641BBA28D000F29B0F /* DoNotUseMe.m */; settings = {ASSET_TAGS = (); }; };
 		CE0736B41B8577140023EBEA /* Expecta.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE0736B31B8577140023EBEA /* Expecta.framework */; };
 		CE0736B61B85771E0023EBEA /* Expecta.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE0736B51B85771E0023EBEA /* Expecta.framework */; };
 		CE0736B81B8577490023EBEA /* KWExpectaTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CE0736B71B8577490023EBEA /* KWExpectaTests.m */; };
@@ -593,6 +595,8 @@
 		4E7659A8172DAC6500105B93 /* KWContainStringMatcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KWContainStringMatcher.h; sourceTree = "<group>"; };
 		4E7659A9172DAC6500105B93 /* KWContainStringMatcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KWContainStringMatcher.m; sourceTree = "<group>"; };
 		4E7659AF172DAE4D00105B93 /* KWContainStringMatcherTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KWContainStringMatcherTest.m; sourceTree = "<group>"; };
+		50ACAF631BBA28D000F29B0F /* DoNotUseMe.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DoNotUseMe.h; path = "Test Classes/DoNotUseMe.h"; sourceTree = "<group>"; };
+		50ACAF641BBA28D000F29B0F /* DoNotUseMe.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DoNotUseMe.m; path = "Test Classes/DoNotUseMe.m"; sourceTree = "<group>"; };
 		511901A016A95803006E7359 /* KWChangeMatcherTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KWChangeMatcherTest.m; sourceTree = "<group>"; };
 		511901A316A95CDE006E7359 /* KWChangeMatcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KWChangeMatcher.h; sourceTree = "<group>"; };
 		511901A416A95CDE006E7359 /* KWChangeMatcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KWChangeMatcher.m; sourceTree = "<group>"; };
@@ -803,7 +807,6 @@
 		CE39E6141B857CAB00736C33 /* Nimble.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Nimble.framework; path = Carthage/Build/Mac/Nimble.framework; sourceTree = "<group>"; };
 		CE39E6171B857CE000736C33 /* KWObjCNimbleTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KWObjCNimbleTests.m; sourceTree = "<group>"; };
 		CE39E61A1B857DE300736C33 /* KWSwiftNimbleTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KWSwiftNimbleTests.swift; sourceTree = "<group>"; };
-		CE54493E1B8BDCB0002994B5 /* KiwiTests-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "KiwiTests-Bridging-Header.h"; sourceTree = "<group>"; };
 		CE7EFF981B8475BD00FFE6D6 /* KWSwiftXCTestAssertionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KWSwiftXCTestAssertionTests.swift; sourceTree = "<group>"; };
 		CE7EFF9B1B847AD700FFE6D6 /* KWObjCXCTestAssertionTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KWObjCXCTestAssertionTests.m; sourceTree = "<group>"; };
 		CE80E44E1AF255BF00D2F0D6 /* KWBackgroundTask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KWBackgroundTask.h; sourceTree = "<group>"; };
@@ -895,6 +898,8 @@
 				9F982A1E16A801800030A0B1 /* Carrier.m */,
 				9F982A1F16A801800030A0B1 /* Cruiser.h */,
 				9F982A2016A801800030A0B1 /* Cruiser.m */,
+				50ACAF631BBA28D000F29B0F /* DoNotUseMe.h */,
+				50ACAF641BBA28D000F29B0F /* DoNotUseMe.m */,
 				9F982A2116A801800030A0B1 /* Engine.h */,
 				9F982A2216A801800030A0B1 /* Engine.m */,
 				9F982A2316A801800030A0B1 /* Fighter.h */,
@@ -1878,6 +1883,7 @@
 				4AE030B71AEB494400556381 /* SpaceShip.m in Sources */,
 				4AE030B81AEB494400556381 /* TestReporter.m in Sources */,
 				4AE030B91AEB494400556381 /* TestSpy.m in Sources */,
+				50ACAF661BBA28D000F29B0F /* DoNotUseMe.m in Sources */,
 				4AE030BA1AEB494400556381 /* TestVerifier.m in Sources */,
 				4AE030BB1AEB494400556381 /* KWBlockNodeTest.m in Sources */,
 				4AE030BC1AEB494400556381 /* KWContextNodeTest.m in Sources */,
@@ -2042,6 +2048,7 @@
 				CE87C51F1AF1994200310C07 /* TestReporter.m in Sources */,
 				CE87C5201AF1994200310C07 /* TestSpy.m in Sources */,
 				CE87C5211AF1994200310C07 /* TestVerifier.m in Sources */,
+				50ACAF651BBA28D000F29B0F /* DoNotUseMe.m in Sources */,
 				CE87C5221AF1994200310C07 /* KWBlockNodeTest.m in Sources */,
 				CE87C5231AF1994200310C07 /* KWContextNodeTest.m in Sources */,
 				CE87C5241AF1994200310C07 /* KWExampleSuiteBuilderTest.m in Sources */,
@@ -2249,6 +2256,7 @@
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = c99;
@@ -2285,6 +2293,7 @@
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_NO_COMMON_BLOCKS = YES;

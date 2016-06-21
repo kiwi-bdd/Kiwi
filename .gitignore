@@ -14,7 +14,7 @@ xcuserdata/
 output
 
 # Carthage
-/Carthage/Checkouts/
+/Carthage/
 
 # AppCode files
 .idea

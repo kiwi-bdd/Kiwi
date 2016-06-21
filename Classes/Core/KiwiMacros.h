@@ -35,6 +35,7 @@
 
 #pragma mark - Keywords
 
+#ifndef KIWI_DISABLE_MATCHERS
 // Kiwi macros used in specs for verifying expectations.
 #define should attachToVerifier:KW_ADD_MATCH_VERIFIER(KWExpectationTypeShould)
 #define shouldNot attachToVerifier:KW_ADD_MATCH_VERIFIER(KWExpectationTypeShouldNot)
@@ -62,6 +63,7 @@
 
 // used for message patterns to allow matching any value
 #define any() [KWAny any]
+#endif
 
 // If a gcc compatible compiler is available, use the statement and
 // declarations in expression extension to provide a convenient catch-all macro

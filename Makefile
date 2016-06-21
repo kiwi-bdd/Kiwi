@@ -6,6 +6,9 @@ XCODEBUILD = xcodebuild -project Kiwi.xcodeproj
 
 default: clean ios
 
+bootstrap:
+	carthage bootstrap --no-use-binaries --platform iphoneos,macosx
+
 clean:
 	xcodebuild clean
 
@@ -35,4 +38,4 @@ pod-lint-library:
 pod-lint-framework:
 	pod lib lint
 
-ci: test-iphone32 test-iphone64 test-macosx pod-lint-library pod-lint-framework
+ci: bootstrap test-iphone32 test-iphone64 test-macosx pod-lint-library pod-lint-framework
