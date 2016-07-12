@@ -117,6 +117,12 @@
   return verifier;
 }
 
+#pragma mark - Clear Verifiers
+
+- (void)clearVerifiers {
+    [self.verifiers removeAllObjects];
+}
+
 #pragma mark - Running examples
 
 - (void)runWithDelegate:(XCTestCase<KWExampleDelegate> *)delegate {
@@ -124,6 +130,7 @@
     [self.matcherFactory registerMatcherClassesWithNamespacePrefix:@"KW"];
     [[KWExampleSuiteBuilder sharedExampleSuiteBuilder] setCurrentExample:self];
     [self.exampleNode acceptExampleNodeVisitor:self];
+    [self clearVerifiers];
 }
 
 #pragma mark - Reporting failure
