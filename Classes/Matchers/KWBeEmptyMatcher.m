@@ -11,6 +11,7 @@
 
 #pragma mark - Properties
 
+@property (nonatomic, readwrite, getter=isExpectsNil) BOOL expectsNil;
 @property (nonatomic, readwrite) NSUInteger count;
 
 @end
@@ -20,13 +21,17 @@
 #pragma mark - Getting Matcher Strings
 
 + (NSArray *)matcherStrings {
-    return @[@"beEmpty"];
+    return @[@"beNilOrEmpty", @"beEmpty"];
 }
 
 #pragma mark - Matching
 
 - (BOOL)evaluate {
-    if ([self.subject respondsToSelector:@selector(count)]) {
+    if (self.expectsNil && self.subject == nil) {
+        self.count = 0;
+        return YES;
+    }
+    else if ([self.subject respondsToSelector:@selector(count)]) {
         self.count = [self.subject count];
         return self.count == 0;
     }
@@ -49,20 +54,28 @@
 }
 
 - (NSString *)failureMessageForShould {
-    return [NSString stringWithFormat:@"expected subject to be empty, got %@", [self countPhrase]];
+    return [NSString stringWithFormat:@"expected subject to %@, got %@", [self description], [self countPhrase]];
 }
 
 - (NSString *)failureMessageForShouldNot {
-    return @"expected subject not to be empty";
+    return [NSString stringWithFormat:@"expected subject not to %@", [self description]];
 }
 
 - (NSString *)description {
+    if (self.expectsNil) {
+        return @"be nil or empty";
+    }
     return @"be empty";
 }
 
 #pragma mark - Configuring Matchers
 
 - (void)beEmpty {
+    self.expectsNil = NO;
+}
+
+- (void)beNilOrEmpty {
+    self.expectsNil = YES;
 }
 
 @end

@@ -12,5 +12,6 @@
 #pragma mark - Configuring Matchers
 
 - (void)beEmpty;
+- (void)beNilOrEmpty;
 
 @end
