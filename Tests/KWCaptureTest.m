@@ -91,6 +91,17 @@
     XCTAssertThrows([spy argument], @"Should have raised an exception");
 }
 
+- (void)testShouldTellWhetherAnArgumentIsCaptured {
+    id robotMock = [KWMock nullMockForClass:[Robot class]];
+    KWCaptureSpy *spy = [robotMock captureArgument:@selector(speak:afterDelay:whenDone:) atIndex:1];
+    
+    STAssertEquals([spy isCaptured], NO, @"Captured flag should be 'NO'");
+    [robotMock speak:@"Hello" afterDelay:2 whenDone:^{}];
+
+    STAssertEquals([spy isCaptured], YES, @"isCaptured flag should be 'YES'");
+    STAssertNotNil(spy.argument, @"Captured argument should not be nil");
+}
+
 - (void)testAddSpyConvenienceMethodOnNSObject {
 	Robot *robot = [[Robot alloc] init];
 	KWCaptureSpy *spy = [robot captureArgument:@selector(speak:) atIndex:0];
