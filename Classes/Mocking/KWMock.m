@@ -399,7 +399,13 @@ static NSString * const ChangeStubValueAfterTimesKey = @"ChangeStubValueAfterTim
 }
 
 - (NSMethodSignature *)methodSignatureForSelector:(SEL)aSelector {
-    NSMethodSignature *methodSignature = [self.mockedClass instanceMethodSignatureForSelector:aSelector];
+    NSMethodSignature *methodSignature = nil;
+    
+    if (self.isPartialMock)
+            methodSignature = [self.mockedObject methodSignatureForSelector:aSelector];
+    
+    if(methodSignature == nil)
+        methodSignature = [self.mockedClass instanceMethodSignatureForSelector:aSelector];
 
     if (methodSignature != nil)
         return methodSignature;
