@@ -62,7 +62,7 @@
 #define fail(message, ...) [[[KWExampleSuiteBuilder sharedExampleSuiteBuilder] currentExample] reportFailure:[KWFailure failureWithCallSite:KW_THIS_CALLSITE format:message, ##__VA_ARGS__]]
 
 // used for message patterns to allow matching any value
-#define any() [KWAny any]
+#define kw_any() [KWAny any]
 #endif
 
 // If a gcc compatible compiler is available, use the statement and
