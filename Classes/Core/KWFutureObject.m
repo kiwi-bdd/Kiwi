@@ -16,7 +16,7 @@
 
 @implementation KWFutureObject
 
-+ (id)objectWithObjectPointer:(id *)pointer {
++ (id)objectWithObjectPointer:(id __autoreleasing *)pointer {
   return [self futureObjectWithBlock:^{ return *pointer; }];
 }
 

@@ -8,7 +8,7 @@
 
 #import "KWMatcher.h"
 
-typedef NSInteger (^KWChangeMatcherCountBlock)();
+typedef NSInteger (^KWChangeMatcherCountBlock)(void);
 
 @interface KWChangeMatcher : KWMatcher
 
