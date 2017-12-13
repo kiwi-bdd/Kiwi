@@ -49,7 +49,7 @@
 - (void)testItShouldStubInstanceMethodsReturningObjectsWithAnyArguments {
     Cruiser *cruiser = [Cruiser cruiserWithCallsign:@"Galactica"];
     Fighter *fighter = [Fighter fighterWithCallsign:@"Viper 1"];
-    [cruiser stub:@selector(fighterWithCallsign:) andReturn:fighter withArguments:any()];
+    [cruiser stub:@selector(fighterWithCallsign:) andReturn:fighter withArguments:kw_any()];
     XCTAssertEqual(fighter, [cruiser fighterWithCallsign:@"Foo"], @"expected method to be stubbed");
 }
 
