@@ -40,7 +40,7 @@
 
 + (id)kiwi_testSuiteWithName:(NSString *)aName {
     id suite = [self kiwi_testSuiteWithName:aName];
-    if ([aName isEqualToString:@"All tests"]) {
+    if ([aName isEqualToString:@"All tests"] || [aName isEqualToString:@"KiwiTests.xctest"]) {
         if ([suite isMemberOfClass:[XCTestSuite class]]) {
             object_setClass(suite, [_KWAllTestsSuite class]);
         }
