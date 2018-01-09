@@ -33,9 +33,12 @@
 @implementation XCTestSuite (KWConfiguration)
 
 + (void)load {
-    Method testSuiteWithName = class_getClassMethod(self, @selector(testSuiteWithName:));
-    Method kiwi_testSuiteWithName = class_getClassMethod(self, @selector(kiwi_testSuiteWithName:));
-    method_exchangeImplementations(testSuiteWithName, kiwi_testSuiteWithName);
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        Method testSuiteWithName = class_getClassMethod(self, @selector(testSuiteWithName:));
+        Method kiwi_testSuiteWithName = class_getClassMethod(self, @selector(kiwi_testSuiteWithName:));
+        method_exchangeImplementations(testSuiteWithName, kiwi_testSuiteWithName);
+    });
 }
 
 + (id)kiwi_testSuiteWithName:(NSString *)aName {
