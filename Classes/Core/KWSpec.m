@@ -48,7 +48,7 @@
 
     // Only return invocation if the receiver is a concrete spec that has overridden -buildExampleGroups.
     if ([self methodForSelector:buildExampleGroups] == [KWSpec methodForSelector:buildExampleGroups])
-        return nil;
+        return @[];
 
     KWExampleSuite *exampleSuite = [[KWExampleSuiteBuilder sharedExampleSuiteBuilder] buildExampleSuite:^{
         [self buildExampleGroups];
