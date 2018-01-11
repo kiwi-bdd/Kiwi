@@ -17,7 +17,7 @@
 
 - (void)testItDoesntThrowExceptionWhenMakingExpectationsOnNilSubject {
     KWExample *example = [[KWExample alloc] initWithExampleNode:nil];
-    void (^itNodeImitation)() = ^{
+    void (^itNodeImitation)(void) = ^{
         [[(id)nil attachToVerifier:[example addMatchVerifierWithExpectationType:KWExpectationTypeShould callSite:nil]] equal:@"foo"];
         [[(id)nil attachToVerifier:[example addMatchVerifierWithExpectationType:KWExpectationTypeShouldNot callSite:nil]] containString:@"bar"];
     };

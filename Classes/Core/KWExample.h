@@ -141,7 +141,7 @@ void pendingWithCallSite(KWCallSite *aCallSite, NSString *aDescription, void (^b
 */
 void let(id name, id (^block)(void)); // coax Xcode into autocompleting
 #define let(var, ...) \
-    __block __typeof__((__VA_ARGS__)()) var = nil; \
+    __block __typeof__((__VA_ARGS__)()) var; \
     let_(KW_LET_REF(var), #var, __VA_ARGS__)
 
 #define PRAGMA(x) _Pragma (#x)
