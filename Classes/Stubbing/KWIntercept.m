@@ -125,7 +125,10 @@ Class KWInterceptClassForCanonicalClass(Class canonicalClass) {
     SEL supportsSecureCodingSelector = @selector(supportsSecureCoding);
     Method supportsSecureCodingMethod = class_getClassMethod(canonicalClass, supportsSecureCodingSelector);
     if (supportsSecureCodingMethod != NULL) {
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Warc-performSelector-leaks"
         BOOL support = [(id)canonicalClass performSelector:supportsSecureCodingSelector];
+#pragma clang diagnostic pop
         IMP supportsSecureCodingIMP = support ? (IMP)KWInterceptedSupportsSecureCodingTrue
                                               : (IMP)KWInterceptedSupportsSecureCodingFalse;
         class_addMethod(interceptMetaClass, supportsSecureCodingSelector, supportsSecureCodingIMP, "B@:");
