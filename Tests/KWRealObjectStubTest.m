@@ -198,7 +198,7 @@
 - (void)testStubSecureCodingOfDateClass {
     NSDate *date = [NSDate date];
     [NSDate stub:@selector(date) andReturn:date];
-    if (@available(iOS 11.0, *)) {
+    if (@available(macOS 10.13, iOS 11.0, watchOS 4.0, tvOS 11.0, *)) {
         NSData *data = [NSKeyedArchiver archivedDataWithRootObject:date requiringSecureCoding:YES error:NULL];
         XCTAssertNotNil(data, @"expected stubbed class to be able to use secure coding");
     }
