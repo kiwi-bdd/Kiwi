@@ -195,6 +195,15 @@
     XCTAssertEqual([cruiser classification], @"Enterprise", @"expected method to be stubbed with block");
 }
 
+- (void)testStubSecureCodingOfDateClass {
+    NSDate *date = [NSDate date];
+    [NSDate stub:@selector(date) andReturn:date];
+    if (@available(iOS 11.0, *)) {
+        NSData *data = [NSKeyedArchiver archivedDataWithRootObject:date requiringSecureCoding:YES error:NULL];
+        XCTAssertNotNil(data, @"expected stubbed class to be able to use secure coding");
+    }
+}
+
 @end
 
 #endif // #if KW_TESTS_ENABLED
