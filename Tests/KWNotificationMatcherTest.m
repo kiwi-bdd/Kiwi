@@ -67,7 +67,7 @@
     id object = [NSObject new];
     id subject = @"MyNotification";
     KWNotificationMatcher *matcher = [KWNotificationMatcher matcherWithSubject:subject];
-    [matcher bePostedWithObject:object andUserInfo:@{@"a":@"b", @1:@2}];
+    [matcher bePostedWithObject:object userInfo:@{@"a":@"b", @1:@2}];
     [[NSNotificationCenter defaultCenter] postNotificationName:subject object:object userInfo:@{@"a":@"b", @1:@2}];
     XCTAssertTrue([matcher evaluate], @"expected positive match");
 }
@@ -120,7 +120,7 @@
 
 - (void)testItShouldHaveInformativeFailureMessageForShouldWithObjectAndUserInfo {
     id matcher = [KWNotificationMatcher matcherWithSubject:NSPortDidBecomeInvalidNotification];
-    [matcher bePostedWithObject:@"sender" andUserInfo:@{@"message":@"text"}];
+    [matcher bePostedWithObject:@"sender" userInfo:@{@"message":@"text"}];
     XCTAssertEqualObjects([matcher failureMessageForShould], @"expect to receive \"NSPortDidBecomeInvalidNotification\" "
                          "notification with object: sender and user info: {\n    message = text;\n}", @"failure message should match");
 }
