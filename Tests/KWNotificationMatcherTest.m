@@ -37,6 +37,16 @@
     }
 }
 
+- (void)testCanMatchSubjectWithStringAndNotObject {
+    XCTAssertTrue([KWNotificationMatcher canMatchSubject:NSPortDidBecomeInvalidNotification], @"should be able to match notification name");
+    XCTAssertFalse([KWNotificationMatcher canMatchSubject:[NSObject new]], @"should not be able to match NSObject as a subject");
+}
+
+- (void)testShouldBeEvaluatedAtEndOfExample {
+    KWNotificationMatcher *matcher = [KWNotificationMatcher matcherWithSubject:NSPortDidBecomeInvalidNotification];
+    XCTAssertTrue([matcher shouldBeEvaluatedAtEndOfExample], @"should evaluate at the end of example to catch async notifications");
+}
+
 - (void)testItShouldMatchPostedNotificationWithAnyObject {
     id object = [NSObject new];
     id subject = @"MyNotification";
