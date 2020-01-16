@@ -32,7 +32,8 @@
 - (void)testEachMatcherStringIsANameOfAMatchingMethod {
     NSArray *matcherStrings = [KWNotificationMatcher matcherStrings];
     for (NSString *string in matcherStrings) {
-        XCTAssertTrue([KWNotificationMatcher instancesRespondToSelector:NSSelectorFromString(string)], @"expect to find an instance method: %@", string);
+        XCTAssertTrue([KWNotificationMatcher instancesRespondToSelector:NSSelectorFromString(string)],
+                      @"expect to find an instance method: %@", string);
     }
 }
 
@@ -101,28 +102,33 @@
 - (void)testItShouldHaveInformativeFailureMessageForShould {
     id matcher = [KWNotificationMatcher matcherWithSubject:NSPortDidBecomeInvalidNotification];
     [matcher bePosted];
-    XCTAssertEqualObjects([matcher failureMessageForShould], @"expect to receive \"NSPortDidBecomeInvalidNotification\" notification", @"failure message should match");
+    XCTAssertEqualObjects([matcher failureMessageForShould],
+                          @"expect to receive \"NSPortDidBecomeInvalidNotification\" notification",
+                          @"failure message should match");
 }
 
 - (void)testItShouldHaveInformativeFailureMessageForShouldWithObject {
     id matcher = [KWNotificationMatcher matcherWithSubject:NSPortDidBecomeInvalidNotification];
     [matcher bePostedWithObject:@"sender"];
-    XCTAssertEqualObjects([matcher failureMessageForShould], @"expect to receive \"NSPortDidBecomeInvalidNotification\" "
-                         "notification with object: sender", @"failure message should match");
+    XCTAssertEqualObjects([matcher failureMessageForShould],
+                          @"expect to receive \"NSPortDidBecomeInvalidNotification\" notification with object: sender",
+                          @"failure message should match");
 }
 
 - (void)testItShouldHaveInformativeFailureMessageForShouldWithUserInfo {
     id matcher = [KWNotificationMatcher matcherWithSubject:NSPortDidBecomeInvalidNotification];
     [matcher bePostedWithUserInfo:@{@"message":@"text"}];
-    XCTAssertEqualObjects([matcher failureMessageForShould], @"expect to receive \"NSPortDidBecomeInvalidNotification\" "
-                         "notification with user info: {\n    message = text;\n}", @"failure message should match");
+    XCTAssertEqualObjects([matcher failureMessageForShould],
+                          @"expect to receive \"NSPortDidBecomeInvalidNotification\" notification with user info: {\n    message = text;\n}",
+                          @"failure message should match");
 }
 
 - (void)testItShouldHaveInformativeFailureMessageForShouldWithObjectAndUserInfo {
     id matcher = [KWNotificationMatcher matcherWithSubject:NSPortDidBecomeInvalidNotification];
     [matcher bePostedWithObject:@"sender" userInfo:@{@"message":@"text"}];
     XCTAssertEqualObjects([matcher failureMessageForShould], @"expect to receive \"NSPortDidBecomeInvalidNotification\" "
-                         "notification with object: sender and user info: {\n    message = text;\n}", @"failure message should match");
+                         "notification with object: sender and user info: {\n    message = text;\n}",
+                          @"failure message should match");
 }
 
 - (void)testItShouldHaveInformativeFailureMessageForShouldNot {
