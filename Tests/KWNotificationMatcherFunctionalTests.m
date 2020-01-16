@@ -54,6 +54,22 @@ describe(@"KWNotificationMatcher", ^{
             [[theValue(blockWasEvaluated) should] beTrue];
         });
     });
+
+    context(@"asynchronous notification", ^{
+        void (^postDelayedNotification)(void) = ^{
+            [center performSelector:@selector(postNotificationName:object:) withObject:@"My Notification" afterDelay:0];
+        };
+
+        it(@"should not match syncronous expectation", ^{
+            [[@"My Notification" shouldNot] bePosted];
+            postDelayedNotification();
+        });
+
+        it(@"should match eventually", ^{
+            [[@"My Notification" shouldEventually] bePosted];
+            postDelayedNotification();
+        });
+    });
 });
 
 SPEC_END
