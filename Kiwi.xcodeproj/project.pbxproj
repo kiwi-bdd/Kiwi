@@ -247,6 +247,10 @@
 		4AE030C81AEB494400556381 /* KWValueTest.m in Sources */ = {isa = PBXBuildFile; fileRef = F5C6FD2311782A290068BBC8 /* KWValueTest.m */; };
 		4AE030C91AEB494400556381 /* NSNumber_KiwiAdditionsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = DA9C69F7190CA6EE002C4DC0 /* NSNumber_KiwiAdditionsTests.m */; };
 		4AE030CA1AEB4DCF00556381 /* NSObject+KiwiSpyAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F982CD916A802920030A0B1 /* NSObject+KiwiSpyAdditions.m */; };
+		4B9314A523D0E83C007A295C /* KWNotificationMatcherTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B9314A423D0E83C007A295C /* KWNotificationMatcherTest.m */; };
+		4B9314A623D0E83C007A295C /* KWNotificationMatcherTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B9314A423D0E83C007A295C /* KWNotificationMatcherTest.m */; };
+		4B9314A823D0F4C6007A295C /* KWNotificationMatcherFunctionalTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B9314A723D0F4C6007A295C /* KWNotificationMatcherFunctionalTests.m */; };
+		4B9314A923D0F4C6007A295C /* KWNotificationMatcherFunctionalTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B9314A723D0F4C6007A295C /* KWNotificationMatcherFunctionalTests.m */; };
 		50ACAF651BBA28D000F29B0F /* DoNotUseMe.m in Sources */ = {isa = PBXBuildFile; fileRef = 50ACAF641BBA28D000F29B0F /* DoNotUseMe.m */; };
 		50ACAF661BBA28D000F29B0F /* DoNotUseMe.m in Sources */ = {isa = PBXBuildFile; fileRef = 50ACAF641BBA28D000F29B0F /* DoNotUseMe.m */; };
 		CE0736B41B8577140023EBEA /* Expecta.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE0736B31B8577140023EBEA /* Expecta.framework */; };
@@ -588,6 +592,8 @@
 		4AE02FD81AEB46D000556381 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4AE33458195820DC00CDE895 /* KWMessagePattern.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KWMessagePattern.h; sourceTree = "<group>"; };
 		4AE33459195820DC00CDE895 /* KWMessagePattern.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KWMessagePattern.m; sourceTree = "<group>"; };
+		4B9314A423D0E83C007A295C /* KWNotificationMatcherTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KWNotificationMatcherTest.m; sourceTree = "<group>"; };
+		4B9314A723D0F4C6007A295C /* KWNotificationMatcherFunctionalTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KWNotificationMatcherFunctionalTests.m; sourceTree = "<group>"; };
 		4BA52D0015487F0C00FC957B /* KWCaptureTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KWCaptureTest.m; sourceTree = "<group>"; };
 		4E3C5DB01716C34900835B62 /* KWRegularExpressionPatternMatcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KWRegularExpressionPatternMatcher.h; sourceTree = "<group>"; };
 		4E3C5DB11716C34900835B62 /* KWRegularExpressionPatternMatcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KWRegularExpressionPatternMatcher.m; sourceTree = "<group>"; };
@@ -1222,6 +1228,7 @@
 				CE0736B71B8577490023EBEA /* KWExpectaTests.m */,
 				89F9CB7B16B1C2C400E87D34 /* KWFunctionalTests.m */,
 				4A4AA324195B7C4E00423CD6 /* KWMessagePatternFunctionalTests.m */,
+				4B9314A723D0F4C6007A295C /* KWNotificationMatcherFunctionalTests.m */,
 				CE39E6171B857CE000736C33 /* KWObjCNimbleTests.m */,
 				CE7EFF9B1B847AD700FFE6D6 /* KWObjCXCTestAssertionTests.m */,
 				CE39E61A1B857DE300736C33 /* KWSwiftNimbleTests.swift */,
@@ -1343,6 +1350,7 @@
 				F553B29D11755A00004FCA2E /* KWInequalityMatcherTest.m */,
 				F5C36E91115C9F0700425FDA /* KWReceiveMatcherTest.m */,
 				4E3C5DB71716C68000835B62 /* KWRegularExpressionPatternMatcherTest.m */,
+				4B9314A423D0E83C007A295C /* KWNotificationMatcherTest.m */,
 				F553B6641175D48C004FCA2E /* KWRespondToSelectorMatcherTest.m */,
 				A385CAE713AA7EA200DCA951 /* KWUserDefinedMatcherTest.m */,
 				C931D36D18AB2DEB005BC184 /* KWBeZeroMatcherTest.m */,
@@ -1844,6 +1852,7 @@
 				4AE030951AEB494400556381 /* KWBeTrueMatcherTest.m in Sources */,
 				4AE030961AEB494400556381 /* KWBeWithinMatcherTest.m in Sources */,
 				4AE030971AEB494400556381 /* KWBlockRaiseMatcherTest.m in Sources */,
+				4B9314A623D0E83C007A295C /* KWNotificationMatcherTest.m in Sources */,
 				4AE030981AEB494400556381 /* KWChangeMatcherTest.m in Sources */,
 				4AE030991AEB494400556381 /* KWConformToProtocolMatcherTest.m in Sources */,
 				CE39E61C1B857DE300736C33 /* KWSwiftNimbleTests.swift in Sources */,
@@ -1876,6 +1885,7 @@
 				4AE030B11AEB494400556381 /* Carrier.m in Sources */,
 				4AE030B21AEB494400556381 /* Cruiser.m in Sources */,
 				4AE030B31AEB494400556381 /* Engine.m in Sources */,
+				4B9314A923D0F4C6007A295C /* KWNotificationMatcherFunctionalTests.m in Sources */,
 				CE7EFF9D1B847AD700FFE6D6 /* KWObjCXCTestAssertionTests.m in Sources */,
 				4AE030B41AEB494400556381 /* Fighter.m in Sources */,
 				4AE030B51AEB494400556381 /* Galaxy.m in Sources */,
@@ -2009,6 +2019,7 @@
 				CE87C4FB1AF1994100310C07 /* KWBeWithinMatcherTest.m in Sources */,
 				CE87C4FC1AF1994100310C07 /* KWBlockRaiseMatcherTest.m in Sources */,
 				CE87C4FD1AF1994100310C07 /* KWChangeMatcherTest.m in Sources */,
+				4B9314A523D0E83C007A295C /* KWNotificationMatcherTest.m in Sources */,
 				CE87C4FE1AF1994100310C07 /* KWConformToProtocolMatcherTest.m in Sources */,
 				CE87C4FF1AF1994100310C07 /* KWContainMatcherTest.m in Sources */,
 				CE39E61B1B857DE300736C33 /* KWSwiftNimbleTests.swift in Sources */,
@@ -2041,6 +2052,7 @@
 				CE87C5171AF1994200310C07 /* Cruiser.m in Sources */,
 				CE87C5181AF1994200310C07 /* Engine.m in Sources */,
 				CE87C5191AF1994200310C07 /* Fighter.m in Sources */,
+				4B9314A823D0F4C6007A295C /* KWNotificationMatcherFunctionalTests.m in Sources */,
 				CE7EFF9C1B847AD700FFE6D6 /* KWObjCXCTestAssertionTests.m in Sources */,
 				CE87C51A1AF1994200310C07 /* Galaxy.m in Sources */,
 				CE87C51D1AF1994200310C07 /* Robot.m in Sources */,
