@@ -1688,6 +1688,7 @@
 					};
 					CE87C42C1AF194EA00310C07 = {
 						CreatedOnToolsVersion = 6.3.1;
+						LastSwiftMigration = 1130;
 					};
 				};
 			};
@@ -2473,7 +2474,7 @@
 				MTL_ENABLE_DEBUG_INFO = YES;
 				PRODUCT_NAME = "$(KIWI_TESTS_PRODUCT_NAME)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
@@ -2503,7 +2504,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_NAME = "$(KIWI_TESTS_PRODUCT_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
