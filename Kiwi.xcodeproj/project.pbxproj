@@ -1681,6 +1681,7 @@
 					};
 					4AE02FC61AEB45EB00556381 = {
 						CreatedOnToolsVersion = 6.3;
+						LastSwiftMigration = 1030;
 					};
 					CE87C4221AF194E900310C07 = {
 						CreatedOnToolsVersion = 6.3.1;
@@ -2223,7 +2224,7 @@
 				PRODUCT_NAME = "$(KIWI_TESTS_PRODUCT_NAME)";
 				SDKROOT = macosx;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
@@ -2256,7 +2257,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_NAME = "$(KIWI_TESTS_PRODUCT_NAME)";
 				SDKROOT = macosx;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};
