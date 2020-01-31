@@ -37,6 +37,8 @@ void KWInterceptedForwardInvocation(id anObject, SEL aSelector, NSInvocation* an
 void KWInterceptedDealloc(id anObject, SEL aSelector);
 Class KWInterceptedClass(id anObject, SEL aSelector);
 Class KWInterceptedSuperclass(id anObject, SEL aSelector);
+BOOL KWInterceptedSupportsSecureCodingTrue(id anObject, SEL aSelector);
+BOOL KWInterceptedSupportsSecureCodingFalse(id anObject, SEL aSelector);
 
 #pragma mark - Getting Forwarding Implementations
 
@@ -119,6 +121,18 @@ Class KWInterceptClassForCanonicalClass(Class canonicalClass) {
 
     Class interceptMetaClass = object_getClass(interceptClass);
     class_addMethod(interceptMetaClass, @selector(forwardInvocation:), (IMP)KWInterceptedForwardInvocation, "v@:@");
+
+    SEL supportsSecureCodingSelector = @selector(supportsSecureCoding);
+    Method supportsSecureCodingMethod = class_getClassMethod(canonicalClass, supportsSecureCodingSelector);
+    if (supportsSecureCodingMethod != NULL) {
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Warc-performSelector-leaks"
+        BOOL support = (BOOL)[(id)canonicalClass performSelector:supportsSecureCodingSelector];
+#pragma clang diagnostic pop
+        IMP supportsSecureCodingIMP = support ? (IMP)KWInterceptedSupportsSecureCodingTrue
+                                              : (IMP)KWInterceptedSupportsSecureCodingFalse;
+        class_addMethod(interceptMetaClass, supportsSecureCodingSelector, supportsSecureCodingIMP, "B@:");
+    }
 
     return interceptClass;
 }
@@ -221,6 +235,14 @@ Class KWInterceptedSuperclass(id anObject, SEL aSelector) {
     Class originalClass = class_getSuperclass(interceptClass);
     Class originalSuperclass = class_getSuperclass(originalClass);
     return originalSuperclass;
+}
+
+BOOL KWInterceptedSupportsSecureCodingTrue(id anObject, SEL aSelector) {
+    return YES;
+}
+
+BOOL KWInterceptedSupportsSecureCodingFalse(id anObject, SEL aSelector) {
+    return NO;
 }
 
 #pragma mark - Managing Objects Stubs
