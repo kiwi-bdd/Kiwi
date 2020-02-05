@@ -122,6 +122,10 @@ Class KWInterceptClassForCanonicalClass(Class canonicalClass) {
     Class interceptMetaClass = object_getClass(interceptClass);
     class_addMethod(interceptMetaClass, @selector(forwardInvocation:), (IMP)KWInterceptedForwardInvocation, "v@:@");
 
+    // The code above intercepts secure coding (`+ (BOOL)supportsSecureCoding`) for the class.
+    // Why do we need a special interception for this method?
+    // Because there is a verification in Foundation that ensures secure coding support in many ways and
+    // without this interception you can face exceptions during mockings some system classes like NSDate.
     SEL supportsSecureCodingSelector = @selector(supportsSecureCoding);
     Method supportsSecureCodingMethod = class_getClassMethod(canonicalClass, supportsSecureCodingSelector);
     if (supportsSecureCodingMethod != NULL) {
