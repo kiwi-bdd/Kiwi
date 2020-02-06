@@ -379,6 +379,25 @@
     XCTAssertTrue(called, @"expected setValue:forKeyPath: to be stubbed");
 }
 
+- (void)testItShouldAllowStubbingObserValueForKeyPath {
+  id mock = [Cruiser mock];
+  id target = [Engine engineWithModel:@"baz"];
+  
+  [target addObserver:mock forKeyPath:@"model" options:0 context:NULL];
+  
+  __block BOOL called = NO;
+  [mock stub:@selector(observeValueForKeyPath:ofObject:change:context:) withBlock:^id(NSArray *params) {
+    STAssertEquals(params[0], @"model", @"expected arg 1 of observeValueForKeyPath:ofObject:change:context: to be 'model'");
+    STAssertEquals(params[1], target, @"expected arg 2 of observeValueForKeyPath:ofObject:change:context: to be the observed object");
+    called = YES;
+    return nil;
+  }];
+  
+  [target setModel:@"bar"];
+  
+  STAssertTrue(called, @"expected observeValueForKeyPath:ofObject:change:context: to be stubbed");
+}
+
 @end
 
 #endif // #if KW_TESTS_ENABLED

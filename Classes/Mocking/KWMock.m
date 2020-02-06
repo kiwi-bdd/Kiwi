@@ -583,6 +583,23 @@ static NSString * const ChangeStubValueAfterTimesKey = @"ChangeStubValueAfterTim
 }
 
 #pragma mark -
+#pragma mark KVO Support
+
+static void observeValueForKeyPathImplementation(id self, SEL _cmd, NSString *keyPath, id object, NSDictionary *change, void *context) {
+  
+  KWMessagePattern *messagePattern = [KWMessagePattern messagePatternWithSelector:_cmd];
+  [self expectMessagePattern:messagePattern];
+  NSInvocation *invocation = [NSInvocation invocationWithTarget:self selector:_cmd messageArguments:&keyPath, &object, &change, &context];
+  
+  [self processReceivedInvocation:invocation];
+}
+
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
+{
+  return observeValueForKeyPathImplementation(self, _cmd, keyPath, object, change, context);
+}
+
+#pragma mark -
 #pragma mark Key-Value Coding Support
 
 static id valueForKeyImplementation(id self, SEL _cmd, id key) {
