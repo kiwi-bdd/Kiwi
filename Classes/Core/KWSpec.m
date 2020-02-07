@@ -19,6 +19,8 @@
 
 @end
 
+NSMutableDictionary *kw_examples;
+
 @implementation KWSpec
 
 /* Methods are only implemented by sub-classes */
@@ -30,6 +32,12 @@
 - (NSString *)name {
     return [self description];
 }
+
++ (void)initialize {
+    kw_examples = [NSMutableDictionary new];
+    [self testInvocations];
+}
+
 
 /* Use camel case to make method friendly names from example description. */
 
@@ -58,6 +66,7 @@
     for (KWExample *example in exampleSuite) {
         SEL selector = [self addInstanceMethodForExample:example];
         NSInvocation *invocation = [self invocationForExample:example selector:selector];
+        [kw_examples setObject:example forKey:NSStringFromSelector(invocation.selector)];
         [invocations addObject:invocation];
     }
 
@@ -114,7 +123,9 @@
 
 - (void)runExample {
     self.currentExample = self.invocation.kw_example;
-
+    if (self.currentExample == nil) {
+        self.currentExample = [kw_examples objectForKey:NSStringFromSelector(self.invocation.selector)];
+    }
     @try {
         [self.currentExample runWithDelegate:self];
     } @catch (NSException *exception) {
