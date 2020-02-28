@@ -27,6 +27,8 @@ extern "C" {
 #import <Kiwi/KWBeforeAllNode.h>
 #import <Kiwi/KWBeforeEachNode.h>
 #import <Kiwi/KWBlock.h>
+#import <Kiwi/KWBlockLayout.h>
+#import <Kiwi/KWProxyBlock.h>
 #import <Kiwi/KWBlockNode.h>
 #import <Kiwi/KWCallSite.h>
 #import <Kiwi/KWCaptureSpy.h>
@@ -47,6 +49,8 @@ extern "C" {
 #import <Kiwi/KWItNode.h>
 #import <Kiwi/KWLet.h>
 #import <Kiwi/KWMessagePattern.h>
+#import <Kiwi/KWBlockMessagePattern.h>
+#import <Kiwi/KWSelectorMessagePattern.h>
 #import <Kiwi/KWMessageSpying.h>
 #import <Kiwi/KWMock.h>
 #import <Kiwi/KWNull.h>
@@ -61,12 +65,14 @@ extern "C" {
 #import <Kiwi/KWSuiteConfigurationBase.h>
 #import <Kiwi/KWValue.h>
 #import <Kiwi/KWVerifying.h>
+#import <Kiwi/KWBlockSignature.h>
 
 // Matchers
 #ifndef KIWI_DISABLE_MATCHERS
 
 #import <Kiwi/KWBeBetweenMatcher.h>
 #import <Kiwi/KWBeEmptyMatcher.h>
+#import <Kiwi/KWBeEvaluatedMatcher.h>
 #import <Kiwi/KWBeIdenticalToMatcher.h>
 #import <Kiwi/KWBeKindOfClassMatcher.h>
 #import <Kiwi/KWBeMemberOfClassMatcher.h>

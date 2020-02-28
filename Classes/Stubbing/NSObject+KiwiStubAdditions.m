@@ -8,7 +8,7 @@
 #import "KWCaptureSpy.h"
 #import "KWIntercept.h"
 #import "KWInvocationCapturer.h"
-#import "KWMessagePattern.h"
+#import "KWSelectorMessagePattern.h"
 #import "KWObjCUtilities.h"
 #import "KWStringUtilities.h"
 #import "KWStub.h"
@@ -32,7 +32,7 @@ static NSString * const ChangeStubValueAfterTimesKey = @"ChangeStubValueAfterTim
 }
 
 - (void)invocationCapturer:(KWInvocationCapturer *)anInvocationCapturer didCaptureInvocation:(NSInvocation *)anInvocation {
-    KWMessagePattern *messagePattern = [KWMessagePattern messagePatternFromInvocation:anInvocation];
+    KWSelectorMessagePattern *messagePattern = [KWSelectorMessagePattern messagePatternFromInvocation:anInvocation];
     id value = (anInvocationCapturer.userInfo)[StubValueKey];
     if (!(anInvocationCapturer.userInfo)[StubSecondValueKey]) {
         [self stubMessagePattern:messagePattern andReturn:value];
@@ -46,78 +46,78 @@ static NSString * const ChangeStubValueAfterTimesKey = @"ChangeStubValueAfterTim
 #pragma mark - Stubbing Methods
 
 - (void)stub:(SEL)aSelector {
-    KWMessagePattern *messagePattern = [KWMessagePattern messagePatternWithSelector:aSelector];
+    KWSelectorMessagePattern *messagePattern = [KWSelectorMessagePattern messagePatternWithSelector:aSelector];
     [self stubMessagePattern:messagePattern andReturn:nil];
 }
 
 - (void)stub:(SEL)aSelector withBlock:(id (^)(NSArray *))block {
-    KWMessagePattern *messagePattern = [KWMessagePattern messagePatternWithSelector:aSelector];
+    KWSelectorMessagePattern *messagePattern = [KWSelectorMessagePattern messagePatternWithSelector:aSelector];
     [self stubMessagePattern:messagePattern withBlock:block];
 }
 
 - (void)stub:(SEL)aSelector withArguments:(id)firstArgument, ... {
     va_list argumentList;
     va_start(argumentList, firstArgument);
-    KWMessagePattern *messagePattern = [KWMessagePattern messagePatternWithSelector:aSelector firstArgumentFilter:firstArgument argumentList:argumentList];
+    KWSelectorMessagePattern *messagePattern = [KWSelectorMessagePattern messagePatternWithSelector:aSelector firstArgumentFilter:firstArgument argumentList:argumentList];
     [self stubMessagePattern:messagePattern andReturn:nil];
 }
 
 - (void)stub:(SEL)aSelector andReturn:(id)aValue {
-    KWMessagePattern *messagePattern = [KWMessagePattern messagePatternWithSelector:aSelector];
+    KWSelectorMessagePattern *messagePattern = [KWSelectorMessagePattern messagePatternWithSelector:aSelector];
     [self stubMessagePattern:messagePattern andReturn:aValue];
 }
 
 - (void)stub:(SEL)aSelector andReturn:(id)aValue withArguments:(id)firstArgument, ... {
     va_list argumentList;
     va_start(argumentList, firstArgument);
-    KWMessagePattern *messagePattern = [KWMessagePattern messagePatternWithSelector:aSelector firstArgumentFilter:firstArgument argumentList:argumentList];
+    KWSelectorMessagePattern *messagePattern = [KWSelectorMessagePattern messagePatternWithSelector:aSelector firstArgumentFilter:firstArgument argumentList:argumentList];
     [self stubMessagePattern:messagePattern andReturn:aValue];
 }
 
 - (void)stub:(SEL)aSelector andReturn:(id)aValue times:(NSNumber *)times afterThatReturn:(id)aSecondValue {
-    KWMessagePattern *messagePattern = [KWMessagePattern messagePatternWithSelector:aSelector];
+    KWSelectorMessagePattern *messagePattern = [KWSelectorMessagePattern messagePatternWithSelector:aSelector];
     [self stubMessagePattern:messagePattern andReturn:aValue times:times afterThatReturn:aSecondValue];
 }
 
 + (void)stub:(SEL)aSelector {
-    KWMessagePattern *messagePattern = [KWMessagePattern messagePatternWithSelector:aSelector];
+    KWSelectorMessagePattern *messagePattern = [KWSelectorMessagePattern messagePatternWithSelector:aSelector];
     [self stubMessagePattern:messagePattern andReturn:nil];
 }
 
 + (void)stub:(SEL)aSelector withBlock:(id (^)(NSArray *))block {
-    KWMessagePattern *messagePattern = [KWMessagePattern messagePatternWithSelector:aSelector];
+    KWSelectorMessagePattern *messagePattern = [KWSelectorMessagePattern messagePatternWithSelector:aSelector];
     [self stubMessagePattern:messagePattern withBlock:block];
 }
 
 + (void)stub:(SEL)aSelector withArguments:(id)firstArgument, ... {
     va_list argumentList;
     va_start(argumentList, firstArgument);
-    KWMessagePattern *messagePattern = [KWMessagePattern messagePatternWithSelector:aSelector firstArgumentFilter:firstArgument argumentList:argumentList];
+    KWSelectorMessagePattern *messagePattern = [KWSelectorMessagePattern messagePatternWithSelector:aSelector firstArgumentFilter:firstArgument argumentList:argumentList];
     [self stubMessagePattern:messagePattern andReturn:nil];
 }
 
 + (void)stub:(SEL)aSelector andReturn:(id)aValue {
-    KWMessagePattern *messagePattern = [KWMessagePattern messagePatternWithSelector:aSelector];
+    KWSelectorMessagePattern *messagePattern = [KWSelectorMessagePattern messagePatternWithSelector:aSelector];
     [self stubMessagePattern:messagePattern andReturn:aValue];
 }
 
 + (void)stub:(SEL)aSelector andReturn:(id)aValue withArguments:(id)firstArgument, ... {
     va_list argumentList;
     va_start(argumentList, firstArgument);
-    KWMessagePattern *messagePattern = [KWMessagePattern messagePatternWithSelector:aSelector firstArgumentFilter:firstArgument argumentList:argumentList];
+    KWSelectorMessagePattern *messagePattern = [KWSelectorMessagePattern messagePatternWithSelector:aSelector firstArgumentFilter:firstArgument argumentList:argumentList];
     [self stubMessagePattern:messagePattern andReturn:aValue];
 }
 
 + (void)stub:(SEL)aSelector andReturn:(id)aValue times:(NSNumber *)times afterThatReturn:(id)aSecondValue {
-    KWMessagePattern *messagePattern = [KWMessagePattern messagePatternWithSelector:aSelector];
+    KWSelectorMessagePattern *messagePattern = [KWSelectorMessagePattern messagePatternWithSelector:aSelector];
     [self stubMessagePattern:messagePattern andReturn:aValue times:times afterThatReturn:aSecondValue];
 }
 
-- (void)stubMessagePattern:(KWMessagePattern *)aMessagePattern andReturn:(id)aValue {
+- (void)stubMessagePattern:(KWSelectorMessagePattern *)aMessagePattern andReturn:(id)aValue {
     [self stubMessagePattern:aMessagePattern andReturn:aValue overrideExisting:YES];
 }
 
-- (void)stubMessagePattern:(KWMessagePattern *)aMessagePattern andReturn:(id)aValue overrideExisting:(BOOL)overrideExisting {
+- (void)stubMessagePattern:(KWSelectorMessagePattern *)aMessagePattern andReturn:(id)aValue overrideExisting:(BOOL)overrideExisting {
     if ([self methodSignatureForSelector:aMessagePattern.selector] == nil) {
         [NSException raise:@"KWStubException" format:@"cannot stub -%@ because no such method exists",
          NSStringFromSelector(aMessagePattern.selector)];
@@ -129,7 +129,7 @@ static NSString * const ChangeStubValueAfterTimesKey = @"ChangeStubValueAfterTim
     KWAssociateObjectStub(self, stub, overrideExisting);
 }
 
-- (void)stubMessagePattern:(KWMessagePattern *)aMessagePattern andReturn:(id)aValue times:(id)times afterThatReturn:(id)aSecondValue {
+- (void)stubMessagePattern:(KWSelectorMessagePattern *)aMessagePattern andReturn:(id)aValue times:(id)times afterThatReturn:(id)aSecondValue {
     if ([self methodSignatureForSelector:aMessagePattern.selector] == nil) {
         [NSException raise:@"KWStubException" format:@"cannot stub -%@ because no such method exists",
          NSStringFromSelector(aMessagePattern.selector)];
@@ -141,7 +141,7 @@ static NSString * const ChangeStubValueAfterTimesKey = @"ChangeStubValueAfterTim
     KWAssociateObjectStub(self, stub, YES);
 }
 
-- (void)stubMessagePattern:(KWMessagePattern *)aMessagePattern withBlock:(id (^)(NSArray *params))block {
+- (void)stubMessagePattern:(KWSelectorMessagePattern *)aMessagePattern withBlock:(id (^)(NSArray *params))block {
     if ([self methodSignatureForSelector:aMessagePattern.selector] == nil) {
         [NSException raise:@"KWStubException" format:@"cannot stub -%@ because no such method exists",
          NSStringFromSelector(aMessagePattern.selector)];
@@ -153,11 +153,11 @@ static NSString * const ChangeStubValueAfterTimesKey = @"ChangeStubValueAfterTim
     KWAssociateObjectStub(self, stub, YES);
 }
 
-+ (void)stubMessagePattern:(KWMessagePattern *)aMessagePattern andReturn:(id)aValue {
++ (void)stubMessagePattern:(KWSelectorMessagePattern *)aMessagePattern andReturn:(id)aValue {
     [self stubMessagePattern:aMessagePattern andReturn:aValue overrideExisting:YES];
 }
 
-+ (void)stubMessagePattern:(KWMessagePattern *)aMessagePattern andReturn:(id)aValue overrideExisting:(BOOL)override {
++ (void)stubMessagePattern:(KWSelectorMessagePattern *)aMessagePattern andReturn:(id)aValue overrideExisting:(BOOL)override {
     if ([self methodSignatureForSelector:aMessagePattern.selector] == nil) {
         [NSException raise:@"KWStubException" format:@"cannot stub -%@ because no such method exists",
          NSStringFromSelector(aMessagePattern.selector)];
@@ -169,11 +169,11 @@ static NSString * const ChangeStubValueAfterTimesKey = @"ChangeStubValueAfterTim
     KWAssociateObjectStub(self, stub, override);
 }
 
-+ (void)stubMessagePattern:(KWMessagePattern *)aMessagePattern andReturn:(id)aValue times:(id)times afterThatReturn:(id)aSecondValue {
++ (void)stubMessagePattern:(KWSelectorMessagePattern *)aMessagePattern andReturn:(id)aValue times:(id)times afterThatReturn:(id)aSecondValue {
     [self stubMessagePattern:aMessagePattern andReturn:aValue times:times afterThatReturn:aSecondValue overrideExisting:YES];
 }
 
-+ (void)stubMessagePattern:(KWMessagePattern *)aMessagePattern andReturn:(id)aValue times:(id)times afterThatReturn:(id)aSecondValue overrideExisting:(BOOL)override {
++ (void)stubMessagePattern:(KWSelectorMessagePattern *)aMessagePattern andReturn:(id)aValue times:(id)times afterThatReturn:(id)aSecondValue overrideExisting:(BOOL)override {
     if ([self methodSignatureForSelector:aMessagePattern.selector] == nil) {
         [NSException raise:@"KWStubException" format:@"cannot stub -%@ because no such method exists",
          NSStringFromSelector(aMessagePattern.selector)];
@@ -185,11 +185,11 @@ static NSString * const ChangeStubValueAfterTimesKey = @"ChangeStubValueAfterTim
     KWAssociateObjectStub(self, stub, override);
 }
 
-+ (void)stubMessagePattern:(KWMessagePattern *)aMessagePattern withBlock:(id (^)(NSArray *params))block {
++ (void)stubMessagePattern:(KWSelectorMessagePattern *)aMessagePattern withBlock:(id (^)(NSArray *params))block {
     [self stubMessagePattern:aMessagePattern withBlock:block overrideExisting:YES];
 }
 
-+ (void)stubMessagePattern:(KWMessagePattern *)aMessagePattern withBlock:(id (^)(NSArray *params))block  overrideExisting:(BOOL)override {
++ (void)stubMessagePattern:(KWSelectorMessagePattern *)aMessagePattern withBlock:(id (^)(NSArray *params))block  overrideExisting:(BOOL)override {
     if ([self methodSignatureForSelector:aMessagePattern.selector] == nil) {
         [NSException raise:@"KWStubException" format:@"cannot stub -%@ because no such method exists",
          NSStringFromSelector(aMessagePattern.selector)];
@@ -207,7 +207,7 @@ static NSString * const ChangeStubValueAfterTimesKey = @"ChangeStubValueAfterTim
 
 #pragma mark - Spying on Messages
 
-- (void)addMessageSpy:(id<KWMessageSpying>)aSpy forMessagePattern:(KWMessagePattern *)aMessagePattern {
+- (void)addMessageSpy:(id<KWMessageSpying>)aSpy forMessagePattern:(KWSelectorMessagePattern *)aMessagePattern {
     if ([self methodSignatureForSelector:aMessagePattern.selector] == nil) {
         [NSException raise:@"KWSpyException" format:@"cannot add spy for -%@ because no such method exists",
          NSStringFromSelector(aMessagePattern.selector)];
@@ -218,11 +218,11 @@ static NSString * const ChangeStubValueAfterTimesKey = @"ChangeStubValueAfterTim
     KWAssociateMessageSpy(self, aSpy, aMessagePattern);
 }
 
-- (void)removeMessageSpy:(id<KWMessageSpying>)aSpy forMessagePattern:(KWMessagePattern *)aMessagePattern {
+- (void)removeMessageSpy:(id<KWMessageSpying>)aSpy forMessagePattern:(KWSelectorMessagePattern *)aMessagePattern {
     KWClearObjectSpy(self, aSpy, aMessagePattern);
 }
 
-+ (void)addMessageSpy:(id<KWMessageSpying>)aSpy forMessagePattern:(KWMessagePattern *)aMessagePattern {
++ (void)addMessageSpy:(id<KWMessageSpying>)aSpy forMessagePattern:(KWSelectorMessagePattern *)aMessagePattern {
     if ([self methodSignatureForSelector:aMessagePattern.selector] == nil) {
         [NSException raise:@"KWSpyException" format:@"cannot add spy for -%@ because no such method exists",
          NSStringFromSelector(aMessagePattern.selector)];
@@ -233,7 +233,7 @@ static NSString * const ChangeStubValueAfterTimesKey = @"ChangeStubValueAfterTim
     KWAssociateMessageSpy(self, aSpy, aMessagePattern);
 }
 
-+ (void)removeMessageSpy:(id<KWMessageSpying>)aSpy forMessagePattern:(KWMessagePattern *)aMessagePattern {
++ (void)removeMessageSpy:(id<KWMessageSpying>)aSpy forMessagePattern:(KWSelectorMessagePattern *)aMessagePattern {
     KWClearObjectSpy(self, aSpy, aMessagePattern);
 }
 

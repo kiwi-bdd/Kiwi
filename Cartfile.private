@@ -1,2 +1,2 @@
 github "Quick/Nimble"
-github "specta/expecta"
+github "specta/expecta" "master"
