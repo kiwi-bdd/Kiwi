@@ -24,14 +24,20 @@
     va_list argumentList;
     va_start(argumentList, firstBytes);
     
-    return [self invocationWithTarget:anObject selector:NULL firstArgument:firstBytes argumentList:argumentList];
+    return [self invocationWithTarget:anObject
+                             selector:@selector(_doNothing)
+                        firstArgument:firstBytes
+                         argumentList:argumentList];
 }
 
 + (NSInvocation *)invocationWithTarget:(id)anObject
                          firstArgument:(const void *)firstBytes
                           argumentList:(va_list)argumentList
 {
-    return [self invocationWithTarget:anObject selector:NULL firstArgument:firstBytes argumentList:argumentList];
+    return [self invocationWithTarget:anObject
+                             selector:@selector(_doNothing)
+                        firstArgument:firstBytes
+                         argumentList:argumentList];
 }
 
 + (NSInvocation *)invocationWithTarget:(id)anObject
@@ -43,9 +49,10 @@
         [NSException raise:NSInvalidArgumentException format:@"%@ - target must be KWProxyBlock", anObject];
     }
     
-    aSelector = NULL;
-    
-    return [super invocationWithTarget:anObject selector:aSelector firstArgument:firstBytes argumentList:argumentList];
+    return [super invocationWithTarget:anObject
+                              selector:@selector(_doNothing)
+                         firstArgument:firstBytes
+                          argumentList:argumentList];
 }
 
 #pragma mark - Argument Offset
@@ -56,8 +63,8 @@
 
 #pragma mark - Properties
 
-- (SEL)selector {
-    return NULL;
+- (void)_doNothing {
+    
 }
 
 @end

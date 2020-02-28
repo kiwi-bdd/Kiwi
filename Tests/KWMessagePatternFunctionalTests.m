@@ -2,7 +2,7 @@
 #import "KiwiTestConfiguration.h"
 #import "TestClasses.h"
 
-typedef void(^KWVoidTestBlock)();
+typedef void(^KWVoidTestBlock)(void);
 typedef void(^KWArgumentTestBlock)(id);
 typedef void(^KWMultiArgumentTestBlock)(id, id, id);
 

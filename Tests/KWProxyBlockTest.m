@@ -75,7 +75,7 @@ typedef KWTestStruct(^__KWStretBlockMultiparam)(NSUInteger, id, KWTestStruct);
 #pragma mark - Test block without parameters
 
 - (void)testItShouldEvaluateWrappedVoidBlock {
-    __KWVoidBlock block = ^{ _evaluated = YES; };
+    __KWVoidBlock block = ^{ self->_evaluated = YES; };
     
     KWProxyBlock *wrappedBlock = [KWProxyBlock blockWithBlock:block];
     
@@ -84,7 +84,7 @@ typedef KWTestStruct(^__KWStretBlockMultiparam)(NSUInteger, id, KWTestStruct);
 
 - (void)testItShouldEvaluateWrappedPrimitiveBlock {
     __KWPrimitiveBlock block = ^{
-        _evaluated = YES;
+        self->_evaluated = YES;
         
         return KWUIntValue;
     };
@@ -96,7 +96,7 @@ typedef KWTestStruct(^__KWStretBlockMultiparam)(NSUInteger, id, KWTestStruct);
 
 - (void)testItShouldEvaluateWrappedObjectBlock {
     __KWObjectBlock block = ^{
-        _evaluated = YES;
+        self->_evaluated = YES;
         
         return KWStringValue;
     };
@@ -108,7 +108,7 @@ typedef KWTestStruct(^__KWStretBlockMultiparam)(NSUInteger, id, KWTestStruct);
 
 - (void)testItShouldEvaluateWrappedStretBlock {
     __KWStretBlock block = ^{
-        _evaluated = YES;
+        self->_evaluated = YES;
         
         return KWStructValue;
     };

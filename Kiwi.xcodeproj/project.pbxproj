@@ -553,6 +553,12 @@
 		D7E699792409851900C3D93C /* KWSelectorMessagePattern.h in Headers */ = {isa = PBXBuildFile; fileRef = D7E699622409851900C3D93C /* KWSelectorMessagePattern.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D7E6997A2409851900C3D93C /* KWSelectorMessagePattern.m in Sources */ = {isa = PBXBuildFile; fileRef = D7E699632409851900C3D93C /* KWSelectorMessagePattern.m */; };
 		D7E6997B2409851900C3D93C /* KWSelectorMessagePattern.m in Sources */ = {isa = PBXBuildFile; fileRef = D7E699632409851900C3D93C /* KWSelectorMessagePattern.m */; };
+		D7E699852409938100C3D93C /* KWBlockMessagePatternTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D7E6997F2409936E00C3D93C /* KWBlockMessagePatternTest.m */; };
+		D7E699862409938200C3D93C /* KWBlockMessagePatternTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D7E6997F2409936E00C3D93C /* KWBlockMessagePatternTest.m */; };
+		D7E699872409938500C3D93C /* KWProxyBlockTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D7E699802409936E00C3D93C /* KWProxyBlockTest.m */; };
+		D7E699882409938600C3D93C /* KWProxyBlockTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D7E699802409936E00C3D93C /* KWProxyBlockTest.m */; };
+		D7E699892409938E00C3D93C /* KWBeEvaluatedMatcherTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D7E6997C2409934A00C3D93C /* KWBeEvaluatedMatcherTest.m */; };
+		D7E6998A2409938F00C3D93C /* KWBeEvaluatedMatcherTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D7E6997C2409934A00C3D93C /* KWBeEvaluatedMatcherTest.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -867,6 +873,9 @@
 		D7E699612409851900C3D93C /* KWProxyBlock.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KWProxyBlock.m; sourceTree = "<group>"; };
 		D7E699622409851900C3D93C /* KWSelectorMessagePattern.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KWSelectorMessagePattern.h; sourceTree = "<group>"; };
 		D7E699632409851900C3D93C /* KWSelectorMessagePattern.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KWSelectorMessagePattern.m; sourceTree = "<group>"; };
+		D7E6997C2409934A00C3D93C /* KWBeEvaluatedMatcherTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KWBeEvaluatedMatcherTest.m; sourceTree = "<group>"; };
+		D7E6997F2409936E00C3D93C /* KWBlockMessagePatternTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KWBlockMessagePatternTest.m; sourceTree = "<group>"; };
+		D7E699802409936E00C3D93C /* KWProxyBlockTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KWProxyBlockTest.m; sourceTree = "<group>"; };
 		DA084D3F17E3804200592D5A /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		DA084D4217E3804200592D5A /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
 		DA3EAD0718A7A1D700EBBF57 /* KWSharedExampleFunctionalTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KWSharedExampleFunctionalTest.m; sourceTree = "<group>"; };
@@ -1378,6 +1387,8 @@
 		F5A1E612117432AC002223E1 /* Support */ = {
 			isa = PBXGroup;
 			children = (
+				D7E6997F2409936E00C3D93C /* KWBlockMessagePatternTest.m */,
+				D7E699802409936E00C3D93C /* KWProxyBlockTest.m */,
 				4AD7A2091962AC8F005ED93F /* Config.m */,
 				F5D7C8D311643C2900758FEA /* KWDeviceInfoTest.m */,
 				89861D9316FE0EE5008CE99D /* KWFormatterTest.m */,
@@ -1394,6 +1405,7 @@
 		F5A9EFD211741E7700E9EDA3 /* Matchers */ = {
 			isa = PBXGroup;
 			children = (
+				D7E6997C2409934A00C3D93C /* KWBeEvaluatedMatcherTest.m */,
 				F553B2D211756157004FCA2E /* KWBeBetweenMatcherTest.m */,
 				F553B4411175A190004FCA2E /* KWBeEmptyMatcherTest.m */,
 				F5E50320119EA22F00F5D05F /* KWBeIndenticalToMatcherTest.m */,
@@ -1942,6 +1954,7 @@
 				4AE030951AEB494400556381 /* KWBeTrueMatcherTest.m in Sources */,
 				4AE030961AEB494400556381 /* KWBeWithinMatcherTest.m in Sources */,
 				4AE030971AEB494400556381 /* KWBlockRaiseMatcherTest.m in Sources */,
+				D7E699862409938200C3D93C /* KWBlockMessagePatternTest.m in Sources */,
 				4B9314A623D0E83C007A295C /* KWNotificationMatcherTest.m in Sources */,
 				4AE030981AEB494400556381 /* KWChangeMatcherTest.m in Sources */,
 				4AE030991AEB494400556381 /* KWConformToProtocolMatcherTest.m in Sources */,
@@ -1952,9 +1965,11 @@
 				4AE0309D1AEB494400556381 /* KWGenericMatcherTest.m in Sources */,
 				4AE0309E1AEB494400556381 /* KWHaveMatcherTest.m in Sources */,
 				CE7EFF9A1B8475BD00FFE6D6 /* KWSwiftXCTestAssertionTests.swift in Sources */,
+				D7E699882409938600C3D93C /* KWProxyBlockTest.m in Sources */,
 				4AE0309F1AEB494400556381 /* KWHaveValueMatcherTest.m in Sources */,
 				4AE030A01AEB494400556381 /* KWInequalityMatcherTest.m in Sources */,
 				4AE030A11AEB494400556381 /* KWReceiveMatcherTest.m in Sources */,
+				D7E6998A2409938F00C3D93C /* KWBeEvaluatedMatcherTest.m in Sources */,
 				4AE030A21AEB494400556381 /* KWRegularExpressionPatternMatcherTest.m in Sources */,
 				4AE030A31AEB494400556381 /* KWRespondToSelectorMatcherTest.m in Sources */,
 				4AE030A41AEB494400556381 /* KWUserDefinedMatcherTest.m in Sources */,
@@ -2117,6 +2132,7 @@
 				CE87C4FB1AF1994100310C07 /* KWBeWithinMatcherTest.m in Sources */,
 				CE87C4FC1AF1994100310C07 /* KWBlockRaiseMatcherTest.m in Sources */,
 				CE87C4FD1AF1994100310C07 /* KWChangeMatcherTest.m in Sources */,
+				D7E699852409938100C3D93C /* KWBlockMessagePatternTest.m in Sources */,
 				4B9314A523D0E83C007A295C /* KWNotificationMatcherTest.m in Sources */,
 				CE87C4FE1AF1994100310C07 /* KWConformToProtocolMatcherTest.m in Sources */,
 				CE87C4FF1AF1994100310C07 /* KWContainMatcherTest.m in Sources */,
@@ -2127,9 +2143,11 @@
 				CE87C5031AF1994100310C07 /* KWHaveMatcherTest.m in Sources */,
 				CE87C5041AF1994100310C07 /* KWHaveValueMatcherTest.m in Sources */,
 				CE7EFF991B8475BD00FFE6D6 /* KWSwiftXCTestAssertionTests.swift in Sources */,
+				D7E699872409938500C3D93C /* KWProxyBlockTest.m in Sources */,
 				CE87C5051AF1994100310C07 /* KWInequalityMatcherTest.m in Sources */,
 				CE87C5061AF1994100310C07 /* KWReceiveMatcherTest.m in Sources */,
 				CE87C5071AF1994100310C07 /* KWRegularExpressionPatternMatcherTest.m in Sources */,
+				D7E699892409938E00C3D93C /* KWBeEvaluatedMatcherTest.m in Sources */,
 				CE87C5081AF1994100310C07 /* KWRespondToSelectorMatcherTest.m in Sources */,
 				CE87C5091AF1994100310C07 /* KWUserDefinedMatcherTest.m in Sources */,
 				CE87C50A1AF1994100310C07 /* KWBeZeroMatcherTest.m in Sources */,
