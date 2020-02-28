@@ -113,20 +113,6 @@ static NSString * const ChangeStubValueAfterTimesKey = @"ChangeStubValueAfterTim
     [self stubMessagePattern:messagePattern andReturn:aValue times:times afterThatReturn:aSecondValue];
 }
 
-- (id)stub {
-    return [KWInvocationCapturer invocationCapturerWithDelegate:self];
-}
-
-- (id)stubAndReturn:(id)aValue {
-    NSDictionary *userInfo = @{StubValueKey: aValue};
-    return [KWInvocationCapturer invocationCapturerWithDelegate:self userInfo:userInfo];
-}
-
-- (id)stubAndReturn:(id)aValue times:(id)times afterThatReturn:(id)aSecondValue {
-    NSDictionary *userInfo = @{StubValueKey: aValue, ChangeStubValueAfterTimesKey: times, StubSecondValueKey: aSecondValue};
-    return [KWInvocationCapturer invocationCapturerWithDelegate:self userInfo:userInfo];
-}
-
 - (void)stubMessagePattern:(KWSelectorMessagePattern *)aMessagePattern andReturn:(id)aValue {
     [self stubMessagePattern:aMessagePattern andReturn:aValue overrideExisting:YES];
 }
@@ -236,12 +222,6 @@ static NSString * const ChangeStubValueAfterTimesKey = @"ChangeStubValueAfterTim
     KWClearObjectSpy(self, aSpy, aMessagePattern);
 }
 
-- (KWCaptureSpy *)captureArgument:(SEL)selector atIndex:(NSUInteger)index {
-    KWCaptureSpy *spy = [[KWCaptureSpy alloc] initWithArgumentIndex:index];
-    [self addMessageSpy:spy forMessagePattern:[KWSelectorMessagePattern messagePatternWithSelector:selector]];
-    return spy;
-}
-
 + (void)addMessageSpy:(id<KWMessageSpying>)aSpy forMessagePattern:(KWSelectorMessagePattern *)aMessagePattern {
     if ([self methodSignatureForSelector:aMessagePattern.selector] == nil) {
         [NSException raise:@"KWSpyException" format:@"cannot add spy for -%@ because no such method exists",
@@ -255,12 +235,6 @@ static NSString * const ChangeStubValueAfterTimesKey = @"ChangeStubValueAfterTim
 
 + (void)removeMessageSpy:(id<KWMessageSpying>)aSpy forMessagePattern:(KWSelectorMessagePattern *)aMessagePattern {
     KWClearObjectSpy(self, aSpy, aMessagePattern);
-}
-
-+ (KWCaptureSpy *)captureArgument:(SEL)selector atIndex:(NSUInteger)index {
-    KWCaptureSpy *spy = [[KWCaptureSpy alloc] initWithArgumentIndex:index];
-    [self addMessageSpy:spy forMessagePattern:[KWSelectorMessagePattern messagePatternWithSelector:selector]];
-    return spy;
 }
 
 @end

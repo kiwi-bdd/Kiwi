@@ -45,14 +45,30 @@
                                         if (self.evaluationBlock) {
                                             self.evaluationBlock(note);
                                         }
+                                        if (self.didReceiveNotification) {
+                                            [self removeObserver];
+                                        }
                                     }];
+}
+
+- (void)removeObserver {
+    if (self.observer) {
+        [[NSNotificationCenter defaultCenter] removeObserver:self.observer];
+        self.observer = nil;
+    }
 }
 
 #pragma mark - Matching
 
 - (BOOL)evaluate {
-    [[NSNotificationCenter defaultCenter] removeObserver:self.observer];
+    if (!self.willEvaluateMultipleTimes) {
+        [self removeObserver];
+    }
     return self.didReceiveNotification;
+}
+
+- (void)dealloc {
+    [self removeObserver];
 }
 
 - (BOOL)shouldBeEvaluatedAtEndOfExample {

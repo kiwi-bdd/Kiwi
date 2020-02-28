@@ -29,10 +29,6 @@
 + (void)stub:(SEL)aSelector andReturn:(id)aValue withArguments:(id)firstArgument, ...;
 + (void)stub:(SEL)aSelector andReturn:(id)aValue times:(NSNumber *)times afterThatReturn:(id)aSecondValue;
 
-- (id)stub DEPRECATED_ATTRIBUTE;
-- (id)stubAndReturn:(id)aValue DEPRECATED_ATTRIBUTE;
-- (id)stubAndReturn:(id)aValue times:(id)times afterThatReturn:(id)aSecondValue DEPRECATED_ATTRIBUTE;
-
 // These methods will become private
 - (void)stubMessagePattern:(KWMessagePattern *)aMessagePattern andReturn:(id)aValue;
 - (void)stubMessagePattern:(KWMessagePattern *)aMessagePattern andReturn:(id)aValue overrideExisting:(BOOL)overrideExisting;
@@ -50,11 +46,9 @@
 
 - (void)addMessageSpy:(id<KWMessageSpying>)aSpy forMessagePattern:(KWMessagePattern *)aMessagePattern;
 - (void)removeMessageSpy:(id<KWMessageSpying>)aSpy forMessagePattern:(KWMessagePattern *)aMessagePattern;
-- (KWCaptureSpy *)captureArgument:(SEL)selector atIndex:(NSUInteger)index;
 
 + (void)addMessageSpy:(id<KWMessageSpying>)aSpy forMessagePattern:(KWMessagePattern *)aMessagePattern;
 + (void)removeMessageSpy:(id<KWMessageSpying>)aSpy forMessagePattern:(KWMessagePattern *)aMessagePattern;
-+ (KWCaptureSpy *)captureArgument:(SEL)selector atIndex:(NSUInteger)index;
 
 @end
 

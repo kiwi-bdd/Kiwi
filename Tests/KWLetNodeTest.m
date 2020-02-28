@@ -106,14 +106,14 @@
 
 - (void)testItEvaluatesTheDeepestChild {
     __block NSNumber *number = nil;
-    __block NSString *string = nil;
+    __block NSNumber *anotherNumber = nil;
     KWLetNode *letNode1 = [KWLetNode letNodeWithSymbolName:@"number" objectRef:KW_LET_REF(number) block:^{ return @1; }];
-    KWLetNode *letNode2 = [KWLetNode letNodeWithSymbolName:@"string" objectRef:KW_LET_REF(string) block:^{ return [number stringValue]; }];
+    KWLetNode *letNode2 = [KWLetNode letNodeWithSymbolName:@"string" objectRef:KW_LET_REF(anotherNumber) block:^{ return [number copy]; }];
     KWLetNode *letNode3 = [KWLetNode letNodeWithSymbolName:@"number" objectRef:KW_LET_REF(number) block:^{ return @2; }];
     [letNode1 addLetNode:letNode2];
     [letNode1 addLetNode:letNode3];
     [letNode1 evaluateTree];
-    XCTAssertEqualObjects(string, @"2", @"expected the last node to be based on the value of the deepest previous child");
+    XCTAssertEqualObjects(anotherNumber, @2, @"expected the last node to be based on the value of the deepest previous child");
 }
 
 #pragma mark - Example node visiting

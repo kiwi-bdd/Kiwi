@@ -49,7 +49,7 @@
 - (void)testItShouldStubInstanceMethodsReturningObjectsWithAnyArguments {
     Cruiser *cruiser = [Cruiser cruiserWithCallsign:@"Galactica"];
     Fighter *fighter = [Fighter fighterWithCallsign:@"Viper 1"];
-    [cruiser stub:@selector(fighterWithCallsign:) andReturn:fighter withArguments:any()];
+    [cruiser stub:@selector(fighterWithCallsign:) andReturn:fighter withArguments:kw_any()];
     XCTAssertEqual(fighter, [cruiser fighterWithCallsign:@"Foo"], @"expected method to be stubbed");
 }
 
@@ -193,6 +193,15 @@
         return @"Enterprise";
     }];
     XCTAssertEqual([cruiser classification], @"Enterprise", @"expected method to be stubbed with block");
+}
+
+- (void)testStubSecureCodingOfDateClass {
+    NSDate *date = [NSDate date];
+    [NSDate stub:@selector(date) andReturn:date];
+    if (@available(macOS 10.13, iOS 11.0, watchOS 4.0, tvOS 11.0, *)) {
+        NSData *data = [NSKeyedArchiver archivedDataWithRootObject:date requiringSecureCoding:YES error:NULL];
+        XCTAssertNotNil(data, @"expected stubbed class to be able to use secure coding");
+    }
 }
 
 @end

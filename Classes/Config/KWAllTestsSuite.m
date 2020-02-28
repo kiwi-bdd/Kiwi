@@ -33,14 +33,17 @@
 @implementation XCTestSuite (KWConfiguration)
 
 + (void)load {
-    Method testSuiteWithName = class_getClassMethod(self, @selector(testSuiteWithName:));
-    Method kiwi_testSuiteWithName = class_getClassMethod(self, @selector(kiwi_testSuiteWithName:));
-    method_exchangeImplementations(testSuiteWithName, kiwi_testSuiteWithName);
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        Method testSuiteWithName = class_getClassMethod(self, @selector(testSuiteWithName:));
+        Method kiwi_testSuiteWithName = class_getClassMethod(self, @selector(kiwi_testSuiteWithName:));
+        method_exchangeImplementations(testSuiteWithName, kiwi_testSuiteWithName);
+    });
 }
 
 + (id)kiwi_testSuiteWithName:(NSString *)aName {
     id suite = [self kiwi_testSuiteWithName:aName];
-    if ([aName isEqualToString:@"All tests"]) {
+    if ([aName isEqualToString:@"All tests"] || [aName hasSuffix:@".xctest"]) {
         if ([suite isMemberOfClass:[XCTestSuite class]]) {
             object_setClass(suite, [_KWAllTestsSuite class]);
         }
