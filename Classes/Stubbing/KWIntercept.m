@@ -404,7 +404,12 @@ KWInterceptedObjectBlock KWInterceptedObjectKey(id anObject) {
     if (key == nil) {
         __weak id weakobj = anObject;
         key = ^{ return weakobj; };
-        objc_setAssociatedObject(anObject, kKWInterceptedObjectKey, [key copy], OBJC_ASSOCIATION_COPY);
+        
+        // according to [objc-references.mm:164](https://opensource.apple.com/source/objc4/objc4-781/runtime/objc-references.mm)
+        // when anObject is nil and key is non nil, objc_setAssociatedObject() will crash
+        if (anObject) {
+            objc_setAssociatedObject(anObject, kKWInterceptedObjectKey, [key copy], OBJC_ASSOCIATION_COPY);
+        }
     }
     return key;
 }
