@@ -1,5 +1,6 @@
+#if !SWIFT_PACKAGE
+@import Nimble;
 #import <Kiwi/Kiwi.h>
-#import <Nimble/Nimble.h>
 #import "KWFailureInterceptingSpec.h"
 #import "KiwiTestConfiguration.h"
 
@@ -14,3 +15,4 @@ describe(@"Nimble matchers", ^{
 });
 
 SPEC_END
+#endif
