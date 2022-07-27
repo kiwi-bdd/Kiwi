@@ -24,15 +24,38 @@ let package = Package(
                 .headerSearchPath("./**")
             ]
         ),
+        .target(
+            name: "Test Classes",
+            dependencies: [
+                "Kiwi"
+            ],
+            publicHeadersPath: "./",
+            cSettings: [
+                .headerSearchPath("./../Kiwi/**")
+            ]
+        ),
         .testTarget(
             name: "KiwiTests",
             dependencies: [
                 "Kiwi",
-                "Nimble"
+                "Nimble",
+                "Test Classes"
             ],
             cSettings: [
                 .headerSearchPath("./**"),
                 .headerSearchPath("../../Sources/Kiwi/**")
+            ]
+        ),
+        .testTarget(
+            name: "KiwiTestsNoArc",
+            dependencies: [
+                "Kiwi",
+                "Test Classes"
+            ],
+            cSettings: [
+                .headerSearchPath("../KiwiTests/**"),
+                .headerSearchPath("../../Sources/Kiwi/**"),
+                .unsafeFlags(["-fno-objc-arc"])
             ]
         ),
         .testTarget(
