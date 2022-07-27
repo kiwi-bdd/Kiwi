@@ -14,7 +14,7 @@ let package = Package(
     ],
     dependencies: [
         .package(
-            url: "https://github.com/Quick/Nimble", from: "10.0.0"
+            url: "https://github.com/Quick/Nimble", "8.0.0"..<"9.0.0"
         )
     ],
     targets: [
