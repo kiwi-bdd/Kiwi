@@ -6,18 +6,40 @@ import PackageDescription
 let package = Package(
     name: "Kiwi",
     platforms: [
-        .iOS(.v8),
+        .iOS(.v9),
         .macOS(.v10_10)
     ],
     products: [
         .library(name: "Kiwi", targets: ["Kiwi"])
     ],
+    dependencies: [
+        .package(
+            url: "https://github.com/Quick/Nimble", from: "10.0.0"
+        )
+    ],
     targets: [
         .target(
             name: "Kiwi",
-            path: "Classes",
             cSettings: [
                 .headerSearchPath("./**")
+            ]
+        ),
+        .testTarget(
+            name: "KiwiTests",
+            dependencies: [
+                "Kiwi",
+                "Nimble"
+            ],
+            cSettings: [
+                .headerSearchPath("./**"),
+                .headerSearchPath("../../Sources/Kiwi/**")
+            ]
+        ),
+        .testTarget(
+            name: "KiwiTestsSwift",
+            dependencies: [
+                "Kiwi",
+                "Nimble"
             ]
         )
     ]

@@ -1,1 +1,0 @@
-../..//Core/KWExampleDelegate.h

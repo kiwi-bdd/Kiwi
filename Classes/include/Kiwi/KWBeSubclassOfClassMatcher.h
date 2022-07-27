@@ -1,1 +1,0 @@
-../..//Matchers/KWBeSubclassOfClassMatcher.h
