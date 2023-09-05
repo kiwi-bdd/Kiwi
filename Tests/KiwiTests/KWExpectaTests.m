@@ -1,3 +1,4 @@
+#if !SWIFT_PACKAGE
 #import <Kiwi/Kiwi.h>
 #import <Expecta/Expecta.h>
 #import "KWFailureInterceptingSpec.h"
@@ -14,3 +15,4 @@ describe(@"alternate matcher support in Objective-C", ^{
 });
 
 SPEC_END
+#endif
